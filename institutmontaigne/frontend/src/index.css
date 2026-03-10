@@ -1,0 +1,105 @@
+@import url('https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,500;7..72,700&family=Space+Grotesk:wght@400;500;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --paper: #f3eee3;
+    --ink: #131925;
+    --blueprint: #1f4b7a;
+    --rust: #b03a1d;
+    --sand: #ead9bd;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html,
+  body,
+  #root {
+    min-height: 100%;
+  }
+
+  body {
+    margin: 0;
+    font-family: 'Literata', serif;
+    background: var(--paper);
+    color: var(--ink);
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1,
+  h2,
+  h3,
+  p {
+    margin: 0;
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: 'Literata', serif;
+    font-weight: 700;
+  }
+
+  .font-sans {
+    font-family: 'Space Grotesk', sans-serif;
+  }
+
+  .bg-paper {
+    background: var(--paper);
+  }
+
+  .bg-blueprint {
+    background: var(--blueprint);
+  }
+
+  .bg-sand {
+    background: var(--sand);
+  }
+
+  .text-ink {
+    color: var(--ink);
+  }
+
+  .text-rust {
+    color: var(--rust);
+  }
+
+  .text-blueprint {
+    color: var(--blueprint);
+  }
+
+  .text-paper {
+    color: var(--paper);
+  }
+}
+
+.grain-overlay {
+  opacity: 0.15;
+  background-image:
+    radial-gradient(circle at 25% 20%, rgba(176, 58, 29, 0.16), transparent 42%),
+    radial-gradient(circle at 85% 10%, rgba(31, 75, 122, 0.18), transparent 38%),
+    linear-gradient(145deg, rgba(19, 25, 37, 0.02), rgba(19, 25, 37, 0));
+}
+
+.fade-up {
+  animation: fade-up 550ms ease-out both;
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
