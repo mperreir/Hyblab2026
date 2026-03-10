@@ -1,15 +1,22 @@
 # Descriptif du projet
 
-Porteur de projet :
+Porteur de projet : Hubert Guillaud
 
-Sujet :
+Sujet : Dans les algorithmes
 
-Nom d'équipe :
+Nom d'équipe : PDF - Pas Des Fraudes
 
 Participants : 
 
 - EDNA :
+    Mélanie ARRIBEROUGE
+    Pimprenelle DESCAMPS
+    Pierrot LE ROUX
 - Polytech :  
+    Simon BAUD
+    Antoine LEFEUVRE
+    Julien BOUSSET
+    Tetiana POLONINA
 
 
 
