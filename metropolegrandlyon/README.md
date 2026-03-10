@@ -8,7 +8,7 @@ Nom d'équipe : Tié1Lyon
 
 Participants : 
 
-- EDNA :
+- EDNA : BEZARD-FALGAS Mathilde, HERVÉ Lou, METZGER Laura
 - Polytech : Guéguen Loïc, Dubois Elouan, Bhödynaux Paul
 
 
