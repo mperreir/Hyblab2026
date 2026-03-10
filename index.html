@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Affaire Epstein — Enquête Ouest-France</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=IBM+Plex+Mono:wght@400;500&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/map.css">
+  <link rel="stylesheet" href="css/modal.css">
+</head>
+<body>
+
+  <!-- LOADING -->
+  <div class="loading-screen" id="loading">
+    <div class="loading-title">Affaire <span>Epstein</span></div>
+    <div class="loading-bar-wrap"><div class="loading-bar"></div></div>
+    <div class="loading-msg">Chargement de l'enquête…</div>
+  </div>
+
+  <!-- TOP BANNER -->
+  <div class="top-bar">
+    <span>📰 Enquête exclusive Ouest-France — Dossier Epstein</span>
+    <button class="jmail-btn top-btn" onclick="openJmail()">✉ Accéder à JMail — Emails d'Epstein</button>
+    <a class="top-btn" href="https://epsteinexposed.com" target="_blank" rel="noopener">🔍 EpsteinExposed.com</a>
+  </div>
+
+  <!-- HEADER -->
+  <header>
+    <div class="header-texture"></div>
+    <div class="masthead">
+      <div>
+        <div class="masthead-logo">Ouest-France — Investigation</div>
+        <h1>L'Affaire <span>Epstein</span></h1>
+      </div>
+      <div class="masthead-meta">
+        <div>Mise à jour : Mars 2026</div>
+        <div>25 articles d'enquête</div>
+        <div>Sources exclusives</div>
+      </div>
+      <div class="stamp-classified">Confidentiel</div>
+    </div>
+    <nav class="nav-strip">
+      <button class="nav-btn active" id="btn-articles" onclick="switchView('articles')">📄 Articles & Enquêtes</button>
+      <span class="nav-sep">|</span>
+      <button class="nav-btn" id="btn-map" onclick="switchView('map')">🗺 Carte interactive</button>
+      <span class="nav-sep">|</span>
+      <button class="nav-btn" onclick="openJmail()">✉ JMail</button>
+    </nav>
+  </header>
+
+  <!-- ═══ ARTICLES VIEW ═══ -->
+  <div class="view active" id="view-articles">
+    <div class="articles-wrap">
+
+      <!-- SEARCH + FILTERS -->
+      <div class="search-filter-bar">
+        <div class="search-box">
+          <span class="search-icon">🔍</span>
+          <input
+            type="text"
+            id="search-input"
+            placeholder="Rechercher dans les articles… (ex: Brunel, finance, Paris)"
+            oninput="onSearch()"
+            autocomplete="off"
+          />
+          <button class="search-clear" id="search-clear" onclick="clearSearch()" aria-label="Effacer">✕</button>
+        </div>
+        <div class="filter-row">
+          <span class="filter-label">Filtrer :</span>
+          <button class="filter-btn active" onclick="filterCards('all', this)">Tous</button>
+          <button class="filter-btn" onclick="filterCards('france', this)">🇫🇷 France</button>
+          <button class="filter-btn" onclick="filterCards('finance', this)">💰 Finance</button>
+          <button class="filter-btn" onclick="filterCards('justice', this)">⚖️ Justice</button>
+          <button class="filter-btn" onclick="filterCards('reseau', this)">🕸 Réseau</button>
+          <button class="filter-btn" onclick="filterCards('mort', this)">☠ Mort</button>
+        </div>
+      </div>
+
+      <div class="search-results-info" id="search-results-info"></div>
+      <div class="articles-grid" id="articles-grid"></div>
+    </div>
+  </div>
+
+  <!-- ═══ MAP VIEW ═══ -->
+  <div class="view" id="view-map">
+    <div class="map-wrap">
+      <div class="map-header">
+        <div>
+          <div class="map-title">Réseau Epstein — Carte mondiale</div>
+          <div class="map-subtitle">Cliquez sur un pays en surbrillance pour afficher les articles liés</div>
+        </div>
+        <div class="map-legend">
+          <div class="legend-item"><div class="legend-dot active-c"></div>Pays impliqués</div>
+          <div class="legend-item"><div class="legend-dot inactive-c"></div>Lieux clés</div>
+        </div>
+      </div>
+      <div id="world-map-container">
+        <svg id="world-map-svg" viewBox="0 0 1010 660" preserveAspectRatio="xMidYMid meet"></svg>
+        <div class="map-tip" id="map-tip">
+          <div class="tip-pulse"></div>
+          Cliquer sur un pays rouge pour afficher les connexions
+        </div>
+      </div>
+      <!-- SIDE PANEL -->
+      <div class="info-panel" id="info-panel">
+        <div class="panel-header">
+          <div>
+            <div class="panel-country-flag" id="panel-flag">🌍</div>
+            <div class="panel-country-name" id="panel-country">—</div>
+            <div class="panel-count" id="panel-count">0 article(s)</div>
+          </div>
+          <button class="panel-close" onclick="closeMapPanel()">✕</button>
+        </div>
+        <div class="panel-articles" id="panel-articles"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ ARTICLE READER MODAL ═══ -->
+  <div class="modal-overlay" id="reader-modal" onclick="closeReader(event)">
+    <div class="modal-box reader-box" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <div class="modal-header-left">
+          <span class="modal-label" id="reader-tag">Article</span>
+          <span class="modal-title" id="reader-title">—</span>
+        </div>
+        <div class="modal-header-actions">
+          <a id="reader-ext-link" href="#" target="_blank" rel="noopener" class="modal-action-btn" title="Ouvrir sur Ouest-France">↗ Ouest-France</a>
+          <button class="modal-close" onclick="closeReader()">✕</button>
+        </div>
+      </div>
+      <div class="reader-body" id="reader-body">
+        <div class="reader-loading" id="reader-loading">
+          <div class="reader-spinner"></div>
+          <span>Chargement de l'article…</span>
+        </div>
+        <iframe
+          id="reader-iframe"
+          src=""
+          title="Article Ouest-France"
+          sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
+          style="display:none"
+        ></iframe>
+        <div class="reader-blocked" id="reader-blocked" style="display:none">
+          <div class="blocked-icon">🔒</div>
+          <p>Cet article ne peut pas être affiché directement (protection anti-iframe de Ouest-France).</p>
+          <a id="reader-fallback-link" href="#" target="_blank" rel="noopener" class="modal-ext-btn">→ Lire sur Ouest-France.fr</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ JMAIL MODAL ═══ -->
+  <div class="modal-overlay" id="jmail-modal" onclick="closeJmail(event)">
+    <div class="modal-box" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <div class="modal-header-left">
+          <span class="modal-label">Source primaire</span>
+          <span class="modal-title">✉ JMail — Emails de Jeffrey Epstein</span>
+        </div>
+        <button class="modal-close" onclick="closeJmail()">✕</button>
+      </div>
+      <div class="modal-body">
+        <p>
+          <strong>JMail</strong> est une archive interactive des emails de Jeffrey Epstein, publiée suite à la divulgation de données par le <strong>House Oversight Committee</strong> en novembre 2025.
+        </p>
+        <p>
+          Vous êtes connecté sous <strong>jeevacation@gmail.com</strong> — compte personnel d'Epstein. Ces emails constituent une source primaire pour comprendre l'étendue de son réseau.
+        </p>
+        <div class="modal-iframe-wrap">
+          <div class="iframe-icon">📬</div>
+          <p class="iframe-note">Pour accéder aux emails en direct, ouvrez JMail dans un nouvel onglet. Le site tiers ne peut pas être intégré pour des raisons de sécurité.</p>
+          <a href="https://jmail.world/" target="_blank" rel="noopener" class="modal-ext-btn">→ Ouvrir JMail.world</a>
+        </div>
+        <p class="modal-source-note">Source : Données publiées par le House Oversight Committee, novembre 2025. Archivé sur jmail.world.</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/articles.js"></script>
+  <script src="js/map.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
