@@ -7,7 +7,10 @@ export default function App() {
   return (
     <div className="min-h-screen">
       <Header meta={debateData.meta} />
-      <Scrollytelling accroches={debateData.accroches} />
+      <Scrollytelling
+        accroches={debateData.accroches}
+        images={debateData.accrocheImages}
+      />
       <QuestionAccordion
         questions={debateData.questions}
         intervenants={debateData.meta.intervenants}
