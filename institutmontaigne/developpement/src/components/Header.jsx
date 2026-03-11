@@ -64,7 +64,7 @@ export default function Header({ meta }) {
       </header>
 
       {/* Chapeau */}
-      <section
+      {/* <section
         ref={chapRef}
         className={`bg-white py-16 md:py-24 px-6 transition-all duration-1000 ${chapVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
       >
@@ -76,7 +76,7 @@ export default function Header({ meta }) {
             {meta.credits}
           </p>
         </div>
-      </section>
+      </section> */}
     </>
   );
 }
