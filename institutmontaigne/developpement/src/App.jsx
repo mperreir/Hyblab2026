@@ -32,7 +32,7 @@ export default function App() {
           </div>
           <div className="mt-8 w-16 h-px bg-white/10 mx-auto" />
           <p className="mt-4 text-[10px] font-sans text-white/20">
-            Institut Montaigne × Hyblab 2026
+            Institut Montaigne x Hyblab 2026
           </p>
         </div>
       </footer>
