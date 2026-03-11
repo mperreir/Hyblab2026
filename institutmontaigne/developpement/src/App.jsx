@@ -2,6 +2,7 @@ import Header from './components/Header';
 import Scrollytelling from './components/Scrollytelling';
 import QuestionAccordion from './components/QuestionAccordion';
 import Quiz from './components/Quiz';
+import QuizFin from './components/Quiz_fin';
 import debateData from './data/debate.json';
 
 export default function App() {
@@ -14,6 +15,7 @@ export default function App() {
         questions={debateData.questions}
         intervenants={debateData.meta.intervenants}
       />
+      <QuizFin />
 
       {/* Footer */}
       <footer className="bg-navy text-white py-12 px-6">

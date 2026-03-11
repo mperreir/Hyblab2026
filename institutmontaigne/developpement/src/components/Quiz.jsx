@@ -11,11 +11,11 @@ export default function Quiz({ meta = {} }) {
 
   // Déterminer le message selon la position
   const getPositionMessage = () => {
-    if (response < 20) return 'Très en désaccord';
-    if (response < 40) return 'Plutôt en désaccord';
+    if (response < 20) return 'Très d\'accord';
+    if (response < 40) return 'Plutôt d\'accord';
     if (response < 60) return 'Neutre';
-    if (response < 80) return 'Plutôt d\'accord';
-    return 'Très d\'accord';
+    if (response < 80) return 'Plutôt en désaccord';
+    return 'Très en désaccord';
   };
 
   return (
