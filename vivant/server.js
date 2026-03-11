@@ -48,6 +48,7 @@ const db = new sqlite3.Database(dbPath, (err) => {
                 "Attachment URL" TEXT,
                 "Catégories" TEXT,
                 "Étiquettes" TEXT,
+                "categorie_tag" TEXT,
                 "_post_review_box_title" TEXT,
                 "_yoast_wpseo_primary_category" REAL,
                 "_yoast_wpseo_estimated-reading-time-minutes" REAL,
@@ -63,10 +64,10 @@ const db = new sqlite3.Database(dbPath, (err) => {
             // 2. Préparation de la requête d'insertion
             const stmt = db.prepare(`INSERT OR REPLACE INTO articles (
                 "ID", "Title", "Content", "Date", "Permalink", "Image URL", "Image Title", 
-                "Image Alt Text", "Image Featured", "Attachment URL", "Catégories", "Étiquettes", 
+                "Image Alt Text", "Image Featured", "Attachment URL", "Catégories", "Étiquettes", "categorie_tag",
                 "_post_review_box_title", "_yoast_wpseo_primary_category", "_yoast_wpseo_estimated-reading-time-minutes", 
                 "_yoast_wpseo_content_score", "_yoast_wpseo_metadesc", "_latlngmarker", "Slug", "Post Modified Date"
-            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`);
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`);
 
             let rowCount = 0;
 
@@ -77,7 +78,7 @@ const db = new sqlite3.Database(dbPath, (err) => {
                     stmt.run(
                         row['ID'], row['Title'], row['Content'], row['Date'], row['Permalink'], 
                         row['Image URL'], row['Image Title'], row['Image Alt Text'], row['Image Featured'], 
-                        row['Attachment URL'], row['Catégories'], row['Étiquettes'], row['_post_review_box_title'], 
+                        row['Attachment URL'], row['Catégories'], row['Étiquettes'], row['categorie_tag'], row['_post_review_box_title'], 
                         row['_yoast_wpseo_primary_category'] || null, 
                         row['_yoast_wpseo_estimated-reading-time-minutes'] || null, 
                         row['_yoast_wpseo_content_score'] || null, 
@@ -95,7 +96,6 @@ const db = new sqlite3.Database(dbPath, (err) => {
         });
     }
 });
-
 
 // This module is exported and served by the main server.js located
 // at the root of this set of projects. You can access it by lanching the main
