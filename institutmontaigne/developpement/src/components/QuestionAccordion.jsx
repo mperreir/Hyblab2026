@@ -2,9 +2,13 @@ import { useState, useRef, useCallback, useEffect } from 'react';
 
 export default function QuestionAccordion({ questions, intervenants }) {
   const [openIndex, setOpenIndex] = useState(null);
+  const [openDirection, setOpenDirection] = useState('down');
   const questionRefs = useRef([]);
+  const lastActionTimeRef = useRef(0);
+  const ACTION_LOCK_MS = 650;
 
   const openQuestion = useCallback((idx) => {
+    setOpenDirection('down');
     setOpenIndex(idx);
     // Scroll to the question header after a tick
     setTimeout(() => {
@@ -21,6 +25,10 @@ export default function QuestionAccordion({ questions, intervenants }) {
   };
 
   const openNext = useCallback(() => {
+    const now = Date.now();
+    if (now - lastActionTimeRef.current < ACTION_LOCK_MS) return;
+    lastActionTimeRef.current = now;
+    setOpenDirection('down');
     setOpenIndex(prev => {
       const next = prev !== null && prev < questions.length - 1 ? prev + 1 : null;
       if (next !== null) {
@@ -31,6 +39,22 @@ export default function QuestionAccordion({ questions, intervenants }) {
       return next;
     });
   }, [questions.length]);
+
+  const openPrev = useCallback(() => {
+    const now = Date.now();
+    if (now - lastActionTimeRef.current < ACTION_LOCK_MS) return;
+    lastActionTimeRef.current = now;
+    setOpenDirection('up');
+    setOpenIndex(prev => {
+      const prevIdx = prev !== null && prev > 0 ? prev - 1 : null;
+      if (prevIdx !== null) {
+        setTimeout(() => {
+          questionRefs.current[prevIdx]?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 100);
+      }
+      return prevIdx;
+    });
+  }, []);
 
   return (
     <section className="bg-white py-12 md:py-20">
@@ -50,7 +74,10 @@ export default function QuestionAccordion({ questions, intervenants }) {
               isOpen={openIndex === i}
               onToggle={() => toggle(i)}
               onFinish={openNext}
+              onPrev={openPrev}
               isLast={i === questions.length - 1}
+              isFirstItem={i === 0}
+              startAtBottom={openIndex === i && openDirection === 'up'}
             />
           ))}
         </div>
@@ -62,26 +89,43 @@ export default function QuestionAccordion({ questions, intervenants }) {
 import { forwardRef } from 'react';
 
 const QuestionItem = forwardRef(function QuestionItem(
-  { index, question, intervenants, isOpen, onToggle, onFinish, isLast },
+  { index, question, intervenants, isOpen, onToggle, onFinish, onPrev, isLast, isFirstItem, startAtBottom },
   ref
 ) {
   const scrollContainerRef = useRef(null);
   const [activeSnap, setActiveSnap] = useState(0);
   const [atEnd, setAtEnd] = useState(false);
+  const [atTop, setAtTop] = useState(true);
   const touchStartY = useRef(0);
+  const wasAtBottomOnTouchStart = useRef(false);
+  const wasAtTopOnTouchStart = useRef(false);
   const endScrollCount = useRef(0);
+  const topScrollCount = useRef(0);
+  const lastWheelTime = useRef(Date.now());
 
   // Reset state when opening
   useEffect(() => {
     if (isOpen) {
-      setActiveSnap(0);
+      setActiveSnap(0); // Will be recalculated by handleScroll anyway
       setAtEnd(false);
+      setAtTop(true);
       endScrollCount.current = 0;
+      topScrollCount.current = 0;
+      lastWheelTime.current = Date.now();
       if (scrollContainerRef.current) {
-        scrollContainerRef.current.scrollTop = 0;
+        if (startAtBottom) {
+          // Attendre que le conteneur soit bien rendu pour obtenir la bonne hauteur finale
+          setTimeout(() => {
+            if (scrollContainerRef.current) {
+              scrollContainerRef.current.scrollTop = scrollContainerRef.current.scrollHeight;
+            }
+          }, 10);
+        } else {
+          scrollContainerRef.current.scrollTop = 0;
+        }
       }
     }
-  }, [isOpen]);
+  }, [isOpen, startAtBottom]);
 
   // Track which snap is active
   useEffect(() => {
@@ -89,14 +133,17 @@ const QuestionItem = forwardRef(function QuestionItem(
     if (!container || !isOpen) return;
 
     const handleScroll = () => {
-      const cards = container.querySelectorAll('[data-snap]');
+      const cards = container.querySelectorAll('[data-card]');
       const containerRect = container.getBoundingClientRect();
       let closest = 0;
       let minDist = Infinity;
 
       cards.forEach((card, i) => {
         const rect = card.getBoundingClientRect();
-        const dist = Math.abs(rect.top - containerRect.top);
+        // Distance entre le centre du conteneur et le centre de la carte
+        const cardCenter = rect.top + rect.height / 2;
+        const containerCenter = containerRect.top + containerRect.height / 2;
+        const dist = Math.abs(cardCenter - containerCenter);
         if (dist < minDist) {
           minDist = dist;
           closest = i;
@@ -105,39 +152,75 @@ const QuestionItem = forwardRef(function QuestionItem(
 
       setActiveSnap(closest);
       const isBottom = container.scrollTop + container.clientHeight >= container.scrollHeight - 10;
+      const isTopPos = container.scrollTop <= 10;
       setAtEnd(isBottom);
+      setAtTop(isTopPos);
     };
 
     container.addEventListener('scroll', handleScroll, { passive: true });
     return () => container.removeEventListener('scroll', handleScroll);
   }, [isOpen]);
 
-  // Wheel: detect scroll past end
+  // Wheel: detect scroll past end or top
   const handleWheel = useCallback((e) => {
     const container = scrollContainerRef.current;
     if (!container) return;
 
     const isBottom = container.scrollTop + container.clientHeight >= container.scrollHeight - 10;
+    const isTopPos = container.scrollTop <= 10;
+    const now = Date.now();
+    const timeSinceLast = now - lastWheelTime.current;
+    lastWheelTime.current = now;
 
-    if (isBottom && e.deltaY > 0) {
-      endScrollCount.current += 1;
-      if (endScrollCount.current >= 2) {
-        e.preventDefault();
+    if (e.deltaY > 0) { // Scrolling down
+      topScrollCount.current = 0;
+      if (!isBottom) {
         endScrollCount.current = 0;
-        if (!isLast) {
-          onFinish();
-        } else {
-          onToggle();
+      } else {
+        // Needs a distinct pause (150ms) to count as a new scroll gesture
+        if (timeSinceLast > 150) {
+          endScrollCount.current += 1;
+        }
+        if (endScrollCount.current >= 1 && timeSinceLast > 150) {
+          e.preventDefault();
+          endScrollCount.current = 0;
+          if (!isLast) {
+            onFinish();
+          } else {
+            onToggle();
+          }
         }
       }
-    } else {
+    } else if (e.deltaY < 0) { // Scrolling up
       endScrollCount.current = 0;
+      if (!isTopPos) {
+        topScrollCount.current = 0;
+      } else {
+        // Needs a distinct pause (150ms) to count as a new scroll gesture
+        if (timeSinceLast > 150) {
+          topScrollCount.current += 1;
+        }
+        if (topScrollCount.current >= 1 && timeSinceLast > 150) {
+          e.preventDefault();
+          topScrollCount.current = 0;
+          if (!isFirstItem) {
+            onPrev();
+          } else {
+            onToggle();
+          }
+        }
+      }
     }
-  }, [onFinish, onToggle, isLast]);
+  }, [onFinish, onPrev, onToggle, isLast, isFirstItem]);
 
-  // Touch: detect swipe past end
+  // Touch: detect swipe past end or top
   const handleTouchStart = (e) => {
     touchStartY.current = e.touches[0].clientY;
+    const container = scrollContainerRef.current;
+    if (container) {
+      wasAtBottomOnTouchStart.current = container.scrollTop + container.clientHeight >= container.scrollHeight - 10;
+      wasAtTopOnTouchStart.current = container.scrollTop <= 10;
+    }
   };
 
   const handleTouchEnd = useCallback((e) => {
@@ -146,15 +229,22 @@ const QuestionItem = forwardRef(function QuestionItem(
 
     const delta = touchStartY.current - e.changedTouches[0].clientY;
     const isBottom = container.scrollTop + container.clientHeight >= container.scrollHeight - 10;
+    const isTopPos = container.scrollTop <= 10;
 
-    if (isBottom && delta > 60) {
+    if (isBottom && wasAtBottomOnTouchStart.current && delta > 50) {
       if (!isLast) {
         onFinish();
       } else {
         onToggle();
       }
+    } else if (isTopPos && wasAtTopOnTouchStart.current && delta < -50) {
+      if (!isFirstItem) {
+        onPrev();
+      } else {
+        onToggle();
+      }
     }
-  }, [onFinish, onToggle, isLast]);
+  }, [onFinish, onPrev, onToggle, isLast, isFirstItem]);
 
   const getIntervenantInfo = (id) => intervenants.find(p => p.id === id);
 
@@ -198,10 +288,10 @@ const QuestionItem = forwardRef(function QuestionItem(
             </span>
           </div>
 
-          {/* Scroll-snap container */}
+          {/* Scroll container */}
           <div
             ref={scrollContainerRef}
-            className="dialogue-scroll h-[70vh] md:h-[75vh] overflow-y-auto snap-y snap-mandatory rounded-xl bg-offwhite"
+            className="dialogue-scroll h-[70vh] md:h-[75vh] overflow-y-auto rounded-xl bg-offwhite"
             onWheel={handleWheel}
             onTouchStart={handleTouchStart}
             onTouchEnd={handleTouchEnd}
@@ -220,30 +310,7 @@ const QuestionItem = forwardRef(function QuestionItem(
                 />
               );
             })}
-
-            {/* End sentinel */}
-            <div data-snap className="snap-start min-h-[70vh] md:min-h-[75vh] flex items-center justify-center px-6">
-              <div className="text-center">
-                <div className="w-12 h-px bg-ink/10 mx-auto mb-6" />
-                <p className="text-sm font-sans text-ink/30">
-                  {isLast ? 'Fin du débat' : 'Continuer vers la question suivante'}
-                </p>
-                <button
-                  onClick={isLast ? onToggle : onFinish}
-                  className="mt-4 text-xs font-sans text-navy underline underline-offset-4 hover:text-accent-red transition-colors"
-                >
-                  {isLast ? 'Revenir aux questions' : 'Question suivante →'}
-                </button>
-              </div>
-            </div>
           </div>
-
-          {/* Bottom hint */}
-          {atEnd && !isLast && (
-            <div className="absolute bottom-2 left-1/2 -translate-x-1/2 text-[10px] font-sans text-ink/25 animate-pulse">
-              ↓ Défilez pour continuer
-            </div>
-          )}
         </div>
       )}
     </div>
@@ -268,8 +335,8 @@ function DialogueCard({ block, info, isFirst, index }) {
   return (
     <div
       ref={ref}
-      data-snap
-      className="snap-start min-h-[70vh] md:min-h-[75vh] flex items-center px-5 md:px-10 py-8"
+      data-card
+      className="flex items-center px-5 md:px-10 py-5"
     >
       <div
         className={`max-w-2xl mx-auto w-full transition-all duration-700 ${
@@ -278,7 +345,7 @@ function DialogueCard({ block, info, isFirst, index }) {
       >
         {/* Speaker indicator */}
         <div className="flex items-center gap-3 mb-5">
-          <div className={`w-8 h-8 rounded-full flex items-center justify-center text-white text-xs font-sans font-medium ${
+          <div className={`w-8 h-8 rounded-full flex aspect-square items-center justify-center text-white text-xs font-sans font-medium ${
             isFirst ? 'bg-navy' : 'bg-accent-red'
           }`}>
             {info?.nom.split(' ').map(w => w[0]).join('')}
@@ -292,7 +359,7 @@ function DialogueCard({ block, info, isFirst, index }) {
         </div>
 
         {/* Content */}
-        <div className={`border-l-2 pl-5 md:pl-7 ${isFirst ? 'border-navy/20' : 'border-accent-red/20'}`}>
+        <div>
           {block.contenu.map((para, k) => (
             <p key={k} className="mb-4 last:mb-0 text-[15px] md:text-base leading-[1.85] text-ink/80 font-serif">
               {para}
@@ -302,7 +369,7 @@ function DialogueCard({ block, info, isFirst, index }) {
 
         {/* Pull quote */}
         {block.citation && (
-          <blockquote className={`mt-8 pl-5 md:pl-7 border-l-2 ${isFirst ? 'border-navy' : 'border-accent-red'}`}>
+          <blockquote className='mt-8'>
             <p className={`text-lg md:text-xl font-serif font-bold italic leading-snug ${isFirst ? 'text-navy' : 'text-accent-red'}`}>
               « {block.citation} »
             </p>
