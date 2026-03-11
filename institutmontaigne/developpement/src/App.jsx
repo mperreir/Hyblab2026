@@ -1,16 +1,15 @@
 import Header from './components/Header';
 import Scrollytelling from './components/Scrollytelling';
 import QuestionAccordion from './components/QuestionAccordion';
+import Quiz from './components/Quiz';
 import debateData from './data/debate.json';
 
 export default function App() {
   return (
     <div className="min-h-screen">
       <Header meta={debateData.meta} />
-      <Scrollytelling
-        accroches={debateData.accroches}
-        images={debateData.accrocheImages}
-      />
+      <Scrollytelling accroches={debateData.accroches} />
+      <Quiz meta={debateData.meta} />
       <QuestionAccordion
         questions={debateData.questions}
         intervenants={debateData.meta.intervenants}
