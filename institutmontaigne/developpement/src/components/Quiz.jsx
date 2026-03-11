@@ -9,13 +9,6 @@ export default function Quiz({ meta = {} }) {
 
   const position = response / 100; // 0 à 1
 
-  // Déterminer la couleur du curseur basée sur la position
-  const getCursorColor = () => {
-    if (response < 35) return 'bg-accent-blue';
-    if (response > 65) return 'bg-accent-red';
-    return 'bg-gray-400';
-  };
-
   // Déterminer le message selon la position
   const getPositionMessage = () => {
     if (response < 20) return 'Très en désaccord';
