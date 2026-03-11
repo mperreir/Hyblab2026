@@ -1,38 +1,37 @@
 "use strict";
 
-// Init of the (touch friendly) Swiper slider
-const swiper = new Swiper("#mySwiper", {
-  direction: "vertical",
-  mousewheel: true,
-  pagination: {
-    el: ".swiper-pagination",
-    clickable: true,
-  },
-});
+// const img = document.getElementById('img');
 
-swiper.on("slideChange", function () {
-  switch( swiper.activeIndex ) {
-    case 0:
-      initSlide1();
-      break;
-    case 1:
-      initSlide2();
-      break;
-  }
-});
+// const segments = [
+//   { type: "y", length: 500 },
+//   { type: "x", length: 500 },
+//   { type: "y", length: 500 }
+// ];
 
-// Wait for the content to preload and display 1st slide
-// Here we simulate a loading time of one second
-setTimeout(() => { 
-  // fade out the loader "slide"
-  // and send it to the back (z-index = -1)
-  anime({
-    delay: 1000,
-    targets: '#loader',
-    opacity: '0',
-    'z-index' : -1,
-    easing: 'easeOutQuad',
+// window.addEventListener('scroll', () => {
+//   const scroll = window.scrollY;
+//   let x = 0;
+//   let y = 0;
+//   let remaining = window.scrollY;
+
+//   for (const seg of segments) {
+
+//     const move = Math.min(remaining, seg.length);
+
+//     if (seg.type === "x") x += move;
+//     if (seg.type === "y") y += move;
+
+//     remaining -= seg.length;
+
+//     if (remaining <= 0) break;
+//   }
+
+//   img.style.transform = `translate(${-x}px, ${-y}px)`;
+// });
+
+document.addEventListener("DOMContentLoaded", (event) => {
+  gsap.to('#img', {
+    scrollTrigger: '#img', // start the animation when ".box" enters the viewport (once)
+    x: 500
   });
-  // Init first slide
-  initSlide1();
-}, 1000);
+});
