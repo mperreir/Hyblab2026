@@ -1,26 +1,5 @@
 "use strict";
 
-// Init of the (touch friendly) Swiper slider
-const swiper = new Swiper("#mySwiper", {
-  direction: "vertical",
-  mousewheel: true,
-  pagination: {
-    el: ".swiper-pagination",
-    clickable: true,
-  },
-});
-
-swiper.on("slideChange", function () {
-  switch( swiper.activeIndex ) {
-    case 0:
-      initSlide1();
-      break;
-    case 1:
-      initSlide2();
-      break;
-  }
-});
-
 // Wait for the content to preload and display 1st slide
 // Here we simulate a loading time of one second
 setTimeout(() => { 
@@ -34,5 +13,5 @@ setTimeout(() => {
     easing: 'easeOutQuad',
   });
   // Init first slide
-  initSlide1();
+  initPageProjet();
 }, 1000);
