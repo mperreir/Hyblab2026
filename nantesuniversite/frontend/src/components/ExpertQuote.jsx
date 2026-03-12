@@ -25,9 +25,9 @@ export default function ExpertQuote() {
 
       {/* Italic quote */}
       <p className="absolute left-[735px] top-[61px] w-[960px] italic text-black text-[36px] leading-[normal] font-sans">
-        «&thinsp;Je m&apos;en sors habituellement en observant que ce qu&apos;on
+        &thinsp;Je m&apos;en sors habituellement en observant que ce qu&apos;on
         entend par intelligence est mouvant et qu&apos;au fur du temps, des
-        activités qu&apos;on tenait pour intelligentes ne le sont plus.&thinsp;»
+        activités qu&apos;on tenait pour intelligentes ne le sont plus.&thinsp;
       </p>
 
       {/* Attribution (right-aligned) */}

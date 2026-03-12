@@ -13,6 +13,8 @@ export default function Header() {
       <div className="w-[245px] h-[82px]">
         <img src={nantesLogo} alt="Nantes Université" className="block w-full h-full object-contain" />
       </div>
+
+      <div className="absolute left-0 top-[100px] w-full h-px bg-brand-grey" />
     </header>
   );
 }
