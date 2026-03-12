@@ -1,3 +1,5 @@
+import { color } from "framer-motion";
+
 /**
  * PhotoQuote — bulle de citation avec photo, comme dans le Figma.
  *
@@ -11,11 +13,10 @@
  * }
  */
 export default function PhotoQuote({ photo, quote, isLeft = true }) {
-  const bubbleBg = isLeft ? 'bg-[#C8D4E8]' : 'bg-[#F0C4B8]';
-  const arrowColor = isLeft ? '#0B1D3A' : '#C41E3A';
+  const COLOR = isLeft ? '#DD7375' : '#872339';
 
   return (
-    <div className="w-full pb-5">
+    <div className="w-full">
       <div className={`grid grid-cols-2 items-end ${isLeft ? 'justify-items-start ' : 'justify-items-end'} `}>
 
         {/* Photo */}
@@ -39,7 +40,7 @@ export default function PhotoQuote({ photo, quote, isLeft = true }) {
             style={{
               width: '64px',
               height: '64px',
-              backgroundColor: arrowColor,
+              backgroundColor: COLOR,
               maskImage: 'url(/icons/quoteArrow.svg)',
               maskSize: 'contain',
               maskRepeat: 'no-repeat',
@@ -55,9 +56,12 @@ export default function PhotoQuote({ photo, quote, isLeft = true }) {
       </div>
 
       {/* Bulle de citation */}
-      <blockquote className={`${bubbleBg} rounded-2xl pt-6 pb-5 px-5`}>
+      <blockquote className={`rounded-2xl pt-6 pb-5 px-5`}>
         <p
           className="text-sm md:text-base font-helvetica leading-relaxed text-ink/90 text-center"
+          style={{
+            color: COLOR
+          }}
           dangerouslySetInnerHTML={{ __html: `“ ${quote} ”` }}
         />
       </blockquote>

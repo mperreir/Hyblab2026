@@ -1,7 +1,8 @@
 import Manuscrit from "../components/infographie/Manuscrit";
-import PhotoQuote from "../components/dialog/PhotoQuote";
+import PhotoQuote from "../components/question/quote";
 import Timeline from "../components/infographie/Timeline";
 import DoughnutChart from "../components/infographie/DoughnutChart";
+import {DropZone, AnswerBank} from "../components/infographie/Puzzle";
 
 const debateData = {
   "meta": {
@@ -61,7 +62,7 @@ const debateData = {
               isLeft={true}
             />,
             <Timeline className="mx-auto w-fit mb-6" />,
-            <>Le général de Gaulle fit donc le choix d'en revenir au vieux mode de scrutin en place depuis le <Manuscrit>Second Empire</Manuscrit> et qui avait dominé sous la <Manuscrit surrounded={false}>IIIe République</Manuscrit> : le scrutin majoritaire à deux tours, qui lui offrit une majorité absolue à partir de 1962.</>
+            <p>Le général de Gaulle fit donc le choix d'en revenir au vieux mode de scrutin en place depuis le <Manuscrit>Second Empire</Manuscrit> et qui avait dominé sous la <Manuscrit surrounded={false}>IIIe République</Manuscrit> : le scrutin majoritaire à deux tours, qui lui offrit une majorité absolue à partir de 1962.</p>
             ]
         },
         {
@@ -72,15 +73,19 @@ const debateData = {
               photo="/img/2.png"
               quote="J'ajouterai à cela que <b>De Gaulle est d'abord favorable à la proportionnelle</b> sous la IVe, qu'il perçoit comme un <b>moyen de contenir le Parti communiste.</b>"
               isLeft={false}
-            />
+            />,
+            <>Le général de Gaulle fit donc le choix d'en revenir au scrutin majoritaire à deux tours,<DropZone correctAnswer="XIX" /> qui offrit une majorité absolue à partir de 1962. Comme le mode de scrutin avait été la variable d'ajustement sous la IIIe République, les législateurs conservèrent cette souplesse en ne l'inscrivant pas dans la Constitution.</>,
+            <AnswerBank answers={["XVIII", "XIX", "XX"]} />,
+            "Avant cela, les programmes reposaient avant tout sur une personne.",
+            "Ainsi, le mode de scrutin et la structuration des partis influent l'un sur l'autre. Et il s'agit toujours d'un processus au long cours.",
           ]
         },
       ]
     },
     {
       "question": "Une réponse à la crise politique",
-      "color": "#9DAACC",
-      "textcolor": "#000000",
+      "color": "#C6F9E6",
+      "textcolor": "#00483B",
       "dialogue": [
         {
           "type": "interlocuteur2",
@@ -115,8 +120,8 @@ const debateData = {
     },
     {
       "question": "Différences de scrutins",
-      "color": "#5468B5",
-      "textcolor": "#000000",
+      "color": "#A4BAE8",
+      "textcolor": "#4657C6",
       "dialogue": [
         {
           "type": "interlocuteur2",
@@ -170,8 +175,8 @@ const debateData = {
     },
       {
         "question": "Avantages / Inconvénients",
-        "color": "#E8937A",
-        "textcolor": "#000000",
+        "color": "#4657C6",
+        "textcolor": "#A4BAE8",
         "dialogue": [
         {
           "type": "interlocuteur1",
@@ -206,8 +211,8 @@ const debateData = {
     },
     {
       "question": "Quels impactes pour le RN ?",
-      "color": "#D96045",
-      "textcolor": "#000000",
+      "color": "#FFDED6",
+      "textcolor": "#EB5D31",
       "dialogue": [
         {
           "type": "interlocuteur1",
