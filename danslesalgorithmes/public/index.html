@@ -115,6 +115,63 @@
 
             .step { height: 100dvh; }
         }
+        /* =========================
+            QUIZ INLINE
+            ========================= */
+            .quiz-content {
+                text-align: center;
+            }
+
+            .quiz-buttons {
+                display: flex;
+                flex-direction: column;
+                gap: 15px;
+                margin-top: 25px;
+            }
+
+            .quiz-btn {
+                font-size: 1.1rem;
+                padding: 16px 20px;
+                border: none;
+                border-radius: 10px;
+                cursor: pointer;
+                background: rgba(255, 255, 255, 0.9);
+                color: #111;
+                transition: transform 0.2s ease, background 0.2s ease;
+            }
+
+            .quiz-btn:hover {
+                transform: scale(1.02);
+                background: #ffcc00;
+            }
+
+            .quiz-answer {
+                display: none;
+                margin-top: 20px;
+            }
+
+            .quiz-answer.active {
+                display: block;
+            }
+
+            .quiz-answer p {
+                background: rgba(0, 0, 0, 0.78);
+                color: white;
+                border-radius: 8px;
+                padding: 20px;
+            }
+
+            /* Mobile */
+            @media (max-width: 768px) {
+                .quiz-btn {
+                    font-size: 1rem;
+                    padding: 14px 16px;
+                }
+
+                .quiz-buttons {
+                    gap: 12px;
+                }
+            }
     </style>
 </head>
 <body>
@@ -155,6 +212,71 @@
             <div class="step" data-image="img/IMG_3850.jpg">
                 <div class="step-content">
                     <p>Voici un dernier paragraphe pour tester le défilement.</p>
+                </div>
+            </div>
+            <!-- =========================
+                CHAPITRE 4
+                ========================= -->
+
+            <div class="step" data-image="img/foyer_benificiaire.png">
+                <div class="step-content">
+                    <h1>Chapitre 4 — Le vrai profil des fraudeurs</h1>
+                    <p>Reposons la question…</p>
+                </div>
+            </div>
+
+            <div class="step quiz-step" data-image="img/IMG_3850.jpg">
+                <div class="step-content quiz-content">
+                    <h1>Qui fraude à la CAF ?</h1>
+
+                    <div class="quiz-buttons">
+                        <button class="quiz-btn" data-target="answer-beneficiaires">
+                            Les bénéficiaires d'aides sociales comme Marion ?
+                        </button>
+
+                        <button class="quiz-btn" data-target="answer-employeurs">
+                            Les employeurs qui ne font pas toutes les déclarations sociales qu'ils doivent faire ?
+                        </button>
+                    </div>
+
+                    <div class="quiz-answer" id="answer-beneficiaires">
+                        <p>
+                            Selon le Haut Conseil du financement de la protection sociale,
+                            la part des titulaires de minima sociaux est faible.
+                            La fraude au RSA provenant des allocataires représente
+                            1,5 milliard d’euros sur l’ensemble de la fraude évaluée.
+                        </p>
+                    </div>
+
+                    <div class="quiz-answer" id="answer-employeurs">
+                        <p>
+                            En fait, l’essentiel des fraudes sociales est le fait des entreprises.
+                            6,9 milliards de cotisations seraient éludées du fait du travail dissimulé
+                            des entreprises et des travailleurs indépendants.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="step" data-image="img/foyer_benificiaire.png">
+                <div class="step-content">
+                    <p>
+                        On estime que, du fait d’un fort taux de non-recours,
+                        c’est-à-dire de personnes qui n’activent pas les droits auxquels elles pourraient prétendre,
+                        c’est 3 milliards d’euros qui ne sont pas versés à des personnes éligibles au RSA,
+                        soit de quoi couvrir le taux de fraude des allocataires détectés par la CAF.
+                    </p>
+                </div>
+            </div>
+
+            <div class="step" data-image="img/IMG_3850.jpg">
+                <div class="step-content">
+                    <p>
+                        Ce que montrent ces chiffres, c’est que ce ne sont pas les plus pauvres
+                        qui fraudent le plus. La lutte contre la fraude sociale des allocataires
+                        apparaît bien moins pertinente que la lutte contre les cotisations dissimulées
+                        ou la fraude fiscale.
+                    </p>
                 </div>
             </div>
         </article>
@@ -209,6 +331,27 @@
                     });
                 }
             });
+    </script>
+    <script>
+        // Quiz buttons: show explanation inline, no popup, no new window
+        const quizButtons = document.querySelectorAll('.quiz-btn');
+
+        quizButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const quizStep = button.closest('.quiz-step');
+                const answers = quizStep.querySelectorAll('.quiz-answer');
+                const targetId = button.getAttribute('data-target');
+                const targetAnswer = quizStep.querySelector('#' + targetId);
+
+                // hide all answers in this quiz
+                answers.forEach(answer => answer.classList.remove('active'));
+
+                // show selected answer
+                if (targetAnswer) {
+                    targetAnswer.classList.add('active');
+                }
+            });
+        });
     </script>
 </body>
 </html>
