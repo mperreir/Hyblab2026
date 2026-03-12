@@ -4,7 +4,7 @@
 # Si oui, reset tout (pour éviter un conflit avec git pull) et récupère la dernière version sur git.
 # 
 # A mettre dans la crontab avec : (exécution toutes les 2min)
-# */2 * * * * /exan_online_prod/git_checker.sh 
+# */2 * * * * /home/lanouvellerepublique/Hyblab2026/lanouvellerepublque/git_checker.sh 
 
 REPO_DIR="/home/lanouvellerepublique/Hyblab2026"
 BRANCH="main"
@@ -19,6 +19,8 @@ if [ "$LOCAL_HASH" != "$REMOTE_HASH" ]; then
     git clean -fd
     git reset --hard "origin/$BRANCH"
 
-    npm run build:lanouvellerepublique
+    cd lanouvellerepublique
+    npm run build
+    cd ..
     pm2 restart all
 fi
