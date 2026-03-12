@@ -6,6 +6,8 @@
     <title>Test Scrollama - Projet Étudiant</title>
     
     <script src="https://unpkg.com/scrollama"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 
     <style>
         body, html {
@@ -127,24 +129,29 @@
         <figure id="background-figure"></figure>
 
         <article>
-            <div class="step" data-image="img/foyer_benificiaire.png">
+            <div class="step" data-image="img/caf.png">
                 <div class="step-content">
-                    <h1>test</h1>
-                    <p>hello world</p>
+                    <h1>Mais qui fraude à la CAF ?</h1>
                 </div>
             </div>
-            <div class="step" data-image="img/foyer_benificiaire.png">
+            <div class="step" data-image="img/caf.png">
                 <div class="step-content">
-                    <h1>La CAF c'est quoi</h1>
-                    <p>La Caisse d'Assurance Familliale</p>
+                    <p>Depuis 2010, la Caisse d'allocation familiale (CAF) utilise un algorithme pour évaluer le risque de fraude des allocataires. Depuis toutes les données qu'elle a à sa disposition, la CAF calcule ce qu'elle appelle un "score de risque de fraude" selon une note allant de 0 (le risque de fraude est faible) à 1 (le risque est maximum). </p>
                 </div>
             </div>
-            
-            <div class="step" data-image="img/fraude_comparaison.png">
-                <div class="step-content">
-                    <p>Voici un deuxième paragraphe pour tester le défilement.</p>
-                </div>
+            <div class="quiz-container">
+              <h2>Quizz</h2>
+              <p class="question">Alors selon vous, qui fraude à la CAF ?</p>
+
+              <div class="options">
+                <button class="option-btn" data-correct="false">Gyunay qui fait un petit trafic de cartes vitales volées ?</button>
+                <button class="option-btn" data-correct="true">Marion, mère isolée 3 enfants, aux revenus aléatoires qui bénéficie d'aides sociales ?</button>
+              </div>
+
+              <div class="feedback" id="feedback"></div>
+              <button class="next-btn" id="next-btn" style="display: none;">Question suivante</button>
             </div>
+
 
             <div class="step align-right" data-image="img/polytech.jpg" data-audio="son_amongUS.mp3">
                 <div class="step-content">
