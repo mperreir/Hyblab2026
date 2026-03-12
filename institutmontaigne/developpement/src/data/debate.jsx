@@ -1,7 +1,8 @@
+import PhotoQuote from "../components/dialog/PhotoQuote";
+
 const debateData = {
   "meta": {
-    "serie": <>icfsbdhk
-    cbaqdkhbc</>,
+    "serie": "contrevoix",
     "titre": "Le scrutin proportionnel est-il un remède à la crise démocratique ?",
     "date": "11 octobre 2024",
     "thematique": "Vie démocratique",
@@ -36,6 +37,11 @@ const debateData = {
     "https://images.unsplash.com/photo-1531206715517-5c0ba140b2b8?w=1200&q=80",
     "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=1200&q=80"
   ],
+  "podcast": {
+      "episode": "EP 3 : Le scrutin proportionnel est-il un remède à la crise démocratique ?",
+      "title": "Avec Benjamin MOREL et Anne LEVADE",
+      "cover": "/img/carte_article.png"
+  },
   "questions": [
     {
       "question": "Le scrutin proportionnel",
