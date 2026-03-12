@@ -60,7 +60,6 @@
     gap: 10px;
     justify-content: center;
 
-    /* perspective: 800px; */
     transform-style: preserve-3d;
     margin : 8px;
 
@@ -68,6 +67,7 @@
 
 body{
     margin: 0;
+    overflow: hidden;
 }
 
 
