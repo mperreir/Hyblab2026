@@ -13,7 +13,6 @@
   <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
   <script src="js/pageProjet.js" defer></script>
   <script src="js/index.js" defer></script>
-  <script src="js/menu.js" defer></script>
 </head>
 
 <body>
@@ -27,7 +26,8 @@
           <div id="announcement-bar-root">
             <div class="gh-announcement-bar accent">
               <div class="gh-announcement-bar-content">
-                <p dir="ltr"><span>Soutenez Rembobine et l'impact du journalisme avec un don. Votre soutien nous est essentiel ! </span></p>
+                <p dir="ltr"><span>Soutenez Rembobine et l'impact du journalisme avec un don. Votre soutien nous est
+                    essentiel ! </span></p>
               </div><button aria-label="close"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="16"
                   width="16">
                   <path stroke-linecap="round" stroke-width="0.4" fill="currentColor" stroke="#000000"
@@ -49,7 +49,9 @@
                           alt="Rembobine, le média qui lutte contre l'obsolescence de l'info" width="" height="">
                       </a>
                     </div>
-
+                    <button class="js-nav-toggle c-nav-toggle">
+                      ☰
+                    </button>
                     <nav class="c-nav-wrap" aria-label="Main menu">
                       <ul class="c-nav c-nav--left o-plain-list">
                         <li class="c-nav__item"><a href="https://www.rembobine.info/mission/" class="c-nav__link ">À
@@ -95,184 +97,168 @@
                         </li>
                       </ul>
                     </nav>
-
-                    <div class="js-nav-toggle c-nav-toggle">
-                      <span class="c-nav-toggle__icon">menu</span>
-                    </div>
                   </div>
                 </div>
               </div>
 
             </header>
-            <div class="wrapper">
-              <div class="c-tags-list-container">
-                <div class="o-grid">
-                  <div class="o-grid__col o-grid__col--full">
-                    <nav class="c-tags-list-wrap" aria-label="Tags menu">
-                      <ul class="c-tags-list o-plain-list dragscroll">
-                        <li class="c-tags-list__item">
-                          <a href="/" class="c-tags-list__link">À la Une</a>
-                        </li>
-                        <li class="c-tags-list__item">
-                          <a href="/tag/impact/" class="c-tags-list__link">💥 En quête d'impact</a>
-                        </li>
-                        <li class="c-tags-list__item">
-                          <a href="/tag/coulisses-info/" class="c-tags-list__link">🏗️ Les coulisses de l'info</a>
-                        </li>
-                        <li class="c-tags-list__item">
-                          <a href="/tag/retour-une/" class="c-tags-list__link">🗞️ Retour à la Une</a>
-                        </li>
-                        <li class="c-tags-list__item">
-                          <a href="/tag/du-cote-des-pros/" class="c-tags-list__link">👊 L'impact en rédac</a>
-                        </li>
-                      </ul>
-                    </nav>
-                  </div>
+
+            <div class="c-tags-list-container">
+              <div class="o-grid">
+                <div class="o-grid__col o-grid__col--full">
+                  <nav class="c-tags-list-wrap" aria-label="Tags menu">
+                    <ul class="c-tags-list o-plain-list dragscroll">
+                      <li class="c-tags-list__item">
+                        <a href="/" class="c-tags-list__link">À la Une</a>
+                      </li>
+                      <li class="c-tags-list__item">
+                        <a href="/tag/impact/" class="c-tags-list__link">💥 En quête d'impact</a>
+                      </li>
+                      <li class="c-tags-list__item">
+                        <a href="/tag/coulisses-info/" class="c-tags-list__link">🏗️ Les coulisses de l'info</a>
+                      </li>
+                      <li class="c-tags-list__item">
+                        <a href="/tag/retour-une/" class="c-tags-list__link">🗞️ Retour à la Une</a>
+                      </li>
+                      <li class="c-tags-list__item">
+                        <a href="/tag/du-cote-des-pros/" class="c-tags-list__link">👊 L'impact en rédac</a>
+                      </li>
+                    </ul>
+                  </nav>
                 </div>
               </div>
+            </div>
 
-              <script>
-                // Add current class the to current tag item if the URL matches the tag URL
-                window.addEventListener('DOMContentLoaded', (event) => {
-                  var url_pathname = window.location.pathname;
+            <script>
+              // Add current class the to current tag item if the URL matches the tag URL
+              window.addEventListener('DOMContentLoaded', (event) => {
+                var url_pathname = window.location.pathname;
 
-                  document.querySelectorAll('.c-tags-list__link').forEach(function (index) {
-                    var current_tag_item = index;
-                    if (url_pathname === current_tag_item.getAttribute('href')) {
-                      current_tag_item.className += ' ' + 'c-tags-list__link--current';
-                    }
-                  });
+                document.querySelectorAll('.c-tags-list__link').forEach(function (index) {
+                  var current_tag_item = index;
+                  if (url_pathname === current_tag_item.getAttribute('href')) {
+                    current_tag_item.className += ' ' + 'c-tags-list__link--current';
+                  }
                 });
-              </script>
-              <main id="main-content" class="o-wrapper">
-                <div class="o-grid">
+              });
+            </script>
+            <main id="main-content" class="o-wrapper">
+              <div class="o-grid">
 
-                  <div class="o-grid__col o-grid__col o-grid__col--center o-grid__col--9-10-m o-grid__col--2-3-l">
+                <div class="o-grid__col o-grid__col o-grid__col--center o-grid__col--9-10-m o-grid__col--2-3-l">
 
+                  <article class="c-post tag-impact">
+                    <figure class="c-post-media c-post-media--with-caption">
+                      <div class="c-post-media__wrap">
 
+                        <img src="https://www.rembobine.info/content/images/size/w692/2026/01/Enqu--tes-d-impact---Unes--36-.jpg">
 
+                      <figcaption class="c-post-media__caption"><span style="white-space: pre-wrap;">&nbsp;Maison
+                          russe
+                          de Bangui © Facebook La Maison Russe</span></figcaption>
+                    </figure>
 
-                    <article class="c-post tag-impact">
-                      <figure class="c-post-media c-post-media--with-caption">
-                        <div class="c-post-media__wrap">
-                          <img alt="" class="c-post-media__image ls-is-cached lazyloaded" data-srcset="
-          /content/images/size/w346/2026/01/Enqu--tes-d-impact---Unes--36-.jpg 346w,
-          /content/images/size/w692/2026/01/Enqu--tes-d-impact---Unes--36-.jpg 692w,
-          /content/images/size/w1384/2026/01/Enqu--tes-d-impact---Unes--36-.jpg 1384w"
-                            sizes="(min-width: 1260px) 692px, (min-width: 1040px) calc(34vw + 270px), (min-width: 640px) calc(90vw - 61px), calc(100vw - 32px)"
-                            data-src="/content/images/size/w1384/2026/01/Enqu--tes-d-impact---Unes--36-.jpg" srcset="
-          /content/images/size/w346/2026/01/Enqu--tes-d-impact---Unes--36-.jpg 346w,
-          /content/images/size/w692/2026/01/Enqu--tes-d-impact---Unes--36-.jpg 692w,
-          /content/images/size/w1384/2026/01/Enqu--tes-d-impact---Unes--36-.jpg 1384w"
-                            src="/content/images/size/w1384/2026/01/Enqu--tes-d-impact---Unes--36-.jpg">
-                        </div>
+                    <header class="c-post-header">
+                      <h1 class="c-post-header__title">En Afrique, la Russie ruse pour étendre son influence</h1>
 
-                        <figcaption class="c-post-media__caption"><span style="white-space: pre-wrap;">&nbsp;Maison
-                            russe
-                            de Bangui © Facebook La Maison Russe</span></figcaption>
-                      </figure>
+                      <p class="c-post-header__excerpt">Equivalents de nos Instituts français, les "Maisons russes"
+                        servent d’instrument de soft power au Kremlin pour accroître son influence en Afrique.</p>
 
-                      <header class="c-post-header">
-                        <h1 class="c-post-header__title">En Afrique, la Russie ruse pour étendre son influence</h1>
-
-                        <p class="c-post-header__excerpt">Equivalents de nos Instituts français, les "Maisons russes"
-                          servent d’instrument de soft power au Kremlin pour accroître son influence en Afrique.</p>
-
-                        <div class="c-post-header__meta">
-                          <div class="c-post-header__authors">
-                            <div class="c-post-header__authors-images">
-                              <a href="/author/sikouk/" class="c-post-header__author-image-wrap">
-                                <img class="c-post-header__author-image ls-is-cached lazyloaded"
-                                  data-src="/content/images/size/w128/2024/03/Bessma.jpg" alt="Bessma Sikouk "
-                                  width="32" height="32" src="/content/images/size/w128/2024/03/Bessma.jpg">
-                              </a>
-                            </div>
-
-                            <div>
-                              <div class="c-post-header__authors-names">
-                                <a href="/author/sikouk/">Bessma Sikouk </a>
-                              </div>
-
-                              <time class="" datetime="2026-01-12">12 janv. 2026</time>
-                            </div>
+                      <div class="c-post-header__meta">
+                        <div class="c-post-header__authors">
+                          <div class="c-post-header__authors-images">
+                            <a href="/author/sikouk/" class="c-post-header__author-image-wrap">
+                              <img class="c-post-header__author-image ls-is-cached lazyloaded"
+                                data-src="/content/images/size/w128/2024/03/Bessma.jpg" alt="Bessma Sikouk " width="32"
+                                height="32" src="/content/images/size/w128/2024/03/Bessma.jpg">
+                            </a>
                           </div>
 
-                          <ul class="c-share o-plain-list">
-                            <li class="c-share__item">
-                              <a class="c-share__link"
-                                href="https://twitter.com/share?text=En%20Afrique%2C%20la%20Russie%20ruse%20pour%20%C3%A9tendre%20son%20influence&amp;url=https://www.rembobine.info/afrique-russie-influence-maison-russe/"
-                                onclick="window.open(this.href, 'twitter-share', 'width=550, height=235'); return false;">
-                                <div class="icon icon--ei-sc-twitter icon--s c-share__icon"><svg class="icon__cnt"
-                                    width="0" height="0">
-                                    <use xlink:href="#ei-sc-twitter-icon"></use>
-                                  </svg></div>
-                                <span class="u-screenreader-only">Partager sur Twitter</span>
-                              </a>
-                            </li>
+                          <div>
+                            <div class="c-post-header__authors-names">
+                              <a href="/author/sikouk/">Bessma Sikouk </a>
+                            </div>
 
-                            <li class="c-share__item">
-                              <a class="c-share__link"
-                                href="https://www.facebook.com/sharer/sharer.php?u=https://www.rembobine.info/afrique-russie-influence-maison-russe/"
-                                onclick="window.open(this.href, 'facebook-share', 'width=580, height=296'); return false;">
-                                <div class="icon icon--ei-sc-facebook icon--s c-share__icon"><svg class="icon__cnt"
-                                    width="0" height="0">
-                                    <use xlink:href="#ei-sc-facebook-icon"></use>
-                                  </svg></div>
-                                <span class="u-screenreader-only">Partager sur Facebook</span>
-                              </a>
-                            </li>
-
-                            <li class="c-share__item">
-                              <a class="c-share__link"
-                                href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://www.rembobine.info/afrique-russie-influence-maison-russe/&amp;title=En%20Afrique%2C%20la%20Russie%20ruse%20pour%20%C3%A9tendre%20son%20influence"
-                                onclick="window.open(this.href, 'linkedin-share', 'width=580, height=296'); return false;">
-                                <div class="icon icon--ei-sc-linkedin icon--s c-share__icon"><svg class="icon__cnt"
-                                    width="0" height="0">
-                                    <use xlink:href="#ei-sc-linkedin-icon"></use>
-                                  </svg></div>
-                                <span class="u-screenreader-only">Partager sur LinkedIn</span>
-                              </a>
-                            </li>
-
-                            <li class="c-share__item">
-                              <a class="c-share__link"
-                                href="https://pinterest.com/pin/create/button/?url=https://www.rembobine.info/afrique-russie-influence-maison-russe/&amp;media=https://www.rembobine.info/content/images/2026/01/Enqu--tes-d-impact---Unes--36-.jpg&amp;description=En%20Afrique%2C%20la%20Russie%20ruse%20pour%20%C3%A9tendre%20son%20influence"
-                                onclick="window.open(this.href, 'pinterest-share', 'width=580, height=296'); return false;">
-                                <div class="icon icon--ei-sc-pinterest icon--s c-share__icon"><svg class="icon__cnt"
-                                    width="0" height="0">
-                                    <use xlink:href="#ei-sc-pinterest-icon"></use>
-                                  </svg></div>
-                                <span class="u-screenreader-only">Partager sur Pinterest</span>
-                              </a>
-                            </li>
-
-                            <li class="c-share__item">
-                              <a class="c-share__link"
-                                href="mailto:?subject=En%20Afrique%2C%20la%20Russie%20ruse%20pour%20%C3%A9tendre%20son%20influence&amp;body=https://www.rembobine.info/afrique-russie-influence-maison-russe/">
-                                <div class="icon icon--ei-envelope icon--s c-share__icon"><svg class="icon__cnt"
-                                    width="0" height="0">
-                                    <use xlink:href="#ei-envelope-icon"></use>
-                                  </svg></div>
-                                <span class="u-screenreader-only">Partager par Courriel</span>
-                              </a>
-                            </li>
-
-                            <li class="c-share__item">
-                              <a class="c-share__link js-share__link--clipboard" href="#"
-                                data-clipboard-text="https://www.rembobine.info/afrique-russie-influence-maison-russe/"
-                                onclick="return false;">
-                                <div class="icon icon--ei-link icon--s c-share__icon"><svg class="icon__cnt" width="0"
-                                    height="0">
-                                    <use xlink:href="#ei-link-icon"></use>
-                                  </svg></div>
-                                <span class="u-screenreader-only">Copier le lien</span>
-                              </a>
-                            </li>
-                          </ul>
+                            <time class="" datetime="2026-01-12">12 janv. 2026</time>
+                          </div>
                         </div>
-                      </header>
 
+                        <ul class="c-share o-plain-list">
+                          <li class="c-share__item">
+                            <a class="c-share__link"
+                              href="https://twitter.com/share?text=En%20Afrique%2C%20la%20Russie%20ruse%20pour%20%C3%A9tendre%20son%20influence&amp;url=https://www.rembobine.info/afrique-russie-influence-maison-russe/"
+                              onclick="window.open(this.href, 'twitter-share', 'width=550, height=235'); return false;">
+                              <div class="icon icon--ei-sc-twitter icon--s c-share__icon"><svg class="icon__cnt"
+                                  width="0" height="0">
+                                  <use xlink:href="#ei-sc-twitter-icon"></use>
+                                </svg></div>
+                              <span class="u-screenreader-only">Partager sur Twitter</span>
+                            </a>
+                          </li>
 
+                          <li class="c-share__item">
+                            <a class="c-share__link"
+                              href="https://www.facebook.com/sharer/sharer.php?u=https://www.rembobine.info/afrique-russie-influence-maison-russe/"
+                              onclick="window.open(this.href, 'facebook-share', 'width=580, height=296'); return false;">
+                              <div class="icon icon--ei-sc-facebook icon--s c-share__icon"><svg class="icon__cnt"
+                                  width="0" height="0">
+                                  <use xlink:href="#ei-sc-facebook-icon"></use>
+                                </svg></div>
+                              <span class="u-screenreader-only">Partager sur Facebook</span>
+                            </a>
+                          </li>
+
+                          <li class="c-share__item">
+                            <a class="c-share__link"
+                              href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://www.rembobine.info/afrique-russie-influence-maison-russe/&amp;title=En%20Afrique%2C%20la%20Russie%20ruse%20pour%20%C3%A9tendre%20son%20influence"
+                              onclick="window.open(this.href, 'linkedin-share', 'width=580, height=296'); return false;">
+                              <div class="icon icon--ei-sc-linkedin icon--s c-share__icon"><svg class="icon__cnt"
+                                  width="0" height="0">
+                                  <use xlink:href="#ei-sc-linkedin-icon"></use>
+                                </svg></div>
+                              <span class="u-screenreader-only">Partager sur LinkedIn</span>
+                            </a>
+                          </li>
+
+                          <li class="c-share__item">
+                            <a class="c-share__link"
+                              href="https://pinterest.com/pin/create/button/?url=https://www.rembobine.info/afrique-russie-influence-maison-russe/&amp;media=https://www.rembobine.info/content/images/2026/01/Enqu--tes-d-impact---Unes--36-.jpg&amp;description=En%20Afrique%2C%20la%20Russie%20ruse%20pour%20%C3%A9tendre%20son%20influence"
+                              onclick="window.open(this.href, 'pinterest-share', 'width=580, height=296'); return false;">
+                              <div class="icon icon--ei-sc-pinterest icon--s c-share__icon"><svg class="icon__cnt"
+                                  width="0" height="0">
+                                  <use xlink:href="#ei-sc-pinterest-icon"></use>
+                                </svg></div>
+                              <span class="u-screenreader-only">Partager sur Pinterest</span>
+                            </a>
+                          </li>
+
+                          <li class="c-share__item">
+                            <a class="c-share__link"
+                              href="mailto:?subject=En%20Afrique%2C%20la%20Russie%20ruse%20pour%20%C3%A9tendre%20son%20influence&amp;body=https://www.rembobine.info/afrique-russie-influence-maison-russe/">
+                              <div class="icon icon--ei-envelope icon--s c-share__icon"><svg class="icon__cnt" width="0"
+                                  height="0">
+                                  <use xlink:href="#ei-envelope-icon"></use>
+                                </svg></div>
+                              <span class="u-screenreader-only">Partager par Courriel</span>
+                            </a>
+                          </li>
+
+                          <li class="c-share__item">
+                            <a class="c-share__link js-share__link--clipboard" href="#"
+                              data-clipboard-text="https://www.rembobine.info/afrique-russie-influence-maison-russe/"
+                              onclick="return false;">
+                              <div class="icon icon--ei-link icon--s c-share__icon"><svg class="icon__cnt" width="0"
+                                  height="0">
+                                  <use xlink:href="#ei-link-icon"></use>
+                                </svg></div>
+                              <span class="u-screenreader-only">Copier le lien</span>
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                    </header>
+
+                    <div class="wrapper">
                       <section class="c-content ">
                         <p>C'est ce que racontait en janvier 2025 l'enquête de Driss Rejichi publiée dans Afrique XXI.
                           Un
@@ -375,13 +361,7 @@
                           }
                         </style>
 
-
-
                         <div class="ligne-bleu-fonce"></div>
-
-
-
-
                         <p></p>
                         <p>Un an après la publication de l'enquête, des “Maisons russes” ont-elles fermé leurs portes ?
                           À
@@ -458,7 +438,8 @@
                                 Il
                                 y a également des valeurs traditionnelles familiales, avec tout un socle sexiste et
                                 homophobe, qui est réactivé auprès de la jeunesse africaine, et en Russie aussi</em></i>
-                            », déplore-t-il.</div>
+                            », déplore-t-il.
+                          </div>
                         </div>
                         <h2
                           id="%F0%9F%95%B5%EF%B8%8F%E2%80%8D%E2%99%80%EF%B8%8F-les-coulisses-de-lenqu%C3%AAte-sur-les-maisons-russes">
@@ -609,308 +590,307 @@
 
 
                       <hr>
-                    </article>
+                  </article>
 
 
-                    <!--
+                  <!--
   Get related posts based on tags
  -->
 
-                    <div class="c-related">
-                      <div class="c-title-bar">
-                        <h2 class="c-title-bar__title">Vous pourriez être intéressé par</h2>
-                      </div>
-                      <div class="js-grid">
-                        <div class="c-post-card js-post-card post tag-impact featured">
-                          <div class="c-post-card__media">
-                            <div class="c-post-card__image-wrap">
-                              <img alt="" class="c-post-card__image lazyload" data-srcset="
+                  <div class="c-related">
+                    <div class="c-title-bar">
+                      <h2 class="c-title-bar__title">Vous pourriez être intéressé par</h2>
+                    </div>
+                    <div class="js-grid">
+                      <div class="c-post-card js-post-card post tag-impact featured">
+                        <div class="c-post-card__media">
+                          <div class="c-post-card__image-wrap">
+                            <img alt="" class="c-post-card__image lazyload" data-srcset="
             /content/images/size/w346/2026/03/Enqu--tes-d-impact---Unes--42-.jpg 346w,
             /content/images/size/w692/2026/03/Enqu--tes-d-impact---Unes--42-.jpg 692w,
             /content/images/size/w1384/2026/03/Enqu--tes-d-impact---Unes--42-.jpg 1384w"
-                                sizes="(min-width: 1260px) 692px, (min-width: 1040px) calc(34vw + 270px), (min-width: 640px) calc(90vw - 61px), calc(100vw - 32px)"
-                                data-src="/content/images/size/w1384/2026/03/Enqu--tes-d-impact---Unes--42-.jpg">
-                            </div>
-                          </div>
-
-                          <div class="c-post-card__content">
-                            <h2 class="c-post-card__title">
-                              <a href="/industrie-porno-afrique-exploitation/" class="c-post-card__url">Industrie du
-                                porno
-                                en Afrique : les coulisses d’une exploitation</a>
-                            </h2>
-
-                            <p class="c-post-card__excerpt" tabindex="-1">Et si le porno était aussi une affaire de
-                              domination post-coloniale ? C'est la question que soulèvent les journalistes Yves Plumey
-                              Bobo et Mathieu Olivier dans une enquête glaçante, parue en mars 2025 dans Jeune Afrique.
-                            </p>
-
-                            <div class="c-post-card__meta">
-                              <div class="c-post-card__authors">
-                                <div class="c-post-card__authors-images">
-                                  <a href="/author/tim/" class="c-post-card__author-image-wrap">
-                                    <img class="c-post-card__author-image lazyload"
-                                      data-src="/content/images/size/w128/2023/02/tim.webp" alt="Timothée Vinchon"
-                                      width="32" height="32">
-                                  </a>
-                                </div>
-
-                                <div>
-                                  <div class="c-post-card__authors-names">
-                                    <a href="/author/tim/">Timothée Vinchon</a>
-                                  </div>
-
-                                  <time class="c-post-card__date" datetime="2026-03-09">9 mars 2026</time>
-                                </div>
-                              </div>
-
-                              <div class="c-post-card__tag">
-                                <a href="/tag/impact/">💥 En quête d'impact</a>
-                              </div>
-                            </div>
-
+                              sizes="(min-width: 1260px) 692px, (min-width: 1040px) calc(34vw + 270px), (min-width: 640px) calc(90vw - 61px), calc(100vw - 32px)"
+                              data-src="/content/images/size/w1384/2026/03/Enqu--tes-d-impact---Unes--42-.jpg">
                           </div>
                         </div>
-                        <div class="c-post-card js-post-card post tag-impact">
-                          <div class="c-post-card__media">
-                            <div class="c-post-card__image-wrap">
-                              <img alt="" class="c-post-card__image lazyload" data-srcset="
+
+                        <div class="c-post-card__content">
+                          <h2 class="c-post-card__title">
+                            <a href="/industrie-porno-afrique-exploitation/" class="c-post-card__url">Industrie du
+                              porno
+                              en Afrique : les coulisses d’une exploitation</a>
+                          </h2>
+
+                          <p class="c-post-card__excerpt" tabindex="-1">Et si le porno était aussi une affaire de
+                            domination post-coloniale ? C'est la question que soulèvent les journalistes Yves Plumey
+                            Bobo et Mathieu Olivier dans une enquête glaçante, parue en mars 2025 dans Jeune Afrique.
+                          </p>
+
+                          <div class="c-post-card__meta">
+                            <div class="c-post-card__authors">
+                              <div class="c-post-card__authors-images">
+                                <a href="/author/tim/" class="c-post-card__author-image-wrap">
+                                  <img class="c-post-card__author-image lazyload"
+                                    data-src="/content/images/size/w128/2023/02/tim.webp" alt="Timothée Vinchon"
+                                    width="32" height="32">
+                                </a>
+                              </div>
+
+                              <div>
+                                <div class="c-post-card__authors-names">
+                                  <a href="/author/tim/">Timothée Vinchon</a>
+                                </div>
+
+                                <time class="c-post-card__date" datetime="2026-03-09">9 mars 2026</time>
+                              </div>
+                            </div>
+
+                            <div class="c-post-card__tag">
+                              <a href="/tag/impact/">💥 En quête d'impact</a>
+                            </div>
+                          </div>
+
+                        </div>
+                      </div>
+                      <div class="c-post-card js-post-card post tag-impact">
+                        <div class="c-post-card__media">
+                          <div class="c-post-card__image-wrap">
+                            <img alt="" class="c-post-card__image lazyload" data-srcset="
             /content/images/size/w346/2026/02/Enqu--tes-d-impact---Unes--42-.png 346w,
             /content/images/size/w692/2026/02/Enqu--tes-d-impact---Unes--42-.png 692w,
             /content/images/size/w1384/2026/02/Enqu--tes-d-impact---Unes--42-.png 1384w"
-                                sizes="(min-width: 1260px) 692px, (min-width: 1040px) calc(34vw + 270px), (min-width: 640px) calc(90vw - 61px), calc(100vw - 32px)"
-                                data-src="/content/images/size/w1384/2026/02/Enqu--tes-d-impact---Unes--42-.png">
-                            </div>
+                              sizes="(min-width: 1260px) 692px, (min-width: 1040px) calc(34vw + 270px), (min-width: 640px) calc(90vw - 61px), calc(100vw - 32px)"
+                              data-src="/content/images/size/w1384/2026/02/Enqu--tes-d-impact---Unes--42-.png">
                           </div>
+                        </div>
 
-                          <div class="c-post-card__content">
-                            <h2 class="c-post-card__title">
-                              <a href="/quand-ia-sempare-information/" class="c-post-card__url">Des médias sans
-                                journaliste, quand l'IA s'empare de l'information</a>
-                            </h2>
+                        <div class="c-post-card__content">
+                          <h2 class="c-post-card__title">
+                            <a href="/quand-ia-sempare-information/" class="c-post-card__url">Des médias sans
+                              journaliste, quand l'IA s'empare de l'information</a>
+                          </h2>
 
-                            <p class="c-post-card__excerpt" tabindex="-1">Le journaliste Jean-Marc Manach s'est attelé à
-                              une tâche vertigineuse : celle de lister le nombre de médias générés par IA en français,
-                              avant d'être propulsés sur nos écrans de téléphone et d'ordinateur avec la complicité de
-                              Google.</p>
+                          <p class="c-post-card__excerpt" tabindex="-1">Le journaliste Jean-Marc Manach s'est attelé à
+                            une tâche vertigineuse : celle de lister le nombre de médias générés par IA en français,
+                            avant d'être propulsés sur nos écrans de téléphone et d'ordinateur avec la complicité de
+                            Google.</p>
 
-                            <div class="c-post-card__meta">
-                              <div class="c-post-card__authors">
-                                <div class="c-post-card__authors-images">
-                                  <a href="/author/cecile/" class="c-post-card__author-image-wrap">
-                                    <img class="c-post-card__author-image lazyload"
-                                      data-src="/content/images/size/w128/2023/11/Cecile-Massin.jpeg"
-                                      alt="Cécile Massin" width="32" height="32">
-                                  </a>
-                                </div>
-
-                                <div>
-                                  <div class="c-post-card__authors-names">
-                                    <a href="/author/cecile/">Cécile Massin</a>
-                                  </div>
-
-                                  <time class="c-post-card__date" datetime="2026-02-23">23 févr. 2026</time>
-                                </div>
+                          <div class="c-post-card__meta">
+                            <div class="c-post-card__authors">
+                              <div class="c-post-card__authors-images">
+                                <a href="/author/cecile/" class="c-post-card__author-image-wrap">
+                                  <img class="c-post-card__author-image lazyload"
+                                    data-src="/content/images/size/w128/2023/11/Cecile-Massin.jpeg" alt="Cécile Massin"
+                                    width="32" height="32">
+                                </a>
                               </div>
 
-                              <div class="c-post-card__tag">
-                                <a href="/tag/impact/">💥 En quête d'impact</a>
+                              <div>
+                                <div class="c-post-card__authors-names">
+                                  <a href="/author/cecile/">Cécile Massin</a>
+                                </div>
+
+                                <time class="c-post-card__date" datetime="2026-02-23">23 févr. 2026</time>
                               </div>
                             </div>
 
+                            <div class="c-post-card__tag">
+                              <a href="/tag/impact/">💥 En quête d'impact</a>
+                            </div>
                           </div>
+
                         </div>
-                      </div>
-                    </div>
-
-                  </div>
-
-                  <div class="o-grid__col o-grid__col o-grid__col--center o-grid__col--9-10-m o-grid__col--1-3-l">
-                    <div class="c-sidebar">
-
-
-
-                      <div class="c-widget">
-                        <div class="c-subscribe c-rs">
-                          <div class="c-subscribe__content widget-perso-content">
-                            <h2 class="c-subscribe__title u-type-500 u-mb-8 titre-intro widget-sdb">Suivez Rembobine
-                            </h2>
-                            <p class="u-type-500 u-mb-16 widget-sdb">Retrouvez notre veille, nos ressources et toute
-                              notre
-                              actualité sur les réseaux sociaux.<br>
-                            </p>
-                          </div>
-                          <ul class="c-social-icons o-plain-list">
-                            <li class="c-social-icons__item">
-                              <a href="https://x.com/Rembobine_info">
-                                <div class="icon icon--ei-sc-twitter icon--s c-social-icons__icon"><svg
-                                    class="icon__cnt" width="0" height="0">
-                                    <use xlink:href="#ei-sc-twitter-icon"></use>
-                                  </svg></div>
-                                <span class="u-screenreader-only">Twitter</span>
-                              </a>
-                            </li>
-
-                            <li class="c-social-icons__item">
-                              <a href="https://www.facebook.com/rembobinefr">
-                                <div class="icon icon--ei-sc-facebook icon--s c-social-icons__icon"><svg
-                                    class="icon__cnt" width="0" height="0">
-                                    <use xlink:href="#ei-sc-facebook-icon"></use>
-                                  </svg></div>
-                                <span class="u-screenreader-only">Facebook</span>
-                              </a>
-                            </li>
-
-                            <li class="c-social-icons__item">
-                              <a href="https://www.instagram.com/p/DA0krm1sv56/">
-                                <div class="icon icon--ei-sc-instagram icon--s c-social-icons__icon"><svg
-                                    class="icon__cnt" width="0" height="0">
-                                    <use xlink:href="#ei-sc-instagram-icon"></use>
-                                  </svg></div>
-                                <span class="u-screenreader-only">Instagram</span>
-                              </a>
-                            </li>
-
-
-
-                            <li class="c-social-icons__item">
-                              <a href="https://www.linkedin.com/company/rembobine/">
-                                <div class="icon icon--ei-sc-linkedin icon--s c-social-icons__icon"><svg
-                                    class="icon__cnt" width="0" height="0">
-                                    <use xlink:href="#ei-sc-linkedin-icon"></use>
-                                  </svg></div>
-                                <span class="u-screenreader-only">LinkedIn</span>
-                              </a>
-                            </li>
-
-                            <li class="c-social-icons__item">
-                              <a href="/rss/">
-                                <span class="c-social-icons__icon"><svg xmlns="http://www.w3.org/2000/svg" width="20"
-                                    height="20" viewBox="0 0 24 24">
-                                    <path
-                                      d="M6.503 20.752c0 1.794-1.456 3.248-3.251 3.248-1.796 0-3.252-1.454-3.252-3.248 0-1.794 1.456-3.248 3.252-3.248 1.795.001 3.251 1.454 3.251 3.248zm-6.503-12.572v4.811c6.05.062 10.96 4.966 11.022 11.009h4.817c-.062-8.71-7.118-15.758-15.839-15.82zm0-3.368c10.58.046 19.152 8.594 19.183 19.188h4.817c-.03-13.231-10.755-23.954-24-24v4.812z">
-                                    </path>
-                                  </svg></span>
-                                <span class="u-screenreader-only">RSS</span>
-                              </a>
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
-                      <div class="c-widget">
-                        <div class="c-subscribe c-impact">
-                          <div class="c-subscribe__content widget-perso-content">
-                            <h2 class="c-subscribe__title u-type-500 u-mb-8 titre-intro widget-sdb">L'impact en rédac
-                            </h2>
-                            <p class="u-type-500 u-mb-16 widget-sdb">
-                              Découvrez notre centre de ressources à destination des professionnels des médias pour tout
-                              comprendre des enjeux autour de la notion d’impact dans le journalisme.
-                            </p>
-                            <p class="u-type-500 u-mb-16 widget-sdb">
-                              Pourquoi mesurer son impact sur la société en tant que média ? En suivant quelle méthode ?
-                              Avec quels outils ? Mais aussi comment augmenter son impact et le faire savoir ?
-                            </p>
-                            <p class="u-type-500 u-mb-16 widget-sdb">
-                              Interviews d’expert, reportages, cas pratiques…devenez précurseur de la mesure d’impact au
-                              sein de votre média !
-                            </p>
-                            <p class="u-type-500 u-mb-16 widget-sdb">
-                              <a style="color: var(--ghost-accent-color);"
-                                href="https://rembobine.info/tag/du-cote-des-pros/" target="_blank">En savoir plus</a>
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="c-widget">
-                        <div class="c-title-bar">
-                          <h2 class="c-title-bar__title">Postes en vedette</h2>
-                        </div>
-
-                        <a href="/industrie-porno-afrique-exploitation/" class="c-teaser">
-                          <div class="c-teaser__content">
-                            <h3 class="c-teaser__title">Industrie du porno en Afrique : les coulisses d’une exploitation
-                            </h3>
-                            <time class="c-teaser__date" datetime="2026-03-09">9 mars 2026</time>
-                          </div>
-                          <div class="c-teaser__media">
-                            <img class="c-teaser__image lazyload" alt=""
-                              data-src="/content/images/size/w346/2026/03/Enqu--tes-d-impact---Unes--42-.jpg" width="88"
-                              height="72">
-                          </div>
-                        </a> <a href="/porno-africain-schema-exploitation-coloniale/" class="c-teaser">
-                          <div class="c-teaser__content">
-                            <h3 class="c-teaser__title">« Dans le porno africain, on retrouve un schéma d'exploitation
-                              qui
-                              rappelle certaines logiques coloniales »</h3>
-                            <time class="c-teaser__date" datetime="2026-03-09">9 mars 2026</time>
-                          </div>
-                          <div class="c-teaser__media">
-                            <img class="c-teaser__image lazyload" alt=""
-                              data-src="/content/images/size/w346/2026/03/Coulisses-de-l-info---Unes--16-.png"
-                              width="88" height="72">
-                          </div>
-                        </a> <a href="/comment-impliquer-sources-generer-impact/" class="c-teaser">
-                          <div class="c-teaser__content">
-                            <h3 class="c-teaser__title">Enquêtes participatives, appels à témoignages, lanceur·ses
-                              d’alerte… comment impliquer ses sources pour générer de l’impact</h3>
-                            <time class="c-teaser__date" datetime="2026-03-03">3 mars 2026</time>
-                          </div>
-                          <div class="c-teaser__media">
-                            <img class="c-teaser__image lazyload" alt=""
-                              data-src="/content/images/size/w346/2026/03/18.jpg" width="88" height="72">
-                          </div>
-                        </a>
-                      </div>
-
-                      <div class="c-widget">
-                        <div class="c-title-bar">
-                          <h2 class="c-title-bar__title"><a href="https://www.rembobine.info/authors/"
-                              class="c-title-bar__link">Auteurs →</a></h2>
-                        </div>
-
-                        <a class="c-card-author-mini" href="/author/tim/">
-                          <div class="c-card-author-mini__media">
-                            <img class="c-card-author-mini__image lazyload"
-                              data-src="/content/images/size/w256/2023/02/tim.webp" alt="" width="64" height="64">
-                          </div>
-
-                          <div class="c-card-author-mini__content">
-                            <h3 class="c-card-author-mini__name">Timothée Vinchon</h3>
-                            <p class="c-card-author-mini__bio">Rédacteur et cofondateur de Rembobine - Journaliste
-                              indépendant - Formateur en éducation populaire aux médias</p>
-                          </div>
-                        </a> <a class="c-card-author-mini" href="/author/cecile/">
-                          <div class="c-card-author-mini__media">
-                            <img class="c-card-author-mini__image lazyload"
-                              data-src="/content/images/size/w256/2023/11/Cecile-Massin.jpeg" alt="" width="64"
-                              height="64">
-                          </div>
-
-                          <div class="c-card-author-mini__content">
-                            <h3 class="c-card-author-mini__name">Cécile Massin</h3>
-                            <p class="c-card-author-mini__bio">Rédactrice et cofondatrice de Rembobine - Journaliste
-                              indépendante</p>
-                          </div>
-                        </a> <a class="c-card-author-mini" href="/author/arno/">
-                          <div class="c-card-author-mini__media">
-                            <img class="c-card-author-mini__image lazyload"
-                              data-src="/content/images/size/w256/2024/10/images--5-.jpeg" alt="" width="64"
-                              height="64">
-                          </div>
-
-                          <div class="c-card-author-mini__content">
-                            <h3 class="c-card-author-mini__name">Arno Soheil Pedram</h3>
-                            <p class="c-card-author-mini__bio">Journaliste chargé de la réflexion autour de la mesure
-                              d'impact pour Disclose et Rembobine</p>
-                          </div>
-                        </a>
                       </div>
                     </div>
                   </div>
 
                 </div>
-            </div>
+
+                <div class="o-grid__col o-grid__col o-grid__col--center o-grid__col--9-10-m o-grid__col--1-3-l">
+                  <div class="c-sidebar">
+
+
+
+                    <div class="c-widget">
+                      <div class="c-subscribe c-rs">
+                        <div class="c-subscribe__content widget-perso-content">
+                          <h2 class="c-subscribe__title u-type-500 u-mb-8 titre-intro widget-sdb">Suivez Rembobine
+                          </h2>
+                          <p class="u-type-500 u-mb-16 widget-sdb">Retrouvez notre veille, nos ressources et toute
+                            notre
+                            actualité sur les réseaux sociaux.<br>
+                          </p>
+                        </div>
+                        <ul class="c-social-icons o-plain-list">
+                          <li class="c-social-icons__item">
+                            <a href="https://x.com/Rembobine_info">
+                              <div class="icon icon--ei-sc-twitter icon--s c-social-icons__icon"><svg class="icon__cnt"
+                                  width="0" height="0">
+                                  <use xlink:href="#ei-sc-twitter-icon"></use>
+                                </svg></div>
+                              <span class="u-screenreader-only">Twitter</span>
+                            </a>
+                          </li>
+
+                          <li class="c-social-icons__item">
+                            <a href="https://www.facebook.com/rembobinefr">
+                              <div class="icon icon--ei-sc-facebook icon--s c-social-icons__icon"><svg class="icon__cnt"
+                                  width="0" height="0">
+                                  <use xlink:href="#ei-sc-facebook-icon"></use>
+                                </svg></div>
+                              <span class="u-screenreader-only">Facebook</span>
+                            </a>
+                          </li>
+
+                          <li class="c-social-icons__item">
+                            <a href="https://www.instagram.com/p/DA0krm1sv56/">
+                              <div class="icon icon--ei-sc-instagram icon--s c-social-icons__icon"><svg
+                                  class="icon__cnt" width="0" height="0">
+                                  <use xlink:href="#ei-sc-instagram-icon"></use>
+                                </svg></div>
+                              <span class="u-screenreader-only">Instagram</span>
+                            </a>
+                          </li>
+
+
+
+                          <li class="c-social-icons__item">
+                            <a href="https://www.linkedin.com/company/rembobine/">
+                              <div class="icon icon--ei-sc-linkedin icon--s c-social-icons__icon"><svg class="icon__cnt"
+                                  width="0" height="0">
+                                  <use xlink:href="#ei-sc-linkedin-icon"></use>
+                                </svg></div>
+                              <span class="u-screenreader-only">LinkedIn</span>
+                            </a>
+                          </li>
+
+                          <li class="c-social-icons__item">
+                            <a href="/rss/">
+                              <span class="c-social-icons__icon"><svg xmlns="http://www.w3.org/2000/svg" width="20"
+                                  height="20" viewBox="0 0 24 24">
+                                  <path
+                                    d="M6.503 20.752c0 1.794-1.456 3.248-3.251 3.248-1.796 0-3.252-1.454-3.252-3.248 0-1.794 1.456-3.248 3.252-3.248 1.795.001 3.251 1.454 3.251 3.248zm-6.503-12.572v4.811c6.05.062 10.96 4.966 11.022 11.009h4.817c-.062-8.71-7.118-15.758-15.839-15.82zm0-3.368c10.58.046 19.152 8.594 19.183 19.188h4.817c-.03-13.231-10.755-23.954-24-24v4.812z">
+                                  </path>
+                                </svg></span>
+                              <span class="u-screenreader-only">RSS</span>
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="c-widget">
+                      <div class="c-subscribe c-impact">
+                        <div class="c-subscribe__content widget-perso-content">
+                          <h2 class="c-subscribe__title u-type-500 u-mb-8 titre-intro widget-sdb">L'impact en rédac
+                          </h2>
+                          <p class="u-type-500 u-mb-16 widget-sdb">
+                            Découvrez notre centre de ressources à destination des professionnels des médias pour tout
+                            comprendre des enjeux autour de la notion d’impact dans le journalisme.
+                          </p>
+                          <p class="u-type-500 u-mb-16 widget-sdb">
+                            Pourquoi mesurer son impact sur la société en tant que média ? En suivant quelle méthode ?
+                            Avec quels outils ? Mais aussi comment augmenter son impact et le faire savoir ?
+                          </p>
+                          <p class="u-type-500 u-mb-16 widget-sdb">
+                            Interviews d’expert, reportages, cas pratiques…devenez précurseur de la mesure d’impact au
+                            sein de votre média !
+                          </p>
+                          <p class="u-type-500 u-mb-16 widget-sdb">
+                            <a style="color: var(--ghost-accent-color);"
+                              href="https://rembobine.info/tag/du-cote-des-pros/" target="_blank">En savoir plus</a>
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="c-widget">
+                      <div class="c-title-bar">
+                        <h2 class="c-title-bar__title">Postes en vedette</h2>
+                      </div>
+
+                      <a href="/industrie-porno-afrique-exploitation/" class="c-teaser">
+                        <div class="c-teaser__content">
+                          <h3 class="c-teaser__title">Industrie du porno en Afrique : les coulisses d’une exploitation
+                          </h3>
+                          <time class="c-teaser__date" datetime="2026-03-09">9 mars 2026</time>
+                        </div>
+                        <div class="c-teaser__media">
+                          <img class="c-teaser__image lazyload" alt=""
+                            data-src="/content/images/size/w346/2026/03/Enqu--tes-d-impact---Unes--42-.jpg" width="88"
+                            height="72">
+                        </div>
+                      </a> <a href="/porno-africain-schema-exploitation-coloniale/" class="c-teaser">
+                        <div class="c-teaser__content">
+                          <h3 class="c-teaser__title">« Dans le porno africain, on retrouve un schéma d'exploitation
+                            qui
+                            rappelle certaines logiques coloniales »</h3>
+                          <time class="c-teaser__date" datetime="2026-03-09">9 mars 2026</time>
+                        </div>
+                        <div class="c-teaser__media">
+                          <img class="c-teaser__image lazyload" alt=""
+                            data-src="/content/images/size/w346/2026/03/Coulisses-de-l-info---Unes--16-.png" width="88"
+                            height="72">
+                        </div>
+                      </a> <a href="/comment-impliquer-sources-generer-impact/" class="c-teaser">
+                        <div class="c-teaser__content">
+                          <h3 class="c-teaser__title">Enquêtes participatives, appels à témoignages, lanceur·ses
+                            d’alerte… comment impliquer ses sources pour générer de l’impact</h3>
+                          <time class="c-teaser__date" datetime="2026-03-03">3 mars 2026</time>
+                        </div>
+                        <div class="c-teaser__media">
+                          <img class="c-teaser__image lazyload" alt=""
+                            data-src="/content/images/size/w346/2026/03/18.jpg" width="88" height="72">
+                        </div>
+                      </a>
+                    </div>
+
+                    <div class="c-widget">
+                      <div class="c-title-bar">
+                        <h2 class="c-title-bar__title"><a href="https://www.rembobine.info/authors/"
+                            class="c-title-bar__link">Auteurs →</a></h2>
+                      </div>
+
+                      <a class="c-card-author-mini" href="/author/tim/">
+                        <div class="c-card-author-mini__media">
+                          <img class="c-card-author-mini__image lazyload"
+                            data-src="/content/images/size/w256/2023/02/tim.webp" alt="" width="64" height="64">
+                        </div>
+
+                        <div class="c-card-author-mini__content">
+                          <h3 class="c-card-author-mini__name">Timothée Vinchon</h3>
+                          <p class="c-card-author-mini__bio">Rédacteur et cofondateur de Rembobine - Journaliste
+                            indépendant - Formateur en éducation populaire aux médias</p>
+                        </div>
+                      </a> <a class="c-card-author-mini" href="/author/cecile/">
+                        <div class="c-card-author-mini__media">
+                          <img class="c-card-author-mini__image lazyload"
+                            data-src="/content/images/size/w256/2023/11/Cecile-Massin.jpeg" alt="" width="64"
+                            height="64">
+                        </div>
+
+                        <div class="c-card-author-mini__content">
+                          <h3 class="c-card-author-mini__name">Cécile Massin</h3>
+                          <p class="c-card-author-mini__bio">Rédactrice et cofondatrice de Rembobine - Journaliste
+                            indépendante</p>
+                        </div>
+                      </a> <a class="c-card-author-mini" href="/author/arno/">
+                        <div class="c-card-author-mini__media">
+                          <img class="c-card-author-mini__image lazyload"
+                            data-src="/content/images/size/w256/2024/10/images--5-.jpeg" alt="" width="64" height="64">
+                        </div>
+
+                        <div class="c-card-author-mini__content">
+                          <h3 class="c-card-author-mini__name">Arno Soheil Pedram</h3>
+                          <p class="c-card-author-mini__bio">Journaliste chargé de la réflexion autour de la mesure
+                            d'impact pour Disclose et Rembobine</p>
+                        </div>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+          </div>
     </main>
 
     <footer class="c-footer">
