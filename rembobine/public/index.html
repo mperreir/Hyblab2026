@@ -8,11 +8,7 @@
   <title>Hyblab 2025</title>
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/font.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
   <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/loadingio/loading.css@v2.0.0/dist/loading.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.2/anime.min.js"></script>
-  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
   <script src="js/pageProjet.js" defer></script>
   <script src="js/index.js" defer></script>
 </head>
@@ -23,7 +19,6 @@
     <!-- le main est aussi le conteneur des différents slides (contenus à chaque fois dans des sections-->
     <main class="swiper-wrapper">
       <section id="first-slide" class="swiper-slide">
-
         <body class="post-template tag-impact">
           <div id="announcement-bar-root">
             <div class="gh-announcement-bar accent">
@@ -214,6 +209,13 @@
       </section>
     </main>
   </div>
+
+  <!-- Popup overlay -->
+  <div id="popup-overlay" class="popup-hidden">
+    <div id="popup-box">
+      <p id="popup-text"></p>
+      <button id="popup-close">Fermer</button>
+    </div>
   </div>
 
 </body>
