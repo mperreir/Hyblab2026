@@ -12,5 +12,8 @@
     "nodemon": "^3.1.14"
   },
   "author": "MPDS",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "babel-plugin-react-compiler": "^1.0.0"
+  }
 }

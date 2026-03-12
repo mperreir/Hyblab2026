@@ -7,7 +7,7 @@ import IcebergScene from '../components/IcebergScene';
 import ScrollArrow from '../components/ScrollArrow';
 
 const DESIGN_WIDTH = 1920;
-const DESIGN_HEIGHT = 4609;
+const DESIGN_HEIGHT = 5438;
 
 export default function ResearcherPage() {
   const [scale, setScale] = useState(() => window.innerWidth / DESIGN_WIDTH);
@@ -34,9 +34,10 @@ export default function ResearcherPage() {
           zoom: scale,
           width: DESIGN_WIDTH,
           height: DESIGN_HEIGHT,
-          background: 'linear-gradient(to bottom, white 0%, white 35%, var(--color-brand-blue) 100%)',
         }}
       >
+        <div className="absolute inset-x-0 top-0 h-[1750px]" style={{ background: 'linear-gradient(to bottom, white 0%, #fffbf5 44.231%, #feebc6 100%)' }} />
+        <div className="absolute inset-x-0 top-[1750px] bottom-0 bg-gradient-to-b from-[rgba(196,204,255,0.38)] to-[#0e25ae]" />
         <Header />
         <TopicTitle />
         <ExpertQuote />

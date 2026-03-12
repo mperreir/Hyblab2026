@@ -1,4 +1,3 @@
-import React from 'react';
 import Robot from './Robot';
 import ResourceCard from './ResourceCard';
 import DataIceberg from './DataIceberg';
@@ -17,48 +16,66 @@ const PICTOGRAMMES = {
   livre: livreSvg, podcast: podcastSvg, recherche: rechercheSvg,
 };
 
+// ─── Adjust card positions here ────────────────────────────────────────────
+// Iceberg SVG 0 0 1890 3374, rendered at left=45 top=775 w=1832 h=3200.
+// Shape is NARROW at top & bottom, WIDEST around y=1700–1900.
+// Card width = 400px. Pictogram overflows 50px to the left.
+//
+// Usable left range at each depth (pictogram + card must stay inside):
+//   y=1100 → [450 –  920]     y=2100 → [215 – 1210]
+//   y=1300 → [310 – 1080]     y=2300 → [280 – 1170]
+//   y=1500 → [180 – 1250]     y=2500 → [415 – 1090]
+//   y=1700 → [150 – 1370] ←wide  y=2700 → [465 – 1080]
+//   y=1900 → [150 – 1290] ←wide  y=2900 → [545 – 1030]
+//                               y=3100 → [635 –  870]
+//                               y=3300 → [670 –  810]
+//
 const CARD_POSITIONS = [
-  { left: 227, top: 1394 },
-  { left: 1003, top: 2150 },
-  { left: 523, top: 2901 },
+  // ── Narrow top ────────────────────────────────
+  { top: 1130, left: 680 }, //  1
+  { top: 1290, left: 430 }, //  2
+  { top: 1400, left: 960 }, //  3
+  // ── Widening ──────────────────────────────────
+  { top: 1490, left: 210 }, //  4
+  { top: 1550, left: 1220 }, //  5
+  { top: 1650, left: 590 }, //  6
+  // ── Widest zone ──
+  { top: 1730, left: 1240 }, //  7
+  { top: 1820, left: 155 }, //  8
+  { top: 1880, left: 660 }, //  9 
+  { top: 2000, left: 1200 }, // 10
+  { top: 2070, left: 190 }, // 11
+  { top: 2170, left: 1060 }, // 12
+  // ── Narrowing ─────────────────────────────────
+  { top: 2300, left: 370 }, // 13
+  { top: 2440, left: 995 }, // 14
+  { top: 2550, left: 465 }, // 15
+  { top: 2660, left: 945 }, // 16
+  { top: 2760, left: 530 }, // 17
+  // ── Lower ─────────────────────────────────────
+  { top: 2870, left: 900 }, // 18
+  { top: 2970, left: 565 }, // 19
+  { top: 3065, left: 840 }, // 20
+  // ── Narrow base ───────────────────────────────
+  { top: 3185, left: 635 }, // 21
+  { top: 3370, left: 720 }, // 22
 ];
+// ───────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────────────
 
-const cardDocuments = data.researcher.documents.slice(0, 3);
+const cardDocuments = data.researcher.documents;
 
-const wavyLineSide =
-  'https://www.figma.com/api/mcp/asset/02a68ccd-a0df-4a73-b697-55f5605a5a10';
-const wavyLineCentre =
-  'https://www.figma.com/api/mcp/asset/a7cc859a-99ec-42b5-98df-bd06ed42cbbc';
 
 export default function IcebergScene() {
   return (
     <>
-      {/* Scroll down arrow — centred, node 15:2 */}
-      <ScrollArrow direction="down" left="50%" top={888} translateX="-50%" />
 
-
-      {/* Centre wavy line (47:346) — x=843, y=1036, w=234, h=18 */}
-      <div className="absolute left-[843px] top-[1036px] w-[234px] h-[18px]">
-        <img src={wavyLineCentre} alt="" className="w-full h-full" aria-hidden />
-      </div>
-
-      {/* full iceberg group exported from Figma */}
-      <div className="absolute left-[99px] top-[894px] w-[1588px] h-[2701px]">
+      <div className="absolute left-[45px] top-[775px] w-[1832px] h-[3200px]">
         <DataIceberg className="w-full h-full" />
       </div>
 
-      {/* Side wavy lines at the waterline (47:339 right, 47:340 left) */}
-      <div className="absolute left-[1678px] top-[1488px] w-[242px] h-[9px]">
-        <img src={wavyLineSide} alt="" className="w-full h-full" aria-hidden />
-      </div>
-      <div className="absolute left-[-74px] top-[1644px] w-[242px] h-[9px]">
-        <img src={wavyLineSide} alt="" className="w-full h-full" aria-hidden />
-      </div>
 
-      {/* Robot on the waterline */}
-      <Robot />
 
-      {/* Resource cards at increasing iceberg depths */}
       {cardDocuments.map((doc, i) => (
         <ResourceCard
           key={doc.id}

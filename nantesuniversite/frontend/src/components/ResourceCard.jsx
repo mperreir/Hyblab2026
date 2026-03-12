@@ -59,16 +59,14 @@ export default function ResourceCard({
         >
           {label}
         </span>
-        <h3 
-          // className="m-0 text-gray-900 font-semibold text-xl leading-snug line-clamp-2"
-          className="class-title-ressource"
-
-        >
+        <h3 className="class-title-ressource">
           {title}
         </h3>
-        <p className="class-description-ressource">
-          {description}
-        </p>
+        <div className="class-description-wrapper">
+          <p className="class-description-ressource">
+            {description}
+          </p>
+        </div>
       </div>
     </div>
   );
