@@ -129,6 +129,8 @@ export default function QuizFin({ onScoreComputed }) {
     }
   }, [allQuestionsAnswered, onScoreComputed, responses]);
 
+  if (allQuestionsAnswered) return null;
+
   return (
     <div className="w-full max-w-4xl mx-auto px-4 py-8 sm:py-12">
       <div className="absolute left-0 top-0 -z-10 w-full max-w-4xl invisible pointer-events-none" aria-hidden="true">
