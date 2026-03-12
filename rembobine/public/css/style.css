@@ -461,3 +461,7 @@ button{
 .med{
   background-color : var(--color-yellow);
 }
+
+.footer {
+    margin-top: 50px;
+}
