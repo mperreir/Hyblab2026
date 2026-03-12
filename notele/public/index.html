@@ -13,17 +13,43 @@
   <script src="js/createEntreprise.js" defer></script>
   <script src="js/pinPosition.js" defer></script>
   <script src="js/appearances.js" defer></script>
+  <script src="js/selecteur.js" defer></script>
+  <script src="js/filters.js" defer></script>
+
 
 
 </head>
 <body>
 <header>
   <img alt="logo LabelEco" src="img/logo_noir.svg" id="logo">
-  <nav id="headerButtonsNav">
-    <button id="headerButton">Home</button>
-    <button id="headerButton">Home</button>
-    <button id="headerButton">Home</button>
-    <button id="headerButton">Home</button>
+  <nav id="filters">
+    <div class="selector-wrapper">
+      <button class="selector" onclick="toggleDropdown('tailleDropdown', this)">
+        Taille de l'entreprise
+        <img alt="drop Icon" src="img/fleche_filtres.svg">
+      </button>
+      <div class="dropdown" id="tailleDropdown">
+        <label onclick="filter(event)"><input type="checkbox" value="Independant"> Indépendant</label>
+        <label onclick="filter(event)"><input type="checkbox" value="PME"> PME</label>
+        <label onclick="filter(event)"><input type="checkbox" value="Grande"> Grande entreprise</label>
+      </div>
+    </div>
+
+    <div class="selector-wrapper">
+      <button class="selector" onclick="toggleDropdown('secteurDropdown', this)">
+        Secteurs
+        <img alt="drop Icon" src="img/fleche_filtres.svg">
+      </button>
+      <div class="dropdown" id="secteurDropdown">
+        <label onclick="filter(event)"><img src="img/pin_alimentaire.svg"></img><input type="checkbox" value="Alimentaire"> Food & gastronomie</label>
+        <label onclick="filter(event)"><img src="img/pin_tech.svg"><input type="checkbox" value="Tech"> Tech & innovation</label>
+        <label onclick="filter(event)"><img src="img/pin_industrie.svg"><input type="checkbox" value="Industrie"> Industrie & production</label>
+        <label onclick="filter(event)"><img src="img/pin_commerce.svg"><input type="checkbox" value="Commerce"> Commerces & services</label>
+        <label onclick="filter(event)"><img src="img/pin_agriculture.svg"><input type="checkbox" value="Agriculture"> Agriculture & artisanat</label>
+        <label onclick="filter(event)"><img src="img/pin_art.svg"><input type="checkbox" value="Art"> Créatif & culture</label>
+        <label onclick="filter(event)"><img src="img/pin_sante.svg"><input type="checkbox" value="Sante"> Santé & bien-être</label>
+      </div>
+    </div>
   </nav>
 </header>
 <main>
@@ -62,11 +88,11 @@
   </div>
   <aside id="title">Explore autrement le tissus entreprenarial de ta région !</aside>
   <nav id="GenZ_filters">
-    <button id="B1">Plot twist</button>
-    <button id="B2">Affaire de famille</button>
-    <button id="B3">Boss ladies</button>
-    <button id="B4">Surprise me</button>
-    <button id="B5">Jobs pas comme les autres</button>
+    <button onclick="filter(event)" id="B1">Plot twist</button>
+    <button onclick="filter(event)" id="B2">Affaire de famille</button>
+    <button onclick="filter(event)" id="B3">Boss ladies</button>
+    <button onclick="filter(event)" id="B4">Surprise me</button>
+    <button onclick="filter(event)" id="B5">Jobs pas comme les autres</button>
   </nav>
 </main>
 </body>
