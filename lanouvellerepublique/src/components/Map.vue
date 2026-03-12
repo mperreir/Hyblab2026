@@ -125,8 +125,14 @@ const scrollToRestaurant = (index, smooth = true) => {
 }
 
 const centerMapToRestaurant = (index) => {
+    const list = restaurants.value
+    if (!list.length) return
+
     const map = mapRef.value.leafletObject
-    const restaurant = restaurants[index]
+    if (!map) return
+
+    const restaurant = list[index]
+    if (!restaurant) return
 
     map.flyTo([restaurant.latitude, restaurant.longitude], 14, {
         duration: 0.8,
@@ -134,6 +140,11 @@ const centerMapToRestaurant = (index) => {
 }
 
 const focusRestaurant = (index) => {
+    const list = restaurants.value
+    if (!list.length) return
+
+    if (index < 0 || index >= list.length) return
+
     const distance = Math.abs(index - selectedIndex.value)
     selectedIndex.value = index
     scrollToRestaurant(index, distance <= 1)
@@ -141,13 +152,19 @@ const focusRestaurant = (index) => {
 }
 
 const goPrevious = () => {
-    const nextIndex = (selectedIndex.value - 1 + restaurants.length) % restaurants.length
+    const total = restaurants.value.length
+    if (!total) return
+
+    const nextIndex = (selectedIndex.value - 1 + total) % total
     isClicked.value = false
     focusRestaurant(nextIndex)
 }
 
 const goNext = () => {
-    const nextIndex = (selectedIndex.value + 1) % restaurants.length
+    const total = restaurants.value.length
+    if (!total) return
+
+    const nextIndex = (selectedIndex.value + 1) % total
     isClicked.value = false
     focusRestaurant(nextIndex)
 }
@@ -194,6 +211,18 @@ const onMapReady = (map) => {
     zoomControlInstance = control.zoom({ position: "topright" })
     zoomControlInstance.addTo(map)
 }
+
+watch(restaurants, (list) => {
+    if (!list.length) {
+        selectedIndex.value = 0
+        isClicked.value = false
+        return
+    }
+
+    if (selectedIndex.value >= list.length) {
+        selectedIndex.value = list.length - 1
+    }
+})
 </script>
 
 <style scoped>

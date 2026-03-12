@@ -5,6 +5,7 @@ import { COLORS } from '@/assets/Couleurs/Coulleurs.js'
 import reglageIcon from '@/assets/Icones/Reglage.svg'
 import decouvrirIcon from '@/assets/Icones/Decouvrir.svg'
 import Filtres from '@/components/Filtres.vue'
+import Header from '@/components/icons/Header.vue'
 import { useFilterStore } from '@/stores/filterStore'
 
 const filterStore = useFilterStore()
@@ -36,7 +37,7 @@ const bottomBtnFilterColor = COLORS.switchTextBlue
         <div class="view-container">
             <RouterView />
         </div>
-        <div class="global-actions">
+        <div class="global-actions" :class="{ 'ui-blocked': showFiltres }">
             <button type="button" class="action-btn action-btn--filter" @click="showFiltres = true">
                 <span>Filtrer</span>
                 <img :src="reglageIcon" alt="" class="action-btn__icon" aria-hidden="true" />
@@ -46,6 +47,8 @@ const bottomBtnFilterColor = COLORS.switchTextBlue
                 <img :src="decouvrirIcon" alt="" class="action-btn__icon" aria-hidden="true" />
             </button>
         </div>
+        <footer class="bottom-banner" :class="{ 'ui-blocked': showFiltres }">espace dédié pour le navigateur
+        </footer>
         <Filtres :show="showFiltres" @close="showFiltres = false" @apply="onFiltersApply" />
         </div>
 </template>
@@ -60,6 +63,10 @@ const bottomBtnFilterColor = COLORS.switchTextBlue
 
 .view-container {
     /* container is transparent, map-main handles its own positioning */
+}
+
+.ui-blocked {
+    pointer-events: none;
 }
 
 .top-banner {

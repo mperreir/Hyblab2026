@@ -20,7 +20,7 @@ const restaurants = [
   { name: "Le Bistrok", latitude : 47.39680189149334, longitude: 0.6871143625654882}, // Rue Berthelot
   { name: "PB Poulet braisé", latitude : 47.39418199643938, longitude: 0.6794896566086059}, // Rue du Grand Marché
   {name: "Crousty Game", latitude : 47.39395343649799, longitude: 0.6802914138828114}, // Pl. du Grand Marché
-  {name: "AP par Anglade Pierre", latitude :47.3865565340522, longitude: 0.6907917985146481}
+  {id: 1, name: "AP par Anglade Pierre", latitude :47.3865565340522, longitude: 0.6907917985146481}
 ];
 
 const restaurantsWithDate = restaurants.map((restaurant) => ({
