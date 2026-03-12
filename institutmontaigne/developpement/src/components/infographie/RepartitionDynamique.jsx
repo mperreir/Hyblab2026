@@ -31,12 +31,6 @@ const DEFAULT_REPARTITIONS = [
 	],
 	[
 		{ label: '', percentage: 10, color: '#4D5BC0' },
-		{ label: '', percentage: 7, color: '#93A7CF' },
-		{ label: '', percentage: 6, color: '#A8DCC8' },
-		{ label: '', percentage: 5, color: '#CFE172' },
-		{ label: '', percentage: 9, color: '#005944' },
-		{ label: '', percentage: 2, color: '#CFE172' },
-		{ label: '', percentage: 5, color: '#A8DCC8' },
 		{ label: '', percentage: 5, color: '#93A7CF' },
 		{ label: '', percentage: 10, color: '#4D5BC0' },
 		{ label: '', percentage: 6, color: '#FF6A00' },
@@ -83,8 +77,8 @@ export default function RepartitionDynamique({
 
 	return (
 		<section className={className}>
-			<div className="mx-auto flex w-full max-w-[900px] flex-col items-center gap-12">
-				<div className="flex w-full flex-col items-center gap-4">
+			<div className="mx-auto flex w-full max-w-[900px] flex-col items-center">
+				<div className="flex w-full flex-col items-center gap-2">
 					{safeLabels.slice(0, maxSelectableIndex + 1).map((label, index) => {
 						const color = PILL_COLORS[index % PILL_COLORS.length];
 						const isSelected = index === activeIndex;
@@ -108,7 +102,7 @@ export default function RepartitionDynamique({
 				</div>
 
 				<DoughnutChart
-					className="h-[360px] w-full"
+					className="h-40 my-6 w-full"
 					segments={currentSegments}
 				/>
 			</div>

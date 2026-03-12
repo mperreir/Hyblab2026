@@ -3,6 +3,7 @@ import PhotoQuote from "../components/question/quote";
 import Timeline from "../components/infographie/Timeline";
 import DoughnutChart from "../components/infographie/DoughnutChart";
 import {DropZone, AnswerBank} from "../components/infographie/Puzzle";
+import RepartitionDynamique from "../components/infographie/RepartitionDynamique";
 
 const debateData = {
   "meta": {
@@ -128,6 +129,7 @@ const debateData = {
           "intervenant": "levade",
           "contenu": [
             "Il n'existe en effet pas une mais des formes de scrutin proportionnel. On peut choisir une proportionnelle intégrale — qui s'applique à l'intégralité des élus — ou partielle. Mais ce seul choix n'est pas suffisant puisqu'il faut encore déterminer la circonscription — nationale ou départementale — et fixer le seuil à partir duquel les formations pourront avoir des représentants.",
+            <RepartitionDynamique />,
             "La France pratique déjà la proportionnelle pour d'autres scrutins. La proportionnelle intégrale s'applique lors des élections européennes. Les élections sénatoriales sont organisées selon un scrutin mixte. Les élections municipales sont organisées à la proportionnelle avec prime majoritaire dans les communes de plus de mille habitants.",
             "Dire que l'on veut mettre en œuvre la proportionnelle ne renseigne pas sur ses modalités. Selon que l'on utilise la méthode du plus fort reste ou la méthode de la plus forte moyenne, les rapports de force sont bousculés.",
             "Derrière le mot magique de « proportionnelle », mille formules existent dont aucune ne suscite unanimement l'adhésion. La difficulté du passage à la proportionnelle est donc inévitablement l'accusation de « tripatouillage » électoral.",
