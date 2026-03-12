@@ -1,13 +1,7 @@
+import React from 'react';
 import Robot from './Robot';
 import ResourceCard from './ResourceCard';
-
-// Iceberg layers (Figma nodes 47:248, 47:252, 47:274)
-const icebergOutline =
-  'https://www.figma.com/api/mcp/asset/5269f595-e74b-4e55-afe5-a7554468a35e';
-const icebergFill =
-  'https://www.figma.com/api/mcp/asset/e0dd227c-79e9-4ec8-ab24-ca8d1e2d240b';
-const icebergOutline2 =
-  'https://www.figma.com/api/mcp/asset/32052552-9008-407e-b009-4f0f62e864ab';
+import DataIceberg from './DataIceberg';
 
 // Decorative lines (47:339/340 = Vector2 side waves, 47:346 = Vector3 centre wave)
 const wavyLineSide =
@@ -17,6 +11,7 @@ const wavyLineCentre =
 
 const arrowDown =
   'https://www.figma.com/api/mcp/asset/ec378145-d58a-484a-bcba-965252b4e421';
+
 
 // Resource card images (47:343, 47:341, 47:342)
 const image17 =
@@ -39,15 +34,9 @@ export default function IcebergScene() {
         <img src={wavyLineCentre} alt="" className="w-full h-full" aria-hidden />
       </div>
 
-      {/* Iceberg layers (47:248, 47:252, 47:274) — x=99, y=894, w=1588, h=2701 */}
+      {/* full iceberg group exported from Figma */}
       <div className="absolute left-[99px] top-[894px] w-[1588px] h-[2701px]">
-        <img src={icebergOutline} alt="Iceberg" className="w-full h-full object-contain" />
-      </div>
-      <div className="absolute left-[99px] top-[894px] w-[1588px] h-[2701px]">
-        <img src={icebergFill} alt="" className="w-full h-full object-contain" aria-hidden />
-      </div>
-      <div className="absolute left-[99px] top-[894px] w-[1588px] h-[2701px]">
-        <img src={icebergOutline2} alt="" className="w-full h-full object-contain" aria-hidden />
+        <DataIceberg className="w-full h-full" />
       </div>
 
       {/* Side wavy lines at the waterline (47:339 right, 47:340 left) */}
