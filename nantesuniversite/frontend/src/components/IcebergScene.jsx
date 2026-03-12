@@ -5,12 +5,12 @@ import DataIceberg from './DataIceberg';
 import ScrollArrow from './ScrollArrow';
 import data from '../data/data.json';
 
-import prixSvg       from '../data/pictogramme/prix.svg';
-import articleSvg    from '../data/pictogramme/article.svg';
+import prixSvg from '../data/pictogramme/prix.svg';
+import articleSvg from '../data/pictogramme/article.svg';
 import conferenceSvg from '../data/pictogramme/conference.svg';
-import livreSvg      from '../data/pictogramme/livre.svg';
-import podcastSvg    from '../data/pictogramme/podcast.svg';
-import rechercheSvg  from '../data/pictogramme/recherche.svg';
+import livreSvg from '../data/pictogramme/livre.svg';
+import podcastSvg from '../data/pictogramme/podcast.svg';
+import rechercheSvg from '../data/pictogramme/recherche.svg';
 
 const PICTOGRAMMES = {
   prix: prixSvg, article: articleSvg, conference: conferenceSvg,
@@ -18,22 +18,13 @@ const PICTOGRAMMES = {
 };
 
 const CARD_POSITIONS = [
-  { left: 227,  top: 1394},
-  { left: 1003, top: 2150},
-  { left: 523,  top: 2901},
+  { left: 227, top: 1394 },
+  { left: 1003, top: 2150 },
+  { left: 523, top: 2901 },
 ];
 
 const cardDocuments = data.researcher.documents.slice(0, 3);
 
-// Iceberg layers (Figma nodes 47:248, 47:252, 47:274)
-const icebergOutline =
-  'https://www.figma.com/api/mcp/asset/5269f595-e74b-4e55-afe5-a7554468a35e';
-const icebergFill =
-  'https://www.figma.com/api/mcp/asset/e0dd227c-79e9-4ec8-ab24-ca8d1e2d240b';
-const icebergOutline2 =
-  'https://www.figma.com/api/mcp/asset/32052552-9008-407e-b009-4f0f62e864ab';
-
-// Decorative lines (47:339/340 = Vector2 side waves, 47:346 = Vector3 centre wave)
 const wavyLineSide =
   'https://www.figma.com/api/mcp/asset/02a68ccd-a0df-4a73-b697-55f5605a5a10';
 const wavyLineCentre =
