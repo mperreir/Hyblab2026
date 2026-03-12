@@ -11,7 +11,6 @@ export default function App() {
   return (
     <div className="min-h-screen">
       <Navbar />
-      <Timeline className="mx-auto w-fit " duration={1600} delay={200} />
       <Header meta={debateData.meta} />
       <Scrollytelling accroches={debateData.accroches} images={debateData.accrocheImages} />
       <Quiz meta={debateData.meta} />
