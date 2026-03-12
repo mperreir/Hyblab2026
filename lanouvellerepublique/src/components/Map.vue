@@ -126,7 +126,7 @@ const scrollToRestaurant = (index, smooth = true) => {
 
 const centerMapToRestaurant = (index) => {
     const map = mapRef.value.leafletObject
-    const restaurant = restaurants[index]
+    const restaurant = restaurants.value[index]
 
     map.flyTo([restaurant.latitude, restaurant.longitude], 14, {
         duration: 0.8,
@@ -141,7 +141,7 @@ const focusRestaurant = (index) => {
 }
 
 const goPrevious = () => {
-    const nextIndex = (selectedIndex.value - 1 + restaurants.length) % restaurants.length
+    const nextIndex = (selectedIndex.value - 1 + restaurants.value.length) % restaurants.value.length
     isClicked.value = false
     focusRestaurant(nextIndex)
 }
