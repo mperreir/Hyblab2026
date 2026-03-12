@@ -9,6 +9,7 @@ import Resultat from './components/Resultat';
 import Podcast from './components/Podcast';
 import debateData from './data/debate.jsx';
 import Footer from './components/Footer';
+import DoughnutChart from './components/infographie/DoughnutChart.jsx';
 
 export default function App() {
   const [initialScore, setInitialScore] = useState(50);

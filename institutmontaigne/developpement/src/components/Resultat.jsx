@@ -79,7 +79,7 @@ export default function Resultat({ initialScore, finalScore }) {
       : `${Math.abs(delta)} pts vers le désaccord`;
 
   return (
-    <div className="w-full py-12 px-6 bg-white">
+    <div className="w-full pb-12 px-6 bg-white">
       <div className="max-w-2xl mx-auto">
 
         <h2 className="text-2xl font-serif font-bold text-navy text-center mb-8">

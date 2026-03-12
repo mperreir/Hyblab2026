@@ -1,6 +1,8 @@
 import Manuscrit from "../components/infographie/Manuscrit";
-import PhotoQuote from "../components/dialog/PhotoQuote";
+import PhotoQuote from "../components/question/quote";
 import Timeline from "../components/infographie/Timeline";
+import DoughnutChart from "../components/infographie/DoughnutChart";
+import {DropZone, AnswerBank} from "../components/infographie/Puzzle";
 
 const debateData = {
   "meta": {
@@ -60,7 +62,7 @@ const debateData = {
               isLeft={true}
             />,
             <Timeline className="mx-auto w-fit mb-6" />,
-            <>Le général de Gaulle fit donc le choix d'en revenir au vieux mode de scrutin en place depuis le <Manuscrit>Second Empire</Manuscrit> et qui avait dominé sous la <Manuscrit surrounded={false}>IIIe République</Manuscrit> : le scrutin majoritaire à deux tours, qui lui offrit une majorité absolue à partir de 1962.</>
+            <p>Le général de Gaulle fit donc le choix d'en revenir au vieux mode de scrutin en place depuis le <Manuscrit>Second Empire</Manuscrit> et qui avait dominé sous la <Manuscrit surrounded={false}>IIIe République</Manuscrit> : le scrutin majoritaire à deux tours, qui lui offrit une majorité absolue à partir de 1962.</p>
             ]
         },
         {
@@ -71,7 +73,11 @@ const debateData = {
               photo="/img/2.png"
               quote="J'ajouterai à cela que <b>De Gaulle est d'abord favorable à la proportionnelle</b> sous la IVe, qu'il perçoit comme un <b>moyen de contenir le Parti communiste.</b>"
               isLeft={false}
-            />
+            />,
+            <>Le général de Gaulle fit donc le choix d'en revenir au scrutin majoritaire à deux tours,<DropZone correctAnswer="XIX" /> qui offrit une majorité absolue à partir de 1962. Comme le mode de scrutin avait été la variable d'ajustement sous la IIIe République, les législateurs conservèrent cette souplesse en ne l'inscrivant pas dans la Constitution.</>,
+            <AnswerBank answers={["XVIII", "XIX", "XX"]} />,
+            "Avant cela, les programmes reposaient avant tout sur une personne.",
+            "Ainsi, le mode de scrutin et la structuration des partis influent l'un sur l'autre. Et il s'agit toujours d'un processus au long cours.",
           ]
         },
       ]
@@ -135,6 +141,14 @@ const debateData = {
           "contenu": [
             "Je souscris à deux points de votre démonstration : le comportement électoral varierait considérablement d'un mode de scrutin à l'autre. D'où l'inutilité de procéder à des simulations, qui ne reposent sur rien de sérieux.",
             "Le mode de scrutin n'est pas la « solution magique » pour guérir notre système démocratique. Des États-Unis à la Pologne, de la Suède au Portugal, aucune démocratie libérale ne peut se targuer d'être en bonne santé. L'espace public est en crise, fracturé par une polarisation grandissante.",
+            <DoughnutChart
+              className="mx-auto my-8"
+              segments={[
+                { label: 'LFI', percentage: 12, color: '#E3F280' },
+                { label: '', percentage: 63, color: '#D2D2D2' },
+                { label: 'RN', percentage: 25, color: '#A4BAE8' },
+              ]}
+            />,
             "Nous sommes face à une Assemblée nationale où 25 % des sièges reviennent au RN, 12 % à LFI, des partis qui s'accommodent difficilement des systèmes de coalition. Comme sous la IVe République, nous serions condamnés à gouverner au centre dans une galaxie de partis n'ayant que peu en commun.",
             "Cela étant dit, je m'inscris en faux sur le point qui concerne la « culture politique » : cela ne renvoie à aucune réalité tangible. Il y a des règles du jeu, et les acteurs politiques s'y adaptent."
           ]
