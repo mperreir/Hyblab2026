@@ -87,16 +87,59 @@ const MovieList = (() => {
     btn.className = 'toggle-btn';
     btn.setAttribute('aria-label', 'Toggle all movies');
     btn.innerHTML = `
-      <div class="dot-line"></div>
-      <div class="dot-line"></div>
       <div class="arrow">
-        <svg viewBox="0 0 8 8" xmlns="http://www.w3.org/2000/svg">
-          <path d="M1 2.5 L4 5.5 L7 2.5" stroke="rgba(255,255,255,0.7)" stroke-width="1.5"
-            stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-        </svg>
+        <div class="arrow-up">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="15" viewBox="0 0 20 15" fill="none">
+            <g filter="url(#filter0_dd_3_411)">
+              <path d="M5 5.23633L10.5 1.23633L16 5.23633" stroke="#FF0000" stroke-width="2" stroke-linecap="round"/>
+            </g>
+            <defs>
+              <filter id="filter0_dd_3_411" x="0" y="0" width="24" height="14.2363" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                <feOffset dx="3" dy="4"/>
+                <feGaussianBlur stdDeviation="2"/>
+                <feComposite in2="hardAlpha" operator="out"/>
+                <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+                <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_3_411"/>
+                <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                <feOffset dy="4"/>
+                <feGaussianBlur stdDeviation="2"/>
+                <feComposite in2="hardAlpha" operator="out"/>
+                <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+                <feBlend mode="normal" in2="effect1_dropShadow_3_411" result="effect2_dropShadow_3_411"/>
+                <feBlend mode="normal" in="SourceGraphic" in2="effect2_dropShadow_3_411" result="shape"/>
+              </filter>
+            </defs>
+          </svg>
+        </div>
+        <div class="arrow-down">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="15" viewBox="0 0 20 15" fill="none">
+            <g filter="url(#filter0_dd_3_412)">
+              <path d="M5 1L10.5 5L16 1" stroke="#FF0000" stroke-width="2" stroke-linecap="round"/>
+            </g>
+            <defs>
+              <filter id="filter0_dd_3_412" x="0" y="0" width="24" height="14.2363" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                <feOffset dx="3" dy="4"/>
+                <feGaussianBlur stdDeviation="2"/>
+                <feComposite in2="hardAlpha" operator="out"/>
+                <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+                <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_3_412"/>
+                <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                <feOffset dy="4"/>
+                <feGaussianBlur stdDeviation="2"/>
+                <feComposite in2="hardAlpha" operator="out"/>
+                <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+                <feBlend mode="normal" in2="effect1_dropShadow_3_412" result="effect2_dropShadow_3_412"/>
+                <feBlend mode="normal" in="SourceGraphic" in2="effect2_dropShadow_3_412" result="shape"/>
+              </filter>
+            </defs>
+          </svg>
+        </div>
       </div>
-      <div class="dot-line"></div>
-      <div class="dot-line"></div>
+
     `;
     btn.addEventListener('click', toggle);
     wrapper.appendChild(btn);
