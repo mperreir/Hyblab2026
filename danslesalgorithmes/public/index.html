@@ -173,6 +173,58 @@
                     gap: 12px;
                 }
             }
+
+        /* =========================
+            SOURCES / FOOTER
+            ========================= */
+
+            .credits {
+                padding: 60px 20px;
+                background: #111;
+                color: white;
+                text-align: center;
+            }
+
+            .credits h2 {
+                margin-top: 40px;
+                font-size: 2rem;
+            }
+
+            .credits p {
+                max-width: 700px;
+                margin: 10px auto;
+                line-height: 1.6;
+            }
+
+            .credits a {
+                color: #ffcc00;
+                text-decoration: none;
+            }
+
+            .credits a:hover {
+                text-decoration: underline;
+            }
+
+            .logos {
+                margin-top: 30px;
+                display: flex;
+                justify-content: center;
+                gap: 40px;
+                flex-wrap: wrap;
+            }
+
+            .logos img {
+                height: 60px;
+                background: white;
+                padding: 10px;
+                border-radius: 6px;
+            }
+
+            .credits-names {
+                margin-top: 30px;
+                font-size: 0.9rem;
+                opacity: 0.8;
+            }
     </style>
 </head>
 <body>
@@ -427,6 +479,67 @@
     <div style="height: 50vh; display: flex; align-items: center; justify-content: center;">
         <h2>Fin de la présentation</h2>
     </div>
+    <section class="credits">
+
+        <h2>Sources</h2>
+
+        <p>
+            Hubert Guillaud,
+            <a href="https://lafabrique.fr/les-algorithmes-contre-la-societe/">Les algorithmes contre la société</a>, La Fabrique, 2025.
+        </p>
+
+        <p>
+            Hubert Guillaud,
+            <a href="https://lafabrique.fr/les-algorithmes-contre-la-societe/">Coincés dans les indus de la CAF</a>, 29/01/2026.
+        </p>
+
+        <p>
+            Changer de Cap,
+            <a href="https://changerdecap.net/2022/02/24/dossier/">Le contrôle (social) de la CAF contre les droits</a>,
+            février 2022.
+        </p>
+
+        <p>
+            <a href="https://www.laquadrature.net/caf/">Les articles de La Quadrature du Net sur la CAF</a>
+        </p>
+
+        <p>
+            Le dossier du <em>Monde</em> sur les algorithmes de la CAF :
+            <a href="https://www.lemonde.fr/les-decodeurs/visuel/2023/12/04/comment-l-algorithme-de-la-caf-predit-si-vous-etes-a-risque-de-frauder_6203836_4355770.html">
+                Comment l’algorithme de la CAF prédit si vous êtes « à risque » de frauder
+            </a>
+        </p>
+
+        <p>
+            Lighthouse Reports :
+            <a href="https://www.lighthousereports.com/methodology/how-we-investigated-frances-mass-profiling-machine/">How We Investigated France’s Mass Profiling Machine</a>
+        </p>
+
+        <p>
+            Publications du
+            <a href="https://www.caf.fr/professionnels/nous-connaitre/presentation/le-comite-d-ethique">Comité d’éthique de la CAF</a>
+            et du
+            <a href="https://caf.fr/professionnels/etudes-et-international/donnees-et-outils">code des algorithmes de la CAF</a>.
+        </p>
+
+        <p>
+            Émission :
+            <a href="https://www.radiofrance.fr/franceculture/podcasts/les-pieds-sur-terre/meres-isolees-sous-surveillance-3910568">Mères isolées sous surveillance</a>,
+            Les pieds sur Terre, France Culture, septembre 2025.
+        </p>
+
+        <h2>Partenaires</h2>
+
+        <div class="logos">
+            <img src="img/logo_dla.png" alt="Logo DLA">
+            <img src="img/logo_hyblab.png" alt="Logo Hyblab">
+        </div>
+
+        <p class="credits-names">
+            Projet réalisé par les étudiants de Polytech et de l’École de Design.
+        </p>
+
+    </section>
 
     <script>
         const figure = document.querySelector("#background-figure");
