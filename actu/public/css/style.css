@@ -3,23 +3,26 @@
 
 .film{
     position: relative;
-    width: 350px;
-    height: 600px;
 }
 
 .film > div{
 
-    width: 350px;
-    height: 600px;
+    /* width: 350px;
+    height: 600px; */
+    
+    width: 120px;
+    height: 206px;
     
     border: 1px solid black;
     border-radius: 10px;
     overflow: hidden;
 
-    position: absolute;
     -webkit-backface-visibility: hidden;
     -moz-backface-visibility: hidden;
     -ms-backface-visibility: hidden;
+    
+    transform-style: preserve-3d;
+
 }
 
 .film > .affiche_front{
@@ -29,13 +32,38 @@
 }
 
 .film > .affiche_front > img{
-    max-width: 350px;
-
+    /* max-width: 350px; */
+    max-width: 120px;
+    
 }
 
 
 
 .film > .affiche_back{
-    transform: rotateY(-180deg)
+    transform: rotateY(-180deg);
+    position: absolute;
+    top: 0;
+    left: 0;
+}
 
+
+
+
+/* /// */
+
+.affiches{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+
+    /* perspective: 800px; */
+    transform-style: preserve-3d;
+    margin : 8px;
+
+}
+
+body{
+    margin: 0;
 }
