@@ -1,3 +1,5 @@
+import Manuscrit from "../components/infographie/Manuscrit";
+
 const debateData = {
   "meta": {
     "serie": <>icfsbdhk
@@ -21,7 +23,7 @@ const debateData = {
     ]
   },
   "accroches": [
-    "Entre représentativité et stabilité, faut-il vraiment choisir ?",
+    <>Entre représentativité et stabilité, faut-il vraiment choisir ?</>,
     "Six formations au Bundestag avec la proportionnelle. Onze à l'Assemblée nationale avec le scrutin majoritaire.",
     "+7 points de participation. +12 chez les jeunes. La proportionnelle change la donne.",
     "Mille formules de proportionnelle existent. Aucune ne fait l'unanimité.",
@@ -38,7 +40,7 @@ const debateData = {
   ],
   "questions": [
     {
-      "question": "Dans l'Histoire de France, quelle a été la place du scrutin proportionnel et pourquoi, en 1958, le général de Gaulle a-t-il fait le choix du scrutin majoritaire sans toutefois l'inscrire dans la Constitution ?",
+      "question": <>Dans l'Histoire de France, quelle a été la place du scrutin proportionnel et pourquoi, en 1958, le général de Gaulle a-t-il fait le choix du scrutin majoritaire sans toutefois l'inscrire dans la Constitution ?</>,
       "dialogue": [
         {
           "type": "interlocuteur1",
