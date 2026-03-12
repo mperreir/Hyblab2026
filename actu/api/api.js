@@ -20,9 +20,35 @@ let db;
 app.get('/init', async function ( req, res ) {
     await initialisation();
     await test1();
-    await test2();
+    // await Test2Data();
+    // await test2();
     res.json({'Ok':true});
 } );
+
+
+app.get('/film-week', async function ( req, res ) {
+    const { last_date } = await GetLastDate();
+    const films = await GetFilmsByDate(last_date);
+    res.json(films);
+} );
+
+app.get('/film-like', async (req, res) => {
+
+    const token = req.cookies.token;
+    let user = null;
+
+    if(token){
+        user = await GetUserByToken(token);
+    }
+
+    if(user){
+        const films = await GetLikeByUserId(user.id);
+        res.json(films);
+    }else{
+        res.status(401).json({ error: "Utilisateur non authentifié" });
+    }
+
+});
 
 // Sample endpoint that sends the partner's name
 app.get('/topic', function ( req, res ) {
@@ -40,7 +66,6 @@ app.get("/create-user", async (req,res)=>{
     let token = req.cookies.token;
     let user = null;
 
-    console.log("Token : ",token);
     if(token){
         user = await GetUserByToken(token);
     }
@@ -85,47 +110,62 @@ async function getDB(){
 
 async function initialisation(){
     const db = await getDB();
-    db.exec(`
-    CREATE TABLE IF NOT EXISTS Utilisateur(
-        id INTEGER PRIMARY KEY,
-        token TEXT
-    ) STRICT;
 
-    CREATE TABLE IF NOT EXISTS Film (
-        id INTEGER PRIMARY KEY,
-        nom TEXT,
-        affiche TEXT,
-        bande_annonce TEXT,
-        critique TEXT, 
-        nb_etoile INTEGER,
-        description TEXT, 
-        realisateur TEXT,
-        date_sortie TEXT
-    ) STRICT ;
+    await db.exec(`
+        CREATE TABLE IF NOT EXISTS Utilisateur(
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            token TEXT UNIQUE
+        );
+    `); 
 
-    CREATE TABLE IF NOT EXISTS FilmAime(
-        id_film INTEGER,
-        id_utilisateur INTEGER,
-        PRIMARY KEY (id_film, id_utilisateur)
-    ) STRICT;
+    await db.exec(`
+        CREATE TABLE IF NOT EXISTS Film(
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            nom TEXT,
+            affiche TEXT,
+            bande_annonce TEXT,
+            critique TEXT,
+            nb_etoile INTEGER,
+            description TEXT,
+            realisateur TEXT,
+            date_sortie TEXT
+        );
+    `); 
 
+    await db.exec(`
+        CREATE TABLE IF NOT EXISTS FilmAime(
+            id_film INTEGER,
+            id_utilisateur INTEGER,
+            PRIMARY KEY (id_film, id_utilisateur),
+            FOREIGN KEY (id_film) REFERENCES Film(id),
+            FOREIGN KEY (id_utilisateur) REFERENCES Utilisateur(id)
+        );
+    `); 
 
-    CREATE TABLE IF NOT EXISTS Acteur(
-        id INTEGER PRIMARY KEY, 
-        nom TEXT, 
-        prenom TEXT
-    );
+    await db.exec(`
+        CREATE TABLE IF NOT EXISTS Acteur(
+            id INTEGER PRIMARY KEY AUTOINCREMENT, 
+            nom TEXT, 
+            prenom TEXT
+        );
+    `); 
 
-    CREATE TABLE IF NOT EXISTS FilmActeur(
-        id_film INTEGER,
-        id_acteur INTEGER,
-        PRIMARY KEY (id_film, id_acteur)
-    );
+    await db.exec(`
+        CREATE TABLE IF NOT EXISTS FilmActeur(
+            id_film INTEGER,
+            id_acteur INTEGER,
+            PRIMARY KEY (id_film, id_acteur),
+            FOREIGN KEY (id_film) REFERENCES Film(id),
+            FOREIGN KEY (id_acteur) REFERENCES Acteur(id)
+        );
+    `); 
 
-    CREATE TABLE IF NOT EXISTS FilmCoupDeCoeur(
-        id_film INTEGER PRIMARY KEY,
-        date TEXT
-    );
+    await db.exec(`
+        CREATE TABLE IF NOT EXISTS FilmCoupDeCoeur(
+            id_film INTEGER PRIMARY KEY,
+            date TEXT,
+            FOREIGN KEY (id_film) REFERENCES Film(id)
+        );
     `); 
 }
 
@@ -198,6 +238,104 @@ async function test1(){
         await ajoutFilmAime(3,4);
     }
 
+    
+}
+
+async function Test2Data() {
+    // Données tests généré par IA
+
+    // --- Utilisateurs ---
+    await ajoutUtilisateur("token_user_1");
+    await ajoutUtilisateur("token_user_2");
+    await ajoutUtilisateur("token_user_3");
+    await ajoutUtilisateur("token_user_4");
+    await ajoutUtilisateur("token_user_5");
+
+    // --- Acteurs ---
+    await ajoutActeur("Robert", "Downey Jr");
+    await ajoutActeur("Chris", "Evans");
+    await ajoutActeur("Tom", "Holland");
+    await ajoutActeur("Scarlett", "Johansson");
+    await ajoutActeur("Leonardo", "DiCaprio");
+
+    // --- Films (5 films le même jour) ---
+    const dateSortie = "2024-07-01";
+
+    await ajoutFilm(
+        "Iron Man",
+        "ironman.jpg",
+        "https://youtube.com/ironman",
+        "Excellent film Marvel",
+        5,
+        "Tony Stark construit une armure pour devenir Iron Man",
+        "Jon Favreau",
+        dateSortie
+    );
+
+    await ajoutFilm(
+        "Avengers",
+        "avengers.jpg",
+        "https://youtube.com/avengers",
+        "Super film d'équipe",
+        5,
+        "Les héros Marvel s'unissent",
+        "Joss Whedon",
+        dateSortie
+    );
+
+    await ajoutFilm(
+        "Spider-Man",
+        "spiderman.jpg",
+        "https://youtube.com/spiderman",
+        "Très divertissant",
+        4,
+        "Peter Parker devient Spider-Man",
+        "Jon Watts",
+        dateSortie
+    );
+
+    await ajoutFilm(
+        "Black Widow",
+        "blackwidow.jpg",
+        "https://youtube.com/blackwidow",
+        "Action et émotion",
+        4,
+        "Natasha Romanoff affronte son passé",
+        "Cate Shortland",
+        dateSortie
+    );
+
+    await ajoutFilm(
+        "Inception",
+        "inception.jpg",
+        "https://youtube.com/inception",
+        "Thriller intellectuel",
+        5,
+        "Un voleur pénètre dans les rêves pour voler des secrets",
+        "Christopher Nolan",
+        dateSortie
+    );
+
+    // --- Relations Film-Acteur ---
+    await ajoutFilmActeur(1,1); // Iron Man - Robert Downey Jr
+    await ajoutFilmActeur(2,1); // Avengers - Robert Downey Jr
+    await ajoutFilmActeur(2,2); // Avengers - Chris Evans
+    await ajoutFilmActeur(3,3); // Spider-Man - Tom Holland
+    await ajoutFilmActeur(4,4); // Black Widow - Scarlett Johansson
+    await ajoutFilmActeur(5,5); // Inception - Leonardo DiCaprio
+
+    // --- Likes utilisateurs ---
+    await ajoutFilmAime(1,1);
+    await ajoutFilmAime(1,2);
+    await ajoutFilmAime(2,1);
+    await ajoutFilmAime(2,3);
+    await ajoutFilmAime(3,4);
+    await ajoutFilmAime(4,5);
+    await ajoutFilmAime(5,1); // Inception a quelques likes
+    await ajoutFilmAime(5,2);
+
+    // --- Film coup de cœur ---
+    await ajoutFilmCoupDeCoeur(5, dateSortie); // Inception coup de cœur
     
 }
 
@@ -290,6 +428,17 @@ async function GetUserById(id){
     return result;
 }
 
+async function GetUserByToken(token){
+    const db = await getDB();
+    
+    const query = `
+        SELECT * FROM Utilisateur WHERE token = ?
+    `;
+
+    const result = await db.get(query, [token]);
+
+    return result;
+}
 
 async function GetLikeByUserId(userid){
     const db = await getDB();
@@ -326,36 +475,47 @@ async function GetActeursByFilm(idFilm){
 async function ajoutUtilisateur(token){
     const db = await getDB();
 
-    const insert = db.run(`
+    const insert = await db.run(`
         INSERT INTO Utilisateur (token) VALUES (?)
     `,[token]);
+
+    return insert.lastID;
+
 
 }
 
 async function ajoutFilmAime(id_film, id_utilisateur){
     const db = await getDB();
 
-    const insert = db.run(`
+    const insert = await db.run(`
         INSERT INTO FilmAime (id_film, id_utilisateur) VALUES (?,?)
     `,[id_film, id_utilisateur]);
+
+    return insert.lastID;
+
 
 }
 
 async function ajoutFilm(nom, affiche, bande_annonce, critique, nb_etoile, description, realisateur, date_sortie){
     const db = await getDB();
     
-    const insert = db.run(`
+    const insert = await db.run(`
         INSERT INTO Film (nom, affiche, bande_annonce, critique, nb_etoile, description, realisateur, date_sortie) VALUES (?,?,?,?,?,?,?,?)
     `,[nom, affiche, bande_annonce, critique, nb_etoile, description, realisateur, date_sortie]);
+
+    return insert.lastID;
 
 }
 
 async function ajoutActeur(nom, prenom){
     const db = await getDB();
 
-    const insert = db.run(`
+    const insert = await db.run(`
         INSERT INTO Acteur (nom, prenom) VALUES (?,?)
     `,[nom,prenom]);
+
+    return insert.lastID;
+
     
 
 }
@@ -363,18 +523,23 @@ async function ajoutActeur(nom, prenom){
 async function ajoutFilmActeur(id_film, id_acteur){
     const db = await getDB();
 
-    const insert = db.run(`
+    const insert = await db.run(`
         INSERT INTO FilmActeur (id_film, id_acteur) VALUES (?,?)
     `,[id_film,id_acteur]);
+
+    return insert.lastID;
 
 }
 
 async function ajoutFilmCoupDeCoeur(id_film, date){
     const db = await getDB();
 
-    const insert = db.run(`
+    const insert = await db.run(`
         INSERT INTO Film (id_film, date) VALUES (?,?)
     `,[id_film,date]);
+
+    return insert.lastID;
+
     
 
 }
