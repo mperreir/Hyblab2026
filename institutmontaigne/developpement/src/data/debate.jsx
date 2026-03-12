@@ -3,7 +3,6 @@ import PhotoQuote from "../components/dialog/PhotoQuote";
 const debateData = {
   "meta": {
     "serie": <>icfsbdhk
-      <b>bold</b>
     cbaqdkhbc</>,
     "titre": "Le scrutin proportionnel est-il un remède à la crise démocratique ?",
     "date": "11 octobre 2024",

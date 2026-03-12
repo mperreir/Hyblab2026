@@ -1,82 +1,120 @@
 import { useEffect, useRef, useState } from 'react';
 
-export default function Header({ meta }) {
-  const [visible, setVisible] = useState(false);
-  const chapRef = useRef(null);
-  const [chapVisible, setChapVisible] = useState(false);
+export default function Navbar() {
+  const [isVisible, setIsVisible] = useState(true);
+  const lastScrollY = useRef(0);
 
   useEffect(() => {
-    const t = setTimeout(() => setVisible(true), 100);
-    return () => clearTimeout(t);
-  }, []);
+    const onScroll = () => {
+      const currentY = window.scrollY;
 
-  useEffect(() => {
-    if (!chapRef.current) return;
-    const obs = new IntersectionObserver(
-      ([e]) => { if (e.isIntersecting) setChapVisible(true); },
-      { threshold: 0.3 }
-    );
-    obs.observe(chapRef.current);
-    return () => obs.disconnect();
+      if (currentY <= 8) {
+        setIsVisible(true);
+        lastScrollY.current = currentY;
+        return;
+      }
+
+      if (currentY > lastScrollY.current + 4) {
+        setIsVisible(false);
+      } else if (currentY < lastScrollY.current - 4) {
+        setIsVisible(true);
+      }
+
+      lastScrollY.current = currentY;
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
   return (
-    <>
-      {/* Hero */}
-      <header className="relative min-h-screen flex flex-col justify-center items-center px-6 bg-navy text-white overflow-hidden">
-        {/* Subtle grid pattern */}
-        <div className="absolute inset-0 opacity-[0.04]" style={{
-          backgroundImage: 'linear-gradient(rgba(255,255,255,.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.1) 1px, transparent 1px)',
-          backgroundSize: '60px 60px'
-        }} />
+    <nav
+      className={`bg-montaigne-burgundy text-montaigne-contrast px-4 sm:px-6 py-3 h-[61px] sticky top-0 z-[9999] transition-all duration-300 ease-out ${
+        isVisible ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-95'
+      }`}
+    >
+      <div className="mx-auto w-full max-w-6xl flex items-center justify-between">
+        <a
+          href="#"
+          aria-label="Accueil Institut Montaigne"
+          className="inline-flex items-center"
+        >
+          <LogoMontaigne className="h-7 w-7" />
+        </a>
 
-        <div className="relative z-10 flex flex-col items-center">
-          <span className={`inline-block px-4 py-1.5 border border-white/20 rounded-full text-[11px] font-sans uppercase tracking-[0.2em] mb-8 transition-all duration-700 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'}`}>
-            {meta.serie}
-          </span>
-
-          <h1 className={`text-[1.75rem] sm:text-4xl md:text-5xl lg:text-[3.5rem] font-serif font-bold text-center max-w-4xl leading-[1.15] transition-all duration-1000 delay-200 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
-            {meta.titre}
-          </h1>
-
-          <div className={`mt-12 flex flex-col sm:flex-row gap-8 sm:gap-16 transition-all duration-700 delay-500 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-            {meta.intervenants.map((p, i) => (
-              <div key={p.id} className="text-center">
-                <div className={`w-10 h-0.5 mx-auto mb-3 ${i === 0 ? 'bg-accent-blue' : 'bg-accent-red'}`} />
-                <p className="font-sans font-medium text-sm tracking-wide">{p.nom}</p>
-                <p className="text-[11px] text-white/50 mt-1.5 max-w-[220px] leading-relaxed">{p.titre}</p>
-              </div>
-            ))}
-          </div>
-
-          <div className={`mt-8 flex items-center gap-3 text-[11px] font-sans text-white/35 transition-all duration-700 delay-700 ${visible ? 'opacity-100' : 'opacity-0'}`}>
-            <span>{meta.thematique}</span>
-            <span className="w-1 h-1 rounded-full bg-white/30" />
-            <time>{meta.date}</time>
-          </div>
+        <div className="flex items-center gap-3">
+          <button
+            type="button"
+            aria-label="Rechercher"
+            className="inline-flex items-center justify-center rounded-full transition-opacity hover:opacity-80"
+          >
+            <SearchIcon className="h-6 w-6" />
+          </button>
+          <button
+            type="button"
+            aria-label="Ouvrir le menu"
+            className="inline-flex items-center justify-center rounded-full transition-opacity hover:opacity-80"
+          >
+            <HamburgerIcon className="h-6 w-6" />
+          </button>
         </div>
+      </div>
+    </nav>
+  );
+}
 
-        {/* Scroll indicator */}
-        <div className={`absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 transition-all duration-700 delay-1000 ${visible ? 'opacity-100' : 'opacity-0'}`}>
-          <span className="text-[10px] font-sans uppercase tracking-[0.15em] text-white/30">Défiler</span>
-          <div className="w-px h-8 bg-gradient-to-b from-white/40 to-transparent animate-pulse" />
-        </div>
-      </header>
+function LogoMontaigne({ className = '' }) {
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 28 28"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      role="img"
+      aria-hidden="true"
+    >
+      <path
+        d="M14 0C6.26792 0 0 6.26792 0 14C0 21.7321 6.26792 28 14 28C21.7321 28 28 21.7321 28 14C28 6.26792 21.7321 0 14 0ZM21.4637 21.2567H6.53625V20.5304H21.4637V21.2567ZM21.4637 7.46958H21.245C21.0467 7.46958 20.8629 7.48417 20.6908 7.51042C20.5187 7.53958 20.3671 7.59792 20.2387 7.6825C20.1104 7.77 20.0083 7.89542 19.9354 8.05875C19.8625 8.22208 19.8246 8.43792 19.8246 8.70917V17.1325C19.8246 17.4037 19.8625 17.6196 19.9354 17.7829C20.0083 17.9462 20.1104 18.0717 20.2387 18.1592C20.3671 18.2467 20.5187 18.305 20.6908 18.3312C20.8629 18.3604 21.0467 18.375 21.245 18.375H21.4637V19.1012H16.8554V18.375H16.9137C17.1004 18.375 17.2667 18.3633 17.4183 18.3371C17.5671 18.3108 17.6954 18.2612 17.7975 18.1854C17.9025 18.1096 17.9842 17.9988 18.0483 17.8558C18.1096 17.7129 18.1475 17.5204 18.1592 17.2842V8.0325L14.1925 19.1042H13.2533L9.23708 8.0675V17.1354C9.23708 17.4067 9.26625 17.6225 9.32167 17.7858C9.37708 17.9492 9.46167 18.0746 9.5725 18.1621C9.68333 18.2496 9.81458 18.3079 9.96917 18.3342C10.1237 18.3633 10.2987 18.3779 10.4883 18.3779H10.5379V19.1042H6.53625V18.3779H6.755C6.9475 18.3779 7.12833 18.3662 7.30042 18.34C7.4725 18.3137 7.62417 18.2612 7.7525 18.1825C7.88083 18.1038 7.98583 17.9871 8.06167 17.8325C8.1375 17.6779 8.17542 17.4737 8.17542 17.22V8.645C8.17542 8.39125 8.1375 8.18708 8.06167 8.0325C7.98583 7.87792 7.88375 7.75833 7.7525 7.67375C7.62417 7.58917 7.4725 7.53375 7.30042 7.5075C7.12833 7.48125 6.9475 7.46958 6.755 7.46958H6.53625V6.74333H10.4854L14.07 16.6483L17.6225 6.74333H21.4608V7.46958H21.4637Z"
+        fill="currentColor"
+      />
+    </svg>
+  );
+}
 
-      {/* Chapeau */}
-      {/* <section
-        ref={chapRef}
-        className={`bg-white py-16 md:py-24 px-6 transition-all duration-1000 ${chapVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
-      >
-        <div className="max-w-2xl mx-auto">
-          <p className="text-base md:text-lg leading-[1.9] text-ink/80 font-serif">
-            {meta.chapeau}
-          </p>
-          <p className="mt-6 text-xs font-sans text-ink/40 uppercase tracking-widest">
-            {meta.credits}
-          </p>
-        </div>
-      </section> */}
-    </>
+function SearchIcon({ className = '' }) {
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      role="img"
+      aria-hidden="true"
+    >
+      <path
+        d="M17.4743 16.8649L14.7811 14.1723C15.5617 13.2352 15.951 12.0332 15.8679 10.8163C15.7848 9.59952 15.2358 8.46157 14.3351 7.63921C13.4344 6.81686 12.2513 6.37342 11.032 6.40113C9.81262 6.42884 8.65091 6.92557 7.78849 7.788C6.92606 8.65042 6.42933 9.81213 6.40162 11.0315C6.3739 12.2508 6.81735 13.4339 7.6397 14.3346C8.46206 15.2353 9.6 15.7843 10.8168 15.8674C12.0336 15.9505 13.2356 15.5612 14.1728 14.7806L16.8654 17.4738C16.9054 17.5138 16.9529 17.5455 17.0051 17.5671C17.0573 17.5888 17.1133 17.5999 17.1698 17.5999C17.2264 17.5999 17.2824 17.5888 17.3346 17.5671C17.3868 17.5455 17.4343 17.5138 17.4743 17.4738C17.5143 17.4338 17.546 17.3864 17.5676 17.3341C17.5893 17.2819 17.6004 17.2259 17.6004 17.1694C17.6004 17.1128 17.5893 17.0568 17.5676 17.0046C17.546 16.9524 17.5143 16.9049 17.4743 16.8649ZM7.27288 11.1451C7.27288 10.3792 7.50002 9.63042 7.92556 8.99355C8.3511 8.35668 8.95593 7.86031 9.66358 7.56719C10.3712 7.27407 11.1499 7.19738 11.9011 7.34681C12.6524 7.49624 13.3424 7.86508 13.884 8.40669C14.4256 8.9483 14.7945 9.63836 14.9439 10.3896C15.0934 11.1408 15.0167 11.9195 14.7235 12.6271C14.4304 13.3348 13.934 13.9396 13.2972 14.3652C12.6603 14.7907 11.9116 15.0178 11.1456 15.0178C10.1188 15.0167 9.13447 14.6083 8.40844 13.8823C7.68241 13.1563 7.27402 12.1719 7.27288 11.1451Z"
+        fill="currentColor"
+      />
+      <circle cx="12" cy="12" r="11.5" stroke="currentColor" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+function HamburgerIcon({ className = '' }) {
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      role="img"
+      aria-hidden="true"
+    >
+      <path
+        d="M17.6004 12C17.6004 12.1179 17.5512 12.2309 17.4637 12.3143C17.3762 12.3976 17.2575 12.4444 17.1337 12.4444H6.86706C6.74329 12.4444 6.62459 12.3976 6.53707 12.3143C6.44956 12.2309 6.40039 12.1179 6.40039 12C6.40039 11.8821 6.44956 11.7691 6.53707 11.6857C6.62459 11.6024 6.74329 11.5556 6.86706 11.5556H17.1337C17.2575 11.5556 17.3762 11.6024 17.4637 11.6857C17.5512 11.7691 17.6004 11.8821 17.6004 12ZM6.86706 8.88889H17.1337C17.2575 8.88889 17.3762 8.84206 17.4637 8.75871C17.5512 8.67536 17.6004 8.56232 17.6004 8.44444C17.6004 8.32657 17.5512 8.21352 17.4637 8.13017C17.3762 8.04683 17.2575 8 17.1337 8H6.86706C6.74329 8 6.62459 8.04683 6.53707 8.13017C6.44956 8.21352 6.40039 8.32657 6.40039 8.44444C6.40039 8.56232 6.44956 8.67536 6.53707 8.75871C6.62459 8.84206 6.74329 8.88889 6.86706 8.88889ZM17.1337 15.1111H6.86706C6.74329 15.1111 6.62459 15.1579 6.53707 15.2413C6.44956 15.3246 6.40039 15.4377 6.40039 15.5556C6.40039 15.6734 6.44956 15.7865 6.53707 15.8698C6.62459 15.9532 6.74329 16 6.86706 16H17.1337C17.2575 16 17.3762 15.9532 17.4637 15.8698C17.5512 15.7865 17.6004 15.6734 17.6004 15.5556C17.6004 15.4377 17.5512 15.3246 17.4637 15.2413C17.3762 15.1579 17.2575 15.1111 17.1337 15.1111Z"
+        fill="currentColor"
+      />
+      <circle cx="12" cy="12" r="11.5" stroke="currentColor" strokeLinejoin="round" />
+    </svg>
   );
 }

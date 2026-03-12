@@ -9,6 +9,8 @@ export default {
         offwhite: '#F6F5F1',
         'accent-blue': '#2563EB',
         'accent-red': '#C41E3A',
+        'montaigne-burgundy': '#872339',
+        'montaigne-contrast': '#FFFFFF',
       },
       fontFamily: {
         serif: ['"Source Serif 4"', 'Georgia', 'serif'],
