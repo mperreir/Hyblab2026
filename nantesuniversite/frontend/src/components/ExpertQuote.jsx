@@ -32,14 +32,14 @@ export default function ExpertQuote() {
         activités qu&apos;on tenait pour intelligentes ne le sont plus.&thinsp;
       </p>
 
-      {/* Attribution: abs top=570 → section top=270; right edge at ~1639px, w=943 → left=696 */}
-      <div className="absolute left-[696px] top-[270px] w-[943px] text-right text-black font-sans">
+      <div className="absolute left-[1270px] top-[364px] w-[24px] h-[24px] bg-[#3552ff]" />
+
+      <div className="absolute left-[696px] top-[350px] w-[943px] text-right text-black font-sans">
         <p className="font-bold text-[36px] mb-0">Colin de la Higuera</p>
         <p className="text-[30px] underline mb-0">Professeur à l&apos;Université de Nantes</p>
         <p className="text-[30px] underline">Titulaire de la Chaire UNESCO RELIA</p>
       </div>
 
-      {/* Right decorative dot pattern: abs left=1673, top=461 → section top=161 */}
       <div className="absolute left-[1673px] top-[161px]">
         <DotPattern dotSize={22} mirror />
       </div>
