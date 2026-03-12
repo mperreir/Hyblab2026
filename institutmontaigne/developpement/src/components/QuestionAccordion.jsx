@@ -109,7 +109,7 @@ export default function QuestionAccordion({ questions, intervenants, onQuestionO
 
   return (
     <section className="bg-white ">
-      <div className="w-full">
+      <div className="w-full pt-10">
         {questions.map((q, i) => (
           <QuestionItem
             key={i}
@@ -439,7 +439,13 @@ function DialogueCard({ block, intervenantIndex }) {
       { threshold: 0.3, root: el.closest('.dialogue-scroll') }
     );
     obs.observe(el);
-    return () => obs.disconnect();
+    // Fallback: re-check after the grid-rows opening animation finishes,
+    // because IntersectionObserver doesn't detect root size changes from CSS transitions.
+    const timer = setTimeout(() => {
+      obs.unobserve(el);
+      obs.observe(el);
+    }, 600);
+    return () => { clearTimeout(timer); obs.disconnect(); };
   }, []);
 
   return (
