@@ -312,7 +312,7 @@ const initPageProjet = async function () {
 
   const popupOverlay = document.getElementById('popup-overlay');
 
-  document.getElementById('popup-close').addEventListener('click', () => {
+  document.getElementById('popup-box').addEventListener('click', () => {
     popupOverlay.classList.add('popup-hidden');
   });
 
