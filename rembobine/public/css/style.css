@@ -15,7 +15,9 @@
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
 }
-
+.title-image{
+  flex-shrink: 0;
+}
 /* When the aspect ratio is smaller that 3/4, display a 3/4 content */
 #container{
     position: fixed; /* To set the size of the container to 100% of the visible viewport height AND for absolute positioning of child elements*/ 
