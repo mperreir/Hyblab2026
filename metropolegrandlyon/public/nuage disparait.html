@@ -4,10 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
+    
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
-      height: 500vh;
+      height: 800vh;
       background: linear-gradient(to bottom, #87CEEB, #b0e0ff);
       overflow-x: hidden;
     }
@@ -20,6 +21,7 @@
     }
 
     .cloud {
+      z-index: 3;
       position: absolute;
       top: 50%;
       left: 50%;
@@ -30,6 +32,7 @@
     }
 
     .colline {
+      z-index: 1;
       position: absolute;
       top: 50%;
       left: 50%;
@@ -38,30 +41,69 @@
       opacity: 0;
       will-change: transform, opacity;
     }
+
+    .gif-sequence {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 80%;
+      transform: translate(-50%, -50%);
+      opacity: 0;
+      will-change: opacity;
+    }
+
+    .texte-montagne {
+      position: fixed;
+      top: 24px;
+      left: 24px;
+      color: white;
+      font-family: Georgia, serif;
+      font-size: 1.4rem;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.4);
+      pointer-events: none;
+    }
   </style>
 </head>
 <body>
   <div class="scene">
     <img class="cloud"  src="img/Nuages.png" alt="nuage">
     <img class="colline" src="img/paysage-montagne-dessine-main_23-2149169710.avif" alt="colline">
+    <img class="gif-sequence" src="img/frames/frame_0001.png" alt="animation">
+    <p class="texte-montagne">La montagne est belle</p>
   </div>
 
   <script>
     const nuage   = document.querySelector('.cloud');
     const montagne = document.querySelector('.colline');
+    const gifImage = document.querySelector('.gif-sequence');
+    const texteMontagne = document.querySelector('.texte-montagne');
 
     // ── Repères de scroll (en pixels) ─────────────────────────────
-    const scrollFin_nuage             = 600;   // le nuage a fini de grossir et disparaître
+    const scrollFin_nuage             = 600;
+    const scrollDebut_montagne        = 600;
+    const scrollFin_zoom1_montagne    = 1200;
+    const scrollFin_decalage_gauche   = 1800;
+    const scrollFin_zoom2_montagne    = 2400;
+    const scrollFin_sortie_ecran      = 3000;
 
-    const scrollDebut_montagne        = 600;   // la montagne apparaît et commence à grossir
-    const scrollFin_zoom1_montagne    = 1200;  // fin du 1er zoom (la montagne remplit l'écran)
-
-    const scrollFin_decalage_gauche   = 1800;  // la montagne a glissé vers la gauche (on voit le col)
-
-    const scrollFin_zoom2_montagne    = 2400;  // on a re-zoomé dans le col
-
-    const scrollFin_sortie_ecran      = 3000;  // la montagne est sortie de l'écran
+    const scrollDebut_gif             = 3200;  // le gif commence après la montagne
+    const scrollFin_gif               = 6000;  // le gif a joué toutes ses frames
     // ──────────────────────────────────────────────────────────────
+
+    const NOMBRE_DE_FRAMES = 52;
+
+    // Génère les noms de fichiers : frame_0001.png → frame_0052.png
+    const frames = Array.from({ length: NOMBRE_DE_FRAMES }, (_, i) => {
+      const numero = String(i + 1).padStart(4, '0');
+      return `img/frames/frame_${numero}.png`;
+    });
+
+    // Préchargement de toutes les frames pour éviter les clignotements
+    frames.forEach(src => { const img = new Image(); img.src = src; });
+
+    let frameAffichee = -1; // pour n'updater que si la frame change
 
     function clamp(val, min, max) {
       return Math.min(Math.max(val, min), max);
@@ -89,12 +131,17 @@
 
       // ── Phases montagne ───────────────────────────────────────
       if (scrollActuel < scrollDebut_montagne) {
-        montagne.style.opacity   = 0;
+        montagne.style.opacity   = 1;
         montagne.style.transform = `translate(-50%, -50%) scale(1)`;
         return;
       }
 
       montagne.style.opacity = 1;
+
+      // Texte : apparaît avec la montagne, disparaît quand elle sort
+      const opacite_texte = avancement(scrollActuel, scrollDebut_montagne, scrollDebut_montagne + 400);
+      const disparition_texte = 1 - avancement(scrollActuel, scrollFin_sortie_ecran - 400, scrollFin_sortie_ecran);
+      texteMontagne.style.opacity = Math.min(opacite_texte, disparition_texte);
 
       // Phase 2 : la montagne apparaît et grossit (zoom 1x à 3x)
       const progression_zoom1   = avancement(scrollActuel, scrollDebut_montagne, scrollFin_zoom1_montagne);
@@ -120,6 +167,24 @@
       else                                               zoom_actif = grossissement_final;
 
       montagne.style.transform = `translate(calc(-50% + ${deplacement_gauche}%), -50%) scale(${zoom_actif})`;
+
+      // ── Séquence GIF : frame par frame selon le scroll ────────
+      if (scrollActuel >= scrollDebut_gif) {
+        gifImage.style.opacity = 1;
+
+        const progression_gif = avancement(scrollActuel, scrollDebut_gif, scrollFin_gif);
+        const indexFrame      = Math.min(
+          Math.floor(progression_gif * NOMBRE_DE_FRAMES),
+          NOMBRE_DE_FRAMES - 1
+        );
+
+        if (indexFrame !== frameAffichee) {
+          gifImage.src  = frames[indexFrame];
+          frameAffichee = indexFrame;
+        }
+      } else {
+        gifImage.style.opacity = 0;
+      }
 
     }, { passive: true });
   </script>
