@@ -1,6 +1,6 @@
 <script setup>
-import { ref, onMounted } from "vue"
-import { RouterLink, RouterView } from "vue-router"
+import { ref, onMounted, computed } from "vue"
+import { RouterLink, RouterView, useRoute } from "vue-router"
 import { COLORS } from "@/assets/Couleurs/Coulleurs.js"
 import reglageIcon from "@/assets/Icones/Reglage.svg"
 import decouvrirIcon from "@/assets/Icones/Decouvrir.svg"
@@ -9,7 +9,10 @@ import Filtres from "@/components/Filtres.vue"
 import { useFilterStore } from "@/stores/filterStore"
 
 const filterStore = useFilterStore()
+const route = useRoute()
 const showFiltres = ref(false)
+
+const isListRoute = computed(() => route.path === "/")
 
 const onFiltersApply = (appliedFilters) => {
     filterStore.applyFilters(appliedFilters)
@@ -38,7 +41,7 @@ const bottomBtnFilterColor = COLORS.switchTextBlue
         <div class="view-container">
             <RouterView />
         </div>
-        <div class="global-actions" :class="{ 'ui-blocked': showFiltres }">
+        <div class="global-actions" :class="{ 'ui-blocked': showFiltres, 'global-actions--list': isListRoute }">
             <button type="button" class="action-btn action-btn--filter" @click="showFiltres = true">
                 <span>Filtrer</span>
                 <img :src="reglageIcon" alt="" class="action-btn__icon" aria-hidden="true" />
@@ -130,6 +133,9 @@ const bottomBtnFilterColor = COLORS.switchTextBlue
     justify-content: center;
     gap: 0.6rem;
     padding: 0.75rem 1.4rem calc(1rem + env(safe-area-inset-bottom));
+}
+
+.global-actions--list {
     background: linear-gradient(
         180deg,
         rgba(255, 255, 255, 0) 0%,
