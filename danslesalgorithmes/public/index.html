@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Qui fraude la CAF ?</title>
     <link rel="stylesheet" href="css/style.css">
     <script src="js/index.js" defer></script>
@@ -10,8 +10,8 @@
 </head>
 <body>
 
-    <div style="height: 50vh; display: flex; align-items: center; justify-content: center;">
-        <h2>Faites défiler vers le bas ↓</h2>
+    <div style="height: 50dvh; display: flex; align-items: center; justify-content: center;">
+        <h2 style="color: #333;">Faites défiler vers le bas ↓</h2>
     </div>
 
     <div id="scrolly">
@@ -19,11 +19,10 @@
         <section class="scene">
             <div class="bg-container">
                 <div class="bg-media" style="background-image: url('img/foyer_benificiaire.png');"></div>
-                <div class="overlay"></div>
             </div>
             
             <article>
-                <div style="height: 100vh;"></div>
+                <div style="height: 100dvh;"></div>
 
                 <div class="step">
                     <div class="step-content">
@@ -38,77 +37,69 @@
                     </div>
                 </div>
 
-                <div style="height: 100vh;"></div>
+                <div style="height: 100dvh;"></div>
             </article>
         </section>
 
         <section class="scene">
             <div class="bg-container">
                 <video class="bg-media" src="video/PinVideoDownloader.net-video.mp4" autoplay loop muted playsinline></video>
-                <div class="overlay"></div>
             </div>
             
             <article>
-                <div style="height: 100vh;"></div>
+                <div style="height: 100dvh;"></div>
 
                 <div class="step" data-audio="audio/son_amongUS.mp3">
                     <div class="step-content">
                         <p style="margin-bottom: 20px;">Voici un paragraphe pour tester le défilement.</p>
-                        <img src="img/floran_linkdin_noBackground.png" alt="Floran" style="max-width: 100%; height: auto; max-height: 50vh;">
+                        <img src="img/floran_linkdin_noBackground.png" alt="Floran" style="max-width: 100%; height: auto; max-height: 40dvh;">
                     </div>
                 </div>
 
-                <div style="height: 100vh;"></div>
+                <div style="height: 100dvh;"></div>
             </article>
         </section>
 
         <section class="scene">
             <div class="bg-container">
                 <div class="bg-media" style="background-image: url('img/polytech.jpg');"></div>
-                <div class="overlay"></div>
             </div>
             
             <article>
-                <div style="height: 100vh;"></div>
+                <div style="height: 100dvh;"></div>
 
-                <div class="step align-right">
+                <div class="step">
                   <div class="step-content">
                     <h1>L'Équipe</h1>
                     <p>Ce site a été mis en forme par des étudiants de Polytech et de l'École de Design.</p>
                   </div>
                 </div>
 
-                <div style="height: 100vh;"></div>
+                <div style="height: 100dvh;"></div>
             </article>
         </section>
 
-        <section class="scene">
-            <div class="bg-container">
-                <div class="bg-media" style="background-image: url('img/IMG_3850.jpg');"></div>
-                <div class="overlay"></div>
+        <section class="scene"> 
+            <div class="bg-container" style="background: transparent; display: flex; align-items: center; justify-content: center;">
+                <div class="spheres-container" id="spheres-animation">
+                    <img src="img/allocataires_caf.png" alt="Allocataires de la CAF" class="img-caf">
+                    <img src="img/meres_isolees.png" alt="Mères isolées 14%" class="img-meres">
+                </div>
             </div>
             
             <article>
-                <div style="height: 100vh;"></div>
-
-                <div class="step">
-                    <div class="step-content">
-                        <p>Voici un dernier paragraphe pour tester le défilement.</p>
-                    </div>
-                </div>
-
-                <div style="height: 100vh;"></div>
+                <div class="step step-caf" style="height: 100dvh;"></div>
+                <div class="step step-meres" style="height: 100dvh;"></div>
             </article>
         </section>
 
         <section class="scene">
             <div class="bg-container">
                 <div class="bg-media" style="background-image: url('img/main.jpg');"></div>
-                <div class="overlay"></div>
             </div>
             
             <article>
-                <div style="height: 100vh;"></div>
+                <div style="height: 100dvh;"></div>
                 
                 <div class="step">
                     <div class="step-content">
@@ -145,8 +136,8 @@
                       Parmi les principaux : <br>
                       - Le fait d'avoir des revenus faibles fait toujours augmenter le score.<br>
                       - Le fait de bénéficier de certaines prestations sociales.<br>
-                      - Le fait de recevoir une pension alimentaire (qu'elle ait été touchée ou non). <br>
-                      - Le fait de toucher plus de 3 prestations sociales ou de toucher plus de 200 euros d'allocations par mois… 
+                      - Le fait de recevoir une pension alimentaire. <br>
+                      - Le fait de toucher plus de 3 prestations sociales… 
                       </p>
                     </div>
                 </div>
@@ -159,14 +150,14 @@
                     </div>
                 </div>
 
-                <div style="height: 100vh;"></div>
+                <div style="height: 100dvh;"></div>
             </article>
         </section>
 
     </div>
 
-    <div style="height: 50vh; display: flex; align-items: center; justify-content: center;">
-        <h2>Fin de la présentation</h2>
+    <div style="height: 50dvh; display: flex; align-items: center; justify-content: center;">
+        <h2 style="color: #333;">Fin de la présentation</h2>
     </div>
 
 </body>

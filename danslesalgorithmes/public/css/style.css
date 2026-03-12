@@ -1,113 +1,133 @@
+/* ================= GLOBAL ================= */
 body, html {
     margin: 0;
     padding: 0;
     font-family: sans-serif;
-    background-color: #f4f4f4;
+    background-color: #f2efe9; 
+    /* SUPPRIMEZ la ligne overflow-x: hidden; qui était ici ! */
 }
 
 #scrolly {
     position: relative;
 }
 
-/* Une "scène" englobe un fond et ses textes associés */
 .scene {
     position: relative;
 }
 
-/* Le conteneur du fond qui va rester collé pendant la lecture de sa scène */
+/* ================= ARRIÈRE-PLANS (PHOTOS/VIDÉOS) ================= */
 .bg-container {
     position: sticky;
     top: 0;
     left: 0;
     width: 100%;
-    height: 100vh;
+    height: 100dvh; /* dvh = dynamic viewport height, parfait pour mobile */
     z-index: 0;
     overflow: hidden;
+    background-color: transparent; 
 }
 
-/* L'image ou la vidéo */
 .bg-media {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    background-size: cover;
+    /* Ajustement mobile : l'image ne se coupe pas, le vide est rempli par le crème #f2efe9 */
+    object-fit: contain; 
+    background-size: contain;
+    background-repeat: no-repeat;
     background-position: center;
+    background-color: transparent;
+    
+    /* Assombrit la photo pour lire le texte (remplace l'ancien voile noir)   là non mais peut servir */
+    filter: brightness(1); 
 }
 
-/* Le voile sombre */
-.overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.4);
-}
-
-/* Le bloc texte qui va passer par-dessus le fond */
+/* ================= TEXTES QUI DÉFILENT ================= */
 article {
     position: relative;
     z-index: 1;
-    margin-top: -100vh; /* Fait remonter le premier texte exactement sur le fond */
+    margin-top: -100dvh;
 }
 
 .step {
-    height: 100vh;
+    height: 100dvh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     color: white;
+    padding: 0 5%; /* Marge sur les côtés pour mobile */
 }
 
 .step-content {
     width: 100%;
-    max-width: 500px;
     margin: 0 auto;
     text-align: center;
-    padding: 0 20px;
-}
-
-.step.align-right .step-content {
-    margin: 0 5% 0 auto;
-    text-align: right;
 }
 
 .step h1 {
-    font-size: 4rem;
+    font-size: 2.5rem;
     margin: 0 0 10px 0;
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
 }
 
 .step p {
-    font-size: 1.5rem;
-    background: rgba(0, 0, 0, 0.7);
-    padding: 20px;
+    font-size: 1.1rem;
+    line-height: 1.5;
+    background: rgba(0, 0, 0, 0.75);
+    padding: 15px;
     border-radius: 8px;
     border: 2px solid transparent;
     transition: border-color 0.3s;
 }
 
 .step.is-active p {
-    border-color: #ffcc00;
+    border-color: #ffcc00; /* Le cadre jaune */
 }
 
-/* =========================================
-   ADAPTATION POUR LES TÉLÉPHONES (MOBILE)
-   ========================================= */
-@media (max-width: 768px) {
-    .step h1 { font-size: 2.5rem; }
-    .step p { font-size: 1.1rem; padding: 15px; }
-    .step.align-right .step-content { margin: 0 auto; text-align: center; }
-    
-    .bg-container, .step { height: 100dvh; }
+/* ================= SPHÈRES ANIMÉES (SCÈNE 4) ================= */
+.spheres-container {
+    position: relative; 
+    width: 100%;
+    max-width: 300px; /* Taille parfaite pour mobile */
+    height: 50dvh; 
+    margin: 0 auto; 
+}
 
-    .bg-media {
-        background-size: contain;
-        background-repeat: no-repeat;
-        object-fit: contain;
-        background-color: #000;
-    }
+.spheres-container img {
+    position: absolute; 
+    left: 50%; 
+    width: 100%; 
+    height: auto; 
+    transition: opacity 1s ease-in-out, transform 1s ease-in-out; 
+    pointer-events: none; 
+    
+    /* Astuce magique pour faire disparaître le fond des PNG dans le crème ! */
+    mix-blend-mode: multiply; 
+}
+
+/* État 1 : CAF */
+.img-caf {
+    top: 10%; 
+    transform: translate(-50%, 0) scale(1.5); 
+    opacity: 1; 
+}
+
+/* État 2 : Mères Isolées (Cachée en bas) */
+.img-meres {
+    top: 25%; 
+    transform: translate(-50%, 30px) scale(0.5); 
+    opacity: 0; 
+}
+
+/* Animation enclenchée par le JS */
+#spheres-animation.is-transformed .img-caf {
+    opacity: 1; 
+    transform: translate(-50%, -150px) scale(0.2); 
+}
+
+#spheres-animation.is-transformed .img-meres {
+    opacity: 1; 
+    transform: translate(-50%, 0) scale(1.5); 
 }
