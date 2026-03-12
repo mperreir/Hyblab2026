@@ -102,10 +102,14 @@ const QuestionItem = forwardRef(function QuestionItem(
   const endScrollCount = useRef(0);
   const topScrollCount = useRef(0);
   const lastWheelTime = useRef(Date.now());
+  const wheelCooldownRef = useRef(false);
+  const cooldownTimerRef = useRef(null);
 
   // Reset state when opening
   useEffect(() => {
     if (isOpen) {
+      wheelCooldownRef.current = true;
+      clearTimeout(cooldownTimerRef.current);
       setActiveSnap(0); // Will be recalculated by handleScroll anyway
       setAtEnd(false);
       setAtTop(true);
@@ -166,6 +170,16 @@ const QuestionItem = forwardRef(function QuestionItem(
     const container = scrollContainerRef.current;
     if (!container) return;
 
+    // Absorb residual scroll inertia: stay in cooldown until no wheel event for 200ms
+    if (wheelCooldownRef.current) {
+      e.preventDefault();
+      clearTimeout(cooldownTimerRef.current);
+      cooldownTimerRef.current = setTimeout(() => {
+        wheelCooldownRef.current = false;
+      }, 200);
+      return;
+    }
+
     const isBottom = container.scrollTop + container.clientHeight >= container.scrollHeight - 10;
     const isTopPos = container.scrollTop <= 10;
     const now = Date.now();
@@ -213,6 +227,15 @@ const QuestionItem = forwardRef(function QuestionItem(
     }
   }, [onFinish, onPrev, onToggle, isLast, isFirstItem]);
 
+  // Native wheel listener with { passive: false } to allow preventDefault
+  useEffect(() => {
+    const container = scrollContainerRef.current;
+    if (!container || !isOpen) return;
+
+    container.addEventListener('wheel', handleWheel, { passive: false });
+    return () => container.removeEventListener('wheel', handleWheel);
+  }, [isOpen, handleWheel]);
+
   // Touch: detect swipe past end or top
   const handleTouchStart = (e) => {
     touchStartY.current = e.touches[0].clientY;
@@ -251,7 +274,7 @@ const QuestionItem = forwardRef(function QuestionItem(
   const totalCards = question.dialogue.length;
 
   return (
-    <div ref={ref} className="scroll-mt-4">
+    <div ref={ref} className={`${isOpen ? 'h-screen flex flex-col' : ''} transition-all duration-300`}>
       {/* Question header button */}
       <button
         onClick={onToggle}
@@ -270,7 +293,7 @@ const QuestionItem = forwardRef(function QuestionItem(
 
       {/* Dialogue panel */}
       {isOpen && (
-        <div className="relative mb-4 animate-slide-down">
+        <div className="relative mb-4 animate-slide-down flex flex-col flex-1 min-h-0">
           {/* Progress bar */}
           <div className="flex items-center gap-2 px-4 pb-4">
             <div className="flex gap-1 flex-1">
@@ -291,8 +314,7 @@ const QuestionItem = forwardRef(function QuestionItem(
           {/* Scroll container */}
           <div
             ref={scrollContainerRef}
-            className="dialogue-scroll h-[70vh] md:h-[75vh] overflow-y-auto rounded-xl bg-offwhite"
-            onWheel={handleWheel}
+            className="dialogue-scroll flex-1 overflow-y-auto rounded-xl bg-offwhite min-h-0"
             onTouchStart={handleTouchStart}
             onTouchEnd={handleTouchEnd}
           >
