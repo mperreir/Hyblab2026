@@ -14,14 +14,14 @@ export default function ProgressBar({ level = 0 }) {
   return (
     <div className="relative w-[46px] h-[427px]">
       {/* Grey track */}
-      <div className="w-[46px] h-[427px] rounded-[23px] bg-[#d9d9d9]" />
+      <div className="w-[46px] h-[427px] rounded-[23px] bg-brand-grey" />
 
       {/* Gradient fill – grows upward from the bottom */}
       <div
         className="absolute bottom-0 left-[9px] w-[27px] rounded-[23px] transition-[height] duration-300 ease-in-out"
         style={{
           height: fillHeight,
-          background: 'linear-gradient(to bottom, #60cbeb 5%, #3452ff 33%)',
+          background: 'linear-gradient(to bottom, var(--color-brand-light-blue) 5%, var(--color-brand-blue) 33%)',
         }}
       />
     </div>

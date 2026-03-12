@@ -28,7 +28,7 @@ export default function DotPattern({ dotSize = 22, mirror = false, className = '
       {dots.map((dot, i) => (
         <div
           key={i}
-          className="absolute bg-[#3552ff]"
+          className="absolute bg-brand-blue"
           style={{ left: dot.x, top: dot.y, width: dotSize, height: dotSize }}
         />
       ))}

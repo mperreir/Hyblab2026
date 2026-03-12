@@ -5,7 +5,7 @@ import ProgressBar  from '../components/ProgressBar';
 import IcebergScene from '../components/IcebergScene';
 
 const DESIGN_WIDTH  = 1920;
-const DESIGN_HEIGHT = 3200;
+const DESIGN_HEIGHT = 4609; // actual Figma frame height (Ecran 1)
 
 export default function ResearcherPage() {
   const [scale, setScale] = useState(() => window.innerWidth / DESIGN_WIDTH);
@@ -30,12 +30,12 @@ export default function ResearcherPage() {
 
       {/* Scrolling design canvas */}
       <div
-        className="relative font-[Inter,sans-serif]"
+        className="relative font-sans"
         style={{
           zoom: scale,
           width: DESIGN_WIDTH,
           height: DESIGN_HEIGHT,
-          background: 'linear-gradient(to bottom, white 0%, white 35%, #3552ff 100%)',
+          background: 'linear-gradient(to bottom, white 0%, white 35%, var(--color-brand-blue) 100%)',
         }}
       >
         <Header />

@@ -1,7 +1,7 @@
 const paroleExpertLogo =
-  'https://www.figma.com/api/mcp/asset/fefc7487-e522-4e09-91a7-cfaaaa37824d';
+  'https://www.figma.com/api/mcp/asset/73ddd325-bda4-4f74-95d6-61c42d4c17ec';
 const nantesLogo =
-  'https://www.figma.com/api/mcp/asset/c40bc5a9-c9b9-4e26-885e-353f57d9ee1d';
+  'https://www.figma.com/api/mcp/asset/6d0d997b-960e-4ca1-998b-c3997f93e2ae';
 
 export default function Header() {
   return (
