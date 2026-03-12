@@ -29,7 +29,7 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`bg-montaigne-burgundy text-montaigne-contrast px-4 sm:px-6 py-3 h-[61px] sticky top-0 z-[9999] transition-all duration-300 ease-out ${
+      className={`backdrop-blur-xl text-montaigne-burgundy px-4 sm:px-6 py-3 h-[61px] sticky top-0 z-[9999] transition-all duration-300 ease-out ${
         isVisible ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-95'
       }`}
     >

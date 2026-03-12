@@ -1,9 +1,10 @@
+import Manuscrit from "../components/infographie/Manuscrit";
 import PhotoQuote from "../components/dialog/PhotoQuote";
+import Timeline from "../components/infographie/Timeline";
 
 const debateData = {
   "meta": {
-    "serie": <>icfsbdhk
-    cbaqdkhbc</>,
+    "serie": "contrevoix",
     "titre": "Le scrutin proportionnel est-il un remède à la crise démocratique ?",
     "date": "11 octobre 2024",
     "thematique": "Vie démocratique",
@@ -23,7 +24,7 @@ const debateData = {
     ]
   },
   "accroches": [
-    "Entre représentativité et stabilité, faut-il vraiment choisir ?",
+    <>Entre représentativité et stabilité, faut-il vraiment choisir ?</>,
     "Six formations au Bundestag avec la proportionnelle. Onze à l'Assemblée nationale avec le scrutin majoritaire.",
     "+7 points de participation. +12 chez les jeunes. La proportionnelle change la donne.",
     "Mille formules de proportionnelle existent. Aucune ne fait l'unanimité.",
@@ -38,6 +39,11 @@ const debateData = {
     "https://images.unsplash.com/photo-1531206715517-5c0ba140b2b8?w=1200&q=80",
     "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=1200&q=80"
   ],
+  "podcast": {
+      "episode": "EP 3 : Le scrutin proportionnel est-il un remède à la crise démocratique ?",
+      "title": "Avec Benjamin MOREL et Anne LEVADE",
+      "cover": "/img/carte_article.png"
+  },
   "questions": [
     {
       "question": "Le scrutin proportionnel",
@@ -53,7 +59,8 @@ const debateData = {
               quote="Pour donner un peu de contexte, la France a déjà appliqué le principe du scrutin proportionnel <b>entre 1946 et 1958.</b>"
               isLeft={true}
             />,
-            "Le général de Gaulle fit donc le choix d'en revenir au vieux mode de scrutin en place depuis le Second Empire et qui avait dominé sous la IIIe République : le scrutin majoritaire à deux tours, qui lui offrit une majorité absolue à partir de 1962."
+            <Timeline className="mx-auto w-fit mb-6" />,
+            <>Le général de Gaulle fit donc le choix d'en revenir au vieux mode de scrutin en place depuis le <Manuscrit>Second Empire</Manuscrit> et qui avait dominé sous la <Manuscrit surrounded={false}>IIIe République</Manuscrit> : le scrutin majoritaire à deux tours, qui lui offrit une majorité absolue à partir de 1962.</>
             ]
         },
         {
