@@ -60,6 +60,7 @@ article {
     padding: 0 5%; /* Marge sur les côtés pour mobile */
 }
 
+/* Les blocs de texte*/
 .step-content {
     width: 100%;
     margin: 0 auto;
@@ -83,7 +84,7 @@ article {
 }
 
 .step.is-active p {
-    border-color: #ffcc00; /* Le cadre jaune */
+    border-color: #001733;
 }
 
 /* ================= SPHÈRES ANIMÉES (SCÈNE 4) ================= */
@@ -131,3 +132,99 @@ article {
     opacity: 1; 
     transform: translate(-50%, 0) scale(1.5); 
 }
+.quiz-container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    }
+
+    .quiz-container h2 {
+    margin-top: 0;
+    color: #333;
+    }
+
+    .quiz-container .question {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    color: #333;
+    }
+
+    .quiz-container .options {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+    }
+
+    .quiz-container .option-btn {
+    padding: 10px 20px;
+    font-size: 1rem;
+    background: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+    }
+
+    .quiz-container .option-btn:hover {
+    background: #45a049;
+    }
+
+    .quiz-container .feedback {
+    min-height: 20px;
+    font-weight: bold;
+    color: #d9534f;
+    margin-bottom: 10px;
+    }
+
+    .quiz-container .next-btn {
+    padding: 10px 20px;
+    background: #337ab7;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    }
+    .quiz-container .options {
+    display: flex;
+    flex-direction: column; /* Empile les boutons verticalement */
+    gap: 10px; /* Espace entre les boutons */
+    margin-bottom: 20px;
+    }
+
+    .quiz-container .option-btn {
+    padding: 10px 20px;
+    font-size: 1rem;
+    background: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+    width: 100%; /* Prend toute la largeur */
+    }
+
+    .quiz-container .option-btn:hover {
+    background: #45a049;
+    }
+
+    .quiz-container .validate-btn {
+    padding: 10px 20px;
+    background: #f0ad4e; /* Orange pour le bouton de validation */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    }
+
+    .quiz-container .validate-btn:hover {
+    background: #ec971f;
+    }

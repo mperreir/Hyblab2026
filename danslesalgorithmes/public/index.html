@@ -14,32 +14,76 @@
         <h2 style="color: #333;">Faites défiler vers le bas ↓</h2>
     </div>
 
-    <div id="scrolly">
-        
-        <section class="scene">
-            <div class="bg-container">
-                <div class="bg-media" style="background-image: url('img/foyer_benificiaire.png');"></div>
+    <section id="scrolly">
+
+        <article>
+            <div class="step" data-image="img/caf.png">
+                    <h1>Mais qui fraude à la CAF ?</h1>
+            </div>
+
+
+            <div class="step" data-image="img/caf.png">
+                <div class="step-content">
+                    <p>Depuis 2010, la Caisse d'allocation familiale (CAF) utilise un algorithme pour évaluer le risque de fraude des allocataires. Depuis toutes les données qu'elle a à sa disposition, la CAF calcule ce qu'elle appelle un "score de risque de fraude" selon une note allant de 0 (le risque de fraude est faible) à 1 (le risque est maximum). </p>
+                </div>
+            </div>
+
+
+            <div class="quiz-container" id="quiz-1">
+              <h2>Quizz 1</h2>
+              <p class="question">Alors selon vous, qui fraude à la CAF ?</p>
+              <div class="options">
+                <button class="option-btn" data-correct="false">Gyunay qui fait un petit trafic de cartes vitales volées ?</button>
+                <button class="option-btn" data-correct="true">Marion, mère isolée 3 enfants, aux revenus aléatoires qui bénéficie d'aides sociales ?</button>
+              </div>
+            </div>
+
+            
+            <div class="step" data-image="img/caf.png">
+                <div class="step-content">
+                    <p>Contrairement à ce qu'on pourrait croire, la fraude à la carte vitale et l’usurpation d’identité est quasiment inexistante en France, elle concerne moins d’une dizaine de cas par an et porte sur quelques millions d’euros seulement. Le score de risque de fraude de la CAF a beaucoup de mal à détecter ces cas. Pour la CAF, c'est Marion et des profils similaires aux siens qui sont le plus à même de frauder.</p>
+              </div>
+            </div>
+
+
+            <div class="step" data-image="img/caf.png">
+                <div class="step-content">
+                    <p>Pour mieux comprendre, écoutons le témoignage de Marion inspiré de celui recueilli par l'émission "Les Pieds sur Terre" de France Culture. </p>
+                </div>
             </div>
             
-            <article>
-                <div style="height: 100dvh;"></div>
+            
+            <div class="quiz-container" id="quiz-2">
+              <h2>Quizz 2</h2>
+              <p class="question">Selon vous, pourquoi Marion est-elle contrôlée ?</p>
 
-                <div class="step">
-                    <div class="step-content">
-                        <h1>test</h1>
-                        <p>hello world</p>
-                    </div>
-                </div>
-                <div class="step">
-                    <div class="step-content">
-                        <h1>La CAF c'est quoi</h1>
-                        <p>La Caisse d'Assurance Familliale</p>
-                    </div>
-                </div>
+              <div class="options">
+                <button class="option-btn" data-correct="true">Elle a fait une erreur dans sa déclaration de revenus mensuelle.</button>
+                <button class="option-btn" data-correct="true">Son employeur a fait une erreur dans sa télédéclaration des revenus de Marion.</button>
+                <button class="option-btn" data-correct="true">L'un de ses ex-conjoints a versé avec retard la pension alimentaire qu'il devait du mois précédent.</button>
+              </div>
 
-                <div style="height: 100dvh;"></div>
-            </article>
-        </section>
+              <div class="feedback" id="feedback-2"></div>
+              <button class="validate-btn" id="validate-btn-2">Valider mes réponses</button>
+            </div>
+
+            
+
+            <div class="step" data-image="img/caf.png">
+                <div class="step-content">
+                    <p>Et bien cela peut-être l'une des trois raisons. Le contrôle est déclenché par un score calculé automatiquement.</p>
+              </div>
+            </div>
+            
+            
+            <div class="step" data-image="img/caf.png">
+                <div class="step-content">
+                    <p>Il ne détecte pas une fraude intentionnelle, comme le laisse supposer le terme de fraude, mais un risque d'indu, c'est-à-dire le fait que la CAF ait versé trop d'argent à un bénéficiaire. Ce que la CAF calcule, c'est le risque d'avoir perçu « 600 euros d’allocations en trop sur les 6 derniers mois ». </p>
+                </div>
+            </div>
+            
+        </article>
+    </section>
 
         <section class="scene">
             <div class="bg-container">
@@ -51,8 +95,7 @@
 
                 <div class="step" data-audio="audio/son_amongUS.mp3">
                     <div class="step-content">
-                        <p style="margin-bottom: 20px;">Voici un paragraphe pour tester le défilement.</p>
-                        <img src="img/floran_linkdin_noBackground.png" alt="Floran" style="max-width: 100%; height: auto; max-height: 40dvh;">
+                        <p style="margin-bottom: 20px;">Test audio/vidéo</p>
                     </div>
                 </div>
 
