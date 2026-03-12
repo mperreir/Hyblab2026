@@ -1,8 +1,4 @@
-/* ------- Important ! Please at least keep the last part of this CSS ----------- */
-/* ------- that adapts content width and height so that aspect ratio  ----------- */
-/* ------- is kept between 9/16 a,d 3/4 (portait orientation)         ----------- */
-body,
-html {
+body, html {
     margin: 0;
     padding: 0;
     font-family: sans-serif;
@@ -13,61 +9,51 @@ html {
     position: relative;
 }
 
-/* L'image de fond fixe */
-figure {
+/* Une "scène" englobe un fond et ses textes associés */
+.scene {
+    position: relative;
+}
+
+/* Le conteneur du fond qui va rester collé pendant la lecture de sa scène */
+.bg-container {
     position: sticky;
     top: 0;
     left: 0;
     width: 100%;
     height: 100vh;
-    margin: 0;
-    background-size: cover;
-    background-position: center;
-    transition: background-image 0.5s ease-in-out;
     z-index: 0;
-    overflow: hidden; /* NOUVEAU : Empêche la vidéo de déborder */
+    overflow: hidden;
 }
 
-/* --- NOUVEAU : La vidéo (cachée par défaut) --- */
-figure video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+/* L'image ou la vidéo */
+.bg-media {
     position: absolute;
     top: 0;
     left: 0;
-    opacity: 0; /* Transparente par défaut */
-    transition: opacity 0.5s ease-in-out; /* Fondu enchaîné */
-    z-index: 1; /* Se place au-dessus de l'image de fond... */
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    background-size: cover;
+    background-position: center;
 }
 
-/* --- NOUVEAU : Classe ajoutée par JS pour afficher la vidéo --- */
-figure video.is-visible {
-    opacity: 1;
-}
-
-/* Voile sombre pour que le texte reste lisible sur l'image ou la vidéo */
-figure::after {
-    content: '';
+/* Le voile sombre */
+.overlay {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.4);
-    z-index: 2; /* ...mais le voile reste tout au-dessus ! */
 }
 
-/* Le conteneur principal du texte qui défile */
+/* Le bloc texte qui va passer par-dessus le fond */
 article {
     position: relative;
-    z-index: 3; /* Le texte passe par-dessus tout le reste */
-    padding: 0 20px;
-    margin-top: -100vh;
-    padding-bottom: 100vh;
+    z-index: 1;
+    margin-top: -100vh; /* Fait remonter le premier texte exactement sur le fond */
 }
 
-/* Chaque section qui prend 100% de la hauteur de l'écran */
 .step {
     height: 100vh;
     display: flex;
@@ -76,15 +62,14 @@ article {
     color: white;
 }
 
-/* La boîte qui contient le texte */
 .step-content {
     width: 100%;
     max-width: 500px;
     margin: 0 auto;
     text-align: center;
+    padding: 0 20px;
 }
 
-/* L'option pour aligner la boîte à droite */
 .step.align-right .step-content {
     margin: 0 5% 0 auto;
     text-align: right;
@@ -113,38 +98,16 @@ article {
    ADAPTATION POUR LES TÉLÉPHONES (MOBILE)
    ========================================= */
 @media (max-width: 768px) {
+    .step h1 { font-size: 2.5rem; }
+    .step p { font-size: 1.1rem; padding: 15px; }
+    .step.align-right .step-content { margin: 0 auto; text-align: center; }
+    
+    .bg-container, .step { height: 100dvh; }
 
-    /* 1. On réduit la taille des polices */
-    .step h1 {
-        font-size: 2.5rem;
-    }
-
-    .step p {
-        font-size: 1.1rem;
-        padding: 15px;
-    }
-
-    /* 2. On recentre tout */
-    .step.align-right .step-content {
-        margin: 0 auto;
-        text-align: center;
-    }
-
-    /* 3. On modifie l'affichage de l'image de fond */
-    figure {
-        height: 100dvh;
-        background-size: contain; /* L'image s'adapte pour tenir en entier */
+    .bg-media {
+        background-size: contain;
         background-repeat: no-repeat;
+        object-fit: contain;
         background-color: #000;
-    }
-
-    /* --- NOUVEAU : On fait pareil pour la vidéo sur mobile --- */
-    figure video {
-        object-fit: contain; /* La vidéo s'adapte aussi sans être coupée ! */
-        background-color: #000;
-    }
-
-    .step {
-        height: 100dvh;
     }
 }

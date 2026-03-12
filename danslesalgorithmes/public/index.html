@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Test Scrollama - Mix Image/Vidéo</title>
+    <title>Test - Effet Cinématographique</title>
     
     <link rel="stylesheet" href="css/style.css">
     <script src="js/index.js" defer></script>
@@ -15,45 +15,95 @@
         <h2>Faites défiler vers le bas ↓</h2>
     </div>
 
-    <section id="scrolly">
-        <figure id="background-figure">
-            <video autoplay loop muted playsinline></video>
-        </figure>
+    <div id="scrolly">
+        
+        <section class="scene">
+            <div class="bg-container">
+                <div class="bg-media" style="background-image: url('img/foyer_benificiaire.png');"></div>
+                <div class="overlay"></div>
+            </div>
+            
+            <article>
+                <div style="height: 100vh;"></div>
 
-        <article>
-            <div class="step" data-image="img/foyer_benificiaire.png">
-                <div class="step-content">
-                    <h1>test</h1>
-                    <p>hello world</p>
+                <div class="step">
+                    <div class="step-content">
+                        <h1>test</h1>
+                        <p>hello world</p>
+                    </div>
                 </div>
+                <div class="step">
+                    <div class="step-content">
+                        <h1>La CAF c'est quoi</h1>
+                        <p>La Caisse d'Assurance Familliale</p>
+                    </div>
+                </div>
+
+                <div style="height: 100vh;"></div>
+            </article>
+        </section>
+
+        <section class="scene">
+            <div class="bg-container">
+                <video class="bg-media" src="video/PinVideoDownloader.net-video.mp4" autoplay loop muted playsinline></video>
+                <div class="overlay"></div>
             </div>
             
-            <div class="step" data-image="img/foyer_benificiaire.png">
-                <div class="step-content">
-                    <h1>La CAF c'est quoi</h1>
-                    <p>La Caisse d'Allocations Familiales</p>
+            <article>
+                <div style="height: 100vh;"></div>
+
+                <div class="step" data-audio="audio/son_amongUS.mp3">
+                    <div class="step-content">
+                        <p style="margin-bottom: 20px;">Voici un paragraphe pour tester le défilement.</p>
+                        
+                        <img src="img/floran_linkdin_noBackground.png" alt="Floran" style="max-width: 100%; height: auto; max-height: 50vh;">
+                    </div>
                 </div>
+
+                <div style="height: 100vh;"></div>
+            </article>
+        </section>
+
+        <section class="scene">
+            <div class="bg-container">
+                <div class="bg-media" style="background-image: url('img/polytech.jpg');"></div>
+                <div class="overlay"></div>
             </div>
             
-            <div class="step" data-video="video/PinVideoDownloader.net-video.mp4" data-audio="audio/son_amongUS.mp3">
-                <div class="step-content">
-                    <p>Voici un deuxième paragraphe pour tester le défilement.</p>
+            <article>
+                <div style="height: 100vh;"></div>
+
+                <div class="step align-right">
+                    <div class="step-content">
+                        <h1>L'Équipe</h1>
+                        <p>Ce site a été mis en forme par des étudiants de Polytech et de l'École de Design.</p>
+                    </div>
                 </div>
-            </div>
-            <div class="step align-right" data-image="img/polytech.jpg">
-              <div class="step-content">
-                <h1>L'Équipe</h1>
-                <p>Ce site a été mis en forme par des étudiants de Polytech et de l'École de Design.</p>
-              </div>
+
+                <div style="height: 100vh;"></div>
+            </article>
+        </section>
+
+        <section class="scene">
+            <div class="bg-container">
+                <div class="bg-media" style="background-image: url('img/IMG_3850.jpg');"></div>
+                <div class="overlay"></div>
             </div>
             
-            <div class="step" data-image="img/IMG_3850.jpg">
-                <div class="step-content">
-                    <p>Voici un dernier paragraphe pour tester le défilement.</p>
+            <article>
+                <div style="height: 100vh;"></div>
+
+                <div class="step">
+                    <div class="step-content">
+                        <p>Voici un dernier paragraphe pour tester le défilement.</p>
+                    </div>
                 </div>
-            </div>
-        </article>
-    </section>
+
+                <div style="height: 100vh;"></div>
+            </article>
+        </section>
+
+    </div>
 
     <div style="height: 50vh; display: flex; align-items: center; justify-content: center;">
         <h2>Fin de la présentation</h2>
