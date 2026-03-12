@@ -207,7 +207,7 @@
         "title": "IA pour les enseignants : un manuel ouvert",
         "description": "",
         "date": "",
-        "path": "./documents/expert/IA-pour-les-enseignants-un-manuel-ouvert-1729161531.pdf",
+        "url": "./documents/expert/IA-pour-les-enseignants-un-manuel-ouvert-1729161531.pdf",
         "pictogramme": "./pictogramme/livre.svg"
       },
       {
@@ -218,7 +218,7 @@
         "title": "L'enseignant de 202X sera-t-il un-e robot?",
         "description": "",
         "date": "2021",
-        "path": "./documents/Journalistique/Conference_Colin_DE_LA_HIGUERA_colin-de-la-higuera-IA.mp4",
+        "url": "./documents/Journalistique/Conference_Colin_DE_LA_HIGUERA_colin-de-la-higuera-IA.mp4",
         "pictogramme": "./pictogramme/conference.svg"
       },
       {
@@ -229,7 +229,7 @@
         "title": "L'inteligence artificielle où en sommes nous?",
         "description": "",
         "date": "2021",
-        "path": "./documents/Journalistique/Conférence_Colin_DE_LA_HIGUERA-Intelligence_artificielle_ou-en-sommes-nous.mp4",
+        "url": "./documents/Journalistique/Conférence_Colin_DE_LA_HIGUERA-Intelligence_artificielle_ou-en-sommes-nous.mp4",
         "pictogramme": "./pictogramme/conference.svg"
       },
       {
@@ -240,7 +240,7 @@
         "title": "Avec l'IA, quel nouveau contrat entre l'élève et l'enseignant?",
         "description": "",
         "date": "19 septembre 2025",
-        "path": "./documents/Journalistique/Table_ronde_CdH_Avec-IA-quel-nouveau-contrat-pedagogique.mp4",
+        "url": "./documents/Journalistique/Table_ronde_CdH_Avec-IA-quel-nouveau-contrat-pedagogique.mp4",
         "pictogramme": "./pictogramme/conference.svg"
       },
       {
@@ -251,7 +251,7 @@
         "title": "Les intelligences artificielle génératives bousculent l'éducation, quels impacts sur l'évaluation?",
         "description": "",
         "date": "12 Avril 2023",
-        "path": "./documents/Journalistique/Table_ronde_CdH_IA_generatives.mp4",
+        "url": "./documents/Journalistique/Table_ronde_CdH_IA_generatives.mp4",
         "pictogramme": "./pictogramme/conference.svg"
       }
     ]
