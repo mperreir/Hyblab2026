@@ -28,31 +28,38 @@ const bottomBtnFilterColor = COLORS.switchTextBlue
 
 <template>
     <div class="app-shell">
-        <header class="top-banner">espace dédié pour leur site</header>
+        <Header />
         <nav class="mini-nav" aria-label="Navigation des vues">
             <RouterLink to="/">Liste</RouterLink>
             <RouterLink to="/carte">Carte</RouterLink>
         </nav>
-        <RouterView />
+        <div class="view-container">
+            <RouterView />
+        </div>
         <div class="global-actions">
             <button type="button" class="action-btn action-btn--filter" @click="showFiltres = true">
                 <span>Filtrer</span>
-                <img :src="reglageIcon" alt="" class="action-btn__icon" aria-hidden="true">
+                <img :src="reglageIcon" alt="" class="action-btn__icon" aria-hidden="true" />
             </button>
             <button type="button" class="action-btn">
                 <span>Fais-moi decouvrir</span>
-                <img :src="decouvrirIcon" alt="" class="action-btn__icon" aria-hidden="true">
+                <img :src="decouvrirIcon" alt="" class="action-btn__icon" aria-hidden="true" />
             </button>
         </div>
-        <footer class="bottom-banner">espace dédié pour le navigateur
-        </footer>
         <Filtres :show="showFiltres" @close="showFiltres = false" @apply="onFiltersApply" />
         </div>
 </template>
 
 <style scoped>
 .app-shell {
-    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    height: 100dvh;
+}
+
+.view-container {
+    /* container is transparent, map-main handles its own positioning */
 }
 
 .top-banner {
@@ -72,7 +79,7 @@ const bottomBtnFilterColor = COLORS.switchTextBlue
 
 .mini-nav {
     position: fixed;
-    top: 10.5rem;
+    top: 5rem;
     left: 50%;
     transform: translateX(-50%);
     z-index: 1000;
@@ -86,13 +93,13 @@ const bottomBtnFilterColor = COLORS.switchTextBlue
 
 .mini-nav a {
     display: inline-block;
-    padding: 0.55rem 2.4rem;
+    padding: 0.25rem 1.2rem;
     border-radius: 999px;
     text-decoration: none;
     background: v-bind(inactiveBg);
     color: v-bind(inactiveColor);
-    font-size: 1.25rem;
-    font-weight: 600;
+    font-size: 0.8rem;
+    font-weight: 400;
 }
 
 .mini-nav a.router-link-exact-active {
@@ -129,14 +136,19 @@ const bottomBtnFilterColor = COLORS.switchTextBlue
     position: fixed;
     left: 0;
     right: 0;
-    bottom: 4.2rem;
+    bottom: 0;
     z-index: 1002;
     display: grid;
     grid-template-columns: 125px 235px;
     justify-content: center;
     gap: 0.6rem;
     padding: 0.75rem 1.4rem 1rem;
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, rgba(255, 250, 244, 0.87) 46.15%, #FFF9F2 100%);
+    background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 250, 244, 0.87) 46.15%,
+        #fff9f2 100%
+    );
 }
 
 .action-btn {

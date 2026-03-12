@@ -1,71 +1,23 @@
-# test-media
+# Descriptif du projet
 
-This template should help get you started developing with Vue 3 in Vite.
+Porteur de projet : La nouvelle république 
 
-## Recommended IDE Setup
+Sujet :
 
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+Nom d'équipe : 
 
-## Recommended Browser Setup
+Participants : 
 
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
+- EDNA :
+- Polytech : DOMENICHINI Nathan, ALLETRU Nolan, PIERRE Pablo, BOUDAUD Antonin
 
-## Customize configuration
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+## Instructions de déploiement
 
-## Project Setup
+Si votre projet nécessite des instructions spécifiques pour son déploiement, merci d'ajouter des explications ici.
 
-```sh
-npm install
-```
-
-tralala
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Compile and Minify for Production
-
-```sh
+Il faut build le projet Vue.js : 
+```bash
+npm i
 npm run build
-```
-
-### Run Unit Tests with [Vitest](https://vitest.dev/)
-
-```sh
-npm run test:unit
-```
-
-### Run End-to-End Tests with [Playwright](https://playwright.dev)
-
-```sh
-# Install browsers for the first run
-npx playwright install
-
-# When testing on CI, must build the project first
-npm run build
-
-# Runs the end-to-end tests
-npm run test:e2e
-# Runs the tests only on Chromium
-npm run test:e2e -- --project=chromium
-# Runs the tests of a specific file
-npm run test:e2e -- tests/example.spec.ts
-# Runs the tests in debug mode
-npm run test:e2e -- --debug
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
 ```
