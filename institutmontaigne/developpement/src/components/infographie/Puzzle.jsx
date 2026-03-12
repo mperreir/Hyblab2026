@@ -279,7 +279,7 @@ export function AnswerBank({ answers }) {
   }, []);
 
   return (
-    <div style={{ display: "flex", gap: 28, justifyContent: "center", flexWrap: "wrap", marginTop: 40 }}>
+    <div style={{ display: "flex", gap: 28, justifyContent: "center", flexWrap: "wrap" }}>
       {answers.map((value, i) => (
         <motion.div key={value}
           initial={{ opacity: 0, y: 24 }}

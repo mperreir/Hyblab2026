@@ -1,5 +1,4 @@
 import { useState, useRef, useCallback, useEffect, isValidElement } from 'react';
-import PhotoQuote from './dialog/PhotoQuote.jsx';
 
 export default function QuestionAccordion({ questions, intervenants }) {
   const [openIndex, setOpenIndex] = useState(null);
@@ -58,7 +57,7 @@ export default function QuestionAccordion({ questions, intervenants }) {
   }, []);
 
   return (
-    <section className="bg-white py-12 md:py-20">
+    <section className="bg-white ">
       <div className="w-full">
         {questions.map((q, i) => (
           <QuestionItem
@@ -316,14 +315,13 @@ const QuestionItem = forwardRef(function QuestionItem(
           >
             {question.dialogue.map((block, j) => {
               const info = getIntervenantInfo(block.intervenant);
-              const isFirst = block.type === 'interlocuteur1';
-
+              const intervenantIndex = intervenants.findIndex(p => p.id === block.intervenant);
               return (
                 <DialogueCard
                   key={j}
                   block={block}
                   info={info}
-                  isFirst={isFirst}
+                  intervenantIndex={intervenantIndex}
                   index={j}
                 />
               );
@@ -335,7 +333,9 @@ const QuestionItem = forwardRef(function QuestionItem(
   );
 });
 
-function DialogueCard({ block }) {
+const SPEAKER_COLORS = ['#DD7375', '#872339'];
+
+function DialogueCard({ block, intervenantIndex }) {
   const ref = useRef(null);
   const [visible, setVisible] = useState(false);
 
@@ -360,15 +360,30 @@ function DialogueCard({ block }) {
     >
       {/* Content */}
       <div>
-        {block.contenu.map((para, k) =>
-          isValidElement(para) ? (
-              para
+        {block.contenu.map((para, k) => {
+          const isLeft = block.type === 'interlocuteur1';
+          const borderColor = SPEAKER_COLORS[intervenantIndex] ?? '#888888';
+          return isValidElement(para) ? (
+            <div
+            className={`last:mb-0 text-[15px] md:text-base leading-[1.85] py-3 ${
+                isLeft ? 'pl-4 border-l-4' : 'pr-4 border-r-4'
+              }`}
+              style={{ borderColor }}
+              >
+              {para}
+            </div>
           ) : (
-            <p key={k} className="mb-4 last:mb-0 text-[15px] md:text-base leading-[1.85] font-helevetica">
+            <p
+              key={k}
+              className={`last:mb-0 text-[15px] md:text-base leading-[1.85] py-3 ${
+                isLeft ? 'pl-4 border-l-4' : 'pr-4 border-r-4'
+              }`}
+              style={{ borderColor }}
+            >
               {para}
             </p>
-          )
-        )}
+          );
+        })}
       </div>
     </div>
   );
