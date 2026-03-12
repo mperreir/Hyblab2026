@@ -64,15 +64,17 @@
 
 <script setup>
 import "leaflet/dist/leaflet.css"
-import { ref, watch } from "vue"
+import { ref, watch, computed } from "vue"
 import { control, divIcon } from "leaflet"
 import { LMap, LTileLayer, LMarker } from "@vue-leaflet/vue-leaflet"
 import MapMarker from "./MapMarker.vue"
 import RestaurantMiniBox from "./RestaurantMiniBox.vue"
-import restaurants from "@/restaurants"
-
 import RestaurantDetail from "./RestaurantDetail.vue"
 import { userCoords } from "@/stores/mapStore"
+import { useFilterStore } from '@/stores/filterStore'
+
+const filterStore = useFilterStore()
+const restaurants = computed(() => filterStore.filteredRestaurants)
 
 const API_KEY = "b4BxT11KjV5Zzm2lo2V1"
 const STYLE = "streets-v4"

@@ -1,10 +1,23 @@
 <script setup>
+import { ref, onMounted } from 'vue'
 import { RouterLink, RouterView } from "vue-router"
-import { COLORS } from "@/assets/Couleurs/Coulleurs.js"
-import reglageIcon from "@/assets/Icones/Reglage.svg"
-import decouvrirIcon from "@/assets/Icones/Decouvrir.svg"
-import Header from "./components/icons/Header.vue"
-const inactiveBg = "transparent"
+import { COLORS } from '@/assets/Couleurs/Coulleurs.js'
+import reglageIcon from '@/assets/Icones/Reglage.svg'
+import decouvrirIcon from '@/assets/Icones/Decouvrir.svg'
+import Filtres from '@/components/Filtres.vue'
+import { useFilterStore } from '@/stores/filterStore'
+
+const filterStore = useFilterStore()
+const showFiltres = ref(false)
+
+const onFiltersApply = (appliedFilters) => {
+  filterStore.applyFilters(appliedFilters)
+}
+
+onMounted(() => {
+  filterStore.fetchRestaurantCategories()
+})
+const inactiveBg = 'transparent'
 const inactiveColor = COLORS.switchTextBlue
 const activeBg = COLORS.pinkSwitch
 const activeColor = COLORS.white
@@ -15,7 +28,6 @@ const bottomBtnFilterColor = COLORS.switchTextBlue
 
 <template>
     <div class="app-shell">
-        <!-- <header class="top-banner">espace dédié pour leur site</header> -->
         <Header />
         <nav class="mini-nav" aria-label="Navigation des vues">
             <RouterLink to="/">Liste</RouterLink>
@@ -25,7 +37,7 @@ const bottomBtnFilterColor = COLORS.switchTextBlue
             <RouterView />
         </div>
         <div class="global-actions">
-            <button type="button" class="action-btn action-btn--filter">
+            <button type="button" class="action-btn action-btn--filter" @click="showFiltres = true">
                 <span>Filtrer</span>
                 <img :src="reglageIcon" alt="" class="action-btn__icon" aria-hidden="true" />
             </button>
@@ -34,7 +46,8 @@ const bottomBtnFilterColor = COLORS.switchTextBlue
                 <img :src="decouvrirIcon" alt="" class="action-btn__icon" aria-hidden="true" />
             </button>
         </div>
-    </div>
+        <Filtres :show="showFiltres" @close="showFiltres = false" @apply="onFiltersApply" />
+        </div>
 </template>
 
 <style scoped>
@@ -151,6 +164,7 @@ const bottomBtnFilterColor = COLORS.switchTextBlue
     font-weight: 700;
     font-size: 1rem;
     line-height: 1;
+    cursor: pointer;
 }
 
 .action-btn--filter {
