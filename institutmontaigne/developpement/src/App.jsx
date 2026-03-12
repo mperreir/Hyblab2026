@@ -6,6 +6,7 @@ import QuestionAccordion from './components/QuestionAccordion';
 import Quiz from './components/Quiz';
 import QuizFin from './components/Quiz_fin';
 import Resultat from './components/Resultat';
+import Podcast from './components/Podcast';
 import debateData from './data/debate.jsx';
 import Footer from './components/Footer';
 
@@ -18,6 +19,11 @@ export default function App() {
       <Header meta={debateData.meta} />
       <Hero meta={debateData.meta} />
       <Scrollytelling accroches={debateData.accroches} images={debateData.accrocheImages} />
+      <Podcast
+        episode={debateData.podcast.episode}
+        title={debateData.podcast.title}
+        cover={debateData.podcast.cover}
+      />
       <Quiz meta={debateData.meta} onScoreChange={setInitialScore} />
       <QuestionAccordion
         questions={debateData.questions}
