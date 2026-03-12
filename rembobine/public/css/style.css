@@ -1,20 +1,9 @@
-/* Swiper slider. Need to fill the container */
-#mySwiper{
-    width: 100%;
-    height:100%;
-    position: absolute;
-}
-
-/* white navigation bullets */
-.swiper-pagination-bullet-active {
-    background-color: white !important;
-}
-
 /* Allow long content to scroll vertically inside each slide */
-.swiper-wrapper section{
+main{
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
 }
+
 .title-image{
   width: 100%;
   height: auto;
