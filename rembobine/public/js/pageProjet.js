@@ -67,13 +67,22 @@ function createButtonBox(boxId = "box1", aRow = 1, aColumn = 1) {
         }
 
         const boxsFreeList = getFreeAdgacentBox(box);
+        if (boxsFreeList.length === 0) {
+          console.warn('No free box available to move buttons.');
+          return;
+        }
 
-        const boxNum = Math.random() * (boxsFreeList.length - 0) + 0;
+        let boxNum = Math.floor(Math.random() * boxsFreeList.length);
 
         console.log(boxNum);
         console.log(boxsFreeList);
 
-        let theChoosenBox = boxsFreeList[parseInt(boxNum)];
+        const theChoosenBox = boxsFreeList[boxNum];
+        while (theChoosenBox.row == box.row && theChoosenBox.column == box.column) {
+          console.warn('The chosen box is the same as the current box. Choosing another one.');
+          boxNum = Math.floor(Math.random() * boxsFreeList.length);          
+          theChoosenBox = boxsFreeList[boxNum];
+        }
 
         console.log(theChoosenBox);
 
@@ -100,6 +109,9 @@ function addEmptyRow(aRow = 1) {
   box1.className = "box";
   box1.row = aRow;
   box1.column = 1;
+  const text1 = document.createElement("p");
+  text1.textContent = "T";
+  box1.appendChild(text1);
 
   const box2 = document.createElement("div");
   box2.id = "boxFree";
@@ -107,6 +119,9 @@ function addEmptyRow(aRow = 1) {
   box2.className = "box";
   box2.row = aRow;
   box2.column = 2;
+  const text2 = document.createElement("p");
+  text2.textContent = "T";
+  box2.appendChild(text2);
 
   mapCol1.appendChild(box1);
   mapCol2.appendChild(box2);
@@ -151,8 +166,6 @@ function getFreeAdgacentBox(box) {
     let boxs = document.querySelectorAll('.box');
 
     console.log("================================================================================================");
-
-    console.log(boxFree);
 
     for (const box of boxs) {
       if(box.isFree) {
