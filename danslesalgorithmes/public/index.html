@@ -6,7 +6,7 @@
     <title>Test Scrollama - Projet Étudiant</title>
     
     <script src="https://unpkg.com/scrollama"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 
 
     <style>
@@ -116,6 +116,87 @@
             }
 
             .step { height: 100dvh; }
+            .quiz-container {
+              max-width: 600px;
+              margin: 50px auto;
+              padding: 20px;
+              background: rgba(255, 255, 255, 0.9);
+              border-radius: 10px;
+              box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+              text-align: center;
+            }
+
+            .quiz-container h2 {
+              margin-top: 0;
+              color: #333;
+            }
+
+            .quiz-container .question {
+              font-size: 1.2rem;
+              margin-bottom: 20px;
+              color: #333;
+            }
+
+            .quiz-container .options {
+              display: flex;
+              justify-content: space-around;
+              margin-bottom: 20px;
+            }
+
+            .quiz-container .option-btn {
+              padding: 10px 20px;
+              font-size: 1rem;
+              background: #4CAF50;
+              color: white;
+              border: none;
+              border-radius: 5px;
+              cursor: pointer;
+              transition: background 0.3s;
+            }
+
+            .quiz-container .option-btn:hover {
+              background: #45a049;
+            }
+
+            .quiz-container .feedback {
+              min-height: 20px;
+              font-weight: bold;
+              color: #d9534f;
+              margin-bottom: 10px;
+            }
+
+            .quiz-container .next-btn {
+              padding: 10px 20px;
+              background: #337ab7;
+              color: white;
+              border: none;
+              border-radius: 5px;
+              cursor: pointer;
+            }
+            .quiz-container .options {
+              display: flex;
+              flex-direction: column; /* Empile les boutons verticalement */
+              gap: 10px; /* Espace entre les boutons */
+              margin-bottom: 20px;
+            }
+
+            .quiz-container .option-btn {
+              padding: 10px 20px;
+              font-size: 1rem;
+              background: #4CAF50;
+              color: white;
+              border: none;
+              border-radius: 5px;
+              cursor: pointer;
+              transition: background 0.3s;
+              width: 100%; /* Prend toute la largeur */
+            }
+
+            .quiz-container .option-btn:hover {
+              background: #45a049;
+            }
+
+
         }
     </style>
 </head>
@@ -141,7 +222,7 @@
             </div>
             <div class="quiz-container">
               <h2>Quizz</h2>
-              <p class="question">Alors selon vous, qui fraude à la CAF ?</p>
+              <p class="question">Alors, selon vous, qui fraude à la CAF ?</p>
 
               <div class="options">
                 <button class="option-btn" data-correct="false">Gyunay qui fait un petit trafic de cartes vitales volées ?</button>
@@ -149,20 +230,25 @@
               </div>
 
               <div class="feedback" id="feedback"></div>
-              <button class="next-btn" id="next-btn" style="display: none;">Question suivante</button>
+              <button class="next-btn" id="next-btn" style="display: none;">Contrairement à ce qu'on pourrait croire, la fraude à la carte vitale et l’usurpation d’identité est quasiment inexistante en France, elle concerne moins d’une dizaine de cas par an et porte sur quelques millions d’euros seulement. Le score de risque de fraude de la CAF a beaucoup de mal à détecter ces cas. Pour la CAF, c'est Marion et des profils similaires aux siens qui sont le plus à même de frauder. </button>
             </div>
-
-
-            <div class="step align-right" data-image="img/polytech.jpg" data-audio="son_amongUS.mp3">
+            <div class="step" data-image="img/caf.png">
                 <div class="step-content">
-                    <h1>L'Équipe</h1>
-                    <p>Ce site a été mis en forme par des étudiants de Polytech et de l'École de Design.</p>
+                    <p>Pour mieux comprendre, écoutons le témoignage de Marion inspiré de celui recueilli par l'émission "Les Pieds sur Terre" de France Culture. </p>
                 </div>
             </div>
-            <div class="step" data-image="img/IMG_3850.jpg">
-                <div class="step-content">
-                    <p>Voici un dernier paragraphe pour tester le défilement.</p>
-                </div>
+            <div class="quiz-container">
+              <h2>Quizz</h2>
+              <p class="question">Selon vous, pourquoi Marion est-elle contrôlée ?</p>
+
+              <div class="options">
+                <button class="option-btn" data-correct="true">Elle a fait une erreur dans sa déclaration de revenus mensuelle. </button>
+                <button class="option-btn" data-correct="true">Son employeur a fait une erreur dans sa télédéclaration des revenus de Marion.</button>
+                <button class="option-btn" data-correct="true">L'un de ses ex-conjoints a versé avec retard la pension alimentaire qu'il devait du mois précédent. </button>
+              </div>
+
+              <div class="feedback" id="feedback"></div>
+              <button class="next-btn" id="next-btn" style="display: none;">Et bien cela peut-être l'une des trois raisons. Le contrôle est déclenché par un score calculé automatiquement. </button>
             </div>
         </article>
     </section>
@@ -216,6 +302,34 @@
                     });
                 }
             });
+        document.addEventListener('DOMContentLoaded', function() {
+            const optionButtons = document.querySelectorAll('.option-btn');
+            const feedbackElement = document.getElementById('feedback');
+            const nextButton = document.getElementById('next-btn');
+
+            function handleAnswer(selectedButton) {
+                const isCorrect = selectedButton.dataset.correct === 'true';
+
+                optionButtons.forEach(button => {
+                    button.disabled = true;
+                });
+
+                optionButtons.forEach(button => {
+                    if (button.dataset.correct === 'true') {
+                        button.style.backgroundColor = '#5cb85c';
+                    } else {
+                        button.style.backgroundColor = '#d9534f';
+                    }
+                });
+
+                feedbackElement.textContent = isCorrect ? 'Bonne réponse !' : 'Mauvaise réponse.';
+                nextButton.style.display = 'block';
+            }
+
+            optionButtons.forEach(button => {
+                button.addEventListener('click', () => handleAnswer(button));
+            });
+        });
     </script>
 </body>
 </html>
