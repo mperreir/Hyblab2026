@@ -71,8 +71,8 @@ const debateData = {
     },
     {
       "question": "Une réponse à la crise politique",
-      "color": "#9DAACC",
-      "textcolor": "#000000",
+      "color": "#C6F9E6",
+      "textcolor": "#00483B",
       "dialogue": [
         {
           "type": "interlocuteur2",
@@ -107,8 +107,8 @@ const debateData = {
     },
     {
       "question": "Différences de scrutins",
-      "color": "#5468B5",
-      "textcolor": "#000000",
+      "color": "#A4BAE8",
+      "textcolor": "#4657C6",
       "dialogue": [
         {
           "type": "interlocuteur2",
@@ -154,8 +154,8 @@ const debateData = {
     },
       {
         "question": "Avantages / Inconvénients",
-        "color": "#E8937A",
-        "textcolor": "#000000",
+        "color": "#4657C6",
+        "textcolor": "#A4BAE8",
         "dialogue": [
         {
           "type": "interlocuteur1",
@@ -190,8 +190,8 @@ const debateData = {
     },
     {
       "question": "Quels impactes pour le RN ?",
-      "color": "#D96045",
-      "textcolor": "#000000",
+      "color": "#FFDED6",
+      "textcolor": "#EB5D31",
       "dialogue": [
         {
           "type": "interlocuteur1",
