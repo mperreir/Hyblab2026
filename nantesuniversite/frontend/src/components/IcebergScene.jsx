@@ -1,5 +1,26 @@
 import Robot from './Robot';
 import ResourceCard from './ResourceCard';
+import data from '../data/data.json';
+
+import prixSvg       from '../data/pictogramme/prix.svg';
+import articleSvg    from '../data/pictogramme/article.svg';
+import conferenceSvg from '../data/pictogramme/conference.svg';
+import livreSvg      from '../data/pictogramme/livre.svg';
+import podcastSvg    from '../data/pictogramme/podcast.svg';
+import rechercheSvg  from '../data/pictogramme/recherche.svg';
+
+const PICTOGRAMMES = {
+  prix: prixSvg, article: articleSvg, conference: conferenceSvg,
+  livre: livreSvg, podcast: podcastSvg, recherche: rechercheSvg,
+};
+
+const CARD_POSITIONS = [
+  { left: 227,  top: 1394, width: 617, height: 189 },
+  { left: 1003, top: 2150, width: 612, height: 187 },
+  { left: 523,  top: 2901, width: 612, height: 187 },
+];
+
+const cardDocuments = data.researcher.documents.slice(0, 3);
 
 // Iceberg layers (Figma nodes 47:248, 47:252, 47:274)
 const icebergOutline =
@@ -18,13 +39,6 @@ const wavyLineCentre =
 const arrowDown =
   'https://www.figma.com/api/mcp/asset/ec378145-d58a-484a-bcba-965252b4e421';
 
-// Resource card images (47:343, 47:341, 47:342)
-const image17 =
-  'https://www.figma.com/api/mcp/asset/4d251bfd-e1d5-40e9-8248-8d08578a4585';
-const image12 =
-  'https://www.figma.com/api/mcp/asset/703c4fca-2356-4f83-bb57-028ed556b97c';
-const image14 =
-  'https://www.figma.com/api/mcp/asset/492d21de-de8d-4a0f-b1dc-188e200354d4';
 
 export default function IcebergScene() {
   return (
@@ -61,10 +75,16 @@ export default function IcebergScene() {
       {/* Robot on the waterline */}
       <Robot />
 
-      {/* Resource cards at increasing iceberg depths (47:343, 47:341, 47:342) */}
-      <ResourceCard src={image17} alt="Ressource – surface" left={227}  top={1394} width={617} height={189} />
-      <ResourceCard src={image12} alt="Ressource – milieu"  left={1003} top={2150} />
-      <ResourceCard src={image14} alt="Ressource – fond"    left={523}  top={2901} />
+      {/* Resource cards at increasing iceberg depths */}
+      {cardDocuments.map((doc, i) => (
+        <ResourceCard
+          key={doc.id}
+          pictogramme={PICTOGRAMMES[doc.category]}
+          category={doc.category}
+          title={doc.title}
+          {...CARD_POSITIONS[i]}
+        />
+      ))}
     </>
   );
 }
