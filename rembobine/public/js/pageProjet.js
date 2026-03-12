@@ -10,4 +10,6 @@ const initPageProjet = async function(){
 
   const titre = document.getElementById('titre');
   titre.textContent = `Our topic is "${data1.topic}".`;
+
+  
 };

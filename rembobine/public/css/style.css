@@ -20,6 +20,7 @@ body{
 #loader{
     z-index: 2;
     position:absolute;
+    justify-content: ;
 }
 
 #loader-img{
