@@ -1,4 +1,5 @@
-import { useState, useRef, useCallback, useEffect } from 'react';
+import { useState, useRef, useCallback, useEffect, isValidElement } from 'react';
+import PhotoQuote from './dialog/PhotoQuote.jsx';
 
 export default function QuestionAccordion({ questions, intervenants }) {
   const [openIndex, setOpenIndex] = useState(null);
@@ -58,29 +59,25 @@ export default function QuestionAccordion({ questions, intervenants }) {
 
   return (
     <section className="bg-white py-12 md:py-20">
-      <div className="max-w-3xl mx-auto px-4 sm:px-6">
-        <h2 className="text-xs font-sans uppercase tracking-[0.2em] text-ink/40 mb-10">
-          Les questions du débat
-        </h2>
-
-        <div className="divide-y divide-ink/10">
-          {questions.map((q, i) => (
-            <QuestionItem
-              key={i}
-              ref={el => questionRefs.current[i] = el}
-              index={i}
-              question={q}
-              intervenants={intervenants}
-              isOpen={openIndex === i}
-              onToggle={() => toggle(i)}
-              onFinish={openNext}
-              onPrev={openPrev}
-              isLast={i === questions.length - 1}
-              isFirstItem={i === 0}
-              startAtBottom={openIndex === i && openDirection === 'up'}
-            />
-          ))}
-        </div>
+      <div className="w-full">
+        {questions.map((q, i) => (
+          <QuestionItem
+            key={i}
+            ref={el => questionRefs.current[i] = el}
+            index={i}
+            question={q}
+            intervenants={intervenants}
+            isOpen={openIndex === i}
+            onToggle={() => toggle(i)}
+            onFinish={openNext}
+            onPrev={openPrev}
+            isLast={i === questions.length - 1}
+            isFirstItem={i === 0}
+            startAtBottom={openIndex === i && openDirection === 'up'}
+            color={q.color || '#FF0000'}
+            textColor={q.textcolor || '#000000'}
+          />
+        ))}
       </div>
     </section>
   );
@@ -89,7 +86,7 @@ export default function QuestionAccordion({ questions, intervenants }) {
 import { forwardRef } from 'react';
 
 const QuestionItem = forwardRef(function QuestionItem(
-  { index, question, intervenants, isOpen, onToggle, onFinish, onPrev, isLast, isFirstItem, startAtBottom },
+  { index, question, intervenants, isOpen, onToggle, onFinish, onPrev, isLast, isFirstItem, startAtBottom, color, textColor },
   ref
 ) {
   const scrollContainerRef = useRef(null);
@@ -274,43 +271,42 @@ const QuestionItem = forwardRef(function QuestionItem(
   const totalCards = question.dialogue.length;
 
   return (
-    <div ref={ref} className={`${isOpen ? 'h-screen flex flex-col' : ''} transition-all duration-300`}>
+    <div 
+        ref={ref}
+      className={`${isOpen ? 'h-screen flex flex-col' : ''} max-w-3xl mx-auto transition-all duration-300 relative z-[${20 + index}] ${index === 0 ? '' : '-mt-3'}`}
+    >
       {/* Question header button */}
       <button
         onClick={onToggle}
-        className={`w-full text-left py-5 md:py-7 flex items-start gap-3 md:gap-5 group transition-colors duration-200 ${isOpen ? 'pb-4' : 'hover:bg-ink/[0.015]'}`}
+        style={{
+          backgroundColor: color,
+          fontSize: `clamp(16px, 1.5vw, 20px)`,
+          fontFamily: 'Helvetica, Arial, sans-serif',
+        }}
+        className={`w-full py-10 flex flex-col items-center justify-center gap-3 transition-all duration-200 rounded-t-2xl bg-[${color}] size-4`}
       >
-        <span className="shrink-0 w-7 text-right text-sm font-sans tabular-nums text-ink/30 mt-0.5">
-          {String(index + 1).padStart(2, '0')}
-        </span>
-        <span className="text-base md:text-lg font-serif leading-snug flex-1 text-ink/90 group-hover:text-navy transition-colors">
+        <span className="max-w-[75%] mx-auto text-base md:text-lg font-bold italic uppercase text-center leading-tight"
+          style={{ color: textColor }}
+        >
           {question.question}
         </span>
-        <span className={`shrink-0 w-6 h-6 rounded-full border border-ink/15 flex items-center justify-center text-sm transition-all duration-300 mt-0.5 ${isOpen ? 'bg-navy text-white border-navy rotate-45' : 'text-ink/40'}`}>
-          +
-        </span>
+        <svg
+          className={`w-4 h-3 shrink-0 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}
+          viewBox="0 0 14 8"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          style={{ color: textColor }}
+        >
+          <path d="M1 1L7 7L13 1" />
+        </svg>
       </button>
 
       {/* Dialogue panel */}
       {isOpen && (
         <div className="relative mb-4 animate-slide-down flex flex-col flex-1 min-h-0">
-          {/* Progress bar */}
-          <div className="flex items-center gap-2 px-4 pb-4">
-            <div className="flex gap-1 flex-1">
-              {question.dialogue.map((_, i) => (
-                <div
-                  key={i}
-                  className={`h-0.5 flex-1 rounded-full transition-colors duration-300 ${
-                    i <= activeSnap ? 'bg-navy' : 'bg-ink/10'
-                  }`}
-                />
-              ))}
-            </div>
-            <span className="text-[10px] font-sans text-ink/30 tabular-nums shrink-0">
-              {activeSnap + 1}/{totalCards}
-            </span>
-          </div>
-
           {/* Scroll container */}
           <div
             ref={scrollContainerRef}
@@ -339,7 +335,7 @@ const QuestionItem = forwardRef(function QuestionItem(
   );
 });
 
-function DialogueCard({ block, info, isFirst, index }) {
+function DialogueCard({ block }) {
   const ref = useRef(null);
   const [visible, setVisible] = useState(false);
 
@@ -358,44 +354,20 @@ function DialogueCard({ block, info, isFirst, index }) {
     <div
       ref={ref}
       data-card
-      className="flex items-center px-5 md:px-10 py-5"
-    >
-      <div
-        className={`max-w-2xl mx-auto w-full transition-all duration-700 ${
+      className={`flex items-center px-5 md:px-10 pb-5 max-w-2xl mx-auto w-full transition-all duration-700 ${
           visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
         }`}
-      >
-        {/* Speaker indicator */}
-        <div className="flex items-center gap-3 mb-5">
-          <div className={`w-8 h-8 rounded-full flex aspect-square items-center justify-center text-white text-xs font-sans font-medium ${
-            isFirst ? 'bg-navy' : 'bg-accent-red'
-          }`}>
-            {info?.nom.split(' ').map(w => w[0]).join('')}
-          </div>
-          <div>
-            <p className={`text-sm font-sans font-medium ${isFirst ? 'text-navy' : 'text-accent-red'}`}>
-              {info?.nom}
-            </p>
-            <p className="text-[10px] font-sans text-ink/35 leading-tight">{info?.titre}</p>
-          </div>
-        </div>
-
-        {/* Content */}
-        <div>
-          {block.contenu.map((para, k) => (
-            <p key={k} className="mb-4 last:mb-0 text-[15px] md:text-base leading-[1.85] text-ink/80 font-serif">
+    >
+      {/* Content */}
+      <div>
+        {block.contenu.map((para, k) =>
+          isValidElement(para) ? (
+              para
+          ) : (
+            <p key={k} className="mb-4 last:mb-0 text-[15px] md:text-base leading-[1.85] font-helevetica">
               {para}
             </p>
-          ))}
-        </div>
-
-        {/* Pull quote */}
-        {block.citation && (
-          <blockquote className='mt-8'>
-            <p className={`text-lg md:text-xl font-serif font-bold italic leading-snug ${isFirst ? 'text-navy' : 'text-accent-red'}`}>
-              « {block.citation} »
-            </p>
-          </blockquote>
+          )
         )}
       </div>
     </div>
