@@ -1,5 +1,6 @@
 import Manuscrit from "../components/infographie/Manuscrit";
 import PhotoQuote from "../components/dialog/PhotoQuote";
+import Timeline from "../components/infographie/Timeline";
 
 const debateData = {
   "meta": {
@@ -54,7 +55,8 @@ const debateData = {
               quote="Pour donner un peu de contexte, la France a déjà appliqué le principe du scrutin proportionnel <b>entre 1946 et 1958.</b>"
               isLeft={true}
             />,
-            "Le général de Gaulle fit donc le choix d'en revenir au vieux mode de scrutin en place depuis le Second Empire et qui avait dominé sous la IIIe République : le scrutin majoritaire à deux tours, qui lui offrit une majorité absolue à partir de 1962."
+            <Timeline className="mx-auto w-fit mb-6" />,
+            <>Le général de Gaulle fit donc le choix d'en revenir au vieux mode de scrutin en place depuis le <Manuscrit>Second Empire</Manuscrit> et qui avait dominé sous la <Manuscrit surrounded={false}>IIIe République</Manuscrit> : le scrutin majoritaire à deux tours, qui lui offrit une majorité absolue à partir de 1962.</>
             ]
         },
         {
