@@ -1,21 +1,28 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
-export default function Quiz({ meta = {} }) {
+export default function Quiz({ meta = {}, onScoreChange }) {
   const [response, setResponse] = useState(50);
 
   const handleSliderChange = (e) => {
-    setResponse(parseInt(e.target.value));
+    const nextValue = parseInt(e.target.value, 10);
+    setResponse(nextValue);
   };
+
+  useEffect(() => {
+    if (onScoreChange) {
+      onScoreChange(response);
+    }
+  }, [onScoreChange, response]);
 
   const position = response / 100; // 0 à 1
 
   // Déterminer le message selon la position
   const getPositionMessage = () => {
-    if (response < 20) return 'Très d\'accord';
-    if (response < 40) return 'Plutôt d\'accord';
+    if (response < 20) return 'Très en désaccord';
+    if (response < 40) return 'Plutôt en désaccord';
     if (response < 60) return 'Neutre';
-    if (response < 80) return 'Plutôt en désaccord';
-    return 'Très en désaccord';
+    if (response < 80) return 'Plutôt d\'accord';
+    return 'Très d\'accord';
   };
 
   return (
@@ -73,12 +80,12 @@ export default function Quiz({ meta = {} }) {
           <div className="flex justify-between items-center gap-4 mb-5">
             <div className="flex flex-col items-start gap-1.5">
               <p className="text-xs font-sans font-bold text-navy uppercase tracking-wide">
-                ← D'accord 
+                ← Pas d'accord
               </p>
             </div>
             <div className="flex flex-col items-end gap-1.5">
               <p className="text-xs font-sans font-bold text-navy uppercase tracking-wide">
-                Pas d'accord →
+                D'accord →
               </p>
             </div>
           </div>

@@ -1,21 +1,27 @@
+import { useState } from 'react';
 import Header from './components/Header';
 import Scrollytelling from './components/Scrollytelling';
 import QuestionAccordion from './components/QuestionAccordion';
 import Quiz from './components/Quiz';
 import QuizFin from './components/Quiz_fin';
+import Resultat from './components/Resultat';
 import debateData from './data/debate.json';
 
 export default function App() {
+  const [initialScore, setInitialScore] = useState(50);
+  const [finalScore, setFinalScore] = useState(null);
+
   return (
     <div className="min-h-screen">
       <Header meta={debateData.meta} />
       <Scrollytelling accroches={debateData.accroches} />
-      <Quiz meta={debateData.meta} />
+      <Quiz meta={debateData.meta} onScoreChange={setInitialScore} />
       <QuestionAccordion
         questions={debateData.questions}
         intervenants={debateData.meta.intervenants}
       />
-      <QuizFin />
+      <QuizFin onScoreComputed={setFinalScore} />
+      <Resultat initialScore={initialScore} finalScore={finalScore} />
 
       {/* Footer */}
       <footer className="bg-navy text-white py-12 px-6">

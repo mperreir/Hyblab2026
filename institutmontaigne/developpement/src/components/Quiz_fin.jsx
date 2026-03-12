@@ -1,11 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
 
-export default function QuizFin() {
+export default function QuizFin({ onScoreComputed }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [responses, setResponses] = useState({});
   const [cardHeight, setCardHeight] = useState(0);
   const [touchStart, setTouchStart] = useState(0);
-  const [touchEnd, setTouchEnd] = useState(0);
   const [touchStartY, setTouchStartY] = useState(0);
   const containerRef = useRef(null);
   const measureRefs = useRef([]);
@@ -24,11 +23,11 @@ export default function QuizFin() {
     {
       question: "Quelle est votre plus grande préoccupation avec cette réforme ?",
       options: [
-        "La stabilité gouvernementale pourrait être compromise",
-        "Les petits partis auraient trop de pouvoir",
-        "Les coûts politiques seraient trop élevés",
+        "Je n'ai pas de préoccupation majeure",
         "Les citoyens pourraient être confus par le changement",
-        "Je n'ai pas de préoccupation majeure"
+        "Les coûts politiques seraient trop élevés",
+        "Les petits partis auraient trop de pouvoir",
+        "La stabilité gouvernementale pourrait être compromise"
       ]
     },
     {
@@ -43,8 +42,7 @@ export default function QuizFin() {
     }
   ];
 
-  const currentQuestion = questions[currentIndex];
-  const currentResponse = responses[currentIndex];
+
   const allQuestionsAnswered = Object.keys(responses).length === questions.length;
   const stackOffsetY = 12;
   const visibleStackDepth = 3;
@@ -58,16 +56,6 @@ export default function QuizFin() {
       return 100 - (optionIndex / (questions[qIndex].options.length - 1)) * 100;
     });
     return Math.round(scores.reduce((a, b) => a + b, 0) / scores.length);
-  };
-
-  // Déterminer le message selon le score
-  const getPositionMessage = () => {
-    const score = calculateScore();
-    if (score < 20) return 'Très en désaccord';
-    if (score < 40) return 'Plutôt en désaccord';
-    if (score < 60) return 'Neutre';
-    if (score < 80) return 'Plutôt d\'accord';
-    return 'Très d\'accord';
   };
 
   const handleOptionChange = (questionIndex, option) => {
@@ -135,7 +123,11 @@ export default function QuizFin() {
     };
   }, []);
 
-  const score = allQuestionsAnswered ? calculateScore() : 0;
+  useEffect(() => {
+    if (allQuestionsAnswered && onScoreComputed) {
+      onScoreComputed(calculateScore());
+    }
+  }, [allQuestionsAnswered, onScoreComputed, responses]);
 
   return (
     <div className="w-full max-w-4xl mx-auto px-4 py-8 sm:py-12">
@@ -322,53 +314,7 @@ export default function QuizFin() {
             ))}
           </div>
         </div>
-      ) : (
-        // Mode Score Final
-        <div className="bg-white rounded-lg shadow-lg p-8">
-          {/* Title */}
-          <h1 className="text-3xl font-bold text-navy mb-6">Votre position</h1>
-
-          {/* Progress Bar - Complete */}
-          <div className="w-full bg-gray-200 rounded-full h-2 mb-8">
-            <div className="bg-navy h-2 rounded-full" style={{ width: '100%' }}></div>
-          </div>
-
-          {/* Score Display */}
-          <div className="flex flex-col items-center justify-center py-12">
-            <div className="text-5xl font-bold text-navy mb-4">{score}%</div>
-            <div
-              className={`w-56 h-10 rounded-lg font-semibold text-white flex items-center justify-center transition-all`}
-              style={{
-                backgroundColor:
-                  score < 20
-                    ? '#C41E3A'
-                    : score < 40
-                    ? '#FF6B6B'
-                    : score < 60
-                    ? '#D1D5DB'
-                    : score < 80
-                    ? '#93C5FD'
-                    : '#2563EB',
-              }}
-            >
-              {getPositionMessage()}
-            </div>
-          </div>
-
-          {/* Reset Button */}
-          <div className="flex justify-center mt-8">
-            <button
-              onClick={() => {
-                setCurrentIndex(0);
-                setResponses({});
-              }}
-              className="px-6 py-3 bg-navy text-white rounded-lg hover:bg-navy/90 transition-all"
-            >
-              Recommencer le quiz
-            </button>
-          </div>
-        </div>
-      )}
+      ) : null}
     </div>
   );
 }
