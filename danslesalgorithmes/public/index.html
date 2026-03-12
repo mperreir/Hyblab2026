@@ -11,31 +11,74 @@
 </head>
 <body>
 
-    <div style="height: 50dvh; display: flex; align-items: center; justify-content: center;">
-        <h2 style="color: #333;">Faites défiler vers le bas ↓</h2>
-    </div>
+    <header class="top-bar">
+        <div class="logo">#DLA</div>
+        <div class="search-box">
+            <span class="search-text">Recherche</span>
+            <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="2" width="20" height="20" rx="4" ry="4"></rect>
+                <circle cx="11" cy="11" r="4"></circle>
+                <line x1="14" y1="14" x2="18" y2="18"></line>
+            </svg>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="main-title">Mais qui fraude à la CAF ?</h1>
+            <p class="sub-title">Article - Dans Les Algorithmes 2026</p>
+            
+            <div class="tags">
+                <span class="tag"><span class="tag-text">#Politiques publiques</span></span>
+                <span class="tag"><span class="tag-text">#transparence</span></span>
+            </div>
+        </div>
+        
+        <div class="scroll-indicator">Faites défiler ↓</div>
+    </section>
 
     <div id="scrolly">
         
         <section class="scene">
             <div class="bg-container">
-                <div class="bg-media" style="background-image: url('img/caf.png');"></div>
+                <div class="bg-media" style="background-image: url('img/fleche.png');"></div>
             </div>
             
+            <article>
+                <div style="height: 0dvh;"></div>
+
+                <div class="step">
+                    <div class="step-content">
+                        <p>Depuis 2010, la Caisse d'allocation familiale (CAF) utilise un algorithme pour évaluer le risque de fraude des allocataires. </p>
+                    </div>
+                </div>
+                
+                <div style="height: 0dvh;"></div>
+            </article>
             <article>
                 <div style="height: 100dvh;"></div>
 
                 <div class="step">
                     <div class="step-content">
-                        <h1>Mais qui fraude à la CAF ?</h1>
+                        <p>Depuis toutes les données qu'elle a à sa disposition, la CAF calcule ce qu'elle appelle un "score de risque de fraude" selon une note allant de 0 (le risque de fraude est faible) à 1 (le risque est maximum).</p>
                     </div>
                 </div>
+                
+                <div style="height: 20dvh;"></div>
+            </article>
+        </section>
 
-                <div class="step">
-                    <div class="step-content">
-                        <p>Depuis 2010, la Caisse d'allocation familiale (CAF) utilise un algorithme pour évaluer le risque de fraude des allocataires. Depuis toutes les données qu'elle a à sa disposition, la CAF calcule ce qu'elle appelle un "score de risque de fraude" selon une note allant de 0 (le risque de fraude est faible) à 1 (le risque est maximum).</p>
+        <section class="scene">
+            <div class="bg-container">
+
+                <div class="bg-solid" style="background-color: #f2efe9; opacity: 0; transition: opacity 1s ease-in-out; position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></div>
+            </div>
+            
+            <article>
+                <div style="height: 0dvh;"></div>
+
+                <div class="step step-uni">
                     </div>
-                </div>
 
                 <div class="step">
                     <div class="step-content">
@@ -56,11 +99,6 @@
                   </div>
                 </div>
                 
-            <!-- =========================
-                CHAPITRE 1
-                ========================= -->
-                
-
                 <div class="step">
                     <div class="step-content">
                         <h1>Chapitre 1 — Déclarer ses ressources à la CAF</h1>
@@ -101,31 +139,24 @@
                     </div>
                 </div>
 
-            <div class="step">
-              <div class="step-content">
-                <div class="quiz-container" id="quiz-3">
-                  <h2>Quizz 3</h2>
-                  <p class="question">Que devrait faire Marion selon vous ?</p>
-
-                  <div class="options">
-                      <button class="option-btn">Déclarer ses revenus au moment où elle les reçoit sur son compte en banque. </button>
-                      <button class="option-btn">Déclarer ses revenus au moment où elle est notifiée par son employeur. </button>
+                <div class="step">
+                  <div class="step-content">
+                    <div class="quiz-container" id="quiz-3">
+                      <h2>Quizz 3</h2>
+                      <p class="question">Que devrait faire Marion selon vous ?</p>
+                      <div class="options">
+                          <button class="option-btn">Déclarer ses revenus au moment où elle les reçoit sur son compte en banque. </button>
+                          <button class="option-btn">Déclarer ses revenus au moment où elle est notifiée par son employeur. </button>
+                      </div>
+                    </div>
                   </div>
                 </div>
-                </div>
-                </div>
-
 
                 <div style="height: 100dvh;"></div>
             </article>
         </section>
 
         <section class="scene">
-
-        <!-- =========================
-            CHAPITRE 2
-            ========================= -->
-
             <div class="bg-container">
                 <div class="bg-media" style="background-image: url('img/main.jpg');"></div>
             </div>
@@ -133,7 +164,6 @@
             <article>
                 <div style="height: 100dvh;"></div>
                 
-
                 <div class="step">
                     <div class="step-content">
                         <h1>Chapitre 2 — La complexité des déclarations</h1>
@@ -180,50 +210,6 @@
             </article>
         </section>
 
-        <!-- =========================
-            CHAPITRE 3
-            ========================= -->
-
-        <div class="step" data-image="img/foyer_benificiaire.png">
-            <div class="step-content">
-                <h1>Chapitre 3 — Le contrôle</h1>
-            </div>
-        </div>
-
-        <div class="step" data-image="img/foyer_benificiaire.png" data-audio="audio/marion_controle_1.mp3">
-            <div class="step-content">
-                <p>
-                    « Pendant le contrôle, ils ont regardé mes comptes.
-                    Ils m’ont demandé de justifier des virements.
-                    Même de petits montants. »
-                </p>
-            </div>
-        </div>
-
-        <div class="step" data-image="img/foyer_benificiaire.png" data-audio="audio/marion_controle_2.mp3">
-            <div class="step-content">
-                <p>
-                    « Le contrôle se termine. Je n’ai pas fraudé.
-                    Mais la CAF estime que j’ai touché 300 € en trop.
-                    Toutes mes aides sont immédiatement suspendues. »
-                </p>
-            </div>
-        </div>
-
-        <div class="step" data-image="img/fraude_comparaison.png">
-            <div class="step-content">
-                <p>
-                    Effectivement, les mères isolées, qui se voient couper leurs aides
-                    pour des indus aux montants très faibles, qui subissent des contrôles
-                    répétés et envahissants, sont aujourd’hui désignées comme les
-                    principales fraudeuses de la CAF.
-                </p>
-            </div>
-        </div>
-        
-        <!-- =========================
-            CHAPITRE 4
-            ========================= -->
         <section class="scene">
             <div class="bg-container">
                 <div class="bg-media" style="background-image: url('img/foyer_benificiaire.png');"></div>
@@ -231,7 +217,31 @@
             
             <article>
                 <div style="height: 100dvh;"></div>
+                
+                <div class="step">
+                    <div class="step-content">
+                        <h1>Chapitre 3 — Le contrôle</h1>
+                    </div>
+                </div>
 
+                <div class="step" data-audio="audio/marion_controle_1.mp3">
+                    <div class="step-content">
+                        <p>« Pendant le contrôle, ils ont regardé mes comptes. Ils m’ont demandé de justifier des virements. Même de petits montants. »</p>
+                    </div>
+                </div>
+
+                <div class="step" data-audio="audio/marion_controle_2.mp3">
+                    <div class="step-content">
+                        <p>« Le contrôle se termine. Je n’ai pas fraudé. Mais la CAF estime que j’ai touché 300 € en trop. Toutes mes aides sont immédiatement suspendues. »</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-content">
+                        <p>Effectivement, les mères isolées, qui se voient couper leurs aides pour des indus aux montants très faibles, qui subissent des contrôles répétés et envahissants, sont aujourd’hui désignées comme les principales fraudeuses de la CAF.</p>
+                    </div>
+                </div>
+                
                 <div class="step">
                     <div class="step-content">
                         <h1>Chapitre 4 — Le vrai profil des fraudeurs</h1>
@@ -272,10 +282,6 @@
                 <div style="height: 100dvh;"></div>
             </article>
         </section>
-
-        <!-- =========================
-            CHAPITRE 5
-            ========================= -->
 
         <section class="scene">
             <div class="bg-container">
@@ -325,10 +331,6 @@
             </article>
         </section>
 
-        <!-- =========================
-            CHAPITRE ?
-            ========================= -->
-
         <section class="scene"> 
             <div class="bg-container" style="display: flex; align-items: center; justify-content: center;">
                 <div class="spheres-container" id="spheres-animation">
@@ -342,10 +344,6 @@
                 <div class="step step-meres" style="height: 100dvh;"></div>
             </article>
         </section>
-
-        <!-- =========================
-            CHAPITRE ?
-            ========================= -->
 
         <section class="scene">
             <div class="bg-container">
@@ -372,10 +370,6 @@
         </section>
 
     </div>
-
-    <!-- =========================
-        CHAPITRE Sources
-        ========================= -->
 
     <section class="credits">
         <h2>Sources</h2>

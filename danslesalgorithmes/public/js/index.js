@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
   scroller
     .setup({
       step: "#scrolly article .step",
-      offset: 0.5, 
+      offset: 0.5, // Déclenchement au milieu de l'écran du téléphone
       debug: false
     })
     .onStepEnter((response) => {
@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', function() {
       if (newAudioFile) {
         currentAudio = new Audio(newAudioFile);
         currentAudio.play().catch(erreur => {
-          console.warn("Son bloqué :", erreur);
+          console.warn("Son bloqué (interaction requise sur mobile) :", erreur);
         });
       }
     });
@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', function() {
       button.style.backgroundColor = '#4CAF50';
     } else {
       button.classList.add('selected');
-      button.style.backgroundColor = '#5bc0de'; 
+      button.style.backgroundColor = '#5bc0de'; // Bleu clair pour les réponses sélectionnées
     }
   }
 
@@ -91,15 +91,17 @@ document.addEventListener('DOMContentLoaded', function() {
     const selectedOptions = document.querySelectorAll('#quiz-2 .option-btn.selected');
     const allCorrectOptions = document.querySelectorAll('#quiz-2 .option-btn[data-correct="true"]');
 
+    // Désactive tous les boutons
     quiz2.options.forEach(button => {
       button.disabled = true;
       if (button.dataset.correct === 'true') {
-        button.style.backgroundColor = '#5cb85c'; 
+        button.style.backgroundColor = '#5cb85c'; // Vert pour les bonnes réponses
       } else if (button.classList.contains('selected')) {
-        button.style.backgroundColor = '#d9534f'; 
+        button.style.backgroundColor = '#d9534f'; // Rouge pour les mauvaises réponses sélectionnées
       }
     });
 
+    // Vérifie si toutes les bonnes réponses ont été sélectionnées
     let allCorrectSelected = true;
     allCorrectOptions.forEach(option => {
       if (!option.classList.contains('selected')) {
@@ -107,6 +109,7 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
 
+    // Affiche le feedback
     if (allCorrectSelected && selectedOptions.length === allCorrectOptions.length) {
       quiz2.feedback.textContent = "Parfait ! Toutes les réponses sélectionnées sont correctes.";
       quiz2.feedback.style.color = '#5cb85c';
@@ -120,6 +123,29 @@ document.addEventListener('DOMContentLoaded', function() {
     button.addEventListener('click', () => toggleSelection(button));
   });
   if(quiz2.validateButton) quiz2.validateButton.addEventListener('click', validateQuiz2);
+
+  // --- Quizz 3 ---
+  // Fonction pour gérer le Quizz 3 (sélection simple, pas de feedback correct/incorrect nécessaire)
+  function handleQuiz3(selectedButton) {
+    // Désactive tous les boutons après une première sélection
+    const quizStep = selectedButton.closest('.quiz-container');
+    const allOptions = quizStep.querySelectorAll('.option-btn');
+    
+    allOptions.forEach(button => {
+      button.disabled = true;
+      // Optionnel: Ajouter du style pour marquer la réponse cliquée
+      // button.style.backgroundColor = '#d9534f'; 
+    });
+    // Marquez spécifiquement le bouton cliqué pour donner un retour visuel
+    selectedButton.style.backgroundColor = '#f0ad4e'; // Orange pour le bouton sélectionné
+  }
+
+  const quiz3Options = document.querySelectorAll('#quiz-3 .option-btn');
+  quiz3Options.forEach(button => {
+    button.addEventListener('click', function() {
+      handleQuiz3(this);
+    });
+  });
 
   // --- Quizz Chapitre 4 (Boutons avec paragraphes cachés) ---
   const quizChap4Buttons = document.querySelectorAll('.chap4-btn');
@@ -140,22 +166,3 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
 });
-// Fonction pour gérer le Quizz 3
-  function handleQuiz3(selectedButton) {
-
-    // Désactive tous les boutons
-    document.querySelectorAll('#quiz-3 .option-btn').forEach(button => {
-      button.disabled = true;
-      button.style.backgroundColor = '#d9534f'; // Couleur orange pour indiquer la sélection
-  });
-}
-document.querySelectorAll('#quiz-3 .option-btn').forEach(button => {
-  button.addEventListener('click', function() {
-    handleQuiz3(this);
-  });
-});
-
-  const quiz3 = {
-    container: document.getElementById('quiz-3'),
-    options: document.querySelectorAll('#quiz-3 .option-btn'),
-  };
