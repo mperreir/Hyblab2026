@@ -16,9 +16,9 @@ const PICTOGRAMMES = {
 };
 
 const CARD_POSITIONS = [
-  { left: 227,  top: 1394, width: 617, height: 189 },
-  { left: 1003, top: 2150, width: 612, height: 187 },
-  { left: 523,  top: 2901, width: 612, height: 187 },
+  { left: 227,  top: 1394},
+  { left: 1003, top: 2150},
+  { left: 523,  top: 2901},
 ];
 
 const cardDocuments = data.researcher.documents.slice(0, 3);
@@ -78,6 +78,7 @@ export default function IcebergScene() {
           pictogramme={PICTOGRAMMES[doc.category]}
           category={doc.category}
           title={doc.title}
+          description={doc.description}
           {...CARD_POSITIONS[i]}
         />
       ))}

@@ -29,33 +29,48 @@ export default function ResourceCard({
   top,
   width = 612,
   height = 187,
+  description = null,
 }) {
   const color = CATEGORY_COLORS[category] ?? '#3552ff';
   const label = category.charAt(0).toUpperCase() + category.slice(1);
 
   return (
     <div
-      className="absolute bg-white rounded-2xl px-6 shadow-sm overflow-hidden"
+      // className="absolute bg-white rounded-2xl px-6 shadow-sm overflow-hidden "
+      className="class-resource-card"
       style={{ left, top, width, height }}
     >
       {/* Pictogram pinned to top-left */}
       <img
         src={pictogramme}
         alt={label}
-        className="absolute object-contain"
-        style={{ top: 14, left: 16, width: 44, height: 44 }}
+        // className="absolute object-contain"
+        className="class-pictogramme"
+        // style={{ top: 14, left: 16, width: 44, height: 44 }}
       />
       {/* Category badge + title — offset right to leave room for the icon */}
-      <div className="flex flex-col gap-2 min-w-0 h-full justify-center" style={{ paddingLeft: 72 }}>
+      <div 
+        // className="flex flex-col gap-2 min-w-0 h-full justify-center" 
+        className="class-ressource-contain" 
+        // style={{ paddingLeft: 72 }}
+      >
         <span
-          className="text-white text-sm font-semibold px-3 py-1 rounded-full w-fit leading-none"
+          // className="text-white text-sm font-semibold px-3 py-1 rounded-full w-fit leading-none"
+          className="class-category-ressource"
           style={{ backgroundColor: color }}
         >
           {label}
         </span>
-        <h3 className="m-0 text-gray-900 font-semibold text-xl leading-snug line-clamp-2">
+        <h3 
+          // className="m-0 text-gray-900 font-semibold text-xl leading-snug line-clamp-2"
+          className="class-title-ressource"
+
+        >
           {title}
         </h3>
+        <p className="class-description-ressource">
+          {description}
+        </p>
       </div>
     </div>
   );
