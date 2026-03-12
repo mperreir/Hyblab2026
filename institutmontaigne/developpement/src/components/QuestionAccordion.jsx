@@ -273,8 +273,7 @@ const QuestionItem = forwardRef(function QuestionItem(
   return (
     <div 
         ref={ref}
-      className="scroll-mt-4"
-        style={{ position: 'relative', zIndex: 20 + index, marginTop: index === 0 ? 0 : '-13px' }}
+      className={`${isOpen ? 'h-screen flex flex-col' : ''} max-w-3xl mx-auto transition-all duration-300 relative z-[${20 + index}] ${index === 0 ? '' : '-mt-3'}`}
     >
       {/* Question header button */}
       <button
@@ -284,7 +283,7 @@ const QuestionItem = forwardRef(function QuestionItem(
           fontSize: `clamp(16px, 1.5vw, 20px)`,
           fontFamily: 'Helvetica, Arial, sans-serif',
         }}
-        className="w-full py-10 flex flex-col items-center justify-center gap-3 transition-all duration-200 rounded-t-2xl"
+        className={`w-full py-10 flex flex-col items-center justify-center gap-3 transition-all duration-200 rounded-t-2xl bg-[${color}] size-4`}
       >
         <span className="max-w-[75%] mx-auto text-base md:text-lg font-bold italic uppercase text-center leading-tight"
           style={{ color: textColor }}
