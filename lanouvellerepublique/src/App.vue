@@ -9,7 +9,10 @@ import Filtres from "./components/Filtres.vue"
 import { useFilterStore } from "@/stores/filterStore"
 
 const filterStore = useFilterStore()
+const route = useRoute()
 const showFiltres = ref(false)
+
+const isListRoute = computed(() => route.path === "/")
 
 const onFiltersApply = (appliedFilters) => {
     filterStore.applyFilters(appliedFilters)
@@ -45,7 +48,7 @@ const isCarteActive = computed(() => route.path === "/carte")
         <div class="view-container">
             <RouterView />
         </div>
-        <div class="global-actions">
+        <div class="global-actions" :class="{ 'ui-blocked': showFiltres, 'global-actions--list': isListRoute }">
             <button type="button" class="action-btn action-btn--filter" @click="showFiltres = true">
                 <span>Filtrer</span>
                 <img :src="reglageIcon" alt="" class="action-btn__icon" aria-hidden="true" />
@@ -70,6 +73,10 @@ const isCarteActive = computed(() => route.path === "/carte")
 .view-container {
     flex: 1;
     min-height: 0;
+}
+
+.ui-blocked {
+    pointer-events: none;
 }
 
 .top-banner {
@@ -144,25 +151,6 @@ const isCarteActive = computed(() => route.path === "/carte")
     }
 }
 
-.bottom-banner {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 1001;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 4.2rem;
-    text-align: center;
-    padding: 0 1rem;
-    background: #000;
-    color: #fff;
-    font-size: 1rem;
-    font-weight: 600;
-    letter-spacing: 0.02em;
-}
-
 .global-actions {
     position: fixed;
     left: 0;
@@ -173,7 +161,16 @@ const isCarteActive = computed(() => route.path === "/carte")
     grid-template-columns: 125px 235px;
     justify-content: center;
     gap: 0.6rem;
-    padding: 0.75rem 1.4rem 1rem;
+    padding: 0.75rem 1.4rem calc(1rem + env(safe-area-inset-bottom));
+}
+
+.global-actions--list {
+    background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 250, 244, 0.87) 46.15%,
+        #fff9f2 100%
+    );
 }
 
 .action-btn {

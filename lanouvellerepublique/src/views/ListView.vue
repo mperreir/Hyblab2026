@@ -42,7 +42,7 @@ const sortedRestaurants = computed(() =>
 <style scoped>
 .list-view {
   min-height: 100vh;
-  padding: 15rem 1.25rem 10rem;
+  padding: 5rem 1.25rem 10rem;
   background: v-bind(listBg);
   display: flex;
   flex-direction: column;

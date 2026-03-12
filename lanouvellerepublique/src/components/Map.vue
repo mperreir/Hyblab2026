@@ -129,8 +129,14 @@ const scrollToRestaurant = (index, smooth = true) => {
 }
 
 const centerMapToRestaurant = (index) => {
+    const list = restaurants.value
+    if (!list.length) return
+
     const map = mapRef.value.leafletObject
-    const restaurant = restaurants.value[index]
+    if (!map) return
+
+    const restaurant = list[index]
+    if (!restaurant) return
 
     map.flyTo([restaurant.latitude, restaurant.longitude], 14, {
         duration: 0.8,
@@ -138,6 +144,11 @@ const centerMapToRestaurant = (index) => {
 }
 
 const focusRestaurant = (index) => {
+    const list = restaurants.value
+    if (!list.length) return
+
+    if (index < 0 || index >= list.length) return
+
     const distance = Math.abs(index - selectedIndex.value)
     selectedIndex.value = index
     scrollToRestaurant(index, distance <= 1)
@@ -199,6 +210,18 @@ const onMapReady = (map) => {
     zoomControlInstance = control.zoom({ position: "topright" })
     zoomControlInstance.addTo(map)
 }
+
+watch(restaurants, (list) => {
+    if (!list.length) {
+        selectedIndex.value = 0
+        isClicked.value = false
+        return
+    }
+
+    if (selectedIndex.value >= list.length) {
+        selectedIndex.value = list.length - 1
+    }
+})
 </script>
 
 <style scoped>
@@ -269,18 +292,25 @@ const onMapReady = (map) => {
 .restaurant-carousel-wrapper--detail {
     position: absolute;
     left: 0;
-    bottom: calc(max(0.75rem, env(safe-area-inset-bottom)));
+    bottom: 0;
+
     width: 100%;
-    height: auto;
-    z-index: 500;
+    height: 100%;
+
+    z-index: 1000;
+
     display: grid;
     grid-template-columns: auto minmax(0, 560px) auto;
     align-items: start;
     justify-content: center;
     gap: 0.65rem;
-    transform: translateY(-100%);
+
+    transform: translateY(0);
+
     background-color: #ffffff;
-    z-index: 1000;
+
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .restaurant-carousel-wrapper--detail .carousel-nav {

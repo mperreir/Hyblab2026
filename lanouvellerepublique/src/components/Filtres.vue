@@ -1,12 +1,9 @@
 <script setup>
 import { ref } from 'vue'
 import { COLORS } from '@/assets/Couleurs/Coulleurs.js'
-import { useFilterStore } from '@/stores/filterStore'
 
 defineProps({ show: Boolean })
 const emit = defineEmits(['close', 'apply'])
-
-const filterStore = useFilterStore()
 
 const pink       = COLORS.pinkSwitch   // #E815B2
 const pinkLight  = COLORS.pinkLight    // #FDE8F7
@@ -15,16 +12,21 @@ const green      = '#16A34A'
 
 /* ── état des filtres ── */
 const coupDeCoeur = ref(false)
-const selectedDietary = ref([])
-const selectedCuisine = ref([])
-const selectedAmbiance = ref([])
-const selectedBudget = ref([])
-const selectedService = ref([])
 
-const toggle = (arr, val) => {
-  const idx = arr.value.indexOf(val)
-  idx === -1 ? arr.value.push(val) : arr.value.splice(idx, 1)
-}
+const dietaryOptions = ['Vegan', 'Végétarien', 'Sans gluten', 'Halal']
+const selectedDietary = ref([])
+
+const cuisineOptions = ['Tourangelle', 'Asiatique', 'Italienne', 'Américaine', 'Orientale', 'Méditerranéenne', 'Indienne', 'Cuisine du monde', 'Traditionnelle', 'Street Food']
+const selectedCuisine = ref([])
+
+const ambianceOptions = ['Entre amis', 'Famille', 'Romantique', 'Professionnel']
+const selectedAmbiance = ref([])
+
+const budgetOptions = ['1-10€', '10-20€', '20-30€', '+30€']
+const selectedBudget = ref([])
+
+const serviceOptions = ['Sur place', 'À emporter', 'Livraison']
+const selectedService = ref([])
 
 const clearAll = () => {
   coupDeCoeur.value = false
@@ -50,13 +52,12 @@ const apply = () => {
 
 <template>
   <Teleport to="body">
-    <Transition name="filtres-slide">
-      <div v-if="show" class="filtres-overlay">
+      <div v-if="show" class="filtres-overlay" @click.self="emit('close')">
         <!-- backdrop -->
-        <div class="filtres-backdrop" @click="emit('close')" />
+        <div class="filtres-backdrop" />
 
         <!-- feuille -->
-        <div class="filtres-sheet">
+        <div class="filtres-sheet" @click.stop>
 
           <!-- ── En-tête ── -->
           <div class="filtres-header">
@@ -69,9 +70,10 @@ const apply = () => {
             <!-- ── Coup de cœur ── -->
             <div class="filtres-section">
               <button
+                type="button"
                 class="tag-coupdecoeur"
                 :class="{ active: coupDeCoeur }"
-                @click="coupDeCoeur = !coupDeCoeur"
+                @click.stop.prevent="coupDeCoeur = !coupDeCoeur"
               >
                 ❤️ Coup de cœur TMV
               </button>
@@ -81,13 +83,15 @@ const apply = () => {
             <div class="filtres-section">
               <h3 class="section-title">Préférences alimentaires</h3>
               <div class="tags-row">
-                <button
-                  v-for="opt in filterStore.availableCategories.dietary"
+                <label
+                  v-for="opt in dietaryOptions"
                   :key="opt"
-                  class="tag"
-                  :class="{ 'tag--green': selectedDietary.includes(opt) }"
-                  @click="toggle(selectedDietary, opt)"
-                >{{ opt }}</button>
+                  class="option-chip option-chip--green"
+                  :class="{ 'is-selected': selectedDietary.includes(opt) }"
+                >
+                  <input v-model="selectedDietary" type="checkbox" :value="opt" class="option-chip__input">
+                  <span class="tag">{{ opt }}</span>
+                </label>
               </div>
             </div>
 
@@ -95,13 +99,15 @@ const apply = () => {
             <div class="filtres-section">
               <h3 class="section-title">Type de cuisine</h3>
               <div class="tags-row">
-                <button
-                  v-for="opt in filterStore.availableCategories.cuisine"
+                <label
+                  v-for="opt in cuisineOptions"
                   :key="opt"
-                  class="tag"
-                  :class="{ 'tag--blue': selectedCuisine.includes(opt) }"
-                  @click="toggle(selectedCuisine, opt)"
-                >{{ opt }}</button>
+                  class="option-chip option-chip--blue"
+                  :class="{ 'is-selected': selectedCuisine.includes(opt) }"
+                >
+                  <input v-model="selectedCuisine" type="checkbox" :value="opt" class="option-chip__input">
+                  <span class="tag">{{ opt }}</span>
+                </label>
               </div>
             </div>
 
@@ -109,13 +115,15 @@ const apply = () => {
             <div class="filtres-section">
               <h3 class="section-title">Ambiance</h3>
               <div class="tags-row">
-                <button
-                  v-for="opt in filterStore.availableCategories.ambiance"
+                <label
+                  v-for="opt in ambianceOptions"
                   :key="opt"
-                  class="tag"
-                  :class="{ 'tag--pink': selectedAmbiance.includes(opt) }"
-                  @click="toggle(selectedAmbiance, opt)"
-                >{{ opt }}</button>
+                  class="option-chip option-chip--pink"
+                  :class="{ 'is-selected': selectedAmbiance.includes(opt) }"
+                >
+                  <input v-model="selectedAmbiance" type="checkbox" :value="opt" class="option-chip__input">
+                  <span class="tag">{{ opt }}</span>
+                </label>
               </div>
             </div>
 
@@ -123,13 +131,15 @@ const apply = () => {
             <div class="filtres-section">
               <h3 class="section-title">Budget</h3>
               <div class="tags-row">
-                <button
-                  v-for="opt in filterStore.availableCategories.budget"
+                <label
+                  v-for="opt in budgetOptions"
                   :key="opt"
-                  class="tag"
-                  :class="{ 'tag--pink': selectedBudget.includes(opt) }"
-                  @click="toggle(selectedBudget, opt)"
-                >{{ opt }}</button>
+                  class="option-chip option-chip--pink"
+                  :class="{ 'is-selected': selectedBudget.includes(opt) }"
+                >
+                  <input v-model="selectedBudget" type="checkbox" :value="opt" class="option-chip__input">
+                  <span class="tag">{{ opt }}</span>
+                </label>
               </div>
             </div>
 
@@ -137,13 +147,15 @@ const apply = () => {
             <div class="filtres-section">
               <h3 class="section-title">Service</h3>
               <div class="tags-row">
-                <button
-                  v-for="opt in filterStore.availableCategories.service"
+                <label
+                  v-for="opt in serviceOptions"
                   :key="opt"
-                  class="tag"
-                  :class="{ 'tag--pink': selectedService.includes(opt) }"
-                  @click="toggle(selectedService, opt)"
-                >{{ opt }}</button>
+                  class="option-chip option-chip--pink"
+                  :class="{ 'is-selected': selectedService.includes(opt) }"
+                >
+                  <input v-model="selectedService" type="checkbox" :value="opt" class="option-chip__input">
+                  <span class="tag">{{ opt }}</span>
+                </label>
               </div>
             </div>
 
@@ -156,7 +168,6 @@ const apply = () => {
 
         </div><!-- /filtres-sheet -->
       </div>
-    </Transition>
   </Teleport>
 </template>
 
@@ -169,26 +180,28 @@ const apply = () => {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
+  pointer-events: auto;
 }
 
 .filtres-backdrop {
   position: absolute;
   inset: 0;
   background: rgba(0, 0, 0, 0.45);
-  z-index: 0;
-  pointer-events: auto;
+  z-index: 1;
+  pointer-events: none;
 }
 
 /* ── Feuille ── */
 .filtres-sheet {
   position: relative;
-  z-index: 100;
+  z-index: 2;
   background: #fff;
   border-radius: 1.25rem 1.25rem 0 0;
   max-height: 88dvh;
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  pointer-events: auto;
 }
 
 /* ── En-tête ── */
@@ -270,7 +283,21 @@ const apply = () => {
   gap: 0.5rem;
 }
 
+.option-chip {
+  position: relative;
+  display: inline-flex;
+}
+
+.option-chip__input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
 .tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   padding: 0.45rem 1rem;
   border-radius: 999px;
   border: 1.5px solid #d1d5db;
@@ -279,28 +306,28 @@ const apply = () => {
   font-size: 0.88rem;
   font-weight: 500;
   cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
   transition: background 0.18s, color 0.18s, border-color 0.18s;
 }
 
-/* activegreen – préférences alimentaires */
-.tag--green {
+.option-chip.is-selected .tag {
+  color: #fff;
+}
+
+.option-chip--green.is-selected .tag {
   background: v-bind(green);
   border-color: v-bind(green);
-  color: #fff;
 }
 
-/* active blue – type de cuisine */
-.tag--blue {
+.option-chip--blue.is-selected .tag {
   background: v-bind(blue);
   border-color: v-bind(blue);
-  color: #fff;
 }
 
-/* active pink – ambiance / budget / service */
-.tag--pink {
+.option-chip--pink.is-selected .tag {
   background: v-bind(pink);
   border-color: v-bind(pink);
-  color: #fff;
 }
 
 /* ── Pied ── */
@@ -326,21 +353,4 @@ const apply = () => {
 }
 
 /* ── Transition slide-up ── */
-.filtres-slide-enter-active,
-.filtres-slide-leave-active {
-  transition: opacity 0.25s ease;
-}
-.filtres-slide-enter-active .filtres-sheet,
-.filtres-slide-leave-active .filtres-sheet {
-  transition: transform 0.3s cubic-bezier(0.32, 0.72, 0, 1);
-}
-.filtres-slide-enter-from,
-.filtres-slide-leave-to {
-  opacity: 0;
-  pointer-events: none;
-}
-.filtres-slide-enter-from .filtres-sheet,
-.filtres-slide-leave-to .filtres-sheet {
-  transform: translateY(100%);
-}
 </style>
