@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 
-export default function Navbar() {
+export default function Navbar({ isQuestionOpen = false }) {
   const [isVisible, setIsVisible] = useState(true);
   const lastScrollY = useRef(0);
 
@@ -30,7 +30,7 @@ export default function Navbar() {
   return (
     <nav
       className={`backdrop-blur-xl text-montaigne-burgundy px-4 sm:px-6 py-3 h-[61px] sticky top-0 z-[9999] transition-all duration-300 ease-out ${
-        isVisible ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-95'
+        isQuestionOpen || !isVisible ? '-translate-y-full opacity-0 pointer-events-none' : 'translate-y-0 opacity-100'
       }`}
     >
       <div className="mx-auto w-full max-w-6xl flex items-center justify-between">
