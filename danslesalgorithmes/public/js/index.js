@@ -57,7 +57,6 @@ document.addEventListener('DOMContentLoaded', function() {
     selectedButton.textContent = isCorrect ? 'Effectivement' : 'Et non';
 
     quiz1.options.forEach(button => {
-      button.disabled = true;
       if (button.dataset.correct === 'true') {
         button.style.backgroundColor = '#5cb85c';
       } else {

@@ -154,8 +154,8 @@ article {
 .quiz-container .option-btn {
     padding: 10px 20px;
     font-size: 1rem;
-    background: #4CAF50;
-    color: white;
+    background: #f5f7f5;
+    color: rgb(0, 0, 0);
     border: none;
     border-radius: 5px;
     cursor: pointer;
