@@ -77,7 +77,7 @@ import { userCoords } from "@/stores/mapStore"
 const API_KEY = "b4BxT11KjV5Zzm2lo2V1"
 const STYLE = "streets-v4"
 const mapTilerUrl = `https://api.maptiler.com/maps/${STYLE}/{z}/{x}/{y}.png?key=${API_KEY}`
-const fallback_position = [47.2183, -1.5536]
+const fallback_position = [47.38935859649009, 0.6860130852825314]
 
 const markerIcon = divIcon({
     className: "user-location-dot",
