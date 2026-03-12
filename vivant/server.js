@@ -75,6 +75,11 @@ const db = new sqlite3.Database(dbPath, (err) => {
             fs.createReadStream(csvPath)
                 .pipe(csv())
                 .on('data', (row) => {
+                    // Ignorer les articles sans coordonnées
+                    if (!row['_latlngmarker'] || row['_latlngmarker'].trim() === '') {
+                        return;
+                    }
+                    
                     stmt.run(
                         (row['ID'] || row['\ufeffID'] || row['\uFEFFID']), row['Title'], row['Content'], row['Date'], row['Permalink'], 
                         row['Image URL'], row['Image Title'], row['Image Alt Text'], row['Image Featured'], 
