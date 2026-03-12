@@ -204,7 +204,7 @@ const onMapReady = (map) => {
 <style scoped>
 .map-layout {
     height: 100%;
-    width: 100%;
+    width: 100%; /* here */
     position: relative;
     overflow: hidden;
 }
@@ -319,10 +319,6 @@ const onMapReady = (map) => {
 }
 
 @media (max-width: 700px) {
-    .map-canvas {
-        height: 600px;
-    }
-
     .restaurant-carousel-wrapper {
         width: 100%;
     }

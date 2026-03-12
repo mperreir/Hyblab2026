@@ -6,7 +6,7 @@
     tabindex="0"
   >
     <p class="mini-box__coords">
-        {{ content }}'' 
+        {{ content }}''
     </p>
   </article>
 </template>
@@ -26,6 +26,13 @@ const props = defineProps({
 .detail-box {
   display: flex;
   align-items: top;
-  
+
+    background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 250, 244, 0.87) 46.15%,
+    #fff9f2 100%
+);
+
 }
 </style>

@@ -68,7 +68,8 @@ const isCarteActive = computed(() => route.path === "/carte")
 }
 
 .view-container {
-    /* container is transparent, map-main handles its own positioning */
+    flex: 1;
+    min-height: 0;
 }
 
 .top-banner {
@@ -173,12 +174,6 @@ const isCarteActive = computed(() => route.path === "/carte")
     justify-content: center;
     gap: 0.6rem;
     padding: 0.75rem 1.4rem 1rem;
-    background: linear-gradient(
-        180deg,
-        rgba(255, 255, 255, 0) 0%,
-        rgba(255, 250, 244, 0.87) 46.15%,
-        #fff9f2 100%
-    );
 }
 
 .action-btn {

@@ -104,8 +104,10 @@
 <style scoped>
 /* ── Header wrapper ── */
 .nrco-header {
-    position: sticky;
-    top: -0.5px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
     display: block;
     width: 100%;
     align-items: center;
