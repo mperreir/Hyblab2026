@@ -1,3 +1,4 @@
+import { DropZone, AnswerBank } from "../components/infographie/Puzzle";
 const debateData = {
   "meta": {
     "serie": <>icfsbdhk
@@ -47,7 +48,8 @@ const debateData = {
             "La IVe République instaure un mode de scrutin proportionnel, corrigé par la loi des apparentements en 1951 pour défavoriser gaullistes et communistes. Cette loi permettait aux partis de passer des accords grâce auxquels les listes « apparentées » remportaient l'intégralité des sièges de la circonscription si elles obtenaient ensemble plus de 50 % des voix.",
             "La proportionnelle visait à instaurer une forte discipline des partis et un parlementarisme nettement organisé. Toutefois, la circonscription départementale a favorisé non pas la multiplication de listes partisanes, mais de listes de barons et notables locaux affirmant leur pouvoir contre le parti ou en dehors. On a ainsi assisté à la multiplication de petits groupes centristes rétifs à l'autorité. C'est la principale différence entre la France et d'autres pays européens : l'échec de la structuration autour de partis.",
             "Un seul principe guidait les fondateurs de la Ve République : le désir de favoriser la constitution de majorités absolues. C'est pourquoi Michel Debré souhaitait s'inspirer du modèle britannique — le scrutin uninominal à un tour — qu'il considérait comme un gage de stabilité politique. Ce mode de scrutin était toutefois très controversé, car il n'avait jamais été pratiqué en France.",
-            "Le général de Gaulle fit donc le choix d'en revenir au scrutin majoritaire à deux tours, qui offrit une majorité absolue à partir de 1962. Comme le mode de scrutin avait été la variable d'ajustement sous la IIIe République, les législateurs conservèrent cette souplesse en ne l'inscrivant pas dans la Constitution."
+            <>Le général de Gaulle fit donc le choix d'en revenir au scrutin majoritaire à deux tours,<DropZone correctAnswer="XIX" /> qui offrit une majorité absolue à partir de 1962. Comme le mode de scrutin avait été la variable d'ajustement sous la IIIe République, les législateurs conservèrent cette souplesse en ne l'inscrivant pas dans la Constitution.</>,
+            <AnswerBank answers={["XVIII", "XIX", "XX"]} />
           ]
         },
         {
