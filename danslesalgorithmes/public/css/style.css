@@ -59,9 +59,10 @@ article {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    color: white;
+    color: rgb(255, 255, 255);
 }
 
+/* Les blocs de texte*/
 .step-content {
     width: 100%;
     max-width: 500px;
@@ -83,7 +84,8 @@ article {
 
 .step p {
     font-size: 1.5rem;
-    background: rgba(0, 0, 0, 0.7);
+    background: #FCFAD4;
+    color: #001733;
     padding: 20px;
     border-radius: 8px;
     border: 2px solid transparent;
@@ -91,12 +93,10 @@ article {
 }
 
 .step.is-active p {
-    border-color: #ffcc00;
+    border-color: #001733;
 }
 
-/* =========================================
-   ADAPTATION POUR LES TÉLÉPHONES (MOBILE)
-   ========================================= */
+/* Adaptation pour le format mobile */
 @media (max-width: 768px) {
     .step h1 { font-size: 2.5rem; }
     .step p { font-size: 1.1rem; padding: 15px; }
