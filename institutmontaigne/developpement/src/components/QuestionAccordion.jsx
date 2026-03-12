@@ -1,4 +1,5 @@
-import { useState, useRef, useCallback, useEffect } from 'react';
+import { useState, useRef, useCallback, useEffect, isValidElement } from 'react';
+import PhotoQuote from './dialog/PhotoQuote.jsx';
 
 export default function QuestionAccordion({ questions, intervenants }) {
   const [openIndex, setOpenIndex] = useState(null);
@@ -284,23 +285,6 @@ const QuestionItem = forwardRef(function QuestionItem(
       {/* Dialogue panel */}
       {isOpen && (
         <div className="relative mb-4 animate-slide-down">
-          {/* Progress bar */}
-          <div className="flex items-center gap-2 px-4 pb-4">
-            <div className="flex gap-1 flex-1">
-              {question.dialogue.map((_, i) => (
-                <div
-                  key={i}
-                  className={`h-0.5 flex-1 rounded-full transition-colors duration-300 ${
-                    i <= activeSnap ? 'bg-navy' : 'bg-ink/10'
-                  }`}
-                />
-              ))}
-            </div>
-            <span className="text-[10px] font-sans text-ink/30 tabular-nums shrink-0">
-              {activeSnap + 1}/{totalCards}
-            </span>
-          </div>
-
           {/* Scroll container */}
           <div
             ref={scrollContainerRef}
@@ -330,7 +314,7 @@ const QuestionItem = forwardRef(function QuestionItem(
   );
 });
 
-function DialogueCard({ block, info, isFirst, index }) {
+function DialogueCard({ block }) {
   const ref = useRef(null);
   const [visible, setVisible] = useState(false);
 
@@ -349,44 +333,20 @@ function DialogueCard({ block, info, isFirst, index }) {
     <div
       ref={ref}
       data-card
-      className="flex items-center px-5 md:px-10 py-5"
-    >
-      <div
-        className={`max-w-2xl mx-auto w-full transition-all duration-700 ${
+      className={`flex items-center px-5 md:px-10 pb-5 max-w-2xl mx-auto w-full transition-all duration-700 ${
           visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
         }`}
-      >
-        {/* Speaker indicator */}
-        <div className="flex items-center gap-3 mb-5">
-          <div className={`w-8 h-8 rounded-full flex aspect-square items-center justify-center text-white text-xs font-sans font-medium ${
-            isFirst ? 'bg-navy' : 'bg-accent-red'
-          }`}>
-            {info?.nom.split(' ').map(w => w[0]).join('')}
-          </div>
-          <div>
-            <p className={`text-sm font-sans font-medium ${isFirst ? 'text-navy' : 'text-accent-red'}`}>
-              {info?.nom}
-            </p>
-            <p className="text-[10px] font-sans text-ink/35 leading-tight">{info?.titre}</p>
-          </div>
-        </div>
-
-        {/* Content */}
-        <div>
-          {block.contenu.map((para, k) => (
-            <p key={k} className="mb-4 last:mb-0 text-[15px] md:text-base leading-[1.85] text-ink/80 font-serif">
+    >
+      {/* Content */}
+      <div>
+        {block.contenu.map((para, k) =>
+          isValidElement(para) ? (
+              para
+          ) : (
+            <p key={k} className="mb-4 last:mb-0 text-[15px] md:text-base leading-[1.85] font-helevetica">
               {para}
             </p>
-          ))}
-        </div>
-
-        {/* Pull quote */}
-        {block.citation && (
-          <blockquote className='mt-8'>
-            <p className={`text-lg md:text-xl font-serif font-bold italic leading-snug ${isFirst ? 'text-navy' : 'text-accent-red'}`}>
-              « {block.citation} »
-            </p>
-          </blockquote>
+          )
         )}
       </div>
     </div>

@@ -1,3 +1,5 @@
+import PhotoQuote from "../components/dialog/PhotoQuote";
+
 const debateData = {
   "meta": {
     "serie": <>icfsbdhk
@@ -47,38 +49,25 @@ const debateData = {
           "type": "interlocuteur1",
           "intervenant": "morel",
           "contenu": [
-            "La IVe République instaure un mode de scrutin proportionnel, corrigé par la loi des apparentements en 1951 pour défavoriser gaullistes et communistes. Cette loi permettait aux partis de passer des accords grâce auxquels les listes « apparentées » remportaient l'intégralité des sièges de la circonscription si elles obtenaient ensemble plus de 50 % des voix.",
-            "La proportionnelle visait à instaurer une forte discipline des partis et un parlementarisme nettement organisé. Toutefois, la circonscription départementale a favorisé non pas la multiplication de listes partisanes, mais de listes de barons et notables locaux affirmant leur pouvoir contre le parti ou en dehors. On a ainsi assisté à la multiplication de petits groupes centristes rétifs à l'autorité. C'est la principale différence entre la France et d'autres pays européens : l'échec de la structuration autour de partis.",
-            "Un seul principe guidait les fondateurs de la Ve République : le désir de favoriser la constitution de majorités absolues. C'est pourquoi Michel Debré souhaitait s'inspirer du modèle britannique — le scrutin uninominal à un tour — qu'il considérait comme un gage de stabilité politique. Ce mode de scrutin était toutefois très controversé, car il n'avait jamais été pratiqué en France.",
-            "Le général de Gaulle fit donc le choix d'en revenir au scrutin majoritaire à deux tours, qui offrit une majorité absolue à partir de 1962. Comme le mode de scrutin avait été la variable d'ajustement sous la IIIe République, les législateurs conservèrent cette souplesse en ne l'inscrivant pas dans la Constitution."
-          ]
+            <PhotoQuote
+              photo="/img/1.png"
+              quote="Pour donner un peu de contexte, la France a déjà appliqué le principe du scrutin proportionnel <b>entre 1946 et 1958.</b>"
+              isLeft={true}
+            />,
+            "Le général de Gaulle fit donc le choix d'en revenir au vieux mode de scrutin en place depuis le Second Empire et qui avait dominé sous la IIIe République : le scrutin majoritaire à deux tours, qui lui offrit une majorité absolue à partir de 1962."
+            ]
         },
         {
           "type": "interlocuteur2",
           "intervenant": "levade",
           "contenu": [
-            "J'ajouterais que le général de Gaulle fut d'abord, sous la IVe, favorable à la proportionnelle en laquelle il voyait le moyen de contrecarrer la montée en puissance du Parti Communiste et de limiter l'influence des partis. La proportionnelle, du reste, n'a été que peu appliquée, puisque l'introduction d'une prime majoritaire, avec la loi des apparentements de 1951, l'a remise en cause.",
-            "Il ne faudrait pas conclure hâtivement que le régime des partis, sous la IVe, a rendu impossible la formation de coalitions : en réalité, c'est la proportionnelle qui a démultiplié les forces en présence. Le fait que le nombre des représentants soit proportionnel au nombre de voix a incité à la création de nouvelles formations politiques."
+            <PhotoQuote
+              photo="/img/2.png"
+              quote="J'ajouterai à cela que <b>De Gaulle est d'abord favorable à la proportionnelle</b> sous la IVe, qu'il perçoit comme un <b>moyen de contenir le Parti communiste.</b>"
+              isLeft={false}
+            />
           ]
         },
-        {
-          "type": "interlocuteur1",
-          "intervenant": "morel",
-          "contenu": [
-            "Si l'on remonte encore plus loin dans notre histoire politique, la IIIe République concevait le Parlement comme le lieu de délibération entre les « meilleurs » de chaque circonscription, selon une vision presque habermassienne de la délibération. La détermination de l'intérêt général est le fruit d'un échange rationnel encadré par des procédures.",
-            "Le programme politique représente une vision systémique de l'intérêt général, préalablement choisie avant même le débat parlementaire. Les députés doivent donc être disciplinés pour l'appliquer, ce que doit permettre la proportionnelle. Les partis entrent ensuite dans un jeu de coalition qui repose, là aussi, sur la discipline.",
-            "C'est dans le contexte d'exacerbation des tensions de la Guerre froide, qui a exclu le PCF du champ des alliances, et des répugnances gaullistes à l'idée de s'inscrire dans une logique de coalition, que la crise devient importante. Les deux formations les plus disciplinées, pesant un bon tiers des sièges, ne pouvant appuyer un gouvernement, on doit gouverner entre droite et gauche en s'appuyant sur des micro-partis centristes. Cette configuration toute française de partis fragiles et féodalisés a conduit à l'échec de la IVe République."
-          ]
-        },
-        {
-          "type": "interlocuteur2",
-          "intervenant": "levade",
-          "contenu": [
-            "La proportionnelle est le mode de scrutin « le plus récent ». Il s'est développé concomitamment à la naissance des partis, à la fin du XIXe siècle. La première proposition de loi visant à instaurer un scrutin proportionnel en France date de 1875, mais n'a pas prospéré. Avant cela, les programmes reposaient avant tout sur une personne.",
-            "C'est avec la confortation de l'Internationale communiste, portée par la SFIO et le PC, que les clivages se sont segmentés autour de partis et que le débat autour de la proportionnelle est né, à mesure que les partis à gauche y ont vu leur intérêt : valoriser leurs programmes, exister au-delà des personnes.",
-            "Ainsi, le mode de scrutin et la structuration des partis influent l'un sur l'autre. Changer le mode de scrutin ne modifie pas immédiatement le paysage politique, mais la prise en considération du paysage politique a pu justifier un changement de mode de scrutin."
-          ]
-        }
       ]
     },
     {
