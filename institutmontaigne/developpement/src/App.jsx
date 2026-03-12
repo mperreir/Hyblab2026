@@ -3,12 +3,10 @@ import Scrollytelling from './components/Scrollytelling';
 import QuestionAccordion from './components/QuestionAccordion';
 import Quiz from './components/Quiz';
 import debateData from './data/debate.jsx';
-import Timeline from './components/infographie/Timeline.jsx';
 
 export default function App() {
   return (
     <div className="min-h-screen">
-      <Timeline className="mx-auto w-fit " duration={1600} delay={200} />
       <Header meta={debateData.meta} />
       <Scrollytelling accroches={debateData.accroches} images={debateData.accrocheImages} />
       <Quiz meta={debateData.meta} />
