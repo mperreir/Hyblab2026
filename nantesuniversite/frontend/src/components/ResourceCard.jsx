@@ -27,8 +27,6 @@ export default function ResourceCard({
   title,
   left,
   top,
-  width = 612,
-  height = 187,
   description = null,
 }) {
   const color = CATEGORY_COLORS[category] ?? '#3552ff';
@@ -38,7 +36,7 @@ export default function ResourceCard({
     <div
       // className="absolute bg-white rounded-2xl px-6 shadow-sm overflow-hidden "
       className="class-resource-card"
-      style={{ left, top, width, height }}
+      style={{ left, top }}
     >
       {/* Pictogram pinned to top-left */}
       <img
