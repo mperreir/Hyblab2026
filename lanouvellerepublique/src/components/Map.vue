@@ -215,7 +215,7 @@ const onMapReady = (map) => {
 .restaurant-carousel-wrapper {
     position: absolute;
     left: 0;
-    bottom: max(0.75rem, env(safe-area-inset-bottom));
+    bottom: calc(4.2rem + 4.2rem + max(0.75rem, env(safe-area-inset-bottom)));
     width: 100%;
     z-index: 500;
     display: grid;
