@@ -14,7 +14,6 @@ img, video, canvas {
 
 /* ================= L'EN-TÊTE FIXE ================= */
 .top-bar {
-    background-color: #fbf5cd; /* Le jaune pâle */
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -52,8 +51,13 @@ img, video, canvas {
 /* ================= LA ZONE BLANCHE AVEC TITRE ET DÉGRADÉ ================= */
 /* ================= LA ZONE BLANCHE AVEC TITRE ET DÉGRADÉ ================= */
 .hero {
-    background: linear-gradient(to bottom, #ffffff 0%, #ffffff 80%, #f2efe9 100%);
-    min-height: 70vh; 
+    background: linear-gradient(
+        to bottom,
+        #ffffff 0%,
+        #ffffff 70%,
+        rgba(255,255,255,0) 100%
+    );
+    min-height: 140vh; 
     display: flex;
     flex-direction: column;
     /* On change l'alignement vertical : de 'center' à 'flex-start' */
