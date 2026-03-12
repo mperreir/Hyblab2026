@@ -384,7 +384,7 @@ function DialogueCard({ block, intervenantIndex }) {
       {/* Content */}
       <div>
         {block.contenu.map((para, k) => {
-          const isLeft = block.type === 'interlocuteur1';
+          const isLeft = block.intervenant === 'morel';
           const borderColor = SPEAKER_COLORS[intervenantIndex] ?? '#888888';
           return isValidElement(para) ? (
             <div
