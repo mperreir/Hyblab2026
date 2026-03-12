@@ -1,0 +1,259 @@
+
+
+{
+  "researcher": {
+    "id": "1",
+    "identity": {
+      "full_name": "Colin de la Higuera",
+      "title": "Spécialiste de l’apprentissage automatique, de l’intelligence artificielle et de l’Éducation Ouverte",
+      "quote": "Expert in  artificial intelligence with 15 years of experience in autonomous systems.",
+      "contact": {
+        "email": "jp.dupont@university.edu",
+        "linkedIn": "https://www.linkedin.com/in/colin-de-la-higuera-3b30aa62/",
+        "office_location": "Nantes"
+      }
+    },
+    "documents": [
+      {
+        "id": "1",
+        "category": "prix",
+        "nature": "general",
+        "title": "Open Education Global Awards",
+        "description": "Colin de la Higuera remporte le prestigieux prix des Open Education Global Awards dans la catégorie Leadership",
+        "date": 2024,
+        "url": "https://u-news.univ-nantes.fr/education-ouverte-colin-de-la-higuera-finaliste-des-prestigieux-open-education-global-awards-dans-la-categorie-leadership-1",
+        "pictogramme": "./pictogramme/prix.svg"
+      },
+      {
+        "id": "2",
+        "category": "prix",
+        "nature": "general",
+        "title": "Le Prix MERLOT",
+        "description": "Le Prix MERLOT récompense Colin de la Higuera et Jotsna Iyer",
+        "date": "Le 02 avril 2025",
+        "url": "https://www.univ-nantes.fr/universite/vision-strategie-et-grands-projets/deux-chercheurs-de-nantes-universite-recompses-par-le-prestigieux-prix-merlot",
+        "pictogramme": "./pictogramme/prix.svg"
+      },
+      {
+        "id": "3",
+        "category": "article",
+        "nature": "general",
+        "author": "La Gazette des communes",
+        "title": "Faire en sorte que l’IA serve à mieux apprendre",
+        "description": "Faire en sorte que l’IA serve à mieux apprendre",
+        "date": "19/05/2025",
+        "url": "https://www.lagazettedescommunes.com/984968/faire-en-sorte-que-lia-serve-a-mieux-apprendre/",
+        "pictogramme": "./pictogramme/article.svg"
+      },
+      {
+        "id": "4",
+        "category": "article",
+        "nature": "expert",
+        "author": "Colin de la Higuera",
+        "title": "A bibliographical study of grammatical inference",
+        "description": "Cet article présente l’inférence grammaticale, un domaine du machine learning qui consiste à apprendre automatiquement des grammaires ou des modèles à partir de données structurées (mots, chaînes, arbres). Ces modèles servent à analyser, classifier ou compresser des données, avec des applications en linguistique, reconnaissance vocale, biologie et intelligence artificielle.",
+        "date": "September 2005",
+        "url": "https://www.sciencedirect.com/science/article/abs/pii/S0031320305000221",
+        "pictogramme": "./pictogramme/recherche.svg"
+      },
+      {
+        "id": "5",
+        "category": "article",
+        "nature": "expert",
+        "author": "Colin de la Higuera",
+        "title": "Topology of strings: Median string is NP-complete",
+        "description": "Cet article étudie le problème de la chaîne médiane, qui consiste à trouver la chaîne la plus proche d’un ensemble de chaînes, un problème NP-difficile utilisé en reconnaissance vocale et biologie computationnelle.",
+        "date": "6 January 2000",
+        "url": "https://www.sciencedirect.com/science/article/pii/S0304397597002405",
+        "pictogramme": "./pictogramme/recherche.svg"
+      },
+      {
+        "id": "6",
+        "category": "article",
+        "nature": "expert",
+        "author": "Colin de la Higuera",
+        "title": "Characteristic Sets for Polynomial Grammatical Inference",
+        "description": "Cet article analyse l’efficacité de l’inférence grammaticale et montre que plusieurs classes de langages ne peuvent pas être apprises efficacement en temps polynomial.",
+        "date": "Mai 1997",
+        "url": "https://link.springer.com/article/10.1023/A:1007353007695",
+        "pictogramme": "./pictogramme/recherche.svg"
+      },
+      {
+        "id": "7",
+        "category": "article",
+        "nature": "expert",
+        "author": "Colin de la Higuera",
+        "title": "Computational Complexity of Problems on Probabilistic Grammars and Transducers",
+        "description": "Cet article montre que trouver la chaîne la plus probable dans des grammaires stochastiques est un problème NP-difficile, sans solution efficace en temps polynomial.",
+        "date": "",
+        "url": "https://link.springer.com/chapter/10.1007/978-3-540-45257-7_2",
+        "pictogramme": "./pictogramme/recherche.svg"
+      },
+      {
+        "id": "8",
+        "category": "article",
+        "nature": "expert",
+        "author": "Colin de la Higuera",
+        "title": "Marginal Inference queries in Hidden Markov Models under context-free grammar constraints",
+        "description": "Cet article étudie l’inférence probabiliste dans les modèles de Markov cachés avec contraintes de grammaires, montrant que le problème est NP-difficile et proposant un algorithme d’approximation.",
+        "date": "26 Jun 2022",
+        "url": "https://arxiv.org/abs/2206.12862",
+        "pictogramme": "./pictogramme/recherche.svg"
+      },
+      {
+        "id": "9",
+        "category": "article",
+        "nature": "general",
+        "author": "Colin de la Higuera",
+        "title": "Résultats de la recherche pour «La triche… et si l’IA»",
+        "description": "Cet article analyse la triche à l’école à l’ère de l’IA et propose de repenser l’évaluation, notamment en séparant clairement apprentissage et notation.",
+        "date": "février 2026",
+        "url": "https://chaireunescorelia.univ-nantes.fr/?s=La+triche%E2%80%A6+et+si+l%E2%80%99IA",
+        "pictogramme": "./pictogramme/article.svg"
+      },
+      {
+        "id": "10",
+        "category": "article",
+        "nature": "general",
+        "author": "Florence Sèdes",
+        "title": "Entretien avec Colin de la Higuera, chaire UNESCO",
+        "description": "Interview de Colin de la Higuera sur la seconde édition du manuel Intelligence artificielle pour les enseignants, expliquant l’impact de l’IA générative et son utilisation en éducation.",
+        "date": "19 janvier 2024",
+        "url": "https://www.epi.asso.fr/revue/articles/a2501c.htm",
+        "pictogramme": "./pictogramme/article.svg"
+      },
+      {
+        "id": "11",
+        "category": "conference",
+        "nature": "general",
+        "author": "Colin de la Higuera",
+        "title": "Presenting OEG 201 in Nantes",
+        "description": "",
+        "date": "18 Novembre 2020",
+        "url": "https://mediaserver.univ-nantes.fr/videos/presenting-oeg-201-in-nantes/",
+        "pictogramme": "./pictogramme/conference.svg"
+      },
+      {
+        "id": "12",
+        "category": "conference",
+        "nature": "general",
+        "author": "Colin de la Higuera",
+        "title": "L'intelligence artificielle, l'école, les enseignant.es. Partie 1",
+        "description": "L’intelligence artificielle est déjà là dans de nombreux secteurs. L’école ne fait pas exception. Lors de cet atelier, Colin et Margarida échangent au sujet de l’intelligence artificielle, de ses différentes interactions dans l’école et à l’extérieur de celle-ci. La discussion porte en particulier sur les questions de pensée critique et de citoyenneté numérique, ainsi que sur le rôle que l’IA peut jouer à l’école.",
+        "date": "18 Mai 2022",
+        "url": "https://mediaserver.univ-nantes.fr/videos/gtnum-ia_eo-axe-3-atelier-du-11-mai-2022-lintelligence-artificielle-lecole-les-enseignantes-partie-1/",
+        "pictogramme": "./pictogramme/conference.svg"
+      },
+      {
+        "id": "13",
+        "category": "conference",
+        "nature": "general",
+        "author": "Colin de la Higuera",
+        "title": "L'intelligence artificielle, l'école, les enseignant.es. Partie 2",
+        "description": "L’intelligence artificielle est déjà là dans de nombreux secteurs. L’école ne fait pas exception. Lors de cet atelier, Colin et Margarida échangent au sujet de l’intelligence artificielle, de ses différentes interactions dans l’école et à l’extérieur de celle-ci. La discussion porte en particulier sur les questions d’éthique et sur la formation de toutes et tous à l’intelligence artificielle.",
+        "date": "20 Juin 2022",
+        "url": "https://mediaserver.univ-nantes.fr/videos/gtnum-ia_eo-axe-3-atelier-du-1er-juin-2022-lintelligence-artificielle-lecole-les-enseignantes-partie-2/",
+        "pictogramme": "./pictogramme/conference.svg"
+      },
+      {
+        "id": "14",
+        "category": "conference",
+        "nature": "journalistique",
+        "author": "Colin de la Higuera",
+        "title": "Lancement du reseau unitwin UNOE",
+        "description": "",
+        "date": "26/06/2024",
+        "url": "https://mediaserver.univ-nantes.fr/videos/lancement-reseau-unitwin-unoe/",
+        "pictogramme": "./pictogramme/conference.svg"
+      },
+      {
+        "id": "15",
+        "category": "podcast",
+        "nature": "journalistique",
+        "author": "Colin de la Higuera",
+        "title": "Comment mettre l’IA au service de l’autonomisation des femmes ?",
+        "description": "",
+        "date": "septembre 2023",
+        "url": "https://mediaserver.univ-nantes.fr/videos/ia-les-femmes-table-ronde-comment-mettre-lia-au-service-de-lautonomisation-des-femmes-septembre-2023/",
+        "pictogramme": "./pictogramme/podcast.svg"
+      },
+      {
+        "id": "16",
+        "category": "podcast",
+        "nature": "journalistique",
+        "author": "Colin de la Higuera",
+        "title": "Les IA génératives bousculent l’éducation, quels impacts sur l’évaluation ?",
+        "description": "Table ronde de la Semaine du Libre Éducatif 2023 où des experts discutent de l’usage des IA génératives en éducation, leurs enjeux pédagogiques, éthiques et d’évaluation.",
+        "date": "22 juin 2023",
+        "url": "https://mediaserver.univ-nantes.fr/videos/table-ronde-n2-les-ia-generatives-bousculent-leducation-quels-impacts-sur-levaluation/",
+        "pictogramme": "./pictogramme/podcast.svg"
+      },
+      {
+        "id": "17",
+        "category": "podcast",
+        "nature": "journalistique",
+        "author": "Colin de la Higuera, Margarida Romero",
+        "title": "Ressources éducatives libres pour et par les enseignants -DNE- Salon Educatec / Educatice",
+        "description": "",
+        "date": "12 juillet 2022",
+        "url": "https://mediaserver.univ-nantes.fr/videos/ressources-educatives-libres-pour-et-par-les-enseignants-dne-salon-educatec-educatice-novembre-2021/",
+        "pictogramme": "./pictogramme/podcast.svg"
+      },
+      {
+        "id": "18",
+        "category": "livre",
+        "nature": "expert",
+        "author": "Colin de la Higuera, Jotsna Iyer",
+        "title": "IA pour les enseignants : un manuel ouvert",
+        "description": "",
+        "date": "",
+        "url": "./documents/expert/IA-pour-les-enseignants-un-manuel-ouvert-1729161531.pdf",
+        "pictogramme": "./pictogramme/livre.svg"
+      },
+      {
+        "id": "19",
+        "category": "conference",
+        "nature": "Journalistique",
+        "author": "Colin de la Higuera",
+        "title": "L'enseignant de 202X sera-t-il un-e robot?",
+        "description": "",
+        "date": "2021",
+        "url": "./documents/Journalistique/Conference_Colin_DE_LA_HIGUERA_colin-de-la-higuera-IA.mp4",
+        "pictogramme": "./pictogramme/conference.svg"
+      },
+      {
+        "id": "20",
+        "category": "conference",
+        "nature": "Journalistique",
+        "author": "Colin de la Higuera",
+        "title": "L'inteligence artificielle où en sommes nous?",
+        "description": "",
+        "date": "2021",
+        "url": "./documents/Journalistique/Conférence_Colin_DE_LA_HIGUERA-Intelligence_artificielle_ou-en-sommes-nous.mp4",
+        "pictogramme": "./pictogramme/conference.svg"
+      },
+      {
+        "id": "21",
+        "category": "conference",
+        "nature": "Journalistique",
+        "author": "Colin de la Higuera",
+        "title": "Avec l'IA, quel nouveau contrat entre l'élève et l'enseignant?",
+        "description": "",
+        "date": "19 septembre 2025",
+        "url": "./documents/Journalistique/Table_ronde_CdH_Avec-IA-quel-nouveau-contrat-pedagogique.mp4",
+        "pictogramme": "./pictogramme/conference.svg"
+      },
+      {
+        "id": "22",
+        "category": "conference",
+        "nature": "Journalistique",
+        "author": "Colin de la Higuera",
+        "title": "Les intelligences artificielle génératives bousculent l'éducation, quels impacts sur l'évaluation?",
+        "description": "",
+        "date": "12 Avril 2023",
+        "url": "./documents/Journalistique/Table_ronde_CdH_IA_generatives.mp4",
+        "pictogramme": "./pictogramme/conference.svg"
+      }
+    ]
+  }
+}
