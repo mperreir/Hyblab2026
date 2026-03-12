@@ -3,6 +3,7 @@ import Quote from "../components/question/quote";
 import Timeline from "../components/infographie/Timeline";
 import DoughnutChart from "../components/infographie/DoughnutChart";
 import {DropZone, AnswerBank} from "../components/infographie/Puzzle";
+import RepartitionDynamique from "../components/infographie/RepartitionDynamique";
 
 const PATH_PUBLIC = import.meta.env.DEV ? '.' : './institutmontaigne/public';
 
@@ -145,6 +146,7 @@ const debateData = {
             />,
             "En surface, c'est simple : un parti reçoit un nombre de sièges proportionnel aux voix obtenus. Mais c'est une véritable ingénierie électorale qui se cache derrière ce terme.",
             "Différentes proportionnelles existent en fonction des variables suivantes :",
+            <RepartitionDynamique />,
           ],
         },
         {
