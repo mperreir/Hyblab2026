@@ -4,228 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Qui fraude la CAF ?</title>
+    
     <link rel="stylesheet" href="css/style.css">
-    <script src="js/index.js" defer></script>
     <script src="https://unpkg.com/scrollama"></script>
-
-    <style>
-        body, html {
-            margin: 0;
-            padding: 0;
-            font-family: sans-serif;
-            background-color: #f4f4f4;
-        }
-
-        #scrolly {
-            position: relative;
-        }
-
-        /* L'image de fond fixe */
-        figure {
-            position: sticky;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            margin: 0;
-            background-size: cover;
-            background-position: center;
-            transition: background-image 0.5s ease-in-out; 
-            z-index: 0;
-        }
-
-        /* Voile sombre pour que le texte reste lisible sur l'image */
-        figure::after {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.4);
-        }
-
-        /* Le conteneur principal du texte qui défile */
-        article {
-            position: relative;
-            z-index: 1;
-            padding: 0 20px;
-            margin-top: -100vh; 
-            padding-bottom: 100vh;
-        }
-
-        /* Chaque section qui prend 100% de la hauteur de l'écran */
-        .step {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            color: white;
-        }
-
-        /* La boîte qui contient le texte */
-        .step-content {
-            width: 100%;
-            max-width: 500px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        /* L'option pour aligner la boîte à droite */
-        .step.align-right .step-content {
-            margin: 0 5% 0 auto; 
-            text-align: right; 
-        }
-
-        .step h1 {
-            font-size: 4rem;
-            margin: 0 0 10px 0;
-            text-shadow: 2px 2px 5px rgba(0,0,0,0.7);
-        }
-
-        .step p {
-            font-size: 1.5rem;
-            background: rgba(0, 0, 0, 0.7);
-            padding: 20px;
-            border-radius: 8px;
-            border: 2px solid transparent;
-            transition: border-color 0.3s;
-        }
-
-        .step.is-active p {
-            border-color: #ffcc00; 
-        }
-        /* =========================================
-           ADAPTATION POUR LES TÉLÉPHONES (MOBILE)
-           ========================================= */
-        @media (max-width: 768px) {
-            /* 1. On réduit la taille des polices */
-            .step h1 { font-size: 2.5rem; }
-            .step p { font-size: 1.1rem; padding: 15px; }
-
-            /* 2. On recentre tout */
-            .step.align-right .step-content {
-                margin: 0 auto; 
-                text-align: center; 
-            }
-
-            /* 3. On modifie l'affichage de l'image de fond */
-            figure {
-                height: 100dvh; 
-                background-size: contain; /* L'image s'adapte pour tenir en entier */
-                background-repeat: no-repeat; /* Évite que l'image se répète si elle est plus petite que l'écran */
-                background-color: #000; /* Fond noir derrière l'image si elle ne remplit pas tout l'écran */
-            }
-
-            .step { height: 100dvh; }
-        }
-        /* =========================
-            QUIZ INLINE
-            ========================= */
-            .quiz-content {
-                text-align: center;
-            }
-
-            .quiz-buttons {
-                display: flex;
-                flex-direction: column;
-                gap: 15px;
-                margin-top: 25px;
-            }
-
-            .quiz-btn {
-                font-size: 1.1rem;
-                padding: 16px 20px;
-                border: none;
-                border-radius: 10px;
-                cursor: pointer;
-                background: rgba(255, 255, 255, 0.9);
-                color: #111;
-                transition: transform 0.2s ease, background 0.2s ease;
-            }
-
-            .quiz-btn:hover {
-                transform: scale(1.02);
-                background: #ffcc00;
-            }
-
-            .quiz-answer {
-                display: none;
-                margin-top: 20px;
-            }
-
-            .quiz-answer.active {
-                display: block;
-            }
-
-            .quiz-answer p {
-                background: rgba(0, 0, 0, 0.78);
-                color: white;
-                border-radius: 8px;
-                padding: 20px;
-            }
-
-            /* Mobile */
-            @media (max-width: 768px) {
-                .quiz-btn {
-                    font-size: 1rem;
-                    padding: 14px 16px;
-                }
-
-                .quiz-buttons {
-                    gap: 12px;
-                }
-            }
-
-        /* =========================
-            SOURCES / FOOTER
-            ========================= */
-
-            .credits {
-                padding: 60px 20px;
-                background: #111;
-                color: white;
-                text-align: center;
-            }
-
-            .credits h2 {
-                margin-top: 40px;
-                font-size: 2rem;
-            }
-
-            .credits p {
-                max-width: 700px;
-                margin: 10px auto;
-                line-height: 1.6;
-            }
-
-            .credits a {
-                color: #ffcc00;
-                text-decoration: none;
-            }
-
-            .credits a:hover {
-                text-decoration: underline;
-            }
-
-            .logos {
-                margin-top: 30px;
-                display: flex;
-                justify-content: center;
-                gap: 40px;
-                flex-wrap: wrap;
-            }
-
-            .logos img {
-                height: 60px;
-                background: white;
-                padding: 10px;
-                border-radius: 6px;
-            }
-
-            .credits-names {
-                margin-top: 30px;
-                font-size: 0.9rem;
-                opacity: 0.8;
-            }
-    </style>
+    <script src="js/index.js" defer></script>
 </head>
 <body>
 
@@ -233,283 +15,175 @@
         <h2 style="color: #333;">Faites défiler vers le bas ↓</h2>
     </div>
 
-    <section id="scrolly">
-        <figure id="background-figure">
-            <video autoplay loop muted playsinline></video>
-        </figure>
-        <article>
-            <div class="step" data-image="img/caf.png">
-                    <h1>Mais qui fraude à la CAF ?</h1>
-            </div>
-
-
-            <div class="step" data-image="img/caf.png">
-                <div class="step-content">
-                    <p>Depuis 2010, la Caisse d'allocation familiale (CAF) utilise un algorithme pour évaluer le risque de fraude des allocataires. Depuis toutes les données qu'elle a à sa disposition, la CAF calcule ce qu'elle appelle un "score de risque de fraude" selon une note allant de 0 (le risque de fraude est faible) à 1 (le risque est maximum). </p>
-                </div>
-            </div>
-
-
-            <div class="quiz-container" id="quiz-1">
-              <h2>Quizz 1</h2>
-              <p class="question">Alors selon vous, qui fraude à la CAF ?</p>
-              <div class="options">
-                <button class="option-btn" data-correct="false">Gyunay qui fait un petit trafic de cartes vitales volées ?</button>
-                <button class="option-btn" data-correct="true">Marion, mère isolée 3 enfants, aux revenus aléatoires qui bénéficie d'aides sociales ?</button>
-              </div>
-            </div>
-
-            
-            <div class="step" data-image="img/caf.png">
-                <div class="step-content">
-                    <p>Contrairement à ce qu'on pourrait croire, la fraude à la carte vitale et l’usurpation d’identité est quasiment inexistante en France, elle concerne moins d’une dizaine de cas par an et porte sur quelques millions d’euros seulement. Le score de risque de fraude de la CAF a beaucoup de mal à détecter ces cas. Pour la CAF, c'est Marion et des profils similaires aux siens qui sont le plus à même de frauder.</p>
-              </div>
-            </div>
-
-
-            <div class="step" data-image="img/caf.png">
-                <div class="step-content">
-                    <p>Pour mieux comprendre, écoutons le témoignage de Marion inspiré de celui recueilli par l'émission "Les Pieds sur Terre" de France Culture. </p>
-                </div>
-            </div>
-            
-            
-            <div class="quiz-container" id="quiz-2">
-              <h2>Quizz 2</h2>
-              <p class="question">Selon vous, pourquoi Marion est-elle contrôlée ?</p>
-
-              <div class="options">
-                <button class="option-btn" data-correct="true">Elle a fait une erreur dans sa déclaration de revenus mensuelle.</button>
-                <button class="option-btn" data-correct="true">Son employeur a fait une erreur dans sa télédéclaration des revenus de Marion.</button>
-                <button class="option-btn" data-correct="true">L'un de ses ex-conjoints a versé avec retard la pension alimentaire qu'il devait du mois précédent.</button>
-              </div>
-
-              <div class="feedback" id="feedback-2"></div>
-              <button class="validate-btn" id="validate-btn-2">Valider mes réponses</button>
-            </div>
-
-            
-
-            <div class="step" data-image="img/caf.png">
-                <div class="step-content">
-                    <p>Et bien cela peut-être l'une des trois raisons. Le contrôle est déclenché par un score calculé automatiquement.</p>
-              </div>
-            </div>
-            
-            
-            <div class="step" data-image="img/caf.png">
-                <div class="step-content">
-                    <p>Il ne détecte pas une fraude intentionnelle, comme le laisse supposer le terme de fraude, mais un risque d'indu, c'est-à-dire le fait que la CAF ait versé trop d'argent à un bénéficiaire. Ce que la CAF calcule, c'est le risque d'avoir perçu « 600 euros d’allocations en trop sur les 6 derniers mois ». </p>
-                </div>
-            </div>
-            <div class="step" data-image="img/main.jpg"> <!-- TODO -->
-                <div class="step-content">
-                  <p >
-                    Le problème est que l'algorithme considère un indu comme une fraude.</p>
-                </div>
-            </div>
-            <div class="step" data-image="img/main.jpg"> <!-- TODO -->
-                <div class="step-content">
-                  <p >Dans cette situation, nous ne sommes pas du tout dans ce que l'imaginaire politique appelle de la fraude sociale. 
-                    Nous sommes bien plus dans la difficulté des calculs de revenus complexes car aléatoires et entremêlés d'aides sociales, que confrontés à une fraude massive et volontaire des bénéficiaires. 
-                  </p>
-                </div>
-            </div>
-            <div class="step" data-image="img/main.jpg"> <!-- TODO -->
-                <div class="step-content">
-                  <p >Si l'on en croit le score de risque de fraude de la CAF, les mères isolées sont celles qui sont parmi les publics les plus à même de frauder la CAF :
-                    si elles ne représentent que 14% des allocataires en 2024, elles représentent 40% des plus hauts scores de risque de fraude selon l'algorithme de la CAF.
-                  </p>
-                </div>
-            </div>
-            <div class="step" data-image="img/main.jpg"> <!-- TODO -->
-                <div class="step-content">
-                  <p >De nombreux critères influent sur le score de risque de fraude de la CAF. 
-
-                  <br>Parmi les principaux : 
-                  <br>-Le fait d'avoir des revenus faibles fait toujours augmenter le score.
-                  <br>-Le fait de bénéficier de certaines prestations sociales.
-                  <br>-Le fait de recevoir une pension alimentaire (qu'elle ait été touchée ou non). 
-                  <br>-Le fait de toucher plus de 3 prestations sociales ou de toucher plus de 200 euros d'allocations par mois… 
-
-                  </p>
-                </div>
-            </div>
-            <div class="step" data-image="img/main.jpg"> <!-- TODO -->
-                <div class="step-content">
-                  <p >La conséquence, c’est que ce sont les personnes les plus précaires, celles qui accumulent des critères de précarité,
-                     qui vont être surciblées et signalées comme à risque de frauder la CAF. 
-                  </p>
-                </div>
-            </div>
-
-            <!-- =========================
-                CHAPITRE 4
-                ========================= -->
-
-            <div class="step" data-image="img/foyer_benificiaire.png">
-                <div class="step-content">
-                    <h1>Chapitre 4 — Le vrai profil des fraudeurs</h1>
-                    <p>Reposons la question…</p>
-                </div>
-            </div>
-
-            <div class="step quiz-step" data-image="img/IMG_3850.jpg">
-                <div class="step-content quiz-content">
-                    <h1>Qui fraude à la CAF ?</h1>
-
-                    <div class="quiz-buttons">
-                        <button class="quiz-btn" data-target="answer-beneficiaires">
-                            Les bénéficiaires d'aides sociales comme Marion ?
-                        </button>
-
-                        <button class="quiz-btn" data-target="answer-employeurs">
-                            Les employeurs qui ne font pas toutes les déclarations sociales qu'ils doivent faire ?
-                        </button>
-                    </div>
-
-                    <div class="quiz-answer" id="answer-beneficiaires">
-                        <p>
-                            Selon le Haut Conseil du financement de la protection sociale,
-                            la part des titulaires de minima sociaux est faible.
-                            La fraude au RSA provenant des allocataires représente
-                            1,5 milliard d’euros sur l’ensemble de la fraude évaluée.
-                        </p>
-                    </div>
-
-                    <div class="quiz-answer" id="answer-employeurs">
-                        <p>
-                            En fait, l’essentiel des fraudes sociales est le fait des entreprises.
-                            6,9 milliards de cotisations seraient éludées du fait du travail dissimulé
-                            des entreprises et des travailleurs indépendants.
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="step" data-image="img/foyer_benificiaire.png">
-                <div class="step-content">
-                    <p>
-                        On estime que, du fait d’un fort taux de non-recours,
-                        c’est-à-dire de personnes qui n’activent pas les droits auxquels elles pourraient prétendre,
-                        c’est 3 milliards d’euros qui ne sont pas versés à des personnes éligibles au RSA,
-                        soit de quoi couvrir le taux de fraude des allocataires détectés par la CAF.
-                    </p>
-                </div>
-            </div>
-
-            <div class="step" data-image="img/IMG_3850.jpg">
-                <div class="step-content">
-                    <p>
-                        Ce que montrent ces chiffres, c’est que ce ne sont pas les plus pauvres
-                        qui fraudent le plus. La lutte contre la fraude sociale des allocataires
-                        apparaît bien moins pertinente que la lutte contre les cotisations dissimulées
-                        ou la fraude fiscale.
-                    </p>
-                </div>
-            </div>
-            <!-- =========================
-                CHAPITRE 5
-                ========================= -->
-
-            <div class="step" data-image="img/IMG_3850.jpg">
-                <div class="step-content">
-                    <h1>Chapitre 5 — Perspectives</h1>
-                </div>
-            </div>
-
-            <div class="step" data-image="img/polytech.jpg">
-                <div class="step-content">
-                    <p>
-                        L’histoire de Marion n’a rien d’exceptionnelle. Elle illustre la réalité
-                        vécue par de nombreux allocataires ciblés par le score de risque de fraude
-                        de la CAF en raison de la précarité de leur situation.
-                    </p>
-                </div>
-            </div>
-
-            <div class="step" data-image="img/fraude_comparaison.png">
-                <div class="step-content">
-                    <p>
-                        25 associations, dont la Ligue des droits de l’homme, La Quadrature du Net
-                        ou Amnesty International, ont déposé un recours au Conseil d’État pour faire
-                        reconnaître l’illégalité de l’algorithme utilisé par la CAF.
-                    </p>
-                </div>
-            </div>
-
-            <div class="step" data-image="img/foyer_benificiaire.png">
-                <div class="step-content">
-                    <p>
-                        Pour le Défenseur des droits, le score de risque de fraude de la CAF produit
-                        un surcontrôle des populations les plus précaires, selon une forme de discrimination
-                        fondée sur la vulnérabilité économique.
-                    </p>
-                </div>
-            </div>
-
-            <div class="step" data-image="img/polytech.jpg">
-                <div class="step-content">
-                    <p>
-                        L’algorithme de score de risque de fraude de la CAF ne fait qu’aller chercher là où
-                        les prestations sont complexes et multiples. Il ne cherche qu’à détecter des indus
-                        plutôt que des fraudes, tout en automatisant une surveillance invasive de l’ensemble
-                        des allocataires.
-                    </p>
-                </div>
-            </div>
-
-            <div class="step" data-image="img/IMG_3850.jpg">
-                <div class="step-content">
-                    <p>
-                        Le Conseil de l’Europe, qui a compris que ces formes de ciblage dans les algorithmes
-                        sociaux tendent à discriminer certains publics, invite à les abandonner pour renforcer
-                        une sélection aléatoire des bénéficiaires à contrôler.
-                    </p>
-                </div>
-            </div>
-
-            <div class="step" data-image="img/foyer_benificiaire.png">
-                <div class="step-content">
-                    <p>
-                        Les mères isolées, qui se voient couper leurs aides pour des indus aux montants très faibles,
-                        qui subissent des contrôles répétés et envahissants, sont aujourd’hui désignées comme les
-                        fraudeuses de la CAF.
-                    </p>
-                </div>
-            </div>
-
-            <div class="step" data-image="img/fraude_comparaison.png">
-                <div class="step-content">
-                    <p>
-                        Assurément, le contrôle se trompe de cible.
-                        <br><br>
-                        Écoutons-les !
-                    </p>
-                </div>
-            </div>
-
-            <div class="step" data-image="img/polytech.jpg">
-                <div class="step-content">
-                    <p>
-                        On peut ici ajouter ensuite un lien vers le reportage ou vers la suite du projet.
-                    </p>
-                </div>
-            </div>
-        </article>
-    </section>
-
+    <div id="scrolly">
+        
         <section class="scene">
             <div class="bg-container">
-                <video class="bg-media" src="video/PinVideoDownloader.net-video.mp4" autoplay loop muted playsinline></video>
+                <div class="bg-media" style="background-image: url('img/caf.png');"></div>
             </div>
             
             <article>
                 <div style="height: 100dvh;"></div>
 
-                <div class="step" data-audio="audio/son_amongUS.mp3">
+                <div class="step">
                     <div class="step-content">
-                        <p style="margin-bottom: 20px;">Test audio/vidéo</p>
+                        <h1>Mais qui fraude à la CAF ?</h1>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-content">
+                        <p>Depuis 2010, la Caisse d'allocation familiale (CAF) utilise un algorithme pour évaluer le risque de fraude des allocataires. Depuis toutes les données qu'elle a à sa disposition, la CAF calcule ce qu'elle appelle un "score de risque de fraude" selon une note allant de 0 (le risque de fraude est faible) à 1 (le risque est maximum).</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-content">
+                        <div class="quiz-container" id="quiz-1">
+                          <h2>Quizz 1</h2>
+                          <p class="question">Alors selon vous, qui fraude à la CAF ?</p>
+                          <div class="options">
+                            <button class="option-btn" data-correct="false">Gyunay qui fait un petit trafic de cartes vitales volées ?</button>
+                            <button class="option-btn" data-correct="true">Marion, mère isolée 3 enfants, aux revenus aléatoires qui bénéficie d'aides sociales ?</button>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-content">
+                        <p>Contrairement à ce qu'on pourrait croire, la fraude à la carte vitale et l’usurpation d’identité est quasiment inexistante en France, elle concerne moins d’une dizaine de cas par an et porte sur quelques millions d’euros seulement. Le score de risque de fraude de la CAF a beaucoup de mal à détecter ces cas. Pour la CAF, c'est Marion et des profils similaires aux siens qui sont le plus à même de frauder.</p>
+                  </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-content">
+                        <p>Pour mieux comprendre, écoutons le témoignage de Marion inspiré de celui recueilli par l'émission "Les Pieds sur Terre" de France Culture.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-content">
+                        <div class="quiz-container" id="quiz-2">
+                          <h2>Quizz 2</h2>
+                          <p class="question">Selon vous, pourquoi Marion est-elle contrôlée ?</p>
+                          <div class="options">
+                            <button class="option-btn" data-correct="true">Elle a fait une erreur dans sa déclaration de revenus mensuelle.</button>
+                            <button class="option-btn" data-correct="true">Son employeur a fait une erreur dans sa télédéclaration des revenus de Marion.</button>
+                            <button class="option-btn" data-correct="true">L'un de ses ex-conjoints a versé avec retard la pension alimentaire qu'il devait du mois précédent.</button>
+                          </div>
+                          <div class="feedback" id="feedback-2"></div>
+                          <button class="validate-btn" id="validate-btn-2">Valider mes réponses</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-content">
+                        <p>Et bien cela peut-être l'une des trois raisons. Le contrôle est déclenché par un score calculé automatiquement.</p>
+                  </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-content">
+                        <p>Il ne détecte pas une fraude intentionnelle, comme le laisse supposer le terme de fraude, mais un risque d'indu, c'est-à-dire le fait que la CAF ait versé trop d'argent à un bénéficiaire. Ce que la CAF calcule, c'est le risque d'avoir perçu « 600 euros d’allocations en trop sur les 6 derniers mois ».</p>
+                    </div>
+                </div>
+
+                <div style="height: 100dvh;"></div>
+            </article>
+        </section>
+
+        <section class="scene">
+            <div class="bg-container">
+                <div class="bg-media" style="background-image: url('img/main.jpg');"></div>
+            </div>
+            
+            <article>
+                <div style="height: 100dvh;"></div>
+                
+                <div class="step">
+                    <div class="step-content">
+                      <p style="font-style: italic;">"Je dois déclarer mes ressources tous les mois. Mais ce n'est pas toujours simple. Mon fils travaille l'été. Je reçois parfois une pension. Je fais parfois des heures en plus. J'hésite sur la déclaration"</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-content">
+                      <p>Le problème est que l'algorithme considère un indu comme une fraude.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-content">
+                      <p>Dans cette situation, nous ne sommes pas du tout dans ce que l'imaginaire politique appelle de la fraude sociale. Nous sommes bien plus dans la difficulté des calculs de revenus complexes car aléatoires et entremêlés d'aides sociales, que confrontés à une fraude massive et volontaire des bénéficiaires.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-content">
+                      <p>Si l'on en croit le score de risque de fraude de la CAF, les mères isolées sont celles qui sont parmi les publics les plus à même de frauder la CAF : si elles ne représentent que 14% des allocataires en 2024, elles représentent 40% des plus hauts scores de risque de fraude selon l'algorithme de la CAF.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-content">
+                      <p>De nombreux critères influent sur le score de risque de fraude de la CAF. <br><br>Parmi les principaux : <br>- Le fait d'avoir des revenus faibles fait toujours augmenter le score.<br>- Le fait de bénéficier de certaines prestations sociales.<br>- Le fait de recevoir une pension alimentaire.<br>- Le fait de toucher plus de 3 prestations sociales… </p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-content">
+                      <p>La conséquence, c’est que ce sont les personnes les plus précaires, celles qui accumulent des critères de précarité, qui vont être surciblées et signalées comme à risque de frauder la CAF.</p>
+                    </div>
+                </div>
+
+                <div style="height: 100dvh;"></div>
+            </article>
+        </section>
+
+        <section class="scene">
+            <div class="bg-container">
+                <div class="bg-media" style="background-image: url('img/foyer_benificiaire.png');"></div>
+            </div>
+            
+            <article>
+                <div style="height: 100dvh;"></div>
+
+                <div class="step">
+                    <div class="step-content">
+                        <h1>Chapitre 4 — Le vrai profil des fraudeurs</h1>
+                        <p>Reposons la question…</p>
+                    </div>
+                </div>
+
+                <div class="step quiz-step">
+                    <div class="step-content quiz-content">
+                        <div class="quiz-container">
+                            <h2>Qui fraude à la CAF ?</h2>
+                            <div class="options">
+                                <button class="option-btn chap4-btn" data-target="answer-beneficiaires">Les bénéficiaires d'aides sociales comme Marion ?</button>
+                                <button class="option-btn chap4-btn" data-target="answer-employeurs">Les employeurs qui ne font pas toutes les déclarations sociales qu'ils doivent faire ?</button>
+                            </div>
+                            <div class="quiz-answer" id="answer-beneficiaires">
+                                <p style="background: none; border: none; padding: 0;">Selon le Haut Conseil du financement de la protection sociale, la part des titulaires de minima sociaux est faible. La fraude au RSA provenant des allocataires représente 1,5 milliard d’euros sur l’ensemble de la fraude évaluée.</p>
+                            </div>
+                            <div class="quiz-answer" id="answer-employeurs">
+                                <p style="background: none; border: none; padding: 0;">En fait, l’essentiel des fraudes sociales est le fait des entreprises. 6,9 milliards de cotisations seraient éludées du fait du travail dissimulé des entreprises et des travailleurs indépendants.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-content">
+                        <p>On estime que, du fait d’un fort taux de non-recours, c’est-à-dire de personnes qui n’activent pas les droits auxquels elles pourraient prétendre, c’est 3 milliards d’euros qui ne sont pas versés à des personnes éligibles au RSA, soit de quoi couvrir le taux de fraude des allocataires détectés par la CAF.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-content">
+                        <p>Ce que montrent ces chiffres, c’est que ce ne sont pas les plus pauvres qui fraudent le plus. La lutte contre la fraude sociale des allocataires apparaît bien moins pertinente que la lutte contre les cotisations dissimulées ou la fraude fiscale.</p>
                     </div>
                 </div>
 
@@ -526,10 +200,39 @@
                 <div style="height: 100dvh;"></div>
 
                 <div class="step">
-                  <div class="step-content">
-                    <h1>L'Équipe</h1>
-                    <p>Ce site a été mis en forme par des étudiants de Polytech et de l'École de Design.</p>
-                  </div>
+                    <div class="step-content">
+                        <h1>Chapitre 5 — Perspectives</h1>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-content">
+                        <p>L’histoire de Marion n’a rien d’exceptionnelle. Elle illustre la réalité vécue par de nombreux allocataires ciblés par le score de risque de fraude de la CAF en raison de la précarité de leur situation.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-content">
+                        <p>25 associations, dont la Ligue des droits de l’homme, La Quadrature du Net ou Amnesty International, ont déposé un recours au Conseil d’État pour faire reconnaître l’illégalité de l’algorithme utilisé par la CAF.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-content">
+                        <p>Pour le Défenseur des droits, le score de risque de fraude de la CAF produit un surcontrôle des populations les plus précaires, selon une forme de discrimination fondée sur la vulnérabilité économique.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-content">
+                        <p>L’algorithme de score de risque de fraude de la CAF ne fait qu’aller chercher là où les prestations sont complexes et multiples. Il ne cherche qu’à détecter des indus plutôt que des fraudes, tout en automatisant une surveillance invasive de l’ensemble des allocataires.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-content">
+                        <p>Le Conseil de l’Europe, qui a compris que ces formes de ciblage dans les algorithmes sociaux tendent à discriminer certains publics, invite à les abandonner pour renforcer une sélection aléatoire des bénéficiaires à contrôler.</p>
+                    </div>
                 </div>
 
                 <div style="height: 100dvh;"></div>
@@ -537,7 +240,7 @@
         </section>
 
         <section class="scene"> 
-            <div class="bg-container" style="background: transparent; display: flex; align-items: center; justify-content: center;">
+            <div class="bg-container" style="display: flex; align-items: center; justify-content: center;">
                 <div class="spheres-container" id="spheres-animation">
                     <img src="img/allocataires_caf.png" alt="Allocataires de la CAF" class="img-caf">
                     <img src="img/meres_isolees.png" alt="Mères isolées 14%" class="img-meres">
@@ -552,58 +255,21 @@
 
         <section class="scene">
             <div class="bg-container">
-                <div class="bg-media" style="background-image: url('img/main.jpg');"></div>
+                <video class="bg-media" src="video/PinVideoDownloader.net-video.mp4" autoplay loop muted playsinline></video>
             </div>
             
             <article>
                 <div style="height: 100dvh;"></div>
-                
-                <div class="step">
-                    <div class="step-content">
-                      <p style="font-style: italic;">"Je dois déclarer mes ressources tous les mois. Mais ce n'est pas toujours simple. Mon fils travaille l'été. 
-                      Je reçois parfois une pension. Je fais parfois des heures en plus. J'hésite sur la déclaration"</p>
-                    </div>
-                </div>
 
                 <div class="step">
                     <div class="step-content">
-                      <p>Le problème est que l'algorithme considère un indu comme une fraude.</p>
+                        <p>Les mères isolées, qui se voient couper leurs aides pour des indus aux montants très faibles, qui subissent des contrôles répétés et envahissants, sont aujourd’hui désignées comme les fraudeuses de la CAF.</p>
                     </div>
                 </div>
 
-                <div class="step">
+                <div class="step" data-audio="audio/son_amongUS.mp3">
                     <div class="step-content">
-                      <p>Dans cette situation, nous ne sommes pas du tout dans ce que l'imaginaire politique appelle de la fraude sociale. 
-                        Nous sommes bien plus dans la difficulté des calculs de revenus complexes car aléatoires et entremêlés d'aides sociales, que confrontés à une fraude massive et volontaire des bénéficiaires. 
-                      </p>
-                    </div>
-                </div>
-
-                <div class="step">
-                    <div class="step-content">
-                      <p>Si l'on en croit le score de risque de fraude de la CAF, les mères isolées sont celles qui sont parmi les publics les plus à même de frauder la CAF :
-                        si elles ne représentent que 14% des allocataires en 2024, elles représentent 40% des plus hauts scores de risque de fraude selon l'algorithme de la CAF.
-                      </p>
-                    </div>
-                </div>
-
-                <div class="step">
-                    <div class="step-content">
-                      <p>De nombreux critères influent sur le score de risque de fraude de la CAF. <br><br>
-                      Parmi les principaux : <br>
-                      - Le fait d'avoir des revenus faibles fait toujours augmenter le score.<br>
-                      - Le fait de bénéficier de certaines prestations sociales.<br>
-                      - Le fait de recevoir une pension alimentaire. <br>
-                      - Le fait de toucher plus de 3 prestations sociales… 
-                      </p>
-                    </div>
-                </div>
-
-                <div class="step">
-                    <div class="step-content">
-                      <p>La conséquence, c’est que ce sont les personnes les plus précaires, celles qui accumulent des critères de précarité,
-                         qui vont être surciblées et signalées comme à risque de frauder la CAF. 
-                      </p>
+                        <p>Assurément, le contrôle se trompe de cible.<br><br>Écoutons-les !</p>
                     </div>
                 </div>
 
@@ -613,137 +279,24 @@
 
     </div>
 
-    <div style="height: 50dvh; display: flex; align-items: center; justify-content: center;">
-        <h2 style="color: #333;">Fin de la présentation</h2>
-    </div>
     <section class="credits">
-
         <h2>Sources</h2>
-
-        <p>
-            Hubert Guillaud,
-            <a href="https://lafabrique.fr/les-algorithmes-contre-la-societe/">Les algorithmes contre la société</a>, La Fabrique, 2025.
-        </p>
-
-        <p>
-            Hubert Guillaud,
-            <a href="https://lafabrique.fr/les-algorithmes-contre-la-societe/">Coincés dans les indus de la CAF</a>, 29/01/2026.
-        </p>
-
-        <p>
-            Changer de Cap,
-            <a href="https://changerdecap.net/2022/02/24/dossier/">Le contrôle (social) de la CAF contre les droits</a>,
-            février 2022.
-        </p>
-
-        <p>
-            <a href="https://www.laquadrature.net/caf/">Les articles de La Quadrature du Net sur la CAF</a>
-        </p>
-
-        <p>
-            Le dossier du <em>Monde</em> sur les algorithmes de la CAF :
-            <a href="https://www.lemonde.fr/les-decodeurs/visuel/2023/12/04/comment-l-algorithme-de-la-caf-predit-si-vous-etes-a-risque-de-frauder_6203836_4355770.html">
-                Comment l’algorithme de la CAF prédit si vous êtes « à risque » de frauder
-            </a>
-        </p>
-
-        <p>
-            Lighthouse Reports :
-            <a href="https://www.lighthousereports.com/methodology/how-we-investigated-frances-mass-profiling-machine/">How We Investigated France’s Mass Profiling Machine</a>
-        </p>
-
-        <p>
-            Publications du
-            <a href="https://www.caf.fr/professionnels/nous-connaitre/presentation/le-comite-d-ethique">Comité d’éthique de la CAF</a>
-            et du
-            <a href="https://caf.fr/professionnels/etudes-et-international/donnees-et-outils">code des algorithmes de la CAF</a>.
-        </p>
-
-        <p>
-            Émission :
-            <a href="https://www.radiofrance.fr/franceculture/podcasts/les-pieds-sur-terre/meres-isolees-sous-surveillance-3910568">Mères isolées sous surveillance</a>,
-            Les pieds sur Terre, France Culture, septembre 2025.
-        </p>
-
+        <p>Hubert Guillaud, <a href="https://lafabrique.fr/les-algorithmes-contre-la-societe/">Les algorithmes contre la société</a>, La Fabrique, 2025.</p>
+        <p>Hubert Guillaud, <a href="https://lafabrique.fr/les-algorithmes-contre-la-societe/">Coincés dans les indus de la CAF</a>, 29/01/2026.</p>
+        <p>Changer de Cap, <a href="https://changerdecap.net/2022/02/24/dossier/">Le contrôle (social) de la CAF contre les droits</a>, février 2022.</p>
+        <p><a href="https://www.laquadrature.net/caf/">Les articles de La Quadrature du Net sur la CAF</a></p>
+        <p>Le dossier du <em>Monde</em> sur les algorithmes de la CAF : <a href="https://www.lemonde.fr/les-decodeurs/visuel/2023/12/04/comment-l-algorithme-de-la-caf-predit-si-vous-etes-a-risque-de-frauder_6203836_4355770.html">Comment l’algorithme de la CAF prédit si vous êtes « à risque » de frauder</a></p>
+        <p>Lighthouse Reports : <a href="https://www.lighthousereports.com/methodology/how-we-investigated-frances-mass-profiling-machine/">How We Investigated France’s Mass Profiling Machine</a></p>
+        <p>Publications du <a href="https://www.caf.fr/professionnels/nous-connaitre/presentation/le-comite-d-ethique">Comité d’éthique de la CAF</a> et du <a href="https://caf.fr/professionnels/etudes-et-international/donnees-et-outils">code des algorithmes de la CAF</a>.</p>
+        <p>Émission : <a href="https://www.radiofrance.fr/franceculture/podcasts/les-pieds-sur-terre/meres-isolees-sous-surveillance-3910568">Mères isolées sous surveillance</a>, Les pieds sur Terre, France Culture, septembre 2025.</p>
+        
         <h2>Partenaires</h2>
-
         <div class="logos">
             <img src="img/logo_dla.png" alt="Logo DLA">
             <img src="img/logo_hyblab.png" alt="Logo Hyblab">
         </div>
-
-        <p class="credits-names">
-            Projet réalisé par les étudiants de Polytech et de l’École de Design.
-        </p>
-
+        <p class="credits-names">Projet réalisé par les étudiants de Polytech et de l’École de Design.</p>
     </section>
 
-    <script>
-        const figure = document.querySelector("#background-figure");
-        const steps = document.querySelectorAll(".step");
-        const scroller = scrollama();
-        
-        // Variable pour stocker le son en cours de lecture
-        let currentAudio = null;
-
-        // Afficher la première image au chargement
-        figure.style.backgroundImage = `url('${steps[0].getAttribute('data-image')}')`;
-
-        scroller
-            .setup({
-                step: "#scrolly article .step",
-                offset: 0.5,
-                debug: false
-            })
-            .onStepEnter((response) => {
-                // 1. Gérer le style actif
-                steps.forEach(step => step.classList.remove('is-active'));
-                response.element.classList.add('is-active');
-
-                // 2. Gérer le changement d'image
-                const newImage = response.element.getAttribute('data-image');
-                figure.style.backgroundImage = `url('${newImage}')`;
-
-                // 3. Gérer l'audio
-                const newAudioFile = response.element.getAttribute('data-audio');
-                
-                // Si un son joue déjà, on l'arrête
-                if (currentAudio) {
-                    currentAudio.pause();
-                    currentAudio.currentTime = 0; // Remet le son à zéro
-                    currentAudio = null;
-                }
-
-                // S'il y a un son prévu pour cette étape, on le lance
-                if (newAudioFile) {
-                    currentAudio = new Audio(newAudioFile);
-                    // Le bloc .catch() évite que la page plante si le navigateur bloque l'audio
-                    currentAudio.play().catch(erreur => {
-                        console.warn("Le navigateur a bloqué la lecture automatique du son :", erreur);
-                    });
-                }
-            });
-    </script>
-    <script>
-        // Quiz buttons: show explanation inline, no popup, no new window
-        const quizButtons = document.querySelectorAll('.quiz-btn');
-
-        quizButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                const quizStep = button.closest('.quiz-step');
-                const answers = quizStep.querySelectorAll('.quiz-answer');
-                const targetId = button.getAttribute('data-target');
-                const targetAnswer = quizStep.querySelector('#' + targetId);
-
-                // hide all answers in this quiz
-                answers.forEach(answer => answer.classList.remove('active'));
-
-                // show selected answer
-                if (targetAnswer) {
-                    targetAnswer.classList.add('active');
-                }
-            });
-        });
-    </script>
 </body>
 </html>

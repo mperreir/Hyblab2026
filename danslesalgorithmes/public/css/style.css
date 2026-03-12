@@ -4,7 +4,6 @@ body, html {
     padding: 0;
     font-family: sans-serif;
     background-color: #f2efe9; 
-    /* SUPPRIMEZ la ligne overflow-x: hidden; qui était ici ! */
 }
 
 #scrolly {
@@ -15,13 +14,13 @@ body, html {
     position: relative;
 }
 
-/* ================= ARRIÈRE-PLANS (PHOTOS/VIDÉOS) ================= */
+/* ================= ARRIÈRE-PLANS ================= */
 .bg-container {
     position: sticky;
     top: 0;
     left: 0;
     width: 100%;
-    height: 100dvh; /* dvh = dynamic viewport height, parfait pour mobile */
+    height: 100dvh; 
     z-index: 0;
     overflow: hidden;
     background-color: transparent; 
@@ -33,15 +32,12 @@ body, html {
     left: 0;
     width: 100%;
     height: 100%;
-    /* Ajustement mobile : l'image ne se coupe pas, le vide est rempli par le crème #f2efe9 */
     object-fit: contain; 
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
     background-color: transparent;
-    
-    /* Assombrit la photo pour lire le texte (remplace l'ancien voile noir)   là non mais peut servir */
-    filter: brightness(1); 
+    filter: brightness(0.6); /* Assombrit les photos pour le texte */
 }
 
 /* ================= TEXTES QUI DÉFILENT ================= */
@@ -57,10 +53,9 @@ article {
     flex-direction: column;
     justify-content: center;
     color: white;
-    padding: 0 5%; /* Marge sur les côtés pour mobile */
+    padding: 0 5%; 
 }
 
-/* Les blocs de texte*/
 .step-content {
     width: 100%;
     margin: 0 auto;
@@ -84,14 +79,14 @@ article {
 }
 
 .step.is-active p {
-    border-color: #001733;
+    border-color: #ffcc00;
 }
 
-/* ================= SPHÈRES ANIMÉES (SCÈNE 4) ================= */
+/* ================= SPHÈRES ANIMÉES ================= */
 .spheres-container {
     position: relative; 
     width: 100%;
-    max-width: 300px; /* Taille parfaite pour mobile */
+    max-width: 300px; 
     height: 50dvh; 
     margin: 0 auto; 
 }
@@ -103,26 +98,21 @@ article {
     height: auto; 
     transition: opacity 1s ease-in-out, transform 1s ease-in-out; 
     pointer-events: none; 
-    
-    /* Astuce magique pour faire disparaître le fond des PNG dans le crème ! */
     mix-blend-mode: multiply; 
 }
 
-/* État 1 : CAF */
 .img-caf {
     top: 10%; 
     transform: translate(-50%, 0) scale(1.5); 
     opacity: 1; 
 }
 
-/* État 2 : Mères Isolées (Cachée en bas) */
 .img-meres {
     top: 25%; 
     transform: translate(-50%, 30px) scale(0.5); 
     opacity: 0; 
 }
 
-/* Animation enclenchée par le JS */
 #spheres-animation.is-transformed .img-caf {
     opacity: 1; 
     transform: translate(-50%, -150px) scale(0.2); 
@@ -132,34 +122,37 @@ article {
     opacity: 1; 
     transform: translate(-50%, 0) scale(1.5); 
 }
+
+/* ================= QUIZ INLINE ================= */
 .quiz-container {
     max-width: 600px;
-    margin: 50px auto;
+    margin: 20px auto;
     padding: 20px;
     background: rgba(255, 255, 255, 0.9);
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     text-align: center;
-    }
+}
 
-    .quiz-container h2 {
+.quiz-container h2 {
     margin-top: 0;
     color: #333;
-    }
+}
 
-    .quiz-container .question {
-    font-size: 1.2rem;
+.quiz-container .question {
+    font-size: 1.1rem;
     margin-bottom: 20px;
     color: #333;
-    }
+}
 
-    .quiz-container .options {
+.quiz-container .options {
     display: flex;
-    justify-content: space-around;
+    flex-direction: column; 
+    gap: 10px; 
     margin-bottom: 20px;
-    }
+}
 
-    .quiz-container .option-btn {
+.quiz-container .option-btn {
     padding: 10px 20px;
     font-size: 1rem;
     background: #4CAF50;
@@ -168,53 +161,16 @@ article {
     border-radius: 5px;
     cursor: pointer;
     transition: background 0.3s;
-    }
+    width: 100%; 
+}
 
-    .quiz-container .option-btn:hover {
+.quiz-container .option-btn:hover {
     background: #45a049;
-    }
+}
 
-    .quiz-container .feedback {
-    min-height: 20px;
-    font-weight: bold;
-    color: #d9534f;
-    margin-bottom: 10px;
-    }
-
-    .quiz-container .next-btn {
+.quiz-container .validate-btn {
     padding: 10px 20px;
-    background: #337ab7;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    }
-    .quiz-container .options {
-    display: flex;
-    flex-direction: column; /* Empile les boutons verticalement */
-    gap: 10px; /* Espace entre les boutons */
-    margin-bottom: 20px;
-    }
-
-    .quiz-container .option-btn {
-    padding: 10px 20px;
-    font-size: 1rem;
-    background: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background 0.3s;
-    width: 100%; /* Prend toute la largeur */
-    }
-
-    .quiz-container .option-btn:hover {
-    background: #45a049;
-    }
-
-    .quiz-container .validate-btn {
-    padding: 10px 20px;
-    background: #f0ad4e; /* Orange pour le bouton de validation */
+    background: #f0ad4e; 
     color: white;
     border: none;
     border-radius: 5px;
@@ -223,8 +179,71 @@ article {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    }
+}
 
-    .quiz-container .validate-btn:hover {
+.quiz-container .validate-btn:hover {
     background: #ec971f;
-    }
+}
+
+.quiz-container .feedback {
+    min-height: 20px;
+    font-weight: bold;
+    color: #d9534f;
+    margin-bottom: 10px;
+}
+
+.quiz-answer {
+    display: none;
+    margin-top: 20px;
+    color: #333;
+    font-weight: bold;
+}
+
+.quiz-answer.active {
+    display: block;
+}
+
+/* ================= SOURCES / FOOTER ================= */
+.credits {
+    padding: 60px 20px;
+    background: #111;
+    color: white;
+    text-align: center;
+}
+
+.credits h2 {
+    margin-top: 40px;
+    font-size: 2rem;
+}
+
+.credits p {
+    max-width: 700px;
+    margin: 10px auto;
+    line-height: 1.6;
+}
+
+.credits a {
+    color: #ffcc00;
+    text-decoration: none;
+}
+
+.logos {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.logos img {
+    height: 60px;
+    background: white;
+    padding: 10px;
+    border-radius: 6px;
+}
+
+.credits-names {
+    margin-top: 30px;
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
