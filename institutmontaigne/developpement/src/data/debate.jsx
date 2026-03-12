@@ -39,7 +39,9 @@ const debateData = {
   ],
   "questions": [
     {
-      "question": "Dans l'Histoire de France, quelle a été la place du scrutin proportionnel et pourquoi, en 1958, le général de Gaulle a-t-il fait le choix du scrutin majoritaire sans toutefois l'inscrire dans la Constitution ?",
+      "question": "Le scrutin proportionnel",
+      "color": "#00483B",
+      "textcolor": "#C6F9E6",
       "dialogue": [
         {
           "type": "interlocuteur1",
@@ -80,7 +82,9 @@ const debateData = {
       ]
     },
     {
-      "question": "Dans quelle mesure un changement du mode de scrutin peut-il répondre à la crise politique que nous traversons ?",
+      "question": "Une réponse à la crise politique",
+      "color": "#9DAACC",
+      "textcolor": "#000000",
       "dialogue": [
         {
           "type": "interlocuteur2",
@@ -114,7 +118,9 @@ const debateData = {
       ]
     },
     {
-      "question": "Derrière ce mot de « proportionnelle » se déclinent des options aux implications très différentes. Quelles sont-elles et quelles incidences politiques pourraient-elles comporter ?",
+      "question": "Différences de scrutins",
+      "color": "#5468B5",
+      "textcolor": "#000000",
       "dialogue": [
         {
           "type": "interlocuteur2",
@@ -158,9 +164,11 @@ const debateData = {
         }
       ]
     },
-    {
-      "question": "Quels sont les principaux avantages et inconvénients du scrutin proportionnel selon ces différentes catégories ?",
-      "dialogue": [
+      {
+        "question": "Avantages / Inconvénients",
+        "color": "#E8937A",
+        "textcolor": "#000000",
+        "dialogue": [
         {
           "type": "interlocuteur1",
           "intervenant": "morel",
@@ -193,7 +201,9 @@ const debateData = {
       ]
     },
     {
-      "question": "En quoi l'instauration de la proportionnelle pourrait-elle affecter la stratégie du RN ?",
+      "question": "Quels impactes pour le RN ?",
+      "color": "#D96045",
+      "textcolor": "#000000",
       "dialogue": [
         {
           "type": "interlocuteur1",

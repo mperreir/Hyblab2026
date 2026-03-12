@@ -58,29 +58,25 @@ export default function QuestionAccordion({ questions, intervenants }) {
 
   return (
     <section className="bg-white py-12 md:py-20">
-      <div className="max-w-3xl mx-auto px-4 sm:px-6">
-        <h2 className="text-xs font-sans uppercase tracking-[0.2em] text-ink/40 mb-10">
-          Les questions du débat
-        </h2>
-
-        <div className="divide-y divide-ink/10">
-          {questions.map((q, i) => (
-            <QuestionItem
-              key={i}
-              ref={el => questionRefs.current[i] = el}
-              index={i}
-              question={q}
-              intervenants={intervenants}
-              isOpen={openIndex === i}
-              onToggle={() => toggle(i)}
-              onFinish={openNext}
-              onPrev={openPrev}
-              isLast={i === questions.length - 1}
-              isFirstItem={i === 0}
-              startAtBottom={openIndex === i && openDirection === 'up'}
-            />
-          ))}
-        </div>
+      <div className="w-full">
+        {questions.map((q, i) => (
+          <QuestionItem
+            key={i}
+            ref={el => questionRefs.current[i] = el}
+            index={i}
+            question={q}
+            intervenants={intervenants}
+            isOpen={openIndex === i}
+            onToggle={() => toggle(i)}
+            onFinish={openNext}
+            onPrev={openPrev}
+            isLast={i === questions.length - 1}
+            isFirstItem={i === 0}
+            startAtBottom={openIndex === i && openDirection === 'up'}
+            color={q.color || '#FF0000'}
+            textColor={q.textcolor || '#000000'}
+          />
+        ))}
       </div>
     </section>
   );
@@ -89,7 +85,7 @@ export default function QuestionAccordion({ questions, intervenants }) {
 import { forwardRef } from 'react';
 
 const QuestionItem = forwardRef(function QuestionItem(
-  { index, question, intervenants, isOpen, onToggle, onFinish, onPrev, isLast, isFirstItem, startAtBottom },
+  { index, question, intervenants, isOpen, onToggle, onFinish, onPrev, isLast, isFirstItem, startAtBottom, color, textColor },
   ref
 ) {
   const scrollContainerRef = useRef(null);
@@ -251,21 +247,38 @@ const QuestionItem = forwardRef(function QuestionItem(
   const totalCards = question.dialogue.length;
 
   return (
-    <div ref={ref} className="scroll-mt-4">
+    <div
+      ref={ref}
+      className="scroll-mt-4"
+      style={{ position: 'relative', zIndex: 20 + index, marginTop: index === 0 ? 0 : '-13px' }}
+    >
       {/* Question header button */}
       <button
         onClick={onToggle}
-        className={`w-full text-left py-5 md:py-7 flex items-start gap-3 md:gap-5 group transition-colors duration-200 ${isOpen ? 'pb-4' : 'hover:bg-ink/[0.015]'}`}
+        style={{
+          backgroundColor: color,
+          fontSize: `clamp(16px, 1.5vw, 20px)`,
+          fontFamily: 'Helvetica, Arial, sans-serif',
+        }}
+        className="w-full py-10 flex flex-col items-center justify-center gap-3 transition-all duration-200 rounded-t-2xl"
       >
-        <span className="shrink-0 w-7 text-right text-sm font-sans tabular-nums text-ink/30 mt-0.5">
-          {String(index + 1).padStart(2, '0')}
-        </span>
-        <span className="text-base md:text-lg font-serif leading-snug flex-1 text-ink/90 group-hover:text-navy transition-colors">
+        <span className="max-w-[75%] mx-auto text-base md:text-lg font-bold italic uppercase text-center leading-tight"
+          style={{ color: textColor }}
+        >
           {question.question}
         </span>
-        <span className={`shrink-0 w-6 h-6 rounded-full border border-ink/15 flex items-center justify-center text-sm transition-all duration-300 mt-0.5 ${isOpen ? 'bg-navy text-white border-navy rotate-45' : 'text-ink/40'}`}>
-          +
-        </span>
+        <svg
+          className={`w-4 h-3 shrink-0 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}
+          viewBox="0 0 14 8"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          style={{ color: textColor }}
+        >
+          <path d="M1 1L7 7L13 1" />
+        </svg>
       </button>
 
       {/* Dialogue panel */}
