@@ -1,12 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef, useCallback } from 'react';
 
 export default function Quiz({ meta = {}, onScoreChange }) {
   const [response, setResponse] = useState(50);
-
-  const handleSliderChange = (e) => {
-    const nextValue = parseInt(e.target.value, 10);
-    setResponse(nextValue);
-  };
+  const [isDragging, setIsDragging] = useState(false);
+  const trackRef = useRef(null);
 
   useEffect(() => {
     if (onScoreChange) {
@@ -14,129 +11,209 @@ export default function Quiz({ meta = {}, onScoreChange }) {
     }
   }, [onScoreChange, response]);
 
-  const position = response / 100; // 0 à 1
+  const getValueFromClientX = useCallback((clientX) => {
+    const track = trackRef.current;
+    if (!track) return undefined;
+    const rect = track.getBoundingClientRect();
+    const x = clientX - rect.left;
+    const clamped = Math.max(0, Math.min(x, rect.width));
+    return Math.round((clamped / rect.width) * 100);
+  }, []);
 
-  // Déterminer le message selon la position
-  const getPositionMessage = () => {
-    if (response < 20) return 'Très en désaccord';
-    if (response < 40) return 'Plutôt en désaccord';
-    if (response < 60) return 'Neutre';
-    if (response < 80) return 'Plutôt d\'accord';
-    return 'Très d\'accord';
-  };
+  const handleMouseDown = useCallback((e) => {
+    e.preventDefault();
+    setIsDragging(true);
+    const val = getValueFromClientX(e.clientX);
+    if (val !== undefined) setResponse(val);
+  }, [getValueFromClientX]);
+
+  const handleTouchStart = useCallback((e) => {
+    setIsDragging(true);
+    const val = getValueFromClientX(e.touches[0].clientX);
+    if (val !== undefined) setResponse(val);
+  }, [getValueFromClientX]);
+
+  const handleTrackClick = useCallback((e) => {
+    const val = getValueFromClientX(e.clientX);
+    if (val !== undefined) setResponse(val);
+  }, [getValueFromClientX]);
+
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      if (!isDragging) return;
+      const val = getValueFromClientX(e.clientX);
+      if (val !== undefined) setResponse(val);
+    };
+    const handleTouchMove = (e) => {
+      if (!isDragging) return;
+      const val = getValueFromClientX(e.touches[0].clientX);
+      if (val !== undefined) setResponse(val);
+    };
+    const handleUp = () => setIsDragging(false);
+
+    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('mouseup', handleUp);
+    window.addEventListener('touchmove', handleTouchMove, { passive: true });
+    window.addEventListener('touchend', handleUp);
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('mouseup', handleUp);
+      window.removeEventListener('touchmove', handleTouchMove);
+      window.removeEventListener('touchend', handleUp);
+    };
+  }, [isDragging, getValueFromClientX]);
+
+  // Interpolate thumb colour: bordeaux (#7B1E3A) left → rose (#E8A0B0) right
+  const r = Math.round(123 + (232 - 123) * (response / 100));
+  const g = Math.round(30 + (160 - 30) * (response / 100));
+  const b = Math.round(58 + (176 - 58) * (response / 100));
+  const thumbColor = `rgb(${r},${g},${b})`;
+
+  const pct = response / 100;
 
   return (
-    <div className="w-full py-8 px-6 bg-white">
-      <div className="max-w-3xl mx-auto">
-        {/* Intro */}
-        <div className="mb-6 text-center">
-          <span className="inline-block px-4 py-1.5 border border-navy/20 rounded-full text-[11px] font-sans uppercase tracking-[0.2em] mb-4 text-navy">
-            Votre avis
-          </span>
-        </div>
+    <div className="w-full pt-10 px-6 bg-white">
+      <div className="max-w-2xl mx-auto">
 
-        {/* Slider Container */}
-        <div className="bg-white rounded-xl p-6 border border-navy/10">
-          <h2 className="text-2xl md:text-3xl font-serif font-bold text-navy leading-tight mb-6 text-center">
-            "{meta.titre || 'Le sujet du débat'}"
-          </h2>
-          <style>{` 
-            input[type="range"]::-webkit-slider-thumb {
-              appearance: none;
-              width: 40px;
-              height: 40px;
-              border-radius: 50%;
-              background-color: var(--thumb-color, #9CA3AF);
-              border: 3px solid white;
-              cursor: grab;
-              box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-              transition: transform 0.2s, box-shadow 0.2s, background-color 0.1s;
-              opacity: 1;
-            }
-            input[type="range"]::-webkit-slider-thumb:active {
-              cursor: grabbing;
-              transform: scale(1.1);
-              box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-            }
-            input[type="range"]::-moz-range-thumb {
-              width: 40px;
-              height: 40px;
-              border-radius: 50%;
-              background-color: var(--thumb-color, #9CA3AF);
-              border: 3px solid white;
-              cursor: grab;
-              box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-              transition: transform 0.2s, box-shadow 0.2s, background-color 0.1s;
-              opacity: 1;
-            }
-            input[type="range"]::-moz-range-thumb:active {
-              cursor: grabbing;
-              transform: scale(1.1);
-              box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-            }
-          `}</style>
+        {/* Title */}
+        <h2
+          className="text-center mb-10 leading-tight"
+          style={{
+            fontFamily: 'Helvetica, "Times New Roman", serif',
+            fontSize: 'clamp(1.25rem, 3vw, 1.85rem)',
+            fontWeight: 700,
+            color: '#8C2D42',
+          }}
+        >
+          {'QUEL EST VOTRE AVIS SUR LE SCRUTIN PROPORTIONNEL ?'}
+        </h2>
 
-          {/* Labels */}
-          <div className="flex justify-between items-center gap-4 mb-5">
-            <div className="flex flex-col items-start gap-1.5">
-              <p className="text-xs font-sans font-bold text-navy uppercase tracking-wide">
-                ← Pas d'accord
-              </p>
-            </div>
-            <div className="flex flex-col items-end gap-1.5">
-              <p className="text-xs font-sans font-bold text-navy uppercase tracking-wide">
-                D'accord →
-              </p>
-            </div>
-          </div>
-
-          {/* Slider */}
-          <div className="relative py-5 flex items-center">
-            {/* Track background with gradient */}
-            <div className="absolute inset-x-0 top-1/2 h-2.5 bg-gradient-to-r from-accent-blue via-gray-300 to-accent-red rounded-full transform -translate-y-1/2" />
-
-            {/* Slider input */}
-            <input
-              type="range"
-              min="0"
-              max="100"
-              value={response}
-              onChange={handleSliderChange}
-              className="relative z-10 w-full appearance-none bg-transparent cursor-pointer py-2.5"
-              style={{ '--thumb-color': response < 35 ? '#2563EB' : response > 65 ? '#C41E3A' : '#D1D5DB' }}
+        {/*
+          Outer wrapper has horizontal padding = half the cap icon width so the
+          overflowing SVG caps are visible but don't cause layout overflow.
+          We use overflow:visible on every ancestor so nothing clips them.
+        */}
+        <div
+          className="relative select-none"
+          style={{ paddingLeft: 28, paddingRight: 28, overflow: 'visible' }}
+        >
+          {/* ── Track zone (ref for hit-testing) ── */}
+          <div
+            ref={trackRef}
+            onClick={handleTrackClick}
+            style={{
+              position: 'relative',
+              height: 70,
+              overflow: 'visible',
+              cursor: isDragging ? 'grabbing' : 'pointer',
+            }}
+          >
+            {/* Gradient bar — sits flush with the track div's left/right edges */}
+            <div
+              style={{
+                position: 'absolute',
+                top: '50%',
+                left: 0,
+                right: 0,
+                height: 15,
+                transform: 'translateY(-50%)',
+                borderRadius: 9999,
+                background:
+                  'linear-gradient(to right, #8C2D42 0%, #A84060 20%, #C87080 40%, #E8C0C8 65%, #FFD1DB 100%)',
+                pointerEvents: 'none',
+              }}
             />
 
-            {/* Center marker */}
-            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-0.5 h-3 bg-navy/30 pointer-events-none" />
-          </div>
+            {/* Barre gauche */}
+            <div
+              style={{
+                position: 'absolute',
+                top: '50%',
+                left: 15,
+                transform: 'translate(-50%, -50%)',
+                pointerEvents: 'none',
+                zIndex: 2,
+              }}
+            >
+              <img src="/icons/BarreGauche.svg" alt="" style={{ height: 44, width: 'auto', display: 'block' }} />
+            </div>
 
-          {/* Position feedback */}
-          <div className="mt-6 pt-6 border-t border-navy/10 text-center">
-            <p className="text-xs font-sans uppercase tracking-widest text-navy/60 mb-3">Votre position</p>
-            
-            {/* Big percentage display */}
-            <div className="mb-4 text-center">
-              <span className="text-5xl font-serif font-bold text-navy">
-                {response}
+            {/* Barre droite */}
+            <div
+              style={{
+                position: 'absolute',
+                top: '50%',
+                right: 15,
+                transform: 'translate(50%, -50%)',
+                pointerEvents: 'none',
+                zIndex: 2,
+              }}
+            >
+              <img src="/icons/BarreDroite.svg" alt="" style={{ height: 44, width: 'auto', display: 'block' }} />
+            </div>
+
+            {/* Draggable thumb */}
+            <div
+              onMouseDown={handleMouseDown}
+              onTouchStart={handleTouchStart}
+              style={{
+                position: 'absolute',
+                top: '50%',
+                left: `${pct * 100}%`,
+                transform: 'translate(-50%, -50%)',
+                width: 58,
+                height: 58,
+                borderRadius: '50%',
+                background: 'white',
+                border: `5px solid ${thumbColor}`,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                cursor: isDragging ? 'grabbing' : 'grab',
+                boxShadow: isDragging
+                  ? '0 6px 20px rgba(123,30,58,0.22)'
+                  : '0 2px 8px rgba(123,30,58,0.12)',
+                transition: isDragging ? 'none' : 'box-shadow 0.2s',
+                zIndex: 20,
+                userSelect: 'none',
+                touchAction: 'none',
+              }}
+            >
+              <span
+                style={{
+                  fontFamily: 'Helvetica, serif',
+                  fontWeight: 700,
+                  fontSize: '1rem',
+                  color: thumbColor,
+                  lineHeight: 1,
+                  userSelect: 'none',
+                  transition: 'color 0.15s',
+                }}
+              >
+                {response}%
               </span>
-              <span className="text-xl font-sans text-navy/60">%</span>
-            </div>
-
-            {/* Status message */}
-            <div className={`inline-flex items-center justify-center w-56 h-10 px-6 rounded-full font-sans font-bold text-xs uppercase tracking-widest text-white ${
-              response < 40 ? 'bg-accent-blue' :
-              response > 60 ? 'bg-accent-red' : 'bg-gray-400'
-            }`}>
-              {getPositionMessage()}
             </div>
           </div>
-        </div>
 
-        {/* Info */}
-        <div className="mt-8 text-center">
-          <p className="text-xs font-sans text-navy/60">
-            Glissez le curseur pour vous positionner.
-          </p>
+          {/* Labels */}
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'flex-start',
+              marginTop: 12,
+            }}
+          >
+            <span style={{ fontFamily: 'Helvetica, serif', fontWeight: 700, fontSize: '1.05rem', color: '#8C2D42', minWidth: 60 }}>
+              Contre
+            </span>
+            <span style={{ fontFamily: 'Helvetica, serif', fontWeight: 700, fontSize: '1.05rem', color: '#8C2D42', textAlign: 'center' }}>
+              Neutre
+            </span>
+            <span style={{ fontFamily: 'Helvetica, serif', fontWeight: 700, fontSize: '1.05rem', color: '#8C2D42', textAlign: 'right', minWidth: 60 }}>
+              Pour
+            </span>
+          </div>
         </div>
       </div>
     </div>
