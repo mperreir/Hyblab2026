@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import debateDate from '../data/debate.jsx';
 
 export default function QuizFin({ onScoreComputed }) {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -9,39 +10,7 @@ export default function QuizFin({ onScoreComputed }) {
   const containerRef = useRef(null);
   const measureRefs = useRef([]);
 
-  const questions = [
-    {
-      question: "Pensez-vous que la proportionnelle serait bénéfique pour la représentation ?",
-      options: [
-        "Absolument, c'est la meilleure solution",
-        "Plutôt oui, avec quelques ajustements",
-        "Neutre, ça dépend du contexte",
-        "Plutôt non, le système actuel fonctionne mieux",
-        "Pas du tout, c'est une mauvaise idée"
-      ]
-    },
-    {
-      question: "Quelle est votre plus grande préoccupation avec cette réforme ?",
-      options: [
-        "Je n'ai pas de préoccupation majeure",
-        "Les citoyens pourraient être confus par le changement",
-        "Les coûts politiques seraient trop élevés",
-        "Les petits partis auraient trop de pouvoir",
-        "La stabilité gouvernementale pourrait être compromise"
-      ]
-    },
-    {
-      question: "Seriez-vous en faveur d'une transition progressive ?",
-      options: [
-        "Oui, c'est la meilleure approche",
-        "Peut-être, si les détails sont bien pensés",
-        "J'hésite, c'est compliqué",
-        "Plutôt un changement complet si c'est nécessaire",
-        "Non, maintenons le statu quo"
-      ]
-    }
-  ];
-
+  const questions = debateDate.endQuestions;
 
   const allQuestionsAnswered = Object.keys(responses).length === questions.length;
   const stackOffsetY = 12;
