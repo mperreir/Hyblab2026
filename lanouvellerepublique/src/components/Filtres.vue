@@ -1,9 +1,12 @@
 <script setup>
 import { ref } from 'vue'
 import { COLORS } from '@/assets/Couleurs/Coulleurs.js'
+import { useFilterStore } from '@/stores/filterStore'
 
 defineProps({ show: Boolean })
 const emit = defineEmits(['close', 'apply'])
+
+const filterStore = useFilterStore()
 
 const pink       = COLORS.pinkSwitch   // #E815B2
 const pinkLight  = COLORS.pinkLight    // #FDE8F7
@@ -12,20 +15,10 @@ const green      = '#16A34A'
 
 /* ── état des filtres ── */
 const coupDeCoeur = ref(false)
-
-const dietaryOptions = ['Vegan', 'Végétarien', 'Sans gluten', 'Halal']
 const selectedDietary = ref([])
-
-const cuisineOptions = ['Tourangelle', 'Asiatique', 'Italienne', 'Américaine', 'Orientale', 'Méditerranéenne', 'Indienne', 'Cuisine du monde', 'Traditionnelle', 'Street Food']
 const selectedCuisine = ref([])
-
-const ambianceOptions = ['Entre amis', 'Famille', 'Romantique', 'Professionnel']
 const selectedAmbiance = ref([])
-
-const budgetOptions = ['1-10€', '10-20€', '20-30€', '+30€']
 const selectedBudget = ref([])
-
-const serviceOptions = ['Sur place', 'À emporter', 'Livraison']
 const selectedService = ref([])
 
 const toggle = (arr, val) => {
@@ -89,7 +82,7 @@ const apply = () => {
               <h3 class="section-title">Préférences alimentaires</h3>
               <div class="tags-row">
                 <button
-                  v-for="opt in dietaryOptions"
+                  v-for="opt in filterStore.availableCategories.dietary"
                   :key="opt"
                   class="tag"
                   :class="{ 'tag--green': selectedDietary.includes(opt) }"
@@ -103,7 +96,7 @@ const apply = () => {
               <h3 class="section-title">Type de cuisine</h3>
               <div class="tags-row">
                 <button
-                  v-for="opt in cuisineOptions"
+                  v-for="opt in filterStore.availableCategories.cuisine"
                   :key="opt"
                   class="tag"
                   :class="{ 'tag--blue': selectedCuisine.includes(opt) }"
@@ -117,7 +110,7 @@ const apply = () => {
               <h3 class="section-title">Ambiance</h3>
               <div class="tags-row">
                 <button
-                  v-for="opt in ambianceOptions"
+                  v-for="opt in filterStore.availableCategories.ambiance"
                   :key="opt"
                   class="tag"
                   :class="{ 'tag--pink': selectedAmbiance.includes(opt) }"
@@ -131,7 +124,7 @@ const apply = () => {
               <h3 class="section-title">Budget</h3>
               <div class="tags-row">
                 <button
-                  v-for="opt in budgetOptions"
+                  v-for="opt in filterStore.availableCategories.budget"
                   :key="opt"
                   class="tag"
                   :class="{ 'tag--pink': selectedBudget.includes(opt) }"
@@ -145,7 +138,7 @@ const apply = () => {
               <h3 class="section-title">Service</h3>
               <div class="tags-row">
                 <button
-                  v-for="opt in serviceOptions"
+                  v-for="opt in filterStore.availableCategories.service"
                   :key="opt"
                   class="tag"
                   :class="{ 'tag--pink': selectedService.includes(opt) }"
@@ -182,12 +175,13 @@ const apply = () => {
   position: absolute;
   inset: 0;
   background: rgba(0, 0, 0, 0.45);
+  z-index: 0;
 }
 
 /* ── Feuille ── */
 .filtres-sheet {
   position: relative;
-  z-index: 1;
+  z-index: 100;
   background: #fff;
   border-radius: 1.25rem 1.25rem 0 0;
   max-height: 88dvh;

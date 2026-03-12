@@ -14,6 +14,15 @@ export const useFilterStore = defineStore('filterStore', () => {
     service: [],
   })
 
+  // Catégories disponibles (récupérées de l'API)
+  const availableCategories = ref({
+    dietary: [],
+    cuisine: [],
+    ambiance: [],
+    budget: [],
+    service: [],
+  })
+
   // Liste des restaurants avec leurs catégories (enrichis de l'API)
   const restaurantsWithCategories = ref([])
   const loading = ref(false)
@@ -46,6 +55,9 @@ export const useFilterStore = defineStore('filterStore', () => {
         })
       )
       restaurantsWithCategories.value = enriched
+
+      // Extraire les catégories uniques
+      extractAvailableCategories(enriched)
     } catch (err) {
       console.error('Error fetching restaurant categories:', err)
       error.value = err.message
@@ -56,6 +68,37 @@ export const useFilterStore = defineStore('filterStore', () => {
       }))
     } finally {
       loading.value = false
+    }
+  }
+
+  // Extraire toutes les catégories uniques des restaurants
+  const extractAvailableCategories = (restaurants) => {
+    const categories = {
+      dietary: new Set(),
+      cuisine: new Set(),
+      ambiance: new Set(),
+      budget: new Set(),
+      service: new Set(),
+    }
+
+    restaurants.forEach((restaurant) => {
+      if (restaurant.categories && restaurant.categories[0]) {
+        const cat = restaurant.categories[0]
+        if (cat.diet) categories.dietary.add(cat.diet)
+        if (cat.cuisine) categories.cuisine.add(cat.cuisine)
+        if (cat.client_type) categories.ambiance.add(cat.client_type)
+        if (cat.budget) categories.budget.add(cat.budget)
+        if (cat.service) categories.service.add(cat.service)
+      }
+    })
+
+    // Convertir les Sets en Arrays trié
+    availableCategories.value = {
+      dietary: Array.from(categories.dietary).sort(),
+      cuisine: Array.from(categories.cuisine).sort(),
+      ambiance: Array.from(categories.ambiance).sort(),
+      budget: Array.from(categories.budget).sort(),
+      service: Array.from(categories.service).sort(),
     }
   }
 
@@ -106,12 +149,14 @@ export const useFilterStore = defineStore('filterStore', () => {
 
       // Filtre: Budget (à mapper selon la structure API)
       if (filters.value.budget.length > 0) {
-        // À implémenter selon la structure des données
+        const hasBudget = categories.budget && filters.value.budget.includes(categories.budget)
+        if (!hasBudget) return false
       }
 
       // Filtre: Service (à mapper selon la structure API)
       if (filters.value.service.length > 0) {
-        // À implémenter selon la structure des données
+        const hasService = categories.service && filters.value.service.includes(categories.service)
+        if (!hasService) return false
       }
 
       return true
@@ -122,6 +167,7 @@ export const useFilterStore = defineStore('filterStore', () => {
     filters,
     restaurantsWithCategories,
     filteredRestaurants,
+    availableCategories,
     loading,
     error,
     fetchRestaurantCategories,
