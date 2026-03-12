@@ -31,9 +31,9 @@
 :root {
   --color-white: #ffffff;
   --color-green: #1CB26B;
-  --color-black: #000000;
+  --color-black: #000c2d;
   --color-light-gray: #f5f5f5;
-  --color-gray: #888888;
+  --color-gray: #687385;
 
   --color-background: #ffffff;
   --color-text: #222222;
@@ -42,7 +42,7 @@
 
 body {
     background-color: var(--color-light-gray);
-    color: rgb(0, 0, 0);
+    color: var(--color-black);
     overflow-y: auto;
     overflow-x: hidden;
 
@@ -50,21 +50,13 @@ body {
     font-family: 'Inter', sans-serif;
 }
 
-article{
+.wrapper{
     padding-left :5%;
     padding-right :5%;
 }
 
 article p {
   text-align: justify;
-}
-
-@font-face {
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 100;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2JL7SUc.woff2) format('woff2');
 }
 
 #announcement-bar-root {
@@ -105,10 +97,6 @@ article p {
     font-family: 'Trebuchet MS';
     background: var(--color-white);
     border-bottom: 1px solid var(--color-border);
-}
-
-.c-nav-wrap{
-    
 }
 
 .c-header__inner, .c-tags-list-wrap {
@@ -170,7 +158,9 @@ article p {
   display: none;
 }
 
-
+.c-post-header__excerpt{
+    color: var(--color-gray);
+}
 
 
 
