@@ -1,6 +1,8 @@
-{
+const debateData = {
   "meta": {
-    "serie": "À contrevoix",
+    "serie": <>icfsbdhk
+      <b>bold</b>
+    cbaqdkhbc</>,
     "titre": "Le scrutin proportionnel est-il un remède à la crise démocratique ?",
     "date": "11 octobre 2024",
     "thematique": "Vie démocratique",
@@ -214,4 +216,6 @@
       ]
     }
   ]
-}
+};
+
+export default debateData;
