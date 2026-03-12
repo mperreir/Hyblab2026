@@ -13,10 +13,11 @@ import Footer from './components/Footer';
 export default function App() {
   const [initialScore, setInitialScore] = useState(50);
   const [finalScore, setFinalScore] = useState(null);
+  const [isQuestionOpen, setIsQuestionOpen] = useState(false);
 
   return (
     <div className="min-h-screen">
-      <Header meta={debateData.meta} />
+      <Header meta={debateData.meta} isQuestionOpen={isQuestionOpen} />
       <Hero meta={debateData.meta} />
       <Scrollytelling accroches={debateData.accroches} images={debateData.accrocheImages} />
       <Podcast
@@ -28,6 +29,7 @@ export default function App() {
       <QuestionAccordion
         questions={debateData.questions}
         intervenants={debateData.meta.intervenants}
+        onQuestionOpenChange={setIsQuestionOpen}
       />
       <QuizFin onScoreComputed={setFinalScore} />
       <Resultat initialScore={initialScore} finalScore={finalScore} />

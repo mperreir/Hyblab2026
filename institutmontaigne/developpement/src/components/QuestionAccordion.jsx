@@ -1,12 +1,16 @@
 import { useState, useRef, useCallback, useEffect, isValidElement } from 'react';
 import PhotoQuote from './dialog/PhotoQuote.jsx';
 
-export default function QuestionAccordion({ questions, intervenants }) {
+export default function QuestionAccordion({ questions, intervenants, onQuestionOpenChange }) {
   const [openIndex, setOpenIndex] = useState(null);
   const [openDirection, setOpenDirection] = useState('down');
   const questionRefs = useRef([]);
   const lastActionTimeRef = useRef(0);
   const ACTION_LOCK_MS = 650;
+
+  useEffect(() => {
+    onQuestionOpenChange?.(openIndex !== null);
+  }, [openIndex, onQuestionOpenChange]);
 
   const openQuestion = useCallback((idx) => {
     setOpenDirection('down');
@@ -55,6 +59,24 @@ export default function QuestionAccordion({ questions, intervenants }) {
       }
       return prevIdx;
     });
+  }, []);
+
+  // Fix mobile viewport height instability (address bar changes)
+  useEffect(() => {
+    const setVh = () => {
+      const h = (window.visualViewport && window.visualViewport.height) ? window.visualViewport.height : window.innerHeight;
+      document.documentElement.style.setProperty('--vh', `${h * 0.01}px`);
+    };
+
+    setVh();
+    window.addEventListener('resize', setVh);
+    window.addEventListener('orientationchange', setVh);
+    if (window.visualViewport) window.visualViewport.addEventListener('resize', setVh);
+    return () => {
+      window.removeEventListener('resize', setVh);
+      window.removeEventListener('orientationchange', setVh);
+      if (window.visualViewport) window.visualViewport.removeEventListener('resize', setVh);
+    };
   }, []);
 
   return (
@@ -271,9 +293,10 @@ const QuestionItem = forwardRef(function QuestionItem(
   const totalCards = question.dialogue.length;
 
   return (
-    <div 
-        ref={ref}
-      className={`${isOpen ? 'h-screen flex flex-col' : ''} max-w-3xl mx-auto transition-all duration-300 relative z-[${20 + index}] ${index === 0 ? '' : '-mt-3'}`}
+    <div
+      ref={ref}
+      style={isOpen ? { height: 'calc(var(--vh, 1vh) * 100)' } : undefined}
+      className={`${isOpen ? 'flex flex-col' : ''} max-w-3xl mx-auto transition-all duration-300 relative z-[${20 + index}] ${index === 0 ? '' : '-mt-3'}`}
     >
       {/* Question header button */}
       <button
