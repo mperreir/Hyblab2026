@@ -8,35 +8,6 @@
     margin:0;
 }
 
-body{
-    background-color: rgb(255, 255, 255);
-    color: rgb(0, 0, 0);
-    overflow-y: auto;
-    overflow-x: hidden;
-    font-family: sans-serif;
-}
-
-/* -------------- Loader --------------*/
-#loader{
-    z-index: 2;
-    position:absolute;
-}
-
-#loader-img{
-    top:40%;
-    left:40%;
-    position: absolute;
-}
-
-#loader-text{
-    text-align: center;
-    font-size: 25%;
-    position: absolute;
-    top:60%;
-    width: 100%
-}
-/* -------------- End of Loader --------------*/
-
 /* Swiper slider. Need to fill the container */
 #mySwiper{
     width: 100%;
@@ -47,13 +18,6 @@ body{
 /* white navigation bullets */
 .swiper-pagination-bullet-active {
     background-color: white !important;
-}
-
-/* the slides and the loader should fill the whole 9:16 zone */
-.swiper-wrapper section, #loader{
-    background-color: dodgerblue;
-    width: 100%;
-    height: 100%;
 }
 
 /* Allow long content to scroll vertically inside each slide */
@@ -172,57 +136,172 @@ body{
 
 /* We set a default font size here. It will be the base for all other font sizes */
 /* Here the font size is proportional to content width */
-body{
-    font-size: calc(15vh * 3 / 4);
-}
 
 :root {
-  /* Couleurs principales */
-  --color-primary: #2a7fff;
-  --color-secondary: #ff6b6b;
-
   --color-white: #ffffff;
+  --color-green: #1CB26B;
   --color-black: #000000;
-  --color-gray-100: #f5f5f5;
-  --color-gray-300: #dcdcdc;
-  --color-gray-500: #888888;
+  --color-light-gray: #f5f5f5;
+  --color-gray: #888888;
 
   --color-background: #ffffff;
   --color-text: #222222;
   --color-border: #e5e5e5;
 }
 
+body{
+    background-color: var(--color-light-gray);
+    color: rgb(0, 0, 0);
+    overflow-y: auto;
+    overflow-x: hidden;
+    
+
+    font-size: 16px;
+    font-family: 'Inter', sans-serif;
+
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2JL7SUc.woff2) format('woff2');
+}
+
+#announcement-bar-root {
+    background-color: var(--color-green);
+    color: var(--color-white);
+    font-weight: 100;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 8px 0;
+}
+
+.gh-announcement-bar-content {
+    font-size: 10px;
+    text-align: center;
+    flex: 1;
+}
+
+#announcement-bar-root button {
+    position: absolute;
+    right: 10px;
+    top: 25%;
+    
+    background: none;
+    border: none;
+    padding: 0;
+    color: var(--color-light-gray);
+    font-size: 14px;
+    cursor: pointer;
+}
 
 .c-header {
-  background: var(--color-white);
-  border-bottom: 1px solid var(--color-border);
+    font-family: 'Trebuchet MS';
+    background: var(--color-white);
+    border-bottom: 1px solid var(--color-border);
 }
 
-.button-primary {
-  background: var(--color-primary);
-  color: var(--color-white);
+.c-nav-wrap{
+    
 }
 
-.o-grid--center {
-  max-width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
-  display: grid;
-  align-items: center;
-  padding: 0 20px;
+.c-header__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background-color: var(--color-white);
 }
 
-.c-tags-list-container {
-  color: var(--color-text);
+.c-logo {
+  flex-shrink: 0;
+}
+
+
+.c-logo__img {
+  width: 50px;
+  height: auto;
+}
+
+.c-nav-wrap {
   display: flex;
   align-items: center;
-  gap: 16px;
+  flex: 1;
+  justify-content: space-between;
 }
 
-.c-tags-list-container > * + * {
-  border-left: 1px solid var(--color-gray-100);
-  padding-left: 16px;
+.c-nav--left {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
+
+.c-nav__link {
+  color: var(--color-gray);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.c-nav__link:hover {
+  color: var(--color-black)
+}
+
+.c-nav__link.active {
+  color: var(--color-black)
+}
+
+.c-nav--right {
+  display: flex;
+  gap: 15px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.toggle-search-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--color-gray)
+}
+
+.toggle-search-button:hover {
+  color: var(--color-black)
+}
+
+.c-nav--right .c-nav__link {
+  color: var(--color-gray)
+}
+
+.c-nav--right .c-nav__link:hover {
+  color: var(--color-black)
+}
+
+.c-header__inner > .c-logo {
+  margin-right: 30px;
+}
+
+.c-nav-wrap {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+
+
 
 
 
