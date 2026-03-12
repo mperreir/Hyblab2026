@@ -1,5 +1,6 @@
 import Robot from './Robot';
 import ResourceCard from './ResourceCard';
+import ScrollArrow from './ScrollArrow';
 import data from '../data/data.json';
 
 import prixSvg       from '../data/pictogramme/prix.svg';
@@ -36,17 +37,12 @@ const wavyLineSide =
 const wavyLineCentre =
   'https://www.figma.com/api/mcp/asset/a7cc859a-99ec-42b5-98df-bd06ed42cbbc';
 
-const arrowDown =
-  'https://www.figma.com/api/mcp/asset/ec378145-d58a-484a-bcba-965252b4e421';
-
-
 export default function IcebergScene() {
   return (
     <>
-      {/* Scroll arrow (47:246) — x=960, y=888, h=101 */}
-      <div className="absolute left-1/2 top-[888px] -translate-x-1/2">
-        <img src={arrowDown} alt="Défiler vers le bas" className="w-[34px] h-[101px]" />
-      </div>
+      {/* Scroll down arrow — centred, node 15:2 */}
+      <ScrollArrow direction="down" left="50%" top={888} translateX="-50%" />
+
 
       {/* Centre wavy line (47:346) — x=843, y=1036, w=234, h=18 */}
       <div className="absolute left-[843px] top-[1036px] w-[234px] h-[18px]">

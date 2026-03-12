@@ -1,12 +1,6 @@
-/**
- * ProgressBar – vertical indicator.
- *
- * Props:
- *   level – fill amount 0–1 (default 0)
- */
 const TRACK_HEIGHT = 427;
-const TRACK_WIDTH  = 46;
-const FILL_WIDTH   = 27;
+const TRACK_WIDTH = 46;
+const FILL_WIDTH = 27;
 
 export default function ProgressBar({ level = 0 }) {
   const fillHeight = Math.round(TRACK_HEIGHT * Math.min(1, Math.max(0, level)));

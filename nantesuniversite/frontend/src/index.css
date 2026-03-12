@@ -1,25 +1,12 @@
-@import "tailwindcss";
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,700;1,400&family=Poppins:wght@800&display=swap');
+@import "tailwindcss";
 
-/*
- * Custom brand fonts — add @font-face declarations here once the font files
- * are available (OT Bulb Monoline, Massilia):
- *
- * @font-face {
- *   font-family: 'OT Bulb Monoline';
- *   src: url('./fonts/OTBulbMonoline.woff2') format('woff2');
- * }
- * @font-face {
- *   font-family: 'Massilia';
- *   font-weight: 300;
- *   src: url('./fonts/Massilia-Light.woff2') format('woff2');
- * }
- * @font-face {
- *   font-family: 'Massilia';
- *   font-weight: 700;
- *   src: url('./fonts/Massilia-Bold.woff2') format('woff2');
- * }
- */
+@font-face {
+  font-family: 'OT Bulb Monoline';
+  font-weight: 500;
+  font-style: normal;
+  src: url('./fonts/OTBulbMonoline-500.otf') format('opentype');
+}
 
 @theme {
   /* Brand colours */
@@ -31,7 +18,9 @@
   --font-sans: 'Inter', sans-serif;
 }
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 

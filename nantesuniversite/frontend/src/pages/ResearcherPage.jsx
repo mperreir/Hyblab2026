@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react';
-import Header       from '../components/Header';
-import ExpertQuote  from '../components/ExpertQuote';
-import ProgressBar  from '../components/ProgressBar';
+import Header from '../components/Header';
+import TopicTitle from '../components/TopicTitle';
+import ExpertQuote from '../components/ExpertQuote';
+import ProgressBar from '../components/ProgressBar';
 import IcebergScene from '../components/IcebergScene';
+import ScrollArrow from '../components/ScrollArrow';
 
-const DESIGN_WIDTH  = 1920;
-const DESIGN_HEIGHT = 4609; // actual Figma frame height (Ecran 1)
+const DESIGN_WIDTH = 1920;
+const DESIGN_HEIGHT = 4609;
 
 export default function ResearcherPage() {
   const [scale, setScale] = useState(() => window.innerWidth / DESIGN_WIDTH);
@@ -18,17 +20,14 @@ export default function ResearcherPage() {
 
   return (
     <>
-      {/* Fixed progress bar overlay – centred vertically, always on screen */}
-      <div
-        className="fixed inset-0 flex items-center pointer-events-none z-50"
-        style={{ zoom: scale }}
-      >
-        <div className="ml-[33px]">
-          <ProgressBar level={0.5} />
-        </div>
+      <div className="fixed bottom-[33px] left-[33px] pointer-events-none z-50" style={{ zoom: 0.6 }}>
+        <ProgressBar level={0.2} />
       </div>
 
-      {/* Scrolling design canvas */}
+      <div className="fixed bottom-[33px] right-[60px] z-50">
+        <ScrollArrow direction="up" scale={0.5} />
+      </div>
+
       <div
         className="relative font-sans"
         style={{
@@ -39,6 +38,7 @@ export default function ResearcherPage() {
         }}
       >
         <Header />
+        <TopicTitle />
         <ExpertQuote />
         <IcebergScene />
       </div>
