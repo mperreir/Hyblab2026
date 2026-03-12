@@ -1,6 +1,7 @@
 import Manuscrit from "../components/infographie/Manuscrit";
 import Quote from "../components/question/quote";
 import Timeline from "../components/infographie/Timeline";
+import DoughnutChart from "../components/infographie/DoughnutChart";
 import {DropZone, AnswerBank} from "../components/infographie/Puzzle";
 
 const debateData = {
@@ -150,6 +151,14 @@ const debateData = {
           "contenu": [
             "Je souscris à deux points de votre démonstration : le comportement électoral varierait considérablement d'un mode de scrutin à l'autre. D'où l'inutilité de procéder à des simulations, qui ne reposent sur rien de sérieux.",
             "Le mode de scrutin n'est pas la « solution magique » pour guérir notre système démocratique. Des États-Unis à la Pologne, de la Suède au Portugal, aucune démocratie libérale ne peut se targuer d'être en bonne santé. L'espace public est en crise, fracturé par une polarisation grandissante.",
+            <DoughnutChart
+              className="mx-auto my-8"
+              segments={[
+                { label: 'LFI', percentage: 12, color: '#E3F280' },
+                { label: '', percentage: 63, color: '#D2D2D2' },
+                { label: 'RN', percentage: 25, color: '#A4BAE8' },
+              ]}
+            />,
             "Nous sommes face à une Assemblée nationale où 25 % des sièges reviennent au RN, 12 % à LFI, des partis qui s'accommodent difficilement des systèmes de coalition. Comme sous la IVe République, nous serions condamnés à gouverner au centre dans une galaxie de partis n'ayant que peu en commun.",
             "Cela étant dit, je m'inscris en faux sur le point qui concerne la « culture politique » : cela ne renvoie à aucune réalité tangible. Il y a des règles du jeu, et les acteurs politiques s'y adaptent."
           ]

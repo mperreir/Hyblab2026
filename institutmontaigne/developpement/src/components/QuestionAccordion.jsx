@@ -313,7 +313,7 @@ const QuestionItem = forwardRef(function QuestionItem(
           {question.question}
         </span>
         <svg
-          className={`w-4 h-3 shrink-0 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}
+          className={`w-4 h-3 shrink-0 transition-transform duration-300 -translate-y-2 ${isOpen ? 'rotate-180' : ''}`}
           viewBox="0 0 14 8"
           fill="none"
           stroke="currentColor"
@@ -328,11 +328,11 @@ const QuestionItem = forwardRef(function QuestionItem(
 
       {/* Dialogue panel */}
       {isOpen && (
-        <div className="relative mb-4 animate-slide-down flex flex-col flex-1 min-h-0">
+        <div className="relative mb-3 animate-slide-down flex flex-col flex-1 min-h-0">
           {/* Scroll container */}
           <div
             ref={scrollContainerRef}
-            className="dialogue-scroll flex-1 overflow-y-auto rounded-xl bg-offwhite min-h-0"
+            className="dialogue-scroll flex-1 overflow-y-auto bg-white min-h-0"
             onTouchStart={handleTouchStart}
             onTouchEnd={handleTouchEnd}
           >
