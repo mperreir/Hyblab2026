@@ -176,6 +176,7 @@ const apply = () => {
   inset: 0;
   background: rgba(0, 0, 0, 0.45);
   z-index: 0;
+  pointer-events: auto;
 }
 
 /* ── Feuille ── */
@@ -336,6 +337,7 @@ const apply = () => {
 .filtres-slide-enter-from,
 .filtres-slide-leave-to {
   opacity: 0;
+  pointer-events: none;
 }
 .filtres-slide-enter-from .filtres-sheet,
 .filtres-slide-leave-to .filtres-sheet {

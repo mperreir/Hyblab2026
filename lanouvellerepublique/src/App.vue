@@ -152,6 +152,7 @@ const bottomBtnFilterColor = COLORS.switchTextBlue
     font-weight: 700;
     font-size: 1rem;
     line-height: 1;
+    cursor: pointer;
 }
 
 .action-btn--filter {
