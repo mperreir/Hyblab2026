@@ -1,5 +1,7 @@
+import React from 'react';
 import Robot from './Robot';
 import ResourceCard from './ResourceCard';
+import DataIceberg from './DataIceberg';
 import ScrollArrow from './ScrollArrow';
 import data from '../data/data.json';
 
@@ -49,15 +51,9 @@ export default function IcebergScene() {
         <img src={wavyLineCentre} alt="" className="w-full h-full" aria-hidden />
       </div>
 
-      {/* Iceberg layers (47:248, 47:252, 47:274) — x=99, y=894, w=1588, h=2701 */}
+      {/* full iceberg group exported from Figma */}
       <div className="absolute left-[99px] top-[894px] w-[1588px] h-[2701px]">
-        <img src={icebergOutline} alt="Iceberg" className="w-full h-full object-contain" />
-      </div>
-      <div className="absolute left-[99px] top-[894px] w-[1588px] h-[2701px]">
-        <img src={icebergFill} alt="" className="w-full h-full object-contain" aria-hidden />
-      </div>
-      <div className="absolute left-[99px] top-[894px] w-[1588px] h-[2701px]">
-        <img src={icebergOutline2} alt="" className="w-full h-full object-contain" aria-hidden />
+        <DataIceberg className="w-full h-full" />
       </div>
 
       {/* Side wavy lines at the waterline (47:339 right, 47:340 left) */}
