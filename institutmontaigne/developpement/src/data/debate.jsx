@@ -1,5 +1,5 @@
 import Manuscrit from "../components/infographie/Manuscrit";
-import PhotoQuote from "../components/question/quote";
+import Quote from "../components/question/quote";
 import Timeline from "../components/infographie/Timeline";
 import DoughnutChart from "../components/infographie/DoughnutChart";
 import {DropZone, AnswerBank} from "../components/infographie/Puzzle";
@@ -57,7 +57,7 @@ const debateData = {
           "type": "interlocuteur1",
           "intervenant": "morel",
           "contenu": [
-            <PhotoQuote
+            <Quote
               photo="/img/1.png"
               quote="Pour donner un peu de contexte, la France a déjà appliqué le principe du scrutin proportionnel <b>entre 1946 et 1958.</b>"
               isLeft={true}
@@ -70,7 +70,7 @@ const debateData = {
           "type": "interlocuteur2",
           "intervenant": "levade",
           "contenu": [
-            <PhotoQuote
+            <Quote
               photo="/img/2.png"
               quote="J'ajouterai à cela que <b>De Gaulle est d'abord favorable à la proportionnelle</b> sous la IVe, qu'il perçoit comme un <b>moyen de contenir le Parti communiste.</b>"
               isLeft={false}
@@ -92,30 +92,40 @@ const debateData = {
           "type": "interlocuteur2",
           "intervenant": "levade",
           "contenu": [
-            "Face à la crise politique que nous traversons, on voit ressurgir l'idée qu'instaurer le scrutin proportionnel permettrait de faire face à un phénomène de dislocation des partis qui rend impossible l'émergence d'une majorité de gouvernement.",
-            "Or, une question fondamentale n'est pas résolue : celle de savoir si les accords de coalition rendus nécessaires par la proportionnelle faciliteraient la constitution de programmes politiques, ou si l'absence de programme politique solide au sein des partis rendrait impossible la mise en place de coalitions.",
-            "Il faut rappeler que le changement de mode de scrutin n'est pas, loin s'en faut, une idée neuve et que le passage à la proportionnelle a tout du mantra. On prétend vouloir donner satisfaction à une aspiration de l'opinion, sans anticiper les conséquences ni même prendre sérieusement en considération les éléments du contexte politique actuel et l'état de décomposition du paysage politique."
+            <Quote
+              photo="/img/2.png"
+              quote="Face à la crise politique que nous traversons, on peut penser que le scrutin proportionnel permet de lutter contre la dislocation des grands partis politiques qui empêchent l'émergence d'une majorité gouvernementale."
+              isLeft={ false }
+            />,
+            "Pourtant, obliger les partis politique à s'allier ne facilite pas forcément l'émergence d'un programme politique solide.",
+            "L'idée d'un scrutin proportionnel revient souvent dans le débat, mais souvent sans rentrer dans le détail des modalités."
           ],
-          "citation": "Une question fondamentale n'est pas résolue : celle de savoir si les accords de coalition faciliteraient la constitution de programmes politiques, ou si l'absence de programme rendrait impossible la mise en place de coalitions."
         },
         {
           "type": "interlocuteur1",
           "intervenant": "morel",
           "contenu": [
-            "Il n'est pas certain que la proportionnelle déstructure le système de partis. Si l'on compare avec d'autres démocraties libérales, on constate que la décomposition du paysage politique est tout autant sensible. Par exemple, au Bundestag, où le mode de scrutin est proportionnel, six formations politiques sont représentées. À l'Assemblée nationale française, où le scrutin majoritaire prévaut, elles sont au nombre de onze.",
-            "Une proportionnelle bien conçue favorise davantage les coalitions. Le scrutin majoritaire vous oblige à partir uni dès le premier tour pour espérer le passer. Les alliances sont ainsi figées avant l'élection pour des raisons stratégiques. À l'inverse, une proportionnelle permet à chaque formation de se présenter sous ses propres couleurs et de négocier des ententes après l'élection.",
-            "Là où la proportionnelle peut être une réponse à la crise politique, c'est parce qu'elle peut répondre à l'essor inquiétant de l'abstention. Des études internationales montrent que la proportionnelle entraîne une hausse de la participation de 7 points dans la population générale et de 12 points chez les jeunes. On constate également un plus fort taux d'adhésion aux politiques publiques."
-          ]
+            <Quote
+              photo="/img/1.png"
+              quote="Il n'est pas certain que la proportionnelle déstructure le système de partis. Si l'on compare avec d'autres démocraties libérales, où la proportionnelle est appliquée, on constate que la décomposition du paysage politique est tout autant sensible."
+              isLeft={ true }
+            />,
+            "Par exemple, au Bundestag, le mode de scrutin est proportionnel et six formations politiques sont représentées.",
+            "À l'Assemblée nationale française, où le scrutin majoritaire prévaut, elles sont au nombre de onze.",
+            "Le débat est donc souvent caricatural, d'autant plus que les effets du scrutin proportionnel dépendent largement de ses modalités d'application."    
+            ]
         },
         {
           "type": "interlocuteur2",
           "intervenant": "levade",
           "contenu": [
-            "Certes, mais le mode de scrutin ne suffit pas à structurer la vie politique, et c'est là que l'observation comparée des systèmes politiques et constitutionnels montre ses limites.",
-            "Les traditions et la culture politiques sont des variables majeures qui empêchent, en toute rigueur, de transposer des exemples étrangers en estimant que l'importation d'un mode de scrutin suffit à produire un résultat déterminé.",
-            "Là est bien ce qui rend les modes de scrutin si délicats puisque leur changement entraîne un changement dans les candidatures, dans la manière de faire campagne et, par voie de conséquence, dans les comportements des électeurs."
+            <Quote
+              photo="/img/2.png"
+              quote="Certes, mais le mode de scrutin ne suffit pas à structurer la vie politique, et c'est là que l'observation comparée des systèmes politiques et constitutionnels montre ses limites."
+              isLeft={ false }
+            />,
+            "On ne peut pas se baser sur des exemples étrangers pour anticiper les résultats en France, ni convertir un scrutin majoritaire pour imaginer un résultat en scrutin proportionnel. Par ailleurs, la France pratique le scrutin proportionnel lors de certaines élections, comme les européennes."
           ],
-          "citation": "Les traditions et la culture politiques sont des variables majeures qui empêchent de transposer des exemples étrangers."
         }
       ]
     },
@@ -128,21 +138,26 @@ const debateData = {
           "type": "interlocuteur2",
           "intervenant": "levade",
           "contenu": [
-            "Il n'existe en effet pas une mais des formes de scrutin proportionnel. On peut choisir une proportionnelle intégrale — qui s'applique à l'intégralité des élus — ou partielle. Mais ce seul choix n'est pas suffisant puisqu'il faut encore déterminer la circonscription — nationale ou départementale — et fixer le seuil à partir duquel les formations pourront avoir des représentants.",
+            <Quote
+              photo="/img/2.png"
+              quote="Il n'existe en effet pas une mais des formes de scrutin proportionnel."
+              isLeft={ false }
+            />,
+            "En surface, c'est simple : un parti reçoit un nombre de sièges proportionnel aux voix obtenus. Mais c'est une véritable ingénierie électorale qui se cache derrière ce terme.",
+            "Différentes proportionnelles existent en fonction des variables suivantes :",
             <RepartitionDynamique />,
-            "La France pratique déjà la proportionnelle pour d'autres scrutins. La proportionnelle intégrale s'applique lors des élections européennes. Les élections sénatoriales sont organisées selon un scrutin mixte. Les élections municipales sont organisées à la proportionnelle avec prime majoritaire dans les communes de plus de mille habitants.",
-            "Dire que l'on veut mettre en œuvre la proportionnelle ne renseigne pas sur ses modalités. Selon que l'on utilise la méthode du plus fort reste ou la méthode de la plus forte moyenne, les rapports de force sont bousculés.",
-            "Derrière le mot magique de « proportionnelle », mille formules existent dont aucune ne suscite unanimement l'adhésion. La difficulté du passage à la proportionnelle est donc inévitablement l'accusation de « tripatouillage » électoral.",
-            "Les partis qui y sont favorables se fondent sur des calculs plus ou moins fiables. Et surtout chacun escompte pouvoir obtenir ainsi davantage de sièges, ce qui, mathématiquement, est impossible. Les déceptions nées de l'écart inéluctable entre les projections et le réel pourraient aggraver la contestation du modèle démocratique."
           ],
-          "citation": "Derrière le mot magique de « proportionnelle », mille formules existent dont aucune ne suscite unanimement l'adhésion."
         },
         {
           "type": "interlocuteur1",
           "intervenant": "morel",
           "contenu": [
-            "Je souscris à deux points de votre démonstration : le comportement électoral varierait considérablement d'un mode de scrutin à l'autre. D'où l'inutilité de procéder à des simulations, qui ne reposent sur rien de sérieux.",
-            "Le mode de scrutin n'est pas la « solution magique » pour guérir notre système démocratique. Des États-Unis à la Pologne, de la Suède au Portugal, aucune démocratie libérale ne peut se targuer d'être en bonne santé. L'espace public est en crise, fracturé par une polarisation grandissante.",
+            <Quote
+              photo="/img/1.png"
+              quote="Je suis d'accord avec vous, le comportement électoral est très variable selon les modes de scrutin."
+              isLeft={ true }
+            />,
+            "L'espace politique est fracturé par une polarisation grandissante : ",
             <DoughnutChart
               className="mx-auto my-8"
               segments={[
@@ -151,27 +166,24 @@ const debateData = {
                 { label: 'RN', percentage: 25, color: '#A4BAE8' },
               ]}
             />,
-            "Nous sommes face à une Assemblée nationale où 25 % des sièges reviennent au RN, 12 % à LFI, des partis qui s'accommodent difficilement des systèmes de coalition. Comme sous la IVe République, nous serions condamnés à gouverner au centre dans une galaxie de partis n'ayant que peu en commun.",
-            "Cela étant dit, je m'inscris en faux sur le point qui concerne la « culture politique » : cela ne renvoie à aucune réalité tangible. Il y a des règles du jeu, et les acteurs politiques s'y adaptent."
+          "Pour ces partis, les alliances sont difficiles. Comme sous la IVe République, nous serions donc condamnés à gouverner avec les partis centristes.",
+          <Quote
+              photo="/img/1.png"
+              quote="Avec le scrutin proportionnel, le Président de la République ne peut annoncer de réforme sans savoir s'il aura une majorité pour le soutenir. Nous sommes confrontés à une bataille d'intérêts sur la vision du régime : s'agit-il d'obtenir une majorité absolue soumise à un chef ou de mettre en place un régime plus parlementaire ? "
+              isLeft={ true }
+            />,
           ]
-        },
-        {
-          "type": "interlocuteur1",
-          "intervenant": "morel",
-          "contenu": [
-            "Le présidentialisme à la française serait plus difficile à maintenir avec un scrutin proportionnel et évoluerait. Nous sommes confrontés à une bataille d'intérêts sur la vision du régime : s'agit-il d'obtenir une majorité absolue soumise à un chef ou de mettre en place un régime plus parlementaire ?",
-            "Ce sont deux modèles politiques fondamentalement opposés qu'induisent les deux types de scrutin, et ils dépendent d'un choix politique plus que d'une inscription dans un essentialisme politique."
-          ],
-          "citation": "S'agit-il d'obtenir une majorité absolue soumise à un chef ou de mettre en place un régime plus parlementaire ?"
         },
         {
           "type": "interlocuteur2",
           "intervenant": "levade",
           "contenu": [
-            "Vous prenez l'exemple du Portugal pour montrer le peu de substance du concept de culture politique. Or, justement, le Portugal apporterait plutôt un contre-exemple : une culture politique marquée par quarante-cinq années de dictature peut expliquer que le présidentialisme modéré n'ait pas pris racine. La culture politique française est à l'évidence différente et sans doute davantage présidentialiste !",
-            "Une culture politique se forge dans le temps long et suppose une réadaptation progressive et permanente aux événements. Les aspirations à une « VIe République » ou à un changement de mode de scrutin sont en réalité les symptômes d'un réflexe bien français qui consiste à considérer que le salut tient à un changement de Constitution.",
-            "Si la mécanique de la persuasion aboutit et que l'on passe à une VIe République avec scrutin proportionnel, il y a fort à parier que cela n'apportera aucune solution à la crise démocratique profonde que nous traversons."
-          ]
+            <Quote
+              photo="/img/2.png"
+              quote="La culture politique française est à l'évidence différente d'autres pays et sans doute davantage présidentialiste que nos voisins européens ! Une culture politique se forge dans le temps long et suppose une réadaptation progressive et permanente aux événements. Si l'on passe à une VIe République avec scrutin proportionnel, il y a fort à parier que cela n'apportera aucune solution à la crise démocratique profonde que nous traversons désagrégation des forces politiques, déficit, etc. "
+              isLeft={ false }
+            />,
+          ],
         }
       ]
     },

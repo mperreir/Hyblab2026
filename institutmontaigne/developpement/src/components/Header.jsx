@@ -29,7 +29,7 @@ export default function Navbar({ isQuestionOpen = false }) {
 
   return (
     <nav
-      className={`backdrop-blur-xl text-montaigne-burgundy px-4 sm:px-6 py-3 h-[61px] sticky top-0 z-[9999] transition-all duration-300 ease-out ${
+      className={`bg-white text-montaigne-burgundy px-4 sm:px-6 py-3 h-[61px] sticky top-0 z-[9999] shadow-[0px_6px_20px_rgba(0,0,0,0.1)] transition-all duration-300 ease-out ${
         isQuestionOpen || !isVisible ? '-translate-y-full opacity-0 pointer-events-none' : 'translate-y-0 opacity-100'
       }`}
     >

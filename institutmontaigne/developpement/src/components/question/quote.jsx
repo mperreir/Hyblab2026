@@ -12,7 +12,7 @@ import { color } from "framer-motion";
  *   "side": "left"                    // "left" (défaut) ou "right"
  * }
  */
-export default function PhotoQuote({ photo, quote, isLeft = true }) {
+export default function Quote({ photo, quote, isLeft = true }) {
   const COLOR = isLeft ? '#DD7375' : '#872339';
 
   return (
