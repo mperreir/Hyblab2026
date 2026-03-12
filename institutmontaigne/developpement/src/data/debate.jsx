@@ -137,20 +137,25 @@ const debateData = {
           "type": "interlocuteur2",
           "intervenant": "levade",
           "contenu": [
-            "Il n'existe en effet pas une mais des formes de scrutin proportionnel. On peut choisir une proportionnelle intégrale — qui s'applique à l'intégralité des élus — ou partielle. Mais ce seul choix n'est pas suffisant puisqu'il faut encore déterminer la circonscription — nationale ou départementale — et fixer le seuil à partir duquel les formations pourront avoir des représentants.",
-            "La France pratique déjà la proportionnelle pour d'autres scrutins. La proportionnelle intégrale s'applique lors des élections européennes. Les élections sénatoriales sont organisées selon un scrutin mixte. Les élections municipales sont organisées à la proportionnelle avec prime majoritaire dans les communes de plus de mille habitants.",
-            "Dire que l'on veut mettre en œuvre la proportionnelle ne renseigne pas sur ses modalités. Selon que l'on utilise la méthode du plus fort reste ou la méthode de la plus forte moyenne, les rapports de force sont bousculés.",
-            "Derrière le mot magique de « proportionnelle », mille formules existent dont aucune ne suscite unanimement l'adhésion. La difficulté du passage à la proportionnelle est donc inévitablement l'accusation de « tripatouillage » électoral.",
-            "Les partis qui y sont favorables se fondent sur des calculs plus ou moins fiables. Et surtout chacun escompte pouvoir obtenir ainsi davantage de sièges, ce qui, mathématiquement, est impossible. Les déceptions nées de l'écart inéluctable entre les projections et le réel pourraient aggraver la contestation du modèle démocratique."
+            <Quote
+              photo="/img/2.png"
+              quote="Il n'existe en effet pas une mais des formes de scrutin proportionnel."
+              isLeft={ false }
+            />,
+            "En surface, c'est simple : un parti reçoit un nombre de sièges proportionnel aux voix obtenus. Mais c'est une véritable ingénierie électorale qui se cache derrière ce terme.",
+            "Différentes proportionnelles existent en fonction des variables suivantes :",
           ],
-          "citation": "Derrière le mot magique de « proportionnelle », mille formules existent dont aucune ne suscite unanimement l'adhésion."
         },
         {
           "type": "interlocuteur1",
           "intervenant": "morel",
           "contenu": [
-            "Je souscris à deux points de votre démonstration : le comportement électoral varierait considérablement d'un mode de scrutin à l'autre. D'où l'inutilité de procéder à des simulations, qui ne reposent sur rien de sérieux.",
-            "Le mode de scrutin n'est pas la « solution magique » pour guérir notre système démocratique. Des États-Unis à la Pologne, de la Suède au Portugal, aucune démocratie libérale ne peut se targuer d'être en bonne santé. L'espace public est en crise, fracturé par une polarisation grandissante.",
+            <Quote
+              photo="/img/1.png"
+              quote="Je suis d'accord avec vous, le comportement électoral est très variable selon les modes de scrutin."
+              isLeft={ true }
+            />,
+            "L'espace politique est fracturé par une polarisation grandissante : ",
             <DoughnutChart
               className="mx-auto my-8"
               segments={[
@@ -159,27 +164,24 @@ const debateData = {
                 { label: 'RN', percentage: 25, color: '#A4BAE8' },
               ]}
             />,
-            "Nous sommes face à une Assemblée nationale où 25 % des sièges reviennent au RN, 12 % à LFI, des partis qui s'accommodent difficilement des systèmes de coalition. Comme sous la IVe République, nous serions condamnés à gouverner au centre dans une galaxie de partis n'ayant que peu en commun.",
-            "Cela étant dit, je m'inscris en faux sur le point qui concerne la « culture politique » : cela ne renvoie à aucune réalité tangible. Il y a des règles du jeu, et les acteurs politiques s'y adaptent."
+          "Pour ces partis, les alliances sont difficiles. Comme sous la IVe République, nous serions donc condamnés à gouverner avec les partis centristes.",
+          <Quote
+              photo="/img/1.png"
+              quote="Avec le scrutin proportionnel, le Président de la République ne peut annoncer de réforme sans savoir s'il aura une majorité pour le soutenir. Nous sommes confrontés à une bataille d'intérêts sur la vision du régime : s'agit-il d'obtenir une majorité absolue soumise à un chef ou de mettre en place un régime plus parlementaire ? "
+              isLeft={ true }
+            />,
           ]
-        },
-        {
-          "type": "interlocuteur1",
-          "intervenant": "morel",
-          "contenu": [
-            "Le présidentialisme à la française serait plus difficile à maintenir avec un scrutin proportionnel et évoluerait. Nous sommes confrontés à une bataille d'intérêts sur la vision du régime : s'agit-il d'obtenir une majorité absolue soumise à un chef ou de mettre en place un régime plus parlementaire ?",
-            "Ce sont deux modèles politiques fondamentalement opposés qu'induisent les deux types de scrutin, et ils dépendent d'un choix politique plus que d'une inscription dans un essentialisme politique."
-          ],
-          "citation": "S'agit-il d'obtenir une majorité absolue soumise à un chef ou de mettre en place un régime plus parlementaire ?"
         },
         {
           "type": "interlocuteur2",
           "intervenant": "levade",
           "contenu": [
-            "Vous prenez l'exemple du Portugal pour montrer le peu de substance du concept de culture politique. Or, justement, le Portugal apporterait plutôt un contre-exemple : une culture politique marquée par quarante-cinq années de dictature peut expliquer que le présidentialisme modéré n'ait pas pris racine. La culture politique française est à l'évidence différente et sans doute davantage présidentialiste !",
-            "Une culture politique se forge dans le temps long et suppose une réadaptation progressive et permanente aux événements. Les aspirations à une « VIe République » ou à un changement de mode de scrutin sont en réalité les symptômes d'un réflexe bien français qui consiste à considérer que le salut tient à un changement de Constitution.",
-            "Si la mécanique de la persuasion aboutit et que l'on passe à une VIe République avec scrutin proportionnel, il y a fort à parier que cela n'apportera aucune solution à la crise démocratique profonde que nous traversons."
-          ]
+            <Quote
+              photo="/img/2.png"
+              quote="La culture politique française est à l'évidence différente d'autres pays et sans doute davantage présidentialiste que nos voisins européens ! Une culture politique se forge dans le temps long et suppose une réadaptation progressive et permanente aux événements. Si l'on passe à une VIe République avec scrutin proportionnel, il y a fort à parier que cela n'apportera aucune solution à la crise démocratique profonde que nous traversons désagrégation des forces politiques, déficit, etc. "
+              isLeft={ false }
+            />,
+          ],
         }
       ]
     },
