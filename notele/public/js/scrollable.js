@@ -19,9 +19,9 @@ function hideScroll(){
 
 window.addEventListener('mouseup', function(event) {
     var scrollable = document.getElementById('scrollable_page');
-    if (scrollable.style.display === "none") return; // ✅ déjà caché, rien à faire
+    const isVisible = getComputedStyle(scrollable).display !== "none";
+    if (!isVisible) return;
     if (!event.target.closest("#scrollable_page")) {
-        console.log("call")
         hideScroll();
     }
 });

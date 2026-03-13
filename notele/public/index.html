@@ -18,9 +18,8 @@
   <script src="js/appearances.js" defer></script>
   <script src="js/selecteur.js" defer></script>
   <script src="js/filters.js" defer></script>
-  <script src="js/company.js" defer></script>
-
-
+  <script src="js/company.js" defer></script> 
+  <script src="js/video.js" defer></script> 
 
 </head>
 <body>
@@ -102,10 +101,10 @@
 <aside id="scrollable_page">
 
   <header class="company-header" id="companyHeader">
-    <a class="company-logo" href="index.html" aria-label="Retour à la map">
+    <a class="company-logo" onclick="hideScroll()" aria-label="Retour à la map" style="cursor: pointer;">
       <img src="img/labeleco-blanc.png" alt="Logo Label Eco">
     </a>
-    <a class="company-back" href="index.html">Retour à la map</a>
+    <a class="company-back" onclick="hideScroll()" style="cursor: pointer;">Retour à la map</a>
   </header>
 
   <div class="company-page">
