@@ -211,9 +211,22 @@ article {
     pointer-events: none; 
     mix-blend-mode: multiply; 
 }
+.images-container {
+    position: relative;
+    width: 100%;
+    height: 20rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.image-center img { 
+    height: auto;
+    z-index: 2;
+}
 
 .img-caf {
-    top: 10%; 
+    top: 20%; 
     transform: translate(-50%, 0) scale(1.5); 
     opacity: 1; 
 }
@@ -233,8 +246,52 @@ article {
     opacity: 1; 
     transform: translate(-50%, 0) scale(1.5); 
 }
+.image-side {
+    position: absolute;
+    width: 10rem;
+    top: 3%;
+}
 
-/* Conteneur principal pour la superposition */
+.image-side.left {
+    left: 0;
+    transform: scaleX(-1);
+    opacity: 0; 
+}
+
+.image-side.right {
+    right: 0;
+    opacity: 0; 
+}
+
+@keyframes slideInLeft {
+    from {
+        transform:  translateX(-150px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        transform:  translateX(150px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+.image-side.left.animated {
+    animation: slideInLeft 0.8s ease-out forwards;
+}
+
+.image-side.right.animated {
+    animation: slideInRight 0.8s ease-out forwards;
+}
+
 .quiz-superposition-container {
     position: relative; 
     width: 100%;

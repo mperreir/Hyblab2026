@@ -256,3 +256,33 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
 });
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('animated');
+            observer.unobserve(entry.target);
+        }
+    });
+}, { 
+    threshold: 0,
+    rootMargin: '0px 0px -50px 0px' // Se déclenche 50px avant le bas du viewport
+});
+
+document.querySelectorAll('.image-side').forEach(el => observer.observe(el));
+
+document.addEventListener('DOMContentLoaded', () => {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animated');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { 
+        threshold: 0,
+        rootMargin: '0px 0px -50px 0px'
+    });
+
+    document.querySelectorAll('.image-side').forEach(el => observer.observe(el));
+});
