@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Descente</title>
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Descente</title>
+
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;1,300&display=swap');
+
+*{margin:0;padding:0;box-sizing:border-box;}
+
+body{
+height:1300vh;
+background:#000;
+overflow-x:hidden;
+}
+
+.scene{
+position:fixed;
+inset:0;
+overflow:hidden;
+height:100dvh;
+}
+
+/* ciel */
+
+.calque-ciel{
+position:absolute;
+inset:0;
+background-image:url('img/plan_03_ciel.png');
+background-size:cover;
+background-position:center;
+}
+
+/* ville */
+
+.calque-ville{
+position:absolute;
+inset:0;
+overflow:visible;
+will-change:transform;
+}
+
+.calque-ville img{
+position:absolute;
+bottom:-2.36vh;
+left:-50%;
+height:100%;
+width:auto;
+will-change:left;
+}
+
+/* groupe scene 1 */
+
+.groupe-scene1{
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+overflow:visible;
+will-change:transform;
+}
+
+/* images flottantes */
+
+.musee,.ruines,.ecolier{
+position:absolute;
+opacity:0;
+transition:opacity .6s ease, transform .6s ease;
+}
+
+.musee{
+bottom:-2.36vh;
+right:0;
+width:35.46vh;
+transform:translateY(7.09vh);
+}
+
+.ruines{
+bottom:0;
+left:0;
+width:47.28vh;
+transform:translateY(7.09vh);
+}
+
+.ecolier{
+bottom:0;
+left:50%;
+width:30.73vh;
+transform:translateX(-50%) translateY(7.09vh);
+}
+
+.musee.visible{opacity:1;transform:translateY(0);}
+.ruines.visible{opacity:1;transform:translateY(0);}
+.ecolier.visible{opacity:1;transform:translateX(-50%) translateY(0);}
+
+/* texte scene 1 */
+
+.bloc-texte-musee{
+position:absolute;
+top:20%;
+left:50%;
+transform:translate(-50%,-50%);
+text-align:center;
+opacity:0;
+transition:opacity .8s ease;
+max-width:66vh;
+padding:0 2.84vh;
+z-index:100;
+pointer-events:none;
+}
+
+.bloc-texte-musee.visible{
+opacity:1;
+pointer-events:all;
+}
+
+.titre{
+font-family:'Cormorant Garamond',serif;
+font-size:3vh;
+font-weight:300;
+color:#f97316;
+letter-spacing:.1em;
+margin-bottom:1.89vh;
+text-shadow:0 0.24vh 1.89vh rgba(0,0,0,.8);
+}
+
+.description{
+font-family:'Cormorant Garamond',serif;
+font-size:1.36vh;
+font-style:italic;
+color:rgba(255,255,255,.92);
+line-height:1.75;
+text-shadow:0 0.24vh 1.18vh rgba(0,0,0,.9);
+}
+
+.button{
+display:inline-block;
+margin-top:1.42vh;
+padding:0.47vh 1.65vh;
+border:0.12vh outset;
+border-radius:0.35vh;
+color:orange;
+background:white;
+text-decoration:none;
+}
+
+/* scène 2 */
+
+.scene2{
+position:absolute;
+top:0;
+left:100%;
+width:100%;
+height:100%;
+will-change:left;
+}
+
+.avant{
+position:absolute;
+inset:0;
+background-image:url('img/chantier/Plan-av.png');
+background-repeat:no-repeat;
+background-size:100% auto;
+background-position:left bottom;
+}
+
+.apres{
+position:absolute;
+inset:0;
+background-image:url('img/chantier/Plan-ap.png');
+background-repeat:no-repeat;
+background-size:100% auto;
+background-position:left bottom;
+clip-path:inset(0 100% 0 0);
+will-change:clip-path;
+}
+
+.separateur{
+position:absolute;
+top:0;
+bottom:0;
+width:0.35vh;
+background:white;
+box-shadow:0 0 1.42vh rgba(255,255,255,0.8);
+left:0%;
+will-change:left;
+pointer-events:none;
+opacity:0;
+transition:opacity .6s ease;
+}
+
+.separateur.visible{opacity:1;}
+
+.separateur::after{
+content:'◀ ▶';
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+color:white;
+font-size:0.89vh;
+letter-spacing:0.24vh;
+white-space:nowrap;
+background:rgba(0,0,0,0.5);
+padding:0.71vh 0.95vh;
+border-radius:2.36vh;
+}
+
+/* labels */
+
+.label{
+position:absolute;
+top:2.84vh;
+font-family:'Cormorant Garamond',serif;
+font-size:1.18vh;
+letter-spacing:.15em;
+text-transform:uppercase;
+padding:0.71vh 1.65vh;
+border-radius:0.47vh;
+background:rgba(0,0,0,0.4);
+color:white;
+pointer-events:none;
+opacity:0;
+transition:opacity .6s ease;
+}
+
+.label.visible{opacity:1;}
+
+.label-avant{left:2.84vh;}
+.label-apres{right:2.84vh;}
+
+.scene2-contenu{
+position:absolute;
+top:20%;
+left:50%;
+transform:translate(-50%,-50%);
+text-align:center;
+color:white;
+font-family:'Cormorant Garamond',serif;
+opacity:0;
+transition:opacity 1.2s ease;
+padding:2.84vh;
+max-width:70vh;
+z-index:10;
+pointer-events:none;
+}
+
+.scene2-contenu.visible{
+opacity:1;
+pointer-events:all;
+}
+
+/* arbre */
+
+.arbre{
+position:absolute;
+bottom:-10%;
+height:95%;
+width:auto;
+z-index:60;
+pointer-events:none;
+transform-origin:right bottom;
+will-change:right,transform,opacity;
+display:none;
+}
+
+/* UI */
+
+.altitude{
+position:absolute;
+top:3.78vh;
+left:4.26vh;
+font-family:'Cormorant Garamond',serif;
+font-style:italic;
+font-size:1.3vh;
+color:rgba(255,255,255,.7);
+opacity:0;
+transition:opacity .8s ease;
+z-index:200;
+pointer-events:none;
+}
+
+.scroll-hint{
+position:absolute;
+bottom:4.26vh;
+left:50%;
+transform:translateX(-50%);
+display:flex;
+flex-direction:column;
+align-items:center;
+gap:0.95vh;
+transition:opacity 1s ease;
+z-index:200;
+}
+
+.scroll-hint span{
+font-family:'Cormorant Garamond',serif;
+font-style:italic;
+color:rgba(255,255,255,.5);
+font-size:1vh;
+letter-spacing:.2em;
+}
+
+.fleche{
+width:0.12vh;
+height:4.73vh;
+background:linear-gradient(to bottom,rgba(255,255,255,.5),transparent);
+animation:glisser 1.5s infinite;
+}
+
+.bouton_fleche{
+position:absolute;
+bottom:5%;
+left:5%;
+height:4.73vh;
+opacity:0;
+transition:opacity 1s ease;
+cursor:pointer;
+z-index:200;
+}
+
+@keyframes glisser{
+0%{transform:scaleY(0);opacity:1;}
+50%{transform:scaleY(1);opacity:1;}
+100%{transform:scaleY(1);opacity:0;}
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- TON HTML RESTE EXACTEMENT LE MÊME -->
+
+</body>
+</html>
+</head>
+
+<body>
+<div class="scene">
+
+  <div class="calque-ciel"></div>
+
+  <!-- Scène 2 : slider avant/après -->
+  <div class="scene2" id="scene2">
+    <div class="avant"></div>
+    <div class="apres" id="apres"></div>
+    <div class="separateur" id="separateur"></div>
+    <span class="label label-avant" id="labelAvant">Avant</span>
+    <span class="label label-apres" id="labelApres">Après</span>
+    <div class="scene2-contenu" id="scene2Contenu">
+      <p class="titre">Titre scène 2</p>
+      <p class="description">Texte de la nouvelle scène</p>
+    </div>
+  </div>
+
+  <!-- Arbre sur la jointure -->
+  <img class="arbre" id="arbre" src="img/chantier/ARBRE.png">
+
+  <div class="calque-ville">
+    <img id="imgVille" src="img/musee/fond_fourviere.png">
+  </div>
+
+  <div class="groupe-scene1">
+    <img class="musee"   src="img/musee/003_musee_lugdunum.png">
+    <img class="ruines"  src="img/musee/002_ruines.png">
+    <img class="ecolier" src="img/musee/001_ecolier_illustration.png">
+    <div class="bloc-texte-musee">
+      <p class="titre">Musée de Lugdunum</p>
+      <p class="description">Le musée de Lugdunum a été construit en 1789 après René Coty</p>
+      <a href="#" class="button">En savoir +</a>
+    </div>
+  </div>
+
+  <p class="altitude" id="altitude">↓ en descente</p>
+  <img class="bouton_fleche" src="img/fleche_haut.png">
+  <div class="scroll-hint" id="scrollHint">
+    <span>scroller</span>
+    <div class="fleche"></div>
+  </div>
+
+</div>
+
+<script>
+
+const calqueVille   = document.querySelector('.calque-ville');
+const imgVille      = document.getElementById('imgVille');
+const groupeScene1  = document.querySelector('.groupe-scene1');
+const musee         = document.querySelector('.musee');
+const ruines        = document.querySelector('.ruines');
+const ecolier       = document.querySelector('.ecolier');
+const blocTexte     = document.querySelector('.bloc-texte-musee');
+const scene2        = document.getElementById('scene2');
+const apres         = document.getElementById('apres');
+const separateur    = document.getElementById('separateur');
+const labelAvant    = document.getElementById('labelAvant');
+const labelApres    = document.getElementById('labelApres');
+const scene2Contenu = document.getElementById('scene2Contenu');
+const arbre         = document.getElementById('arbre');
+const altitudeEl    = document.getElementById('altitude');
+const scrollHint    = document.getElementById('scrollHint');
+const arrowButton   = document.querySelector('.bouton_fleche');
+
+/* ── Repères scroll ── */
+const scrollFin_descente  = 2000;
+const scrollDebut_musee   = 2200;
+const scrollDebut_ruines  = 2350;
+const scrollDebut_ecolier = 2500;
+const scrollDebut_pano    = 3000;
+const scrollFin_pano      = 5000;
+const scrollFin_glisse    = 5800;
+const scrollFin_arbre     = scrollFin_glisse + 300;   // arbre disparu
+const scrollDebut_slider  = scrollFin_arbre + 600;
+const scrollFin_slider    = scrollDebut_slider + 1500;
+
+const scrollDebut_arbreGlisse = scrollFin_pano - 550; // ← à ajuster
+
+const departVw = -160; 
+
+const arbreVw = 94;
+
+let imgNaturalRatio = 2;
+imgVille.onload = () => { imgNaturalRatio = imgVille.naturalWidth / imgVille.naturalHeight; };
+if (imgVille.complete && imgVille.naturalWidth) {
+  imgNaturalRatio = imgVille.naturalWidth / imgVille.naturalHeight;
+}
+
+function clamp(v, min, max) { return Math.min(Math.max(v, min), max); }
+function avancement(s, d, f) { return clamp((s - d) / (f - d), 0, 1); }
+function toggle(el, c) { el.classList.toggle('visible', c); }
+
+arrowButton.onclick = () => window.scrollTo({ top: 0, behavior: 'smooth' });
+
+window.addEventListener('scroll', () => {
+  const s = window.scrollY;
+
+  scrollHint.style.opacity  = s > 50 ? 0 : 1;
+  arrowButton.style.opacity = s > 200 ? 1 : 0;
+  altitudeEl.style.opacity  = s > 100 ? 1 : 0;
+
+  /* ── Phase 1 : descente ── */
+  const pDescente = avancement(s, 0, scrollFin_descente);
+  calqueVille.style.transform = `translateY(${(1 - pDescente) * 100}%)`;
+
+  /* ── Phase 2 : éléments scène 1 ── */
+  toggle(musee,     s >= scrollDebut_musee   && s < scrollFin_pano);
+  toggle(ruines,    s >= scrollDebut_ruines  && s < scrollFin_pano);
+  toggle(ecolier,   s >= scrollDebut_ecolier && s < scrollFin_pano);
+  toggle(blocTexte, s >= scrollDebut_ecolier && s < scrollFin_pano);
+
+  /* ── Phase 3 : panoramique ── */
+  const imgW     = imgNaturalRatio * window.innerHeight;
+  const startX   = -0.5 * window.innerWidth;
+  const endX     = window.innerWidth - imgW;
+  const pPano    = avancement(s, scrollDebut_pano, scrollFin_pano);
+  const currentX = startX + pPano * (endX - startX);
+  const panoPx   = pPano * window.innerWidth;
+  groupeScene1.style.transform = `translateX(${-panoPx}px)`;
+
+  /* ── Phase 4 : glissement scène 2 ── */
+  const pGlisse  = avancement(s, scrollFin_pano, scrollFin_glisse);
+  const glissePx = pGlisse * window.innerWidth;
+  imgVille.style.left = `${currentX - glissePx}px`;
+  scene2.style.left   = `${(1 - pGlisse) * 100}%`;
+
+  
+  const pDisparait    = avancement(s, scrollFin_glisse, scrollFin_arbre);
+  const pGlisseArbre  = avancement(s, scrollDebut_arbreGlisse, scrollFin_pano);
+
+  if (s >= scrollDebut_arbreGlisse && s < scrollFin_arbre) {
+    arbre.style.display = 'block';
+
+    // Position d'arrivée : bord droit de l'arbre collé sur la jointure
+    const jointurePct = (1 - pGlisse) * 100;           // % depuis la gauche
+    const arriveeVw   = 100 - jointurePct - arbreVw;   // valeur right en vw
+
+    // Interpolation départ → arrivée
+    const rightVw = departVw + pGlisseArbre * (arriveeVw - departVw);
+    arbre.style.right = `${rightVw}vw`;
+    arbre.style.left  = 'auto';
+
+    // Disparition : grandit légèrement et s'estompe
+    const scaleX = 1 + pDisparait * 0.7;
+    const scaleY = 1 + pDisparait * 0.3;
+    arbre.style.opacity   = `${1 - pDisparait}`;
+    arbre.style.transform = `scaleX(${scaleX}) scaleY(${scaleY})`;
+
+  } else {
+    arbre.style.display = 'none';
+  }
+
+  /* ── Slider avant/après ── */
+  const arbreDisp = s >= scrollFin_arbre;
+  const pSlider   = avancement(s, scrollDebut_slider, scrollFin_slider);
+  const bordDroit = 100 - (pSlider * 100);
+
+  toggle(scene2Contenu, arbreDisp);
+  toggle(separateur,    arbreDisp);
+  toggle(labelAvant,    arbreDisp);
+  toggle(labelApres,    arbreDisp);
+
+  if (arbreDisp) {
+    apres.style.clipPath  = `inset(0 ${bordDroit}% 0 0)`;
+    separateur.style.left = `${pSlider * 100}%`;
+  } else {
+    apres.style.clipPath  = 'inset(0 100% 0 0)';
+    separateur.style.left = '0%';
+  }
+
+}, { passive: true });
+
+</script>
+</body>
+</html>
