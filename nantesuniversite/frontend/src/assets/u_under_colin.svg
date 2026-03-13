@@ -1,7 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="479" height="284" viewBox="0 0 479 284" fill="none">
-  <path d="M122.162 11.5706L3.45297 4.68973e-05C3.45297 4.68973e-05 -24.3793 131.332 77.9923 221.004C77.9923 221.004 159.971 301.958 286.147 280.018C418.901 256.932 479.097 133.555 478.89 47.2202L361.383 34.9841C361.383 34.9841 366.038 91.9346 328.521 129.865C291.013 167.796 258.392 176.844 198.815 161.949C139.238 147.053 108.625 76.0572 122.162 11.5706Z" fill="url(#paint0_linear_57_21)"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 479 293.79" fill="none">
   <defs>
-    <linearGradient id="paint0_linear_57_21" x1="-1.11442" y1="140.527" x2="477.811" y2="145.811" gradientUnits="userSpaceOnUse">
+    <linearGradient id="paint0_linear" x1="-1.11442" y1="140.527" x2="477.811" y2="145.811" gradientUnits="userSpaceOnUse">
       <stop stop-color="#F2E0B7"/>
       <stop offset="0.11" stop-color="#E8D8BA"/>
       <stop offset="0.28" stop-color="#CFC5C4"/>
@@ -9,5 +8,24 @@
       <stop offset="0.76" stop-color="#6C7CE9"/>
       <stop offset="0.99" stop-color="#3452FF"/>
     </linearGradient>
+
+    <!-- Clip path pour l'effet de reveal -->
+    <clipPath id="reveal-clip">
+      <rect id="clip-rect" x="-10" y="-10" width="0" height="304"/>
+    </clipPath>
   </defs>
+
+  <!-- Ombre douce derrière la forme -->
+  <path d="M122.162 11.5706L3.45297 4.68973e-05C3.45297 4.68973e-05 -24.3793 131.332 77.9923 221.004C77.9923 221.004 159.971 301.958 286.147 280.018C418.901 256.932 479.097 133.555 478.89 47.2202L361.383 34.9841C361.383 34.9841 366.038 91.9346 328.521 129.865C291.013 167.796 258.392 176.844 198.815 161.949C139.238 147.053 108.625 76.0572 122.162 11.5706Z" fill="#A5A6D3" opacity="0.18" transform="translate(4, 6)" style="fill:rgb(165, 166, 211);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.18;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+
+  <!-- Forme principale avec reveal de gauche à droite -->
+  <g clip-path="url(#reveal-clip)" style="fill:none;stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto">
+    <path d="M122.162 11.5706L3.45297 4.68973e-05C3.45297 4.68973e-05 -24.3793 131.332 77.9923 221.004C77.9923 221.004 159.971 301.958 286.147 280.018C418.901 256.932 479.097 133.555 478.89 47.2202L361.383 34.9841C361.383 34.9841 366.038 91.9346 328.521 129.865C291.013 167.796 258.392 176.844 198.815 161.949C139.238 147.053 108.625 76.0572 122.162 11.5706Z" fill="url(#paint0_linear)" style="stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+  </g>
+
+  <!-- Animation du clip rect (reveal) -->
+  <animate xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#clip-rect" attributeName="width" from="0" to="499" dur="3s" begin="0.1s" fill="freeze" calcMode="spline" keyTimes="0;1" keySplines="0.25 0.1 0.25 1" style="fill:none;stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+
+  <!-- Légère montée depuis le bas -->
+  <animateTransform xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#clip-rect" attributeType="XML" attributeName="transform" type="translate" from="0 18" to="0 0" dur="3s" begin="0.1s" fill="freeze" calcMode="spline" keyTimes="0;1" keySplines="0.25 0.1 0.25 1" style="fill:none;stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
 </svg>
