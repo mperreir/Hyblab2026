@@ -1,10 +1,10 @@
 <script setup>
-import { computed } from 'vue'
-import { useRouter } from 'vue-router'
-import ListItem from '@/components/List_item.vue'
-import IntroListe from '@/components/intro_liste.vue'
-import { COLORS } from '@/assets/Couleurs/Coulleurs.js'
-import { useFilterStore } from '@/stores/filterStore'
+import { computed } from "vue"
+import { useRouter } from "vue-router"
+import ListItem from "@/components/List_item.vue"
+import IntroListe from "@/components/intro_liste.vue"
+import { COLORS } from "@/assets/Couleurs/Coulleurs.js"
+import { useFilterStore } from "@/stores/filterStore"
 
 const filterStore = useFilterStore()
 const router = useRouter()
@@ -28,36 +28,36 @@ const sortedRestaurants = computed(() =>
 )
 
 const openRestaurantDetail = async (restaurant) => {
-  if (!restaurant) return
+    if (!restaurant) return
 
-  const restaurantKey = restaurant.id ?? restaurant.name
+    const restaurantKey = restaurant.id ?? restaurant.name
 
-  await router.push({
-    path: '/carte',
-    query: {
-      restaurant: String(restaurantKey),
-      detail: '1',
-      pick: String(Date.now()),
-    },
-  })
+    await router.push({
+        path: "/carte",
+        query: {
+            restaurant: String(restaurantKey),
+            detail: "1",
+            pick: String(Date.now()),
+        },
+    })
 }
 </script>
 
 <template>
-  <main class="list-view">
-    <IntroListe />
-    <ListItem
-      v-for="restaurant in sortedRestaurants"
-      :key="restaurant.name"
-      :title="restaurant.hook || restaurant.name"
-      :image="restaurant.image"
-      :badges="restaurant.categories || {}"
-      :coup-de-coeur="restaurant.coupDeCoeur"
-      :date="restaurant.date || ''"
-      @select="openRestaurantDetail(restaurant)"
-    >
-    </ListItem>
-  </main>
+    <main class="list-view">
+        <IntroListe />
+        <ListItem
+            v-for="restaurant in sortedRestaurants"
+            :key="restaurant.name"
+            :title="restaurant.hook || restaurant.name"
+            :image="restaurant.image"
+            :badges="restaurant.categories || {}"
+            :coup-de-coeur="restaurant.coupDeCoeur"
+            :date="restaurant.date || ''"
+            @select="openRestaurantDetail(restaurant)"
+        >
+        </ListItem>
+    </main>
 </template>
 
 <style scoped>
