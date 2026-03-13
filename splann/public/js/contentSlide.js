@@ -58,10 +58,26 @@ const createEmptyContent = async function(){
             
             sliderWrapper.insertBefore(slide, endSlide);
             }
-            
-            let extend = document.createElement("section")
-            extend.id = "extended-content"
-            console.log(data.volet[i].extendedContent)
+            const bottom_sheet = document.createElement("div")
+            bottom_sheet.classList.add("bottom-sheet")
+
+            const handle_bar = document.createElement("div")
+            handle_bar.classList.add("handle-bar")
+            bottom_sheet.appendChild(handle_bar)
+
+            const button = document.createElement("button")
+            button.classList.add("toggle-btn")
+            button.textContent = "▲"
+            handle_bar.appendChild(button)
+
+            const content = document.createElement("div")
+            content.classList.add("content")
+            bottom_sheet.appendChild(content)
+            content.id = "extended-content"
+            content.className="content"
+            console.log(data.volet[i].extendedContent)//
+
+
 
             for(let j = 0; j < data.volet[i].extendedContent.length; j++){
                 extendedElmt = data.volet[i].extendedContent[j]
@@ -69,16 +85,19 @@ const createEmptyContent = async function(){
                 if (extendedElmt.type == "text"){
                     let paragraph = document.createElement("p");
                     paragraph.innerHTML = extendedElmt.content
-                    extend.appendChild(paragraph)
+                    content.appendChild(paragraph)
                 }
                 else if(extendedElmt.type == "img"){
                     let img = document.createElement("img");
                     img.src = extendedElmt.content
-                    extend.appendChild(img)
+                    content.appendChild(img)
                 }
             }
 
-            slide.appendChild(extend)
+            slide.appendChild(bottom_sheet)
+
+
 
     }
+
 }

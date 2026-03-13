@@ -17,7 +17,9 @@
       prevEl: ".swiper-button-prev"
     }
   });
-
+  
+  addExtend(swiper);
+  
   swiper.on("slideChange", function () {
     let nbSlide = swiper.slides.length;
     let index = swiper.activeIndex;
