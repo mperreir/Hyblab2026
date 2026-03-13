@@ -1,110 +1,163 @@
 <template>
-  <article
-    class="mini-box"
-    :class="{ 'mini-box--active': props.isActive }"
-    role="button"
-    tabindex="0"
-    @click="emit('focus-box')"
-    @keydown.enter.prevent="emit('focus-box')"
-    @keydown.space.prevent="emit('focus-box')"
-  >
-    <img :src="props.image" :alt="props.name" class="mini-box__image" />
+    <div class="mini-box">
+        <div
+            class="mini-box-image-div"
+            :style="{ backgroundImage: `url('${image}')` }"
+            :title="title"
+        >
 
-    <div class="mini-box__content">
-      <h3 class="mini-box__title">{{ props.name }}</h3>
-      <p class="mini-box__coords">
-        {{ formatCoord(props.latitude) }}, {{ formatCoord(props.longitude) }}
-      </p>
+            <div class="badges-panel">
+                <span v-for="badge in badges" :key="badge" class="badge">
+                    {{ badge }}
+                </span>
+            </div>
+            <div class="mini-box-content">
+                <div class="div-date">
+                    <p class="date">{{ date }}</p>
+                </div>
+                <div class="div-title">
+                    <h3 class="title">{{ title }}</h3>
+                </div>
+            </div>
+        </div>
+        <slot />
     </div>
-  </article>
 </template>
 
 <script setup>
-const emit = defineEmits(['focus-box'])
 
-const props = defineProps({
-  name: {
-    type: String,
-    required: true,
-  },
-  image: {
-    type: String,
-    required: true,
-  },
-  latitude: {
-    type: Number,
-    required: true,
-  },
-  longitude: {
-    type: Number,
-    required: true,
-  },
-  isActive: {
-    type: Boolean,
-    default: false,
-  },
+defineProps({
+    title: {
+        type: String,
+        default: 'Item Title'
+    },
+    image: {
+        type: String,
+        default: ''
+    },
+    badges: {
+        type: Array,
+        default: () => []
+    },
+    date: {
+        type: String,
+        default: ''
+    }
 })
-
-const formatCoord = (value) => value.toFixed(4)
 </script>
 
 <style scoped>
 .mini-box {
-  top:8px;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.75rem;
-  padding: 2rem;
-  border: 1px solid #e2e8f0;
-  border-radius: 12px;
-  background: #ffffff;
-  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.08);
-  cursor: pointer;
-  transition:
-    border-color 0.2s ease,
-    box-shadow 0.2s ease,
-    transform 0.2s ease;
+    position: relative;
+
+    display: flex;
+    height: 208px;
+    width: 332px;
+    padding: 6.25px;
+    gap: 6.25;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    align-self: stretch;
+
+    border-radius: 12px;
+    background-image: url('/lanouvellerepublique/img/Vector.png');
+    background-color: #FFF;
+    background-position: 50%;
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
-.mini-box:hover {
-  border-color: #fdba74;
-  transform: translateY(-1px);
+.mini-box-image-div {
+    display: flex;
+    padding: 8px;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex: 1 0 0;
+    align-self: stretch;
+    width: 319.5px;
+    height: 195.5px;
+
+
+    border-radius: 13.179px;
+    background-color: #FFFCF8;
+    background-position: 50%;
+    background-size: cover;
+    background-repeat: no-repeat;
+
 }
 
-.mini-box--active {
-  border-color: #f97316;
-  box-shadow:
-    0 0 0 2px rgba(249, 115, 22, 0.22),
-    0 10px 22px rgba(15, 23, 42, 0.14);
+.mini-box-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    align-self: stretch;
+
+    box-shadow: 2px 2px 2px 0 rgba(0, 0, 0, 0.15);
 }
 
-.mini-box__image {
-  width: 42px;
-  height: 42px;
-  border-radius: 999px;
-  object-fit: cover;
-  flex-shrink: 0;
+.div-date {
+    display: flex;
+    padding: 1.865px 6.216px;
+    align-items: center;
+    gap: 6.216px;
+
+    border-radius: 10px;
+    background: #FFF;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.15);
 }
 
-.mini-box__content {
-  min-width: 0;
+.date {
+    width: 56.568px;
+    height: 12.432px;
+
+    color: #377DD1;
+    font-family: Abordage;
+    font-size: 9.946px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 13.676px; /* 137.5% */
 }
 
-.mini-box__title {
-  margin: 0;
-  font-size: 0.92rem;
-  font-weight: 700;
-  color: #0f172a;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+.div-title {
+    display: flex;
+    padding: 8px;
+    justify-content: center;
+    align-items: center;
+    gap: 7px;
+    align-self: stretch;
+
+    border-radius: 10px;
+    background: #FFF;
 }
 
-.mini-box__coords {
-  margin: 0.2rem 0 0;
-  font-size: 0.78rem;
-  color: #475569;
+.title {
+    flex: 1 0 0;
+
+    color: #E815B2;
+    padding-top: 5px;
+    font-family: Lalezar;
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 27px;
+}
+
+.badges-panel {
+    display: flex;
+    width: 354px;
+    justify-content: flex-end;
+    align-items: flex-start;
+    gap: -24px;
+}
+
+.badge {
+    width: 70.227px;
+    height: 70px;
+    transform: rotate(10deg);
+    flex-shrink: 0;
 }
 </style>

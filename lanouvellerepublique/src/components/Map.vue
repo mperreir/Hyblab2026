@@ -17,7 +17,7 @@
                     v-for="(r, index) in restaurantsWithCoords"
                     :key="r.name"
                     :coords="r.coords"
-                    :image="buildRestaurantImage(r.name)"
+                    :image="r.image"
                     :is-active="selectedIndex === index"
                     :restaurant-index="index"
                     @focus-marker="focusRestaurant"
@@ -39,7 +39,7 @@
                     <RestaurantMiniBox
                         @click="openDetail(index)"
                         :name="r.name"
-                        :image="buildRestaurantImage(r.name)"
+                        :image="r.image"
                         :latitude="r.coords[0]"
                         :longitude="r.coords[1]"
                         :is-active="selectedIndex === index"
@@ -129,10 +129,7 @@ const stopWatch = watch(userCoords, (newCoords) => {
     }
 })
 
-const buildRestaurantImage = (restaurantName) =>
-    `https://picsum.photos/seed/${encodeURIComponent(restaurantName)}/96/96`
-
-const scrollToRestaurant = (index, smooth = true) => {
+const scrollToRestaurant = (index) => {
     const carousel = carouselRef.value
     if (!carousel) return
     const slide = carousel.children[index]
@@ -141,7 +138,7 @@ const scrollToRestaurant = (index, smooth = true) => {
 
     carousel.scrollTo({
         left,
-        behavior: smooth ? "smooth" : "instant",
+        behavior: "smooth",
     })
 }
 
@@ -166,9 +163,8 @@ const focusRestaurant = (index) => {
 
     if (index < 0 || index >= list.length) return
 
-    const distance = Math.abs(index - selectedIndex.value)
     selectedIndex.value = index
-    scrollToRestaurant(index, distance <= 1)
+    scrollToRestaurant(index)
     centerMapToRestaurant(index)
 }
 
@@ -191,29 +187,6 @@ const openRestaurantFromQuery = () => {
 
     focusRestaurant(index)
     isClicked.value = route.query.detail === "1"
-}
-
-const goPrevious = () => {
-    const nextIndex =
-        (selectedIndex.value - 1 + restaurants.value.length) % restaurants.value.length
-    isClicked.value = false
-    focusRestaurant(nextIndex)
-}
-
-const goNext = () => {
-    const nextIndex = (selectedIndex.value + 1) % restaurants.value.length
-    isClicked.value = false
-    focusRestaurant(nextIndex)
-}
-
-const syncSelectedIndexFromScroll = () => {
-    const carousel = carouselRef.value
-
-    if (!carousel || carousel.clientWidth === 0) {
-        return
-    }
-
-    scrollToRestaurant(selectedIndex.value, false, true)
 }
 
 const onCarouselScroll = () => {
@@ -311,6 +284,8 @@ watch(
     scroll-snap-type: x mandatory;
     scrollbar-width: none;
     padding: 0.4rem 0;
+    gap: 16px;
+    z-index: 1000;
 }
 
 .restaurant-carousel::-webkit-scrollbar {
@@ -324,6 +299,13 @@ watch(
     align-items: start;
     justify-content: center;
     cursor: pointer;
+
+    width: 364px;
+    height: 240px;
+    border-radius: 12px;
+    padding: 16px;
+    gap: 10px;
+    background-color: #ffffff;
 }
 
 .restaurant-carousel-wrapper--detail {

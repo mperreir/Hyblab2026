@@ -5,11 +5,14 @@
             :style="{ backgroundImage: `url('${image}')` }"
             :title="title"
         >
-
             <div class="badges-panel">
-                <span v-for="badge in badges" :key="badge" class="badge">
-                    {{ badge }}
-                </span>
+                <img
+                    v-for="badge in displayBadges"
+                    :key="badge.key"
+                    class="badge"
+                    :src="badge.src"
+                    :alt="badge.key"
+                />
             </div>
             <div class="list-item-content">
                 <div class="div-date">
@@ -25,26 +28,84 @@
 </template>
 
 <script setup>
+import { computed } from "vue"
 
-const emit = defineEmits(['select'])
+const emit = defineEmits(["select"])
 
-defineProps({
+const props = defineProps({
     title: {
         type: String,
-        default: 'Item Title'
+        default: "Item Title",
     },
     image: {
         type: String,
-        default: ''
+        default: "",
     },
     badges: {
-        type: Array,
-        default: () => []
+        type: [Array, Object],
+        default: () => [],
+    },
+    coupDeCoeur: {
+        type: Boolean,
+        default: false,
     },
     date: {
         type: String,
-        default: ''
+        default: "",
+    },
+})
+
+const badgeAssets = import.meta.glob("../assets/badges/*.svg", {
+    eager: true,
+    import: "default",
+})
+
+const badgeFileByKey = {
+    asian: "asiat.svg",
+    budget_1_10: "1_10.svg",
+    budget_10_20: "10_20.svg",
+    budget_20_30: "20_30.svg",
+    budget_30_plus: "30.svg",
+    family: "familial.svg",
+    french: "tourangelle.svg",
+    friends: "amical.svg",
+    halal: "hallal.svg",
+    indian: "indian.svg",
+    italian: "italien.svg",
+    mediterranean: "mediterraneen.svg",
+    middle_eastern: "oriental.svg",
+    on_site: "bistrot.svg",
+    professional: "pro.svg",
+    romantic: "love.svg",
+    street_food: "street_food.svg",
+    traditional: "tradi.svg",
+    world_cuisine: "monde.svg",
+    coeur_tmv: "coeur.svg",
+}
+
+const loadSVG = (badge) => {
+    const fileName = badgeFileByKey[badge]
+    if (!fileName) return null
+
+    return badgeAssets[`../assets/badges/${fileName}`] ?? null
+}
+
+const displayBadges = computed(() => {
+    const selectedKeys = []
+
+    if (props.coupDeCoeur) {
+        selectedKeys.push("coeur_tmv")
     }
+
+    const cuisineKey = props.badges?.cuisine_type?.[0]
+    const ambianceKey = props.badges?.ambiance?.[0]
+
+    if (cuisineKey) selectedKeys.push(cuisineKey)
+    if (ambianceKey) selectedKeys.push(ambianceKey)
+
+    return selectedKeys
+        .map((badge) => ({ key: badge, src: loadSVG(badge) }))
+        .filter((badge) => badge.src)
 })
 </script>
 
@@ -64,8 +125,8 @@ defineProps({
     align-self: stretch;
 
     border-radius: 12px;
-    background-image: url('/lanouvellerepublique/img/Vector.png');
-    background-color: #FFF;
+    background-image: url("/lanouvellerepublique/img/Vector.png");
+    background-color: #fff;
     background-position: 50%;
     background-size: cover;
     background-repeat: no-repeat;
@@ -80,13 +141,11 @@ defineProps({
     flex: 1 0 0;
     align-self: stretch;
 
-
     border-radius: 13.179px;
-    background-color: #FFFCF8;
+    background-color: #fffcf8;
     background-position: 50%;
     background-size: cover;
     background-repeat: no-repeat;
-
 }
 
 .list-item-content {
@@ -106,7 +165,7 @@ defineProps({
     gap: 6.216px;
 
     border-radius: 10px;
-    background: #FFF;
+    background: #fff;
     box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.15);
 }
 
@@ -114,7 +173,7 @@ defineProps({
     width: 56.568px;
     height: 12.432px;
 
-    color: #377DD1;
+    color: #377dd1;
     font-family: Abordage;
     font-size: 9.946px;
     font-style: normal;
@@ -131,13 +190,13 @@ defineProps({
     align-self: stretch;
 
     border-radius: 10px;
-    background: #FFF;
+    background: #fff;
 }
 
 .title {
     flex: 1 0 0;
 
-    color: #E815B2;
+    color: #e815b2;
     padding-top: 5px;
     font-family: Lalezar;
     font-size: 25px;
