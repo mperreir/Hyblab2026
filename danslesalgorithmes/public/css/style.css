@@ -14,7 +14,6 @@ img, video, canvas {
 
 /* ================= L'EN-TÊTE FIXE ================= */
 .top-bar {
-    background-color: #fbf5cd;
     display: flex;
     justify-content: space-between;
     align-items: center;
