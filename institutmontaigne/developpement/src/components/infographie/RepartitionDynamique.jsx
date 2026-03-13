@@ -75,7 +75,7 @@ const DEFAULT_ITEMS = [
 		label: 'Le choix de la circonscription',
 		color: '#F35A25',
 		type: 'gif',
-		src: `${PATH_PUBLIC}/img/france-circonception.gif`,
+		src: `./img/france-circonception.gif`,
 		alt: 'Choix de la circonscription',
 	},
 	{
@@ -141,7 +141,7 @@ export default function RepartitionDynamique({ items = DEFAULT_ITEMS, className 
 					})}
 				</div>
 
-				<div className="mt-6 w-full">
+				<div className="my-6 mt-10 w-full">
 					{activeItem.type === 'chart' && (
 						<ChartView title={activeItem.title} segments={activeItem.segments ?? []} seats={activeItem.seats ?? null} />
 					)}
