@@ -1,8 +1,9 @@
 import { useState, useRef, useEffect } from 'react';
 import { PATH_PUBLIC } from '../data/debate';
 
-export default function Podcast({ src, episode, title, cover }) {
+export default function Podcast({ src="/audio/cafeconron.mp3", episode, title, cover }) {
   const [isPlaying, setIsPlaying] = useState(false);
+  const [showOverlay, setShowOverlay] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const audioRef = useRef(null);
@@ -32,8 +33,15 @@ export default function Podcast({ src, episode, title, cover }) {
   const togglePlay = () => {
     const audio = audioRef.current;
     if (!audio) return;
-    if (isPlaying) audio.pause(); else audio.play();
-    setIsPlaying(!isPlaying);
+    if (isPlaying) {
+      audio.pause();
+      setIsPlaying(false);
+      setShowOverlay(false);
+    } else {
+      audio.play();
+      setIsPlaying(true);
+      setShowOverlay(true);
+    }
   };
 
   const skip = (delta) => {
@@ -58,6 +66,33 @@ export default function Podcast({ src, episode, title, cover }) {
   });
 
   return (
+    <>
+    <style>{`
+      @keyframes podcast-oscillate {
+        0%   { transform: translateX(-28px) rotate(-3deg); }
+        50%  { transform: translateX( 28px) rotate( 3deg); }
+        100% { transform: translateX(-28px) rotate(-3deg); }
+      }
+      .podcast-oscillate {
+        animation: podcast-oscillate 2.2s ease-in-out infinite;
+        transform-origin: top center;
+      }
+    `}</style>
+
+    {showOverlay && (
+      <div
+        className="fixed inset-0 z-[9998] flex items-center justify-center bg-black/60 cursor-pointer"
+        onClick={() => togglePlay()}
+        aria-label="Fermer"
+      >
+        <img
+          src="/img/BB.png"
+          alt=""
+          className="podcast-oscillate max-h-[80vh] max-w-[80vw] object-contain select-none pointer-events-none"
+        />
+      </div>
+    )}
+
     <section className="mx-auto max-w-sm bg-white rounded-2xl overflow-hidden shadow-xl my-10">
       {src && <audio ref={audioRef} src={src} preload="metadata" />}
 
@@ -142,5 +177,6 @@ export default function Podcast({ src, episode, title, cover }) {
         </div>
       </div>
     </section>
+    </>
   );
 }
