@@ -59,7 +59,6 @@ const debateData = {
           "intervenant": "morel",
           "contenu": [
             <Quote
-              photo={`${PATH_PUBLIC}/img/1.png`}
               quote="Pour donner un peu de contexte, la France a déjà appliqué le principe du scrutin proportionnel <b>entre 1946 et 1958.</b>"
               isLeft={ true } 
             />,
@@ -71,7 +70,6 @@ const debateData = {
           "intervenant": "levade",
           "contenu": [
             <Quote
-              photo={`${PATH_PUBLIC}/img/2.png`}
               quote="J'ajouterai à cela que De Gaulle est d'abord <b>favorable à la proportionnelle</b> sous la IVe, qu'il perçoit comme un <b>moyen de contenir le Parti communiste.</b>"
               isLeft={false}
             />,
@@ -88,31 +86,30 @@ const debateData = {
       "textcolor": "#00483B",
       "dialogue": [
         {
-          "type": "interlocuteur2",
           "intervenant": "levade",
           "contenu": [
             <Quote
-              photo={`${PATH_PUBLIC}/img/2.png`}
               quote="Face à la crise politique que nous traversons, <b>on peut penser que le scrutin proportionnel permet de lutter contre la dislocation des grands partis politiques</b> qui empêchent l'émergence d'une majorité gouvernementale."
               isLeft={ false }
             />,
-            <>Pourtant, <b>obliger les partis politique à s'allier</b> ne facilite pas forcément <b>l'émergence d'un programme politique solide.</b>. </>,
+            <Quote
+              quote="Pourtant, <b>obliger les partis politique à s'allier</b> ne facilite pas forcément <b>l'émergence d'un programme politique solide.</b>."
+              isLeft={ false }
+              hasImage={false}
+            />,
             <>L'idée d'un scrutin proportionnel revient souvent <Manuscrit surrounded={false}>dans le débat</Manuscrit>, mais souvent sans rentrer dans le détail des modalités.</>
           ],
         },
         {
-          "type": "interlocuteur1",
           "intervenant": "morel",
           "contenu": [
             <Quote
-              photo={`${PATH_PUBLIC}/img/1.png`}
               quote="Il n'est pas certain que la proportionnelle <b>déstructure le système de partis</b> mais en change simplement la stratégie."
               isLeft={ true }
             />,
             <>le scrutin majoritaire vous oblige à partir <Manuscrit>uni dès le premier</Manuscrit> tour et à rester ensuite <Manuscrit surrounded={false}>uni après le second</Manuscrit>, par crainte d'une nouvelle élection, les alliances sont ainsi figées avant l'élection pour des raisons stratégiques.</>,
             <>À l'inverse, une proportionnelle permet à chaque formation de se présenter sous ses propres couleurs et de <Manuscrit surrounded={false}>négocier des ententes.</Manuscrit> après l'élection.</>,
             <Quote
-              photo={`${PATH_PUBLIC}/img/1.png`}
               quote="En revanche, là où la proportionnelle <b>peut être une réponse à la crise politique</b>, au-delà de l'incitation à la construction d'accords de coalition, c'est parce qu'elle <b>peut répondre à l'essor inquiétant de l'abstention</b> : l'idée qu'un vote pour un petit candidat 'ne sert à rien' serait moins présente."
               isLeft={ true }
               hasImage={false}
@@ -120,11 +117,9 @@ const debateData = {
           ]
         },
         {
-          "type": "interlocuteur2",
           "intervenant": "levade",
           "contenu": [
             <Quote
-              photo={`${PATH_PUBLIC}/img/2.png`}
               quote="Certes, mais le mode de scrutin <b>ne suffit pas à structurer la vie politique</b>, et c'est là que l'observation comparée des systèmes politiques et constitutionnels montre ses limites."
               isLeft={ false }
             />,
@@ -142,7 +137,6 @@ const debateData = {
           "intervenant": "levade",
           "contenu": [
             <Quote
-              photo={`${PATH_PUBLIC}/img/2.png`}
               quote="Il n'existe en effet <b>pas une mais des formes</b> de scrutin proportionnel."
               isLeft={ false }
             />,
@@ -155,7 +149,6 @@ const debateData = {
           "intervenant": "morel",
           "contenu": [
             <Quote
-              photo={`${PATH_PUBLIC}/img/1.png`}
               quote="Je suis d'accord avec vous, <b>le comportement électoral est très variable</b> selon les modes de scrutin."
               isLeft={ true }
             />,
@@ -170,7 +163,6 @@ const debateData = {
             />,
           "Pour ces partis, les alliances sont difficiles. Comme sous la IVe République, nous serions donc condamnés à gouverner avec les partis centristes.",
           <Quote
-              photo={`${PATH_PUBLIC}/img/1.png`}
               quote="Avec le scrutin proportionnel, le Président de la République <b>ne peut annoncer de réforme sans savoir s'il aura une majorité</b> pour le soutenir. 
               </br></br>Nous sommes confrontés à une <b>bataille d'intérêts sur la vision du régime</br> : s'agit-il d'obtenir une majorité absolue soumise à un chef ou de mettre en place un régime plus parlementaire ? "
               isLeft={ true }
@@ -182,7 +174,6 @@ const debateData = {
           "intervenant": "levade",
           "contenu": [
             <Quote
-              photo={`${PATH_PUBLIC}/img/2.png`}
               quote="La culture politique française est à l'évidence <b>différente d'autres pays</b> et sans doute davantage <b>présidentialiste que nos voisins européens !</b> 
               </br></br>Une culture politique <b>se forge dans le temps long</b> et suppose une <b>réadaptation progressive et permanente aux événements</b>. 
               </br></br>Si l'on passe à une VIe République avec scrutin proportionnel, il y a <b>fort à parier que cela n'apportera aucune solution à la crise démocratique profonde que nous traversons</b> : désagrégation des forces politiques, déficit, etc. "
@@ -201,13 +192,11 @@ const debateData = {
           "intervenant": "morel",
           "contenu": [
             <Quote
-              photo={`${PATH_PUBLIC}/img/1.png`}
               quote="<b>Il nous faut d'abord établir un objectif</b>, puis réfléchir aux moyens à mettre en œuvre."
               isLeft={ true }
             />,
             "Benjamin Morel interroge : Cherche-t-on à instaurer un régime plus parlementaire ? Une meilleure représentativité ? Davantage de stabilité politique ?",
             <Quote
-              photo={`${PATH_PUBLIC}/img/1.png`}
               quote="C'est pourquoi <b>je préconise des améliorations à l'intérieur du système actuel</b>, en passant simplement par une loi ordinaire."
               isLeft={ true }
               hasImage={false}
@@ -218,7 +207,6 @@ const debateData = {
           "intervenant": "levade",
           "contenu": [
             <Quote
-              photo={`${PATH_PUBLIC}/img/2.png`}
               quote="<b>La crise actuelle n'est pas tant politique que démocratique</b>. Dans ce contexte, se précipiter de remettre en cause les institutions me paraît particulièrement dangereux."
               isLeft={ false }
             />,
@@ -237,7 +225,6 @@ const debateData = {
           "intervenant": "morel",
           "contenu": [
             <Quote
-              photo={`${PATH_PUBLIC}/img/1.png`}
               quote="Pendant des années, le Rassemblement national <b>n'a pas proposé de vision structurée</b> ou de programme concret en matière institutionnelle, <b>hormis son engagement constant en faveur de la proportionnelle</b>."
               isLeft={ true }
             />,
@@ -248,7 +235,6 @@ const debateData = {
           "intervenant": "levade",
           "contenu": [
             <Quote
-              photo={`${PATH_PUBLIC}/img/2.png`}
               quote="Peut-être faudrait-il faire intervenir un élément de psychologie, ou plus exactement de stratégie politique, et <b>questionner la volonté effective du RN d'arriver au pouvoir</b>."
               isLeft={ false }
             />,

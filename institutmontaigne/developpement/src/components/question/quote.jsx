@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { PATH_PUBLIC } from "../../data/debate";
 
 /**
@@ -12,11 +12,18 @@ import { PATH_PUBLIC } from "../../data/debate";
  *   "hasImage": true                   // si false, masque la photo et la flèche (pour les citations sans intervenant)
  * }
  */
-export default function Quote({ photo, quote, isLeft = true, hasImage = true }) {
-  const COLOR = isLeft ? '#DD7375' : '#872339';
+export default function Quote({ quote, isLeft = true, hasImage = true }) {
+  const COLOR = isLeft ? '#AC7DD1' : '#872339';
   const starIcon = isLeft ? PATH_PUBLIC+'/icons/EtoileBleue.svg' : PATH_PUBLIC+'/icons/EtoileJaune.svg';
+  const maxImage = isLeft ? 4 : 6;
+  const intervenant = isLeft ? 'morel' : 'levade';
+  const [photoIdx, setPhotoIdx] = useState(0);
   const containerRef = useRef(null);
   const starRef = useRef(null);
+  const photoScrollDistanceRef = useRef(0);
+  const photoSwitchTimeRef = useRef(0);
+
+  const imagePath = `${PATH_PUBLIC}/pp/${intervenant}-${photoIdx}.png`;
 
   useEffect(() => {
     const scrollEl = containerRef.current?.closest('.dialogue-scroll');
@@ -64,6 +71,18 @@ export default function Quote({ photo, quote, isLeft = true, hasImage = true }) 
       const boost = Math.max(-400, Math.min(400, pxPerMs * 600));
       velocityRef.current += boost * direction;
       velocityRef.current = Math.max(-300, Math.min(300, velocityRef.current));
+
+      if (!hasImage) return;
+
+      // Change photo every meaningful scroll movement, not on each tiny wheel tick.
+      photoScrollDistanceRef.current += Math.abs(delta);
+      const canSwitch = now - photoSwitchTimeRef.current > 130;
+
+      if (photoScrollDistanceRef.current > 80 && canSwitch) {
+        photoScrollDistanceRef.current = 0;
+        photoSwitchTimeRef.current = now;
+        setPhotoIdx((prev) => (prev + 1) % maxImage);
+      }
     };
 
     applyTransform();
@@ -73,7 +92,7 @@ export default function Quote({ photo, quote, isLeft = true, hasImage = true }) 
       scrollEl.removeEventListener('scroll', handleScroll);
       window.cancelAnimationFrame(frameId);
     };
-  }, [isLeft]);
+  }, [hasImage, isLeft, maxImage]);
 
   return (
     <div ref={containerRef} className="w-full relative">
@@ -112,7 +131,7 @@ export default function Quote({ photo, quote, isLeft = true, hasImage = true }) 
                   transform: `rotate(${isLeft ? '-5deg' : '5deg'}) translateY(15px)`,
                 }}
                 >
-                <img src={photo} alt="" className="w-full h-full object-cover object-top" />
+                <img src={imagePath} alt="" className="w-full h-full object-cover object-top" />
               </div>
             </div>
 
