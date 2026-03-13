@@ -5,6 +5,8 @@ let Mediatique = null;
 let Public = null;
 let Judiciaire = null;
 let Actions = null;
+let QHeader = null;
+let Citations = null;
 
 let count_institutionnel = 0;
 let count_mediatique = 0;
@@ -88,19 +90,24 @@ function createButtonBox(boxId = "box1", aRow = 1, aColumn = 1) {
       // Remove all rows
       box.querySelectorAll('.row').forEach(row => row.remove());
 
-      // Change box background color
-      const textDisplay = document.createElement('p');
-      textDisplay.id = "base";
-      switch (parseInt(value)) {
-        case 1:
-          box.color = 1;
-          box.ngroup = count_judiciaire;
-          count_judiciaire++;
+
+        // Change box background color
+        const textDisplay = document.createElement('p');
+        textDisplay.id = "base";
+        let qheader = document.querySelector('.main-question');
+        console.log(qheader);
+        switch (parseInt(value)) {
+          case 1:
+            box.color = 1;
+            box.ngroup = count_judiciaire;
+            count_judiciaire ++;
 
           if (box.ngroup >= Judiciaire.length) {
 
             if (Actions.length > count_actions) {
               textDisplay.textContent = Actions[count_actions].Base;
+              
+
               box.nAction = count_actions;
               count_actions++;
               box.className += " finished box-action";
@@ -111,22 +118,25 @@ function createButtonBox(boxId = "box1", aRow = 1, aColumn = 1) {
             }
             State[value] = true;
 
-          } else {
 
-            textDisplay.textContent = Judiciaire[box.ngroup].Base;
+            } else{
 
-          }
-
-          break;
-        case 2:
-          box.color = 2;
-          box.ngroup = count_mediatique;
-          count_mediatique++;
+              textDisplay.textContent = Judiciaire[box.ngroup].Base;
+              qheader.textContent = Judiciaire[box.ngroup].Question;
+            }
+            
+            break;
+          case 2:
+            box.color = 2;
+            box.ngroup = count_mediatique;
+            count_mediatique ++;
 
           if (box.ngroup >= Mediatique.length) {
 
             if (Actions.length > count_actions) {
               textDisplay.textContent = Actions[count_actions].Base;
+
+
               box.nAction = count_actions;
               count_actions++;
               box.className += " finished box-action";
@@ -139,9 +149,11 @@ function createButtonBox(boxId = "box1", aRow = 1, aColumn = 1) {
 
           } else {
 
-            textDisplay.textContent = Mediatique[box.ngroup].Base;
-
-          }
+              textDisplay.textContent = Mediatique[box.ngroup].Base;
+              console.log(Mediatique[box.ngroup].Question);
+              console.log(box.ngroup);
+              qheader.textContent = Mediatique[box.ngroup].Question;
+            }
 
           break;
         case 3:
@@ -153,6 +165,7 @@ function createButtonBox(boxId = "box1", aRow = 1, aColumn = 1) {
 
             if (Actions.length > count_actions) {
               textDisplay.textContent = Actions[count_actions].Base;
+              
               box.nAction = count_actions;
               count_actions++;
               box.className += " finished box-action";
@@ -165,20 +178,21 @@ function createButtonBox(boxId = "box1", aRow = 1, aColumn = 1) {
 
           } else {
 
-            textDisplay.textContent = Public[box.ngroup].Base;
-
-          }
-
-          break;
-        case 4:
-          box.color = 4;
-          box.ngroup = count_institutionnel;
-          count_institutionnel++;
+              textDisplay.textContent = Public[box.ngroup].Base;
+              qheader.textContent = Public[box.ngroup].Question;
+            }
+            
+            break;
+          case 4:
+            box.color = 4;
+            box.ngroup = count_institutionnel;
+            count_institutionnel ++;
 
           if (box.ngroup >= Institutionnel.length) {
 
             if (Actions.length > count_actions) {
               textDisplay.textContent = Actions[count_actions].Base;
+              
               box.nAction = count_actions;
               count_actions++;
               box.className += " finished box-action";
@@ -191,9 +205,9 @@ function createButtonBox(boxId = "box1", aRow = 1, aColumn = 1) {
 
           } else {
 
-            textDisplay.textContent = Institutionnel[box.ngroup].Base;
+              textDisplay.textContent = Institutionnel[box.ngroup].Base;
 
-          }
+            }
 
           break;
         default:
@@ -205,7 +219,7 @@ function createButtonBox(boxId = "box1", aRow = 1, aColumn = 1) {
 
       box.addEventListener('click', () => {
         // Do not trigger while choice buttons are still visible.
-        if (box.querySelector('button')) {
+        if (box.querySelector('button[id^="button"]')) {
           return;
         }
 
@@ -238,6 +252,31 @@ function createButtonBox(boxId = "box1", aRow = 1, aColumn = 1) {
             popupBox.className = "action";
             console.log(box.nAction);
             popupText.textContent = Actions[box.nAction].Texteplus;
+            
+            
+            //Possibility to copy the text of the action
+            if(document.getElementById("copy-button") === null){
+              let copyb = document.createElement("p");
+              copyb.textContent = "Appuyez ici";
+              copyb.id = "copy-button";
+              copyb.style.textDecoration = "underline";
+              copyb.style.cursor = "pointer";
+              copyb.style.color =" #BAA2EA";
+              copyb.addEventListener('click', () => {
+                navigator.clipboard.writeText(Actions[box.nAction].Texteplus);
+                const msg = document.createElement("div");
+                msg.textContent = "Texte copié !";
+                msg.className = "copy-toast";
+                document.body.appendChild(msg);
+
+                // Disparition après 1 seconde
+                setTimeout(() => {
+                  msg.remove();
+                }, 1000);
+              });
+              popupBox.appendChild(copyb);
+              console.log(popupBox);
+            }
             break;
         }
         popupBox.className += " animate__animated animate__slideInUp"
@@ -255,29 +294,33 @@ function createButtonBox(boxId = "box1", aRow = 1, aColumn = 1) {
       }
 
       let boxNum = Math.floor(Math.random() * boxsFreeList.length);
-
       let theChoosenBox = boxsFreeList[boxNum];
       while (theChoosenBox.row == box.row && theChoosenBox.column == box.column) {
         console.warn('The chosen box is the same as the current box. Choosing another one.');
         boxNum = Math.floor(Math.random() * boxsFreeList.length);
         theChoosenBox = boxsFreeList[boxNum];
       }
-      let newbox = createButtonBox(`box${theChoosenBox.row}${theChoosenBox.column}`, theChoosenBox.row, theChoosenBox.column)
+
+      if (count_institutionnel <= Institutionnel.length || count_judiciaire <= Judiciaire.length || count_mediatique <= Mediatique.length || count_public <= Public.length) {
+        let newbox = createButtonBox(`box${theChoosenBox.row}${theChoosenBox.column}`, theChoosenBox.row, theChoosenBox.column)
 
 
-      if (box.column > theChoosenBox.column) newbox.className += " animate__animated animate__fadeInRight"
-      if (box.column < theChoosenBox.column) newbox.className += " animate__animated animate__fadeInLeft"
-      if (box.row > theChoosenBox.row) newbox.className += " animate__animated animate__fadeInUp"
-      if (box.row < theChoosenBox.row) newbox.className += " animate__animated animate__fadeInDown"
+        if (box.column > theChoosenBox.column) newbox.className += " animate__animated animate__fadeInRight"
+        if (box.column < theChoosenBox.column) newbox.className += " animate__animated animate__fadeInLeft"
+        if (box.row > theChoosenBox.row) newbox.className += " animate__animated animate__fadeInUp"
+        if (box.row < theChoosenBox.row) newbox.className += " animate__animated animate__fadeInDown"
 
-      replaceBox(theChoosenBox, newbox)
-      newbox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        replaceBox(theChoosenBox, newbox)
+        newbox.scrollIntoView({ behavior: 'smooth', block: 'center' });
 
 
-      box.className = box.className.replace(" animate__animated animate__fadeInRight", ""); // Remove action class if it exists
-      box.className = box.className.replace(" animate__animated animate__fadeInLeft", ""); // Remove action class if it exists
-      box.className = box.className.replace(" animate__animated animate__fadeInUp", ""); // Remove action class if it exists
-      box.className = box.className.replace(" animate__animated animate__fadeInDown", ""); // Remove action class if it exists
+        box.className = box.className.replace(" animate__animated animate__fadeInRight", ""); // Remove action class if it exists
+        box.className = box.className.replace(" animate__animated animate__fadeInLeft", ""); // Remove action class if it exists
+        box.className = box.className.replace(" animate__animated animate__fadeInUp", ""); // Remove action class if it exists
+        box.className = box.className.replace(" animate__animated animate__fadeInDown", ""); // Remove action class if it exists
+      }
+
+
 
 
       box.className += " text-box";
@@ -361,15 +404,27 @@ function addCitation(box, impactId) {
   switch (impactId) {
     case 1:
       box.className += " jud"; // Change color as desired
+      const randomIndex = Math.floor(Math.random() * Citations.Judiciaire.length);
+      box.textContent = Citations.Judiciaire[randomIndex].citation;
+      Citations.Judiciaire.splice(randomIndex, 1);
       break;
     case 2:
       box.className += " med"; // Change color as desired 
+      const randomIndex2 = Math.floor(Math.random() * Citations.Mediatique.length);
+      box.textContent = Citations.Mediatique[randomIndex2].citation;
+      Citations.Mediatique.splice(randomIndex2, 1);
       break;
     case 3:
       box.className += " pub";
+      const randomIndex3 = Math.floor(Math.random() * Citations.Public.length);
+      box.textContent = Citations.Public[randomIndex3].citation;
+      Citations.Public.splice(randomIndex3, 1);
       break;
     case 4:
       box.className += " inst";
+      const randomIndex4 = Math.floor(Math.random() * Citations.Institutionnel.length);
+      box.textContent = Citations.Institutionnel[randomIndex4].citation;
+      Citations.Institutionnel.splice(randomIndex4, 1);
       break;
     default:
       break;
@@ -466,6 +521,8 @@ const initPageProjet = async function () {
   Public = article.Public;
   Judiciaire = article.Judiciaire;
   Actions = article.Actions;
+  QHeader = article.QHeader;
+  Citations = article.Citations;
 
   addEmptyRow();
 
@@ -486,4 +543,12 @@ const impact_arrow = document.querySelector(".impact-unfolding");
 
 impact_arrow.addEventListener("click", () => {
   impact_explanation.classList.toggle("is-open");
+});
+const sommet = document.querySelector("#top");
+const dest = document.querySelector(".swiper-slide");
+// const body = document.querySelector("post-template tag-impact");
+console.log(sommet);
+
+sommet.addEventListener("click", () => {
+  dest.scrollTo({ top: 0, behavior: 'smooth' });
 });

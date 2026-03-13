@@ -60,6 +60,82 @@
       "Citation": "Je pense que ça ne dérange pas tant que ça l'opinion publique que les Russes fassent de la diplomatie culturelle [...] Il y a une haine montante de l'Occident et de l'Europe..."
     }
   ],
+  "Citations":{
+    "Institutionnel":[
+      {
+        "citation":"Citation 1"
+      },
+      {
+        "citation":"Citation 2"
+      },
+      {
+        "citation":"Citation 3"
+      },
+      {
+        "citation":"Citation 4"
+      }
+    ],
+    "Judiciaire":[
+      {
+        "citation":"Citation 1"
+      },
+      {
+        "citation":"Citation 2"
+      },
+      {
+        "citation":"Citation 3"
+      },
+      {
+        "citation":"Citation 4"
+      }
+    ],
+    "Mediatique":[
+      {
+        "citation":"Citation 1"
+      },
+      {
+        "citation":"Citation 2"
+      },
+      {
+        "citation":"Citation 3"
+      },
+      {
+        "citation":"Citation 4"
+      }
+    ],
+    "Public":[
+      {
+        "citation":"Citation 1"
+      },
+      {
+        "citation":"Citation 2"
+      },
+      {
+        "citation":"Citation 3"
+      },
+      {
+        "citation":"Citation 4"
+      }
+    ]
+  },
+  "QHeader":[
+    {
+      "Question": "Pas d'idée",
+      "Reponse": 1
+    },
+    {
+      "Question": "La guerre c'est bien ou pas ?",
+      "Reponse": 2
+    },
+    {
+      "Question": "Aujourd'hui dans guerre news, la guerre",
+      "Reponse": 3
+    },
+    {
+      "Question": "Ils sont sympas les Russes ?",
+      "Reponse": 4
+    }
+  ],
   "Actions": [
     {
       "Base": "Vous pouvez faire une action ! C'est la premiere",
