@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -7,165 +7,140 @@ gsap.registerPlugin(ScrollTrigger);
 
 gsap.registerPlugin(useGSAP);
 
-const STORY_SLIDES = [
+const STORY_PARTS = [
   {
-    id: 'slide-2',
-    parts: [
-      {
-        id: 's2-left',
-        text: 'Le debat sur la reforme du mode de scrutin revient a chaque crise politique,',
-        from: 'left',
-        positionClass: 'top-[22%] left-[7%] max-w-[76%] sm:max-w-[52%] text-left',
-      },
-      {
-        id: 's2-bottom',
-        text: "mais il est aujourd'hui plus brulant que jamais apres la dissolution de l'Assemblee nationale.",
-        from: 'bottom',
-        positionClass: 'bottom-[18%] left-1/2 -translate-x-1/2 max-w-[84%] sm:max-w-[62%] text-center',
-      },
-    ],
+    id: 's2-left',
+    text: <>Le debat sur la reforme du mode de scrutin revient a chaque <strong>crise politique</strong>,</>,
+    from: 'left',
+    startScene: 0,
+    endScene: 0,
+    positionClass: 'top-[22%] left-[7%] w-[76%] sm:w-[52%] text-left',
   },
   {
-    id: 'slide-3',
-    parts: [
-      {
-        id: 's3-top',
-        text: "La France est la seule de toute l'Union europeenne a elire ses deputes au scrutin majoritaire a deux tours.",
-        from: 'top',
-        positionClass: 'top-[18%] left-1/2 -translate-x-1/2 max-w-[84%] sm:max-w-[60%] text-center',
-      },
-    ],
+    id: 's2-bottom',
+    text: <>mais il est aujourd'hui plus brulant que jamais apres la <strong>dissolution de l'Assemblee nationale</strong>.</>,
+    from: 'bottom',
+    startScene: 0,
+    endScene: 0,
+    positionClass: 'bottom-[18%] left-1/2 -translate-x-1/2 w-[84%] sm:w-[62%] text-center',
   },
   {
-    id: 'slide-4',
-    parts: [
-      {
-        id: 's4-top',
-        text: "La France est la seule de toute l'Union europeenne a elire ses deputes au scrutin majoritaire a deux tours.",
-        from: 'top',
-        positionClass: 'top-[18%] left-1/2 -translate-x-1/2 max-w-[84%] sm:max-w-[60%] text-center',
-      },
-      {
-        id: 's4-bottom',
-        text: 'Les 26 autres Etats membres ont opte pour des formes plus ou moins proportionnelles.',
-        from: 'bottom',
-        positionClass: 'bottom-[18%] left-1/2 -translate-x-1/2 max-w-[84%] sm:max-w-[62%] text-center',
-      },
-    ],
+    id: 's3-top',
+    text: <>La France est la seule de toute l'Union europeenne a elire ses deputes au <strong>scrutin majoritaire a deux tours</strong>.</>,
+    from: 'top',
+    startScene: 1,
+    endScene: 1,
+    positionClass: 'top-[18%] left-1/2 -translate-x-1/2 w-[84%] sm:w-[60%] text-center',
   },
   {
-    id: 'slide-5',
-    parts: [
-      {
-        id: 's5-left',
-        text: 'Derriere cette question technique se joue un choix de modele democratique :',
-        from: 'left',
-        positionClass: 'top-[22%] left-[7%] max-w-[80%] sm:max-w-[52%] text-left',
-      },
-    ],
+    id: 's4-top',
+    text: <>La France est la seule de toute l'Union europeenne a elire ses deputes au scrutin majoritaire a deux tours.</>,
+    from: 'top',
+    startScene: 2,
+    endScene: 2,
+    positionClass: 'top-[18%] left-1/2 -translate-x-1/2 w-[84%] sm:w-[60%] text-center',
   },
   {
-    id: 'slide-6',
-    parts: [
-      {
-        id: 's6-top',
-        text: 'Derriere cette question technique se joue un choix de modele democratique :',
-        from: 'top',
-        positionClass: 'top-[18%] left-1/2 -translate-x-1/2 max-w-[84%] sm:max-w-[60%] text-center',
-      },
-      {
-        id: 's6-bottom-left',
-        text: 'Veut-on un Parlement tres representatif, au risque de coalitions fragiles ?',
-        from: 'bottom',
-        positionClass: 'bottom-[18%] left-[7%] max-w-[40%] sm:max-w-[32%] text-left',
-      },
-      {
-        id: 's6-bottom-right',
-        text: 'Ou un systeme qui fabrique plus facilement des majorites stables, mais parfois deconnecte des affiliations politiques reelles ?',
-        from: 'bottom',
-        positionClass: 'bottom-[18%] right-[7%] max-w-[40%] sm:max-w-[32%] text-right',
-      },
-    ],
+    id: 's4-bottom',
+    text: <>Les 26 autres Etats membres ont opte pour des formes plus ou moins <strong>proportionnelles</strong>.</>,
+    from: 'bottom',
+    startScene: 2,
+    endScene: 2,
+    positionClass: 'bottom-[18%] left-1/2 -translate-x-1/2 w-[84%] sm:w-[62%] text-center',
   },
   {
-    id: 'slide-7',
-    parts: [
-      {
-        id: 's7-left',
-        text: "Une crise de confiance profonde est aussi a l'oeuvre :",
-        from: 'left',
-        positionClass: 'top-[22%] left-[7%] max-w-[76%] sm:max-w-[52%] text-left',
-      },
-    ],
+    id: 's5-6-top',
+    text: <>Derriere cette question technique se joue un choix de <strong>modele democratique</strong> :</>,
+    from: 'left',
+    startScene: 3,
+    endScene: 4,
+    positionClass: 'top-[22%] left-[7%] w-[80%] sm:w-[52%] text-left',
   },
   {
-    id: 'slide-8',
-    parts: [
-      {
-        id: 's8-top',
-        text: "Une crise de confiance profonde est aussi a l'oeuvre :",
-        from: 'top',
-        positionClass: 'top-[18%] left-1/2 -translate-x-1/2 max-w-[84%] sm:max-w-[58%] text-center',
-      },
-      {
-        id: 's8-bottom',
-        text: "lors des dernieres legislatives, plus d'un electeur sur deux s'est abstenu, avec des taux d'abstention record chez les jeunes.",
-        from: 'bottom',
-        positionClass: 'bottom-[18%] left-1/2 -translate-x-1/2 max-w-[84%] sm:max-w-[62%] text-center',
-      },
-    ],
+    id: 's6-bottom-left',
+    text: <>Veut-on un Parlement <strong>tres representatif</strong>, au risque de coalitions fragiles ?</>,
+    from: 'bottom',
+    startScene: 4,
+    endScene: 4,
+    positionClass: 'bottom-[18%] left-[7%] w-[40%] sm:w-[32%] text-left',
   },
   {
-    id: 'slide-9',
-    parts: [
-      {
-        id: 's9-top',
-        text: "Dans le meme temps, des partis comme le Rassemblement national, qui tournent autour d'un tiers des voix au premier tour, peinent encore a transformer ces scores en majorite de sieges, nourrissant un sentiment de sous-representation.",
-        from: 'top',
-        positionClass: 'top-[18%] left-1/2 -translate-x-1/2 max-w-[84%] sm:max-w-[64%] text-center',
-      },
-    ],
+    id: 's6-bottom-right',
+    text: <>Ou un systeme qui fabrique plus facilement des <strong>majorites stables</strong>, mais parfois deconnecte des affiliations politiques reelles ?</>,
+    from: 'bottom',
+    startScene: 4,
+    endScene: 4,
+    positionClass: 'bottom-[18%] right-[7%] w-[40%] sm:w-[32%] text-right',
+  },
+//   {
+//     id: 's7-8-top',
+//     text: <>Une <strong>crise de confiance profonde</strong> est aussi a l'oeuvre :</>,
+//     from: 'left',
+//     startScene: 5,
+//     endScene: 6,
+//     positionClass: 'top-[22%] left-[7%] w-[76%] sm:w-[52%] text-left',
+//   },  
+  {
+    id: 's8-bottom',
+    text: <>lors des dernieres legislatives, <strong>plus d'un electeur sur deux s'est abstenu</strong>, avec des taux d'abstention record chez les jeunes.</>,
+    from: 'bottom',
+    startScene: 6,
+    endScene: 6,
+    positionClass: 'bottom-[18%] left-1/2 -translate-x-1/2 w-[84%] sm:w-[62%] text-center',
   },
   {
-    id: 'slide-10',
-    parts: [
-      {
-        id: 's10-top',
-        text: 'Pour eclairer ces enjeux, cet entretien croise les regards de deux specialistes du droit constitutionnel :',
-        from: 'top',
-        positionClass: 'top-[18%] left-1/2 -translate-x-1/2 max-w-[84%] sm:max-w-[60%] text-center',
-      },
-    ],
+    id: 's9-top',
+    text: <>Dans le meme temps, des partis comme le Rassemblement national, qui tournent autour d'un tiers des voix au premier tour, peinent encore a transformer ces scores en majorite de sieges, <strong>nourrissant un sentiment de sous-representation</strong>.</>,
+    from: 'top',
+    startScene: 7,
+    endScene: 7,
+    positionClass: 'top-[18%] left-1/2 -translate-x-1/2 w-[84%] sm:w-[64%] text-center',
+  },
+  {
+    id: 's10-top',
+    text: <>Pour eclairer ces enjeux, cet entretien croise les regards de deux specialistes du <strong>droit constitutionnel</strong> :</>,
+    from: 'top',
+    startScene: 8,
+    endScene: 8,
+    positionClass: 'top-[18%] left-1/2 -translate-x-1/2 w-[84%] sm:w-[60%] text-center',
   },
 ];
 
-const DIRECTION_OFFSETS = {
-  left: { xPercent: -140, yPercent: 0 },
-  right: { xPercent: 140, yPercent: 0 },
-  top: { xPercent: 0, yPercent: -140 },
-  bottom: { xPercent: 0, yPercent: 140 },
-};
+const SCENE_COUNT = 9;
 
 function getDirectionOffsets(direction) {
-  return DIRECTION_OFFSETS[direction] ?? DIRECTION_OFFSETS.bottom;
+  const width = window.innerWidth;
+  const height = window.innerHeight;
+
+  switch (direction) {
+    case 'left':
+      return { x: -width * 1.1, y: 0 };
+    case 'right':
+      return { x: width * 1.1, y: 0 };
+    case 'top':
+      return { x: 0, y: -height * 0.7 };
+    case 'bottom':
+    default:
+      return { x: 0, y: height * 0.7 };
+  }
 }
 
 export default function Scrollytelling() {
   const sectionRef = useRef(null);
+  const [errorMsg, setErrorMsg] = useState(null);
 
   useGSAP(
     () => {
-      const section = sectionRef.current;
-      if (!section) return;
+      try {
+        if (!sectionRef.current) return;
+        const totalScroll = SCENE_COUNT * window.innerHeight;
 
-      const slideCount = STORY_SLIDES.length;
-      const totalScroll = slideCount * window.innerHeight;
+        const q = gsap.utils.selector(sectionRef);
 
-      const ctx = gsap.context(() => {
         const tl = gsap.timeline({
           defaults: { ease: 'power2.out' },
           scrollTrigger: {
-            trigger: section,
+            trigger: sectionRef.current,
             start: 'top top',
             end: `+=${totalScroll}`,
             scrub: 0.6,
@@ -174,56 +149,64 @@ export default function Scrollytelling() {
           },
         });
 
-        STORY_SLIDES.forEach((slide, slideIndex) => {
-          const baseTime = slideIndex;
+        STORY_PARTS.forEach((part) => {
+          const rawSelector = `[data-part-id="${part.id}"] [data-anim-node="true"]`;
+          const elements = q(rawSelector);
+          if (!elements || elements.length === 0) {
+            console.warn(`Could not find ${rawSelector}`);
+            return;
+          }
+          const element = elements[0];
 
-          slide.parts.forEach((part) => {
-            const selector = `[data-part-id="${part.id}"]`;
-            const element = section.querySelector(selector);
-            if (!element) return;
+          const enter = getDirectionOffsets(part.from);
+          const exit = { x: -enter.x, y: -enter.y };
+          const enterStart = part.startScene + 0.06;
+          const exitStart = part.endScene + 0.78;
 
-            const enter = getDirectionOffsets(part.from);
-            const exit = { xPercent: -enter.xPercent, yPercent: -enter.yPercent };
-
-            gsap.set(element, {
-              autoAlpha: 0,
-              xPercent: enter.xPercent,
-              yPercent: enter.yPercent,
-            });
-
-            tl.to(
-              element,
-              {
-                autoAlpha: 1,
-                xPercent: 0,
-                yPercent: 0,
-                duration: 0.28,
-              },
-              baseTime + 0.04
-            );
-
-            tl.to(
-              element,
-              {
-                autoAlpha: 0,
-                xPercent: exit.xPercent,
-                yPercent: exit.yPercent,
-                duration: 0.28,
-                ease: 'power2.in',
-              },
-              baseTime + 0.72
-            );
+          gsap.set(element, {
+            autoAlpha: 0,
+            x: enter.x,
+            y: enter.y,
           });
-        });
-      }, section);
 
-      return () => ctx.revert();
+          tl.to(
+            element,
+            {
+              autoAlpha: 1,
+              x: 0,
+              y: 0,
+              duration: 0.24,
+            },  
+            enterStart
+          );
+
+          tl.to(
+            element,
+            {
+              autoAlpha: 0,
+              x: exit.x,
+              y: exit.y,
+              duration: 0.22,
+              ease: 'power2.in',
+            },
+            exitStart
+          );
+        });
+      } catch (err) {
+        console.error('GSAP Error:', err);
+        setErrorMsg(err.message || String(err));
+      }
     },
-    { scope: sectionRef }
+    { scope: sectionRef, dependencies: [] }
   );
 
   return (
     <section ref={sectionRef} className="relative bg-[#d5d5d5] h-screen overflow-hidden" aria-label="Scrollytelling Europe">
+      {errorMsg && (
+        <div className="absolute z-50 bg-red-500 font-bold text-white p-4 top-0 left-0 w-full whitespace-pre-wrap">
+          Désolé, une erreur technique : {errorMsg}
+        </div>
+      )}
       <div
         className="absolute inset-0"
         style={{
@@ -235,25 +218,24 @@ export default function Scrollytelling() {
       />
 
       <div className="absolute inset-0 pointer-events-none">
-        {STORY_SLIDES.map((slide) =>
-          slide.parts.map((part) => (
-            <article
-              key={part.id}
-              data-part-id={part.id}
-              className={`absolute ${part.positionClass}`}
-              style={{ willChange: 'transform, opacity' }}
-            >
+        {STORY_PARTS.map((part) => (
+          <article
+            key={part.id}
+            data-part-id={part.id}
+            className={`absolute ${part.positionClass}`}
+          >
+            <div data-anim-node="true" style={{ willChange: 'transform, opacity' }}>
               <p
-                className="text-black text-[1.05rem] font-semibold leading-[1.2] tracking-[-0.015em] sm:text-[1.45rem]"
+                className="text-black text-[1.05rem] font-semibold leading-[1.14] tracking-[-0.03em] sm:text-[1.45rem]"
                 style={{
                   fontFamily: 'Arial, Helvetica, sans-serif',
                 }}
               >
                 {part.text}
               </p>
-            </article>
-          ))
-        )}
+            </div>
+          </article>
+        ))}
       </div>
     </section>
   );
