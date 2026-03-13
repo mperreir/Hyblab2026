@@ -183,3 +183,11 @@ body {
   justify-content: center;
   align-items: center;
 }
+
+.class-pictogramme-openPopup{
+  position: absolute;
+  top: -10px;
+  left: -30px;
+  object-fit: contain;
+  animation: floating 1s ease-in-out infinite;
+}

@@ -18,13 +18,14 @@ export default function Popup({pictogramme, type, onClick }) {
 
   return (
     <div className="popup-overlay" onClick={handleClose}>
-      <img
-        src={pictogramme}
-        // className="absolute object-contain"
-        className="class-pictogramme-openPopup"
-        // style={{ top: 14, left: 16, width: 44, height: 44 }}
-      />
       <div className={`class-pupop ${animClass}`} onClick={(e) => e.stopPropagation()}>
+        <img
+          src={pictogramme}
+          // className="absolute object-contain"
+          alt="pictogramme"
+          className="class-pictogramme-openPopup"
+          // style={{ top: 14, left: 16, width: 44, height: 44 }}
+        />
         <h1>{type}</h1>
         <button className="class-close-popup" onClick={handleClose}>X</button>
       </div>
