@@ -4,7 +4,7 @@ import { PATH_PUBLIC } from '../../data/debate';
 // Quiz palette
 const C_LEFT    = '#00483B';
 const C_NEUTRAL = '#9CA3AF';
-const C_RIGHT   = '#4657C6';
+const C_RIGHT   = '#00483B';
 
 function clamp(v, min = 4, max = 96) {
   return Math.min(Math.max(v, min), max);
@@ -128,7 +128,6 @@ export default function Resultat({ initialScore, finalScore }) {
         {/* Labels sous la barre */}
         <div className="flex justify-between mt-2 mb-6">
           <span className="text-xs font-bold" style={{ color: C_LEFT }}>Contre</span>
-          <span className="text-xs font-bold" style={{ color: C_NEUTRAL }}>Neutre</span>
           <span className="text-xs font-bold" style={{ color: C_RIGHT }}>Pour</span>
         </div>
 

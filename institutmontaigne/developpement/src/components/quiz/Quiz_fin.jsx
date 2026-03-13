@@ -103,11 +103,11 @@ export default function QuizFin({ onScoreComputed }) {
 
   if (allQuestionsAnswered) return null;
 
-  const QUIZ_BLUE = '#4657C6';
+  const QUIZ_BLUE = '#00483B';
 
   const renderCardBody = (question, idx, isInteractive = false) => (
     <div className="w-full h-full bg-white rounded-[24px] border border-[#D9DFEF] overflow-hidden flex flex-col">
-      <div className="bg-[#4657C6] px-6 py-7 sm:px-7 sm:py-8">
+      <div className="bg-[#00483B] px-6 py-7 sm:px-7 sm:py-8">
         <h1 className="text-white uppercase tracking-[0.02em] text-[1.30rem] sm:text-[1.15rem] font-bold leading-[1.05]">
           Votre avis sur le débat
         </h1>
@@ -189,16 +189,16 @@ export default function QuizFin({ onScoreComputed }) {
   );
 
   return (
-    <div className="relative w-full max-w-md mx-auto px-3 py-6 sm:py-8">
+    <div className="relative w-full h-fit max-w-md mx-auto px-3 py-6 sm:py-8">
       {/* Ghost cards: absolute inside the relative parent so they inherit the exact same width */}
-      <div className="absolute inset-x-0 top-0 -z-10 invisible pointer-events-none" aria-hidden="true">
+      <div className="absolute left-0 top-0 -z-10 h-0 w-full overflow-hidden opacity-0 pointer-events-none" aria-hidden="true">
         {questions.map((question, idx) => (
           <div
             key={`measure-${idx}`}
             ref={(element) => {
               measureRefs.current[idx] = element;
             }}
-            className="mb-4"
+            className="mb-4 w-full"
           >
             {renderCardBody(question, idx, false)}
           </div>

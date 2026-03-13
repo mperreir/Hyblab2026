@@ -64,7 +64,7 @@ const debateData = {
               isLeft={ true } 
             />,
             <Timeline className="mx-auto w-fit mb-6" />,
-            <>Le général de Gaulle fit donc le choix d'en revenir au vieux mode de scrutin en place depuis le <Manuscrit>Second Empire</Manuscrit> et qui avait dominé sous la <Manuscrit surrounded={false}>IIIe République</Manuscrit> : le scrutin majoritaire à deux tours, qui lui offrit une majorité absolue à partir de 1962.</>
+            <>Benjamin MOREL explique que le général de Gaulle fit donc le choix d'en revenir au vieux mode de scrutin en place depuis le <Manuscrit>Second Empire</Manuscrit> et qui avait dominé sous la <Manuscrit surrounded={false}>IIIe République</Manuscrit> : le scrutin majoritaire à deux tours, qui lui offrit une majorité absolue à partir de 1962.</>
             ]
         },
         {
@@ -74,9 +74,9 @@ const debateData = {
               quote="J'ajouterai à cela que De Gaulle est d'abord <b>favorable à la proportionnelle</b> sous la IVe, qu'il perçoit comme un <b>moyen de contenir le Parti communiste.</b>"
               isLeft={false}
             />,
-            <><Manuscrit>La proportionnelle</Manuscrit> est le mode de scrutin "le plus récent". Il s'est développé à la naissance des partis, à la fin du <DropZone correctAnswer="XIX" /> siècle.</>,
+            <>D'après Anne LEVADE, <Manuscrit color="#872339">la proportionnelle</Manuscrit> est le mode de scrutin "le plus récent". Il s'est développé à la naissance des partis, à la fin du <DropZone correctAnswer="XIX" /> siècle.</>,
             <AnswerBank answers={["XVIII", "XIX", "XX"]} />,
-            <>Avant cela, les programmes reposaient avant tout sur <Manuscrit surrounded={false}>une personne</Manuscrit>. Ainsi, le mode de scrutin et la structuration des partis influent l'un sur l'autre. Et il s'agit toujours d'un processus au <Manuscrit surrounded={false}>long cours</Manuscrit>.</>,
+            <>Avant cela, les programmes reposaient avant tout sur <Manuscrit  color="#872339" surrounded={false}>une personne</Manuscrit>. Ainsi, le mode de scrutin et la structuration des partis influent l'un sur l'autre. Et il s'agit toujours d'un processus au <Manuscrit surrounded={false} color="#872339">long cours</Manuscrit>.</>,
           ]
         },
       ]
@@ -98,7 +98,7 @@ const debateData = {
               isLeft={ false }
               hasImage={false}
             />,
-            <>L'idée d'un scrutin proportionnel revient souvent <Manuscrit surrounded={false}>dans le débat</Manuscrit>, mais souvent sans rentrer dans le détail des modalités.</>
+            <>Anne LEVADE remarque que l'idée d'un scrutin proportionnel revient souvent <Manuscrit surrounded={false} color="#872339">dans le débat</Manuscrit>, mais souvent sans rentrer dans le détail des modalités.</>
           ],
         },
         {
@@ -108,7 +108,7 @@ const debateData = {
               quote="Il n'est pas certain que la proportionnelle <b>déstructure le système de partis</b> mais en change simplement la stratégie."
               isLeft={ true }
             />,
-            <>le scrutin majoritaire vous oblige à partir <Manuscrit>uni dès le premier</Manuscrit> tour et à rester ensuite <Manuscrit surrounded={false}>uni après le second</Manuscrit>, par crainte d'une nouvelle élection, les alliances sont ainsi figées avant l'élection pour des raisons stratégiques.</>,
+            <>Selon Benjamin MOREL, le scrutin majoritaire vous oblige à partir <Manuscrit>uni dès le premier</Manuscrit> tour et à rester ensuite <Manuscrit surrounded={false}>uni après le second</Manuscrit>, par crainte d'une nouvelle élection, les alliances sont ainsi figées avant l'élection pour des raisons stratégiques.</>,
             <>À l'inverse, une proportionnelle permet à chaque formation de se présenter sous ses propres couleurs et de <Manuscrit surrounded={false}>négocier des ententes.</Manuscrit> après l'élection.</>,
             <Quote
               quote="En revanche, là où la proportionnelle <b>peut être une réponse à la crise politique</b>, au-delà de l'incitation à la construction d'accords de coalition, c'est parce qu'elle <b>peut répondre à l'essor inquiétant de l'abstention</b> : l'idée qu'un vote pour un petit candidat 'ne sert à rien' serait moins présente."
@@ -124,7 +124,7 @@ const debateData = {
               quote="Certes, mais le mode de scrutin <b>ne suffit pas à structurer la vie politique</b>, et c'est là que l'observation comparée des systèmes politiques et constitutionnels montre ses limites."
               isLeft={ false }
             />,
-            <>On ne peut <Manuscrit surrounded={false}>pas se baser sur des exemples étrangers</Manuscrit> pour anticiper les résultats en France, ni convertir un scrutin majoritaire pour imaginer un résultat en scrutin proportionnel. Par ailleurs, la France pratique le scrutin proportionnel lors de <Manuscrit surrounded={false}>certaines élections</Manuscrit>, comme les européennes.</>
+            <>Anne LEVADE explique qu'on ne peut <Manuscrit  color="#872339" surrounded={false}>pas se baser sur des exemples étrangers</Manuscrit> pour anticiper les résultats en France, ni convertir un scrutin majoritaire pour imaginer un résultat en scrutin proportionnel. Par ailleurs, la France pratique le scrutin proportionnel lors de <Manuscrit surrounded={false} color="#872339">certaines élections</Manuscrit>, comme les européennes.</>
           ],
         }
       ]
@@ -141,7 +141,7 @@ const debateData = {
               quote="Il n'existe en effet <b>pas une mais des formes</b> de scrutin proportionnel."
               isLeft={ false }
             />,
-            "Anne DEVADE explique qu'en surface, c'est simple : un parti reçoit un nombre de sièges proportionnel aux voix obtenus. Mais c'est une véritable ingénierie électorale qui se cache derrière ce terme.",
+            "Anne LEVADE montre qu'en surface, c'est simple : un parti reçoit un nombre de sièges proportionnel aux voix obtenus. Mais c'est une véritable ingénierie électorale qui se cache derrière ce terme.",
             "Différentes proportionnelles existent en fonction des variables suivantes :",
             <RepartitionDynamique />,
           ],
@@ -153,7 +153,7 @@ const debateData = {
               quote="Je suis d'accord avec vous, <b>le comportement électoral est très variable</b> selon les modes de scrutin."
               isLeft={ true }
             />,
-            "L'espace politique est fracturé par une polarisation grandissante : ",
+            "Benjamin MOREL montre la fracture de l'espace politique par une polarisation grandissante : ",
             <DoughnutChart
               className="mx-auto my-8"
               segments={[
@@ -217,16 +217,16 @@ const debateData = {
               quote="<b>La crise actuelle n'est pas tant politique que démocratique</b>. Dans ce contexte, se précipiter de remettre en cause les institutions me paraît particulièrement dangereux."
               isLeft={ false }
             />,
-            <>Si le résultat de la proportionnelle suscite l'insatisfaction, comme c'est probable, la contestation sera <Manuscrit>encore aggravée.</Manuscrit></>,
-            <>Ce n'est pas "le système" <Manuscrit surrounded={false}>qui est défaillant</Manuscrit> et interdit la formation de coalitions, mais la structuration politique qui fait défaut : le débat est <Manuscrit surrounded={false}>dysfonctionnel</Manuscrit>, les politiques semblent déconnectés du réel et on voit <Manuscrit>une crise</Manuscrit> de la représentativité.</>
+            <>Anne LEVADE montre que si le résultat de la proportionnelle suscite l'insatisfaction, comme c'est probable, la contestation sera <Manuscrit  color="#872339">encore aggravée.</Manuscrit></>,
+            <>Ce n'est pas "le système" <Manuscrit surrounded={false}  color="#872339">qui est défaillant</Manuscrit> et interdit la formation de coalitions, mais la structuration politique qui fait défaut : le débat est <Manuscrit  color="#872339" surrounded={false}>dysfonctionnel</Manuscrit>, les politiques semblent déconnectés du réel et on voit <Manuscrit color="#872339">une crise</Manuscrit> de la représentativité.</>
           ],
         }
       ]
     },
     {
-      "question": "Quels impacts pour le RN ?",
-      "color": "#FFDED6",
-      "textcolor": "#EB5D31",
+      "question": "Quels impactes pour le RN ?",
+      "color": "#E3F280",
+      "textcolor": "#7F8B59",
       "dialogue": [
         {
           "intervenant": "morel",
@@ -235,7 +235,7 @@ const debateData = {
               quote="Pendant des années, le Rassemblement national <b>n'a pas proposé de vision structurée</b> ou de programme concret en matière institutionnelle, <b>hormis son engagement constant en faveur de la proportionnelle</b>."
               isLeft={ true }
             />,
-            <>Il y est <Manuscrit surrounded={false}>toujours favorable</Manuscrit> et préconise désormais une version avec une <Manuscrit surrounded={false}>prime majoritaire</Manuscrit>, qui lui permettrait d'obtenir une majorité absolue. Avec une prime de <Manuscrit surrounded={false}>15-20 %</Manuscrit>, le RN pourrait espérer gouverner sous ses seules couleurs.</>
+            <>D'après Benjamin MOREL, le parti est <Manuscrit surrounded={false}>toujours favorable</Manuscrit> et préconise désormais une version avec une <Manuscrit surrounded={false}>prime majoritaire</Manuscrit>, qui lui permettrait d'obtenir une majorité absolue. Avec une prime de <Manuscrit surrounded={false}>15-20 %</Manuscrit>, le RN pourrait espérer gouverner sous ses seules couleurs.</>
            ]
         },
         {

@@ -109,8 +109,8 @@ export default function QuestionAccordion({ questions, intervenants, onQuestionO
 
   return (
     <section className="bg-white ">
-      <p className="text-center text-montaigne-burgundy text-lg font-helvetica font-bold font-italic mb-6">LES CHAPITRES DE L'ARTICLE</p> 
-      <div className="w-full pt-10 px-4">
+      <p className="text-center text-montaigne-burgundy text-lg font-helvetica font-bold font-italic mt-16">LES CHAPITRES DE L'ARTICLE</p> 
+      <div className="w-full pt-4 mb-10 px-1">
         {questions.map((q, i) => (
           <QuestionItem
             key={i}
@@ -449,7 +449,7 @@ const QuestionItem = forwardRef(function QuestionItem(
     <div
       ref={ref}
       style={isFullHeight ? { height: 'calc(var(--vh, 1vh) * 100 - 61px - 2.5rem)' } : undefined}
-      className={`${isFullHeight ? 'flex flex-col' : ''} ${isOpen ? 'mb-10 rounded-2xl' : ''} transition-all duration-500 max-w-3xl mx-auto relative shadow-[0px_0px_13px_4px_rgba(0,_0,_0,_0.2)] rounded-t-2xl overflow-hidden z-[${20 + index}] ${index === 0 ? '' : '-mt-3'}`}
+      className={`${isFullHeight ? 'flex flex-col' : ''} ${isOpen ? 'mb-10 rounded-2xl' : ''} transition-all duration-500 max-w-3xl mx-auto relative shadow-[0px_0px_13px_4px_rgba(0,_0,_0,_0.2)] rounded-2xl overflow-hidden z-[${20 + index}] ${index === 0 ? '' : '-mt-3'} print:!h-auto print:!overflow-visible print:!mb-10`}
     >
       {/* Question header button */}
       <button
@@ -483,42 +483,40 @@ const QuestionItem = forwardRef(function QuestionItem(
 
       {/* Dialogue panel with height animation */}
       <div
-        className={`grid transition-[grid-template-rows] duration-500 ease-in-out ${
+        className={`grid transition-[grid-template-rows] duration-500 ease-in-out print:!grid-rows-[1fr] ${
           isOpen ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'
         } ${showContent ? 'flex-1 min-h-0' : ''}`}
       >
-        <div className="overflow-hidden min-h-0">
-          {showContent && (
-            <div className="relative flex flex-col min-h-0 h-full">
-              {/* Scroll container */}
-              <div
-                ref={scrollContainerRef}
-                className="dialogue-scroll overflow-y-auto bg-white"
-                style={{
-                  maxHeight: isFullHeight
-                    ? '100%'
-                    : `calc(var(--vh, 1vh) * 100 - 61px - 2.5rem - ${headerHeight}px)`,
-                }}
-                onTouchStart={handleTouchStart} 
-                onTouchEnd={handleTouchEnd}
-              >
-                {question.dialogue.map((block, j) => {
-                  const info = getIntervenantInfo(block.intervenant);
-                  const intervenantIndex = intervenants.findIndex(p => p.id === block.intervenant);
-                  return (
-                    <DialogueCard
-                      key={j}
-                      block={block}
-                      info={info}
-                      intervenantIndex={intervenantIndex}
-                      index={j}
-                      isLastDialogue={j === question.dialogue.length - 1}
-                    />
-                  );
-                })}
-              </div>
+        <div className="overflow-hidden min-h-0 print:!overflow-visible">
+          <div className="relative flex flex-col min-h-0 h-full print:!h-auto print:!overflow-visible">
+            {/* Scroll container */}
+            <div
+              ref={scrollContainerRef}
+              className="dialogue-scroll overflow-y-auto overscroll-y-none bg-white print:!overflow-visible print:!max-h-none"
+              style={{
+                maxHeight: isFullHeight
+                  ? '100%'
+                  : `calc(var(--vh, 1vh) * 100 - 61px - 2.5rem - ${headerHeight}px)`,
+              }}
+              onTouchStart={handleTouchStart} 
+              onTouchEnd={handleTouchEnd}
+            >
+              {question.dialogue.map((block, j) => {
+                const info = getIntervenantInfo(block.intervenant);
+                const intervenantIndex = intervenants.findIndex(p => p.id === block.intervenant);
+                return (
+                  <DialogueCard
+                    key={j}
+                    block={block}
+                    info={info}
+                    intervenantIndex={intervenantIndex}
+                    index={j}
+                    isLastDialogue={j === question.dialogue.length - 1}
+                  />
+                );
+              })}
             </div>
-          )}
+          </div>
         </div>
       </div>
     </div>
@@ -552,8 +550,8 @@ function DialogueCard({ block, intervenantIndex, isLastDialogue }) {
     <div
       ref={ref}
       data-card
-      className={`flex items-center px-5 md:px-10 pb-5 max-w-2xl mx-auto w-full transition-all duration-700 ${
-          visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+      className={`flex items-center px-5 text-justify md:px-10 pb-20 max-w-2xl mx-auto w-full transition-all duration-700 print:!opacity-100 print:!translate-y-0 print:!transform-none ${
+           visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
         }`}
     >
       {/* Content */}

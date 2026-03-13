@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { PATH_PUBLIC } from '../data/debate';
 
-export default function Podcast({ src="/audio/cafeconron.mp3", episode, title, cover }) {
+export default function Podcast({ src=PATH_PUBLIC+"/audio/cafeconron.mp3", episode, title, cover, id = '', className = '' }) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [showOverlay, setShowOverlay] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
@@ -86,21 +86,21 @@ export default function Podcast({ src="/audio/cafeconron.mp3", episode, title, c
         aria-label="Fermer"
       >
         <img
-          src="/img/BB.png"
-          alt=""
+          src={`${PATH_PUBLIC}/img/BB.png`}
+          alt="badb"
           className="podcast-oscillate max-h-[80vh] max-w-[80vw] object-contain select-none pointer-events-none"
         />
       </div>
     )}
 
-    <section className="mx-auto max-w-sm bg-white rounded-2xl overflow-hidden shadow-xl my-10">
+    <section id={id} className={`mx-auto my-10 max-w-sm overflow-hidden rounded-2xl bg-white shadow-[0_0_0_1px_rgba(0,0,0,0.04),0_12px_12px_rgba(0,0,0,0.16)] ${className}`.trim()}>
       {src && <audio ref={audioRef} src={src} preload="metadata" />}
 
       <div className="px-5 pt-4 pb-6">
         {/* Titre épisode */}
-        <p className="text-center font-sans font-semibold text-navy text-sm leading-snug mb-5">
-          {episode && <span className="block">{episode}</span>}
-          {title}
+        <p className="text-center text-[#4657C6] text-sm leading-snug mb-5">
+          {episode && <span className="block font-extrabold">{episode}</span>}
+          <p className='text-xs'>{title}</p>
         </p>
 
         {/* Waveform */}
@@ -117,7 +117,7 @@ export default function Podcast({ src="/audio/cafeconron.mp3", episode, title, c
               className="flex-1 rounded-full transition-colors duration-100"
               style={{
                 height: `${h * 100}%`,
-                backgroundColor: i / bars.length <= progress ? '#0B1D3A' : '#CBD5E1',
+                backgroundColor: i / bars.length <= progress ? '#4657C6' : '#CBD5E1',
               }}
             />
           ))}
@@ -132,7 +132,7 @@ export default function Podcast({ src="/audio/cafeconron.mp3", episode, title, c
         {/* Contrôles */}
         <div className="flex items-center justify-center gap-8">
           {/* Rewind 15s */}
-          <button onClick={() => skip(-15)} aria-label="Reculer de 15 secondes" className="text-navy">
+          <button onClick={() => skip(-15)} aria-label="Reculer de 15 secondes" className="text-[#4657C6]">
             <svg width="38" height="38" viewBox="0 0 38 38" fill="none">
               <path
                 d="M19 6C12.373 6 7 11.373 7 18s5.373 12 12 12 12-5.373 12-12"
@@ -148,7 +148,7 @@ export default function Podcast({ src="/audio/cafeconron.mp3", episode, title, c
           <button
             onClick={togglePlay}
             aria-label={isPlaying ? 'Pause' : 'Lecture'}
-            className="w-14 h-14 rounded-full bg-accent-blue flex items-center justify-center text-white shadow-md active:scale-95 transition-transform"
+            className="w-14 h-14 rounded-full  bg-[#4657C6] flex items-center justify-center text-white shadow-md active:scale-95 transition-transform"
           >
             {isPlaying ? (
               <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
@@ -163,7 +163,7 @@ export default function Podcast({ src="/audio/cafeconron.mp3", episode, title, c
           </button>
 
           {/* Forward 15s */}
-          <button onClick={() => skip(15)} aria-label="Avancer de 15 secondes" className="text-navy">
+          <button onClick={() => skip(15)} aria-label="Avancer de 15 secondes" className=" text-[#4657C6]">
             <svg width="38" height="38" viewBox="0 0 38 38" fill="none">
               <path
                 d="M19 6C25.627 6 31 11.373 31 18s-5.373 12-12 12S7 24.627 7 18"
