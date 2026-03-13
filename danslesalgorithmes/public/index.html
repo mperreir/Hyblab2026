@@ -87,27 +87,28 @@
                           </div>
 
                           <div class="options">
-                              <button
-                              class="option-btn"
-                              data-correct="true"
-                              data-original-text="Marion, mère isolée 3 enfants, aux revenus aléatoires qui bénéficie d'aides sociales."
-                              data-answer="Effectivement. Pour la CAF, ce sont des profils comme Marion qui sont les plus à risque."
-                              >
-                              Marion, mère isolée 3 enfants, aux revenus aléatoires qui bénéficie d'aides sociales.
-                              </button>
+                            <div class="options">
+                                <button
+                                class="option-btn"
+                                data-correct="true"
+                                data-original-text="Marion, mère isolée 3 enfants, aux revenus aléatoires qui bénéficie d'aides sociales."
+                                data-answer="Effectivement. Pour la CAF, ce sont des profils comme Marion qui sont les plus à risque."
+                                >
+                                Marion, mère isolée 3 enfants, aux revenus aléatoires qui bénéficie d'aides sociales.
+                                </button>
 
-                              <button
-                              class="option-btn"
-                              data-correct="false"
-                              data-original-text="Gyunay qui fait un petit trafic de cartes vitales volées."
-                              data-answer="Et non. Ce type de fraude est très rare et mal détecté par le score de la CAF."
-                              >
-                              Pierre qui fait un petit trafic de cartes vitales volées.
-                              </button>
-                          </div>
+                                <button
+                                class="option-btn"
+                                data-correct="false"
+                                data-original-text="Pierre qui fait un petit trafic de cartes vitales volées."
+                                data-answer="Et non. Ce type de fraude est très rare et mal détecté par le score de la CAF."
+                                >
+                                Pierre qui fait un petit trafic de cartes vitales volées.
+                                </button>
+                            </div>
+                            </div>
                         </div>
                     </div>
-                </div>
 
                 <div class="step">
                     <div class="step-content">
@@ -172,15 +173,17 @@
                 <div class="step step-testimony">
                     <div class="step-content">
                         <div class="quiz-container" id="quiz-2">
-                          <div class="quiz-badge">QUIZ</div>
-                          <p class="question">Selon vous, pourquoi Marion est-elle contrôlée ? (plusieurs réponses possibles)</p>
-                          <div class="options">
-                            <button class="option-btn" data-correct="true">Elle a fait une erreur dans sa déclaration de revenus mensuelle.</button>
-                            <button class="option-btn" data-correct="true">Son employeur a fait une erreur dans sa télédéclaration des revenus de Marion.</button>
-                            <button class="option-btn" data-correct="true">L'un de ses ex-conjoints a versé avec retard la pension alimentaire qu'il devait du mois précédent.</button>
-                          </div>
-                          <div class="feedback" id="feedback-2"></div>
-                          <button class="validate-btn" id="validate-btn-2">Valider mes réponses</button>
+                            <div class="quiz-header">
+                                <div class="quiz-badge">QUIZ</div>
+                                <p class="question">Selon vous, pourquoi Marion est-elle contrôlée ?</p>
+                            </div>
+                            <div class="options">
+                                <button class="option-btn" data-correct="true">Elle a fait une erreur dans sa déclaration de revenus mensuelle.</button>
+                                <button class="option-btn" data-correct="true">Son employeur a fait une erreur dans sa télédéclaration des revenus de Marion.</button>
+                                <button class="option-btn" data-correct="true">L'un de ses ex-conjoints a versé avec retard la pension alimentaire qu'il devait du mois précédent.</button>
+                            </div>
+                        <div class="feedback" id="feedback-2"></div>
+                        <button class="validate-btn" id="validate-btn-2">Valider mes réponses</button>
                         </div>
                     </div>
                 </div>
@@ -205,13 +208,22 @@
                 <div class="step step-testimony">
                     <div class="step-content">
                         <div class="quiz-container" id="quiz-3">
-                            <div class="quiz-badge">QUIZ</div>
-                            <p class="question">Que devrait faire Marion selon vous ?</p>
-                            <div class="options">
-                                <button class="option-btn">Déclarer ses revenus au moment où elle les reçoit sur son compte en banque. </button>
-                                <button class="option-btn">Déclarer ses revenus au moment où elle est notifiée par son employeur. </button>
+                            <div class="quiz-header">
+                                <div class="quiz-badge">QUIZ</div>
+                                <p class="question">Que devrait faire Marion selon vous ?</p>
                             </div>
+                            <div class="options">
+                                <button class="option-btn" data-correct="false">
+                                    Déclarer ses revenus au moment où elle les reçoit sur son compte en banque.
+                                </button>
+
+                                <button class="option-btn" data-correct="false">
+                                    Déclarer ses revenus au moment où elle est notifiée par son employeur.
+                                </button>
+                            </div>
+
                             <div class="feedback" id="feedback-3"></div>
+                            <button class="validate-btn" id="validate-btn-3">Valider mes réponses</button>
                         </div>
                     </div>
                 </div>
@@ -342,43 +354,71 @@
             <article>
                 <div style="height: 100dvh;"></div>
 
+                <div class="step">
+                    <div class="step-content">
+                        <p>Reposons la question...</strong></p>
+                    </div>
+                </div>
 
-                <div class="step quiz-step">
-                    <div class="step-content quiz-content">
-                        <div class="quiz-container">
-                            <h2>Qui fraude à la CAF ?</h2>
-                            <div class="options">
-                                <button class="option-btn chap4-btn" data-target="answer-beneficiaires">Les bénéficiaires d'aides sociales comme Marion ?</button>
-                                <button class="option-btn chap4-btn" data-target="answer-employeurs">Les employeurs qui ne font pas toutes les déclarations sociales qu'ils doivent faire ?</button>
-                            </div>
-                            <div class="quiz-answer" id="answer-beneficiaires">
-                                <p style="background: none; border: none; padding: 0;">Selon le Haut Conseil du financement de la protection sociale, la part des titulaires de minima sociaux est faible. La fraude au RSA provenant des allocataires représente 1,5 milliard d'euros sur l'ensemble de la fraude évaluée.</p>
-                            </div>
-                            <div class="quiz-answer" id="answer-employeurs">
-                                <p style="background: none; border: none; padding: 0;">En fait, l'essentiel des fraudes sociales est le fait des entreprises. On estime que 6,9 milliards de cotisations seraient éludées du fait du travail dissimulé des entreprises et des travailleurs indépendants.</p>
-                            </div>
+                <div class="step">
+                    <div class="step-content">
+                        <div class="quiz-container" id="quiz-4">
+                        <div class="quiz-header">
+                            <div class="quiz-badge">QUIZ</div>
+                            <p class="question">Selon vous, qui fraude à la CAF ?</p>
+                        </div>
+
+                        <div class="options">
+                            <button
+                            class="option-btn"
+                            data-correct="false"
+                            data-original-text="Les bénéficiaires d'aides sociales comme Marion."
+                            data-answer=" Et non."
+                            >
+                            Les bénéficiaires d'aides sociales comme Marion.
+                            </button>
+
+                            <button
+                            class="option-btn"
+                            data-correct="true"
+                            data-original-text="Les employeurs qui ne font pas toutes les déclarations sociales nécessaires."
+                            data-answer="Effectivement."
+                            >
+                            Les employeurs qui ne font pas toutes les déclarations sociales nécessaires.
+                            </button>
+                        </div>
                         </div>
                     </div>
                 </div>
 
                 <div class="step">
                     <div class="step-content">
-                        <p>Ce que montrent ces chiffres, c'est que ce ne sont pas les plus pauvres qui fraudent le plus, contrairement à ce que cherche à montrer le score de risque de fraude de la CAF</p>
+                        <p>Selon le Haut Conseil du financement de la protection sociale, la part des titulaires de minima sociaux est faible. <strong>La fraude au RSA provenant des allocataires représente 1,5 milliard d’euros sur l’ensemble de la fraude évaluée.</strong></p>
                     </div>
                 </div>
 
                 <div class="step">
                     <div class="step-content">
-                        <p>La lutte contre la fraude sociale des allocataires est moins pertinente que la lutte contre les cotisations dissimulées. Et que lutter contre la fraude sociale est bien moins efficace que lutter contre la fraude fiscale.</p>
+                        <p>En fait, l'<strong>essentiel des fraudes sociales est le fait des entreprises.</strong> 6,9 milliards de cotisations seraient éludées du fait du travail dissimulé des entreprises et des travailleurs indépendants.</p>
                     </div>
+                </div>
 
-                    <div id="box-loupe">
+                <div class="step">
+                    <div class="step-content">
+                        <p>Ce que montrent ces chiffres, c'est que <strong>ce ne sont pas les plus pauvres qui fraudent le plus,</strong> contrairement à ce que cherche à montrer le score de risque de fraude de la CAF.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-content">
+                        <p>Que la lutte contre la fraude sociale des allocataires est moins pertinente que la lutte contre les cotisations dissimulées. Et que <strong>lutter contre la fraude sociale est bien moins efficace que lutter contre la fraude fiscale.</strong></p>
+                    </div>
+                <div id="box-loupe">
                      <img src="img/fraude fiscale bitmap.png" id="fraude-fiscale">
                      
                      <img src="img/fraude sociale_.png" id="fraude-sociale">
                      
                      <img src="img/loupe.png" id="loupe">
-                    </div>
                 </div>
 
             </article>
@@ -391,12 +431,6 @@
             
             <article>
 
-
-                <div class="step">
-                    <div class="step-content">
-                        <p>L'histoire de Marion n'a rien d'exceptionnelle. Elle illustre la réalité vécue par de nombreux allocataires ciblés par le score de risque de fraude de la CAF en raison de la précarité de leur situation.</p>
-                    </div>
-                </div>
 
                 <div class="step">
                     <div class="step-content">
