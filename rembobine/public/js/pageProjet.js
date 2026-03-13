@@ -210,7 +210,7 @@ function createButtonBox(boxId = "box1", aRow = 1, aColumn = 1) {
           return;
         }
 
-        if(box.className.includes("finished")){
+        if (box.className.includes("finished") && !box.className.includes("box-action")) {
           return;
         }
 
@@ -241,9 +241,9 @@ function createButtonBox(boxId = "box1", aRow = 1, aColumn = 1) {
             popupText.textContent = Actions[box.nAction].Texteplus;
             break;
         }
-      popupBox.className += " animate__animated animate__slideInUp"
-      overlay.classList.remove('popup-hidden');
-      
+        popupBox.className += " animate__animated animate__slideInUp"
+        overlay.classList.remove('popup-hidden');
+
       });
       if (getBoxByPosition(box.row + 1, box.column) == null) {
         addEmptyRow(box.row + 1);
@@ -285,35 +285,34 @@ function createButtonBox(boxId = "box1", aRow = 1, aColumn = 1) {
 
 
       if (box.color != 5) {
-      switch (parseInt(value)) {
-        case 1:
-          box.className +=" jud";
-          break;
-        case 2:
-          box.className +=" med";
-          break;
-        case 3:
-          box.className += " pub";
-          break;
-        case 4:
-          box.className += " inst";
-          break;
-        default:
-          box.style.backgroundColor = '#d5d5d5d1';
-          break;
+        switch (parseInt(value)) {
+          case 1:
+            box.className += " jud";
+            break;
+          case 2:
+            box.className += " med";
+            break;
+          case 3:
+            box.className += " pub";
+            break;
+          case 4:
+            box.className += " inst";
+            break;
+          default:
+            box.style.backgroundColor = '#d5d5d5d1';
+            break;
+        }
       }
-    }
 
-      if ((box.color == 4 && box.ngroup >= Institutionnel.length) || (box.color == 2 && box.ngroup >= Mediatique.length) || (box.color == 3 && box.ngroup >= Public.length) || (box.color == 1 && box.ngroup >= Judiciaire.length) ) {
+      if ((box.color == 4 && box.ngroup >= Institutionnel.length) || (box.color == 2 && box.ngroup >= Mediatique.length) || (box.color == 3 && box.ngroup >= Public.length) || (box.color == 1 && box.ngroup >= Judiciaire.length)) {
         box.className += " finished";
 
       }
-      
-      if(box.row%2 == 0)
-      {
+
+      if (box.row % 2 == 0) {
         let citationColumn = box.column == 1 ? 2 : 1
         let citationRow = box.row;
-        addCitation(getBoxCitationByPosition(citationRow,citationColumn),box.color)
+        addCitation(getBoxCitationByPosition(citationRow, citationColumn), box.color)
       }
     });
   });
@@ -359,29 +358,28 @@ function addEmptyRow(aRow = 1) {
   mapCol2.appendChild(box2);
 }
 
-function addCitation(box,impactId)
-{
+function addCitation(box, impactId) {
   switch (impactId) {
-        case 1:
-          box.className +=" jud"; // Change color as desired
-          break;
-        case 2:
-          box.className +=" med"; // Change color as desired 
-          break;
-        case 3:
-          box.className +=" pub";
-          break;
-        case 4:
-          box.className +=" inst";
-          break;
-        default:
-          break;
-      }
-  
+    case 1:
+      box.className += " jud"; // Change color as desired
+      break;
+    case 2:
+      box.className += " med"; // Change color as desired 
+      break;
+    case 3:
+      box.className += " pub";
+      break;
+    case 4:
+      box.className += " inst";
+      break;
+    default:
+      break;
+  }
+
   box.className += " animate__animated animate__fadeInDown"
   //TODO
   //ajouter le texte dans la boite contenant la citation
-  
+
 }
 
 function getBoxByPosition(row, column) {
