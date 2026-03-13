@@ -119,7 +119,7 @@ const displayBadges = computed(() => {
     cursor: pointer;
 
     display: flex;
-    height: 400px;
+    height: 300px;
     padding: 8px;
     flex-direction: column;
     justify-content: center;
