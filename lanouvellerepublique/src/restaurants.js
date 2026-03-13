@@ -11,7 +11,7 @@ export default [
         "date": "03/12/2025",
         "hook": "A deux pas de la place Plumereau, on a testé Yumi Ramen",
         "coupDeCoeur": true,
-        "image": "/img/resto ramen.jpg",
+        "image": "/lanouvellerepublique/img/resto ramen.jpg",
         "article": {
             "title": "A deux pas de la place Plumereau, on a testé Yumi Ramen",
             "catch_phrase": "Rue de la Monnaie, on découvre une charmante adresse, le bon plan pour les amoureuses et amoureux de cuisine asiatique et de ramens.",
