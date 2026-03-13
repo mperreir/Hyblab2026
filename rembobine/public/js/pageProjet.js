@@ -22,7 +22,7 @@ function createButtonBox(boxId = "box1", aRow = 1, aColumn = 1) {
   box.row = aRow;
   box.column = aColumn;
   box.color = null; //In which group the box is a part of
-  box.ngroup = null;//Its id in the group
+  box.ngroup = null;//Its id in the group 
 
   for (let rowIndex = 0; rowIndex < 2; rowIndex += 1) {
     const row = document.createElement("div");
@@ -62,7 +62,10 @@ function createButtonBox(boxId = "box1", aRow = 1, aColumn = 1) {
       button.appendChild(img);
 
       row.appendChild(button);
-      if(State[button.textContent] === true){button.disabled = true; console.log(button.disabled);}
+      if(State[button.textContent] === true){
+        button.disabled = true; console.log(button.disabled);
+        button.className += " finished"
+      }
       box.appendChild(row);
     }
     
@@ -243,6 +246,12 @@ function createButtonBox(boxId = "box1", aRow = 1, aColumn = 1) {
           box.style.backgroundColor = '#d5d5d5d1';
           break;
       }
+
+      if((box.color == 4 && box.ngroup >= Institutionnel.length) || (box.color == 2 && box.ngroup >= Mediatique.length) || (box.color == 3 && box.ngroup >= Public.length) || (box.color == 1 && box.ngroup >= Judiciaire.length))
+      {
+          box.className +=" finished";
+
+      }
       
       // box.parentElement.appendChild(createButtonBox(`box`));
     });
@@ -375,5 +384,4 @@ const arrow = document.querySelector(".summary-container img");
 
 arrow.addEventListener("click", () => {
   summary.classList.toggle("is-open");
-  console.log("good")
 });
