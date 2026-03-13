@@ -5,7 +5,6 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import DoughnutChart from './infographie/DoughnutChart';
 
 gsap.registerPlugin(ScrollTrigger);
-
 gsap.registerPlugin(useGSAP);
 
 const STORY_PARTS = [
@@ -50,22 +49,6 @@ const STORY_PARTS = [
     positionClass: 'top-[22%] left-[7%] w-[80%] sm:w-[52%] text-left',
   },
   {
-    id: 's6-bottom-left',
-    text: <>Veut-on un Parlement <strong>tres representatif</strong>, au risque de coalitions fragiles ?</>,
-    from: 'bottom',
-    startScene: 4,
-    endScene: 4,
-    positionClass: 'bottom-[18%] left-[7%] w-[40%] sm:w-[32%] text-left',
-  },
-  {
-    id: 's6-bottom-right',
-    text: <>Ou un systeme qui fabrique plus facilement des <strong>majorites stables</strong>, mais parfois deconnecte des affiliations politiques reelles ?</>,
-    from: 'bottom',
-    startScene: 4,
-    endScene: 4,
-    positionClass: 'bottom-[18%] right-[7%] w-[40%] sm:w-[32%] text-right',
-  },
-  {
     id: 's7-8-top',
     text: <>Une <strong>crise de confiance profonde</strong> est aussi a l'oeuvre :</>,
     from: 'left',
@@ -99,7 +82,7 @@ const STORY_PARTS = [
   },
   {
     id: 's11-bottom',
-    text: <>Ensemble, ils interrogent un même dilemme : la proportionnelle peut-elle réellement répondre à la crise démocratique française, ou risque-t-elle d'ouvrir un nouveau cycle de désillusions ?.</>,
+    text: <>Ensemble, ils interrogent un même dilemme : la proportionnelle peut-elle réellement répondre à la crise démocratique française, ou risque-t-elle d'ouvrir un nouveau cycle de désillusions ?</>,
     from: 'bottom',
     startScene: 8,
     endScene: 8,
@@ -150,6 +133,7 @@ export default function Scrollytelling() {
   const sectionRef = useRef(null);
   const bgRef = useRef(null);
   const urnContainerRef = useRef(null);
+  const urnImageRef = useRef(null); // Ajout d'une ref pour l'urne seule
   const handEnvelopeRef = useRef(null);
   const hemicycleContainerRef = useRef(null);
   const expertsContainerRef = useRef(null);
@@ -158,6 +142,9 @@ export default function Scrollytelling() {
   const hemicycleProgressRef = useRef({ value: 0 });
   const [errorMsg, setErrorMsg] = useState(null);
   const [hemicycleValue, setHemicycleValue] = useState(0);
+  const dilemmaContainerRef = useRef(null);
+  const dilemmaLeftRef = useRef(null);
+  const dilemmaRightRef = useRef(null);
 
   const hemicycleSegments = [
     { label: '', percentage: Math.max(0, 100 - hemicycleValue), color: '#D2D2D2' },
@@ -187,6 +174,7 @@ export default function Scrollytelling() {
         });
 
         const urnEl = urnContainerRef.current;
+        const urnImageEl = urnImageRef.current;
         const handEl = handEnvelopeRef.current;
         const hemicycleEl = hemicycleContainerRef.current;
         const expertsEl = expertsContainerRef.current;
@@ -194,7 +182,6 @@ export default function Scrollytelling() {
         const expertRightEl = expertRightRef.current;
 
         if (urnEl) gsap.set(urnEl, { autoAlpha: 0 });
-        if (handEl) gsap.set(handEl, { y: -50, autoAlpha: 1 });
         if (hemicycleEl) gsap.set(hemicycleEl, { autoAlpha: 0 });
         hemicycleProgressRef.current.value = 0;
         setHemicycleValue(0);
@@ -203,7 +190,6 @@ export default function Scrollytelling() {
         if (expertRightEl) gsap.set(expertRightEl, { x: 100, y: 100, autoAlpha: 0 });
 
         // --- Background zoom/dezoom ---
-        // Keep zoom fully tied to scroll progress so it remains reliable with scrub.
         const bgEl = bgRef.current;
         if (bgEl) {
           gsap.set(bgEl, { scale: FRANCE_ZOOM_SCALE, transformOrigin: '0% 95%' });
@@ -235,8 +221,6 @@ export default function Scrollytelling() {
           const enterStart = part.startScene + 0.06;
           const exitStart = part.endScene + 0.78;
 
-          // Utilisation de fromTo avec immediateRender pour garantir 
-          // qu'ils sont invisibles au départ et parfaitement gérés dans la timeline
           tl.fromTo(
             element,
             { autoAlpha: 0, x: enter.x, y: enter.y },
@@ -263,23 +247,60 @@ export default function Scrollytelling() {
           );
         });
 
+        // --- Scene 4: Dilemme (SVG Gauche & Droite) ---
+        if (dilemmaContainerRef.current) {
+          const enterStart = 4.06;
+          const exitStart = 4.78;
+
+          tl.to(dilemmaContainerRef.current, { autoAlpha: 1, duration: 0.01 }, enterStart);
+
+          tl.fromTo(dilemmaLeftRef.current, 
+            { autoAlpha: 0, y: 150 }, 
+            { autoAlpha: 1, y: 0, duration: 0.24, immediateRender: true }, 
+            enterStart
+          );
+          tl.to(dilemmaLeftRef.current, { autoAlpha: 0, y: 150, duration: 0.22, ease: 'power2.in' }, exitStart);
+
+          tl.fromTo(dilemmaRightRef.current, 
+            { autoAlpha: 0, y: 150 }, 
+            { autoAlpha: 1, y: 0, duration: 0.24, immediateRender: true }, 
+            enterStart
+          );
+          tl.to(dilemmaRightRef.current, { autoAlpha: 0, y: 150, duration: 0.22, ease: 'power2.in' }, exitStart);
+        }
+
         // --- Scene 5: Abstention / Urne ---
-        if (urnEl && handEl) {
-          // Apparition de l'ensemble (Urne + Main à leur position de départ)
-          tl.to(urnEl, { autoAlpha: 1, duration: 0.2 }, 5);
+        if (urnEl && urnImageEl && handEl) {
+          // Rend le conteneur global visible instantanément
+          tl.to(urnEl, { autoAlpha: 1, duration: 0.01 }, 5);
           
-          // La main s'éloigne vers la droite et le bas pour simuler le refus
+          // L'urne arrive de la gauche
+          tl.fromTo(
+            urnImageEl,
+            { xPercent: -100, autoAlpha: 0 },
+            { xPercent: 0, autoAlpha: 1, duration: 0.4, ease: 'power2.out' },
+            5
+          );
+
+          // La main arrive de la droite
           tl.fromTo(
             handEl,
-            { xPercent: 0, yPercent: 0, rotation: 0 },
+            { xPercent: 100, autoAlpha: 0, rotation: 0, yPercent: 0 },
+            { xPercent: 0, autoAlpha: 1, duration: 0.4, ease: 'power2.out' },
+            5
+          );
+
+          // La main s'éloigne vers la droite et le bas pour simuler le refus
+          tl.to(
+            handEl,
             { 
-              xPercent: 40,    // Se décale vers la droite
-              yPercent: 30,    // Descend légèrement
-              rotation: 15,    // Tourne un peu pour accompagner le mouvement
-              duration: 0.8, 
+              xPercent: 40,    
+              yPercent: 30,    
+              rotation: 15,    
+              duration: 0.7, 
               ease: 'power2.out' 
             },
-            5.2
+            5.4 // Démarre juste après l'entrée
           );
 
           // Disparition de l'ensemble
@@ -288,7 +309,15 @@ export default function Scrollytelling() {
 
         // --- Scene 6.1: Hemicycle gauge ---
         if (hemicycleEl) {
-          tl.to(hemicycleEl, { autoAlpha: 1, duration: 0.15 }, 6.1);
+          // L'hémicycle arrive du bas (50vh = 50% de la hauteur de l'écran)
+          tl.fromTo(
+            hemicycleEl,
+            { autoAlpha: 0, y: "50vh" },
+            { autoAlpha: 1, y: 0, duration: 0.5, ease: 'power2.out' },
+            6.1
+          );
+          
+          // Animation de la jauge (démarre pendant l'arrivée)
           tl.to(
             hemicycleProgressRef.current,
             {
@@ -297,8 +326,9 @@ export default function Scrollytelling() {
               ease: 'power1.out',
               onUpdate: () => setHemicycleValue(hemicycleProgressRef.current.value),
             },
-            6.1
+            6.3 
           );
+          
           tl.to(
             hemicycleProgressRef.current,
             {
@@ -307,9 +337,11 @@ export default function Scrollytelling() {
               ease: 'power1.out',
               onUpdate: () => setHemicycleValue(hemicycleProgressRef.current.value),
             },
-            6.5
+            6.8
           );
-          tl.to(hemicycleEl, { autoAlpha: 0, duration: 0.2 }, 6.8);
+          
+          // L'hémicycle disparaît
+          tl.to(hemicycleEl, { autoAlpha: 0, duration: 0.2 }, 7.1);
         }
 
         // --- Scene 7.1: Experts ---
@@ -357,15 +389,38 @@ export default function Scrollytelling() {
         />
       </div>
 
-      {/* Scene 6: Abstention / Urne */}
+      {/* Scene 4: Dilemme SVGs */}
+      <div ref={dilemmaContainerRef} className="absolute inset-0 pointer-events-none" style={{ visibility: 'hidden' }}>
+        <div className="relative w-full h-full max-w-5xl mx-auto">
+          
+          {/* SVG Gauche */}
+          <div 
+            ref={dilemmaLeftRef} 
+            className="absolute left-[2%] sm:left-[5%] bottom-[25%] sm:bottom-[25%] w-[48%] max-w-[300px]"
+          >
+            <img src="/story/gauche.svg" alt="Parlement représentatif" className="w-full h-auto" />
+          </div>
+
+          {/* SVG Droite (légèrement décalé vers le bas pour le style asymétrique) */}
+          <div 
+            ref={dilemmaRightRef} 
+            className="absolute right-[2%] sm:right-[5%] bottom-[25%] sm:bottom-[25%] w-[48%] max-w-[300px]"
+          >
+            <img src="/story/droite.svg" alt="Majorités stables" className="w-full h-auto" />
+          </div>
+
+        </div>
+      </div>
+
+      {/* Scene 5: Abstention / Urne */}
       <div 
         ref={urnContainerRef} 
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[85%] max-w-[500px] flex items-center justify-between pointer-events-none" 
         style={{ visibility: 'hidden' }}
       >
-        {/* L'urne à gauche */}
+        {/* L'urne à gauche avec sa propre Ref pour l'animer de la gauche */}
         <div className="w-[45%]">
-          <img src="/story/MainUrne.svg" alt="Urne" className="w-full h-auto" />
+          <img ref={urnImageRef} src="/story/MainUrne.svg" alt="Urne" className="w-full h-auto" />
         </div>
 
         {/* La main à droite */}
@@ -379,16 +434,15 @@ export default function Scrollytelling() {
         </div>
       </div>
 
-      {/* Scene 7.1: Hemicycle */}
+      {/* Scene 6.1: Hemicycle */}
       <div ref={hemicycleContainerRef} className="absolute inset-0 flex items-center justify-center pointer-events-none" style={{ visibility: 'hidden' }}>
         <div className="w-[52%] max-w-[500px] h-[250px] sm:h-[300px]">
           <DoughnutChart segments={hemicycleSegments} className="w-full h-full" />
         </div>
       </div>
 
-      {/* Scene 8.1: Experts */}
+      {/* Scene 7.1: Experts */}
       <div ref={expertsContainerRef} className="absolute inset-0 pointer-events-none" style={{ visibility: 'hidden' }}>
-        {/* Ajout d'un max-w et mx-auto pour éviter qu'ils soient trop éloignés sur grand écran (desktop) */}
         <div className="relative w-full h-full max-w-5xl mx-auto">
           
           {/* Expert Gauche (Benjamin Morel)*/}
