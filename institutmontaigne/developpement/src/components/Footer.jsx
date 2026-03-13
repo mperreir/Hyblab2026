@@ -99,7 +99,7 @@ export default function Footer() {
 
 				<div className="relative -m-3">
 					{/* TODO image: footer-ruban-partenaires-blanc.svg */}
-					<img src="/footer/partenaires.png" alt="" aria-hidden="true" className="h-auto w-full" />
+					<img src="./footer/partenaires.png" alt="" aria-hidden="true" className="h-auto w-full" />
 				</div>
 
 				<div className="px-8  pt-12 font-medium leading-[1.24] md:px-14">

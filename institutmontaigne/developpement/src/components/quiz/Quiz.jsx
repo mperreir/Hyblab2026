@@ -11,7 +11,7 @@ const DEFAULT_COLORS = {
 
 const COMPARISONS = [
   {
-    logo: '/icons/LogoInstitut.svg',
+    logo: './icons/LogoInstitut.svg',
     alt: 'Institut Montaigne',
     value: 30,
     direction: 'contre',
@@ -20,7 +20,7 @@ const COMPARISONS = [
       `À la majorité, les lecteur·ices de Montaigne sont à ${pct}% contre.`,
   },
   {
-    logo: '/img/LogoFrance.png',
+    logo: './img/LogoFrance.png',
     alt: 'Français',
     value: 75,
     direction: 'pour',
@@ -286,7 +286,7 @@ export default function Quiz({ meta = {}, onScoreChange }) {
               style={{ position: 'relative', width: '100%', minHeight: 90 }}
             >
               <img
-                src="/icons/GreenShape.svg"
+                src="./icons/GreenShape.svg"
                 alt=""
                 style={{
                   width: '65%', height: 'auto',

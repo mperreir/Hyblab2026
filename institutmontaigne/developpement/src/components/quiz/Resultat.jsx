@@ -112,12 +112,7 @@ export default function Resultat({ initialScore, finalScore }) {
         <div className="relative w-full" style={{ height: TRACK_H }}>
           {/* Track gradient */}
           <div
-            className="absolute left-0 right-0 rounded-full"
-            style={{
-              bottom: BAR_BOTTOM,
-              height: BAR_H,
-              background: `linear-gradient(to right, ${C_LEFT} 0%, #CEDCD9 50%, ${C_RIGHT} 100%)`,
-            }}
+            className="absolute left-0 right-0 rounded-full bg-[#00483B]"
           />
           {/* Curseur avant */}
           {delta !== 0 && <TrackCursor percent={initialScore} label="Avant" ghost trackCenterY={TRACK_CENTER_Y} />}
