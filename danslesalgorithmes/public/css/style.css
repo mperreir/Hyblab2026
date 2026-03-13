@@ -341,11 +341,13 @@ article {
     box-shadow: 0 0.2rem 0.5rem rgba(0, 0, 0, 0.2); 
 }
 
-/* ================= QUIZ ================= */
+/* ================= QUIZ INLINE ================= */
+/* ================= QUIZ (CONDENSE) ================= */
+/* Conteneur principal du quiz */
 .quiz-container {
   width: min(80%, 700px);
   margin: auto;
-  padding: 1vh 2vw 0.5vh; 
+  padding: 10px 20px 2px; 
   background: rgba(255, 255, 255, 0.9);
   font-family: Arial, sans-serif;
   text-align: center;
@@ -369,8 +371,10 @@ article {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+
   font-weight: bold;
   font-size: 1.2rem;
+
   transform: rotate(-20deg);
 }*/
 
@@ -404,7 +408,7 @@ article {
 .quiz-container .question {
   font-size: 1.2rem;
   line-height: 1.1;
-  margin-bottom: 1vh;
+  margin-bottom: 10px;
   background: transparent;
   padding: 0;
 }
@@ -412,8 +416,8 @@ article {
 .quiz-container .options {
   display: flex;
   flex-direction: column;
-  gap: 1vh;
-  margin-bottom: 2vh;
+  gap: 10px;
+  margin-bottom: 20px;
 }
 
 .quiz-container .option-btn {
@@ -421,7 +425,7 @@ article {
   font-size: clamp(0.95rem, 2.8vw, 1rem);
   background: #ffffff;
   color: #000;
-  border: 0.1rem solid #000; 
+  border: 1px solid #000; 
   cursor: pointer;
   text-align: left;
   width: 100%;
@@ -439,7 +443,7 @@ article {
   font-size: clamp(0.95rem, 2.8vw, 1rem);
   color: white;
   border: none;
-  border-radius: 0.3rem;
+  border-radius: 5px;
   cursor: pointer;
   margin: 0px auto 20px;
   display: block;
@@ -467,12 +471,12 @@ article {
 }
 
 .option-btn.selected {
-    border: 0.1rem solid #000;
+    border: 1px solid #000;
 }
 
 .flip-btn {
   position: relative;
-  perspective: 100vw;
+  perspective: 1000px;
   background: transparent;
   border: none;
   padding: 0;
@@ -483,7 +487,7 @@ article {
 .option-inner {
   position: relative;
   width: 100%;
-  min-height: 20vh;
+  min-height: 180px;
   transition: transform 0.6s;
   transform-style: preserve-3d;
 }
@@ -497,12 +501,15 @@ article {
   inset: 0;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
+
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 2.5vh 3vw;
+
+  padding: 28px 30px;
   box-sizing: border-box;
-  border: 0.1rem solid #222;
+
+  border: 1px solid #222;
   background: #f7f7f2;
   color: #000;
   text-align: left;
