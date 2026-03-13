@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { PATH_PUBLIC } from '../data/debate';
 
-export default function Podcast({ src="/audio/cafeconron.mp3", episode, title, cover, id = '', className = '' }) {
+export default function Podcast({ src=PATH_PUBLIC+"/audio/cafeconron.mp3", episode, title, cover, id = '', className = '' }) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [showOverlay, setShowOverlay] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
@@ -86,8 +86,8 @@ export default function Podcast({ src="/audio/cafeconron.mp3", episode, title, c
         aria-label="Fermer"
       >
         <img
-          src="/img/BB.png"
-          alt=""
+          src={`${PATH_PUBLIC}/img/BB.png`}
+          alt="badb"
           className="podcast-oscillate max-h-[80vh] max-w-[80vw] object-contain select-none pointer-events-none"
         />
       </div>
