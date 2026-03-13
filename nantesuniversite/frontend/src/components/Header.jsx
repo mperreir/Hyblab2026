@@ -1,7 +1,5 @@
-const paroleExpertLogo =
-  'https://www.figma.com/api/mcp/asset/73ddd325-bda4-4f74-95d6-61c42d4c17ec';
-const nantesLogo =
-  'https://www.figma.com/api/mcp/asset/6d0d997b-960e-4ca1-998b-c3997f93e2ae';
+import paroleExpertLogo from '../assets/paroleExpertLogo.svg';
+import nantesLogo from '../assets/nantesLogo.svg';
 
 export default function Header() {
   return (
