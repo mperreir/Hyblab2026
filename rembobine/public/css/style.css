@@ -416,6 +416,7 @@ button{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  margin-bottom: 50px;
 }
 
 /* =========== SOMMAIRE ==================*/
@@ -529,7 +530,7 @@ button{
   box-sizing: border-box;
   opacity: 0;
   transition: opacity 0.3s ease;
-  margin-bottom: 0;
+  margin-bottom: -50px;
 }
 
 .impact-explanation p {
@@ -703,8 +704,8 @@ button{
 
 /* ================== FOOTER ===================== */
 .footer {
-    margin-top: 50px;    
-    height: 50px;
+    margin-top: 150px;    
+    height: 150px;
 }
 
 /* ================== COULEUR DES CASES TERMINEES ================== */
