@@ -232,6 +232,8 @@ watch(restaurants, (list) => {
     scroll-snap-type: x mandatory;
     scrollbar-width: none;
     padding: 0.4rem 0;
+    gap: 16px;
+    z-index: 1000;
 }
 
 .restaurant-carousel::-webkit-scrollbar {
@@ -245,6 +247,13 @@ watch(restaurants, (list) => {
     align-items: start;
     justify-content: center;
     cursor: pointer;
+
+    width: 364px;
+    height: 240px;
+    border-radius: 12px;
+    padding: 16px;
+    gap: 10px;
+    background-color: #ffffff;
 }
 
 .restaurant-carousel-wrapper--detail {
