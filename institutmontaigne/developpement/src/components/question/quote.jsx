@@ -13,9 +13,9 @@ import { PATH_PUBLIC } from "../../data/debate";
  *   "side": "left"                    // "left" (défaut) ou "right"
  * }
  */
-export default function Quote({ photo, quote, isLeft = true, etoile }) {
+export default function Quote({ photo, quote, isLeft = true }) {
   const COLOR = isLeft ? '#DD7375' : '#872339';
-  const starIcon = etoile ?? (isLeft ? '/icons/EtoileBleue.svg' : '/icons/EtoileJaune.svg');
+  const starIcon = isLeft ? PATH_PUBLIC+'/icons/EtoileBleue.svg' : PATH_PUBLIC+'/icons/EtoileJaune.svg';
   const containerRef = useRef(null);
   const starRef = useRef(null);
 
