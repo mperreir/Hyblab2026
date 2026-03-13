@@ -109,7 +109,7 @@ export default function QuestionAccordion({ questions, intervenants, onQuestionO
 
   return (
     <section className="bg-white ">
-      <div className="w-full pt-10">
+      <div className="w-full pt-10 px-2">
         {questions.map((q, i) => (
           <QuestionItem
             key={i}
@@ -139,6 +139,7 @@ const QuestionItem = forwardRef(function QuestionItem(
   { index, question, intervenants, isOpen, onToggle, onFinish, onPrev, isLast, isFirstItem, startAtBottom, color, textColor },
   ref
 ) {
+  const ACTION_LOCK_MS = 650;
   const scrollContainerRef = useRef(null);
   const [activeSnap, setActiveSnap] = useState(0);
   const [atEnd, setAtEnd] = useState(false);
@@ -151,6 +152,9 @@ const QuestionItem = forwardRef(function QuestionItem(
   const lastWheelTime = useRef(Date.now());
   const wheelCooldownRef = useRef(false);
   const cooldownTimerRef = useRef(null);
+  const wheelInertiaSettled = useRef(true); // true = prêt à accumuler, false = en attente de stabilisation
+  const wheelLastDirection = useRef(0); // 1 = bas, -1 = haut, 0 = indéfini
+  const wheelInertiaSettleCount = useRef(0); // nb d'events consécutifs sous le seuil
 
   // Track expansion for closing animation
   const [isExpanded, setIsExpanded] = useState(false);
@@ -196,14 +200,24 @@ const QuestionItem = forwardRef(function QuestionItem(
   // Reset state when opening
   useEffect(() => {
     if (isOpen) {
+      // Cooldown initial pour ignorer l'inertie résiduelle de l'action précédente
       wheelCooldownRef.current = true;
       clearTimeout(cooldownTimerRef.current);
+      cooldownTimerRef.current = setTimeout(() => {
+        console.log('[wheel] initial cooldown ended');
+        wheelCooldownRef.current = false;
+        wheelAccumulator.current = 0; // reset accumulateur une fois le cooldown terminé
+      }, ACTION_LOCK_MS);
       setActiveSnap(0);
       setAtEnd(false);
       setAtTop(true);
       endScrollCount.current = 0;
       topScrollCount.current = 0;
       lastWheelTime.current = Date.now();
+      wheelAccumulator.current = 0;
+      wheelInertiaSettled.current = false; // attendre la stabilisation de l'inertie avant d'accumuler
+      wheelLastDirection.current = 0; // reset direction
+      wheelInertiaSettleCount.current = 0;
       if (scrollContainerRef.current && !startAtBottom) {
         scrollContainerRef.current.scrollTop = 0;
       }
@@ -244,65 +258,87 @@ const QuestionItem = forwardRef(function QuestionItem(
     return () => container.removeEventListener('scroll', handleScroll);
   }, [isOpen]);
 
+  const wheelAccumulator = useRef(0);
+
   // Wheel: detect scroll past end or top
   const handleWheel = useCallback((e) => {
     const container = scrollContainerRef.current;
     if (!container) return;
 
-    // Absorb residual scroll inertia: stay in cooldown until no wheel event for 200ms
-    if (wheelCooldownRef.current) {
-      e.preventDefault();
-      clearTimeout(cooldownTimerRef.current);
-      cooldownTimerRef.current = setTimeout(() => {
-        wheelCooldownRef.current = false;
-      }, 200);
+    const isBottom = container.scrollTop + container.clientHeight >= container.scrollHeight - 10;
+    const isTopPos = container.scrollTop <= 10;
+
+    // log compact pour ne pas noyer la console
+    // console.log('[wheel]', { deltaY: e.deltaY.toFixed(1), scrollTop: container.scrollTop.toFixed(1), isBottom, isTopPos, cooldown: wheelCooldownRef.current });
+
+    // Détecter changement de direction → reset complet
+    const currentDirection = e.deltaY > 0 ? 1 : e.deltaY < 0 ? -1 : 0;
+    if (currentDirection !== 0 && wheelLastDirection.current !== 0 && currentDirection !== wheelLastDirection.current) {
+      console.log('%c[DIR] 🔄 Changement de sens → reset', 'color: #f87171; font-weight: bold');
+      wheelAccumulator.current = 0;
+      wheelInertiaSettled.current = false;
+      wheelInertiaSettleCount.current = 0;
+    }
+    if (currentDirection !== 0) wheelLastDirection.current = currentDirection;
+
+    // Pas aux extrémités → scroll normal, reset tout
+    if (e.deltaY > 0 && !isBottom) { wheelAccumulator.current = 0; wheelInertiaSettled.current = false; return; }
+    if (e.deltaY < 0 && !isTopPos) { wheelAccumulator.current = 0; wheelInertiaSettled.current = false; return; }
+
+    // Pendant le cooldown : attendre sans accumuler
+    if (wheelCooldownRef.current) return;
+
+    // On est à l'extrémité → attendre que l'inertie redescende sous le seuil bas
+    const INERTIA_SETTLE_THRESHOLD = 7; // en dessous = inertie terminée
+    const ACCUMULATOR_THRESHOLD = 400;
+
+    const INERTIA_SETTLE_COUNT = 4; // nb d'events consécutifs sous le seuil requis
+
+    if (!wheelInertiaSettled.current) {
+      const absDelta = Math.abs(e.deltaY);
+      if (absDelta <= INERTIA_SETTLE_THRESHOLD) {
+        wheelInertiaSettleCount.current += 1;
+        console.log('%c[INERTIE] ⏳ Stabilisation... deltaY=' + e.deltaY.toFixed(1) + ' (' + wheelInertiaSettleCount.current + '/' + INERTIA_SETTLE_COUNT + ')', 'color: #f59e0b');
+        if (wheelInertiaSettleCount.current >= INERTIA_SETTLE_COUNT) {
+          wheelInertiaSettled.current = true;
+          wheelAccumulator.current = 0;
+          wheelInertiaSettleCount.current = 0;
+          console.log('%c[INERTIE] ✅ Stabilisée → prêt à accumuler', 'color: #22c55e; font-weight: bold');
+        }
+      } else {
+        wheelInertiaSettleCount.current = 0; // reset le compteur si un event dépasse le seuil
+        console.log('%c[INERTIE] ⏳ Attente... deltaY=' + e.deltaY.toFixed(1) + ' (seuil: ' + INERTIA_SETTLE_THRESHOLD + ')', 'color: #f59e0b');
+      }
       return;
     }
 
-    const isBottom = container.scrollTop + container.clientHeight >= container.scrollHeight - 10;
-    const isTopPos = container.scrollTop <= 10;
-    const now = Date.now();
-    const timeSinceLast = now - lastWheelTime.current;
-    lastWheelTime.current = now;
+    // Inertie stabilisée → accumuler le nouveau geste
+    wheelAccumulator.current += Math.abs(e.deltaY);
+    const pct = Math.min(100, Math.round(wheelAccumulator.current / ACCUMULATOR_THRESHOLD * 100));
+    console.log('%c[ACCUM] +' + Math.abs(e.deltaY).toFixed(1) + ' → ' + wheelAccumulator.current.toFixed(1) + ' / ' + ACCUMULATOR_THRESHOLD + ' (' + pct + '%)', 'color: #60a5fa');
 
-    if (e.deltaY > 0) { // Scrolling down
-      topScrollCount.current = 0;
-      if (!isBottom) {
-        endScrollCount.current = 0;
-      } else {
-        // Needs a distinct pause (150ms) to count as a new scroll gesture
-        if (timeSinceLast > 150) {
-          endScrollCount.current += 1;
-        }
-        if (endScrollCount.current >= 1 && timeSinceLast > 150) {
-          e.preventDefault();
-          endScrollCount.current = 0;
-          if (!isLast) {
-            onFinish();
-          } else {
-            onToggle();
-          }
-        }
-      }
-    } else if (e.deltaY < 0) { // Scrolling up
-      endScrollCount.current = 0;
-      if (!isTopPos) {
-        topScrollCount.current = 0;
-      } else {
-        // Needs a distinct pause (150ms) to count as a new scroll gesture
-        if (timeSinceLast > 150) {
-          topScrollCount.current += 1;
-        }
-        if (topScrollCount.current >= 1 && timeSinceLast > 150) {
-          e.preventDefault();
-          topScrollCount.current = 0;
-          if (!isFirstItem) {
-            onPrev();
-          } else {
-            onToggle();
-          }
-        }
-      }
+    if (wheelAccumulator.current < ACCUMULATOR_THRESHOLD) return;
+
+    // Seuil atteint → agir
+    e.preventDefault();
+    console.log('%c[ACTION] 🚀 Déclenchée ! accum=' + wheelAccumulator.current.toFixed(1) + ' isBottom=' + isBottom + ' isTopPos=' + isTopPos, 'color: #a855f7; font-weight: bold; font-size: 13px');
+    wheelAccumulator.current = 0;
+
+    wheelCooldownRef.current = true;
+    wheelInertiaSettled.current = false; // attendre la fin de l'inertie sur le nouveau container
+    wheelInertiaSettleCount.current = 0;
+    clearTimeout(cooldownTimerRef.current);
+    cooldownTimerRef.current = setTimeout(() => {
+      console.log('[wheel] cooldown ended');
+      wheelCooldownRef.current = false;
+    }, ACTION_LOCK_MS);
+
+    if (e.deltaY > 0) {
+      if (!isLast) { console.log('[wheel] → onFinish()'); onFinish(); }
+      else { console.log('[wheel] → onToggle() last'); onToggle(); }
+    } else {
+      if (!isFirstItem) { console.log('[wheel] → onPrev()'); onPrev(); }
+      else { console.log('[wheel] → onToggle() first'); onToggle(); }
     }
   }, [onFinish, onPrev, onToggle, isLast, isFirstItem]);
 
@@ -399,7 +435,12 @@ const QuestionItem = forwardRef(function QuestionItem(
               {/* Scroll container */}
               <div
                 ref={scrollContainerRef}
-                className="dialogue-scroll flex-1 overflow-y-auto bg-white min-h-0"
+                className="dialogue-scroll overflow-y-auto bg-white"
+                style={{
+                  maxHeight: isFullHeight
+                    ? '100%'
+                    : 'calc(var(--vh, 1vh) * 100 - 61px - 80px)',
+                }}
                 onTouchStart={handleTouchStart} 
                 onTouchEnd={handleTouchEnd}
               >
