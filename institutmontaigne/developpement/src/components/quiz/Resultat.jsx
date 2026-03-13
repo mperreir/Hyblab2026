@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import PATH_PUBLIC from "../data/debate.jsx";
+import { PATH_PUBLIC } from '../../data/debate';
 
 function getMessage(score) {
   if (score < 20) return "Très en désaccord";

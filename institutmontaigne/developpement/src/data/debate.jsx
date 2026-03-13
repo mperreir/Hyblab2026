@@ -288,5 +288,5 @@ const debateData = {
   ]
 };
 
-export default debateData;
 export { PATH_PUBLIC };
+export default debateData;
