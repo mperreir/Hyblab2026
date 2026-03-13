@@ -103,11 +103,11 @@ export default function QuizFin({ onScoreComputed }) {
 
   if (allQuestionsAnswered) return null;
 
-  const QUIZ_BLUE = '#4657C6';
+  const QUIZ_BLUE = '#00483B';
 
   const renderCardBody = (question, idx, isInteractive = false) => (
     <div className="w-full h-full bg-white rounded-[24px] border border-[#D9DFEF] overflow-hidden flex flex-col">
-      <div className="bg-[#4657C6] px-6 py-7 sm:px-7 sm:py-8">
+      <div className="bg-[#00483B] px-6 py-7 sm:px-7 sm:py-8">
         <h1 className="text-white uppercase tracking-[0.02em] text-[1.30rem] sm:text-[1.15rem] font-bold leading-[1.05]">
           Votre avis sur le débat
         </h1>
