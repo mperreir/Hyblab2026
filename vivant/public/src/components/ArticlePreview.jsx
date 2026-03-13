@@ -5,14 +5,14 @@ const ArticlePreview = ({ articleData }) => {
   const metadesc = articleData.fullArticle?._yoast_wpseo_metadesc || "";
 
   return (
-    <div className="bg-[#f2f2f2] rounded-[36px] p-5 w-80 text-left text-black shadow-xl flex flex-col group pointer-events-auto">
+    <div className="bg-[#f2f2f2] rounded-[36px] p-5 xl:w-80 w-40 s:h-40 text-left text-black shadow-xl flex flex-col group pointer-events-auto">
       {/* Contenu textuel */}
-      <div className="mb-4">
-        <h3 className="font-extrabold text-[19px] leading-snug mb-2">
+      <div className="xl:mb-4 mb-1">
+        <h3 className="font-extrabold xl:text-lg text-[7px] leading-snug mb-2">
           {articleData.nom}
         </h3>
         {metadesc && (
-          <p className="text-[15px] italic font-medium leading-snug text-gray-800 line-clamp-4">
+          <p className="xl:text-lg text-[7px] italic font-medium leading-snug text-gray-800 line-clamp-4">
             {metadesc}
           </p>
         )}
@@ -20,7 +20,7 @@ const ArticlePreview = ({ articleData }) => {
 
       {/* Image de couverture */}
       {articleData.image && (
-        <div className="w-full h-36 rounded-[28px] overflow-hidden mb-4 shadow-sm">
+        <div className="w-full xl:h-36 h-18 rounded-[28px] overflow-hidden mb-4 shadow-sm">
           <img 
             src={articleData.image} 
             alt={articleData.nom} 
@@ -36,12 +36,12 @@ const ArticlePreview = ({ articleData }) => {
             e.stopPropagation();
             window.open(articleData.fullArticle.Permalink, '_blank');
           }}
-          className="flex-1 bg-[#FF3B83] hover:bg-[#E02967] text-white py-[14px] px-4 rounded-full font-bold text-[15px] transition-colors shadow-sm text-center tracking-normal"
+          className="flex-1 bg-[#FF3B83] hover:bg-[#E02967] text-white xl:py-[14px] py-[4px] px-4 rounded-full font-bold xl:text-lg text-[7px] transition-colors shadow-sm text-center tracking-normal"
         >
           Lire la suite de l'article
         </button>
         <button 
-          className="w-[52px] h-[52px] bg-[#F6E91E] flex items-center justify-center rounded-full hover:bg-[#E5D813] transition-colors shrink-0 shadow-sm"
+          className="xl:w-[52px] xl:h-[52px] w-[26px] h-[26px] bg-[#F6E91E] flex items-center justify-center rounded-full hover:bg-[#E5D813] transition-colors shrink-0 shadow-sm"
           title="Aller sur la carte"
           onClick={(e) => {
             e.stopPropagation();

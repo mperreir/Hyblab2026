@@ -62,16 +62,21 @@ const pathList = [
   dicoPaths.path1,
   dicoPaths.path1,
 ];
+
+const CategoryList = {
+   "Entrepreneuriat":"#DED491",
+    "Collectifs": "#DE391C",
+    "Service publique": "#BA0650",
+    "Initiative personnelle/quotidienne": "#FFCBC1"
+  };
  
 const InfinitePath = () => {
   const location = useLocation();
   const initialState = location.state || {};
 
-  // ── État provenant du Router ──
-  const [lat, setLat] = useState(initialState.lat ?? null);
-  const [long, setLong] = useState(initialState.long ?? null);
   const [articles, setArticles] = useState(initialState.articles ?? []);
 
+  // --- CONFIG DES ARTICLES ---
   const mapObjectsConfig = useMemo(() => {
     return articles.map((article, index) => {
       const globalPos = (index + 1) * ESPACEMENT;
@@ -81,12 +86,14 @@ const InfinitePath = () => {
         id: article.ID, 
         pathIndex, 
         progress, 
+        globalPos, // <-- On stocke la position absolue pour calculer la distance plus tard !
         articleData: {
           nom: article.Title,
           text: `${article.Date}${article._distanceFromCentre != null ? ` - 📍 à ${article._distanceFromCentre} km` : ""}`,
           image: article['Image Featured'],
           categories: article.Catégories,
-          fullArticle: article // on garde l'objet entier au cas où
+          fullArticle: article,
+          category_color: CategoryList[article.categorie_tag]
         }
       };
     });
@@ -107,7 +114,11 @@ const InfinitePath = () => {
   const [cyclistSvgPos, setCyclistSvgPos] = useState(posCyclist.up_right);
  
   const [articlePositions, setArticlePositions] = useState({});
-  const SignDecalage = 12
+  const SignDecalage = 12;
+
+  // --- NOUVEAUX STATES POUR L'ARTICLE ACTIF (MOBILE) ---
+  const [activeArticleId, setActiveArticleId] = useState(null);
+  const activeArticleIdRef = useRef(null); 
  
   const SPEED_DESKTOP = 5000;
   const SPEED_MOBILE  = 2500;
@@ -190,13 +201,13 @@ const InfinitePath = () => {
       setArticlePositions(positions);
     }, 150);
     return () => clearTimeout(timer);
-  }, [pathsData]);
+  }, [pathsData, mapObjectsConfig]);
  
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"]
   });
- 
+  
   const smoothProgress = useSpring(scrollYProgress, {
     stiffness: 100,
     damping: 50,
@@ -229,6 +240,24 @@ const InfinitePath = () => {
       const point = pathEl.getPointAtLength(t * length);
  
       setCyclistX(`${(point.x / data.width) * 100}%`);
+
+      // --- NOUVEAU : DÉTECTION DE PROXIMITÉ ---
+      const ZONE_DETECTION = 0.03; // Zone de sensibilité autour de l'article (tu peux ajuster)
+      let foundId = null;
+      
+      for (let obj of mapObjectsConfig) {
+        if (Math.abs(obj.globalPos - globalPos) <= ZONE_DETECTION) {
+          foundId = obj.id;
+          break; // On a trouvé un article proche, on s'arrête
+        }
+      }
+
+      // Si l'article actif change, on déclenche une mise à jour React
+      if (foundId !== activeArticleIdRef.current) {
+        activeArticleIdRef.current = foundId;
+        setActiveArticleId(foundId);
+      }
+      // ----------------------------------------
  
       const diffScroll = latest - latestProgress.current;
       if (diffScroll > 0.000001)       isMovingUpRef.current = true;
@@ -272,7 +301,7 @@ const InfinitePath = () => {
     });
  
     return () => unsubscribe();
-  }, [activeProgress, pathsData]);
+  }, [activeProgress, pathsData, mapObjectsConfig]);
  
   return (
     <>
@@ -286,11 +315,6 @@ const InfinitePath = () => {
           className="xl:w-[50vw] relative w-[100vw] flex-none"
           style={{ transform: "rotateX(50deg)", transformStyle: "preserve-3d" }}
         >
-          {/*
-            preserve-3d doit être propagé sur toute la chaîne :
-            motion.div → div(path) → div(article)
-            Sans ça, le translateZ de l'article est aplati (flat) et n'a aucun effet.
-          */}
           <motion.div
             className="flex flex-col-reverse w-full will-change-transform"
             style={{ y: pathY, transformStyle: "preserve-3d" }}
@@ -307,11 +331,9 @@ const InfinitePath = () => {
                   alt={`Path ${i}`}
                 />
                 {pathsPointsData[i] && pathsPointsData[i].map((c, index) => {
-                  // 1. On calcule la position en pourcentage pour que ce soit responsive
                   const xPercent = (c.x / c.width) * 100;
                   const yPercent = (c.y / c.height) * 100;
                   
-                  // 2. On pioche un arbre dans ton tableau (on boucle avec le modulo s'il y a plus de points que d'arbres)
                   const treeSvg = elements.tree[index % elements.tree.length];
                   const mileSvg = elements.milestone[index % elements.milestone.length];
 
@@ -322,7 +344,6 @@ const InfinitePath = () => {
                       style={{
                         left: `${xPercent}%`,
                         top: `${yPercent}%`,
-                        // On redresse l'arbre en 3D pour qu'il tienne debout sur la route !
                         transform: "translate(-50%, -100%) rotateX(-50deg) translateZ(10px)",
                         transformOrigin: "bottom center",
                         transformStyle: "preserve-3d"
@@ -331,7 +352,7 @@ const InfinitePath = () => {
                       <img 
                         src={c.type === "tree" ? treeSvg : mileSvg} 
                         alt="element" 
-                        className="xl:h-[40%] xl:w-[40%] w-[15vw] h-[15vh] object-contain drop-shadow-md" // Ajuste w-24 h-24 selon la taille voulue
+                        className="xl:h-[40%] xl:w-[40%] w-[15vw] h-[15vh] object-contain drop-shadow-md" 
                       />
                     </div>
                   );
@@ -345,14 +366,12 @@ const InfinitePath = () => {
                     if (!pos) return null;
                     const isOnRightSide = pos.xPercent > 50;
     
-                    // On calcule une position "bridée" pour éviter de coller aux bords de la div
-                    // On garde une marge de sécurité (ex: 10% de chaque côté)
                     const safeLeft = Math.max(10, Math.min(90, pos.xPercent + (isOnRightSide ? SignDecalage : -SignDecalage)));
                     
                     return (
                       <div
                         key={obj.id}
-                        className="absolute z-40 cursor-pointer flex flex-col items-center gap-20"
+                        className={`absolute z-40 cursor-pointer flex flex-col items-center ${activeArticleId ? '' : 'gap-10'}`}
                         style={{
                           left:            `${safeLeft}%`,
                           top:             `${pos.yPercent}%`,
@@ -363,13 +382,21 @@ const InfinitePath = () => {
                         }}
                       > 
                         
-
-                        <ArticlePreview articleData={obj.articleData} />
+                        {/* --- L'AFFICHAGE CONDITIONNEL MOBILE / DESKTOP --- */}
+                        { activeArticleId === obj.id ? (
+                            <ArticlePreview articleData={obj.articleData} />
+                          ) : (
+                            <div 
+                              className="w-[15px] h-[15px] rounded-full shadow-lg border-2 border-white" 
+                              style={{ backgroundColor: obj.articleData.category_color }}
+                            />
+                          )
+                        }
 
                         <img 
                           src={signSvg} 
                           alt="element" 
-                          className="xl:h-[7vh] xl:w-[7vw] w-[7vw] h-[7vh] object-contain drop-shadow-md" // Ajuste w-24 h-24 selon la taille voulue
+                          className="xl:h-[7vh] xl:w-[7vw] w-[7vw] h-[7vh] object-contain drop-shadow-md" 
                         />
                       </div>
                     );
