@@ -426,7 +426,7 @@ const QuestionItem = forwardRef(function QuestionItem(
   );
 });
 
-const SPEAKER_COLORS = ['#DD7375', '#872339'];
+const SPEAKER_COLORS = ['#AC7DD1', '#872339'];
 
 function DialogueCard({ block, intervenantIndex }) {
   const ref = useRef(null);
