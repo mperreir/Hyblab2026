@@ -42,8 +42,8 @@
     gap: 10px;
 
     width: 283.948px;
-    height: 50px; /* 46px + padding approx */
-    transform: rotate(-3.2deg); /* Fusion de -3deg et -0.2deg */
+    height: 50px;
+    transform: rotate(-3.2deg);
     padding: 4px 8px 0 8px;
     flex-shrink: 0;
 
@@ -51,7 +51,6 @@
     background: #FFF;
     box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.10);
 
-    /* Maintien de la position par rapport au texte */
     margin-bottom: -16px;
     z-index: 1;
 }
