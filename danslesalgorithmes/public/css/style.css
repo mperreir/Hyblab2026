@@ -684,3 +684,33 @@ article {
     opacity: 0;
   }
 }
+
+
+/* ================= LOUPE ================= */
+#box-loupe{
+  position: relative;
+  width: 100%;
+  height: 60vh;
+}
+
+#loupe{
+  position: absolute;
+  bottom: 0;
+  left: 20%;
+  bottom: 15%;
+  width: 15.5rem;
+}
+
+#fraude-fiscale{
+  position: absolute;
+  bottom: 0;
+  width: 15.5rem;
+}
+
+#fraude-sociale{
+  position: absolute;
+  bottom: 15vh;
+  width: 7.5rem;
+  left: 70%;
+  bottom: 15%;
+}
