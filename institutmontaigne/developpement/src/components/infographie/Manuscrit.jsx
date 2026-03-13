@@ -42,6 +42,7 @@ export default function Manuscrit({ surrounded = true, children }) {
 					style={{ position: 'absolute', top: '4px', left: 0, width: '100%', height: '100%', pointerEvents: 'none', overflow: 'visible' }}
 				>
 					<path
+						className="print:![stroke-dashoffset:0] print:![stroke-dasharray:none] print:!transition-none"
 						d="M25.5641 28.26C42.8666 27.6753 100.173 25.1475 100.002 12.5383C99.74 -6.8369 -9.59644 -0.165142 1.25822 13.8758C10.565 25.9145 43.7938 27.6628 56.66 30.4662"
 						stroke="#4657C6"
 						strokeLinecap="round"
@@ -59,6 +60,7 @@ export default function Manuscrit({ surrounded = true, children }) {
 					style={{ position: 'absolute', bottom: '0px', left: 0, width: '100%', height: '8px', pointerEvents: 'none' }}
 				>
 					<path
+						className="print:![stroke-dashoffset:0] print:![stroke-dasharray:none] print:!transition-none"
 						d="M2 8C90 5 185 3 275 4.5C355 5.8 415 7 454 7.5"
 						stroke="#4657C6"
 						strokeWidth="2"
