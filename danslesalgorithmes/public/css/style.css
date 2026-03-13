@@ -243,6 +243,7 @@ article {
     display: inline-block;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     font-size: 4rem;
+    z-index: 3; /* Assure que le texte est au-dessus des images */
     color: #000;
     font-weight: bold; 
 }
@@ -260,6 +261,7 @@ article {
   text-align: center;
   color: #333;
   position: relative; 
+  opacity: 1;
 }
 
 .quiz-badge {
@@ -295,7 +297,7 @@ article {
 }
 
 .quiz-container .question {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   line-height: 1.1;
   margin-bottom: 10px;
   background: transparent;
@@ -311,7 +313,7 @@ article {
 
 .quiz-container .option-btn {
   padding: 15px 20px;
-  font-size: 0.9rem;
+  font-size: 1rem;
   background: #ffffff;
   color: #000;
   border: 1px solid #000; 
@@ -326,8 +328,9 @@ article {
 }
 
 .quiz-container .validate-btn {
-  padding: 10px 20px;
+  padding: 10px 20px ;
   background: #f0ad4e;
+  font-size: 1rem;
   color: white;
   border: none;
   border-radius: 5px;
@@ -471,7 +474,7 @@ article {
 
 .credits-names {
     margin-top: 30px;
-    font-size: 0.9rem;
+    font-size: 1rem;
     opacity: 0.8;
 }
 
