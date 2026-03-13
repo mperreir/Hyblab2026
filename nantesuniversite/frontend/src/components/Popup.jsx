@@ -25,13 +25,7 @@ export default function Popup({ pictogramme, type, url, title, onClick }) {
 
     if (type === "video") {
       return (
-        <video
-          controls
-          style={{ width: "100%", height: "100%", objectFit: "contain", background: "#000", borderRadius: "4px" }}
-        >
-          <source src={url} />
-          Votre navigateur ne supporte pas la lecture vidéo.
-        </video>
+        <iframe title="Video player" src={url} allowFullScreen allow="autoplay" style={{ border: "none", borderRadius: "4px", width: "100%", height: "100%" }}></iframe>
       );
     }
 

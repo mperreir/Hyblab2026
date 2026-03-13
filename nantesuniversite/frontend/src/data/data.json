@@ -17,11 +17,12 @@
     },
     "documents": [
       {
-        "id":"22",
-        "category":"Biographie",
+        "id": "22",
+        "category": "Biographie",
+        "title": "Colin De La Higuera",
         "description": "Colin de la Higuera est enseignant-chercheur en informatique, spécialiste reconnu de l’intelligence artificielle appliquée à l’éducation à Nantes Université et membre du laboratoire LS2N (laboratoire des sciences du numérique). Réparti sur cinq sites, le LS2N est la plus importante unité de recherche publique en région Pays de la Loire. ",
-        "pictogramme":"./pictogramme/biographie.svg",
-        "type":"pdf"
+        "pictogramme": "./pictogramme/biographie.svg",
+        "type": "pdf"
       },
       {
         "id": "1",
@@ -33,7 +34,6 @@
         "url": "https://u-news.univ-nantes.fr/education-ouverte-colin-de-la-higuera-finaliste-des-prestigieux-open-education-global-awards-dans-la-categorie-leadership-1",
         "pictogramme": "./pictogramme/prix.svg",
         "type": "web"
-        
       },
       {
         "id": "2",
@@ -58,26 +58,22 @@
         "pictogramme": "./pictogramme/article.svg",
         "type": "web"
       },
-       {
+      {
         "id": "9",
         "category": "Article",
         "nature": "General",
-       
         "author": "Colin de la Higuera",
         "title": "Résultats de la recherche pour «La triche… et si l’IA»",
         "description": "L’article, écrit par Colin de la Higuera, examine la question de la tricherie académique à l’ère de l’intelligence artificielle, en s’interrogeant sur ses causes, sa perception et les réponses possibles plutôt que de blâmer directement l’IA. Il invite à réfléchir aux raisons profondes de la triche, aux enjeux éducatifs sous‑jacents et à comment l’écosystème éducatif peut y répondre de manière constructive.",
         "date": "2026",
-      
         "url": "https://chaireunescorelia.univ-nantes.fr/?s=La+triche%E2%80%A6+et+si+l%E2%80%99IA",
         "pictogramme": "./pictogramme/article.svg",
         "type": "web"
       },
-         
       {
         "id": "10",
         "category": "Article",
         "nature": "General",
-      
         "author": "Florence Sèdes",
         "title": "Entretien avec Colin de la Higuera, chaire UNESCO",
         "description": "L’article explore les impacts des technologies numériques sur l’éducation, en s’intéressant notamment aux transformations des pratiques pédagogiques et aux enjeux sociétaux qui en découlent. Il met en lumière les défis et les questions posés par l’intégration du numérique dans les apprentissages et les politiques éducatives.",
@@ -94,7 +90,6 @@
         "title": "Presenting OEG 201 in Nantes",
         "description": "La vidéo présente Colin de la Higuera lors d’un événement lié à la conférence Open Education Global (OEG) à Nantes, où il expose des aspects de l’éducation ouverte et des ressources éducatives libres. Elle illustre l’implication de Nantes Université dans la communauté internationale de l’éducation ouverte et le partage de pratiques éducatives innovantes.",
         "date": "2020",
-      
         "url": "https://mediaserver.univ-nantes.fr/videos/presenting-oeg-201-in-nantes/",
         "pictogramme": "./pictogramme/conference.svg",
         "type": "video"
@@ -103,12 +98,10 @@
         "id": "12",
         "category": "Conference",
         "nature": "General",
-       
         "author": "Colin de la Higuera",
         "title": "L’intelligence artificielle, l’école, les enseignant.es. Partie 1",
         "description": "L’intelligence artificielle est déjà là dans de nombreux secteurs. L’école ne fait pas exception. Lors de cet atelier, Colin et Margarida échangent au sujet de l’intelligence artificielle, de ses différentes interactions dans l’école et à l’extérieur de celle-ci. La discussion porte en particulier sur les questions de pensée critique et de citoyenneté numérique, ainsi que sur le rôle que l’IA peut jouer à l’école.",
         "date": "2022",
-        
         "url": "https://mediaserver.univ-nantes.fr/videos/gtnum-ia_eo-axe-3-atelier-du-11-mai-2022-lintelligence-artificielle-lecole-les-enseignantes-partie-1/",
         "pictogramme": "./pictogramme/conference.svg",
         "type": "web"
@@ -125,7 +118,7 @@
         "pictogramme": "./pictogramme/conference.svg",
         "type": "video"
       },
-       {
+      {
         "id": "14",
         "category": "Conference",
         "nature": "Journalistique",
@@ -165,7 +158,7 @@
         "id": "17",
         "category": "Podcast",
         "nature": "Journalistique",
-        "type":"video",
+        "type": "video",
         "author": "Colin de la Higuera, Margarida Romero",
         "title": "Ressources éducatives libres pour et par les enseignants -DNE- Salon Educatec / Educatice",
         "description": "La vidéo présente une session du salon Éducatec‑Éducatice 2021 consacrée aux ressources éducatives libres pour et par les enseignants, où des acteurs éducatifs partagent des exemples et bonnes pratiques. Elle met en lumière comment ces ressources peuvent enrichir les pratiques pédagogiques et favoriser l’accès libre aux savoirs.",
@@ -173,12 +166,11 @@
         "url": "https://mediaserver.univ-nantes.fr/videos/ressources-educatives-libres-pour-et-par-les-enseignants-dne-salon-educatec-educatice-novembre-2021/",
         "pictogramme": "./pictogramme/podcast.svg"
       },
-     
       {
         "id": "19",
         "category": "Conference",
         "nature": "Journalistique",
-        "type":"video",
+        "type": "video",
         "author": "Colin de la Higuera",
         "title": "L'enseignant de 202X sera-t-il un-e robot?",
         "description": "La vidéo explore la question « Peut‑on remplacer un enseignant par une machine ? », avec une présentation sur l’intelligence artificielle, l’éducation ouverte et le rôle des technologies dans l’apprentissage. Elle met en perspective les possibilités et les limites de l’IA dans l’éducation tout en soulignant l’importance continue de l’interaction humaine dans l’enseignement.",
@@ -190,12 +182,12 @@
         "id": "20",
         "category": "Conference",
         "nature": "Journalistique",
-        "type":"video",
+        "type": "video",
         "author": "Colin de la Higuera",
         "title": "L'inteligence artificielle où en sommes nous?",
         "description": "La vidéo montre Colin de la Higuera expliquant l’état actuel de l’intelligence artificielle, ses avancées, ses limites et ses implications pour l’éducation et la société. Il aborde de manière accessible comment l’IA fonctionne et ce qu’elle peut (ou ne peut pas) accomplir aujourd’hui.",
         "date": "2021",
-        "origine":"external link",
+        "origine": "external link",
         "url": "https://mediaserver.univ-nantes.fr/videos/colin-de-la-higuera-intelligence-artificielle-ou-en-sommes-nous/",
         "pictogramme": "./pictogramme/conference.svg"
       },
@@ -203,7 +195,7 @@
         "id": "21",
         "category": "Conference",
         "nature": "Journalistique",
-        "type":"video",
+        "type": "video",
         "author": "Colin de la Higuera",
         "title": "Avec l'IA, quel nouveau contrat entre l'élève et l'enseignant?",
         "description": "La vidéo présente le concept de contrat élève‑enseignant autour de l’IA, en expliquant comment formaliser des règles claires d’usage des outils d’intelligence artificielle dans les activités scolaires. Elle explore des exemples concrets et des pistes pédagogiques pour aider les élèves et les enseignants à collaborer de manière éthique et constructive avec l’IA.",
@@ -215,7 +207,7 @@
         "id": "22",
         "category": "Conference",
         "nature": "Journalistique",
-        "type":"video",
+        "type": "video",
         "author": "Colin de la Higuera",
         "title": "Les intelligences artificielle génératives bousculent l'éducation, quels impacts sur l'évaluation?",
         "description": "La vidéo présente une table ronde organisée par la DRANE Nantes où plusieurs intervenants, dont Colin de la Higuera, discutent de l’impact des IA génératives sur l’éducation, en particulier sur les méthodes d’évaluation, la question de l’utilisation d’outils comme ChatGPT et la manière d’évaluer autrement. Elle aborde aussi les inquiétudes et les opportunités liées à ces technologies pour les enseignants et les élèves.",
