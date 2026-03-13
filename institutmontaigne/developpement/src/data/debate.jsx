@@ -4,6 +4,7 @@ import Timeline from "../components/infographie/Timeline";
 import DoughnutChart from "../components/infographie/DoughnutChart";
 import {DropZone, AnswerBank} from "../components/infographie/Puzzle";
 import RepartitionDynamique from "../components/infographie/RepartitionDynamique";
+import Liste from "../components/infographie/Liste";
 
 const PATH_PUBLIC = '.';
 
@@ -205,7 +206,13 @@ const debateData = {
               quote="<b>Il nous faut d'abord établir un objectif</b>, puis réfléchir aux moyens à mettre en œuvre."
               isLeft={ true }
             />,
-            "Benjamin Morel interroge : Cherche-t-on à instaurer un régime plus parlementaire ? Une meilleure représentativité ? Davantage de stabilité politique ?",
+            "Benjamin Morel interroge :",
+            <Liste items={[
+              "Cherche-t-on à instaurer un régime plus parlementaire ?",
+              "Une meilleure représentativité ?",
+              "Davantage de stabilité politique ?",
+            ]}/>,
+             
             <Quote
               photo={`${PATH_PUBLIC}/img/1.png`}
               quote="C'est pourquoi <b>je préconise des améliorations à l'intérieur du système actuel</b>, en passant simplement par une loi ordinaire."
