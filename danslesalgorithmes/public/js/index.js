@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
   scroller
     .setup({
       step: "#scrolly article .step",
-      offset: 0.5, // Déclenchement au milieu de l'écran du téléphone
+      offset: 0.5, 
       debug: false
     })
     .onStepEnter((response) => {
@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
       steps.forEach(step => step.classList.remove('is-active'));
       response.element.classList.add('is-active');
 
-      // 2. --- LOGIQUE DE TRANSITION FLÈCHE -> FOND UNI (SCÈNE 2) ---
+      // 2. --- TRANSITION FLÈCHE -> FOND UNI (SCÈNE 2) ---
       const arrowImage = document.querySelector('.bg-media[style*="fleche.png"]');
       const solidBackground = document.querySelector('.bg-solid');
 
@@ -31,39 +31,45 @@ document.addEventListener('DOMContentLoaded', function() {
           if (solidBackground) solidBackground.style.opacity = '0'; 
       }
 
-      // 3. --- LOGIQUE POUR L'ANIMATION HACKER ET LA VIDÉO (SCÈNE 3) ---
-      const hackerAnim = document.getElementById('hacker-animation');
+      // 3. --- LOGIQUE INTELLIGENTE POUR HACKER ET VIDÉO (SCÈNE 3) ---
+      const hackerScene = document.querySelector('#hacker-animation')?.closest('.scene');
       const bgVideo = document.getElementById('temoignage-video');
       
-      if (hackerAnim) {
-          // On réinitialise les classes par défaut à chaque étape
-          hackerAnim.classList.remove('is-hacked');
-          hackerAnim.classList.remove('is-scrolling-up');
+      // On vérifie si l'utilisateur est en train de scroller DANS la scène 3
+      if (hackerScene && response.element.closest('.scene') === hackerScene) {
+          const hackerAnim = document.getElementById('hacker-animation');
+          const sceneSteps = Array.from(hackerScene.querySelectorAll('.step'));
+          const currentIndex = sceneSteps.indexOf(response.element);
+          
+          // On repère où se trouvent les déclencheurs clés
+          const triggerIndex = sceneSteps.findIndex(s => s.classList.contains('step-anon-trigger'));
+          const endIndex = sceneSteps.findIndex(s => s.classList.contains('step-hacker-end'));
 
-          // Étape A : Le masque Anonymous se superpose (Vidéo cachée)
-          if (response.element.classList.contains('step-anon-trigger') || response.element.classList.contains('step-hacker-start')) {
-              hackerAnim.classList.add('is-hacked');
+          if (currentIndex < triggerIndex) {
+              // Étape A : Avant l'animation (Tout est caché)
+              hackerAnim.classList.remove('is-hacked');
+              hackerAnim.classList.remove('is-scrolling-up');
               if(bgVideo) bgVideo.style.opacity = '0';
           } 
-          // Étape B : Les images remontent avec "Écoutons un témoignage" (Vidéo toujours cachée)
-          else if (response.element.classList.contains('step-hacker-end')) {
+          else if (currentIndex >= triggerIndex && currentIndex < endIndex) {
+              // Étape B : Le masque Anonymous se superpose (Vidéo cachée)
               hackerAnim.classList.add('is-hacked');
-              hackerAnim.classList.add('is-scrolling-up');
+              hackerAnim.classList.remove('is-scrolling-up');
               if(bgVideo) bgVideo.style.opacity = '0';
-          }
-          // Étape C : Le témoignage commence (LA VIDÉO APPARAÎT EN FONDU !)
-          else if (response.element.classList.contains('step-testimony')) {
+          } 
+          else if (currentIndex >= endIndex) {
+              // Étape C : "Écoutons un témoignage" ET TOUT CE QUI SUIT. 
+              // Les images restent bloquées en haut, la vidéo reste allumée !
               hackerAnim.classList.add('is-hacked');
               hackerAnim.classList.add('is-scrolling-up');
               if(bgVideo) bgVideo.style.opacity = '1';
           }
-          // Reset si on remonte avant le trigger
-          else {
-              if(bgVideo) bgVideo.style.opacity = '0';
-          }
+      } else {
+          // Si on quitte complètement la scène 3, on s'assure de cacher la vidéo
+          if(bgVideo) bgVideo.style.opacity = '0';
       }
 
-      // 4. --- LOGIQUE POUR LES SPHÈRES ANIMÉES (SCÈNE 7) ---
+      // 4. --- LOGIQUE POUR LES SPHÈRES ANIMÉES ---
       const spheresAnim = document.getElementById('spheres-animation');
       if (response.element.classList.contains('step-meres')) {
           if (spheresAnim) spheresAnim.classList.add('is-transformed');
@@ -71,7 +77,7 @@ document.addEventListener('DOMContentLoaded', function() {
           if (spheresAnim) spheresAnim.classList.remove('is-transformed');
       }
 
-      // Audio
+      // 5. --- LOGIQUE POUR L'AUDIO ---
       const newAudioFile = response.element.querySelector(".step-content")?.getAttribute("data-audio");
       if (currentAudio) {
         currentAudio.pause();
@@ -79,7 +85,6 @@ document.addEventListener('DOMContentLoaded', function() {
         currentAudio = null;
       }
       if (newAudioFile) {
-        console.log("aaa")
         currentAudio = new Audio(newAudioFile);
         currentAudio.play().catch(erreur => {
           console.warn("Son bloqué (interaction requise sur mobile) :", erreur);
@@ -171,40 +176,33 @@ document.addEventListener('DOMContentLoaded', function() {
   if(quiz2.validateButton) quiz2.validateButton.addEventListener('click', validateQuiz2);
 
   // --- Quizz 3 ---
-  // Fonction pour gérer le Quizz 3 (sélection simple, pas de feedback correct/incorrect nécessaire)
   let selectedButtonQuiz3 = null;
   const quiz3 = {
     options: document.querySelectorAll('#quiz-3 .option-btn'),
     feedback: document.getElementById('feedback-3'),
-    validateButton: document.getElementById('validate-btn-3'),
   };
 
-// Fonction pour gérer le quiz 3
-function handleQuiz3(selectedButton) {
-  // Réinitialise le bouton précédemment sélectionné (s'il y en a un)
-  if (selectedButtonQuiz3 !== null) {
-    selectedButtonQuiz3.style.backgroundColor = '#fafafa';
+  function handleQuiz3(selectedButton) {
+    if (selectedButtonQuiz3 !== null) {
+      selectedButtonQuiz3.style.backgroundColor = '#fafafa';
+    }
+    const isCorrect = selectedButton.dataset.correct === 'true';
+    selectedButton.style.backgroundColor = isCorrect ? '#5cb85c' : '#fcf075';
+    selectedButtonQuiz3 = selectedButton;
+    
+    if(quiz3.feedback) {
+        quiz3.feedback.textContent = "Toutes les propositions mènent à une situation irrégulière.";
+        quiz3.feedback.style.color = '#f63b32';
+    }
   }
 
-  // Gère la réponse sélectionnée
-  const isCorrect = selectedButton.dataset.correct === 'true';
-  selectedButton.style.backgroundColor = isCorrect ? '#5cb85c' : '#fcf075';
-
-  // Met à jour la variable globale
-  selectedButtonQuiz3 = selectedButton;
-  quiz3.feedback.textContent = "Toutes les propositions mènent à une situation irrégulière.";
-  quiz3.feedback.style.color = '#f63b32'
-
-}
-
-// Attache les écouteurs d'événements UNE SEULE FOIS (en dehors de la fonction)
-document.querySelectorAll('#quiz-3 .option-btn').forEach(button => {
-  button.addEventListener('click', function() {
-    handleQuiz3(this);
+  document.querySelectorAll('#quiz-3 .option-btn').forEach(button => {
+    button.addEventListener('click', function() {
+      handleQuiz3(this);
+    });
   });
-});
 
-  // --- Quizz Chapitre 4 (Boutons avec paragraphes cachés) ---
+  // --- Quizz Chapitre 4 ---
   const quizChap4Buttons = document.querySelectorAll('.chap4-btn');
   
   quizChap4Buttons.forEach(button => {
@@ -217,7 +215,7 @@ document.querySelectorAll('#quiz-3 .option-btn').forEach(button => {
 
           answers.forEach(answer => answer.classList.remove('active'));
           buttons.forEach(btn => btn.classList.remove("selected"));
-          targetAnswer.classList.add("active");
+          if(targetAnswer) targetAnswer.classList.add("active");
           button.classList.add("selected");
       });
   });

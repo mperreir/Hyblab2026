@@ -46,38 +46,32 @@
             
             <article>
                 <div style="height: 0dvh;"></div>
-
                 <div class="step">
                     <div class="step-content">
                         <p>Depuis 2010, la Caisse d'allocation familiale (CAF) utilise un algorithme pour évaluer le risque de fraude des allocataires.</p>
                     </div>
                 </div>
-                
                 <div style="height: 0dvh;"></div>
             </article>
 
             <article>
                 <div style="height: 100dvh;"></div>
-
                 <div class="step">
                     <div class="step-content">
                         <p>Depuis toutes les données qu'elle a à sa disposition, la CAF calcule ce qu'elle appelle un "score de risque de fraude" selon une note allant de 0 (le risque de fraude est faible) à 1 (le risque est maximum).</p>
                     </div>
                 </div>
-                
                 <div style="height: 0dvh;"></div>
             </article>
         </section>
 
         <section class="scene">
             <div class="bg-container">
-
                 <div class="bg-solid" style="background-color: #f2efe9; opacity: 0; transition: opacity 1s ease-in-out; position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></div>
             </div>
             
             <article>
                 <div style="height: 0dvh;"></div>
-
                 <div class="step step-uni"></div>
 
                 <div class="step">
@@ -106,9 +100,9 @@
         <section class="scene"> 
             <div class="bg-container" style="display: flex; align-items: center; justify-content: center; background-color: #f2efe9;">
                 
-                <video id="temoignage-video" class="bg-media" src="video/PinVideoDownloader.net-video.mp4" autoplay loop muted playsinline style="opacity: 0; transition: opacity 1s ease-in-out;"></video>
+                <video id="temoignage-video" class="bg-media" src="video/PinVideoDownloader.net-video.mp4" autoplay loop muted playsinline style="opacity: 0; transition: opacity 1s ease-in-out; z-index: 1;"></video>
                 
-                <div class="hacker-container" id="hacker-animation">
+                <div class="hacker-container" id="hacker-animation" style="z-index: 2;">
                     <img src="img/mere_hack.png" alt="Mère Marion" class="img-mere_hack">
                     <img src="img/anonymous.png" alt="Masque Anonymous" class="img-anonymous">
                 </div>
@@ -118,7 +112,6 @@
                 <div style="height: 50dvh;"></div>
                 
                 <div class="step step-anon-trigger" style="height: 10dvh; visibility: hidden;"></div>
-                
                 <div style="height: 40dvh;"></div>
                 
                 <div class="step step-hacker-start">
@@ -135,8 +128,7 @@
 
                 <div class="step">
                     <div class="step-content" data-audio="audio/DLA-1.mp3">
-                        <p style="font-style: italic;">"Je m'appelle Marion, j'ai 47 ans, et j'élève seule mes trois enfants. Je travaille, mais mon salaire ne suffit pas pour vivre. Chaque mois, je reçois environ 600 € d'aides de la CAF. Sans ces aides,
-                             je ne pourrais pas payer mon loyer. Mes revenus ne sont pas toujours les mêmes.Parfois je fais des heures en plus. Parfois je reçois une aide. Parfois non."</p>
+                        <p style="font-style: italic;">"Je m'appelle Marion, j'ai 47 ans, et j'élève seule mes trois enfants. Je travaille, mais mon salaire ne suffit pas pour vivre. Chaque mois, je reçois environ 600 € d'aides de la CAF. Sans ces aides, je ne pourrais pas payer mon loyer. Mes revenus ne sont pas toujours les mêmes. Parfois je fais des heures en plus. Parfois je reçois une aide. Parfois non."</p>
                     </div>
                 </div>
 
@@ -146,7 +138,7 @@
                     </div>
                 </div>
 
-                <div class="step step-testimony">
+                <div class="step">
                     <div class="step-content">
                         <div class="quiz-container" id="quiz-2">
                           <div class="quiz-badge">QUIZ</div>
@@ -162,13 +154,13 @@
                     </div>
                 </div>
 
-                <div class="step step-testimony">
+                <div class="step">
                     <div class="step-content">
                         <p>Et bien cela peut-être l'une des trois raisons. Le contrôle est déclenché par un score calculé automatiquement.</p>
                     </div>
                 </div>
 
-                <div class="step step-testimony">
+                <div class="step">
                     <div class="step-content">
                         <p>Il ne détecte pas une fraude intentionnelle, comme le laisse supposer le terme de fraude, mais un risque d'indu, c'est-à-dire le fait que la CAF ait versé trop d'argent à un bénéficiaire. Ce que la CAF calcule, c'est le risque d'avoir perçu « 600 euros d'allocations en trop sur les 6 derniers mois ».</p>
                     </div>
@@ -180,18 +172,20 @@
                     </div>
                 </div>
 
-            <div class="quiz-container" id="quiz-3">
-                <div class="quiz-badge">QUIZ</div>
-                <p class="question">Que devrait faire Marion selon vous ?</p>
+                <div class="step">
+                    <div class="step-content">
+                        <div class="quiz-container" id="quiz-3">
+                            <div class="quiz-badge">QUIZ</div>
+                            <p class="question">Que devrait faire Marion selon vous ?</p>
 
-                <div class="options">
-                    <button class="option-btn">Déclarer ses revenus au moment où elle les reçoit sur son compte en banque. </button>
-                    <button class="option-btn">Déclarer ses revenus au moment où elle est notifiée par son employeur. </button>
+                            <div class="options">
+                                <button class="option-btn">Déclarer ses revenus au moment où elle les reçoit sur son compte en banque. </button>
+                                <button class="option-btn">Déclarer ses revenus au moment où elle est notifiée par son employeur. </button>
+                            </div>
+                            <div class="feedback" id="feedback-3"></div>
+                        </div>
+                    </div>
                 </div>
-                <div class="feedback" id="feedback-3"></div>
-                </div>
-              </div>
-
 
                 <div style="height: 100dvh;"></div>
             </article>
@@ -204,7 +198,6 @@
             
             <article>
                 <div style="height: 100dvh;"></div>
-                
                 
                 <div class="step">
                     <div class="step-content" data-audio="audio/DLA-3.mp3">
@@ -246,14 +239,11 @@
             </article>
         </section>
 
-        <!-- =========================
-            CHAPITRE 3
-            ========================= -->
-         <section class="scene">
+        <section class="scene">
             <div class="bg-container">
                 <div class="bg-media" style="background-image: url('img/main.jpg');"></div>
             </div>
-                <article>
+            <article>
                 <div class="step" data-image="img/foyer_benificiaire.png">
                     <div class="step-content">
                         <h1>Chapitre 3 — Le contrôle</h1>
@@ -291,9 +281,6 @@
             </article>
         </section>
         
-        <!-- =========================
-            CHAPITRE 4
-            ========================= -->
         <section class="scene">
             <div class="bg-container">
                 <div class="bg-media" style="background-image: url('img/foyer_benificiaire.png');"></div>
