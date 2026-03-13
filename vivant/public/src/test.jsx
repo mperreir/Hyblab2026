@@ -1,5 +1,9 @@
 import { motion, useSpring, useMotionValue, useScroll } from "framer-motion";
 import { useRef, useState, useEffect, useMemo } from "react";
+import { useLocation } from 'react-router-dom';
+import { findNearestArticles, getLastArticleDistance } from '../../utils/dist';
+import CityModal from './components/CityModal';
+import ArticlePreview from './components/ArticlePreview';
 
 // Imports des SVGs pour extraction de données (raw) et pour affichage (URL)
 import path1Raw from './assets/paths/1.svg?raw';
@@ -34,21 +38,8 @@ const elements = {
 
 console.log(elements)
 
-const articles = [
-  { id: 101, nom: "Article 1", text: "Début de l'aventure" },
-  { id: 102, nom: "Article 2", text: "Le saviez-vous ?" },
-  { id: 103, nom: "Article 3", text: "Une belle découverte" },
-  { id: 104, nom: "Article 4", text: "On continue de grimper" },
-  { id: 105, nom: "Article 5", text: "Presque à la moitié" },
-  { id: 106, nom: "Article 6", text: "Un paysage magnifique" },
-  { id: 107, nom: "Article 7", text: "Attention au virage" },
-  { id: 108, nom: "Article 8", text: "La faune locale" },
-  { id: 109, nom: "Article 9", text: "La flore locale" },
-  { id: 110, nom: "Article 10", text: "Bientôt la fin du premier chemin !" },
-  { id: 111, nom: "Article 11", text: "On passe sur le 2ème chemin" },
-];
-
 const ESPACEMENT = 0.10;
+const N_ARTICLES = 20;
 
 const dicoPaths = {
   path1: { raw: path1Raw, svg: path1Url, points: path1Points, pointsRaw: path1PointsRaw },
@@ -71,15 +62,80 @@ const pathList = [
   dicoPaths.path1,
   dicoPaths.path1,
 ];
-
-const mapObjectsConfig = articles.map((article, index) => {
-  const globalPos = (index + 1) * ESPACEMENT;
-  const pathIndex = Math.floor(globalPos) % pathList.length;
-  const progress = globalPos % 1;
-  return { id: article.id, pathIndex, progress, articleData: article };
-});
  
 const InfinitePath = () => {
+  const location = useLocation();
+  const initialState = location.state || {};
+
+  // ── État de la carte / articles ──
+  const [lat, setLat] = useState(initialState.lat ?? null);
+  const [long, setLong] = useState(initialState.long ?? null);
+  const [cityName, setCityName] = useState(initialState.name ?? '');
+  const [hasCity, setHasCity] = useState(initialState.hasCity ?? false);
+  const [articles, setArticles] = useState(initialState.articles ?? []);
+  const [lastArticleDist, setLastArticleDist] = useState(initialState.lastArticleDist ?? null);
+  
+  // ── Modale CityModal ──
+  const [cityError, setCityError] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const modalRef = useRef(null);
+
+  useEffect(() => {
+    if (!hasCity) {
+      modalRef.current?.showModal();
+    }
+  }, [hasCity]);
+
+  const handleCitySubmit = ({ name, lat, lng }) => {
+    setCityError('');
+    setIsLoading(true);
+    try {
+      const centre = { latitude: lat, longitude: lng };
+      const allArticles = (initialState?.articles?.length > 0) ? initialState.articles : articles;
+      const nearest = findNearestArticles(allArticles, centre, N_ARTICLES);
+      const lastDist = getLastArticleDistance(nearest, centre);
+
+      setLat(lat);
+      setLong(lng);
+      setCityName(name);
+      setHasCity(true);
+
+      if (nearest && nearest.length > 0) {
+        setArticles(nearest);
+        setLastArticleDist(lastDist);
+      } else {
+        setArticles(allArticles);
+        setLastArticleDist(null);
+      }
+      setIsLoading(false);
+      modalRef.current?.close();
+    } catch (err) {
+      console.error('Erreur :', err);
+      setCityError('Erreur de calcul.');
+      setIsLoading(false);
+    }
+  };
+
+  const mapObjectsConfig = useMemo(() => {
+    return articles.map((article, index) => {
+      const globalPos = (index + 1) * ESPACEMENT;
+      const pathIndex = Math.floor(globalPos) % pathList.length;
+      const progress = globalPos % 1;
+      return { 
+        id: article.ID, 
+        pathIndex, 
+        progress, 
+        articleData: {
+          nom: article.Title,
+          text: `${article.Date}${article._distanceFromCentre != null ? ` - 📍 à ${article._distanceFromCentre} km` : ""}`,
+          image: article['Image Featured'],
+          categories: article.Catégories,
+          fullArticle: article // on garde l'objet entier au cas où
+        }
+      };
+    });
+  }, [articles]);
+
   const containerRef = useRef(null);
   const [isMobile, setIsMobile] = useState(false);
   const pathRefs = useRef([]);
@@ -262,7 +318,12 @@ const InfinitePath = () => {
   }, [activeProgress, pathsData]);
  
   return (
-    <div ref={containerRef} className="relative" style={{ height: dynamicHeight }}>
+    <>
+    <div 
+      ref={containerRef} 
+      className={`relative transition-all duration-700 ${!hasCity ? 'blur-sm pointer-events-none select-none' : ''}`} 
+      style={{ height: dynamicHeight }}
+    >
       <div className="sticky top-0 mask-y-from-75% mask-y-to-90% h-screen overflow-hidden flex justify-center [perspective:1200px]" >
         <div
           className="xl:w-[50vw] relative w-[100vw] flex-none"
@@ -340,10 +401,8 @@ const InfinitePath = () => {
                       > 
                         
 
-                        <div className="bg-white/90 backdrop-blur-sm p-4 rounded-xl border-2 border-gray-300 w-48 text-center text-black hover:scale-110 transition-transform shadow-lg">
-                          <h3 className="font-bold text-sm mb-1">{obj.articleData.nom}</h3>
-                          <p className="text-xs text-gray-600">{obj.articleData.text}</p>
-                        </div>
+                        <ArticlePreview articleData={obj.articleData} />
+
                         <img 
                           src={signSvg} 
                           alt="element" 
@@ -404,6 +463,20 @@ const InfinitePath = () => {
         </div>
       </div>
     </div>
+    
+    <CityModal
+      isOpen={!hasCity}
+      cityError={cityError}
+      isLoading={isLoading}
+      nArticles={N_ARTICLES}
+      onSubmit={handleCitySubmit}
+      onSkip={() => {
+        setHasCity(true);
+        modalRef.current?.close();
+      }}
+      modalRef={modalRef}
+    />
+    </>
   );
 };
  

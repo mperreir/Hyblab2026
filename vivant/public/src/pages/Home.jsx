@@ -71,7 +71,7 @@ const Home = () => {
   const handleGeolocation = () => {
     if (!navigator.geolocation) {
       alert("La géolocalisation n'est pas supportée par votre navigateur.");
-      navigate('/carte', { state: { hasCity: false } });
+      navigate('/test', { state: { hasCity: false } });
       return;
     }
     setIsLoadingLocation(true);
@@ -89,7 +89,7 @@ const Home = () => {
           const nearestArticles = findNearestArticles(articles, centre, N_ARTICLES);
           const lastDist = getLastArticleDistance(nearestArticles, centre);
           setIsLoadingLocation(false);
-          navigate('/carte', {
+          navigate('/test', {
             state: {
               hasCity: true,
               lat: position.coords.latitude,
@@ -101,19 +101,19 @@ const Home = () => {
           });
         } catch {
           setIsLoadingLocation(false);
-          navigate('/carte', { state: { hasCity: false, articles } });
+          navigate('/test', { state: { hasCity: false, articles } });
         }
       },
       () => {
         setIsLoadingLocation(false);
-        navigate('/carte', { state: { hasCity: false, articles } });
+        navigate('/test', { state: { hasCity: false, articles } });
       }
     );
   };
 
   const handleLastArticle = () => {
     if (!articles || articles.length === 0) {
-      navigate('/carte', { state: { hasCity: false, articles } });
+      navigate('/test', { state: { hasCity: false, articles } });
       return;
     }
 
@@ -139,7 +139,7 @@ const Home = () => {
       const nearestArticles = findNearestArticles(articles, centre, N_ARTICLES);
       const lastDist = getLastArticleDistance(nearestArticles, centre);
 
-      navigate('/carte', {
+      navigate('/test', {
         state: {
           hasCity: true,
           lat: lat,
@@ -151,7 +151,7 @@ const Home = () => {
       });
     } else {
       // Fallback si le dernier article n'a pas de coordonnées
-      navigate('/carte', { state: { hasCity: false, articles } });
+      navigate('/test', { state: { hasCity: false, articles } });
     }
   };
 
@@ -159,7 +159,7 @@ const Home = () => {
     <div className="home-page">
 
       {/* ── Titre ── */}
-      <div className="text-center mb-5 text-xl">
+      <div className="text-center text-xl">
         <h1>
           Comment voulez-vous<br />
           démarrer votre{" "}
@@ -208,7 +208,7 @@ const Home = () => {
           style={{ position: 'relative', zIndex: 1 }}
         >
           {isLoadingLocation ? (
-            <span className="loading loading-spinner" style={{ width: 100, height: 100 }} />
+            <span className="loading loading-spinner loading-lg" style={{ width: 35, height: 35 }} />
           ) : (
             <SwitchIcon
               imgShadow={Pin2Shadow}
@@ -224,7 +224,7 @@ const Home = () => {
           className="home-btn"
           onClick={() =>
             handlePress('ville', () =>
-              navigate('/carte', { state: { hasCity: false, articles } })
+              navigate('/test', { state: { hasCity: false, articles } })
             )
           }
           style={{ position: 'relative', zIndex: 1 }}
