@@ -3,12 +3,15 @@
 // async init function (because of the awaits on fetches)
 const addExtend = async function(swiper){
   const sheets = document.querySelectorAll('.bottom-sheet');
+  const handlebars = document.querySelectorAll('.handle-bar');
+  const pagination = document.querySelector('.swiper-pagination');
+
+
   for(let i=0;i<sheets.length;i++){
     let sheet=sheets[i]
+    let handlebar = handlebars[i]
     if (sheet.dataset.initialized) return;
       sheet.dataset.initialized = true; 
-    const handlebar = document.querySelector('.handle-bar');
-    const pagination = document.querySelector('.swiper-pagination');
     let isOpen=false;
 
     
