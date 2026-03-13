@@ -1,54 +1,64 @@
 import { useEffect, useRef, useState } from "react";
 import { PATH_PUBLIC } from '../../data/debate';
 
-function getMessage(score) {
-  if (score < 20) return "Très en désaccord";
-  if (score < 40) return "Plutôt en désaccord";
-  if (score < 60) return "Neutre";
-  if (score < 80) return "Plutôt d'accord";
-  return "Très d'accord";
+// Quiz palette
+const C_LEFT    = '#00483B';
+const C_NEUTRAL = '#9CA3AF';
+const C_RIGHT   = '#4657C6';
+
+function clamp(v, min = 4, max = 96) {
+  return Math.min(Math.max(v, min), max);
 }
 
-// Clamp pour que le curseur ne déborde jamais sur les images
-function clamp(value, min = 4, max = 96) {
-  return Math.min(Math.max(value, min), max);
+function getTrackColor(value) {
+  if (value <= 40) {
+    return C_LEFT;
+  }
+  else if (value >= 60) {
+    return C_RIGHT;
+  }
+  return C_NEUTRAL;
 }
 
-function Cursor({ percent, label, ghost = false }) {
-  const clamped = clamp(percent);
+function TrackCursor({ percent, label, ghost = false, trackCenterY }) {
+  const p = clamp(percent);
+  const markerColor = ghost ? C_NEUTRAL : getTrackColor(percent);
   return (
     <div
-      className="absolute -translate-x-1/2 flex flex-col items-center"
+      className="absolute inset-0 pointer-events-none"
       style={{
-        left: `${clamped}%`,
-        bottom: 10,
-        transition: ghost ? "none" : "left 1.2s cubic-bezier(0.34, 1.56, 0.64, 1)",
+        transition: ghost ? 'none' : 'left 1.2s cubic-bezier(0.34, 1.56, 0.64, 1)',
         zIndex: ghost ? 1 : 2,
       }}
     >
-      {/* Label au-dessus */}
-      <span
-        className="mb-1 text-[10px] font-sans uppercase tracking-widest whitespace-nowrap"
-        style={{
-          color: ghost ? "rgba(11,29,58,0.3)" : "#0B1D3A",
-          fontWeight: 600,
-        }}
-      >
-        {label}
-      </span>
-      {/* Tick */}
+      {label && (
+        <span
+          className="absolute -translate-x-1/2 text-[10px] font-sans uppercase tracking-widest whitespace-nowrap"
+          style={{ left: `${p}%`, top: 0, color: ghost ? C_NEUTRAL : markerColor, fontWeight: 700 }}
+        >
+          {label}
+        </span>
+      )}
+      {/* Style curseurs */}
       <div
-        className="w-0.5 rounded-full"
+        className="absolute -translate-x-1/2"
         style={{
-          height: 20,
-          background: ghost ? "rgba(11,29,58,0.2)" : "#0B1D3A",
+          left: `${p}%`,
+          top: trackCenterY - 30,
+          width: 2,
+          height: 30,
+          background: markerColor,
+          transition: ghost ? 'none' : 'left 1.2s cubic-bezier(0.34, 1.56, 0.64, 1)',
         }}
       />
-      {/* Diamond */}
       <div
-        className="w-2.5 h-2.5 rotate-45 -mt-1"
+        className="absolute w-5 h-5 rounded-full -translate-x-1/2 -translate-y-1/2"
         style={{
-          background: ghost ? "rgba(11,29,58,0.2)" : "#0B1D3A",
+          left: `${p}%`,
+          top: trackCenterY,
+          background: markerColor,
+          boxShadow: '0 2px 8px rgba(0,0,0,0.15)',
+          transition: ghost ? 'none' : 'left 1.2s cubic-bezier(0.34, 1.56, 0.64, 1)',
         }}
       />
     </div>
@@ -74,70 +84,77 @@ export default function Resultat({ initialScore, finalScore }) {
   const delta = finalScore - initialScore;
   const evolutionLabel =
     delta === 0
-      ? "Position inchangée"
+      ? 'Position inchangée'
       : delta > 0
       ? `+${delta} pts vers l'accord`
-      : `${Math.abs(delta)} pts vers le désaccord`;
+      : `−${Math.abs(delta)} pts vers le désaccord`;
+
+  const TRACK_H = 64;
+  const BAR_H = 8;
+  const BAR_BOTTOM = 0;
+  const TRACK_CENTER_Y = TRACK_H - BAR_BOTTOM - BAR_H / 2;
 
   return (
-    <div className="w-full pb-12 px-6 bg-white">
-      <div className="max-w-2xl mx-auto">
-
-        <h2 className="text-2xl font-serif font-bold text-navy text-center mb-8">
+    <div className="w-full py-10 px-4 flex justify-center">
+      <div
+        className="w-full max-w-sm rounded-2xl bg-white px-6 pt-7 pb-6"
+        style={{ boxShadow: '0 8px 32px rgba(0,72,59,0.13), 0 1.5px 4px rgba(0,72,59,0.07)' }}
+      >
+        {/* Titre */}
+        <h2
+          className="text-center font-bold uppercase tracking-[0.06em] mb-2"
+          style={{ fontSize: '1.35rem', color: C_RIGHT }}
+        >
           Votre position
         </h2>
 
-        {/* Layout : image | barre | image */}
-        <div className="flex items-center gap-5">
-
-          <div className="flex-shrink-0 w-14 h-14">
-            <img src={`${PATH_PUBLIC}/img/2.png`} alt="Pas d'accord" className="w-full h-full object-cover" />
-          </div>
-
-          {/* Barre + curseurs */}
-          <div className="relative flex-1" style={{ height: 60 }}>
-            {/* Barre centrée verticalement */}
-            <div
-              className="absolute left-0 right-0 rounded-full"
-              style={{
-				bottom: 10,
-                height: 6,
-                background: "linear-gradient(90deg, #3B82F6 0%, #D1D5DB 50%, #EF4444 100%)",
-              }}
-            />
-
-            {delta !== 0 && (
-              <Cursor percent={initialScore} label="Avant" ghost />
-            )}
-
-            {animatedPercent !== null && (
-              <Cursor percent={animatedPercent} label="" />
-            )}
-			
-          </div>
-
-          <div className="flex-shrink-0 w-14 h-14">
-            <img src={`${PATH_PUBLIC}/img/1.png`} alt="D'accord" className="w-full h-full object-cover" />
-          </div>
+        {/* Barre + curseurs */}
+        <div className="relative w-full" style={{ height: TRACK_H }}>
+          {/* Track gradient */}
+          <div
+            className="absolute left-0 right-0 rounded-full"
+            style={{
+              bottom: BAR_BOTTOM,
+              height: BAR_H,
+              background: `linear-gradient(to right, ${C_LEFT} 0%, #CEDCD9 50%, ${C_RIGHT} 100%)`,
+            }}
+          />
+          {/* Curseur avant */}
+          {delta !== 0 && <TrackCursor percent={initialScore} label="Avant" ghost trackCenterY={TRACK_CENTER_Y} />}
+          {/* Curseur courant */}
+          {animatedPercent !== null && <TrackCursor percent={animatedPercent} label="" trackCenterY={TRACK_CENTER_Y} />}
         </div>
 
-        {/* Score + évolution */}
-        <div className="mt-8 flex items-center justify-center gap-8 text-center">
+        {/* Labels sous la barre */}
+        <div className="flex justify-between mt-2 mb-6">
+          <span className="text-xs font-bold" style={{ color: C_LEFT }}>Contre</span>
+          <span className="text-xs font-bold" style={{ color: C_NEUTRAL }}>Neutre</span>
+          <span className="text-xs font-bold" style={{ color: C_RIGHT }}>Pour</span>
+        </div>
+
+        {/* Score + évolution affichés en même temps */}
+        <div className="grid grid-cols-2 gap-4 text-center">
           <div>
-            <p className="text-xs font-sans uppercase tracking-widest text-navy/50 mb-1">Score</p>
-            <p className="text-3xl font-serif font-bold text-navy">{finalScore}%</p>
+            <div
+              className="inline-block px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest"
+              style={{ border: `2px solid ${C_RIGHT}`, color: C_RIGHT }}
+            >
+              Score
+            </div>
+            <p className="mt-2 font-bold" style={{ color: C_RIGHT }}>{finalScore}%</p>
           </div>
-          {delta !== 0 && (
-            <>
-              <div className="w-px h-10 bg-navy/10" />
-              <div>
-                <p className="text-xs font-sans uppercase tracking-widest text-navy/50 mb-1">Évolution</p>
-                <p className="text-base font-sans font-semibold text-navy">{evolutionLabel}</p>
-              </div>
-            </>
-          )}
+          <div>
+            <div
+              className="inline-block px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest"
+              style={{ border: `2px solid ${C_RIGHT}`, color: C_RIGHT }}
+            >
+              Évolution
+            </div>
+            <p className="mt-2 font-bold" style={{ color: C_RIGHT }}>
+              {evolutionLabel}
+            </p>
+          </div>
         </div>
-
       </div>
     </div>
   );

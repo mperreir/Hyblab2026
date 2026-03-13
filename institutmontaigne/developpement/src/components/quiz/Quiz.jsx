@@ -64,11 +64,49 @@ export default function Quiz({ meta = {}, onScoreChange }) {
     };
   }, [isDragging, getValueFromClientX]);
 
-  // Interpolate thumb colour: bordeaux (#7B1E3A) left → rose (#E8A0B0) right
-  const r = Math.round(123 + (232 - 123) * (response / 100));
-  const g = Math.round(30 + (160 - 30) * (response / 100));
-  const b = Math.round(58 + (176 - 58) * (response / 100));
-  const thumbColor = `rgb(${r},${g},${b})`;
+  const quizColors = {
+    left: meta?.quizColors?.left ?? '#00483B',
+    neutral: meta?.quizColors?.neutral ?? '#CEDCD9',
+    right: meta?.quizColors?.right ?? '#4657C6',
+    labels: meta?.quizColors?.labels ?? '#00483B',
+  };
+
+  const hexToRgb = (hex) => {
+    const cleaned = hex.replace('#', '');
+    const full = cleaned.length === 3
+      ? cleaned.split('').map((char) => `${char}${char}`).join('')
+      : cleaned;
+    return {
+      r: parseInt(full.slice(0, 2), 16),
+      g: parseInt(full.slice(2, 4), 16),
+      b: parseInt(full.slice(4, 6), 16),
+    };
+  };
+
+  const mix = (from, to, t) => ({
+    r: Math.round(from.r + (to.r - from.r) * t),
+    g: Math.round(from.g + (to.g - from.g) * t),
+    b: Math.round(from.b + (to.b - from.b) * t),
+  });
+
+  // 3-stop interpolation to keep the thumb aligned with the bar palette.
+  const getThumbColor = (value) => {
+    const leftRgb = hexToRgb(quizColors.left);
+    const neutralRgb = hexToRgb(quizColors.neutral);
+    const rightRgb = hexToRgb(quizColors.right);
+
+    if (value <= 50) {
+      const t = value / 50;
+      const c = mix(leftRgb, neutralRgb, t);
+      return `rgb(${c.r},${c.g},${c.b})`;
+    }
+
+    const t = (value - 50) / 50;
+    const c = mix(neutralRgb, rightRgb, t);
+    return `rgb(${c.r},${c.g},${c.b})`;
+  };
+
+  const thumbColor = getThumbColor(response);
 
   const pct = response / 100;
 
@@ -83,7 +121,7 @@ export default function Quiz({ meta = {}, onScoreChange }) {
             fontFamily: 'Helvetica, "Times New Roman", serif',
             fontSize: 'clamp(1.25rem, 3vw, 1.85rem)',
             fontWeight: 700,
-            color: '#8C2D42',
+            color: '#00483B',
           }}
         >
           {'QUEL EST VOTRE AVIS SUR LE SCRUTIN PROPORTIONNEL ?'}
@@ -120,38 +158,10 @@ export default function Quiz({ meta = {}, onScoreChange }) {
                 transform: 'translateY(-50%)',
                 borderRadius: 9999,
                 background:
-                  'linear-gradient(to right, #8C2D42 0%, #A84060 20%, #C87080 40%, #E8C0C8 65%, #FFD1DB 100%)',
+                  `linear-gradient(to right, ${quizColors.left} 0%, ${quizColors.neutral} 50%, ${quizColors.right} 100%)`,
                 pointerEvents: 'none',
               }}
             />
-
-            {/* Barre gauche */}
-            <div
-              style={{
-                position: 'absolute',
-                top: '50%',
-                left: 15,
-                transform: 'translate(-50%, -50%)',
-                pointerEvents: 'none',
-                zIndex: 2,
-              }}
-            >
-              <img src={`${PATH_PUBLIC}/icons/BarreGauche.svg`} alt="" style={{ height: 44, width: 'auto', display: 'block' }} />
-            </div>
-
-            {/* Barre droite */}
-            <div
-              style={{
-                position: 'absolute',
-                top: '50%',
-                right: 15,
-                transform: 'translate(50%, -50%)',
-                pointerEvents: 'none',
-                zIndex: 2,
-              }}
-            >
-              <img src={`${PATH_PUBLIC}/icons/BarreDroite.svg`} alt="" style={{ height: 44, width: 'auto', display: 'block' }} />
-            </div>
 
             {/* Draggable thumb */}
             <div
@@ -172,8 +182,8 @@ export default function Quiz({ meta = {}, onScoreChange }) {
                 justifyContent: 'center',
                 cursor: isDragging ? 'grabbing' : 'grab',
                 boxShadow: isDragging
-                  ? '0 6px 20px rgba(123,30,58,0.22)'
-                  : '0 2px 8px rgba(123,30,58,0.12)',
+                  ? '0 6px 20px rgba(0,72,59,0.22)'
+                  : '0 2px 8px rgba(0,72,59,0.12)',
                 transition: isDragging ? 'none' : 'box-shadow 0.2s',
                 zIndex: 20,
                 userSelect: 'none',
@@ -205,13 +215,13 @@ export default function Quiz({ meta = {}, onScoreChange }) {
               marginTop: 12,
             }}
           >
-            <span style={{ fontFamily: 'Helvetica, serif', fontWeight: 700, fontSize: '1.05rem', color: '#8C2D42', minWidth: 60 }}>
+            <span style={{ fontFamily: 'Helvetica, serif', fontWeight: 700, fontSize: '1.05rem', color: quizColors.labels, minWidth: 60 }}>
               Contre
             </span>
-            <span style={{ fontFamily: 'Helvetica, serif', fontWeight: 700, fontSize: '1.05rem', color: '#8C2D42', textAlign: 'center' }}>
+            <span style={{ fontFamily: 'Helvetica, serif', fontWeight: 700, fontSize: '1.05rem', color: quizColors.labels, textAlign: 'center' }}>
               Neutre
             </span>
-            <span style={{ fontFamily: 'Helvetica, serif', fontWeight: 700, fontSize: '1.05rem', color: '#8C2D42', textAlign: 'right', minWidth: 60 }}>
+            <span style={{ fontFamily: 'Helvetica, serif', fontWeight: 700, fontSize: '1.05rem', color: quizColors.labels, textAlign: 'right', minWidth: 60 }}>
               Pour
             </span>
           </div>
