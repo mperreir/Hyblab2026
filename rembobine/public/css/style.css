@@ -45,7 +45,7 @@ main{
   justify-content: center;
   z-index: 999;
   text-decoration-line:underline;
-  text-decoration-color: var(--color-purple);
+  text-decoration-color: var(--color-dark-purple);
   text-decoration-thickness: 4px;
 }
 
