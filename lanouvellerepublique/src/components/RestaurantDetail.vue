@@ -5,7 +5,7 @@
     role="textbox"
     tabindex="0"
   >
-    <p class="mini-box__coords">
+    <p class="mini-box__content">
         {{ content }}''
     </p>
   </article>
@@ -33,6 +33,9 @@ const props = defineProps({
     rgba(255, 250, 244, 0.87) 46.15%,
     #fff9f2 100%
 );
+}
 
+.detail-box p {
+  text-align: justify;
 }
 </style>

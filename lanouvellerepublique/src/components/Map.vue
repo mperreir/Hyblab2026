@@ -73,7 +73,7 @@ const filterStore = useFilterStore()
 const restaurants = computed(() => filterStore.filteredRestaurants)
 
 const API_KEY = "b4BxT11KjV5Zzm2lo2V1"
-const STYLE = "streets-v4"
+const STYLE = "dataviz-v4"
 const mapTilerUrl = `https://api.maptiler.com/maps/${STYLE}/{z}/{x}/{y}.png?key=${API_KEY}`
 const fallback_position = [47.38935859649009, 0.6860130852825314]
 
@@ -241,11 +241,13 @@ watch(restaurants, (list) => {
 .restaurant-carousel-wrapper {
     position: absolute;
     left: 0;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
     bottom: 5rem;
     width: 100%;
     z-index: 500;
     display: block;
-    align-items: center;
+    align-items: start;
     justify-content: center;
     gap: 0.65rem;
     transition: transform 0.4s ease-in-out;
@@ -274,17 +276,18 @@ watch(restaurants, (list) => {
 
 .restaurant-carousel-wrapper--detail {
     position: absolute;
-    left: 0;
+    left: 0rem;
+    right: 0rem;
     bottom: 0;
     top: 5rem;
 
     width: 100%;
     height: 100%;
 
-    z-index: 1000;
+    z-index: 1003;
 
     display: block;
-    align-items: start;
+    align-items: center;
     justify-content: center;
     gap: 0.65rem;
 

@@ -51,10 +51,12 @@ const formatCoord = (value) => value.toFixed(4)
 <style scoped>
 .mini-box {
   top:8px;
+  width: 100%;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 0.75rem;
-  padding: 2rem 6rem;
+  padding: 2rem;
   border: 1px solid #e2e8f0;
   border-radius: 12px;
   background: #ffffff;
