@@ -492,7 +492,7 @@ const QuestionItem = forwardRef(function QuestionItem(
               {/* Scroll container */}
               <div
                 ref={scrollContainerRef}
-                className="dialogue-scroll overflow-y-auto bg-white"
+                className="dialogue-scroll overflow-y-auto overscroll-y-none bg-white"
                 style={{
                   maxHeight: isFullHeight
                     ? '100%'
