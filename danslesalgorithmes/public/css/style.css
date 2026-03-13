@@ -807,7 +807,7 @@ article {
 }
 
 #animation-argent.visible #argent{
-  animation: argentFly 3s ease forwards;
+  animation: argentFly 7s ease forwards;
 }
 
 @keyframes argentFly{
