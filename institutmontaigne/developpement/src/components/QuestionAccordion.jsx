@@ -464,6 +464,7 @@ function DialogueCard({ block, intervenantIndex }) {
           const borderColor = SPEAKER_COLORS[intervenantIndex] ?? '#888888';
           return isValidElement(para) ? (
             <div
+            key={k}
             className={`last:mb-0 text-[15px] md:text-base leading-[1.85] py-3 ${
                 isLeft ? 'pl-4 border-l-4' : 'pr-4 border-r-4'
               }`}

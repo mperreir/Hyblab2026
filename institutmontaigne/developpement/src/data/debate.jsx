@@ -61,7 +61,8 @@ const debateData = {
             <Quote
               photo={`${PATH_PUBLIC}/img/1.png`}
               quote="Pour donner un peu de contexte, la France a déjà appliqué le principe du scrutin proportionnel <b>entre 1946 et 1958.</b>"
-              isLeft={true}
+              isLeft={ true } 
+              etoile={`${PATH_PUBLIC}/icons/EtoileBleue.svg`}
             />,
             <Timeline className="mx-auto w-fit mb-6" />,
             <>Le général de Gaulle fit donc le choix d'en revenir au vieux mode de scrutin en place depuis le <Manuscrit>Second Empire</Manuscrit> et qui avait dominé sous la <Manuscrit surrounded={false}>IIIe République</Manuscrit> : le scrutin majoritaire à deux tours, qui lui offrit une majorité absolue à partir de 1962.</>
@@ -73,7 +74,8 @@ const debateData = {
             <Quote
               photo={`${PATH_PUBLIC}/img/2.png`}
               quote="J'ajouterai à cela que <b>De Gaulle est d'abord favorable à la proportionnelle</b> sous la IVe, qu'il perçoit comme un <b>moyen de contenir le Parti communiste.</b>"
-              isLeft={false}
+              isLeft={ false }
+              etoile={`${PATH_PUBLIC}/icons/EtoileJaune.svg`}
             />,
             <><Manuscrit>La proportionnelle</Manuscrit> est le mode de scrutin "le plus récent". Il s'est développé à la naissance des partis, à la fin du <DropZone correctAnswer="XIX" /> siècle.</>,
             <AnswerBank answers={["XVIII", "XIX", "XX"]} />,
@@ -95,6 +97,7 @@ const debateData = {
               photo={`${PATH_PUBLIC}/img/2.png`}
               quote="Face à la crise politique que nous traversons, on peut penser que le scrutin proportionnel permet de lutter contre la dislocation des grands partis politiques qui empêchent l'émergence d'une majorité gouvernementale."
               isLeft={ false }
+              etoile={`${PATH_PUBLIC}/icons/EtoileJaune.svg`}
             />,
             "Pourtant, obliger les partis politique à s'allier ne facilite pas forcément l'émergence d'un programme politique solide.",
             "L'idée d'un scrutin proportionnel revient souvent dans le débat, mais souvent sans rentrer dans le détail des modalités."
@@ -107,7 +110,8 @@ const debateData = {
             <Quote
               photo={`${PATH_PUBLIC}/img/1.png`}
               quote="Il n'est pas certain que la proportionnelle déstructure le système de partis. Si l'on compare avec d'autres démocraties libérales, où la proportionnelle est appliquée, on constate que la décomposition du paysage politique est tout autant sensible."
-              isLeft={ true }
+              isLeft={ true } 
+              etoile={`${PATH_PUBLIC}/icons/EtoileBleue.svg`}
             />,
             "Par exemple, au Bundestag, le mode de scrutin est proportionnel et six formations politiques sont représentées.",
             "À l'Assemblée nationale française, où le scrutin majoritaire prévaut, elles sont au nombre de onze.",
@@ -125,6 +129,7 @@ const debateData = {
               photo={`${PATH_PUBLIC}/img/2.png`}
               quote="Certes, mais le mode de scrutin ne suffit pas à structurer la vie politique, et c'est là que l'observation comparée des systèmes politiques et constitutionnels montre ses limites."
               isLeft={ false }
+              etoile={`${PATH_PUBLIC}/icons/EtoileJaune.svg`}
             />,
             "On ne peut pas se baser sur des exemples étrangers pour anticiper les résultats en France, ni convertir un scrutin majoritaire pour imaginer un résultat en scrutin proportionnel. Par ailleurs, la France pratique le scrutin proportionnel lors de certaines élections, comme les européennes."
           ],
@@ -143,6 +148,7 @@ const debateData = {
               photo={`${PATH_PUBLIC}/img/2.png`}
               quote="Il n'existe en effet pas une mais des formes de scrutin proportionnel."
               isLeft={ false }
+              etoile={`${PATH_PUBLIC}/icons/EtoileJaune.svg`}
             />,
             "En surface, c'est simple : un parti reçoit un nombre de sièges proportionnel aux voix obtenus. Mais c'est une véritable ingénierie électorale qui se cache derrière ce terme.",
             "Différentes proportionnelles existent en fonction des variables suivantes :",
@@ -155,7 +161,8 @@ const debateData = {
             <Quote
               photo={`${PATH_PUBLIC}/img/1.png`}
               quote="Je suis d'accord avec vous, le comportement électoral est très variable selon les modes de scrutin."
-              isLeft={ true }
+              isLeft={ true } 
+              etoile={`${PATH_PUBLIC}/icons/EtoileBleue.svg`}
             />,
             "L'espace politique est fracturé par une polarisation grandissante : ",
             <DoughnutChart
@@ -171,7 +178,8 @@ const debateData = {
               photo={`${PATH_PUBLIC}/img/1.png`}
               quote="Avec le scrutin proportionnel, le Président de la République ne peut annoncer de réforme sans savoir s'il aura une majorité pour le soutenir. 
               </br></br>Nous sommes confrontés à une bataille d'intérêts sur la vision du régime : s'agit-il d'obtenir une majorité absolue soumise à un chef ou de mettre en place un régime plus parlementaire ? "
-              isLeft={ true }
+              isLeft={ true } 
+              etoile={`${PATH_PUBLIC}/icons/EtoileBleue.svg`}
             />,
           ]
         },
@@ -184,6 +192,7 @@ const debateData = {
               </br></br>Une culture politique se forge dans le temps long et suppose une réadaptation progressive et permanente aux événements. 
               </br></br>Si l'on passe à une VIe République avec scrutin proportionnel, il y a fort à parier que cela n'apportera aucune solution à la crise démocratique profonde que nous traversons désagrégation des forces politiques, déficit, etc. "
               isLeft={ false }
+              etoile={`${PATH_PUBLIC}/icons/EtoileJaune.svg`}
             />,
           ],
         }
@@ -201,12 +210,14 @@ const debateData = {
               photo={`${PATH_PUBLIC}/img/1.png`}
               quote="Il nous faut d'abord établir un objectif, puis réfléchir aux moyens à mettre en œuvre."
               isLeft={ true }
+              etoile={`${PATH_PUBLIC}/icons/EtoileBleue.svg`}
             />,
             "Cherche-t-on à instaurer un régime plus parlementaire ? Une meilleure représentativité ? Davantage de stabilité politique ?",
             <Quote
               photo={`${PATH_PUBLIC}/img/1.png`}
               quote="C'est pourquoi je préconise des améliorations à l'intérieur du système actuel, en passant simplement par une loi ordinaire."
               isLeft={ true }
+              etoile={`${PATH_PUBLIC}/icons/EtoileBleue.svg`}
             />
           ]
         },
@@ -217,6 +228,7 @@ const debateData = {
               photo={`${PATH_PUBLIC}/img/2.png`}
               quote="La crise actuelle n'est pas tant politique que démocratique. Dans ce contexte, se précipiter de remettre en cause les institutions me paraît particulièrement dangereux."
               isLeft={ false }
+              etoile={`${PATH_PUBLIC}/icons/EtoileJaune.svg`}
             />,
             "Si le résultat de la proportionnelle suscite l'insatisfaction, comme c'est probable, la contestation sera encore aggravée.",
             "Ce n'est pas \"le système\" qui est défaillant et interdit la formation de coalitions, mais la structuration politique qui fait défaut : le débat est dysfonctionnel, les politiques semblent déconnectés du réel et on voit une crise de la représentativité."
@@ -236,6 +248,7 @@ const debateData = {
               photo={`${PATH_PUBLIC}/img/1.png`}
               quote="Pendant des années, le Rassemblement national n'a pas proposé de vision structurée ou de programme concret en matière institutionnelle, hormis son engagement constant en faveur de la proportionnelle."
               isLeft={ true }
+              etoile={`${PATH_PUBLIC}/icons/EtoileBleue.svg`}
             />,
             "Il y est toujours favorable et préconise désormais une version avec une prime majoritaire, qui lui permettrait d'obtenir une majorité absolue. Avec une prime de 15-20 %, le RN pourrait espérer gouverner sous ses seules couleurs."
            ]
@@ -247,6 +260,7 @@ const debateData = {
               photo={`${PATH_PUBLIC}/img/2.png`}
               quote="Peut-être faudrait-il faire intervenir un élément de psychologie, ou plus exactement de stratégie politique, et questionner la volonté effective du RN d'arriver au pouvoir."
               isLeft={ false }
+              etoile={`${PATH_PUBLIC}/icons/EtoileJaune.svg`}
             />,
             "La représentation proportionnelle lui garantit : de ne pas obtenir une majorité absolue embarrassante pour un parti qui ne veut pas gouverner tout de suite, pour en être mieux capable à terme. Il désactive le front républicain, ou ce qu'il en reste, et facilite donc l'ascension du Rassemblement National." 
           ]
