@@ -12,7 +12,7 @@ export function getLenis() {
 
 export function initLenis(onScroll) {
   // lerp: inertia factor — 0 = infinite smoothing, 1 = no smoothing (instant)
-  instance = new Lenis({ lerp: 0.1 });
+  instance = new Lenis({ lerp: 0.4 });
 
   instance.on('scroll', (e) => {
     ScrollTrigger.update();
