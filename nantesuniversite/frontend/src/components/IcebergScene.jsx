@@ -1,19 +1,25 @@
-import Robot from './Robot';
-import ResourceCard from './ResourceCard';
-import DataIceberg from './DataIceberg';
-import ScrollArrow from './ScrollArrow';
-import data from '../data/data.json';
+import Robot from "./Robot";
+import ResourceCard from "./ResourceCard";
+import DataIceberg from "./DataIceberg";
+import ScrollArrow from "./ScrollArrow";
+import data from "../data/data.json";
+import Popup from "../components/Popup";
+import { useState } from "react";
 
-import prixSvg from '../data/pictogramme/prix.svg';
-import articleSvg from '../data/pictogramme/article.svg';
-import conferenceSvg from '../data/pictogramme/conference.svg';
-import livreSvg from '../data/pictogramme/livre.svg';
-import podcastSvg from '../data/pictogramme/podcast.svg';
-import rechercheSvg from '../data/pictogramme/recherche.svg';
+import prixSvg from "../data/pictogramme/prix.svg";
+import articleSvg from "../data/pictogramme/article.svg";
+import conferenceSvg from "../data/pictogramme/conference.svg";
+import livreSvg from "../data/pictogramme/livre.svg";
+import podcastSvg from "../data/pictogramme/podcast.svg";
+import rechercheSvg from "../data/pictogramme/recherche.svg";
 
 const PICTOGRAMMES = {
-  prix: prixSvg, article: articleSvg, conference: conferenceSvg,
-  livre: livreSvg, podcast: podcastSvg, recherche: rechercheSvg,
+  prix: prixSvg,
+  article: articleSvg,
+  conference: conferenceSvg,
+  livre: livreSvg,
+  podcast: podcastSvg,
+  recherche: rechercheSvg,
 };
 
 // ─── Adjust card positions here ────────────────────────────────────────────
@@ -67,6 +73,14 @@ const cardDocuments = data.researcher.documents;
 
 
 export default function IcebergScene() {
+  const [openPopup, setOpenPopup] = useState(false);
+  const [type, setType] = useState("");
+
+  const handleCardClick = (type) => {
+    setType(type);
+    setOpenPopup(true);
+  };
+
   return (
     <>
 
@@ -84,8 +98,15 @@ export default function IcebergScene() {
           title={doc.title}
           description={doc.description}
           {...CARD_POSITIONS[i]}
+          onClick={() => handleCardClick(doc.type)}
         />
       ))}
+
+      {openPopup ? (
+        <Popup type={type} onClick={() => setOpenPopup(false)} />
+      ) : (
+        ""
+      )}
     </>
   );
 }

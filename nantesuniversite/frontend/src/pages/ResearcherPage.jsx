@@ -19,6 +19,8 @@ export default function ResearcherPage() {
     return () => window.removeEventListener('resize', onResize);
   }, []);
 
+  // state (isPopup)
+
   return (
     <>
       <div className="fixed bottom-[33px] left-[33px] pointer-events-none z-50" style={{ zoom: 0.6 }}>
