@@ -59,7 +59,8 @@ const debateData = {
             <Quote
               photo="/img/1.png"
               quote="Pour donner un peu de contexte, la France a déjà appliqué le principe du scrutin proportionnel <b>entre 1946 et 1958.</b>"
-              isLeft={true}
+              isLeft={ true } 
+              etoile="/icons/EtoileBleue.svg"
             />,
             <Timeline className="mx-auto w-fit mb-6" />,
             <p>Le général de Gaulle fit donc le choix d'en revenir au vieux mode de scrutin en place depuis le <Manuscrit>Second Empire</Manuscrit> et qui avait dominé sous la <Manuscrit surrounded={false}>IIIe République</Manuscrit> : le scrutin majoritaire à deux tours, qui lui offrit une majorité absolue à partir de 1962.</p>
@@ -72,7 +73,8 @@ const debateData = {
             <Quote
               photo="/img/2.png"
               quote="J'ajouterai à cela que <b>De Gaulle est d'abord favorable à la proportionnelle</b> sous la IVe, qu'il perçoit comme un <b>moyen de contenir le Parti communiste.</b>"
-              isLeft={false}
+              isLeft={ false }
+              etoile="/icons/EtoileJaune.svg"
             />,
             <>Le général de Gaulle fit donc le choix d'en revenir au scrutin majoritaire à deux tours,<DropZone correctAnswer="XIX" /> qui offrit une majorité absolue à partir de 1962. Comme le mode de scrutin avait été la variable d'ajustement sous la IIIe République, les législateurs conservèrent cette souplesse en ne l'inscrivant pas dans la Constitution.</>,
             <AnswerBank answers={["XVIII", "XIX", "XX"]} />,
@@ -95,6 +97,7 @@ const debateData = {
               photo="/img/2.png"
               quote="Face à la crise politique que nous traversons, on peut penser que le scrutin proportionnel permet de lutter contre la dislocation des grands partis politiques qui empêchent l'émergence d'une majorité gouvernementale."
               isLeft={ false }
+              etoile="/icons/EtoileJaune.svg"
             />,
             "Pourtant, obliger les partis politique à s'allier ne facilite pas forcément l'émergence d'un programme politique solide.",
             "L'idée d'un scrutin proportionnel revient souvent dans le débat, mais souvent sans rentrer dans le détail des modalités."
@@ -107,7 +110,8 @@ const debateData = {
             <Quote
               photo="/img/1.png"
               quote="Il n'est pas certain que la proportionnelle déstructure le système de partis. Si l'on compare avec d'autres démocraties libérales, où la proportionnelle est appliquée, on constate que la décomposition du paysage politique est tout autant sensible."
-              isLeft={ true }
+              isLeft={ true } 
+              etoile="/icons/EtoileBleue.svg"
             />,
             "Par exemple, au Bundestag, le mode de scrutin est proportionnel et six formations politiques sont représentées.",
             "À l'Assemblée nationale française, où le scrutin majoritaire prévaut, elles sont au nombre de onze.",
@@ -122,6 +126,7 @@ const debateData = {
               photo="/img/2.png"
               quote="Certes, mais le mode de scrutin ne suffit pas à structurer la vie politique, et c'est là que l'observation comparée des systèmes politiques et constitutionnels montre ses limites."
               isLeft={ false }
+              etoile="/icons/EtoileJaune.svg"
             />,
             "On ne peut pas se baser sur des exemples étrangers pour anticiper les résultats en France, ni convertir un scrutin majoritaire pour imaginer un résultat en scrutin proportionnel. Par ailleurs, la France pratique le scrutin proportionnel lors de certaines élections, comme les européennes."
           ],
@@ -141,6 +146,7 @@ const debateData = {
               photo="/img/2.png"
               quote="Il n'existe en effet pas une mais des formes de scrutin proportionnel."
               isLeft={ false }
+              etoile="/icons/EtoileJaune.svg"
             />,
             "En surface, c'est simple : un parti reçoit un nombre de sièges proportionnel aux voix obtenus. Mais c'est une véritable ingénierie électorale qui se cache derrière ce terme.",
             "Différentes proportionnelles existent en fonction des variables suivantes :",
@@ -153,7 +159,8 @@ const debateData = {
             <Quote
               photo="/img/1.png"
               quote="Je suis d'accord avec vous, le comportement électoral est très variable selon les modes de scrutin."
-              isLeft={ true }
+              isLeft={ true } 
+              etoile="/icons/EtoileBleue.svg"
             />,
             "L'espace politique est fracturé par une polarisation grandissante : ",
             <DoughnutChart
@@ -168,7 +175,8 @@ const debateData = {
           <Quote
               photo="/img/1.png"
               quote="Avec le scrutin proportionnel, le Président de la République ne peut annoncer de réforme sans savoir s'il aura une majorité pour le soutenir. Nous sommes confrontés à une bataille d'intérêts sur la vision du régime : s'agit-il d'obtenir une majorité absolue soumise à un chef ou de mettre en place un régime plus parlementaire ? "
-              isLeft={ true }
+              isLeft={ true } 
+              etoile="/icons/EtoileBleue.svg"
             />,
           ]
         },
@@ -180,6 +188,7 @@ const debateData = {
               photo="/img/2.png"
               quote="La culture politique française est à l'évidence différente d'autres pays et sans doute davantage présidentialiste que nos voisins européens ! Une culture politique se forge dans le temps long et suppose une réadaptation progressive et permanente aux événements. Si l'on passe à une VIe République avec scrutin proportionnel, il y a fort à parier que cela n'apportera aucune solution à la crise démocratique profonde que nous traversons désagrégation des forces politiques, déficit, etc. "
               isLeft={ false }
+              etoile="icons/EtoileJaune.svg"
             />,
           ],
         }
