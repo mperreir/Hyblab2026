@@ -3,6 +3,8 @@
 /* ════════════════════════════════════
    SÉLECTEURS
 ════════════════════════════════════ */
+const logosAccueil = document.getElementById('logos-accueil');
+
 const ciel         = document.getElementById("ciel");
 const map          = document.getElementById("map");
 const map2         = document.getElementById("map2");
@@ -21,17 +23,13 @@ const ecolier        = document.querySelector('.ecolier');
 const blocTexteMusee = document.querySelector('.bloc-texte-musee');
 
 const sceneChantier  = document.getElementById('sceneChantier');
+const avant          = document.querySelector('.avant');
 const apres          = document.getElementById('apres');
 const separateur     = document.getElementById('separateur');
 const labelAvant     = document.getElementById('labelAvant');
 const labelApres     = document.getElementById('labelApres');
 const scene2Contenu  = document.getElementById('scene2Contenu');
-
-/*
-  L'arbre est maintenant dans #scene-container (pas dans sceneChantier),
-  ce qui lui permet de chevaucher la jointure entre les deux scènes.
-*/
-const arbre = document.getElementById('arbre');
+const arbre          = document.getElementById('arbre');
 
 /* ════════════════════════════════════
    REPÈRES SCROLL (px)
@@ -46,33 +44,17 @@ const scrollDebutEcolier      = 2800;
 const scrollDebut_pano        = 4000;
 const scrollFin_pano          = 5000;
 const scrollFin_glisse        = 5800;
-const scrollFin_arbre         = scrollFin_glisse + 300;    // 6100
-const scrollDebut_slider      = scrollFin_arbre  + 600;    // 6700
-const scrollFin_slider        = scrollDebut_slider + 1500; // 8200
+const scrollFin_arbre         = scrollFin_glisse + 300;
+const scrollDebut_slider      = scrollFin_arbre  + 600;
+// scrollFin_slider = max scroll réel (body height - 100vh)
+// On le calcule dynamiquement pour s'adapter à toutes les tailles d'écran
+const scrollFin_slider        = document.body.scrollHeight - window.innerHeight - 800;
+const scrollDebut_descente    = scrollFin_slider;          // début descente av/ap
+const scrollFin_descente_img  = scrollFin_slider + 800;    // fin descente = bas de page
+const scrollDebut_arbreGlisse = scrollFin_pano - 1500; // ← plus grand = entrée plus douce/tôt
 
-/*
-  scrollDebut_arbreGlisse : moment où l'arbre commence à glisser depuis la droite.
-  Placer AVANT scrollFin_pano pour que les branches entrent dans le champ
-  de vision pendant que le panoramique se termine.
-  ← à ajuster selon le rendu souhaité.
-*/
-const scrollDebut_arbreGlisse = scrollFin_pano - 550; // ← ajuster
-
-/*
-  departVw : position right de départ (en vw), hors écran à droite.
-  Valeur négative = invisible au départ.
-  -160 → très loin, les branches entrent tard.
-  -80  → les branches entrent plus tôt dans le champ de vision.
-  ← à ajuster.
-*/
-const departVw = -160; // ← ajuster
-
-/*
-  arbreVw : largeur approximative de l'arbre en vw.
-  Sert à aligner le tronc (bord droit) sur la jointure à l'arrivée.
-  ← à mesurer / ajuster selon l'image ARBRE.png.
-*/
-const arbreVw = 94; // ← ajuster
+const departVw = -160;
+const arbreVw  = 94;
 
 /* ════════════════════════════════════
    GIFs — préchargement
@@ -121,10 +103,57 @@ function TXT(id) {
 }
 
 /* ════════════════════════════════════
-   BOUCLE SCROLL
+   FLÈCHE SCROLL
+   Apparaît 2s après l'arrêt du scroll.
+   Disparaît dès qu'on rescroll.
 ════════════════════════════════════ */
+const fleche   = document.getElementById('scroll-fleche');
+let timerFleche = null;
+
+function montrerFleche() {
+    const maxScr = document.body.scrollHeight - window.innerHeight;
+    if (window.scrollY >= maxScr - 10) return; // déjà en bas
+    if (fleche) fleche.classList.add('visible');
+}
+
+function cacherFleche() {
+    if (fleche) fleche.classList.remove('visible');
+}
+
+// Lancer le timer au chargement de la page
+timerFleche = setTimeout(montrerFleche, 2000);
+
+/* ════════════════════════════════════
+   SCROLL LISSÉ — vitesse limitée
+   VITESSE_MAX : px avancés par frame ← à ajuster
+   Plus petit = plus lent / plus fluide
+════════════════════════════════════ */
+let scrollCible  = 0;
+let scrollActuel = 0;
+const VITESSE_MAX = 18; // ← ajuster
+
 window.addEventListener("scroll", () => {
-    const s      = window.scrollY;
+    scrollCible = window.scrollY;
+
+    // Flèche : cache dès qu'on scroll, relance le timer
+    cacherFleche();
+    clearTimeout(timerFleche);
+    timerFleche = setTimeout(montrerFleche, 2000);
+});
+
+(function boucle() {
+    const delta = scrollCible - scrollActuel;
+    scrollActuel = Math.abs(delta) > 0.5
+        ? scrollActuel + Math.sign(delta) * Math.min(Math.abs(delta), VITESSE_MAX)
+        : scrollCible;
+    majScene(scrollActuel);
+    requestAnimationFrame(boucle);
+})();
+
+/* ════════════════════════════════════
+   BOUCLE SCÈNE
+════════════════════════════════════ */
+function majScene(s) {
     const maxScr = document.body.scrollHeight - window.innerHeight;
     if (progressBar) progressBar.style.width = `${(s / maxScr) * 100}%`;
 
@@ -132,6 +161,10 @@ window.addEventListener("scroll", () => {
        PHASE 1 : zoom ciel + cartes
     ────────────────────────────── */
     const avance1 = av(s, 0, scrollFinStep1);
+
+    // Logos : disparaissent dès le premier pixel de scroll
+    if (logosAccueil) logosAccueil.classList.toggle('cache', s > 0);
+
 
     ciel.style.transform       = `scale(${lerp(1, 3, avance1)})`;
     ciel.style.transformOrigin = "center top";
@@ -216,13 +249,8 @@ window.addEventListener("scroll", () => {
         const imgW   = imgNaturalRatio * window.innerHeight;
         const W      = window.innerWidth;
 
-        // Panoramique : de startX (début) à endX (fin)
-        // startX : position left initiale de imgVille au début du pano
-        // endX   : position left en fin de pano, telle que le bord DROIT
-        //          de imgVille soit exactement à x=0 (bord gauche de l'écran)
-        //          → endX = -imgW  (bord droit = endX + imgW = 0)
         const startX   = -0.5 * W;
-        const endX     = -imgW/2.8;          // ← bord droit de la ville = bord gauche écran
+        const endX     = -imgW / 2.8;
         const pPano    = av(s, scrollDebut_pano, scrollFin_pano);
         const currentX = startX + pPano * (endX - startX);
         const panoPx   = pPano * W;
@@ -232,43 +260,31 @@ window.addEventListener("scroll", () => {
 
         sceneMusee.style.transform = `translateX(${-panoPx}px)`;
 
-        // Glissement : imgVille part de currentX (= endX quand pGlisse démarre)
-        // et recule encore de W vers la gauche pour sortir de l'écran.
-        // sceneChantier arrive de la droite (left: 100% → 0%).
-        // À pGlisse=1 : imgVille.left = endX - W = -imgW - W (hors écran à gauche)
-        //               sceneChantier.left = 0  → les deux se touchent parfaitement.
         const pGlisse = av(s, scrollFin_pano, scrollFin_glisse);
         imgVille.style.left      = `${currentX - pGlisse * W}px`;
         sceneChantier.style.left = `${(1 - pGlisse) * 100}%`;
 
-        /* ── Arbre ──────────────────────────────────────────────────────
-           L'arbre glisse depuis hors-écran à droite jusqu'à couvrir
-           la jointure entre la ville et le chantier.
-
-           Mécanique :
-           • transform-origin: right bottom  → les branches gauches entrent
-             en premier, le tronc (bord droit) arrive en dernier.
-           • "right" pilote la position : négatif = hors écran à droite.
-           • À l'arrivée : right = pGlisse * 100vw
-             → le bord droit de l'arbre est exactement sur la jointure.
-           • departVw (négatif) = point de départ hors écran.
-             Moins négatif = les branches apparaissent plus tôt.
-           • Disparition : scale + fade quand le glissement est terminé.
-        ──────────────────────────────────────────────────────────────── */
+        /* ── Arbre ── */
         const pDisparait   = av(s, scrollFin_glisse, scrollFin_arbre);
         const pGlisseArbre = av(s, scrollDebut_arbreGlisse, scrollFin_glisse);
 
         if (s >= scrollDebut_arbreGlisse && s < scrollFin_arbre) {
             arbre.style.display = 'block';
 
-            // Cible : bord droit de l'arbre sur la jointure
-            // jointure = (1 - pGlisse) * 100% depuis la gauche
-            // → en "right" : pGlisse * 100 vw
-            const rightCible  = pGlisse * 100;
-            const rightActuel = lerp(departVw, rightCible, pGlisseArbre);
+            // La jointure est à (1 - pGlisse) * 100vw depuis la gauche
+            // → on positionne l'arbre en left pour être dans le même référentiel
+            const jointurePct   = (1 - pGlisse) * 1;   // vw, suit Fourvière
+            const arbreW_vw     = arbreVw;                // largeur arbre en vw
+            const arriveeLeft   = jointurePct - arbreW_vw / 2 - 70; // centré sur jointure
 
-            arbre.style.right     = `${rightActuel}vw`;
-            arbre.style.left      = 'auto';
+            // Entrée : part de hors écran à droite (>100vw) vers arriveeLeft
+            // departVw est négatif → on s'en sert comme offset depuis la droite
+            // On convertit : départ = 100 + (-departVw) vw depuis la gauche
+            const departLeft    = 100 + (-departVw);
+            const leftVw        = departLeft + pGlisseArbre * (arriveeLeft - departLeft);
+
+            arbre.style.left      = `${leftVw}vw`;
+            arbre.style.right     = 'auto';
             arbre.style.opacity   = `${1 - pDisparait}`;
             arbre.style.transform = `scaleX(${1 + pDisparait * 0.7}) scaleY(${1 + pDisparait * 0.3})`;
 
@@ -286,12 +302,36 @@ window.addEventListener("scroll", () => {
         toggle(labelApres,    arbreDisp);
 
         if (arbreDisp) {
-            apres.style.clipPath  = `inset(0 ${100 - pSlider * 100}% 0 0)`;
-            separateur.style.left = `${pSlider * 100}%`;
+            const pct = pSlider * 100;
+
+            // .apres : révélé de gauche à droite par clip-path
+            apres.style.clipPath  = `inset(0 ${100 - pct}% 0 0)`;
+            separateur.style.left = `${pct}%`;
+
+            // .avant : masque dégradé
+            const fondu = 15;
+            const debut = Math.max(0, pct - fondu);
+            avant.style.webkitMaskImage =
+            avant.style.maskImage =
+                `linear-gradient(to right, transparent ${debut}%, black ${pct}%)`;
+
+            // Descente des images av/ap après fin du slider
+            const pDescente = av(s, scrollDebut_descente, scrollFin_descente_img);
+            const translateY = pDescente * 110; // % vers le bas ← ajuster
+            avant.style.transform = `translateY(${translateY}%)`;
+            apres.style.transform = `translateY(${translateY}%)`;
+
+            // Le séparateur et les labels descendent aussi
+            separateur.style.transform = `translateY(${translateY}%)`;
+
         } else {
             apres.style.clipPath  = 'inset(0 100% 0 0)';
             separateur.style.left = '0%';
+            avant.style.webkitMaskImage = avant.style.maskImage = '';
+            avant.style.transform = '';
+            apres.style.transform = '';
+            separateur.style.transform = '';
         }
     }
 
-}, { passive: true });
+}

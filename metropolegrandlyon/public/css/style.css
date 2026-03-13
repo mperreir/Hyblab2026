@@ -10,8 +10,7 @@ html {
 
 body {
     overflow-x: hidden;
-    /* 8400px pour que le slider (scrollFin = 8200px) soit atteignable */
-    height: 8400px;
+    height: 9200px; /* +800px pour la descente av/ap */
     width: 100%;
     margin: 0;
     padding: 0;
@@ -166,7 +165,6 @@ body {
     overflow: visible;
 }
 
-/* imgVille : cachée jusqu'à la descente, puis animée par JS */
 #imgVille {
     position: absolute;
     bottom: -2.36vh;
@@ -212,7 +210,6 @@ body {
     width: 260px;
 }
 
-/* Texte musée */
 .bloc-texte-musee {
     position: absolute;
     top: 20%; left: 50%;
@@ -236,15 +233,20 @@ body {
     width: 100%; height: 100%;
     will-change: left;
     z-index: 30;
+    /* Colline en fond de scène, toujours visible */
+    background-image: url('../img/chantier/collines_new.png');
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    background-position: left bottom;
 }
 
-/* avant/après en background sur des divs (pas des <img>) */
 .avant {
     position: absolute; inset: 0;
     background-image: url('../img/chantier/Plan-av.png');
     background-repeat: no-repeat;
     background-size: 100% auto;
     background-position: left bottom;
+    z-index: 1; /* au-dessus du fond, masqué progressivement par JS */
 }
 
 .apres {
@@ -255,6 +257,16 @@ body {
     background-position: left bottom;
     clip-path: inset(0 100% 0 0);
     will-change: clip-path;
+    z-index: 2; /* au-dessus de .avant */
+}
+
+/* Colline : entre .avant (z:-1) et .apres (z:1) */
+.colline {
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 100%; height: auto;
+    z-index: 0;
+    pointer-events: none;
 }
 
 .separateur {
@@ -267,6 +279,7 @@ body {
     pointer-events: none;
     opacity: 0;
     transition: opacity .6s ease;
+    z-index: 2;
 }
 .separateur.visible { opacity: 1; }
 .separateur::after {
@@ -287,6 +300,7 @@ body {
     background: rgba(0,0,0,0.4); color: white;
     pointer-events: none; opacity: 0;
     transition: opacity .6s ease;
+    z-index: 2;
 }
 .label.visible { opacity: 1; }
 .label-avant { left: 2.84vh; }
@@ -309,7 +323,7 @@ body {
     bottom: -10%; height: 95%; width: auto;
     z-index: 60; pointer-events: none;
     transform-origin: right bottom;
-    will-change: right, transform, opacity;
+    will-change: left, transform, opacity;
     display: none;
 }
 
@@ -335,4 +349,81 @@ body {
     color: orange; background: white;
     text-decoration: none;
     font-family: 'Cormorant Garamond', serif; font-size: 1.2vh;
+}
+
+/* ════════════════════════════════════
+   FLÈCHE SCROLL
+════════════════════════════════════ */
+#scroll-fleche {
+    position: fixed;
+    bottom: 4vh;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8vh;
+    z-index: 500;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.6s ease;
+}
+
+#scroll-fleche.visible {
+    opacity: 1;
+}
+
+#scroll-fleche span {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1vh;
+    letter-spacing: 0.2em;
+    color: rgba(255, 0, 0, 0.6);
+    text-transform: lowercase;
+}
+
+#scroll-fleche svg {
+    width: 2.4vh;
+    height: 2.4vh;
+    animation: rebond 1.4s ease-in-out infinite;
+}
+
+/* ════════════════════════
+   LOGOS ACCUEIL
+════════════════════════ */
+#logos-accueil {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    pointer-events: none;
+    opacity: 1;
+    transition: opacity 0.6s ease;
+}
+
+#logos-accueil.cache {
+    opacity: 0;
+}
+
+#logo-metropole {
+    position: absolute;
+    bottom: 3vh;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 5vh;
+    width: auto;
+    background-color: white;
+}
+
+#logo-teteaupied {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 13vh;
+    width: auto;
+}
+
+@keyframes rebond {
+    0%, 100% { transform: translateY(0);    opacity: 1; }
+    50%       { transform: translateY(6px); opacity: 0.5; }
 }

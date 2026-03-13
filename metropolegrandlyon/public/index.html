@@ -12,6 +12,18 @@
     <script src="js/zoom.js" defer></script>
 </head>
 <body>
+    <div id="scroll-fleche">
+    <span>scroller</span>
+    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 4v16M6 14l6 6 6-6" stroke="red" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    </div>
+    
+    <!-- Logos page d'accueil -->
+    <div id="logos-accueil">
+        <img src="img/Logo_lyon_metropole.png" id="logo-metropole">
+        <img src="img/LOGO-DE-LA-TEETE-AUX-PIEDS.svg"   id="logo-teteaupied">
+    </div>
     <div id="scene-container">
 
         <!-- SCÈNE 1 : zoom aérien + nuages -->
@@ -49,9 +61,8 @@
         <div id="sceneChantier" class="scene-chantier">
             <div class="avant"></div>
             <div class="apres" id="apres"></div>
+            <img class="colline" src="img/chantier/collines_new.png">
             <div class="separateur" id="separateur"></div>
-            <span class="label label-avant" id="labelAvant">Avant</span>
-            <span class="label label-apres" id="labelApres">Après</span>
             <div class="scene2-contenu" id="scene2Contenu">
                 <p class="titre">Chantier de fouilles</p>
                 <p class="description">
@@ -61,13 +72,11 @@
             </div>
         </div>
 
-        <!--
-            ARBRE : EN DEHORS de sceneChantier et sceneMusee,
-            directement dans scene-container pour pouvoir
-            chevaucher la jointure entre les deux scènes.
-        -->
         <img class="arbre" id="arbre" src="img/chantier/ARBRE.png">
 
-    </div><!-- /#scene-container -->
+        <!-- Flèche "continuez à scroller" -->
+        
+
+    </div>
 </body>
 </html>
