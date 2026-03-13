@@ -833,26 +833,33 @@ article {
   height: 60vh;
 }
 
-#loupe{
-  position: absolute;
-  bottom: 0;
-  left: 20%;
-  bottom: 15%;
-  width: 15.5rem;
+#loupe {    
+    position: absolute;
+    width: 50%;
+    /* Position de départ : sur fraude-sociale */
+    top: 10%;
+    left: 60%;
+    transition: left 1.5s ease-in-out, top 1.5s ease-in-out;
 }
 
-#fraude-fiscale{
-  position: absolute;
-  bottom: 0;
-  width: 14.5rem;
+#fraude-fiscale {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 40%;
 }
 
-#fraude-sociale{
-  position: absolute;
-  bottom: 15vh;
-  width: 7.5rem;
-  left: 70%;
-  bottom: 15%;
+#fraude-sociale {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 40%;
+}
+
+#loupe.loupe-moved {
+    /* Position d'arrivée : sur fraude-fiscale */
+    top: 10%;
+    left: 10%;
 }
 
     #bandeau {

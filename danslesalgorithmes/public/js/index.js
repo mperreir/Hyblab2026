@@ -273,3 +273,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.querySelectorAll('.image-side').forEach(el => observer.observe(el));
 });
+
+const loupeObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            setTimeout(() => {
+                document.getElementById('loupe').classList.add('loupe-moved');
+            }, 500); // léger délai avant de bouger
+            loupeObserver.unobserve(entry.target);
+        }
+    });
+}, { threshold: 0.5 });
+
+loupeObserver.observe(document.getElementById('box-loupe'));
