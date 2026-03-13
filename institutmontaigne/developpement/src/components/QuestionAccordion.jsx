@@ -109,7 +109,7 @@ export default function QuestionAccordion({ questions, intervenants, onQuestionO
 
   return (
     <section className="bg-white ">
-      <div className="w-full pt-10 px-2">
+      <div className="w-full pt-10">
         {questions.map((q, i) => (
           <QuestionItem
             key={i}
@@ -155,6 +155,10 @@ const QuestionItem = forwardRef(function QuestionItem(
   const wheelInertiaSettled = useRef(true); // true = prêt à accumuler, false = en attente de stabilisation
   const wheelLastDirection = useRef(0); // 1 = bas, -1 = haut, 0 = indéfini
   const wheelInertiaSettleCount = useRef(0); // nb d'events consécutifs sous le seuil
+  const wheelLastAbsDelta = useRef(0); // dernier deltaY absolu observé
+  const wheelLastEventTime = useRef(0); // timestamp du dernier event wheel
+  const wheelHasSeenDecline = useRef(false); // a-t-on vu l'inertie descendre depuis qu'on est à l'extrémité
+  const wheelPeakDelta = useRef(0); // pic max de deltaY observé à l'extrémité
 
   // Track expansion for closing animation
   const [isExpanded, setIsExpanded] = useState(false);
@@ -198,15 +202,32 @@ const QuestionItem = forwardRef(function QuestionItem(
   }, [isOpen, startAtBottom]);
 
   // Reset state when opening
+  // Reset wheel state à la fermeture pour garantir un état propre à la réouverture
+  useEffect(() => {
+    if (!isOpen) {
+      clearTimeout(cooldownTimerRef.current);
+      wheelCooldownRef.current = false;
+      wheelAccumulator.current = 0;
+      wheelInertiaSettled.current = false;
+      wheelLastDirection.current = 0;
+      wheelInertiaSettleCount.current = 0;
+      wheelLastAbsDelta.current = 0;
+      wheelLastEventTime.current = 0;
+      wheelHasSeenDecline.current = false;
+    wheelPeakDelta.current = 0;
+      wheelPeakDelta.current = 0;
+    }
+  }, [isOpen]);
+
   useEffect(() => {
     if (isOpen) {
       // Cooldown initial pour ignorer l'inertie résiduelle de l'action précédente
       wheelCooldownRef.current = true;
       clearTimeout(cooldownTimerRef.current);
       cooldownTimerRef.current = setTimeout(() => {
-        console.log('[wheel] initial cooldown ended');
+        // console.log('[wheel] initial cooldown ended');
         wheelCooldownRef.current = false;
-        wheelAccumulator.current = 0; // reset accumulateur une fois le cooldown terminé
+        wheelAccumulator.current = 0;
       }, ACTION_LOCK_MS);
       setActiveSnap(0);
       setAtEnd(false);
@@ -215,9 +236,14 @@ const QuestionItem = forwardRef(function QuestionItem(
       topScrollCount.current = 0;
       lastWheelTime.current = Date.now();
       wheelAccumulator.current = 0;
-      wheelInertiaSettled.current = false; // attendre la stabilisation de l'inertie avant d'accumuler
-      wheelLastDirection.current = 0; // reset direction
+      wheelInertiaSettled.current = false;
+      wheelLastDirection.current = 0;
       wheelInertiaSettleCount.current = 0;
+      wheelLastAbsDelta.current = 0;
+      wheelLastEventTime.current = 0;
+      wheelHasSeenDecline.current = false;
+    wheelPeakDelta.current = 0;
+      wheelPeakDelta.current = 0;
       if (scrollContainerRef.current && !startAtBottom) {
         scrollContainerRef.current.scrollTop = 0;
       }
@@ -269,45 +295,59 @@ const QuestionItem = forwardRef(function QuestionItem(
     const isTopPos = container.scrollTop <= 10;
 
     // log compact pour ne pas noyer la console
-    // console.log('[wheel]', { deltaY: e.deltaY.toFixed(1), scrollTop: container.scrollTop.toFixed(1), isBottom, isTopPos, cooldown: wheelCooldownRef.current });
+    // // console.log('[wheel]', { deltaY: e.deltaY.toFixed(1), scrollTop: container.scrollTop.toFixed(1), isBottom, isTopPos, cooldown: wheelCooldownRef.current });
 
     // Détecter changement de direction → reset complet
     const currentDirection = e.deltaY > 0 ? 1 : e.deltaY < 0 ? -1 : 0;
     if (currentDirection !== 0 && wheelLastDirection.current !== 0 && currentDirection !== wheelLastDirection.current) {
-      console.log('%c[DIR] 🔄 Changement de sens → reset', 'color: #f87171; font-weight: bold');
+      // console.log('%c[DIR] 🔄 Changement de sens → reset', 'color: #f87171; font-weight: bold');
       wheelAccumulator.current = 0;
       wheelInertiaSettled.current = false;
       wheelInertiaSettleCount.current = 0;
+      wheelLastAbsDelta.current = 0;
+      wheelHasSeenDecline.current = false;
+    wheelPeakDelta.current = 0;
+      wheelPeakDelta.current = 0;
     }
     if (currentDirection !== 0) wheelLastDirection.current = currentDirection;
 
     // Pas aux extrémités → scroll normal, reset tout
-    if (e.deltaY > 0 && !isBottom) { wheelAccumulator.current = 0; wheelInertiaSettled.current = false; return; }
-    if (e.deltaY < 0 && !isTopPos) { wheelAccumulator.current = 0; wheelInertiaSettled.current = false; return; }
+    if (e.deltaY > 0 && !isBottom) { wheelAccumulator.current = 0; wheelInertiaSettled.current = false; wheelHasSeenDecline.current = false; wheelPeakDelta.current = 0; return; }
+    if (e.deltaY < 0 && !isTopPos) { wheelAccumulator.current = 0; wheelInertiaSettled.current = false; wheelHasSeenDecline.current = false; wheelPeakDelta.current = 0; return; }
 
     // Pendant le cooldown : attendre sans accumuler
     if (wheelCooldownRef.current) return;
 
-    // On est à l'extrémité → attendre que l'inertie redescende sous le seuil bas
-    const INERTIA_SETTLE_THRESHOLD = 7; // en dessous = inertie terminée
-    const ACCUMULATOR_THRESHOLD = 400;
-
-    const INERTIA_SETTLE_COUNT = 4; // nb d'events consécutifs sous le seuil requis
+    // On est à l'extrémité → attendre la fin de l'inertie avant d'accumuler
+    const ACCUMULATOR_THRESHOLD = 500;
+    // Seuil de descente : l'inertie doit être tombée sous X% du pic pour qu'on accepte un nouveau geste
+    const DECLINE_RATIO = 0.2; // 50% du pic = inertie considérée terminée
+    const INERTIA_SETTLE_COUNT = 4; // events consécutifs sous le seuil de descente requis
 
     if (!wheelInertiaSettled.current) {
       const absDelta = Math.abs(e.deltaY);
-      if (absDelta <= INERTIA_SETTLE_THRESHOLD) {
+
+      // Mettre à jour le pic max observé à l'extrémité
+      if (absDelta > wheelPeakDelta.current) {
+        wheelPeakDelta.current = absDelta;
+        wheelInertiaSettleCount.current = 0; // le pic monte encore, reset le compteur
+      }
+
+      const declineThreshold = wheelPeakDelta.current * DECLINE_RATIO;
+      const belowDecline = absDelta <= declineThreshold;
+
+      // console.log('%c[INERTIE] ⏳ deltaY=' + absDelta.toFixed(1) + ' pic=' + wheelPeakDelta.current.toFixed(1) + ' seuil=' + declineThreshold.toFixed(1) + ' (' + (belowDecline ? wheelInertiaSettleCount.current+1 : 0) + '/' + INERTIA_SETTLE_COUNT + ')', 'color: #f59e0b');
+
+      if (belowDecline) {
         wheelInertiaSettleCount.current += 1;
-        console.log('%c[INERTIE] ⏳ Stabilisation... deltaY=' + e.deltaY.toFixed(1) + ' (' + wheelInertiaSettleCount.current + '/' + INERTIA_SETTLE_COUNT + ')', 'color: #f59e0b');
         if (wheelInertiaSettleCount.current >= INERTIA_SETTLE_COUNT) {
           wheelInertiaSettled.current = true;
           wheelAccumulator.current = 0;
           wheelInertiaSettleCount.current = 0;
-          console.log('%c[INERTIE] ✅ Stabilisée → prêt à accumuler', 'color: #22c55e; font-weight: bold');
+          // console.log('%c[INERTIE] ✅ Inertie terminée (pic=' + wheelPeakDelta.current.toFixed(1) + ' → ' + absDelta.toFixed(1) + ') → prêt à accumuler', 'color: #22c55e; font-weight: bold');
         }
       } else {
-        wheelInertiaSettleCount.current = 0; // reset le compteur si un event dépasse le seuil
-        console.log('%c[INERTIE] ⏳ Attente... deltaY=' + e.deltaY.toFixed(1) + ' (seuil: ' + INERTIA_SETTLE_THRESHOLD + ')', 'color: #f59e0b');
+        wheelInertiaSettleCount.current = 0;
       }
       return;
     }
@@ -315,30 +355,41 @@ const QuestionItem = forwardRef(function QuestionItem(
     // Inertie stabilisée → accumuler le nouveau geste
     wheelAccumulator.current += Math.abs(e.deltaY);
     const pct = Math.min(100, Math.round(wheelAccumulator.current / ACCUMULATOR_THRESHOLD * 100));
-    console.log('%c[ACCUM] +' + Math.abs(e.deltaY).toFixed(1) + ' → ' + wheelAccumulator.current.toFixed(1) + ' / ' + ACCUMULATOR_THRESHOLD + ' (' + pct + '%)', 'color: #60a5fa');
+    // console.log('%c[ACCUM] +' + Math.abs(e.deltaY).toFixed(1) + ' → ' + wheelAccumulator.current.toFixed(1) + ' / ' + ACCUMULATOR_THRESHOLD + ' (' + pct + '%)', 'color: #60a5fa');
 
     if (wheelAccumulator.current < ACCUMULATOR_THRESHOLD) return;
 
     // Seuil atteint → agir
     e.preventDefault();
-    console.log('%c[ACTION] 🚀 Déclenchée ! accum=' + wheelAccumulator.current.toFixed(1) + ' isBottom=' + isBottom + ' isTopPos=' + isTopPos, 'color: #a855f7; font-weight: bold; font-size: 13px');
+    // console.log('%c[ACTION] 🚀 Déclenchée ! accum=' + wheelAccumulator.current.toFixed(1) + ' isBottom=' + isBottom + ' isTopPos=' + isTopPos, 'color: #a855f7; font-weight: bold; font-size: 13px');
     wheelAccumulator.current = 0;
 
     wheelCooldownRef.current = true;
-    wheelInertiaSettled.current = false; // attendre la fin de l'inertie sur le nouveau container
+    wheelInertiaSettled.current = false;
     wheelInertiaSettleCount.current = 0;
+    wheelLastAbsDelta.current = 0;
+    wheelHasSeenDecline.current = false;
+    wheelPeakDelta.current = 0;
     clearTimeout(cooldownTimerRef.current);
     cooldownTimerRef.current = setTimeout(() => {
-      console.log('[wheel] cooldown ended');
+      // console.log('[wheel] cooldown ended');
       wheelCooldownRef.current = false;
     }, ACTION_LOCK_MS);
 
     if (e.deltaY > 0) {
-      if (!isLast) { console.log('[wheel] → onFinish()'); onFinish(); }
-      else { console.log('[wheel] → onToggle() last'); onToggle(); }
+      if (!isLast) { 
+        // console.log('[wheel] → onFinish()'); 
+        onFinish(); }
+      else { 
+        // console.log('[wheel] → onToggle() last'); 
+        onToggle(); }
     } else {
-      if (!isFirstItem) { console.log('[wheel] → onPrev()'); onPrev(); }
-      else { console.log('[wheel] → onToggle() first'); onToggle(); }
+      if (!isFirstItem) { 
+        // console.log('[wheel] → onPrev()'); 
+        onPrev(); }
+      else { 
+        // console.log('[wheel] → onToggle() first'); 
+        onToggle(); }
     }
   }, [onFinish, onPrev, onToggle, isLast, isFirstItem]);
 
