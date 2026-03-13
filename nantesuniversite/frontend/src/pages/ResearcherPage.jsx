@@ -10,7 +10,7 @@ import ResearcherFooter from "../components/ResearcherFooter";
 const DESIGN_WIDTH = 1920;
 const DESIGN_HEIGHT = 6000;
 
-export default function ResearcherPage() {
+export default function ResearcherPage({ scrollProgress = 0 }) {
   const [scale, setScale] = useState(() => window.innerWidth / DESIGN_WIDTH);
 
   useEffect(() => {
@@ -24,7 +24,7 @@ export default function ResearcherPage() {
   return (
     <>
       <div className="fixed bottom-[33px] left-[33px] pointer-events-none z-50" style={{ zoom: 0.6 }}>
-        <ProgressBar level={0.2} />
+        <ProgressBar level={scrollProgress} />
       </div>
 
       <div className="fixed bottom-[33px] right-[60px] z-50">

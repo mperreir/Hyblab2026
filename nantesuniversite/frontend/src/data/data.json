@@ -17,9 +17,9 @@
     },
     "documents": [
       {
-        "id": "22",
-        "category": "Biographie",
-        "title": "Colin De La Higuera",
+        "id":"22",
+        "category":"Biographie",
+        "title":"Colin de la Higuera",
         "description": "Colin de la Higuera est enseignant-chercheur en informatique, spécialiste reconnu de l’intelligence artificielle appliquée à l’éducation à Nantes Université et membre du laboratoire LS2N (laboratoire des sciences du numérique). Réparti sur cinq sites, le LS2N est la plus importante unité de recherche publique en région Pays de la Loire. ",
         "pictogramme": "./pictogramme/biographie.svg",
         "type": "pdf"
@@ -87,10 +87,10 @@
         "category": "Conference",
         "nature": "General",
         "author": "Colin de la Higuera",
-        "title": "Presenting OEG 201 in Nantes",
-        "description": "La vidéo présente Colin de la Higuera lors d’un événement lié à la conférence Open Education Global (OEG) à Nantes, où il expose des aspects de l’éducation ouverte et des ressources éducatives libres. Elle illustre l’implication de Nantes Université dans la communauté internationale de l’éducation ouverte et le partage de pratiques éducatives innovantes.",
+        "title": "L’éducation ouverte : partager et innover grâce aux Ressources Éducatives Libres ",
+        "description": "La vidéo intitulée “L’éducation ouverte : partager et innover grâce aux Ressources Éducatives Libres (REL)” explique comment les ressources éducatives libres favorisent le partage du savoir et l’innovation dans l’éducation en rendant l’apprentissage accessible à tous. Elle met en avant l’importance des pratiques pédagogiques ouvertes et des REL comme outils pour démocratiser l’accès à la connaissance dans différents contextes éducatifs.",
         "date": "2020",
-        "url": "https://mediaserver.univ-nantes.fr/videos/presenting-oeg-201-in-nantes/",
+        "url": "https://www.youtube.com/embed/zNYIK603qkg?si=GiadLGfLx50HEf0D",
         "pictogramme": "./pictogramme/conference.svg",
         "type": "video"
       },
@@ -102,7 +102,8 @@
         "title": "L’intelligence artificielle, l’école, les enseignant.es. Partie 1",
         "description": "L’intelligence artificielle est déjà là dans de nombreux secteurs. L’école ne fait pas exception. Lors de cet atelier, Colin et Margarida échangent au sujet de l’intelligence artificielle, de ses différentes interactions dans l’école et à l’extérieur de celle-ci. La discussion porte en particulier sur les questions de pensée critique et de citoyenneté numérique, ainsi que sur le rôle que l’IA peut jouer à l’école.",
         "date": "2022",
-        "url": "https://mediaserver.univ-nantes.fr/videos/gtnum-ia_eo-axe-3-atelier-du-11-mai-2022-lintelligence-artificielle-lecole-les-enseignantes-partie-1/",
+        
+        "url": "https://mediaserver.univ-nantes.fr/permalink/v1263f4cd3b586g8vw59/iframe/",
         "pictogramme": "./pictogramme/conference.svg",
         "type": "web"
       },
@@ -114,7 +115,7 @@
         "title": "L’intelligence artificielle, l’école, les enseignant.es. Partie 2",
         "description": "L’intelligence artificielle est déjà là dans de nombreux secteurs. L’école ne fait pas exception. Lors de cet atelier, Colin et Margarida échangent au sujet de l’intelligence artificielle, de ses différentes interactions dans l’école et à l’extérieur de celle-ci. La discussion porte en particulier sur les questions d’éthique et sur la formation de toutes et tous à l’intelligence artificielle.",
         "date": "2022",
-        "url": "https://mediaserver.univ-nantes.fr/videos/gtnum-ia_eo-axe-3-atelier-du-1er-juin-2022-lintelligence-artificielle-lecole-les-enseignantes-partie-2/",
+        "url": "https://mediaserver.univ-nantes.fr/permalink/v1263fae175d3s4tdgmc/iframe/",
         "pictogramme": "./pictogramme/conference.svg",
         "type": "video"
       },
@@ -126,7 +127,7 @@
         "title": "Lancement du reseau unitwin UNOE",
         "description": "La vidéo couvre le lancement du réseau UNITWIN UNOE (Unitwin Network – Open Education), une initiative mondiale coordonnée par Nantes Université et la Chaire UNESCO RELIA pour promouvoir l’éducation ouverte. On y voit les acteurs présenter les objectifs du réseau et les collaborations internationales visant à renforcer l’accès libre aux ressources pédagogiques.",
         "date": "2024",
-        "url": "https://mediaserver.univ-nantes.fr/videos/lancement-reseau-unitwin-unoe/",
+        "url": "https://mediaserver.univ-nantes.fr/permalink/v1268a363c9a2zw8kyj7/iframe/",
         "pictogramme": "./pictogramme/conference.svg",
         "type": "video"
       },
@@ -138,7 +139,7 @@
         "title": "Comment mettre l’IA au service de l’autonomisation des femmes ?",
         "description": "La vidéo montre une table ronde de septembre 2023 sur l’intelligence artificielle et l’autonomisation des femmes, où plusieurs expertes discutent de la manière dont l’IA peut être utilisée pour soutenir l’égalité des genres et l’émancipation. Les intervenantes partagent des exemples concrets et des réflexions sur les opportunités et défis liés à l’IA dans des contextes sociaux et éducatifs.",
         "date": "2023",
-        "url": "https://mediaserver.univ-nantes.fr/videos/ia-les-femmes-table-ronde-comment-mettre-lia-au-service-de-lautonomisation-des-femmes-septembre-2023/",
+        "url": "https://mediaserver.univ-nantes.fr/permalink/v12666c124b4ewfckg8a/iframe/",
         "pictogramme": "./pictogramme/podcast.svg",
         "type": "web"
       },
@@ -150,7 +151,7 @@
         "title": "Les IA génératives bousculent l’éducation, quels impacts sur l’évaluation ?",
         "description": "La vidéo montre une table ronde sur les IA génératives et l’éducation, où des spécialistes discutent des impacts de ces technologies sur les pratiques d’apprentissage et, en particulier, sur les méthodes d’évaluation. Les intervenants explorent les défis et les opportunités que présentent les outils d’IA pour redéfinir l’évaluation des compétences des élèves et étudiants.",
         "date": "2023",
-        "url": "https://mediaserver.univ-nantes.fr/videos/table-ronde-n2-les-ia-generatives-bousculent-leducation-quels-impacts-sur-levaluation/",
+        "url": "https://mediaserver.univ-nantes.fr/permalink/v12664f0bb295ya5xsbb/iframe/",
         "pictogramme": "./pictogramme/podcast.svg",
         "type": "video"
       },
@@ -163,7 +164,7 @@
         "title": "Ressources éducatives libres pour et par les enseignants -DNE- Salon Educatec / Educatice",
         "description": "La vidéo présente une session du salon Éducatec‑Éducatice 2021 consacrée aux ressources éducatives libres pour et par les enseignants, où des acteurs éducatifs partagent des exemples et bonnes pratiques. Elle met en lumière comment ces ressources peuvent enrichir les pratiques pédagogiques et favoriser l’accès libre aux savoirs.",
         "date": "2021",
-        "url": "https://mediaserver.univ-nantes.fr/videos/ressources-educatives-libres-pour-et-par-les-enseignants-dne-salon-educatec-educatice-novembre-2021/",
+        "url": "https://mediaserver.univ-nantes.fr/permalink/v1264005d4d662151z57/iframe/",
         "pictogramme": "./pictogramme/podcast.svg"
       },
       {
@@ -172,10 +173,10 @@
         "nature": "Journalistique",
         "type": "video",
         "author": "Colin de la Higuera",
-        "title": "L'enseignant de 202X sera-t-il un-e robot?",
+        "title": "Peut-on remplacer un enseignant par une machine ?",
         "description": "La vidéo explore la question « Peut‑on remplacer un enseignant par une machine ? », avec une présentation sur l’intelligence artificielle, l’éducation ouverte et le rôle des technologies dans l’apprentissage. Elle met en perspective les possibilités et les limites de l’IA dans l’éducation tout en soulignant l’importance continue de l’interaction humaine dans l’enseignement.",
         "date": "2021",
-        "url": "https://www.youtube.com/watch?v=2G-LzIHSSN4",
+        "url": "https://www.youtube.com/embed/2G-LzIHSSN4?si=LdEYIHYIdFEw5_Ys",
         "pictogramme": "./pictogramme/conference.svg"
       },
       {
@@ -187,8 +188,8 @@
         "title": "L'inteligence artificielle où en sommes nous?",
         "description": "La vidéo montre Colin de la Higuera expliquant l’état actuel de l’intelligence artificielle, ses avancées, ses limites et ses implications pour l’éducation et la société. Il aborde de manière accessible comment l’IA fonctionne et ce qu’elle peut (ou ne peut pas) accomplir aujourd’hui.",
         "date": "2021",
-        "origine": "external link",
-        "url": "https://mediaserver.univ-nantes.fr/videos/colin-de-la-higuera-intelligence-artificielle-ou-en-sommes-nous/",
+        "origine":"external link",
+        "url": "https://mediaserver.univ-nantes.fr/permalink/v1261954061d2zz92qr9/iframe/",
         "pictogramme": "./pictogramme/conference.svg"
       },
       {
@@ -197,10 +198,10 @@
         "nature": "Journalistique",
         "type": "video",
         "author": "Colin de la Higuera",
-        "title": "Avec l'IA, quel nouveau contrat entre l'élève et l'enseignant?",
-        "description": "La vidéo présente le concept de contrat élève‑enseignant autour de l’IA, en expliquant comment formaliser des règles claires d’usage des outils d’intelligence artificielle dans les activités scolaires. Elle explore des exemples concrets et des pistes pédagogiques pour aider les élèves et les enseignants à collaborer de manière éthique et constructive avec l’IA.",
+        "title": "Penser face à l'IA, à quoi bon ? - restitution de la journée ",
+        "description": "La vidéo restitue les temps forts d’une journée de débats et d’ateliers organisée dans le cadre de la Nantes Digital Week 2024 par la Chaire Unesco RELIA et ses partenaires, qui invitait à réfléchir collectivement aux enjeux éthiques, philosophiques et éducatifs de l’intelligence artificielle. Elle donne la parole à des intervenant·es — chercheurs, enseignants et médiateurs — qui explorent comment l’IA impacte notre rapport à la pensée, à la transparence et aux droits d’auteur, tout en mobilisant des lycéen·nes dans des discussions stimulantes.",
         "date": "2025",
-        "url": "https://mediaserver.univ-nantes.fr/videos/ia-contrat-eleve-enseignant-_-v33/",
+        "url": "https://mediaserver.univ-nantes.fr/permalink/v1268c0798c7f06qmzbz/iframe/",
         "pictogramme": "./pictogramme/conference.svg"
       },
       {
@@ -212,7 +213,7 @@
         "title": "Les intelligences artificielle génératives bousculent l'éducation, quels impacts sur l'évaluation?",
         "description": "La vidéo présente une table ronde organisée par la DRANE Nantes où plusieurs intervenants, dont Colin de la Higuera, discutent de l’impact des IA génératives sur l’éducation, en particulier sur les méthodes d’évaluation, la question de l’utilisation d’outils comme ChatGPT et la manière d’évaluer autrement. Elle aborde aussi les inquiétudes et les opportunités liées à ces technologies pour les enseignants et les élèves.",
         "date": "2023",
-        "url": "https://podeduc.apps.education.fr/video/17490-les-ia-generatives-bousculent-leducation-quels-impacts-sur-levaluation/",
+        "url": "https://podeduc.apps.education.fr/video/17490-les-ia-generatives-bousculent-leducation-quels-impacts-sur-levaluation/?is_iframe=true&autoplay=true",
         "pictogramme": "./pictogramme/conference.svg"
       },
       {
@@ -220,12 +221,12 @@
         "category": "article",
         "nature": "expert",
         "author": "Colin de la Higuera",
-        "title": "A bibliographical study of grammatical inference",
-        "description": "Cet article présente l’inférence grammaticale, un domaine du machine learning qui consiste à apprendre automatiquement des grammaires ou des modèles à partir de données structurées (mots, chaînes, arbres). Ces modèles servent à analyser, classifier ou compresser des données, avec des applications en linguistique, reconnaissance vocale, biologie et intelligence artificielle.",
+        "title": "On the complexity of submap isomorphism and maximum common submap problems",
+        "description": "Les cartes généralisées décrivent la subdivision d’objets en cellules et sont largement utilisées pour modéliser des images 2D et 3D, avec des tâches de reconnaissance de formes impliquant l’isomorphisme de sous-cartes ou le calcul de sous-cartes communes maximales. Cet article montre que l’isomorphisme de sous-cartes est NP-complet lorsque la carte modèle n’est pas connectée, mais reste traitable en temps paramétré (FPT) selon le nombre de composantes connectées, et propose un algorithme FPT comparé expérimentalement aux méthodes de l’état de l’art.",
         "date": "September 2005",
-        "url": "https://www.sciencedirect.com/science/article/abs/pii/S0031320305000221",
+        "url": "./pdfs/Complexity.pdf",
         "pictogramme": "./pictogramme/recherche.svg",
-        "type": "web"
+        "type": "pdf"
       },
       {
         "id": "5",
@@ -233,11 +234,11 @@
         "nature": "expert",
         "author": "Colin de la Higuera",
         "title": "Topology of strings: Median string is NP-complete",
-        "description": "Cet article étudie le problème de la chaîne médiane, qui consiste à trouver la chaîne la plus proche d’un ensemble de chaînes, un problème NP-difficile utilisé en reconnaissance vocale et biologie computationnelle.",
+        "description":"Étant donné un ensemble de chaînes de caractères, le problème de trouver une chaîne qui minimise sa distance par rapport à l’ensemble est directement lié à des problèmes fréquents en reconnaissance de formes ou en biologie computationnelle. En particulier, en utilisant la distance de Levenshtein, la chaîne qui minimise la somme des distances à chaque élément de l’ensemble est appelée la chaîne médiane généralisée, et trouver cette chaîne est un problème NP-complet, pour lequel seules des solutions approximatives efficaces sont connues.",
         "date": "6 January 2000",
-        "url": "https://www.sciencedirect.com/science/article/pii/S0304397597002405",
+        "url": "./pdfs/NpComplete.pdf",
         "pictogramme": "./pictogramme/recherche.svg",
-        "type": "web"
+        "type": "pdf"
       },
       {
         "id": "6",
@@ -247,9 +248,9 @@
         "title": "Characteristic Sets for Polynomial Grammatical Inference",
         "description": "Cet article analyse l’efficacité de l’inférence grammaticale et montre que plusieurs classes de langages ne peuvent pas être apprises efficacement en temps polynomial.",
         "date": "Mai 1997",
-        "url": "https://link.springer.com/article/10.1023/A:1007353007695",
+        "url": "./pdfs/Characteristic.pdf",
         "pictogramme": "./pictogramme/recherche.svg",
-        "type": "web"
+        "type": "pdf"
       },
       {
         "id": "7",
@@ -259,9 +260,9 @@
         "title": "Computational Complexity of Problems on Probabilistic Grammars and Transducers",
         "description": "Cet article montre que trouver la chaîne la plus probable dans des grammaires stochastiques est un problème NP-difficile, sans solution efficace en temps polynomial.",
         "date": "",
-        "url": "https://link.springer.com/chapter/10.1007/978-3-540-45257-7_2",
+        "url": "./pdfs/PreviewArticle.pdf",
         "pictogramme": "./pictogramme/recherche.svg",
-        "type": "web"
+        "type": "pdf"
       },
       {
         "id": "8",
@@ -271,9 +272,9 @@
         "title": "Marginal Inference queries in Hidden Markov Models under context-free grammar constraints",
         "description": "Cet article étudie l’inférence probabiliste dans les modèles de Markov cachés avec contraintes de grammaires, montrant que le problème est NP-difficile et proposant un algorithme d’approximation.",
         "date": "26 Jun 2022",
-        "url": "https://arxiv.org/abs/2206.12862",
+        "url": "./pdfs/MarkovModels.pdf",
         "pictogramme": "./pictogramme/recherche.svg",
-        "type": "web"
+        "type": "pdf"
       },
       {
         "id": "18",

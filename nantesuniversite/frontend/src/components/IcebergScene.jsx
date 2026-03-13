@@ -1,10 +1,10 @@
-import Robot from "./Robot";
-import ResourceCard from "./ResourceCard";
-import DataIceberg from "./DataIceberg";
-import ScrollArrow from "./ScrollArrow";
-import data from "../data/data.json";
-import Popup from "../components/Popup";
-import { useState } from "react";
+import { useRef, useState } from 'react';
+import { useGSAP } from '@gsap/react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import ResourceCard from './ResourceCard';
+import DataIceberg from './DataIceberg';
+import data from '../data/data.json';
 
 import prixSvg from "../data/pictogramme/prix.svg";
 import articleSvg from "../data/pictogramme/article.svg";
@@ -12,7 +12,11 @@ import conferenceSvg from "../data/pictogramme/conference.svg";
 import livreSvg from "../data/pictogramme/livre.svg";
 import podcastSvg from "../data/pictogramme/podcast.svg";
 import rechercheSvg from "../data/pictogramme/recherche.svg";
-import biographieSvg from "../data/pictogramme/biographie.svg"
+import biographieSvg from "../data/pictogramme/biographie.svg";
+import Popup from "./Popup";
+import Robot from "./Robot";
+
+gsap.registerPlugin(ScrollTrigger);
 const PICTOGRAMMES = {
   prix: prixSvg,
   article: articleSvg,
@@ -100,6 +104,7 @@ const levelRanges = NATURE_ORDER.reduce((ranges, nature) => {
 }, {});
 
 export default function IcebergScene() {
+  const containerRef = useRef(null);
   const [openPopup, setOpenPopup] = useState(false);
   const [selectedDoc, setSelectedDoc] = useState(null);
 
@@ -108,28 +113,53 @@ export default function IcebergScene() {
     setOpenPopup(true);
   };
 
+
+  useGSAP(() => {
+    const cards = gsap.utils.toArray('.class-resource-card');
+    cards.forEach((card, i) => {
+      // Cards on the left half of the iceberg slide in from the left; right half from the right
+      const pos = CARD_POSITIONS[i];
+      const fromX = pos && pos.left < 750 ? -35 : 35;
+
+      gsap.from(card, {
+        scrollTrigger: {
+          trigger: card,
+          start: 'top 92%',
+          toggleActions: 'play none none reverse',
+        },
+        opacity: 0,
+        x: fromX,
+        y: 20,
+        scale: 0.96,
+        duration: 0.5,
+        ease: 'power3.out',
+      });
+    });
+  }, { scope: containerRef });
+
   return (
     <>
+      <div ref={containerRef}>
+        <div className="absolute left-[45px] top-[775px] w-[1832px] h-[3200px]">
+          <DataIceberg className="w-full h-full" />
+        </div>
 
-      <div className="absolute left-[45px] top-[775px] w-[1832px] h-[3200px]">
-        <DataIceberg className="w-full h-full" />
+
+
+        {cardDocuments.map((doc, i) => (
+          <ResourceCard
+            key={doc.id}
+            pictogramme={PICTOGRAMMES[doc.category.toLowerCase()]}
+            category={doc.category.toLowerCase()}
+            title={doc.title}
+            description={doc.description}
+            {...CARD_POSITIONS[i]}
+            onClick={() => handleCardClick(doc)}
+          />
+        ))}
       </div>
 
       <Robot levelRanges={levelRanges} />
-
-
-
-      {cardDocuments.map((doc, i) => (
-        <ResourceCard
-          key={doc.id}
-          pictogramme={PICTOGRAMMES[doc.category.toLowerCase()]}
-          category={doc.category.toLowerCase()}
-          title={doc.title}
-          description={doc.description}
-          {...CARD_POSITIONS[i]}
-          onClick={() => handleCardClick(doc)}
-        />
-      ))}
 
       {openPopup && selectedDoc ? (
         <Popup
