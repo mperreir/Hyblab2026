@@ -39,7 +39,7 @@ const elements = {
 console.log(elements)
 
 const ESPACEMENT = 0.10; 
-const NB_ARTICLES = 10;
+export const NB_ARTICLES = 10;
 
 const dicoPaths = {
   path1: { raw: path1Raw, svg: path1Url, points: path1Points, pointsRaw: path1PointsRaw },

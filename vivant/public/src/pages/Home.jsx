@@ -4,7 +4,7 @@ import { getCityByCoordinates } from '../../../utils/coordinate';
 import { findNearestArticles, getLastArticleDistance } from '../../../utils/dist';
 import CityModal from '../components/CityModal';
 import './Home.css';
-import RoutePoinillee from './../assets/home_illustrations/Pointillés + Bonhomme.svg';
+import RoutePoinillee from './../assets/home_illustrations/chemin.svg';
 import TraitJaune from './../assets/home_illustrations/Trait Jaune.svg';
 import Pin2Shadow from './../assets/home_illustrations/Pin 2_shadow.svg';
 import Pin2 from './../assets/home_illustrations/Pin 1.svg';
@@ -13,7 +13,7 @@ import Local2 from './../assets/home_illustrations/Local 1-2.svg';
 import Article2Shadow from './../assets/home_illustrations/Article 2_shadow.svg';
 import Article1 from './../assets/home_illustrations/Article 1.svg';
 
-const N_ARTICLES = 10;
+import { NB_ARTICLES } from '../test';
 
 // ─── Composant icône avec bascule shadow / no-shadow au clic ────────────────
 //
@@ -92,7 +92,7 @@ const Home = () => {
             latitude: position.coords.latitude,
             longitude: position.coords.longitude,
           };
-          const nearestArticles = findNearestArticles(articles, centre, N_ARTICLES);
+          const nearestArticles = findNearestArticles(articles, centre, NB_ARTICLES);
           const lastDist = getLastArticleDistance(nearestArticles, centre);
           setIsLoadingLocation(false);
           navigate('/carte', {
@@ -119,7 +119,7 @@ const Home = () => {
 
   const handleLastArticle = () => {
     if (!articles || articles.length === 0) {
-      navigate('/test', { state: { hasCity: false, articles } });
+      navigate('/carte', { state: { hasCity: false, articles } });
       return;
     }
 
@@ -142,10 +142,10 @@ const Home = () => {
 
     if (lat !== null && long !== null) {
       const centre = { latitude: lat, longitude: long };
-      const nearestArticles = findNearestArticles(articles, centre, N_ARTICLES);
+      const nearestArticles = findNearestArticles(articles, centre, NB_ARTICLES);
       const lastDist = getLastArticleDistance(nearestArticles, centre);
 
-      navigate('/test', {
+      navigate('/carte', {
         state: {
           hasCity: true,
           lat: lat,
@@ -157,7 +157,7 @@ const Home = () => {
       });
     } else {
       // Fallback si le dernier article n'a pas de coordonnées
-      navigate('/test', { state: { hasCity: false, articles } });
+      navigate('/carte', { state: { hasCity: false, articles } });
     }
   };
 
@@ -166,13 +166,13 @@ const Home = () => {
     setIsModalLoading(true);
     try {
       const centre = { latitude: lat, longitude: lng };
-      const nearest = findNearestArticles(articles, centre, N_ARTICLES);
+      const nearest = findNearestArticles(articles, centre, NB_ARTICLES);
       const lastDist = getLastArticleDistance(nearest, centre);
 
       setIsModalLoading(false);
       modalRef.current?.close();
 
-      navigate('/test', {
+      navigate('/carte', {
         state: {
           hasCity: true,
           lat: lat,
@@ -217,7 +217,7 @@ const Home = () => {
       >
 
         {/* ── Route pointillée en arrière-plan ── */}
-        {/* <img
+         {<img
           src={RoutePoinillee}
           alt=""
           aria-hidden="true"
@@ -233,7 +233,7 @@ const Home = () => {
             zIndex: 0,
             pointerEvents: 'none',
           }}
-        /> */}
+        /> }
 
         {/* ── Bouton 1 : Près de chez vous ── */}
         <button
@@ -293,11 +293,11 @@ const Home = () => {
       isOpen={false} // Laissé contrôlé via modalRef depuis Home
       cityError={cityError}
       isLoading={isModalLoading}
-      nArticles={N_ARTICLES}
+      nArticles={NB_ARTICLES}
       onSubmit={handleCitySubmit}
       onSkip={() => {
         modalRef.current?.close();
-        navigate('/test', { state: { hasCity: false, articles } });
+        navigate('/carte', { state: { hasCity: false, articles } });
       }}
       modalRef={modalRef}
     />
