@@ -6,14 +6,13 @@ import { PATH_PUBLIC } from "../../data/debate";
  *
  * Usage dans debate.jsx :
  * {
- *   "type": "photo_quote",
- *   "intervenant": "morel",          // pour la flèche et la couleur
  *   "photo": "/img/morel.jpg",        // chemin ou URL de la photo
  *   "quote": "Le texte de la citation avec du <b>gras</b> si besoin.",
- *   "side": "left"                    // "left" (défaut) ou "right"
+ *   "side": "left"                    // "left" (défaut) ou "right",
+ *   "hasImage": true                   // si false, masque la photo et la flèche (pour les citations sans intervenant)
  * }
  */
-export default function Quote({ photo, quote, isLeft = true }) {
+export default function Quote({ photo, quote, isLeft = true, hasImage = true }) {
   const COLOR = isLeft ? '#DD7375' : '#872339';
   const starIcon = isLeft ? PATH_PUBLIC+'/icons/EtoileBleue.svg' : PATH_PUBLIC+'/icons/EtoileJaune.svg';
   const containerRef = useRef(null);
@@ -79,62 +78,70 @@ export default function Quote({ photo, quote, isLeft = true }) {
   return (
     <div ref={containerRef} className="w-full relative">
 
-      {/* Étoile */}
-      <img
-        ref={starRef}
-        src={starIcon}
-        alt=""
-        style={{
-          position: 'absolute',
-          width: 150,
-          height: 150,
-          top: -30,
-          left: isLeft ? 30 : undefined,
-          right: isLeft ? undefined : 30,
-          transform: `rotate(${isLeft ? -5 : 5}deg)`,
-          zIndex: 0,
-          pointerEvents: 'none',
-        }}
-      />
+      {hasImage && (
+        <>
+          {/* Étoile */}
+          <img
+            ref={starRef}
+            src={starIcon}
+            alt=""
+            style={{
+              position: 'absolute',
+              width: 150,
+              height: 150,
+              top: -30,
+              left: isLeft ? 30 : undefined,
+              right: isLeft ? undefined : 30,
+              transform: `rotate(${isLeft ? -5 : 5}deg)`,
+              zIndex: 0,
+              pointerEvents: 'none',
+            }}
+          />
+        </>
+      )}
 
       <div className={`grid grid-cols-2 items-end ${isLeft ? 'justify-items-start' : 'justify-items-end'}`}>
 
-        {/* Photo */}
-        <div className={`${isLeft ? 'order-1' : 'order-2'} flex`}>
-          <div
-            className="w-36 h-40 overflow-hidden"
-            style={{
-              transform: `rotate(${isLeft ? '-5deg' : '5deg'}) translateY(15px)`,
-            }}
-          >
-            <img src={photo} alt="" className="w-full h-full object-cover object-top" />
-          </div>
-        </div>
+        {hasImage && (
+          <>
+            {/* Photo */}
+            <div className={`${isLeft ? 'order-1' : 'order-2'} flex`}>
+              <div
+                className="w-36 h-40 overflow-hidden"
+                style={{
+                  transform: `rotate(${isLeft ? '-5deg' : '5deg'}) translateY(15px)`,
+                }}
+                >
+                <img src={photo} alt="" className="w-full h-full object-cover object-top" />
+              </div>
+            </div>
 
-        {/* Flèche */}
-        <div
-          className={`${isLeft ? 'order-2' : 'order-1'} flex items-end pb-6`}
-          style={{
-            transform: `${isLeft ? 'translateX(-35px)' : 'translateX(35px)'} translateY(15px)`,
-          }}
-        >
-          <div
-            style={{
-              width: '64px',
-              height: '64px',
-              backgroundColor: COLOR,
-              maskImage: `url(${PATH_PUBLIC}/icons/quoteArrow.svg)`,
-              maskSize: 'contain',
-              maskRepeat: 'no-repeat',
-              maskPosition: 'center',
-              WebkitMaskImage: `url(${PATH_PUBLIC}/icons/quoteArrow.svg)`,
-              WebkitMaskSize: 'contain',
-              WebkitMaskRepeat: 'no-repeat',
-              WebkitMaskPosition: 'center',
-              transform: isLeft ? 'scaleX(-1)' : 'none',
-            }}
-          />
-        </div>
+            {/* Flèche */}
+            <div
+              className={`${isLeft ? 'order-2' : 'order-1'} flex items-end pb-6`}
+              style={{
+                transform: `${isLeft ? 'translateX(-35px)' : 'translateX(35px)'} translateY(15px)`,
+              }}
+            >
+              <div
+                style={{
+                  width: '64px',
+                  height: '64px',
+                  backgroundColor: COLOR,
+                  maskImage: `url(${PATH_PUBLIC}/icons/quoteArrow.svg)`,
+                  maskSize: 'contain',
+                  maskRepeat: 'no-repeat',
+                  maskPosition: 'center',
+                  WebkitMaskImage: `url(${PATH_PUBLIC}/icons/quoteArrow.svg)`,
+                  WebkitMaskSize: 'contain',
+                  WebkitMaskRepeat: 'no-repeat',
+                  WebkitMaskPosition: 'center',
+                  transform: isLeft ? 'scaleX(-1)' : 'none',
+                }}
+              />
+            </div>
+          </>
+        )}
       </div>
 
       {/* Bulle de citation */}

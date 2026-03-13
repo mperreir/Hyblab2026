@@ -109,12 +109,13 @@ const debateData = {
               quote="Il n'est pas certain que la proportionnelle <b>déstructure le système de partis</b> mais en change simplement la stratégie."
               isLeft={ true }
             />,
-            <>le scrutin majoritaire vous oblige à partir <Manuscrit>uni dès le premier</Manuscrit> tour et à rester ensuite <Manuscrit surrounded={false}>uni après le second</Manuscrit>, par crainte d’une nouvelle élection, les alliances sont ainsi figées avant l’élection pour des raisons stratégiques.</>,
-            <>À l’inverse, une proportionnelle permet à chaque formation de se présenter sous ses propres couleurs et de <Manuscrit surrounded={false}>négocier des ententes.</Manuscrit> après l’élection.</>,
+            <>le scrutin majoritaire vous oblige à partir <Manuscrit>uni dès le premier</Manuscrit> tour et à rester ensuite <Manuscrit surrounded={false}>uni après le second</Manuscrit>, par crainte d'une nouvelle élection, les alliances sont ainsi figées avant l'élection pour des raisons stratégiques.</>,
+            <>À l'inverse, une proportionnelle permet à chaque formation de se présenter sous ses propres couleurs et de <Manuscrit surrounded={false}>négocier des ententes.</Manuscrit> après l'élection.</>,
             <Quote
               photo={`${PATH_PUBLIC}/img/1.png`}
-              quote="En revanche, là où la proportionnelle <b>peut être une réponse à la crise politique</b>, au-delà de l’incitation à la construction d’accords de coalition, c’est parce qu’elle <b>peut répondre à l’essor inquiétant de l’abstention</b> : l'idée qu'un vote pour un petit candidat 'ne sert à rien' serait moins présente."
+              quote="En revanche, là où la proportionnelle <b>peut être une réponse à la crise politique</b>, au-delà de l'incitation à la construction d'accords de coalition, c'est parce qu'elle <b>peut répondre à l'essor inquiétant de l'abstention</b> : l'idée qu'un vote pour un petit candidat 'ne sert à rien' serait moins présente."
               isLeft={ true }
+              hasImage={false}
             />
           ]
         },
@@ -145,7 +146,7 @@ const debateData = {
               quote="Il n'existe en effet <b>pas une mais des formes</b> de scrutin proportionnel."
               isLeft={ false }
             />,
-            "En surface, c'est simple : un parti reçoit un nombre de sièges proportionnel aux voix obtenus. Mais c'est une véritable ingénierie électorale qui se cache derrière ce terme.",
+            "Anne DEVADE explique qu'en surface, c'est simple : un parti reçoit un nombre de sièges proportionnel aux voix obtenus. Mais c'est une véritable ingénierie électorale qui se cache derrière ce terme.",
             "Différentes proportionnelles existent en fonction des variables suivantes :",
             <RepartitionDynamique />,
           ],
@@ -173,6 +174,7 @@ const debateData = {
               quote="Avec le scrutin proportionnel, le Président de la République <b>ne peut annoncer de réforme sans savoir s'il aura une majorité</b> pour le soutenir. 
               </br></br>Nous sommes confrontés à une <b>bataille d'intérêts sur la vision du régime</br> : s'agit-il d'obtenir une majorité absolue soumise à un chef ou de mettre en place un régime plus parlementaire ? "
               isLeft={ true }
+              hasImage={false}
             />,
           ]
         },
@@ -203,11 +205,12 @@ const debateData = {
               quote="<b>Il nous faut d'abord établir un objectif</b>, puis réfléchir aux moyens à mettre en œuvre."
               isLeft={ true }
             />,
-            "Cherche-t-on à instaurer un régime plus parlementaire ? Une meilleure représentativité ? Davantage de stabilité politique ?",
+            "Benjamin Morel interroge : Cherche-t-on à instaurer un régime plus parlementaire ? Une meilleure représentativité ? Davantage de stabilité politique ?",
             <Quote
               photo={`${PATH_PUBLIC}/img/1.png`}
               quote="C'est pourquoi <b>je préconise des améliorations à l'intérieur du système actuel</b>, en passant simplement par une loi ordinaire."
               isLeft={ true }
+              hasImage={false}
             />
           ]
         },
