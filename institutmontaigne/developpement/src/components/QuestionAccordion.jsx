@@ -109,7 +109,7 @@ export default function QuestionAccordion({ questions, intervenants, onQuestionO
 
   return (
     <section className="bg-white ">
-      <div className="w-full pt-10">
+      <div className="w-full pt-10 px-4">
         {questions.map((q, i) => (
           <QuestionItem
             key={i}
@@ -164,9 +164,14 @@ const QuestionItem = forwardRef(function QuestionItem(
   const [isExpanded, setIsExpanded] = useState(false);
   // Delay fixed viewport height until after open animation, remove before close animation
   const [isFullHeight, setIsFullHeight] = useState(false);
+  const headerRef = useRef(null);
+  const [headerHeight, setHeaderHeight] = useState(130);
 
   useEffect(() => {
     if (isOpen) {
+      if (headerRef.current) {
+        setHeaderHeight(headerRef.current.offsetHeight);
+      }
       setIsExpanded(true);
       // Apply fixed viewport height after the grid-rows transition finishes
       const timer = setTimeout(() => setIsFullHeight(true), 520);
@@ -442,11 +447,12 @@ const QuestionItem = forwardRef(function QuestionItem(
   return (
     <div
       ref={ref}
-      style={isFullHeight ? { height: 'calc(var(--vh, 1vh) * 100 - 61px)' } : undefined}
-      className={`${isFullHeight ? 'flex flex-col' : ''} max-w-3xl mx-auto relative z-[${20 + index}] ${index === 0 ? '' : '-mt-3'}`}
+      style={isFullHeight ? { height: 'calc(var(--vh, 1vh) * 100 - 61px - 2.5rem)' } : undefined}
+      className={`${isFullHeight ? 'flex flex-col' : ''} ${isOpen ? 'mb-10 rounded-2xl' : ''} transition-all duration-500 max-w-3xl mx-auto relative shadow-[0px_0px_13px_4px_rgba(0,_0,_0,_0.2)] rounded-t-2xl overflow-hidden z-[${20 + index}] ${index === 0 ? '' : '-mt-3'}`}
     >
       {/* Question header button */}
       <button
+        ref={headerRef}
         onClick={onToggle}
         style={{
           backgroundColor: color,
@@ -482,7 +488,7 @@ const QuestionItem = forwardRef(function QuestionItem(
       >
         <div className="overflow-hidden min-h-0">
           {showContent && (
-            <div className="relative mb-3 flex flex-col min-h-0 h-full">
+            <div className="relative flex flex-col min-h-0 h-full">
               {/* Scroll container */}
               <div
                 ref={scrollContainerRef}
@@ -490,7 +496,7 @@ const QuestionItem = forwardRef(function QuestionItem(
                 style={{
                   maxHeight: isFullHeight
                     ? '100%'
-                    : 'calc(var(--vh, 1vh) * 100 - 61px - 80px)',
+                    : `calc(var(--vh, 1vh) * 100 - 61px - 2.5rem - ${headerHeight}px)`,
                 }}
                 onTouchStart={handleTouchStart} 
                 onTouchEnd={handleTouchEnd}
@@ -505,6 +511,7 @@ const QuestionItem = forwardRef(function QuestionItem(
                       info={info}
                       intervenantIndex={intervenantIndex}
                       index={j}
+                      isLastDialogue={j === question.dialogue.length - 1}
                     />
                   );
                 })}
@@ -519,7 +526,7 @@ const QuestionItem = forwardRef(function QuestionItem(
 
 const SPEAKER_COLORS = ['#DD7375', '#872339'];
 
-function DialogueCard({ block, intervenantIndex }) {
+function DialogueCard({ block, intervenantIndex, isLastDialogue }) {
   const ref = useRef(null);
   const [visible, setVisible] = useState(false);
 
@@ -574,6 +581,11 @@ function DialogueCard({ block, intervenantIndex }) {
             </p>
           );
         })}
+        {isLastDialogue && (
+          <div className=" text-center text-2xl leading-none text-gray-400 select-none" aria-hidden="true">
+            ...
+          </div>
+        )}
       </div>
     </div>
   );
