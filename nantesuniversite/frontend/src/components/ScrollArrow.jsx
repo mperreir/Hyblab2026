@@ -1,3 +1,5 @@
+import { getLenis } from '../lib/lenis';
+
 const ROTATIONS = {
   down:  '0deg',
   left:  '90deg',
@@ -21,10 +23,11 @@ export default function ScrollArrow({ direction = 'down', left, top, translateX,
   const rotation = ROTATIONS[direction] ?? '0deg';
 
   function handleClick() {
+    const lenis = getLenis();
     if (direction === 'up') {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      lenis ? lenis.scrollTo(0, { duration: 1.8 }) : window.scrollTo({ top: 0, behavior: 'smooth' });
     } else if (direction === 'down') {
-      window.scrollBy({ top: SCROLL_AMOUNT, behavior: 'smooth' });
+      lenis ? lenis.scrollTo(window.scrollY + SCROLL_AMOUNT, { duration: 1 }) : window.scrollBy({ top: SCROLL_AMOUNT, behavior: 'smooth' });
     }
   }
 

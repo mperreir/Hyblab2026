@@ -75,17 +75,23 @@ export default function IcebergScene() {
 
   useGSAP(() => {
     const cards = gsap.utils.toArray('.class-resource-card');
-    cards.forEach((card) => {
+    cards.forEach((card, i) => {
+      // Cards on the left half of the iceberg slide in from the left; right half from the right
+      const pos = CARD_POSITIONS[i];
+      const fromX = pos && pos.left < 750 ? -35 : 35;
+
       gsap.from(card, {
         scrollTrigger: {
           trigger: card,
-          start: 'top 92%',              // fires when card top crosses 92% down the viewport
-          toggleActions: 'play none none reverse', // reverses when scrolling back up
+          start: 'top 92%',
+          toggleActions: 'play none none reverse',
         },
         opacity: 0,
-        y: 40,         // slides up 40px on entry
-        duration: 0.25, // seconds
-        ease: 'power2.out',
+        x: fromX,
+        y: 20,
+        scale: 0.96,
+        duration: 0.5,
+        ease: 'power3.out',
       });
     });
   }, { scope: containerRef });

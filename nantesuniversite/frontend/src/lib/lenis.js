@@ -25,6 +25,10 @@ export function initLenis(onScroll) {
   return instance;
 }
 
+export function lenisScrollTo(target, options = {}) {
+  instance?.scrollTo(target, options);
+}
+
 export function destroyLenis() {
   if (instance) {
     instance.destroy();
