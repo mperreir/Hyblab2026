@@ -194,12 +194,20 @@ article {
 }
 
 /* ================= SPHÈRES ANIMÉES ================= */
+/* Modifie la classe existante pour la cacher par défaut et ajouter une transition */
 .spheres-container {
     position: relative; 
     width: 100%;
     max-width: 20rem; 
     height: 50dvh; 
     margin: 0 auto; 
+    opacity: 0; /* Ajout : Caché par défaut */
+    transition: opacity 0.5s ease-in-out; /* Ajout : Transition douce */
+}
+
+/* Ajoute cette nouvelle classe pour contrôler l'affichage depuis le JS */
+.spheres-container.is-visible {
+    opacity: 1;
 }
 
 .spheres-container img {
