@@ -172,28 +172,29 @@ document.addEventListener('DOMContentLoaded', function() {
   setupFlipQuiz('#quiz-1');
 
   // --- Quizz 2 ---
-  const quiz2 = {
-    container: document.getElementById('quiz-2'),
-    options: document.querySelectorAll('#quiz-2 .option-btn'),
-    feedback: document.getElementById('feedback-2'),
-    validateButton: document.getElementById('validate-btn-2'),
-  };
+  function setupValidateQuiz(quizId, successMessage, errorMessage = successMessage) {
+  const quiz = document.querySelector(quizId);
+  if (!quiz) return;
+
+  const options = quiz.querySelectorAll('.option-btn');
+  const feedback = quiz.querySelector('.feedback');
+  const validateButton = quiz.querySelector('.validate-btn');
 
   function toggleSelection(button) {
     if (button.disabled) return;
     button.classList.toggle('selected');
   }
 
-  function validateQuiz2() {
-    const selectedOptions = quiz2.container.querySelectorAll('.option-btn.selected');
-    const allCorrectOptions = quiz2.container.querySelectorAll('.option-btn[data-correct="true"]');
+  function validateQuiz() {
+    const selectedOptions = quiz.querySelectorAll('.option-btn.selected');
+    const allCorrectOptions = quiz.querySelectorAll('.option-btn[data-correct="true"]');
 
-    quiz2.options.forEach(button => {
+    options.forEach(button => {
       button.disabled = true;
 
       if (button.dataset.correct === 'true') {
         button.classList.add('is-correct');
-      } else if (button.classList.contains('selected')) {
+      } else {
         button.classList.add('is-wrong');
       }
     });
@@ -206,55 +207,42 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
 
-    if (allCorrectSelected && selectedOptions.length === allCorrectOptions.length) {
-      quiz2.feedback.textContent = "Et bien cela peut-être l'une des trois raisons.";
-      quiz2.feedback.classList.add('is-success');
-      quiz2.feedback.classList.remove('is-error');
-    } else {
-      quiz2.feedback.textContent = "Et bien cela peut-être l'une des trois raisons.";
-      quiz2.feedback.classList.add('is-success');
-      quiz2.feedback.classList.remove('is-error');
-    }
+    if (feedback) {
+      if (allCorrectSelected && selectedOptions.length === allCorrectOptions.length) {
+        feedback.textContent = successMessage;
+        feedback.classList.add('is-success');
+        feedback.classList.remove('is-error');
+      } else {
+        feedback.textContent = errorMessage;
+        feedback.classList.add('is-success');
+        feedback.classList.remove('is-error');
+      }
 
-    quiz2.feedback.classList.add('visible');
+      feedback.classList.add('visible');
+    }
   }
 
-  quiz2.options.forEach(button => {
+  options.forEach(button => {
     button.addEventListener('click', () => toggleSelection(button));
   });
 
-  if (quiz2.validateButton) {
-    quiz2.validateButton.addEventListener('click', validateQuiz2);
+  if (validateButton) {
+    validateButton.addEventListener('click', validateQuiz);
   }
-  
+}
+
+  setupValidateQuiz(
+    '#quiz-2',
+    "Et bien cela peut-être l'une des trois raisons."
+  );
+
   // --- Quizz 3 ---
-  let selectedButtonQuiz3 = null;
-  const quiz3 = {
-    options: document.querySelectorAll('#quiz-3 .option-btn'),
-    feedback: document.getElementById('feedback-3'),
-  };
+  setupValidateQuiz(
+    '#quiz-3',
+    "Toutes les propositions mènent à une situation irrégulière."
+  );
 
-  function handleQuiz3(selectedButton) {
-    if (selectedButtonQuiz3 !== null) {
-      selectedButtonQuiz3.style.backgroundColor = '#fafafa';
-    }
-    const isCorrect = selectedButton.dataset.correct === 'true';
-    selectedButton.style.backgroundColor = isCorrect ? '#5cb85c' : '#fcf075';
-    selectedButtonQuiz3 = selectedButton;
-    
-    if(quiz3.feedback) {
-        quiz3.feedback.textContent = "Toutes les propositions mènent à une situation irrégulière.";
-        quiz3.feedback.style.color = '#f63b32';
-    }
-  }
-
-  document.querySelectorAll('#quiz-3 .option-btn').forEach(button => {
-    button.addEventListener('click', function() {
-      handleQuiz3(this);
-    });
-  });
-
-  // --- Quizz Chapitre 4 ---
+  // --- Quizz 4 ---
   setupFlipQuiz('#quiz-4');
 
 });
