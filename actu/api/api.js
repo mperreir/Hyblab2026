@@ -1,11 +1,11 @@
 'use strict';
 
 
-
 const app = require( 'express' )();
 const path = require('path');
 const cookieParser = require("cookie-parser");
 const crypto = require("crypto");
+const linkedom = require("linkedom");
 
 app.use(cookieParser());
 
@@ -152,6 +152,69 @@ function generateToken(){
     return token;
 }
 
+
+async function recuperation_film(){
+
+    const res = await fetch("https://actu.fr/cinema/sorties-films/planetes-scarlet-et-l-eternite-le-testament-d-ann-lee-nos-critiques-des-sorties-du-11-mars_63923715.html",{"Content-Type":"text/html; charset=UTF-8"});
+    const html = await res.text();
+    // console.log(html);
+
+    const doc = new linkedom.DOMParser().parseFromString(html,"text/html");
+    //console.log(dom.window.document.querySelector("h1").textContent);
+
+    const films = [];
+    const film = doc.querySelectorAll("h2");
+    const critiques = [...doc.querySelectorAll("p.wall-content")].filter(p => p.textContent.trim().length > 0);
+
+    const bande_annonces = doc.querySelectorAll(".ac-embed--youtube");
+
+    for (let i = 0; i< film.length; i++){
+
+        if (film[i].textContent != "Les plus lus"){
+            const titre = film[i].querySelector("em").textContent.toLowerCase();
+            const texte = film[i].innerHTML.split("<br>");
+
+            const realisateur = texte[0]
+            .replace(/<em>.*?<\/em>/, "")
+            .replace(", de", "")
+            .trim();
+            const real = realisateur.replace("&#160;","");
+
+            const etoiles = texte[1]
+            .replace(/<.*?>/g, "")
+            .trim();
+            const c = critiques[i];
+            const strong = c.querySelector("strong");
+            if (strong) strong.remove();
+            const critique = c.textContent;
+            let bande_annonce = null;
+
+            bande_annonces.forEach((e)=>{
+                let title = e.querySelector("iframe").getAttribute("title");
+                title = title.toLowerCase();
+                let regex = new RegExp(titre)
+                const est_film = regex.test(title);
+                console.log(regex, title)
+                console.log(est_film);
+                if(est_film|| bande_annonce == null){
+                    bande_annonce = e.querySelector("iframe").getAttribute("data-maybe-src");
+                }
+            })
+            }
+
+            // const attributs_film = {
+            //     "titre" : titre,
+            //     "realisateur" :real,
+            //     "critique" :critique,
+            //     "nb_etoile" : etoiles,
+            //     "bande_annonce" : bande_annonce,
+            // }
+            // console.log(attributs_film);
+            // films.push(attributs_film);
+            }
+    return films;
+};
+recuperation_film();
 // =========================
 // ========== POST =========
 // =========================
