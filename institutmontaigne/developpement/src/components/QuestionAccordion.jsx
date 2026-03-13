@@ -110,7 +110,7 @@ export default function QuestionAccordion({ questions, intervenants, onQuestionO
   return (
     <section className="bg-white ">
       <p className="text-center text-montaigne-burgundy text-lg font-helvetica font-bold font-italic mt-6">LES CHAPITRES DE L'ARTICLE</p> 
-      <div className="w-full pt-10 px-4">
+      <div className="w-full pt-10 px-1">
         {questions.map((q, i) => (
           <QuestionItem
             key={i}
@@ -449,7 +449,7 @@ const QuestionItem = forwardRef(function QuestionItem(
     <div
       ref={ref}
       style={isFullHeight ? { height: 'calc(var(--vh, 1vh) * 100 - 61px - 2.5rem)' } : undefined}
-      className={`${isFullHeight ? 'flex flex-col' : ''} ${isOpen ? 'mb-10 rounded-2xl' : ''} transition-all duration-500 max-w-3xl mx-auto relative shadow-[0px_0px_13px_4px_rgba(0,_0,_0,_0.2)] rounded-t-2xl overflow-hidden z-[${20 + index}] ${index === 0 ? '' : '-mt-3'} print:!h-auto print:!overflow-visible print:!mb-10`}
+      className={`${isFullHeight ? 'flex flex-col' : ''} ${isOpen ? 'mb-10 rounded-2xl' : ''} transition-all duration-500 max-w-3xl mx-auto relative shadow-[0px_0px_13px_4px_rgba(0,_0,_0,_0.2)] rounded-2xl overflow-hidden z-[${20 + index}] ${index === 0 ? '' : '-mt-3'} print:!h-auto print:!overflow-visible print:!mb-10`}
     >
       {/* Question header button */}
       <button
