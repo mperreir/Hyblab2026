@@ -309,39 +309,38 @@ export default function Scrollytelling() {
 
         // --- Scene 6.1: Hemicycle gauge ---
         if (hemicycleEl) {
-          // L'hémicycle arrive du bas (50vh = 50% de la hauteur de l'écran)
+          // L'hémicycle arrive du bas
           tl.fromTo(
             hemicycleEl,
             { autoAlpha: 0, y: "50vh" },
-            { autoAlpha: 1, y: 0, duration: 0.5, ease: 'power2.out' },
+            { autoAlpha: 1, y: 0, duration: 0.3, ease: 'power2.out' },
             6.1
           );
-          
-          // Animation de la jauge (démarre pendant l'arrivée)
+          // Animation de la jauge : monte à 50% (démarre à 6.3, finit à 6.8)
           tl.to(
             hemicycleProgressRef.current,
             {
               value: 50,
-              duration: 0.5,
+              duration: 0.3,
               ease: 'power1.out',
               onUpdate: () => setHemicycleValue(hemicycleProgressRef.current.value),
             },
-            6.3 
+            6.2
           );
-          
+          // Animation de la jauge : descend à 22% (démarre à 6.8, finit à 7.2)
           tl.to(
             hemicycleProgressRef.current,
             {
               value: 22,
-              duration: 0.4,
+              duration: 0.3,
               ease: 'power1.out',
               onUpdate: () => setHemicycleValue(hemicycleProgressRef.current.value),
             },
-            6.8
+            6.4
           );
-          
-          // L'hémicycle disparaît
-          tl.to(hemicycleEl, { autoAlpha: 0, duration: 0.2 }, 7.1);
+
+          // L'hémicycle disparaît APRES la fin de l'animation de descente (à 7.3)
+          tl.to(hemicycleEl, { autoAlpha: 0, duration: 0.2 }, 6.9);
         }
 
         // --- Scene 7.1: Experts ---
