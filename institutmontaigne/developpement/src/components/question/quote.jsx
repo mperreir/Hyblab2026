@@ -151,14 +151,13 @@ export default function Quote({ quote, isLeft = true, hasImage = true }) {
               className={`${isLeft ? 'order-2 pl-3' : 'order-1 pr-3'} flex items-end pb-3`}
             >
               <div
+                className="print:![clip-path:none] print:![-webkit-clip-path:none] print:!transition-none"
                 style={{
-                  // clip-path reveal: start fully clipped, then animate to fully visible
                   clipPath: arrowVisible ? 'inset(0 0 0 0)' : 'inset(0 100% 0 0)',
                   WebkitClipPath: arrowVisible ? 'inset(0 0 0 0)' : 'inset(0 100% 0 0)',
-                  transition: 'clip-path 620ms cubic-bezier(.22,.9,.34,1)',
                   transition: `clip-path 620ms cubic-bezier(.22,.9,.34,1) ${delay.current.toFixed(3)}s`,
-                  transform: isLeft ? 'scaleX(-1)' : 'none',
                   WebkitTransition: `-webkit-clip-path 620ms cubic-bezier(.22,.9,.34,1) ${delay.current.toFixed(3)}s`,
+                  transform: isLeft ? 'scaleX(-1)' : 'none',
                   width: 51,
                   height: 51,
                   display: 'flex',
