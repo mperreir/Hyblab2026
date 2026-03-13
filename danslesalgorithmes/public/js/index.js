@@ -79,12 +79,15 @@ document.addEventListener('DOMContentLoaded', function() {
       if (spheresAnim) {
           if (response.element.classList.contains('step-caf')) {
               spheresAnim.classList.add('is-visible');
-              spheresAnim.classList.remove('is-transformed');
+              spheresAnim.classList.remove('is-transformed', 'is-step3');
           } else if (response.element.classList.contains('step-meres')) {
-              spheresAnim.classList.add('is-visible');
-              spheresAnim.classList.add('is-transformed');
+              spheresAnim.classList.add('is-visible', 'is-transformed');
+              spheresAnim.classList.remove('is-step3');
+          } else if (response.element.classList.contains('step-bulle3')) {
+              spheresAnim.classList.add('is-visible', 'is-step3');
+              spheresAnim.classList.remove('is-transformed');
           } else {
-              spheresAnim.classList.remove('is-visible');
+              spheresAnim.classList.remove('is-visible', 'is-transformed', 'is-step3');
           }
       }
 
