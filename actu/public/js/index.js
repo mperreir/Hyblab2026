@@ -1,7 +1,34 @@
 "use strict"
 
 
+function createCard(nom,critique){
+  const section = document.createElement("section");
+  section.classList.add("film");
 
+  const front_div = document.createElement("div");
+  front_div.classList.add("affiche_front");
+
+  const affiche = document.createElement("img");
+  affiche.setAttribute("src", "./img/background.svg");
+
+  front_div.appendChild(affiche);
+
+  const back_div = document.createElement("div");
+  back_div.classList.add("affiche_back");
+
+  const film_title = document.createElement("h2");
+  film_title.innerText = nom;
+  const film_text = document.createElement("p");
+  film_text.innerText =critique;
+
+  back_div.appendChild(film_title);
+  back_div.appendChild(film_text);
+
+  section.appendChild(front_div);
+  section.appendChild(back_div);
+
+  return section
+}
 
 const affiches = document.querySelector(".affiches");
 
@@ -11,35 +38,13 @@ const film_cards = [];
 const nb_card = 12;
 
 [...Array(nb_card).keys()].forEach(() => {
-  console.log("ici")
-  const section = document.createElement("section");
-  section.classList.add("film")
+  
+  const title = "Nom Film";
+  const critique = "Le lorem ipsum est, en imprimerie, une suite de mots sans signification utilisée à titre provisoire pour calibrer une mise en page, le texte définitif venant remplacer le faux-texte dès";
+  const card = createCard(title,critique);
+  film_cards.push(card);
 
-  const front_div = document.createElement("div")
-  front_div.classList.add("affiche_front")
-
-  const affiche = document.createElement("img")
-  affiche.setAttribute("src", "./img/background.svg")
-
-  front_div.appendChild(affiche)
-
-  const back_div = document.createElement("div")
-  back_div.classList.add("affiche_back")
-
-  const film_title = document.createElement("h2")
-  film_title.innerText = "Nom Film"
-  const film_text = document.createElement("p")
-  film_text.innerText = "Le lorem ipsum est, en imprimerie, une suite de mots sans signification utilisée à titre provisoire pour calibrer une mise en page, le texte définitif venant remplacer le faux-texte dès"
-
-  back_div.appendChild(film_title)
-  back_div.appendChild(film_text)
-
-  section.appendChild(front_div)
-  section.appendChild(back_div)
-
-  film_cards.push(section)
-
-  affiches.appendChild(section)
+  affiches.appendChild(card);
 })
 
 
