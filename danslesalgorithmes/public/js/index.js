@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
       debug: false
     })
     .onStepEnter((response) => {
-      // 1. Cadre jaune actif
+      // 1. Cadre actif
       steps.forEach(step => step.classList.remove('is-active'));
       response.element.classList.add('is-active');
 
@@ -94,6 +94,13 @@ document.addEventListener('DOMContentLoaded', function() {
           console.warn("Son bloqué (interaction requise sur mobile) :", erreur);
         });
       }
+
+
+      // 6. --- Animation argent ---
+      if (response.element.classList.contains("step-argent-trigger")) {
+        document.getElementById("animation-argent").classList.add("visible");
+      }
+
     });
 
   window.addEventListener("resize", scroller.resize);
