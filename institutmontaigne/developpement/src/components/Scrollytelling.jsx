@@ -400,7 +400,7 @@ export default function Scrollytelling() {
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
         <img
           ref={bgRef}
-          src="/story/europe.svg"
+          src="./story/europe.svg"
           className="w-full h-full object-cover object-[20%_100%] sm:object-center"
           alt="Map of Europe"
           style={{ willChange: 'transform' }}
@@ -418,7 +418,7 @@ export default function Scrollytelling() {
         <div className="relative w-[20%] h-[90%]  -top-[0%] -left-[0%]">
           <img 
             ref={crackRef} 
-            src="/story/casse.svg" 
+            src="./story/casse.svg" 
             alt="Cassure France" 
             className="w-full h-full object-contain origin-top" 
           />
@@ -434,7 +434,7 @@ export default function Scrollytelling() {
             ref={dilemmaLeftRef} 
             className="absolute left-[2%] sm:left-[5%] bottom-[25%] sm:bottom-[25%] w-[48%] max-w-[300px]"
           >
-            <img src="/story/gauche.svg" alt="Parlement représentatif" className="w-full h-auto z-1000" />
+            <img src="./story/gauche.svg" alt="Parlement représentatif" className="w-full h-auto z-1000" />
           </div>
 
           {/* SVG Droite (légèrement décalé vers le bas pour le style asymétrique) */}
@@ -442,7 +442,7 @@ export default function Scrollytelling() {
             ref={dilemmaRightRef} 
             className="absolute right-[2%] sm:right-[5%] bottom-[25%] sm:bottom-[25%] w-[48%] max-w-[300px] "
           >
-            <img src="/story/droite.svg" alt="Majorités stables" className="w-full h-auto z-1000" />
+            <img src="./story/droite.svg" alt="Majorités stables" className="w-full h-auto z-1000" />
           </div>
 
         </div>
@@ -456,14 +456,14 @@ export default function Scrollytelling() {
       >
         {/* L'urne à gauche avec sa propre Ref pour l'animer de la gauche */}
         <div className="w-[45%]">
-          <img ref={urnImageRef} src="/story/MainUrne.svg" alt="Urne" className="w-full h-auto" />
+          <img ref={urnImageRef} src="./story/MainUrne.svg" alt="Urne" className="w-full h-auto" />
         </div>
 
         {/* La main à droite */}
         <div className="w-[45%]">
           <img
             ref={handEnvelopeRef}
-            src="/story/MainVote%20.svg"
+            src="./story/MainVote%20.svg"
             alt="Main et enveloppe"
             className="w-full h-auto origin-top-left" 
           />
@@ -486,7 +486,7 @@ export default function Scrollytelling() {
             ref={expertLeftRef} 
             className="absolute left-[2%] sm:left-[10%] bottom-[28%] sm:bottom-[15%] w-[46%] max-w-[320px]"
           >
-            <img src="/story/MOREL.svg" alt="Portrait Benjamin Morel" className="w-full h-auto" />
+            <img src="./story/MOREL.svg" alt="Portrait Benjamin Morel" className="w-full h-auto" />
           </div>
 
           {/* Expert Droite (Anne Levade) */}
@@ -494,7 +494,7 @@ export default function Scrollytelling() {
             ref={expertRightRef} 
             className="absolute right-[2%] sm:right-[10%] bottom-[26%] sm:bottom-[30%] w-[46%] max-w-[320px]"
           >
-            <img src="/story/LEVADE.svg" alt="Portrait Anne Levade" className="w-full h-auto" />
+            <img src="./story/LEVADE.svg" alt="Portrait Anne Levade" className="w-full h-auto" />
           </div>
           
         </div>
