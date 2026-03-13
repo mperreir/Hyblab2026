@@ -3,15 +3,20 @@
   <defs>
     <style>
       .cls-1 {
-        fill: none;
-        stroke: #a900f9;
         stroke-miterlimit: 10;
-        stroke-width: 29px;
+      }
+
+      .cls-1, .cls-2 {
+        fill: none;
+        stroke: red;
+        stroke-width: 28px;
+      }
+
+      .cls-2 {
+        stroke-linejoin: bevel;
       }
     </style>
   </defs>
-  <polyline class="cls-1" points="129.29 279.98 64.91 288.45 45.55 141.2 366.48 99.01 385.84 246.25 247.85 264.4 221.85 348.98 183.66 354 177.23 296.57"/>
-  <circle class="cls-1" cx="155.54" cy="201.16" r="1.32"/>
-  <circle class="cls-1" cx="217.76" cy="192.98" r="1.32"/>
-  <circle class="cls-1" cx="279.98" cy="184.8" r="1.32"/>
+  <polygon class="cls-1" points="58.48 332.38 58.48 140.91 350.42 140.91 350.42 332.38 161.8 332.38 58.48 332.38"/>
+  <polygon class="cls-2" points="172.94 195.51 172.94 279.98 254.57 236.31 172.94 195.51"/>
 </svg>

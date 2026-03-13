@@ -15,8 +15,8 @@
 
 const CATEGORY_COLORS = {
   prix: "#ffc800",
-  article: "#ff0000",
-  conference: "#a900f9",
+  article: "#9C1EF1",
+  conference: "#FF1300",
   livre: "#00c450",
   podcast: "#ff0064",
   recherche: "#00c9ff",
@@ -32,7 +32,7 @@ export default function ResourceCard({
   description = null,
   onClick,
 }) {
-  const color = CATEGORY_COLORS[category.toLowerCase()] ?? "#3552ff";
+  const color = CATEGORY_COLORS[category.split(" ")[0].toLowerCase()] ?? "#3552ff";
   const label = category.charAt(0).toUpperCase() + category.slice(1);
 
   return (

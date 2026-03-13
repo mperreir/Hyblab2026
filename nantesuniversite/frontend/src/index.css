@@ -210,3 +210,44 @@ body {
   object-fit: contain;
   animation: floating 1s ease-in-out infinite;
 }
+
+.biographie-portrait{
+  width: 350px;
+  height: 250px;
+}
+
+.biographie-container{
+  padding: 10px 30px;
+  height: 100%;
+  overflow-y: scroll;
+}
+.biographie-header{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.biographie-intro .biographie-titre{
+  font-size: 35px;
+  font-weight: bold;
+  color: #3452FF;
+}
+.biographie-intro p{
+  text-align: justify;
+  width: 500px;
+}
+.biographie-section{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+
+.biographie-section p {
+  text-align: justify;
+  width: 500px;
+}
+
+.biographie-photo{
+  width: 350px;
+  height: 250px;
+}

@@ -13,7 +13,8 @@
       },
       "profession": "Professeur à l'Université de Nantes",
       "position": "Titulaire de la Chaire UNESCO RELIA",
-      "goal": "ACCOMPAGNER LE DÉPLOIEMENT DE L'IA DANS L'ÉDUCATION"
+      "goal": "ACCOMPAGNER LE DÉPLOIEMENT DE L'IA DANS L'ÉDUCATION",
+      "picture": "./portraits/colin.png"
     },
     "documents": [
       {
@@ -22,7 +23,7 @@
         "title":"Colin de la Higuera",
         "description": "Colin de la Higuera est enseignant-chercheur en informatique, spécialiste reconnu de l’intelligence artificielle appliquée à l’éducation à Nantes Université et membre du laboratoire LS2N (laboratoire des sciences du numérique). Réparti sur cinq sites, le LS2N est la plus importante unité de recherche publique en région Pays de la Loire. ",
         "pictogramme": "./pictogramme/biographie.svg",
-        "type": "pdf"
+        "type": "biographie"
       },
       {
         "id": "1",
@@ -218,7 +219,7 @@
       },
       {
         "id": "4",
-        "category": "article",
+        "category": "Article scientifique",
         "nature": "expert",
         "author": "Colin de la Higuera",
         "title": "On the complexity of submap isomorphism and maximum common submap problems",
@@ -230,7 +231,7 @@
       },
       {
         "id": "5",
-        "category": "article",
+        "category": "Article scientifique",
         "nature": "expert",
         "author": "Colin de la Higuera",
         "title": "Topology of strings: Median string is NP-complete",
@@ -242,7 +243,7 @@
       },
       {
         "id": "6",
-        "category": "article",
+        "category": "Article scientifique",
         "nature": "expert",
         "author": "Colin de la Higuera",
         "title": "Characteristic Sets for Polynomial Grammatical Inference",
@@ -254,7 +255,7 @@
       },
       {
         "id": "7",
-        "category": "article",
+        "category": "Article scientifique",
         "nature": "expert",
         "author": "Colin de la Higuera",
         "title": "Computational Complexity of Problems on Probabilistic Grammars and Transducers",
@@ -266,7 +267,7 @@
       },
       {
         "id": "8",
-        "category": "article",
+        "category": "Article scientifique",
         "nature": "expert",
         "author": "Colin de la Higuera",
         "title": "Marginal Inference queries in Hidden Markov Models under context-free grammar constraints",

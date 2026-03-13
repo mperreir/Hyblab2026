@@ -124,7 +124,7 @@ export default function IcebergScene() {
         {cardDocuments.map((doc, i) => (
           <ResourceCard
             key={doc.id}
-            pictogramme={PICTOGRAMMES[doc.category.toLowerCase()]}
+            pictogramme={PICTOGRAMMES[doc.category.split(" ")[0].toLowerCase()]}
             category={doc.category.toLowerCase()}
             title={doc.title}
             description={doc.description}

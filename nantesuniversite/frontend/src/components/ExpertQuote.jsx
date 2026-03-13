@@ -3,7 +3,6 @@ import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import DotPattern from './DotPattern';
-import portrait from '../assets/colin.png';
 import portraitOverlay from '../assets/u_under_colin.svg';
 import data from "../data/data.json";
 
@@ -28,7 +27,7 @@ export default function ExpertQuote() {
       {/* Portrait photo */}
       <div className="absolute left-[153px] top-[15px]">
         <div className="w-[442px] h-[373px] overflow-hidden">
-          <img src={portrait} alt="Portrait de Colin de la Higuera" className="w-full h-full object-cover" />
+          <img src={expertInfo.picture} alt="Portrait de Colin de la Higuera" className="w-full h-full object-cover" />
         </div>
       </div>
 
