@@ -837,7 +837,7 @@ article {
     width: 50%;
     /* Position de départ : sur fraude-sociale */
     top: 10%;
-    left: 60%;
+    left: 50%;
     transition: left 1.5s ease-in-out, top 1.5s ease-in-out;
 }
 
