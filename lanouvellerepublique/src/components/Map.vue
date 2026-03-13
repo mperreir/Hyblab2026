@@ -17,7 +17,7 @@
                     v-for="(r, index) in restaurants"
                     :key="r.name"
                     :coords="[r.latitude, r.longitude]"
-                    :image="buildRestaurantImage(r.name)"
+                    :image="r.image"
                     :is-active="selectedIndex === index"
                     :restaurant-index="index"
                     @focus-marker="focusRestaurant"
@@ -39,7 +39,7 @@
                     <RestaurantMiniBox
                         @click="openDetail(index)"
                         :name="r.name"
-                        :image="buildRestaurantImage(r.name)"
+                        :image="r.image"
                         :latitude="r.latitude"
                         :longitude="r.longitude"
                         :is-active="selectedIndex === index"
@@ -48,7 +48,7 @@
                     <RestaurantDetail
                         v-if="isClicked && selectedIndex === index"
                         :name="r.name"
-                        :image="buildRestaurantImage(r.name)"
+                        :image="r.image"
                         :latitude="r.latitude"
                         :longitude="r.longitude"
                     />
@@ -108,10 +108,7 @@ const stopWatch = watch(userCoords, (newCoords) => {
     }
 })
 
-const buildRestaurantImage = (restaurantName) =>
-    `https://picsum.photos/seed/${encodeURIComponent(restaurantName)}/96/96`
-
-const scrollToRestaurant = (index, smooth = true) => {
+const scrollToRestaurant = (index) => {
     const carousel = carouselRef.value
     if (!carousel) return
     const slide = carousel.children[index]
@@ -120,7 +117,7 @@ const scrollToRestaurant = (index, smooth = true) => {
 
     carousel.scrollTo({
         left,
-        behavior: smooth ? "smooth" : "instant",
+        behavior: "smooth",
     })
 }
 
@@ -145,20 +142,9 @@ const focusRestaurant = (index) => {
 
     if (index < 0 || index >= list.length) return
 
-    const distance = Math.abs(index - selectedIndex.value)
     selectedIndex.value = index
-    scrollToRestaurant(index, distance <= 1)
+    scrollToRestaurant(index)
     centerMapToRestaurant(index)
-}
-
-const syncSelectedIndexFromScroll = () => {
-    const carousel = carouselRef.value
-
-    if (!carousel || carousel.clientWidth === 0) {
-        return
-    }
-
-    scrollToRestaurant(selectedIndex.value, false, true)
 }
 
 const onCarouselScroll = () => {

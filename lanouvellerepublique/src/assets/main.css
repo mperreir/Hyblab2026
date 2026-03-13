@@ -8,8 +8,30 @@
   box-sizing: border-box;
 }
 
+@font-face {
+    font-family: 'Abordage';
+    src: url('./fonts/Abordage-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Lalezar';
+    src: url('./fonts/Lalezar-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'OpenSans';
+    src: url('./fonts/OpenSans-VariableFont_wdth,wght.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 body,
 #app {
   min-height: 100vh;
   width: 100%;
+  font-family: 'Abordage', 'Lalezar', 'OpenSans', sans-serif;
 }
