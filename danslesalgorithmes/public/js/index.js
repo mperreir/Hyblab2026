@@ -18,19 +18,6 @@ document.addEventListener('DOMContentLoaded', function() {
       steps.forEach(step => step.classList.remove('is-active'));
       response.element.classList.add('is-active');
 
-      // 2. --- TRANSITION FLÈCHE -> FOND UNI (SCÈNE 2) ---
-      const arrowImage = document.querySelector('.bg-media[style*="fleche.png"]');
-      const solidBackground = document.querySelector('.bg-solid');
-
-      if (response.element.classList.contains('step-uni') || response.element.closest('#quiz-1')) {
-          if (arrowImage) arrowImage.style.opacity = '0'; 
-          if (solidBackground) solidBackground.style.opacity = '1'; 
-      } 
-      else {
-          if (arrowImage) arrowImage.style.opacity = '1'; 
-          if (solidBackground) solidBackground.style.opacity = '0'; 
-      }
-
       // 3. --- LOGIQUE INTELLIGENTE POUR HACKER ET VIDÉO (SCÈNE 3) ---
       const hackerScene = document.querySelector('#hacker-animation')?.closest('.scene');
       const bgVideo = document.getElementById('temoignage-video');
