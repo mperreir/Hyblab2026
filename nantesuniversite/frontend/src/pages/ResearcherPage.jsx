@@ -8,7 +8,7 @@ import ScrollArrow from '../components/ScrollArrow';
 import ResearcherFooter from "../components/ResearcherFooter";
 
 const DESIGN_WIDTH = 1920;
-const DESIGN_HEIGHT = 5438;
+const DESIGN_HEIGHT = 6000;
 
 export default function ResearcherPage() {
   const [scale, setScale] = useState(() => window.innerWidth / DESIGN_WIDTH);

@@ -24,9 +24,8 @@ export default function ExpertQuote() {
 
       {/* Italic quote: abs left=736, top=410 → section top=110 */}
       <p className="absolute left-[736px] top-[110px] w-[925px] h-[135px] italic text-black text-[36px] leading-normal font-sans">
-        &thinsp;Je m&apos;en sors habituellement en observant que ce qu&apos;on
-        entend par intelligence est mouvant et qu&apos;au fur du temps, des
-        activités qu&apos;on tenait pour intelligentes ne le sont plus.&thinsp;
+        &thinsp;L&apos;alphabétisation à l&apos;intelligence artificielle n&apos;est pas 
+        une option pour les experts, c&apos;est une condition de la citoyenneté au XXIe siècle.&thinsp;
       </p>
 
       <div className="absolute left-[1270px] top-[364px] w-[24px] h-[24px] bg-[#3552ff]" />
