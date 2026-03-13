@@ -28,6 +28,7 @@ function isPointInElement(x, y, el) {
 export function DropZone({ correctAnswer, placeholder = "···" }) {
   const [dropped, setDropped] = useState(null);
   const [droppedColor, setDroppedColor] = useState(null);
+  const [droppedText, setDroppedText] = useState(null);
   const [status, setStatus] = useState("idle");
   const ref = useRef(null);
   const shakeControls = useAnimation();
@@ -36,10 +37,11 @@ export function DropZone({ correctAnswer, placeholder = "···" }) {
     const id = dropZoneIdCounter++;
     dropZoneRegistry.set(id, {
       ref,
-      onDrop: (value, color) => {
+      onDrop: (value, chipBg, chipText) => {
         if (value === correctAnswer) {
           setDropped(value);
-          setDroppedColor(color);
+          setDroppedColor(chipBg);
+          setDroppedText(chipText);
           setStatus("correct");
           return true;
         }
@@ -53,15 +55,11 @@ export function DropZone({ correctAnswer, placeholder = "···" }) {
     return () => dropZoneRegistry.delete(id);
   }, [correctAnswer]);
 
-  const border =
-    status === "correct" ? "2px dashed #34d399" :
-    status === "wrong"   ? "2px dashed #f87171" :
-    status === "hover"   ? "2px dashed #818cf8" :
-                           "2px dashed #d1d5db";
   const bg =
-    status === "correct" ? "#ecfdf5" :
-    status === "wrong"   ? "#fef2f2" :
-    status === "hover"   ? "#eef2ff" : "#fff";
+    status === "correct" ? droppedColor :
+    status === "wrong"   ? "#fca5a5" :
+    status === "hover"   ? "#c7d2fe" :
+                           "#e5e7eb";
 
   return (
     <motion.span
@@ -69,10 +67,10 @@ export function DropZone({ correctAnswer, placeholder = "···" }) {
       animate={shakeControls}
       style={{
         display: "inline-flex", alignItems: "center", justifyContent: "center",
-        verticalAlign: "middle", minWidth: 84, height: 36, padding: "0 12px",
-        margin: "0 6px", borderRadius: 8, border, background: bg,
-        transition: "background 0.15s, border 0.15s",
-        fontFamily: "inherit", cursor: "default", userSelect: "none",
+        verticalAlign: "middle", width: 80, height: 34,
+        margin: "0 6px", clipPath: HEX_CLIP, background: bg,
+        transition: "background 0.15s",
+        fontFamily: "Georgia, serif", cursor: "default", userSelect: "none",
       }}
     >
       <AnimatePresence mode="wait">
@@ -80,12 +78,12 @@ export function DropZone({ correctAnswer, placeholder = "···" }) {
           <motion.span key="filled"
             initial={{ scale: 0.3, opacity: 0 }}
             animate={{ scale: 1, opacity: 1, transition: { type: "spring", stiffness: 300, damping: 18 } }}
-            style={{ fontWeight: 900, fontSize: "0.78rem", letterSpacing: "0.12em", textTransform: "uppercase", color: droppedColor }}
+            style={{ fontWeight: 900, fontSize: "0.75rem", letterSpacing: "0.12em", textTransform: "uppercase", color: droppedText }}
           >{dropped}</motion.span>
         ) : (
           <motion.span key="empty"
-            initial={{ opacity: 0 }} animate={{ opacity: 0.4 }}
-            style={{ fontSize: "0.72rem", color: "#9ca3af", letterSpacing: "0.05em" }}
+            initial={{ opacity: 0 }} animate={{ opacity: 0.6 }}
+            style={{ fontSize: "0.75rem", color: "#6b7280", letterSpacing: "0.05em", fontWeight: 700 }}
           >{placeholder}</motion.span>
         )}
       </AnimatePresence>
@@ -118,8 +116,8 @@ function DragGhost({ pos, originPos, bg, text, value, returning, onDone }) {
       onAnimationComplete={() => { if (returning) onDone(); }}
       style={{
         position: "fixed",
-        width: 96,
-        height: 52,
+        width: 80,
+        height: 34,
         clipPath: HEX_CLIP,
         backgroundColor: bg,
         display: "flex",
@@ -195,7 +193,7 @@ function AnswerChip({ value, index, accepted, onAccepted }) {
       let wasAccepted = false;
       for (const [, zone] of dropZoneRegistry.entries()) {
         if (isPointInElement(ev.clientX, ev.clientY, zone.ref.current)) {
-          const ok = zone.onDrop(value, bg);
+          const ok = zone.onDrop(value, bg, text);
           if (ok) {
             onAccepted();
             wasAccepted = true;
@@ -217,7 +215,7 @@ function AnswerChip({ value, index, accepted, onAccepted }) {
     window.addEventListener("pointerup", onUp);
   }, [accepted, value, bg, onAccepted, ghostState]);
 
-  if (accepted) return <div style={{ width: 96, height: 52 }} />;
+  if (accepted) return <div style={{ width: 80, height: 34 }} />;
 
   const isDragging = ghostState !== null && !ghostState.returning;
 
@@ -231,8 +229,8 @@ function AnswerChip({ value, index, accepted, onAccepted }) {
           clipPath: HEX_CLIP,
           backgroundColor: bg,
           cursor: isDragging ? "grabbing" : "grab",
-          width: 96,
-          height: 52,
+          width: 80,
+          height: 34,
           display: "flex",
           alignItems: "center",
           justifyContent: "center",

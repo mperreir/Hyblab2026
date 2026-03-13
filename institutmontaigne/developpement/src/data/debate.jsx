@@ -225,8 +225,8 @@ const debateData = {
     },
     {
       "question": "Quels impactes pour le RN ?",
-      "color": "#FFDED6",
-      "textcolor": "#EB5D31",
+      "color": "#E3F280",
+      "textcolor": "#7F8B59",
       "dialogue": [
         {
           "intervenant": "morel",

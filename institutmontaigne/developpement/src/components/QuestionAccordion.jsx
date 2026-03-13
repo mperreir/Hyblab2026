@@ -109,7 +109,7 @@ export default function QuestionAccordion({ questions, intervenants, onQuestionO
 
   return (
     <section className="bg-white ">
-      <p className="text-center text-montaigne-burgundy text-lg font-helvetica font-bold font-italic mb-6">LES CHAPITRES DE L'ARTICLE</p> 
+      <p className="text-center text-montaigne-burgundy text-lg font-helvetica font-bold font-italic mt-6">LES CHAPITRES DE L'ARTICLE</p> 
       <div className="w-full pt-10 px-4">
         {questions.map((q, i) => (
           <QuestionItem
