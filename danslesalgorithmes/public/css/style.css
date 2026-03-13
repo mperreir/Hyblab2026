@@ -17,34 +17,34 @@ img, video, canvas {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 20px;
-    border-bottom: 1px solid #eee;
+    padding: 1.5vh 2vw;
+    border-bottom: 0.1rem solid #eee;
 }
 
 .logo {
     font-size: 1.1rem;
     font-weight: 800;
     color: #000;
-    border-bottom: 2.5px solid #000;
-    padding-bottom: 2px;
+    border-bottom: 0.15rem solid #000;
+    padding-bottom: 0.15rem;
 }
 
 .search-box {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 0.6rem;
 }
 
 .search-text {
     font-size: 1rem;
     color: #444;
-    border-bottom: 1.5px solid #444;
-    padding-bottom: 2px;
+    border-bottom: 0.1rem solid #444;
+    padding-bottom: 0.15rem;
 }
 
 .search-icon {
-    width: 26px;
-    height: 26px;
+    width: 1.6rem;
+    height: 1.6rem;
     color: #000;
 }
 
@@ -60,7 +60,7 @@ img, video, canvas {
     display: flex;
     flex-direction: column;
     justify-content: flex-start; 
-    padding: 15vh 20px 0 20px; 
+    padding: 15vh 2vw 0 2vw; 
     position: relative;
     z-index: 10;
 }
@@ -70,26 +70,26 @@ img, video, canvas {
     font-weight: 800;
     line-height: 1.1;
     color: #000;
-    margin: 0 0 15px 0;
-    letter-spacing: -1px;
+    margin: 0 0 1.5vh 0;
+    letter-spacing: -0.05rem;
 }
 
 .sub-title {
     font-size: 1.3rem;
     font-weight: 700;
     color: #111;
-    margin: 0 0 30px 0;
+    margin: 0 0 3vh 0;
 }
 
 .tags {
     display: flex;
-    gap: 10px;
+    gap: 0.6rem;
     flex-wrap: wrap;
 }
 
 .tag {
-    border: 1.5px solid #000;
-    padding: 10px 15px;
+    border: 0.1rem solid #000;
+    padding: 0.6rem 1rem;
     display: inline-block;
 }
 
@@ -98,12 +98,12 @@ img, video, canvas {
     font-weight: 600;
     color: #000;
     text-decoration: underline;
-    text-underline-offset: 3px;
+    text-underline-offset: 0.2rem;
 }
 
 .scroll-indicator {
     position: absolute;
-    bottom: 15vh; /* Ajusté plus haut ! */
+    bottom: 15vh; 
     left: 50%;
     transform: translateX(-50%);
     color: #666;
@@ -113,8 +113,8 @@ img, video, canvas {
 
 @keyframes bounce {
     0%, 20%, 50%, 80%, 100% { transform: translateY(0) translateX(-50%); }
-    40% { transform: translateY(-10px) translateX(-50%); }
-    60% { transform: translateY(-5px) translateX(-50%); }
+    40% { transform: translateY(-1vh) translateX(-50%); }
+    60% { transform: translateY(-0.5vh) translateX(-50%); }
 }
 
 /* ================= SCROLLYTELLING ================= */
@@ -166,7 +166,7 @@ article {
 
 .step {
     height: 100dvh;
-    font-size: 20px;
+    font-size: 1.25rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -182,7 +182,7 @@ article {
 
 .step h1 {
     font-size: 2.5rem;
-    margin: 0 0 10px 0;
+    margin: 0 0 1vh 0;
 }
 
 .step p {
@@ -190,7 +190,7 @@ article {
     line-height: 1.5;
     background: rgb(255, 255, 255);
     text-align: left;
-    padding: 15px;
+    padding: 1.5rem;
     transition: border-color 0.3s;
 }
 
@@ -198,7 +198,7 @@ article {
 .spheres-container {
     position: relative; 
     width: 100%;
-    max-width: 300px; 
+    max-width: 20rem; 
     height: 50dvh; 
     margin: 0 auto; 
 }
@@ -221,24 +221,25 @@ article {
 
 .img-meres {
     top: 25%; 
-    transform: translate(-50%, 30px) scale(0.5); 
+    transform: translate(-50%, 3vh) scale(0.5); 
     opacity: 0; 
 }
 
 #spheres-animation.is-transformed .img-caf {
     opacity: 1; 
-    transform: translate(-50%, -150px) scale(0.2); 
+    transform: translate(-50%, -15vh) scale(0.2); 
 }
 
 #spheres-animation.is-transformed .img-meres {
     opacity: 1; 
     transform: translate(-50%, 0) scale(1.5); 
 }
+
 /* Conteneur principal pour la superposition */
 .quiz-superposition-container {
     position: relative; 
     width: 100%;
-    max-width: 500px;
+    max-width: 31rem;
     margin: 0 auto;
     text-align: center;
 }
@@ -256,7 +257,7 @@ article {
     top: 90%; 
     left: 50%; 
     transform: translate(-50%, -50%); 
-    width: 400px; 
+    width: 80%; 
     height: auto;
     z-index: 2; 
 }
@@ -264,26 +265,23 @@ article {
 /* Texte superposé */
 .quiz-superposition-texte {
     position: absolute;
-    bottom: 20px; 
-    left: 20px;
-    right: 20px;
+    bottom: 2vh; 
+    left: 2vw;
+    right: 2vw;
     background: rgba(255, 255, 255, 0.9); 
-    padding: 15px;
-    border-radius: 5px;
+    padding: 1rem;
+    border-radius: 0.5rem;
     z-index: 3; 
     font-size: 1.2rem;
     color: #000;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); 
+    box-shadow: 0 0.2rem 0.5rem rgba(0, 0, 0, 0.2); 
 }
 
-
-
 /* ================= QUIZ ================= */
-/* Conteneur principal du quiz */
 .quiz-container {
   width: 80%;
   margin: auto;
-  padding: 10px 20px 2px; 
+  padding: 1vh 2vw 0.5vh; 
   background: rgba(255, 255, 255, 0.9);
   font-family: Arial, sans-serif;
   text-align: center;
@@ -294,27 +292,22 @@ article {
 
 .quiz-badge {
   position: absolute;
-  top: -20px;
-  left: -20px;
-  
+  top: -1.5rem;
+  left: -1.5rem;
   background-color: #D9EDD7;
   color: #000;
-
-  padding: 10px 16px;
-  border-radius: 40px;
-
+  padding: 0.6rem 1rem;
+  border-radius: 2.5rem;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-
   font-weight: bold;
   font-size: 1.2rem;
-
   transform: rotate(-20deg);
 }
 
 .quiz-header {
-  margin-top: 20px;
+  margin-top: 1.5vh;
 }
 
 .quiz-container h2 {
@@ -327,7 +320,7 @@ article {
 .quiz-container .question {
   font-size: 1.2rem;
   line-height: 1.1;
-  margin-bottom: 10px;
+  margin-bottom: 1vh;
   background: transparent;
   padding: 0;
 }
@@ -335,16 +328,16 @@ article {
 .quiz-container .options {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  margin-bottom: 20px;
+  gap: 1vh;
+  margin-bottom: 2vh;
 }
 
 .quiz-container .option-btn {
-  padding: 15px 20px;
+  padding: 1rem 1.5vw;
   font-size: 1rem;
   background: #ffffff;
   color: #000;
-  border: 1px solid #000; 
+  border: 0.1rem solid #000; 
   cursor: pointer;
   text-align: left;
   width: 100%;
@@ -356,14 +349,14 @@ article {
 }
 
 .quiz-container .validate-btn {
-  padding: 10px 20px ;
+  padding: 1vh 1.5vw;
   background: #f0ad4e;
   font-size: 1rem;
   color: white;
   border: none;
-  border-radius: 5px;
+  border-radius: 0.3rem;
   cursor: pointer;
-  margin: 10px auto 0;
+  margin: 1vh auto 0;
   display: block;
 }
 
@@ -372,15 +365,15 @@ article {
 }
 
 .quiz-container .feedback {
-  min-height: 20px;
+  min-height: 2vh;
   font-weight: bold;
   color: #d9534f;
-  margin-bottom: 10px;
+  margin-bottom: 1vh;
 }
 
 .quiz-answer {
   display: none;
-  margin-top: 20px;
+  margin-top: 2vh;
   font-weight: bold;
 }
 
@@ -389,12 +382,12 @@ article {
 }
 
 .option-btn.selected {
-    border: 1px solid #000;
+    border: 0.1rem solid #000;
 }
 
 .flip-btn {
   position: relative;
-  perspective: 1000px;
+  perspective: 100vw;
   background: transparent;
   border: none;
   padding: 0;
@@ -405,7 +398,7 @@ article {
 .option-inner {
   position: relative;
   width: 100%;
-  min-height: 180px;
+  min-height: 20vh;
   transition: transform 0.6s;
   transform-style: preserve-3d;
 }
@@ -419,15 +412,12 @@ article {
   inset: 0;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
-  padding: 28px 30px;
+  padding: 2.5vh 3vw;
   box-sizing: border-box;
-
-  border: 1px solid #222;
+  border: 0.1rem solid #222;
   background: #f7f7f2;
   color: #000;
   text-align: left;
@@ -463,20 +453,20 @@ article {
 
 /* ================= SOURCES / FOOTER ================= */
 .credits {
-    padding: 60px 20px;
+    padding: 6vh 2vw;
     background: #111;
     color: white;
     text-align: center;
 }
 
 .credits h2 {
-    margin-top: 40px;
+    margin-top: 4vh;
     font-size: 2rem;
 }
 
 .credits p {
-    max-width: 700px;
-    margin: 10px auto;
+    max-width: 44rem;
+    margin: 1vh auto;
     line-height: 1.6;
 }
 
@@ -486,22 +476,22 @@ article {
 }
 
 .logos {
-    margin-top: 30px;
+    margin-top: 3vh;
     display: flex;
     justify-content: center;
-    gap: 40px;
+    gap: 3vw;
     flex-wrap: wrap;
 }
 
 .logos img {
-    height: 60px;
+    height: 4rem;
     background: white;
-    padding: 10px;
-    border-radius: 6px;
+    padding: 0.6rem;
+    border-radius: 0.4rem;
 }
 
 .credits-names {
-    margin-top: 30px;
+    margin-top: 3vh;
     font-size: 1rem;
     opacity: 0.8;
 }
@@ -510,7 +500,7 @@ article {
 .hacker-container {
     position: relative; 
     width: 100%;
-    max-width: 500px; 
+    max-width: 31rem; 
     height: 60dvh; 
     margin: 0 auto; 
     transition: transform 1s ease-in-out;
@@ -554,15 +544,15 @@ article {
 .marion-photos {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 1.5rem;
     align-items: center;
 }
 
 .marion-photos img {
     width: 100%;
-    max-width: 400px;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    max-width: 25rem;
+    border-radius: 0.6rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
 }
 
 @media (min-width: 768px) {
@@ -616,9 +606,9 @@ article {
     left: 50%;
     transform: translate(-50%, -50%);
     width: 100%;
-    max-width: 500px; 
+    max-width: 31rem; 
     height: 60dvh; 
-    z-index: 2; /* S'affiche par dessus l'image main.jpg */
+    z-index: 2; 
     pointer-events: none;
 }
 
@@ -627,39 +617,35 @@ article {
     top: 50%;
     left: 50%; 
     height: auto; 
-    mix-blend-mode: multiply; /* Rend le fond blanc transparent */
+    mix-blend-mode: multiply; 
 }
 
-/* Image 1 (La femme) */
 .img-femme {
     width: 100%; 
     transform: translate(-50%, -50%); 
-    opacity: 0; /* Invisible au début de la scène */
+    opacity: 0; 
     transition: opacity 0.5s ease-in-out;
     z-index: 1; 
 }
 
-/* Image 2 (La fléchette) */
 .img-flechette {
-    width: 30%; /* Taille de la fléchette */
+    width: 30%; 
     z-index: 2; 
-    transform: translate(-50%, 200%); /* Cachée en bas */
+    transform: translate(-50%, 200%); 
     opacity: 0; 
     transition: transform 0.8s ease-out, opacity 0.5s ease-in; 
 }
 
-/* État déclenché 1 : La femme apparaît */
 #target-animation.is-visible .img-femme {
     opacity: 1; 
 }
 
-/* État déclenché 2 : La fléchette remonte et frappe */
 #target-animation.is-hit .img-flechette {
-    transform: translate(-50%, -50%); /* Remonte au centre */
+    transform: translate(-50%, -50%); 
     opacity: 1; 
 }
 
-
+/* ================= ANIMATION ARGENT ================= */
 #animation-argent{
   position: relative;
   width: 100%;
@@ -667,37 +653,33 @@ article {
 }
 
 #marion-argent{
-  position:absolute;
-  bottom:0;
-  width:250px;
+  position: absolute;
+  bottom: 0;
+  width: 15.5rem;
 }
 
 #argent{
-  position:absolute;
-  bottom:120px;
-  left:15%;
-  width:120px;
-  opacity:0;
+  position: absolute;
+  bottom: 15vh;
+  left: 15%;
+  width: 7.5rem;
+  opacity: 0;
 }
 
-/* état visible */
 #animation-argent.visible #argent{
   animation: argentFly 3s ease forwards;
 }
 
-/* animation des billets */
 @keyframes argentFly{
   0%{
     transform: translateY(0) rotate(0deg);
-    opacity:0;
+    opacity: 0;
   }
-
   20%{
-    opacity:1;
+    opacity: 1;
   }
-
   100%{
-    transform: translateY(-300px) rotate(360deg);
-    opacity:0;
+    transform: translateY(-30vh) rotate(360deg);
+    opacity: 0;
   }
 }
