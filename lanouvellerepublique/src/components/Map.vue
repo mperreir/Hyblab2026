@@ -276,8 +276,6 @@ watch(restaurants, (list) => {
 
 .restaurant-carousel-wrapper--detail {
     position: absolute;
-    left: 0rem;
-    right: 0rem;
     bottom: 0;
     top: 5rem;
 

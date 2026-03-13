@@ -40,8 +40,8 @@ const clearAll = () => {
 const apply = () => {
   emit('apply', {
     coupDeCoeur: coupDeCoeur.value,
-    dietary: selectedDietary.value,
-    cuisine: selectedCuisine.value,
+    diet: selectedDietary.value,
+    cuisine_type: selectedCuisine.value,
     ambiance: selectedAmbiance.value,
     budget: selectedBudget.value,
     service: selectedService.value,

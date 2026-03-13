@@ -31,7 +31,7 @@ const sortedRestaurants = computed(() =>
       v-for="restaurant in sortedRestaurants"
       :key="restaurant.name"
       :title="restaurant.hook || restaurant.name"
-      :image="restaurant.image || ''"
+      :image="restaurant.image"
       :badges="restaurant.badges || []"
       :date="restaurant.date || ''"
     >

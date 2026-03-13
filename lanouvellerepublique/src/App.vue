@@ -18,10 +18,6 @@ const onFiltersApply = (appliedFilters) => {
     filterStore.applyFilters(appliedFilters)
 }
 
-onMounted(() => {
-    filterStore.fetchRestaurantCategories()
-})
-
 const inactiveBg = "transparent"
 const inactiveColor = COLORS.switchTextBlue
 const activeBg = COLORS.pinkSwitch
