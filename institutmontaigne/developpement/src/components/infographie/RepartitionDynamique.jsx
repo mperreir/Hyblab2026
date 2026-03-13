@@ -1,110 +1,157 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 import DoughnutChart from './DoughnutChart.jsx';
+import { PATH_PUBLIC } from '../../data/debate.jsx';
 
-const DEFAULT_LABELS = [
-	'La repartition reelle des voix',
-	'Le choix de la circonscription',
-	'Le degre de proportionnelle',
-	'Le seuil',
-];
+function hexToGreyscale(hex) {
+	if (!hex || hex.length < 7) return '#888888';
+	const r = parseInt(hex.slice(1, 3), 16);
+	const g = parseInt(hex.slice(3, 5), 16);
+	const b = parseInt(hex.slice(5, 7), 16);
+	const grey = Math.round(0.299 * r + 0.587 * g + 0.114 * b);
+	const h = grey.toString(16).padStart(2, '0');
+	return `#${h}${h}${h}`;
+}
 
-const DEFAULT_REPARTITIONS = [
-	[
-		{ label: '', percentage: 13, color: '#4D5BC0' },
-		{ label: '', percentage: 5, color: '#93A7CF' },
-		{ label: '', percentage: 5, color: '#A8DCC8' },
-		{ label: '', percentage: 4, color: '#CFE172' },
-		{ label: '', percentage: 10, color: '#005944' },
-		{ label: '', percentage: 3, color: '#CFE172' },
-		{ label: '', percentage: 4, color: '#A8DCC8' },
-		{ label: '', percentage: 4, color: '#93A7CF' },
-		{ label: '', percentage: 12, color: '#4D5BC0' },
-		{ label: '', percentage: 8, color: '#FF6A00' },
-	],
-	[
-		{ label: '', percentage: 15, color: '#4D5BC0' },
-		{ label: '', percentage: 4, color: '#93A7CF' },
-		{ label: '', percentage: 4, color: '#A8DCC8' },
-		{ label: '', percentage: 5, color: '#93A7CF' },
-		{ label: '', percentage: 9, color: '#4D5BC0' },
-		{ label: '', percentage: 7, color: '#FF6A00' },
-	],
-	[
-		{ label: '', percentage: 10, color: '#4D5BC0' },
-		{ label: '', percentage: 5, color: '#93A7CF' },
-		{ label: '', percentage: 10, color: '#4D5BC0' },
-		{ label: '', percentage: 6, color: '#FF6A00' },
-	],
-	[
-		{ label: '', percentage: 12, color: '#4D5BC0' },
-		{ label: '', percentage: 5, color: '#93A7CF' },
-		{ label: '', percentage: 5, color: '#A8DCC8' },
-		{ label: '', percentage: 4, color: '#CFE172' },
-		{ label: '', percentage: 10, color: '#005944' },
-		{ label: '', percentage: 4, color: '#CFE172' },
-		{ label: '', percentage: 5, color: '#A8DCC8' },
-		{ label: '', percentage: 4, color: '#93A7CF' },
-		{ label: '', percentage: 9, color: '#4D5BC0' },
-		{ label: '', percentage: 7, color: '#FF6A00' },
-	],
-];
-
-const PILL_COLORS = ['#4D5BC0', '#F35A25', '#005944', '#A8B352'];
-
-export default function RepartitionDynamique({
-	labels = DEFAULT_LABELS,
-	repartitions = DEFAULT_REPARTITIONS,
-	className = '',
-}) {
-	const safeLabels = useMemo(
-		() => (Array.isArray(labels) && labels.length > 0 ? labels : DEFAULT_LABELS),
-		[labels],
+function ChartView({ title, segments, seats }) {
+	return (
+		<div className="w-full">
+			{title && <p className="mb-2 text-center font-bold">{title}</p>}
+			<DoughnutChart className="h-40 w-full" segments={segments} seats={seats} />
+		</div>
 	);
+}
 
-	const safeRepartitions = useMemo(() => {
-		if (!Array.isArray(repartitions) || repartitions.length === 0) {
-			return DEFAULT_REPARTITIONS;
-		}
+function GifView({ src, alt }) {
+	return (
+		<div className="flex w-full justify-center py-6">
+			<img src={src} alt={alt ?? ''} className="max-h-64 object-contain" />
+		</div>
+	);
+}
 
-		return repartitions;
+function AlternatingView({ title, repartitions, seats }) {
+	const [current, setCurrent] = useState(0);
+
+	useEffect(() => {
+		if (!Array.isArray(repartitions) || repartitions.length < 2) return;
+		const interval = setInterval(() => {
+			setCurrent((prev) => (prev + 1) % repartitions.length);
+		}, 2000);
+		return () => clearInterval(interval);
 	}, [repartitions]);
 
-	const [selectedIndex, setSelectedIndex] = useState(0);
+	const segments = repartitions?.[current] ?? [];
 
-	const maxSelectableIndex = Math.min(safeLabels.length, safeRepartitions.length) - 1;
-	const activeIndex = Math.min(selectedIndex, Math.max(maxSelectableIndex, 0));
-	const currentSegments = safeRepartitions[activeIndex] ?? [];
+	return (
+		<div className="w-full">
+			{title && <p className="mb-2 text-center font-bold">{title}</p>}
+			<DoughnutChart className="h-40 w-full" segments={segments} seats={seats} />
+		</div>
+	);
+}
+
+const BASE_SEGMENTS = [
+	{ label: 'NFP', percentage: 26, color: '#4D5BC0' },
+	{ label: 'LREM', percentage: 5, color: '#93A7CF' },
+	{ label: 'LR', percentage: 5, color: '#A8DCC8' },
+	{ label: 'PS', percentage: 4, color: '#CFE172' },
+	{ label: 'EELV', percentage: 10, color: '#005944' },
+	{ label: 'Div.', percentage: 3, color: '#89C9A0' },
+	{ label: 'UDI', percentage: 4, color: '#A8DCC8' },
+	{ label: 'LFI', percentage: 4, color: '#93A7CF' },
+	{ label: 'RN', percentage: 12, color: '#4D5BC0' },
+	{ label: 'RN+', percentage: 8, color: '#FF6A00' },
+];
+
+const DEFAULT_ITEMS = [
+	{
+		label: 'La répartition réelle des voix',
+		color: '#4D5BC0',
+		type: 'chart',
+		title: 'Répartition réelle des voix',
+		segments: BASE_SEGMENTS,
+	},
+	{
+		label: 'Le choix de la circonscription',
+		color: '#F35A25',
+		type: 'gif',
+		src: `./img/france-circonception.gif`,
+		alt: 'Choix de la circonscription',
+	},
+	{
+		label: 'Le degré de proportionnelle',
+		color: '#005944',
+		type: 'alternating',
+		seats: 74,
+		title: 'Selon le degré de proportionnelle',
+		repartitions: [
+			[
+				{ label: 'NFP', percentage: 15, color: '#4D5BC0' },
+				{ label: 'LR', percentage: 7, color: '#93A7CF' },
+				{ label: 'EELV', percentage: 6, color: '#A8DCC8' },
+				{ label: 'LREM', percentage: 9, color: '#005944' },
+				{ label: 'RN', percentage: 9, color: '#4D5BC0' },
+				{ label: 'RN+', percentage: 7, color: '#FF6A00' },
+			],
+			[
+				{ label: 'NFP', percentage: 10, color: '#4D5BC0' },
+				{ label: 'LR', percentage: 5, color: '#93A7CF' },
+				{ label: 'PS', percentage: 12, color: '#A8DCC8' },
+				{ label: 'LREM', percentage: 7, color: '#CFE172' },
+				{ label: 'RN', percentage: 10, color: '#4D5BC0' },
+				{ label: 'RN+', percentage: 6, color: '#FF6A00' },
+			],
+		],
+	},
+	{
+		label: 'Le seuil',
+		color: '#A8B352',
+		type: 'chart',
+		seats: 0,
+		title: 'Impact du seuil électoral',
+		segments: BASE_SEGMENTS.map((s) => ({ ...s, color: hexToGreyscale(s.color) })),
+	},
+];
+
+export default function RepartitionDynamique({ items = DEFAULT_ITEMS, className = '' }) {
+	const [selectedIndex, setSelectedIndex] = useState(0);
+	const activeItem = items[Math.min(selectedIndex, items.length - 1)] ?? items[0];
 
 	return (
 		<section className={className}>
 			<div className="mx-auto flex w-full max-w-[900px] flex-col items-center">
 				<div className="flex w-full flex-col items-center gap-2">
-					{safeLabels.slice(0, maxSelectableIndex + 1).map((label, index) => {
-						const color = PILL_COLORS[index % PILL_COLORS.length];
-						const isSelected = index === activeIndex;
-
+					{items.map((item, index) => {
+						const isSelected = index === selectedIndex;
 						return (
 							<button
-								key={`${label}-${index}`}
+								key={`${item.label}-${index}`}
 								type="button"
 								onClick={() => setSelectedIndex(index)}
 								style={{
-									color: isSelected ? '#F6F5F1' : color,
-									borderColor: color,
-									backgroundColor: isSelected ? color : 'transparent',
+									color: isSelected ? '#F6F5F1' : item.color,
+									borderColor: item.color,
+									backgroundColor: isSelected ? item.color : 'transparent',
 								}}
 								className="rounded-full border-2 px-8 py-2 text-center font-bold leading-none transition-colors duration-200"
 							>
-								{label}
+								{item.label}
 							</button>
 						);
 					})}
 				</div>
 
-				<DoughnutChart
-					className="h-40 my-6 w-full"
-					segments={currentSegments}
-				/>
+				<div className="my-6 mt-10 w-full">
+					{activeItem.type === 'chart' && (
+						<ChartView title={activeItem.title} segments={activeItem.segments ?? []} seats={activeItem.seats ?? null} />
+					)}
+					{activeItem.type === 'gif' && (
+						<GifView src={activeItem.src ?? ''} alt={activeItem.alt ?? ''} />
+					)}
+					{activeItem.type === 'alternating' && (
+						<AlternatingView title={activeItem.title} repartitions={activeItem.repartitions ?? []} seats={activeItem.seats ?? null} />
+					)}
+				</div>
 			</div>
 		</section>
 	);

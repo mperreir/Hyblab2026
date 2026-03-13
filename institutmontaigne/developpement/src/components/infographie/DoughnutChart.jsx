@@ -19,10 +19,10 @@ function buildSegmentLabel(label, percentage) {
 		return '';
 	}
 
-	return `${label} ${percentage}%`;
+	return `${percentage}`;
 }
 
-export default function DoughnutChart({ segments = DEFAULT_SEGMENTS, className = '' }) {
+export default function DoughnutChart({ segments = DEFAULT_SEGMENTS, className = '', seats = null }) {
 	const safeSegments = segments
 		.filter((segment) => segment && Number.isFinite(segment.percentage) && segment.percentage >= 0)
 		.map((segment) => ({
@@ -54,10 +54,21 @@ export default function DoughnutChart({ segments = DEFAULT_SEGMENTS, className =
 				const x = arc.x + Math.cos(angle) * radius;
 				const y = arc.y + Math.sin(angle) * radius;
 
-				ctx.fillStyle = '#1F2937';
-				ctx.font = '600 14px "Source Sans Pro", sans-serif';
+				ctx.fillStyle = '#FFFFFF';
+				ctx.font = '600 14px "Helvetica", sans-serif';
 				ctx.fillText(String(label), x, y);
 			});
+
+			if (seats !== null && seats !== undefined) {
+				const firstArc = meta.data[0];
+				if (firstArc) {
+					ctx.textAlign = 'center';
+					ctx.textBaseline = 'middle';
+					ctx.fillStyle = '#0B1D3A';
+					ctx.font = `700 14px "Helvetica", sans-serif`;
+					ctx.fillText(String(seats)+" sièges", firstArc.x, firstArc.y-20);
+				}
+			}
 
 			ctx.restore();
 		},

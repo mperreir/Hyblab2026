@@ -1,3 +1,5 @@
+import { PATH_PUBLIC } from "../data/debate";
+
 const TEAM_MEMBERS = [
 	['Gabriel Teigné', 'https://inquisitseo.com'],
 	['Soizic Menuet', ''],
@@ -28,18 +30,18 @@ export default function Footer() {
 				</p>
 				<div className="max-w-6xl mx-auto pb-6">
 					<a href="http://www.hyblab.fr/" className="block w-fit mx-auto">
-						<img id="hyblab" src="/logos/logo_hyblab.png" alt="Hyblab DataSport" className="h-8 w-auto" />
+						<img id="hyblab" src={`${PATH_PUBLIC}/logos/logo_hyblab.png`} alt="Hyblab DataSport" className="h-8 w-auto" />
 					</a>
 
 					<ul className="mt-4 flex flex-wrap items-center justify-center gap-4">
 						<li>
 							<a href="https://lecolededesign.com/">
-								<img src="/logos/logo_edna.png" alt="Ecole de Design Nantes Atlantique" className="h-6 w-auto" />
+								<img src={`${PATH_PUBLIC}/logos/logo_edna.png`} alt="Ecole de Design Nantes Atlantique" className="h-6 w-auto" />
 							</a>
 						</li>
 						<li>
 							<a href="https://www.polytech.univ-nantes.fr/">
-								<img src="/logos/logo_polytech.png" alt="Polytech Nantes" className="h-6 w-auto" />
+								<img src={`${PATH_PUBLIC}/logos/logo_polytech.png`} alt="Polytech Nantes" className="h-6 w-auto" />
 							</a>
 						</li>
 					</ul>
@@ -47,29 +49,29 @@ export default function Footer() {
 					<ul className="mt-4 flex flex-wrap items-center justify-center gap-4">
 						<li>
 							<a href="https://www.ouestmedialab.fr/">
-								<img src="/logos/logo_oml.png" alt="Ouest Medialab" className="h-6 w-auto" />
+								<img src={`${PATH_PUBLIC}/logos/logo_oml.png`} alt="Ouest Medialab" className="h-6 w-auto" />
 							</a>
 						</li>
 						<li>
 							<ul>
 								<li className="stacked">
-									<img id="cc" src="/logos/logo_cc.png" alt="Creative commons" className="h-4 w-auto" />
+									<img id="cc" src={`${PATH_PUBLIC}/logos/logo_cc.png`} alt="Creative commons" className="h-4 w-auto" />
 								</li>
 								<li className="stacked mt-1">
-									<img id="opensource" src="/logos/logo_opensource.png" alt="Open source" className="h-4 w-auto" />
+									<img id="opensource" src={`${PATH_PUBLIC}/logos/logo_opensource.png`} alt="Open source" className="h-4 w-auto" />
 								</li>
 							</ul>
 						</li>
 						<li>
 							<a href="https://www.mon-porteur-de-projet.org">
-								<img src="/logos/no-logo.png" alt="Logo de mon porteur de projet" className="h-6 w-auto" />
+								<img src={`${PATH_PUBLIC}/logos/no-logo.png`} alt="Logo de mon porteur de projet" className="h-6 w-auto" />
 							</a>
 						</li>
 						<li>
 							<a href="https://www.nantesmetropole.fr/">
 								<img
 									className="institutionnel h-8 w-auto"
-									src="/logos/logo_nantesmetropole.png"
+									src={`${PATH_PUBLIC}/logos/logo_nantesmetropole.png`}
 									alt="Nantes Metropole"
 								/>
 							</a>

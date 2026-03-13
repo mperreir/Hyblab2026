@@ -1,6 +1,36 @@
+import { useEffect, useRef, useState } from 'react';
+
 export default function Manuscrit({ surrounded = true, children }) {
+	const ref = useRef(null);
+	const [visible, setVisible] = useState(false);
+	const delay = useRef(0.8 + Math.random() * 0.4);
+
+	useEffect(() => {
+		const el = ref.current;
+		if (!el) return;
+
+		const observer = new IntersectionObserver(
+			([entry]) => {
+				if (entry.isIntersecting) {
+					setVisible(true);
+					observer.disconnect();
+				}
+			},
+			{ threshold: 0.5 },
+		);
+
+		observer.observe(el);
+		return () => observer.disconnect();
+	}, []);
+
+	const drawStyle = {
+		strokeDasharray: '1',
+		strokeDashoffset: visible ? '0' : '1',
+		transition: visible ? `stroke-dashoffset 0.7s cubic-bezier(0.22, 1, 0.36, 1) ${delay.current.toFixed(3)}s` : 'none',
+	};
+
 	return (
-		<span style={{ position: 'relative', display: 'inline', padding: surrounded ? '4px 8px' : '0 0 6px' }}>
+		<span ref={ref} style={{ position: 'relative', display: 'inline', padding: surrounded ? '4px 8px' : '0 0 6px' }}>
 			{children}
 			{surrounded ? (
 				<svg
@@ -11,18 +41,31 @@ export default function Manuscrit({ surrounded = true, children }) {
 					aria-hidden="true"
 					style={{ position: 'absolute', top: '4px', left: 0, width: '100%', height: '100%', pointerEvents: 'none', overflow: 'visible' }}
 				>
-					<path d="M25.5641 28.26C42.8666 27.6753 100.173 25.1475 100.002 12.5383C99.74 -6.8369 -9.59644 -0.165142 1.25822 13.8758C10.565 25.9145 43.7938 27.6628 56.66 30.4662" stroke="#4657C6" strokeLinecap="round"/>
+					<path
+						d="M25.5641 28.26C42.8666 27.6753 100.173 25.1475 100.002 12.5383C99.74 -6.8369 -9.59644 -0.165142 1.25822 13.8758C10.565 25.9145 43.7938 27.6628 56.66 30.4662"
+						stroke="#4657C6"
+						strokeLinecap="round"
+						pathLength="1"
+						style={drawStyle}
+					/>
 				</svg>
 			) : (
 				<svg
-					viewBox="0 0 456 16"
+					viewBox="0 0 456 10"
 					fill="none"
 					xmlns="http://www.w3.org/2000/svg"
 					preserveAspectRatio="none"
 					aria-hidden="true"
-					style={{ position: 'absolute', bottom: '-4px', left: 0, width: '100%', height: '10px', pointerEvents: 'none' }}
+					style={{ position: 'absolute', bottom: '0px', left: 0, width: '100%', height: '8px', pointerEvents: 'none' }}
 				>
-					<path d="M1.00051 14.5594C48.0325 7.36678 115.5 1.00018 196.995 0.99981C262.227 0.999511 380.727 4.07127 454.306 14.5592" stroke="#4657C6" strokeWidth="2" strokeLinecap="round"/>
+					<path
+						d="M2 8C90 5 185 3 275 4.5C355 5.8 415 7 454 7.5"
+						stroke="#4657C6"
+						strokeWidth="2"
+						strokeLinecap="round"
+						pathLength="1"
+						style={drawStyle}
+					/>
 				</svg>
 			)}
 		</span>

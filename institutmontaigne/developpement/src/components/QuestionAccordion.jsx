@@ -109,6 +109,7 @@ export default function QuestionAccordion({ questions, intervenants, onQuestionO
 
   return (
     <section className="bg-white ">
+      <p className="text-center text-montaigne-burgundy text-lg font-helvetica font-bold font-italic mb-6">LES CHAPITRES DE L'ARTICLE</p> 
       <div className="w-full pt-10 px-4">
         {questions.map((q, i) => (
           <QuestionItem
@@ -524,7 +525,7 @@ const QuestionItem = forwardRef(function QuestionItem(
   );
 });
 
-const SPEAKER_COLORS = ['#DD7375', '#872339'];
+const SPEAKER_COLORS = ['#AC7DD1', '#872339'];
 
 function DialogueCard({ block, intervenantIndex, isLastDialogue }) {
   const ref = useRef(null);
@@ -562,6 +563,7 @@ function DialogueCard({ block, intervenantIndex, isLastDialogue }) {
           const borderColor = SPEAKER_COLORS[intervenantIndex] ?? '#888888';
           return isValidElement(para) ? (
             <div
+            key={k}
             className={`last:mb-0 text-[15px] md:text-base leading-[1.85] py-3 ${
                 isLeft ? 'pl-4 border-l-4' : 'pr-4 border-r-4'
               }`}
