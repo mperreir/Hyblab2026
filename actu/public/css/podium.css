@@ -102,13 +102,8 @@ html, body {
 
 .podium-svg {
   position: absolute; 
-  /* top: -18%;
-  left: 3%;
-  width: 94%;
-  height: 100%; */
   top: 25%;
   width: 90%;
-  /* box-shadow: var(--card-shadow); */
   filter: drop-shadow(var(--podium-shadow));
   z-index: 0; 
 }
