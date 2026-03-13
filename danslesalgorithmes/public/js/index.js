@@ -128,6 +128,7 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById("animation-argent").classList.add("visible");
       }
 
+
     });
 
   window.addEventListener("resize", scroller.resize);

@@ -121,9 +121,6 @@
 
         <section class="scene"> 
             <div class="bg-container" style="display: flex; align-items: center; justify-content: center; background-color: rgba(252, 250, 212, 1);">
-                
-                <video id="temoignage-video" class="bg-media" src="video/PinVideoDownloader.net-video.mp4" autoplay loop muted playsinline style="opacity: 0; transition: opacity 1s ease-in-out; z-index: 1;"></video>
-                
                 <div class="hacker-container" id="hacker-animation" style="z-index: 2;">
                     <img src="img/mere_hack.png" alt="Mère Marion" class="img-mere_hack">
                     <img src="img/anonymous.png" alt="Masque Anonymous" class="img-anonymous">
@@ -144,7 +141,7 @@
                 
                 <div class="step step-hacker-end">
                     <div class="step-content">
-                        <p>Écoutons un témoignage.</p>
+                        <p>Pour mieux comprendre, écoutons le témoignage de Marion, inspiré de clui recueilli par l'émission "Les Pieds sur Terre" de France Culture</p>
                     </div>
                 </div>
 
@@ -154,6 +151,9 @@
                     <div class="step-content" data-audio="audio/DLA-1.mp3">
                         <div class="marion-photos">
                             <img src="img/marion_souri.png" alt="Marion sourit">
+                        </div>
+                        <div class="marion-photos" data-audio="audio/DLA-2.mp3">
+                            <img src="img/marion_notification_caf.png" alt="Marion reçoit une notification">
                         </div>
                     </div>
                 </div>
@@ -187,13 +187,12 @@
                         <p>Il ne détecte pas une fraude intentionnelle, comme le laisse supposer le terme de fraude, mais un risque d'indu, c'est-à-dire le fait que la CAF ait versé trop d'argent à un bénéficiaire. Ce que la CAF calcule, c'est le risque d'avoir perçu « 600 euros d'allocations en trop sur les 6 derniers mois ».</p>
                     </div>
                 </div>
-
-                <div> <img src="img/aide_argent.png" alt="Don d'argent de la CAF"> </div>
+                
 
                 <div class="step step-testimony">
-                    <div class="step-content" data-audio="audio/DLA-3.mp3">
-                      <p style="font-style: italic;">"Je dois déclarer mes ressources tous les mois. Mais ce n'est pas toujours simple. Mon fils travaille l'été. Je reçois parfois une pension. Je fais parfois des heures en plus. J'hésite sur la déclaration"</p>
-                    </div>
+                    <div class="step-content">
+                        <img src="img/aide_argent.png" alt="Don d'argent de la CAF"> 
+                     </div>
                 </div>
 
                 <div class="step step-testimony">
@@ -226,12 +225,6 @@
             
             <article>
                 <div style="height: 100dvh;"></div>
-                
-                <div class="step">
-                    <div class="step-content" data-audio="audio/DLA-3.mp3">
-                      <p style="font-style: italic;">"Je dois déclarer mes ressources tous les mois. Mais ce n'est pas toujours simple. Mon fils travaille l'été. Je reçois parfois une pension. Je fais parfois des heures en plus. J'hésite vraiment sur la déclaration"</p>
-                    </div>
-                </div>
 
                 <div class="step">
                     <div class="step-content">
@@ -243,6 +236,7 @@
                     <div class="step-content">
                       <p>Dans cette situation, <strong>nous ne sommes pas du tout dans ce que l'imaginaire politique appelle de la fraude sociale.</strong> Nous sommes bien plus dans la difficulté des calculs de revenus complexes car aléatoires et entremêlés d'aides sociales, que confrontés à une fraude massive et volontaire des bénéficiaires.</p>
                     </div>
+                    <div><img src = "img/aides sociales.png"></div>
                 </div>
 
                 <div class="step">
@@ -250,6 +244,20 @@
                       <p>Si l'on en croit le score de risque de fraude de la CAF, <strong>les mères isolées sont celles qui sont parmi les publics les plus à même de frauder la CAF</strong> : si elles ne représentent que 14% des allocataires en 2024, elles représentent 40% des plus hauts scores de risque de fraude selon l'algorithme de la CAF.</p>
                     </div>
                 </div>
+
+                <section class="scene"> 
+                    <div class="bg-container" style="display: flex; align-items: center; justify-content: center;">
+                        <div class="spheres-container" id="spheres-animation">
+                            <img src="img/allocataires_caf.png" alt="Allocataires de la CAF" class="img-caf">
+                            <img src="img/meres_isolees.png" alt="Mères isolées 14%" class="img-meres">
+                        </div>
+                    </div>
+                    
+                    <article>
+                        <div class="step step-caf" style="height: 100dvh;"></div>
+                        <div class="step step-meres" style="height: 100dvh;"></div>
+                    </article>
+                </section>
 
                 <div class="step step-femme-show">
                     <div class="step-content">
@@ -269,7 +277,7 @@
                 </div>
 
                 <div class="step"> 
-                    <div class="step-content">
+                    <div class="step-content"  data-audio="audio/DLA-3.mp3">
                         <img src="img/femme_embetee.png" alt="Une femme entourée par deux hommes" style="width: 100%; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);"> 
                     </div>
                 </div>
@@ -285,19 +293,21 @@
 
                 <div class="step" data-image="img/foyer_benificiaire.png" >
                     <div class="step-content" data-audio="audio/DLA-4.mp3">
-                        <p style="font-style: italic;">
-                            « Le contrôle se termine. Je n'ai pas fraudé.
-                            Mais la CAF estime que j'ai touché 300 € en trop.
-                            Toutes mes aides sont immédiatement suspendues. Je ne comprends vraiment pas c'est injuste »
-                        </p>
                     </div>
                 </div>
 
                 <div class="step" data-image="img/foyer_benificiaire.png" >
                     <div class="step-content" data-audio="audio/DLA-5.mp3">
-                        <p style="font-style: italic;">
-                            "Malheureusement mon histoire n'a rien d'exceptionnel , beaucoup d'allocataires comme moi sont concernés par le score de risque attribué par l'algorithme de la CAF, qui touche plus fréquemment les personnes en situation précaires."
-                        </p>
+                    </div>
+                </div>
+
+                
+                <div class="step step-argent-trigger">
+                    <div class="step-content">
+                        <div id = "animation-argent" class = "is-hidden">
+                            <img src="img/marion_perte_argent.png" alt="Marion atterrée d'avoir perdu ses aides" id="marion-argent">
+                            <img src="img/argent_perdu.png" alt="Une liasse de billets qui s'envolent" id="argent">
+                        </div>
                     </div>
                 </div>
 
@@ -321,34 +331,6 @@
             
             <article>
                 <div style="height: 100dvh;"></div>
-                
-
-                <div class="step" data-audio="audio/DLA - 4.mp3">
-                    <div class="step-content">
-                        <p style="font-style: italic;">« Pendant le contrôle, ils ont regardé mes comptes. Ils m'ont demandé de justifier des virements. Même de petits montants. »</p>
-                    </div>
-                </div>
-
-                <div class="step" data-audio="audio/DLA - 5.mp3">
-                    <div class="step-content">
-                        <p style="font-style: italic;">« Le contrôle se termine. Je n'ai pas fraudé. Mais la CAF estime que j'ai touché 300 € en trop. Toutes mes aides sont immédiatement suspendues. »</p>
-                    </div>
-                </div>
-                
-                <div class="step step-argent-trigger">
-                    <div class="step-content">
-                        <div id = "animation-argent" class = "is-hidden">
-                            <img src="img/marion_perte_argent.png" alt="Marion atterrée d'avoir perdu ses aides" id="marion-argent">
-                            <img src="img/argent_perdu.png" alt="Une liasse de billets qui s'envolent" id="argent">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="step">
-                    <div class="step-content">
-                        <p>Effectivement, les mères isolées, qui se voient couper leurs aides pour des indus aux montants très faibles, qui subissent des contrôles répétés et envahissants, sont aujourd'hui désignées comme les principales fraudeuses de la CAF.</p>
-                    </div>
-                </div>
 
 
                 <div class="step quiz-step">
@@ -371,15 +353,23 @@
 
                 <div class="step">
                     <div class="step-content">
-                        <p>On estime que, du fait d'un fort taux de non-recours, c'est-à-dire de personnes qui n'activent pas les droits auxquels elles pourraient prétendre, c'est 3 milliards d'euros qui ne sont pas versés à des personnes éligibles au RSA, soit de quoi couvrir le taux de fraude des allocataires détectés par la CAF.</p>
+                        <p>Ce que montrent ces chiffres, c'est que ce ne sont pas les plus pauvres qui fraudent le plus, contrairement à ce que cherche à montrer le score de risque de fraude de la CAF</p>
                     </div>
                 </div>
 
                 <div class="step">
                     <div class="step-content">
-                        <p>Ce que montrent ces chiffres, c'est que ce ne sont pas les plus pauvres qui fraudent le plus. La lutte contre la fraude sociale des allocataires apparaît bien moins pertinente que la lutte contre les cotisations dissimulées ou la fraude fiscale.</p>
+                        <p>La lutte contre la fraude sociale des allocataires est moins pertinente que la lutte contre les cotisations dissimulées. Et que lutter contre la fraude sociale est bien moins efficace que lutter contre la fraude fiscale.</p>
                     </div>
+                     <img src="img/fraude fiscale bitmap.png">
+                     
+                     <img src="img/fraude sociale_.png">
+                     
+                     <img src="img/loupe.png">
                 </div>
+
+               
+
 
                 <div style="height: 100dvh;"></div>
             </article>
@@ -427,38 +417,18 @@
             </article>
         </section>
 
-        <section class="scene"> 
-            <div class="bg-container" style="display: flex; align-items: center; justify-content: center;">
-                <div class="spheres-container" id="spheres-animation">
-                    <img src="img/allocataires_caf.png" alt="Allocataires de la CAF" class="img-caf">
-                    <img src="img/meres_isolees.png" alt="Mères isolées 14%" class="img-meres">
-                </div>
-            </div>
-            
-            <article>
-                <div class="step step-caf" style="height: 100dvh;"></div>
-                <div class="step step-meres" style="height: 100dvh;"></div>
-            </article>
-        </section>
+        
 
         <section class="scene">
-            <div class="bg-container">
-                <video class="bg-media" src="video/PinVideoDownloader.net-video.mp4" autoplay loop muted playsinline></video>
-            </div>
             
             <article>
                 <div style="height: 100dvh;"></div>
-
-                <div class="step">
-                    <div class="step-content">
-                        <p>Les mères isolées, qui se voient couper leurs aides pour des indus aux montants très faibles, qui subissent des contrôles répétés et envahissants, sont aujourd'hui désignées comme les fraudeuses de la CAF.</p>
-                    </div>
-                </div>
 
                 <div class="step" data-audio="audio/son_amongUS.mp3">
                     <div class="step-content">
                         <p>Assurément, le contrôle se trompe de cible.<br><br>Écoutons-les !</p>
                     </div>
+                     <img src="img/marion_présentation.png">
                 </div>
 
                 <div style="height: 100dvh;"></div>
