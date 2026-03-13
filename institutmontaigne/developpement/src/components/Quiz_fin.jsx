@@ -76,20 +76,23 @@ export default function QuizFin({ onScoreComputed }) {
     const updateCardHeight = () => {
       const heights = measureRefs.current
         .filter(Boolean)
-        .map((element) => element.getBoundingClientRect().height);
-
+        .map((el) => el.getBoundingClientRect().height);
       if (heights.length > 0) {
         setCardHeight(Math.ceil(Math.max(...heights)));
       }
     };
 
-    const frame = window.requestAnimationFrame(updateCardHeight);
-    window.addEventListener('resize', updateCardHeight);
+    // ResizeObserver catches font-load, viewport, and orientation changes
+    // that a plain 'resize' listener misses on mobile.
+    const ro = new ResizeObserver(updateCardHeight);
+    measureRefs.current.filter(Boolean).forEach((el) => ro.observe(el));
 
-    return () => {
-      window.cancelAnimationFrame(frame);
-      window.removeEventListener('resize', updateCardHeight);
-    };
+    // Also observe the document body width (handles address-bar show/hide).
+    ro.observe(document.documentElement);
+
+    updateCardHeight();
+
+    return () => ro.disconnect();
   }, []);
 
   useEffect(() => {
@@ -100,9 +103,95 @@ export default function QuizFin({ onScoreComputed }) {
 
   if (allQuestionsAnswered) return null;
 
+  const QUIZ_BLUE = '#4657C6';
+
+  const renderCardBody = (question, idx, isInteractive = false) => (
+    <div className="w-full h-full bg-white rounded-[24px] border border-[#D9DFEF] overflow-hidden flex flex-col">
+      <div className="bg-[#4657C6] px-6 py-7 sm:px-7 sm:py-8">
+        <h1 className="text-white uppercase tracking-[0.02em] text-[1.30rem] sm:text-[1.15rem] font-bold leading-[1.05]">
+          Votre avis sur le débat
+        </h1>
+      </div>
+
+      <div className="px-5 sm:px-6 pt-4 pb-6 flex-1 flex flex-col bg-white">
+        <div className="flex items-center justify-between mb-5">
+          <div className="h-1 rounded-full flex-1 mr-3 bg-[#D9DFEF] overflow-hidden">
+            <div
+              className="h-full rounded-full transition-all duration-500"
+              style={{ width: `${((idx + 1) / questions.length) * 100}%`, backgroundColor: QUIZ_BLUE }}
+            />
+          </div>
+          <span className="px-2.5 py-0.5 rounded-full border text-xs font-medium leading-none" style={{ color: QUIZ_BLUE, borderColor: QUIZ_BLUE }}>
+            {idx + 1}/{questions.length}
+          </span>
+        </div>
+
+        <h2 className="font-semibold leading-[1.08] mb-5 text-[1.2rem] sm:text-[1.10rem]" style={{ color: QUIZ_BLUE }}>
+          {question.question}
+        </h2>
+
+        <div className="flex-1 space-y-3 pb-4" style={{ pointerEvents: isInteractive ? 'auto' : 'none' }}>
+          {question.options.map((option, optIdx) => {
+            const isSelected = responses[idx] === option;
+
+            if (!isInteractive) {
+              return (
+                <div
+                  key={`measure-opt-${idx}-${optIdx}`}
+                  className="flex items-center gap-4 px-4 py-3.5 rounded-full border bg-white"
+                  style={{ borderColor: '#D9DFEF', boxShadow: '0 4px 14px rgba(27, 41, 90, 0.12)' }}
+                >
+                  <span className="h-4 w-4 rounded-full border-2 flex-shrink-0" style={{ borderColor: QUIZ_BLUE }}></span>
+                  <span className="text-[1.10rem] sm:text-[1.10rem] font-semibold leading-tight" style={{ color: QUIZ_BLUE }}>
+                    {option}
+                  </span>
+                </div>
+              );
+            }
+
+            return (
+              <label
+                key={`opt-${idx}-${optIdx}`}
+                className="flex items-center gap-4 px-4 py-3.5 rounded-full border bg-white cursor-pointer transition-all"
+                style={{
+                  borderColor: isSelected ? QUIZ_BLUE : '#D9DFEF',
+                  boxShadow: isSelected
+                    ? '0 4px 14px rgba(70, 87, 198, 0.22)'
+                    : '0 4px 14px rgba(27, 41, 90, 0.12)',
+                }}
+                onClick={(e) => e.stopPropagation()}
+              >
+                <input
+                  type="radio"
+                  name={`question-${idx}`}
+                  value={option}
+                  checked={isSelected}
+                  onChange={() => handleOptionChange(idx, option)}
+                  className="sr-only"
+                />
+                <span
+                  className="h-4 w-4 rounded-full border-2 flex-shrink-0"
+                  style={{
+                    borderColor: QUIZ_BLUE,
+                    backgroundColor: isSelected ? QUIZ_BLUE : 'transparent',
+                  }}
+                ></span>
+                <span className="text-[1.10rem] sm:text-[1rem] font-semibold leading-tight" style={{ color: QUIZ_BLUE }}>
+                  {option}
+                </span>
+              </label>
+            );
+          })}
+        </div>
+
+      </div>
+    </div>
+  );
+
   return (
-    <div className="w-full max-w-4xl mx-auto px-4 py-8 sm:py-12">
-      <div className="absolute left-0 top-0 -z-10 w-full max-w-4xl invisible pointer-events-none" aria-hidden="true">
+    <div className="relative w-full max-w-md mx-auto px-3 py-6 sm:py-8">
+      {/* Ghost cards: absolute inside the relative parent so they inherit the exact same width */}
+      <div className="absolute inset-x-0 top-0 -z-10 invisible pointer-events-none" aria-hidden="true">
         {questions.map((question, idx) => (
           <div
             key={`measure-${idx}`}
@@ -111,46 +200,7 @@ export default function QuizFin({ onScoreComputed }) {
             }}
             className="mb-4"
           >
-            <div className="w-full bg-white rounded-lg p-5 sm:p-8 border border-navy/10 flex flex-col">
-              <div className="absolute top-4 right-4 text-xs font-sans text-navy/40 font-medium">
-                {idx + 1}/{questions.length}
-              </div>
-
-              <div className="mb-3 text-center flex-shrink-0">
-                <span className="inline-block px-4 py-1.5 border border-navy/20 rounded-full text-[11px] font-sans uppercase tracking-[0.2em] text-navy">
-                  Votre avis
-                </span>
-              </div>
-
-              <h1 className="text-2xl sm:text-3xl font-bold text-navy mb-3 flex-shrink-0">Votre position</h1>
-
-              <div className="w-full bg-gray-200 rounded-full h-2 mb-5 flex-shrink-0">
-                <div
-                  className="bg-navy h-2 rounded-full"
-                  style={{ width: `${((idx + 1) / questions.length) * 100}%` }}
-                ></div>
-              </div>
-
-              <h2 className="text-base sm:text-lg font-semibold text-navy mb-4 flex-shrink-0 p-3.5">
-                {question.question}
-              </h2>
-
-              <div className="flex-1 space-y-2 mb-4">
-                {question.options.map((option, optionIdx) => (
-                  <div
-                    key={optionIdx}
-                    className="flex items-start p-3 rounded-lg border-2 border-navy/20 flex-shrink-0"
-                  >
-                    <div className="mt-1 mr-3 h-4 w-4 rounded-full border border-navy/40 flex-shrink-0"></div>
-                    <span className="text-sm font-sans text-navy flex-1">{option}</span>
-                  </div>
-                ))}
-              </div>
-
-              <div className="text-center text-xs text-navy/40 flex-shrink-0">
-                {idx < questions.length - 1 ? '← Balayez pour continuer →' : 'Une dernière question !'}
-              </div>
-            </div>
+            {renderCardBody(question, idx, false)}
           </div>
         ))}
       </div>
@@ -195,92 +245,32 @@ export default function QuizFin({ onScoreComputed }) {
                       zIndex: questions.length - offset,
                       opacity: offset > 2 ? 0 : offset === 0 ? 1 : 0.8,
                       boxShadow: offset === 0 
-                        ? '0 10px 40px rgba(11, 29, 58, 0.15)' 
-                        : `0 ${4 + offset * 2}px ${20 + offset * 5}px rgba(11, 29, 58, ${0.1 - offset * 0.03})`,
+                        ? '0 14px 34px rgba(70, 87, 198, 0.20)' 
+                        : `0 ${6 + offset * 2}px ${18 + offset * 4}px rgba(70, 87, 198, ${0.14 - offset * 0.03})`,
                       pointerEvents: offset === 0 ? 'auto' : 'none'
                     }}
                   >
-                    <div className="w-full h-full bg-white rounded-lg p-5 sm:p-8 border border-navy/10 flex flex-col">
-                      {/* Indicateur de carte */}
-                      <div className="absolute top-4 right-4 text-xs font-sans text-navy/40 font-medium">
-                        {idx + 1}/{questions.length}
-                      </div>
-
-                      {/* Intro */}
-                      <div className="mb-3 text-center flex-shrink-0">
-                        <span className="inline-block px-4 py-1.5 border border-navy/20 rounded-full text-[11px] font-sans uppercase tracking-[0.2em] text-navy">
-                          Votre avis
-                        </span>
-                      </div>
-
-                      {/* Title */}
-                      <h1 className="text-2xl sm:text-3xl font-bold text-navy mb-3 flex-shrink-0">Votre position</h1>
-
-                      {/* Progress Bar */}
-                      <div className="w-full bg-gray-200 rounded-full h-2 mb-5 flex-shrink-0">
-                        <div
-                          className="bg-navy h-2 rounded-full transition-all duration-300"
-                          style={{ width: `${((idx + 1) / questions.length) * 100}%` }}
-                        ></div>
-                      </div>
-
-                      {/* Question Text */}
-                      <h2 className="text-base sm:text-lg font-semibold text-navy mb-4 flex-shrink-0">
-                        {questions[idx].question}
-                      </h2>
-
-                      {/* Options */}
-                      <div className="flex-1 space-y-2 mb-4" style={{ pointerEvents: offset === 0 ? 'auto' : 'none' }}>
-                        {questions[idx].options.map((option, optIdx) => {
-                          const isSelected = responses[idx] === option;
-                          return (
-                            <label
-                              key={optIdx}
-                              className={`flex items-start p-3 rounded-lg border-2 transition-all cursor-pointer flex-shrink-0 ${
-                                isSelected
-                                  ? 'border-navy bg-navy/5'
-                                  : 'border-navy/20 hover:border-navy/40 hover:bg-navy/2'
-                              }`}
-                              onClick={(e) => e.stopPropagation()}
-                            >
-                              <input
-                                type="radio"
-                                name={`question-${idx}`}
-                                value={option}
-                                checked={isSelected}
-                                onChange={() => handleOptionChange(idx, option)}
-                                className="mt-1 mr-3 cursor-pointer flex-shrink-0"
-                                style={{ accentColor: '#0B1D3A' }}
-                              />
-                              <span className="text-sm font-sans text-navy flex-1">
-                                {option}
-                              </span>
-                            </label>
-                          );
-                        })}
-                      </div>
-
-                      {/* Swipe Indicator */}
-                      {idx === currentIndex && (
-                        <div className="text-center text-xs text-navy/40 flex-shrink-0">
-                          {currentIndex < questions.length - 1 ? '← Balayez pour continuer →' : 'Une dernière question !'}
-                        </div>
-                      )}
-                    </div>
+                    {renderCardBody(questions[idx], idx, offset === 0)}
                   </div>
                 );
               })}
             </div>
           </div>
 
+          {/* Swipe hint — outside the card so it's never clipped */}
+          <div className="text-center text-xs mt-5" style={{ color: '#9CA3AF' }}>
+            {currentIndex < questions.length - 1 ? '← Balayez pour changer de question →' : 'Une dernière question !'}
+          </div>
+
           {/* Dot Indicators - Below cards */}
-          <div className="flex justify-center gap-2 mt-8 sm:mt-12">
+          <div className="flex justify-center gap-2 mt-3">
             {questions.map((_, idx) => (
               <div
                 key={idx}
                 className={`h-2 rounded-full transition-all ${
-                  idx === currentIndex ? 'bg-navy w-8' : responses[idx] ? 'bg-navy/40 w-2' : 'bg-navy/20 w-2'
+                  idx === currentIndex ? 'w-8' : 'w-2'
                 }`}
+                style={{ backgroundColor: idx === currentIndex ? QUIZ_BLUE : responses[idx] ? 'rgba(70, 87, 198, 0.62)' : 'rgba(70, 87, 198, 0.34)' }}
               />
             ))}
           </div>

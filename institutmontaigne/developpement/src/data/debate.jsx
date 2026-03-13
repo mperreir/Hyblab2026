@@ -270,7 +270,7 @@ const debateData = {
   ],
   "endQuestions": [
     {
-      question: "Pensez-vous que la proportionnelle serait bénéfique pour la représentation ?",
+      question: "Pensez-vous que la proportionnelle serait bénéfique pour la représentation\u00A0?",
       options: [
         "Absolument, c'est la meilleure solution",
         "Plutôt oui, avec quelques ajustements",
@@ -280,7 +280,7 @@ const debateData = {
       ]
     },
     {
-      question: "Quelle est votre plus grande préoccupation avec cette réforme ?",
+      question: "Quelle est votre plus grande préoccupation avec cette réforme\u00A0?",
       options: [
         "Je n'ai pas de préoccupation majeure",
         "Les citoyens pourraient être confus par le changement",
@@ -290,7 +290,7 @@ const debateData = {
       ]
     },
     {
-      question: "Seriez-vous en faveur d'une transition progressive ?",
+      question: "Seriez-vous en faveur d'une transition progressive\u00A0?",
       options: [
         "Oui, c'est la meilleure approche",
         "Peut-être, si les détails sont bien pensés",
