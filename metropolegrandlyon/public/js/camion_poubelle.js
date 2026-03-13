@@ -16,20 +16,20 @@ function update() {
     const panoramaW = panorama.offsetWidth;
 
     const startX = -truckW - 10;
-    const stopX = -truckW / 1.2;
+    const stopX = -truckW / 1.3;
     const halfOutX = vw - truckW * 0.33;
     const maxPan = -panoramaW;
 
     let truckX, panX, workerOpacity, workerY;
 
-    if (progress < 0.25) {
-        const t = progress / 0.25;
+    if (progress < 0.15) {
+        const t = progress / 0.15;
         truckX = lerp(startX, stopX, t);
         panX = 0;
         workerOpacity = 0;
         workerY = 30;
     } else if (progress < 0.55) {
-        const t = (progress - 0.25) / 0.30;
+        const t = (progress - 0.15) / 0.40;
         truckX = stopX;
         panX = lerp(0, maxPan, t);
         workerOpacity = 0;
