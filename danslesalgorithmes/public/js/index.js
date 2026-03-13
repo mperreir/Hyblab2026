@@ -255,21 +255,6 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
   // --- Quizz Chapitre 4 ---
-  const quizChap4Buttons = document.querySelectorAll('.chap4-btn');
-  
-  quizChap4Buttons.forEach(button => {
-      button.addEventListener('click', () => {
-          const quizContainer = button.closest('.quiz-container');
-          const answers = quizContainer.querySelectorAll('.quiz-answer');
-          const buttons = quizContainer.querySelectorAll(".chap4-btn");
-          const targetId = button.getAttribute('data-target');
-          const targetAnswer = quizContainer.querySelector('#' + targetId);
-
-          answers.forEach(answer => answer.classList.remove('active'));
-          buttons.forEach(btn => btn.classList.remove("selected"));
-          if(targetAnswer) targetAnswer.classList.add("active");
-          button.classList.add("selected");
-      });
-  });
+  setupFlipQuiz('#quiz-4');
 
 });
