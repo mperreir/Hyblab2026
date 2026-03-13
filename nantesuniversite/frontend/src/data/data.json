@@ -4,12 +4,16 @@
     "identity": {
       "full_name": "Colin de la Higuera",
       "title": "Spécialiste de l’apprentissage automatique, de l’intelligence artificielle et de l’Éducation Ouverte",
-      "quote": "Expert in  artificial intelligence with 15 years of experience in autonomous systems.",
+      "quote": "L'alphabétisation à l'intelligence artificielle n'est pas une option pour les experts, c'est une condition de la citoyenneté au XXIe siècle.",
+      "field": "Intelligence Artificielle",
       "contact": {
         "email": "jp.dupont@university.edu",
         "linkedIn": "https://www.linkedin.com/in/colin-de-la-higuera-3b30aa62/",
         "office_location": "Nantes"
-      }
+      },
+      "profession": "Professeur à l'Université de Nantes",
+      "position": "Titulaire de la Chaire UNESCO RELIA",
+      "goal": "ACCOMPAGNER LE DÉPLOIEMENT DE L'IA DANS L'ÉDUCATION"
     },
     "documents": [
       {

@@ -1,9 +1,10 @@
 import DotPattern from './DotPattern';
 import portrait from '../assets/colin.png';
 import portraitOverlay from '../assets/u_under_colin.svg';
-
+import data from "../data/data.json";
 
 // Section starts at absolute top=300; child positions are section-relative.
+const expertInfo = data.researcher.identity;
 export default function ExpertQuote() {
   return (
     <section className="absolute top-[300px] left-0 right-0">
@@ -24,17 +25,15 @@ export default function ExpertQuote() {
 
       {/* Italic quote: abs left=736, top=410 → section top=110 */}
       <p className="absolute left-[736px] top-[110px] w-[925px] h-[135px] italic text-black text-[36px] leading-normal font-sans">
-        &thinsp;Je m&apos;en sors habituellement en observant que ce qu&apos;on
-        entend par intelligence est mouvant et qu&apos;au fur du temps, des
-        activités qu&apos;on tenait pour intelligentes ne le sont plus.&thinsp;
+        {expertInfo.quote}
       </p>
 
       <div className="absolute left-[1270px] top-[364px] w-[24px] h-[24px] bg-[#3552ff]" />
 
       <div className="absolute left-[696px] top-[350px] w-[943px] text-right text-black font-sans">
-        <p className="font-bold text-[36px] mb-0">Colin de la Higuera</p>
-        <p className="text-[30px] underline mb-0">Professeur à l&apos;Université de Nantes</p>
-        <p className="text-[30px] underline">Titulaire de la Chaire UNESCO RELIA</p>
+        <p className="font-bold text-[36px] mb-0">{expertInfo.full_name}</p>
+        <p className="text-[30px] underline mb-0">{expertInfo.profession}</p>
+        <p className="text-[30px] underline">{expertInfo.position}</p>
       </div>
 
       <div className="absolute left-[1673px] top-[161px]">

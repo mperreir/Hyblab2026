@@ -1,5 +1,6 @@
 import tete from "../assets/tete.svg"
-
+import data from "../data/data.json";
+const expertInfo = data.researcher.identity;
 export default function TopicTitle() {
   return (
     <>
@@ -13,7 +14,7 @@ export default function TopicTitle() {
 
       {/* Topic name */}
       <div className="absolute left-[172px] top-[163px] w-[596px] h-[134px] text-[#3452ff] text-[36px] font-bold leading-[35px]">
-        <p className="m-0">Intelligence <br></br> Artificielle </p>
+        <p className="m-0">{expertInfo.field.split(" ")[0]}<br></br>{expertInfo.field.split(" ")[1]}</p>
       </div>
 
       {/* Researcher name */}
@@ -21,7 +22,7 @@ export default function TopicTitle() {
         className="absolute left-[959px] top-[151px] w-[865px] h-[88px] text-[#3452ff] text-[80px] font-bold text-center leading-normal whitespace-nowrap"
         style={{ fontFamily: "'Chakra Petch', sans-serif" }}
       >
-        COLIN DE LA HIGUERA
+        {expertInfo.full_name.toUpperCase()}
       </p>
 
       {/* Sub-topic */}
@@ -29,7 +30,7 @@ export default function TopicTitle() {
         className="absolute left-[910px] top-[248px] w-[914px] h-[51px] text-[#3452ff] text-[32px] font-medium text-center leading-normal whitespace-nowrap"
         style={{ fontFamily: "'Chakra Petch', sans-serif" }}
       >
-        {`ACCOMPAGNER LE DÉPLOIEMENT DE L'IA DANS L'ÉDUCATION`}
+        {expertInfo.goal.toUpperCase()}
       </p>
     </>
   );
