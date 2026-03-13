@@ -16,7 +16,7 @@ body {
 
 #scene-container {
     position: relative;
-    height: 400vh;
+    height: 800vh;
     width: 100%;
     overflow: hidden;
 }
@@ -105,6 +105,7 @@ body {
     left: 50%;
     z-index: 10;
     transform: translateX(-50%);
+    opacity: 0;
 }
 
 /*Pour les zoom*/
@@ -134,4 +135,55 @@ body {
     left: 75%;
     z-index: 10;
     transform: translateX(-50%) translateY(-50%) scale(0.45);
+}
+
+/*Phase 3*/
+.scene-musee{
+    position: fixed;
+    top: 200vh; /* apparaît après ton ciel */
+    width: 100%;
+    height: 100%;
+}
+
+.calque-ville{
+    position: fixed;
+    opacity: 1;
+    bottom: -27.8%;
+    left: -90%;
+    width: 100%;
+    transform: scale(0.13);
+}
+
+.musee,
+.ruines,
+.ecolier{
+    opacity:0;
+    z-index: 20;
+}
+
+.musee.visible,
+.ruines.visible,
+.ecolier.visible{
+    opacity:1;
+}
+
+.musee {
+    position: fixed;
+    bottom: -55vh;
+    right: 0px;
+    width: 300px;
+}
+
+.ruines {
+    position: fixed;
+    bottom: -30vh;
+    right: -5vh;
+    width: 400px;
+}
+
+.ecolier {
+    position: fixed;
+    bottom: -30vh;
+    left: 8vh;
+    width: 260px;
 }
