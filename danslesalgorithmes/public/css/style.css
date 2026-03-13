@@ -236,23 +236,23 @@ article {
     transform: translate(-50%, 0) scale(1.5); 
 }
 /* Conteneur principal pour la superposition */
-.quiz-superposition-container {
+.superposition-container {
     position: relative; /* Permet le positionnement absolu des enfants */
     width: 100%;
     max-width: 500px; /* Ajuste selon la taille de tes images */
-    margin: 0 auto;
     text-align: center;
+    margin: 0 auto 100%;
 }
 
 /* Image de fond (la femme) */
-.quiz-superposition-femme {
+.superposition-femme {
     width: 100%;
     height: auto;
     display: block;
 }
 
 /* Image superposée (la fléchette) */
-.quiz-superposition-flechette {
+.superposition-flechette {
     position: absolute;
     top: 90%; /* Positionne la fléchette au centre verticalement */
     left: 50%; /* Positionne la fléchette au centre horizontalement */
@@ -263,7 +263,7 @@ article {
 }
 
 /* Texte superposé */
-.quiz-superposition-texte {
+.superposition-texte {
     position: absolute;
     bottom: 20px; /* Positionne le texte en bas de l'image */
     left: 20px;
