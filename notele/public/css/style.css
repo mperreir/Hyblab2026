@@ -154,14 +154,19 @@ main {
 
 #mapWrapper {
     position: relative;
-}
-
-#region_map {
-    position: relative;
     width: 100%;
-    max-width: calc(100vh * (naturalWidth / naturalHeight)); /* en JS */
+    height: calc(100vh - 200px); 
+    min-height: 400px;
+    overflow: hidden;
+    background: transparent;
 }
 
+#regionMap {
+    height: 100%;
+    object-fit: contain; 
+    display: block;
+    width: 100%;
+}
 #region_map img {
     width: 100%;
     height: auto;

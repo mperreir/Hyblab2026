@@ -29,19 +29,22 @@ const mapWrapper = document.getElementById("mapWrapper");
 
 function getImageRenderedRect() {
     const rect = img.getBoundingClientRect();
-    const naturalRatio = img.naturalWidth / img.naturalHeight;
+    
+    // Sécurité pour le SVG : si naturalWidth est 0, on utilise les valeurs du viewBox (1272/677)
+    const nW = img.naturalWidth || 1272;
+    const nH = img.naturalHeight || 677;
+    
+    const naturalRatio = nW / nH;
     const containerRatio = rect.width / rect.height;
 
     let renderedW, renderedH, offsetX, offsetY;
 
     if (containerRatio > naturalRatio) {
-        // Bandes sur les côtés
         renderedH = rect.height;
         renderedW = renderedH * naturalRatio;
         offsetX = (rect.width - renderedW) / 2;
         offsetY = 0;
     } else {
-        // Bandes en haut/bas
         renderedW = rect.width;
         renderedH = renderedW / naturalRatio;
         offsetX = 0;
@@ -58,11 +61,17 @@ function placePins() {
         const pin = document.getElementById(id);
         if (!pin) continue;
 
-        pin.style.left = offsetX + (coords.left / 100) * renderedW + "px";
-        pin.style.top  = offsetY + (coords.top  / 100) * renderedH + "px";
+        // On positionne par rapport au coin haut-gauche de l'image réelle
+        pin.style.left = (offsetX + (coords.left / 100) * renderedW) + "px";
+        pin.style.top  = (offsetY + (coords.top  / 100) * renderedH) + "px";
     }
 }
 
-img.addEventListener("load", placePins);
+// Événements
+window.addEventListener("load", placePins);
 window.addEventListener("resize", placePins);
-if (img.complete) placePins();
+if (img.complete) {
+    placePins();
+} else {
+    img.addEventListener("load", placePins);
+}

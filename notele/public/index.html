@@ -6,18 +6,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
   <title>Hyblab 2025</title>
   <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/company.css">
   <link rel="stylesheet" href="css/scrollable.css">
-  <link rel="stylesheet" href="css/company.css">
   <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/loadingio/loading.css@v2.0.0/dist/loading.css" >
   <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.2/anime.min.js"></script>
   <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+  <script src="js/scrollable.js" defer></script>
   <script src="js/createEntreprise.js" defer></script>
   <script src="js/pinPosition.js" defer></script>
   <script src="js/appearances.js" defer></script>
   <script src="js/selecteur.js" defer></script>
   <script src="js/filters.js" defer></script>
-  <script src="js/scrollable.js" defer></script>
   <script src="js/company.js" defer></script>
 
 
@@ -98,7 +98,6 @@
     <button onclick="filter(event)" id="B4">Surprise me</button>
     <button onclick="filter(event)" id="B5">Jobs pas comme les autres</button>
   </nav>
-  <button onclick="displayScroll()">scrollabl</button>
 </main>
 <aside id="scrollable_page">
 
@@ -109,7 +108,7 @@
     <a class="company-back" href="index.html">Retour à la map</a>
   </header>
 
-  <main class="company-page">
+  <div class="company-page">
     <section class="company-layout">
       <div class="company-photo company-photo--left" data-reveal>
         <img src="img/pomme-terre.png" alt="Pommes de terre sur la ligne de production">
@@ -156,7 +155,7 @@
                     </audio>
                   </div>
                   <div class="company-interview__visual">
-                    <img src="img/interview-1.jpeg" alt="Claire Hoflack">
+                    <img src="img/interview-1.png" alt="Claire Hoflack">
                   </div>
                 </div>
 
@@ -169,7 +168,7 @@
                     </audio>
                   </div>
                   <div class="company-interview__visual">
-                    <img src="img/Interview-2.jpeg" alt="Olivier Maes">
+                    <img src="img/Interview-2.png" alt="Olivier Maes">
                   </div>
                 </div>
               </article>
@@ -184,7 +183,7 @@
                     </audio>
                   </div>
                   <div class="company-interview__visual">
-                    <img src="img/interview-3.jpeg" alt="Antoine Van Wynsberghe">
+                    <img src="img/interview-3.png" alt="Antoine Van Wynsberghe">
                   </div>
                 </div>
 
@@ -197,7 +196,7 @@
                     </audio>
                   </div>
                   <div class="company-interview__visual">
-                    <img src="img/interview-5.jpeg" alt="Pauline Jean">
+                    <img src="img/interview-5.png" alt="Pauline Jean">
                   </div>
                 </div>
               </article>
@@ -255,11 +254,11 @@
         <div class="company-didyouknow__viewport" data-didyouknow-viewport>
           <div class="company-didyouknow__track" data-didyouknow-track>
             <article class="company-didyouknow__slide is-active" data-didyouknow-slide>
-              <h2 class="company-didyouknow__title" id="companyDidYouKnowTitle">Le savais-tu ?</h2>
-              <p class="company-didyouknow__text">
+              <div class="company-didyouknow__title" id="companyDidYouKnowTitle">Le savais-tu ?</div>
+              <div class="company-didyouknow__text">
                 <span>Si on alignait</span> toutes les frites produites en une année,
                 <span>elles pourraient</span> faire plusieurs fois le tour de la Terre.
-              </p>
+              </div>
             </article>
 
             <article class="company-didyouknow__slide" data-didyouknow-slide aria-label="Deuxième information">
@@ -335,8 +334,6 @@
     <section class="company-end-screen" aria-labelledby="companyEndTitle">
       <div class="company-end-screen__inner">
         <div class="company-end-popup" data-end-popup>
-          <button class="company-end-popup__close" type="button" data-end-popup-close aria-label="Fermer la popup">×</button>
-
           <div class="company-end-popup__content">
             <h2 class="company-end-popup__title" id="companyEndTitle">
               Découverte terminée !<br>
@@ -346,13 +343,12 @@
 
             <div class="company-end-popup__actions">
               <a class="company-end-popup__button company-end-popup__button--primary" href="#">Voir la vidéo</a>
-              <a class="company-end-popup__button company-end-popup__button--secondary" href="index.html">Retour à la map</a>
             </div>
           </div>
         </div>
       </div>
     </section>
-  </main>
+  </div>
 </aside>
 </body>
 </html>

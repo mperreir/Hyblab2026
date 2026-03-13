@@ -1,14 +1,39 @@
 #scrollable_page {
     position: absolute;
     top: 0%;
+    left: 0;
     display: none;
     width: 65%;
     height: 100%;
     overflow-y: scroll;
     scroll-snap-type: y mandatory;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE/Edge */
+}
+
+#scrollable_page::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
 }
 
 .page {
     height: 100vh;
     scroll-snap-align: start;
+}
+
+@keyframes slideInRight {
+    from { transform: translateX(-30px); opacity: 0; }
+    to   { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slideOutLeft {
+    from { transform: translateX(0); opacity: 1; }
+    to   { transform: translateX(-30px); opacity: 0; }
+}
+
+.slide-in {
+    animation: slideInRight 0.4s ease forwards;
+}
+
+.slide-out {
+    animation: slideOutLeft 0.4s ease forwards;
 }

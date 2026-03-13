@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     if (track) {
-      track.style.transform = `translateX(-${activeIndex * 100}%)`;
+      track.style.transform = `translateX(-${activeIndex * 116.5}%)`;
     }
   };
 

@@ -57,6 +57,7 @@ entreprises.forEach((entreprise) => {
     const entreprise_div = document.createElement("div");
     entreprise_div.id = "E" + String(i);
     entreprise_div.className = "entreprisePin Pin"
+    entreprise_div.onclick = displayScroll;
 
     const entreprise_pin = document.createElement("img");
     entreprise_pin.alt = "Pin entreprise " + entreprise.nom;

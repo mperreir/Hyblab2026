@@ -5,29 +5,29 @@
   --company-white: #ffffff;
 }
 
-.scrollable_page {
+#scrollable_page {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-.scrollable_page {
+#scrollable_page {
   min-height: 100%;
 }
 
-.scrollable_page {
+#scrollable_page {
   font-family: Georgia, "Times New Roman", serif;
   background: var(--company-purple);
   color: var(--company-white);
   overflow-x: hidden;
 }
 
-.scrollable_page img {
+#scrollable_page img {
   display: block;
   width: 100%;
 }
 
-.scrollable_page a {
+#scrollable_page a {
   color: inherit;
   text-decoration: none;
 }
@@ -76,10 +76,10 @@
 
 .company-layout {
   display: grid;
-  grid-template-columns: 1.06fr 0.94fr;
+  grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr;
-  min-height: calc(100vh - 60px);
-  width: 100%;
+  /* min-height: calc(100vh - 60px);
+  width: 100%; */
 }
 
 .company-photo img {
@@ -172,6 +172,7 @@
 
 .company-interviews__carousel {
   position: relative;
+  padding: 0px 10px;
 }
 
 .company-interviews__viewport {
@@ -261,12 +262,8 @@
   padding: 0;
 }
 
-.company-interviews__arrow--left {
-  left: -42px;
-}
-
 .company-interviews__arrow--right {
-  right: 0;
+  right: 10px;
 }
 
 .company-text-band__inner {
@@ -549,7 +546,6 @@
 
 .company-didyouknow {
   display: flex;
-  justify-content: center;
   width: 100%;
   min-height: 620px;
   background: #FFD400;
@@ -557,7 +553,7 @@
 
 .company-didyouknow__inner {
   position: relative;
-  width: min(100%, 1512px);
+  width: 100%;
   min-height: 620px;
   padding: 56px 96px;
 }
@@ -590,7 +586,7 @@
 }
 
 .company-didyouknow__arrow--next {
-  right: 28px;
+  right: 5%;
 }
 
 .company-didyouknow__arrow.is-hidden {
@@ -609,13 +605,15 @@
 }
 
 .company-didyouknow__slide {
-  position: relative;
-  flex: 0 0 100%;
-  min-height: 508px;
+    display: flex;
+    flex-direction: column;
+    gap: 75px;
+    position: relative;
+    flex: 0 0 100%;
+    min-height: 508px;
 }
 
 .company-didyouknow__title {
-  position: absolute;
   top: 56px;
   left: 0;
   font-family: Arial, sans-serif;
@@ -627,10 +625,8 @@
 }
 
 .company-didyouknow__text {
-  max-width: 920px;
-  margin: 190px auto 0 250px;
   font-family: Arial, sans-serif;
-  font-size: clamp(2rem, 3vw, 3.35rem);
+  font-size: 40px;
   line-height: 1.18;
   font-style: italic;
   font-weight: 900;
@@ -648,9 +644,8 @@
 }
 
 .company-quiz__inner {
-  width: min(100%, 1512px);
   margin: 0 auto;
-  padding: 54px 60px 50px;
+  padding: 3%;
 }
 
 .company-quiz__title {
@@ -670,10 +665,6 @@
   display: flex;
   align-items: flex-end;
   gap: 24px;
-}
-
-.company-quiz__main {
-  padding-right: 6px;
 }
 
 .company-quiz__question {
@@ -809,7 +800,6 @@
 }
 
 .company-end-popup__title {
-  max-width: 420px;
   margin-bottom: 38px;
   font-family: Arial, sans-serif;
   font-size: clamp(1.8rem, 2.6vw, 2.5rem);
@@ -821,9 +811,7 @@
 
 .company-end-popup__actions {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 18px;
+  justify-content: flex-end;
 }
 
 .company-end-popup__button {
