@@ -15,8 +15,8 @@
 
 const CATEGORY_COLORS = {
   prix: "#ffc800",
-  article: "#ff0000",
-  conference: "#a900f9",
+  article: "#a900f9",
+  conference:  "#ff0000",
   livre: "#00c450",
   podcast: "#ff0064",
   recherche: "#00c9ff",
