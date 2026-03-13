@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef, useCallback } from 'react';
-import { PATH_PUBLIC } from '../data/debate';
+import { PATH_PUBLIC } from '../../data/debate';
 
 export default function Quiz({ meta = {}, onScoreChange }) {
   const [response, setResponse] = useState(50);

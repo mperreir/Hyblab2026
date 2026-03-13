@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import debateDate from '../data/debate.jsx';
+import debateDate from '../../data/debate.jsx';
 
 export default function QuizFin({ onScoreComputed }) {
   const [currentIndex, setCurrentIndex] = useState(0);
