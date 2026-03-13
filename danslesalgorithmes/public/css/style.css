@@ -187,14 +187,14 @@ article {
 }
 
 .step p {
-    font-size: 0.8rem;
-    line-height: 1.5;
+    font-size: 1.2rem; /* <-- C'est ici qu'on augmente la taille (au lieu de 0.8rem) */
+    line-height: 1.6;  /* Un peu plus d'espace entre les lignes pour que ce soit lisible */
     background: rgb(255, 255, 255);
     text-align: left;
     padding: 15px;
+    border-radius: 8px; /* Optionnel : arrondit les angles du fond blanc */
     transition: border-color 0.3s;
 }
-
 /* ================= SPHÈRES ANIMÉES ================= */
 .spheres-container {
     position: relative; 
@@ -511,4 +511,38 @@ article {
     .marion-photos img {
         width: 48%;
     }
+}
+
+.images-stack {
+  position: relative;
+  width: 100%;
+  height: 60vh;
+}
+
+/* image du haut */
+.img-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 80%;
+  z-index: 3;
+}
+
+/* image du bas qui remonte */
+.img-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 80%;
+  transform: translateY(-10%);
+  z-index: 2;
+}
+
+/* image à droite */
+.img-right {
+  position: absolute;
+  right: 0;
+  top: -25%;
+  width: 80%;
+  z-index: 1;
 }
