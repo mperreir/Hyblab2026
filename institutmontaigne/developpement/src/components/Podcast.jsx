@@ -98,9 +98,9 @@ export default function Podcast({ src=PATH_PUBLIC+"/audio/cafeconron.mp3", episo
 
       <div className="px-5 pt-4 pb-6">
         {/* Titre épisode */}
-        <p className="text-center font-sans font-semibold text-[#4657C6] text-sm leading-snug mb-5">
-          {episode && <span className="block">{episode}</span>}
-          {title}
+        <p className="text-center text-[#4657C6] text-sm leading-snug mb-5">
+          {episode && <span className="block font-extrabold">{episode}</span>}
+          <p className='text-xs'>{title}</p>
         </p>
 
         {/* Waveform */}
