@@ -55,7 +55,9 @@ const MovieList = (() => {
             </svg>
           </div>
           <div class="progress-bar">
-            <div class="progress-fill" style="width: ${movie.score}%;"></div>
+            <div class="progress-fill" style="width: ${movie.score}%;">
+
+            </div>
           </div>
         </div>
         <span class="item-percent">${movie.score}%</span>
@@ -100,7 +102,7 @@ const MovieList = (() => {
     const list = document.querySelector('.list');
     if (!list) return;
 
-    list.style.maxHeight = '350px';
+    list.style.maxHeight = '750px';
     list.style.overflowY = 'auto';
     list.style.boxSizing = 'border-box';
 

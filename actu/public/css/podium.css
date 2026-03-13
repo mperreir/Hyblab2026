@@ -66,21 +66,15 @@ html, body {
 .podium {
   display: flex;
   margin: 0 auto;
+  flex-direction: column;
   height: 30vh;
   aspect-ratio: 257 / 208;
   border-radius: 20px;
   background-color: white;
-  width: 85%;
+  width: 91%;
+  
 }
 
-.podiumBack {
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 100%;
-  height: 100%;
-}
 
 .topPodium {
   margin: 0 auto;
@@ -91,11 +85,6 @@ html, body {
 }
 
 /* ==================== PODIUM BOTTOM (SVG shape) ==================== */
-/*
- * Layout: .bottomPodium contains an SVG background + 3 absolutely-positioned
- * .step overlays for images/labels.
- * To restyle from Figma: update the CSS variables below, or swap the SVG path.
- */
 
 /* --- Design tokens (easy to override from Figma) --- */
 :root {
@@ -109,28 +98,45 @@ html, body {
   --step-label-weight:   700;
 }
 
-.bottomPodium {
+.podium-container {
   /* Container: fills the lower portion of the podium card */
   position: relative;
   width: 100%;
-  height: 70%;
+  height: 76%;
 }
 
 /* SVG background that draws the staircase shape */
-.podium-svg {
-  position: absolute;
-  inset: 0;
+/* .podium-svg {
+  position: relative;
+
   width: 100%;
   height: 100%;
   filter: var(--podium-shadow);
+} */
+.podium-svg {
+  position: absolute; 
+  top: -18%;
+  left: 3%;
+  width: 94%;
+  height: 100%;
+  filter: var(--podium-shadow);
+  z-index: 0; 
 }
 
 /* Wrapper for the 3 step columns laid on top of the SVG */
-.podium-steps {
-  position: absolute;
+/* .podium-steps {
+  position: relative;
   inset: 0;
   display: flex;
   align-items: flex-end;
+} */
+ .podium-steps {
+  position: relative;
+  width: 100%;   /* 必须显式设置，确保容器和背景一样大 */
+  height: 100%;  /* 必须显式设置，防止 absolute 背景导致高度塌陷 */
+  display: flex;
+  align-items: flex-end;
+  z-index: 1; 
 }
 
 .step-rank{
@@ -172,7 +178,7 @@ html, body {
   left: 50%;
   transform: translateX(-50%);
   height: auto;
-  bottom: 100%;
+  bottom: 60%;
   width: 70%;
   aspect-ratio: 2 / 3;
   object-fit: cover;
@@ -330,56 +336,19 @@ html, body {
 
 /* ==================== LIST (FRONT) ==================== */
 .list-wrapper {
-  /* margin: 0 auto;
-  position: relative;
   display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  padding: 0 10px;
-  
-
-  border-radius: 1.25rem;
-  border: 1px solid #FFF;
-  background: linear-gradient(
-    to bottom,
-    rgba(240, 170, 170, 0.6) 0%,   
-    rgba(255, 255, 255, 0.2) 25%,  
-    rgba(255, 255, 255, 0.2) 100%
-  );
-  box-shadow: 3px 4px 4px 0 rgba(0, 0, 0, 0.25);
-  backdrop-filter: blur(12px);  
-  -webkit-backdrop-filter: blur(12px);
-  height: 53%;
-  width: 75%; */
-  display: flex;
-  
+  justify-content: center;
   height: 60%;
 }
 
 .list {
-  /* flex: 1;
-  display: flex;
-  
-  gap: 12px;
-  overflow-y: auto;
-  transition: all 0.4s ease;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-  box-sizing: border-box; */
-  
-
-
-  margin-left: auto;
-  margin-right: 0;  
   position: relative;
   display: flex;
-  justify-content: right;
   flex-direction: column;
   align-items: flex-start;
-  gap: 10px;
-  padding: 0 10px;
-  
 
+  
+  padding: 5px;
   border-radius: 1.25rem;
   border: 1px solid #FFF;
   background: linear-gradient(
@@ -391,8 +360,8 @@ html, body {
   box-shadow: 3px 4px 4px 0 rgba(0, 0, 0, 0.25);
   backdrop-filter: blur(12px);  
   -webkit-backdrop-filter: blur(12px);
-  height: 100%;
-  width: 80%;
+  height: 94%;
+  width: 91%;
 }
 
 .list::-webkit-scrollbar { display: none; }
@@ -401,8 +370,8 @@ html, body {
   display: flex;
   width: 95%;
   align-items: center;
-  gap: 14px;
-  padding: 10px;
+  gap: 7px;
+  padding: 5px;
   border-radius: 12px;
   background: rgba(255, 255, 255, 0.05);
   transition: opacity 0.3s ease, transform 0.3s ease;
@@ -415,8 +384,8 @@ html, body {
 }
 
 .item-img {
-  width: 48px;
-  height: 68px;
+  aspect-ratio: 47 / 67;
+  width: 20%;
   object-fit: cover;
   border-radius: 6px;
   flex-shrink: 0;
@@ -539,11 +508,13 @@ html, body {
 /* ==================== TOGGLE BUTTON ==================== */
 .toggle-btn {
   display: flex;
+  position: absolute;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 76%;
-  width: 10%;
+  height: 54%;
+  width: 7%;
+  left: 92%;
   flex-shrink: 0;
   cursor: pointer;
   padding: 6px 0;
