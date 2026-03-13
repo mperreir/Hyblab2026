@@ -106,13 +106,7 @@ function createButtonBox(boxId = "box1", aRow = 1, aColumn = 1) {
             if (Actions.length > count_actions) {
               textDisplay.textContent = Actions[count_actions].Base;
               
-              //Possibility to copy the text of the action
-              let copyb = document.createElement("button");
-              copyb.textContent = "Copier le texte de l'action";
-              copyb.addEventListener('click', () => {
-                navigator.clipboard.writeText(Actions[box.nAction].Texteplus);
-              });
-              textDisplay.appendChild(copyb);
+
               box.nAction = count_actions;
               count_actions++;
               box.className += " finished box-action";
@@ -140,13 +134,8 @@ function createButtonBox(boxId = "box1", aRow = 1, aColumn = 1) {
 
             if (Actions.length > count_actions) {
               textDisplay.textContent = Actions[count_actions].Base;
-              //Possibility to copy the text of the action
-              let copyb = document.createElement("button");
-              copyb.textContent = "Copier le texte de l'action";
-              copyb.addEventListener('click', () => {
-                navigator.clipboard.writeText(Actions[box.nAction].Texteplus);
-              });
-              textDisplay.appendChild(copyb);
+
+
               box.nAction = count_actions;
               count_actions++;
               box.className += " finished box-action";
@@ -175,13 +164,6 @@ function createButtonBox(boxId = "box1", aRow = 1, aColumn = 1) {
 
             if (Actions.length > count_actions) {
               textDisplay.textContent = Actions[count_actions].Base;
-              //Possibility to copy the text of the action
-              let copyb = document.createElement("button");
-              copyb.textContent = "Copier le texte de l'action";
-              copyb.addEventListener('click', () => {
-                navigator.clipboard.writeText(Actions[box.nAction].Texteplus);
-              });
-              textDisplay.appendChild(copyb);
               
               box.nAction = count_actions;
               count_actions++;
@@ -209,13 +191,6 @@ function createButtonBox(boxId = "box1", aRow = 1, aColumn = 1) {
 
             if (Actions.length > count_actions) {
               textDisplay.textContent = Actions[count_actions].Base;
-              //Possibility to copy the text of the action
-              let copyb = document.createElement("button");
-              copyb.textContent = "Copier le texte de l'action";
-              copyb.addEventListener('click', () => {
-                navigator.clipboard.writeText(Actions[box.nAction].Texteplus);
-              });
-              textDisplay.appendChild(copyb);
               
               box.nAction = count_actions;
               count_actions++;
@@ -243,7 +218,7 @@ function createButtonBox(boxId = "box1", aRow = 1, aColumn = 1) {
 
       box.addEventListener('click', () => {
         // Do not trigger while choice buttons are still visible.
-        if (box.querySelector('button')) {
+        if (box.querySelector('button[id^="button"]')) {
           return;
         }
 
@@ -276,6 +251,31 @@ function createButtonBox(boxId = "box1", aRow = 1, aColumn = 1) {
             popupBox.className = "action";
             console.log(box.nAction);
             popupText.textContent = Actions[box.nAction].Texteplus;
+            
+            
+            //Possibility to copy the text of the action
+            if(document.getElementById("copy-button") === null){
+              let copyb = document.createElement("p");
+              copyb.textContent = "Appuyez ici";
+              copyb.id = "copy-button";
+              copyb.style.textDecoration = "underline";
+              copyb.style.cursor = "pointer";
+              copyb.style.color =" #BAA2EA";
+              copyb.addEventListener('click', () => {
+                navigator.clipboard.writeText(Actions[box.nAction].Texteplus);
+                const msg = document.createElement("div");
+                msg.textContent = "Texte copié !";
+                msg.className = "copy-toast";
+                document.body.appendChild(msg);
+
+                // Disparition après 1 seconde
+                setTimeout(() => {
+                  msg.remove();
+                }, 1000);
+              });
+              popupBox.appendChild(copyb);
+              console.log(popupBox);
+            }
             break;
         }
         popupBox.className += " animate__animated animate__slideInUp"
