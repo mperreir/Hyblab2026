@@ -8,39 +8,28 @@
 </head>
 <body>
 
-  <!-- ── Écran de chargement ── -->
   <div id="loading">
     <div id="loading-text">Chargement de la scène 360°…</div>
     <div id="loading-bar-track"><div id="loading-bar"></div></div>
   </div>
 
-  <!-- ── HUD ── -->
-  <div id="hud">
-    <h1>Salon Epstein</h1>
-  </div>
+  <div id="hud"><h1>Salon Epstein</h1></div>
 
-  <!-- ── Bouton calibration ── -->
-  <button id="calib-toggle" title="Mode calibration">Calibrer</button>
-
-  <!-- ── Hint ── -->
-  <div id="hint">Glisser pour explorer · Cliquer sur un point pour l'article</div>
-
-  <!-- ── Réticule de calibration ── -->
+  <button id="calib-toggle" title="Mode calibration">⊕ Calibrer</button>
+  <div id="hint">Glisser pour explorer · Cliquer sur une zone pour l'article</div>
   <div id="calib-crosshair"></div>
 
-  <!-- ── Panneau de calibration ── -->
   <div id="calib-panel">
-    <h3>MODE CALIBRATION — Cliquez sur un objet pour placer un hotspot</h3>
-    <div id="calib-coords">Cliquez sur n'importe quel objet dans la scène.</div>
+    <h3>MODE CALIBRATION — glisser pour déplacer</h3>
+    <div id="calib-coords">Cliquez sur un objet dans la scène.</div>
     <div id="calib-list"></div>
     <div id="calib-actions">
-      <button class="calib-btn accent" id="calib-export">📋 Copier le code JS</button>
-      <button class="calib-btn" id="calib-clear">🗑 Effacer tout</button>
-      <button class="calib-btn" id="calib-close-btn">✕ Fermer</button>
+      <button class="calib-btn accent" id="calib-export">📋 Copier le JSON</button>
+      <button class="calib-btn"        id="calib-clear">🗑 Effacer</button>
+      <button class="calib-btn"        id="calib-close-btn">✕ Fermer</button>
     </div>
   </div>
 
-  <!-- ── Popup article ── -->
   <div id="popup-overlay">
     <div id="popup">
       <div id="popup-close">×</div>
@@ -50,23 +39,44 @@
       </div>
       <div id="popup-body">
         <div id="popup-description"></div>
-        <div id="popup-specs"></div>
         <div id="popup-cta">
-          <button class="btn-primary">En savoir plus</button>
+          <button class="btn-primary"   id="btn-read-more">En savoir plus →</button>
           <button class="btn-secondary" id="btn-close-popup">Fermer</button>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- ── Librairies ── -->
+  <div id="article-backdrop"></div>
+  <div id="article-panel">
+    <div id="article-panel-inner">
+      <button id="article-close">×</button>
+      <header id="article-header">
+        <div  id="article-kicker"></div>
+        <h1   id="article-headline"></h1>
+        <div  id="article-meta">
+          <span id="article-date"></span>
+          <span id="article-sep">·</span>
+          <span id="article-read"></span>
+        </div>
+      </header>
+      <p   id="article-intro"></p>
+      <div id="article-body"></div>
+      <footer id="article-footer">
+        <button class="btn-back" id="btn-back-to-scene">← Retour à la scène</button>
+      </footer>
+    </div>
+  </div>
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
-  <!-- ── Application ── -->
-  <script src="js/main.js"></script>
-  <script src="js/calibrator.js"></script>
-  <script src="js/popup.js"></script>
+  <!-- order matters: article-panel before popup, main last -->
   <script src="js/controller.js"></script>
+  <script src="js/article-panel.js"></script>
+  <script src="js/polygone-zones.js"></script>
+  <script src="js/popup.js"></script>
+  <script src="js/calibrator.js"></script>
+  <script src="js/main.js"></script>
 
 </body>
 </html>

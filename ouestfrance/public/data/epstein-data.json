@@ -1,182 +1,175 @@
 {
-  "imagePath": "img/epstein2.png",
   "hotspots": [
+
     {
       "id": "ordinateur",
-      "label": "Ordinateur",
-      "phi": 1.689,
-      "theta": -2.5746,
       "article": {
-        "title": "Ordinateur",
-        "description": "L'écran de la « Epstein Library » : Un ordinateur affichant le portail du ministère de la Justice où sont hébergés les 3,5 millions de fichiers."
+        "tag": "Partie 1 · Logistique & Archives",
+        "title": "La Epstein Library",
+        "description": "L'écran affiche le portail du ministère américain de la Justice hébergeant plus de 3,5 millions de fichiers déclassifiés. Emails, relevés bancaires et carnets de vol autrefois secrets sont désormais accessibles aux enquêteurs du monde entier.",
+        "link": "https://www.ouest-france.fr/societe/faits-divers/affaire-jeffrey-epstein/affaire-epstein-comment-consulter-les-fichiers-trois-questions-pour-mieux-comprendre-les-enjeux-de-leur-publication-4da2e692-8c5b-11ef-9c3f-1f06dd49e9dc"
       }
     },
+
     {
       "id": "livre",
-      "label": "Livre",
-      "phi": 2.1619,
-      "theta": -1.371,
       "article": {
-        "title": "Livre",
-        "description": "L'ouvrage autobiographique de Thysia Huisman, première victime à avoir porté plainte contre Jean-Luc Brunel en France."
+        "tag": "Partie 3 · Preuves du système",
+        "title": "Close-Up — Thysia Huisman",
+        "description": "L'ouvrage autobiographique de Thysia Huisman, première victime à avoir porté plainte contre Jean-Luc Brunel en France. Elle confie que l'acte d'écrire a été le véritable point de départ de sa reconstruction après des décennies de traumatisme.",
+        "link": "https://www.ouest-france.fr/societe/faits-divers/affaire-jeffrey-epstein/entretien-j-ai-ete-droguee-et-violee-a-paris-le-temoignage-glacant-d-une-ex-mannequin-dans-l-affaire-epstein-5c3b0e9a-8c5b-11ef-9c3f-1f06dd49e9dc"
       }
     },
+
     {
       "id": "tigre",
-      "label": "Tigre",
-      "phi": 1.8029,
-      "theta": 2.9054,
       "article": {
-        "title": "Tigre",
-        "description": "Un animal grandeur nature trônant dans une salle de réception de l'appartement de Manhattan au 9 East 71st Street."
+        "tag": "Épilogue · Mise en scène du pouvoir",
+        "title": "Le tigre grandeur nature",
+        "description": "Trônant majestueusement dans la salle de réception de l'appartement de Manhattan, ce tigre empaillé grandeur nature est l'un des objets les plus théâtraux de la demeure — conçu pour impressionner quiconque franchissait le seuil du milliardaire. Entre cabinet de curiosités et mise en scène narcissique du pouvoir.",
+        "link": "https://www.ouest-france.fr/societe/faits-divers/affaire-jeffrey-epstein/en-images-les-10-choses-les-plus-troublantes-que-les-enqueteurs-ont-decouvertes-dans-l-appartement-d-epstein-3a6c2e1a-8c5b-11ef-9c3f-1f06dd49e9dc"
       }
     },
+
     {
-      "id": "lampe",
-      "label": "Lampe",
-      "phi": 1.6062,
-      "theta": -3.0781,
+      "id": "globe",
       "article": {
-        "category": "Catégorie · Sous-catégorie",
-        "title": "Lampe",
-        "description": "Décrivez cet objet ici.",
-        "specs": [
-          { "label": "Spec 1", "value": "Valeur 1" },
-          { "label": "Spec 2", "value": "Valeur 2" },
-          { "label": "Spec 3", "value": "Valeur 3" },
-          { "label": "Spec 4", "value": "Valeur 4" }
-        ]
+        "tag": "Partie 1 · Logistique & Archives",
+        "title": "Un empire sans frontières",
+        "description": "Ce globe est la représentation physique d'un réseau qui ne connaissait aucune frontière — des rivages des Caraïbes aux centres financiers de Londres et Paris. Un symbole de l'emprise mondiale d'Epstein sur les élites politiques et financières.",
+        "link": "https://www.ouest-france.fr/societe/faits-divers/affaire-jeffrey-epstein/infographies-jeffrey-epstein-l-homme-qui-tenait-le-monde-dans-sa-toile-6e8d3f2b-8c5b-11ef-9c3f-1f06dd49e9dc"
       }
     },
+
     {
       "id": "cheminee",
-      "label": "Cheminée",
-      "phi": 1.8285,
-      "theta": -1.6335,
       "article": {
-        "category": "Catégorie · Sous-catégorie",
-        "title": "Cheminée",
-        "description": "Décrivez cet objet ici.",
-        "specs": [
-          { "label": "Spec 1", "value": "Valeur 1" },
-          { "label": "Spec 2", "value": "Valeur 2" },
-          { "label": "Spec 3", "value": "Valeur 3" },
-          { "label": "Spec 4", "value": "Valeur 4" }
-        ]
+        "tag": "Partie 2 · Résidences & Décor",
+        "title": "Le décor du pouvoir",
+        "description": "La cheminée monumentale de l'appartement du 9 East 71st Street à Manhattan — l'une des résidences les plus luxueuses de New York. Ce salon servait de théâtre aux rencontres entre Epstein et l'élite mondiale : politiques, scientifiques, milliardaires.",
+        "link": "https://www.ouest-france.fr/societe/faits-divers/affaire-jeffrey-epstein/recit-il-ne-se-livrait-jamais-le-compositeur-francais-frederic-chaslin-raconte-sa-relation-avec-jeffrey-epstein-7f9e4g3c-8c5b-11ef-9c3f-1f06dd49e9dc"
       }
     },
+
     {
       "id": "fauteuil",
-      "label": "Fauteuil",
-      "phi": 1.9723,
-      "theta": -0.8785,
       "article": {
-        "category": "Catégorie · Sous-catégorie",
-        "title": "Fauteuil",
-        "description": "Les documents confidentiels sur le Vietnam et Singapour : Des dossiers que le prince Andrew est soupçonné d'avoir transmis à Epstein lors de ses missions commerciales."
+        "tag": "Partie 4 · Secrets judiciaires",
+        "title": "Les documents Vietnam & Singapour",
+        "description": "Des dossiers confidentiels que le prince Andrew est soupçonné d'avoir transmis à Epstein lors de ses missions commerciales officielles. Ces documents classifiés figurent parmi les révélations les plus explosives des archives déclassifiées.",
+        "link": "https://www.ouest-france.fr/societe/faits-divers/affaire-jeffrey-epstein/l-arrestation-de-l-ex-prince-andrew-secoue-le-royaume-uni-8g0f5h4d-8c5b-11ef-9c3f-1f06dd49e9dc"
       }
     },
+
     {
       "id": "table_basse",
-      "label": "Table basse",
-      "phi": 1.9077,
-      "theta": -0.4219,
       "article": {
-        "category": "Catégorie · Sous-catégorie",
-        "title": "Table basse",
-        "description": "Décrivez cet objet ici.",
-        "specs": [
-          { "label": "Spec 1", "value": "Valeur 1" },
-          { "label": "Spec 2", "value": "Valeur 2" },
-          { "label": "Spec 3", "value": "Valeur 3" },
-          { "label": "Spec 4", "value": "Valeur 4" }
-        ]
+        "tag": "Partie 3 · Preuves du système",
+        "title": "Le bloc-notes « 2 X 16 ans »",
+        "description": "Sur cette table repose un bloc-notes portant la mention manuscrite aussi courte que glaçante : « 2 X 16 ans ». Ces chiffres ne désignaient pas des statistiques anonymes, mais la quantité et l'âge de jeunes filles mineures destinées à être transportées vers les îles privées du milliardaire.",
+        "link": "https://www.ouest-france.fr/societe/faits-divers/affaire-jeffrey-epstein/exclusif-mannequins-mineures-chateaux-comment-le-reseau-epstein-a-pu-operer-en-france-grace-a-jean-luc-brunel-9h1g6i5e-8c5b-11ef-9c3f-1f06dd49e9dc"
       }
     },
+
     {
       "id": "tapis_persan",
-      "label": "Tapis persan",
-      "phi": 2.3582,
-      "theta": 0.6514,
       "article": {
-        "category": "Catégorie · Sous-catégorie",
-        "title": "Tapis persan",
-        "description": "Décrivez cet objet ici.",
-        "specs": [
-          { "label": "Spec 1", "value": "Valeur 1" },
-          { "label": "Spec 2", "value": "Valeur 2" },
-          { "label": "Spec 3", "value": "Valeur 3" },
-          { "label": "Spec 4", "value": "Valeur 4" }
-        ]
+        "tag": "Partie 2 · Résidences & Décor",
+        "title": "L'appartement de Manhattan",
+        "description": "Ce tapis persan d'exception ornait le salon du 9 East 71st Street, l'une des résidences privées les plus imposantes de New York. L'appartement, évalué à plusieurs dizaines de millions de dollars, était le cœur opérationnel et social de l'empire Epstein.",
+        "link": "https://www.ouest-france.fr/societe/faits-divers/affaire-jeffrey-epstein/en-images-les-10-choses-les-plus-troublantes-que-les-enqueteurs-ont-decouvertes-dans-l-appartement-d-epstein-3a6c2e1a-8c5b-11ef-9c3f-1f06dd49e9dc"
       }
     },
+
     {
       "id": "canape_rouge",
-      "label": "Canapé rouge",
-      "phi": 1.8076,
-      "theta": -0.1755,
       "article": {
-        "category": "Catégorie · Sous-catégorie",
-        "title": "Canapé rouge",
-        "description": "Décrivez cet objet ici.",
-        "specs": [
-          { "label": "Spec 1", "value": "Valeur 1" },
-          { "label": "Spec 2", "value": "Valeur 2" },
-          { "label": "Spec 3", "value": "Valeur 3" },
-          { "label": "Spec 4", "value": "Valeur 4" }
-        ]
+        "tag": "Partie 2 · Résidences & Décor",
+        "title": "Le salon de Manhattan",
+        "description": "Ce canapé rouge faisait partie du mobilier extravagant de l'appartement new-yorkais d'Epstein, décrit par les enquêteurs comme un véritable labyrinthe entre cabinet de curiosités et mise en scène narcissique du pouvoir.",
+        "link": "https://www.ouest-france.fr/societe/faits-divers/affaire-jeffrey-epstein/en-images-les-10-choses-les-plus-troublantes-que-les-enqueteurs-ont-decouvertes-dans-l-appartement-d-epstein-3a6c2e1a-8c5b-11ef-9c3f-1f06dd49e9dc"
       }
     },
+
     {
       "id": "lampe_doree",
-      "label": "Lampe dorée",
-      "phi": 1.642,
-      "theta": 0.1429,
       "article": {
-        "category": "Catégorie · Sous-catégorie",
-        "title": "Lampe dorée",
-        "description": "Décrivez cet objet ici.",
-        "specs": [
-          { "label": "Spec 1", "value": "Valeur 1" },
-          { "label": "Spec 2", "value": "Valeur 2" },
-          { "label": "Spec 3", "value": "Valeur 3" },
-          { "label": "Spec 4", "value": "Valeur 4" }
-        ]
+        "tag": "Partie 2 · Résidences & Décor",
+        "title": "La fiche de paie Bear Stearns (1980)",
+        "description": "Cette pièce luxueuse rappelle la métamorphose sociale fulgurante d'Epstein : comment un jeune homme de 23 ans, sur le point d'être licencié de la Dalton School, a-t-il infiltré l'une des banques les plus prestigieuses de Wall Street avec un salaire équivalent à 800 000 dollars actuels ?",
+        "link": "https://www.ouest-france.fr/societe/faits-divers/affaire-jeffrey-epstein/prof-de-maths-mediocre-issu-de-la-classe-moyenne-comment-le-pedocriminel-jeffrey-epstein-a-t-il-bati-sa-fortune-0i2h7j6f-8c5b-11ef-9c3f-1f06dd49e9dc"
       }
     },
+
     {
       "id": "porte",
-      "label": "Porte",
-      "phi": 1.5087,
-      "theta": 1.5502,
       "article": {
-        "category": "Catégorie · Sous-catégorie",
-        "title": "Porte",
-        "description": "Décrivez cet objet ici.",
-        "specs": [
-          { "label": "Spec 1", "value": "Valeur 1" },
-          { "label": "Spec 2", "value": "Valeur 2" },
-          { "label": "Spec 3", "value": "Valeur 3" },
-          { "label": "Spec 4", "value": "Valeur 4" }
-        ]
+        "tag": "Partie 5 · Fin de l'empire",
+        "title": "Le NDA des employés de l'île",
+        "description": "Chaque employé franchissant cette porte — comme les pilotes d'hélicoptère de Little Saint James — devait signer un accord de confidentialité d'une sévérité extrême. Ce contrat imposait le silence absolu et interdisait tout témoignage devant la police sans la présence des avocats d'Epstein.",
+        "link": "https://www.ouest-france.fr/societe/faits-divers/affaire-jeffrey-epstein/little-saint-jeff-l-ile-ou-jeffrey-epstein-regnait-sans-police-ni-temoins-1j3i8k7g-8c5b-11ef-9c3f-1f06dd49e9dc"
       }
     },
+
     {
       "id": "documents",
-      "label": "Documents",
-      "phi": 1.8144,
-      "theta": -2.837,
       "article": {
-        "category": "Catégorie · Sous-catégorie",
-        "title": "Documents",
-        "description": "Décrivez cet objet ici.",
-        "specs": [
-          { "label": "Spec 1", "value": "Valeur 1" },
-          { "label": "Spec 2", "value": "Valeur 2" },
-          { "label": "Spec 3", "value": "Valeur 3" },
-          { "label": "Spec 4", "value": "Valeur 4" }
-        ]
+        "tag": "Partie 4 · Secrets financiers",
+        "title": "Le passeport de « Marius Robert Fortelni »",
+        "description": "Exhumé d'un coffre-fort de Manhattan au milieu de diamants et de milliers de dollars en liquide : un passeport autrichien au nom de Marius Robert Fortelni. Si l'identité appartient à un citoyen bien réel, la photographie affiche sans équivoque le visage de Jeffrey Epstein.",
+        "link": "https://www.ouest-france.fr/societe/faits-divers/affaire-jeffrey-epstein/affaire-epstein-quels-secrets-le-faux-passeport-autrichien-trouve-dans-l-appartement-du-criminel-sexuel-cache-t-il-2k4j9l8h-8c5b-11ef-9c3f-1f06dd49e9dc"
+      }
+    },
+
+    {
+      "id": "avion_matricule",
+      "article": {
+        "tag": "Partie 1 · Logistique & Archives",
+        "title": "Le « Lolita Express » — N212JE",
+        "description": "Signature gravée sur la carcasse métallique d'un avion aujourd'hui à l'abandon en Géorgie. Ce Boeing 727, tristement célèbre, fut le véritable pivot logistique du trafic sexuel d'Epstein — reliant les élites de New York aux rivages secrets des Îles Vierges pendant deux décennies.",
+        "link": "https://www.ouest-france.fr/societe/faits-divers/affaire-jeffrey-epstein/video-destinations-passagers-ce-que-revelent-les-trajets-en-avion-d-epstein-3l5k0m9i-8c5b-11ef-9c3f-1f06dd49e9dc"
+      }
+    },
+
+    {
+      "id": "giacometti",
+      "article": {
+        "tag": "Partie 2 · Résidences & Décor",
+        "title": "La « Grande figure » de Giacometti",
+        "description": "Cette sculpture en bronze élancée est le pivot d'une transaction financière atteignant plus de 17 millions de livres sterling en 2017. Vendue par un trust contrôlé par Epstein, l'œuvre a alimenté un montage complexe de « poupées russes » financières impliquant Jack Lang et sa fille Caroline.",
+        "link": "https://www.ouest-france.fr/societe/faits-divers/affaire-jeffrey-epstein/enquete-l-art-les-trusts-et-les-millions-les-coulisses-du-montage-financier-qui-lie-les-lang-a-la-galaxie-epstein-4m6l1n0j-8c5b-11ef-9c3f-1f06dd49e9dc"
+      }
+    },
+
+    {
+      "id": "jpmorgan",
+      "article": {
+        "tag": "Partie 4 · Secrets financiers",
+        "title": "L'« Entreprise Epstein » — 55 comptes JPMorgan",
+        "description": "Ce relevé bancaire de JPMorgan affichant 55 comptes distincts est le squelette financier de ce que la justice a baptisé l'« Entreprise Epstein ». En multipliant ces comptes entre 1998 et 2013, le milliardaire segmentait ses flux pour rendre ses millions intraçables aux régulateurs.",
+        "link": "https://www.ouest-france.fr/societe/faits-divers/affaire-jeffrey-epstein/info-ouest-france-comptes-bancaires-societes-offshore-mariages-arranges-comment-fonctionnait-l-entreprise-epstein-5n7m2o1k-8c5b-11ef-9c3f-1f06dd49e9dc"
+      }
+    },
+
+    {
+      "id": "corde",
+      "article": {
+        "tag": "Partie 5 · Fin de l'empire",
+        "title": "La mort en cellule — pièce à conviction",
+        "description": "Cette corde de ligature, photographiée comme pièce à conviction par le ministère de la Justice, est au cœur de l'énigme entourant la mort d'Epstein. Alors que la version officielle conclut à un suicide, des experts pointent des marques sur son cou ressemblant davantage à celles laissées par une corde fine.",
+        "link": "https://www.ouest-france.fr/societe/faits-divers/affaire-jeffrey-epstein/gardiens-endormis-os-du-cou-fractures-cameras-eteintes-que-sait-on-des-circonstances-de-la-mort-de-jeffrey-epstein-6o8n3p2l-8c5b-11ef-9c3f-1f06dd49e9dc"
+      }
+    },
+
+    {
+      "id": "trust_1953",
+      "article": {
+        "tag": "Partie 5 · Fin de l'empire",
+        "title": "577 millions transférés 48h avant sa mort",
+        "description": "Signé 48 heures avant son décès, cet acte créant le « 1953 Trust » visait à transférer 577 millions de dollars d'actifs vers une structure offshore. Une manœuvre qui complique encore aujourd'hui la répartition des indemnisations aux victimes.",
+        "link": "https://www.ouest-france.fr/societe/faits-divers/affaire-jeffrey-epstein/enquete-qu-est-devenue-l-immense-fortune-de-jeffrey-epstein-apres-sa-mort-7p9o4q3m-8c5b-11ef-9c3f-1f06dd49e9dc"
       }
     }
+
   ]
 }
