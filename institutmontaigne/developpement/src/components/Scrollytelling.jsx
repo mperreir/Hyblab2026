@@ -16,7 +16,7 @@ export default function Scrollytelling({ accroches, images = [] }) {
   }, [bgImages]);
 
   return (
-    <section ref={containerRef} className="relative bg-navy">
+    <section ref={containerRef} className="relative bg-navy print:hidden">
       {/* ─── Fond sticky (à la Le Monde) ─── */}
       <div className="sticky top-0 h-screen w-full overflow-hidden">
         {/* Couches d'images — seule l'active est visible */}
@@ -91,7 +91,7 @@ function ScrollPanel({ phrase, index, total, isLast, onEnter }) {
   return (
     <div
       ref={ref}
-      className="min-h-screen flex items-center justify-center px-6 sm:px-10 md:px-16"
+      className="min-h-screen flex items-center justify-center px-6 sm:px-10 md:px-16 print:hidden"
     >
       <div
         className="max-w-3xl w-full text-center pointer-events-none"

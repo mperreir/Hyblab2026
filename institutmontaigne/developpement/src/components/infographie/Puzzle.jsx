@@ -69,6 +69,7 @@ export function DropZone({ correctAnswer, placeholder = "···" }) {
         display: "inline-flex", alignItems: "center", justifyContent: "center",
         verticalAlign: "middle", width: 80, height: 34,
         margin: "0 6px", clipPath: HEX_CLIP, background: bg,
+        WebkitPrintColorAdjust: "exact", printColorAdjust: "exact",
         transition: "background 0.15s",
         fontFamily: "Georgia, serif", cursor: "default", userSelect: "none",
       }}
@@ -120,6 +121,7 @@ function DragGhost({ pos, originPos, bg, text, value, returning, onDone }) {
         height: 34,
         clipPath: HEX_CLIP,
         backgroundColor: bg,
+        WebkitPrintColorAdjust: "exact", printColorAdjust: "exact",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
@@ -228,6 +230,7 @@ function AnswerChip({ value, index, accepted, onAccepted }) {
         style={{
           clipPath: HEX_CLIP,
           backgroundColor: bg,
+          WebkitPrintColorAdjust: "exact", printColorAdjust: "exact",
           cursor: isDragging ? "grabbing" : "grab",
           width: 80,
           height: 34,
@@ -280,6 +283,7 @@ export function AnswerBank({ answers }) {
     <div style={{ display: "flex", gap: 28, justifyContent: "center", flexWrap: "wrap" }}>
       {answers.map((value, i) => (
         <motion.div key={value}
+          className="print:!opacity-100 print:!transform-none"
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: i * 0.1, type: "spring", stiffness: 220, damping: 18 }}

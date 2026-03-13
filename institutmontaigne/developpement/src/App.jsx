@@ -9,6 +9,7 @@ import Resultat from './components/quiz/Resultat.jsx';
 import Podcast from './components/Podcast';
 import debateData from './data/debate.jsx';
 import Footer from './components/Footer';
+import ExportPDF from './components/ExportPDF.js';
 
 export default function App() {
   const [initialScore, setInitialScore] = useState(50);
@@ -33,6 +34,7 @@ export default function App() {
         title={debateData.podcast.title}
         cover={debateData.podcast.cover}
       />
+      <ExportPDF />
       <Footer />
     </div>
   );

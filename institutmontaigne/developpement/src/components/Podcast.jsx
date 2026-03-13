@@ -58,7 +58,7 @@ export default function Podcast({ src, episode, title, cover }) {
   });
 
   return (
-    <section className="mx-auto max-w-sm bg-white rounded-2xl overflow-hidden shadow-xl my-10">
+    <section className="mx-auto max-w-sm bg-white rounded-2xl overflow-hidden shadow-xl my-10 print:!hidden">
       {src && <audio ref={audioRef} src={src} preload="metadata" />}
 
       <div className="px-5 pt-4 pb-6">
