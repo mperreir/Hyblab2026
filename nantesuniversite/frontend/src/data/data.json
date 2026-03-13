@@ -13,6 +13,12 @@
     },
     "documents": [
       {
+        "id":"22",
+        "category":"Bibliographie",
+        "description": "Colin de la Higuera est enseignant-chercheur en informatique, spécialiste reconnu de l’intelligence artificielle appliquée à l’éducation à Nantes Université et membre du laboratoire LS2N (laboratoire des sciences du numérique). Réparti sur cinq sites, le LS2N est la plus importante unité de recherche publique en région Pays de la Loire. ",
+        "pictogramme":"./pictogramme/biographie.svg"
+      },
+      {
         "id": "1",
         "category": "Prix",
         "nature": "General",
@@ -49,72 +55,7 @@
         "url": "https://www.lagazettedescommunes.com/984968/faire-en-sorte-que-lia-serve-a-mieux-apprendre/",
         "pictogramme": "./pictogramme/article.svg"
       },
-      {
-        "id": "4",
-        "category": "Article",
-        "nature": "Expert",
-        "type":"Article",
-        "author": "Colin de la Higuera",
-        "title": "A bibliographical study of grammatical inference",
-        "description": "Cet article offre une revue bibliographique du domaine de l’inférence grammaticale, un champ de recherche lié à l’apprentissage automatique, la théorie des langages formels et la reconnaissance de motifs. Il synthétise les travaux clés, met en lumière les définitions et approches historiques, et fournit une base de connaissances commune pour les chercheurs débutants ou expérimentés intéressés par la construction de grammaires à partir de données séquentielles.",
-        "date": "2005",
-        "origine":"external link",
-        "url": "https://www.sciencedirect.com/science/article/abs/pii/S0031320305000221",
-        "pictogramme": "./pictogramme/recherche.svg"
-      },
-      {
-        "id": "5",
-        "category": "Article",
-        "nature": "Expert",
-        "type":"Article",
-        "author": "Colin de la Higuera",
-        "title": "Topology of strings: Median string is NP-complete",
-        "description": "Cet article démontre que le problème de trouver la chaîne médiane est un problème NP‑complet, ce qui signifie qu’il est très difficile à résoudre efficacement en temps polynomial pour de grandes instances. Cette conclusion a des implications importantes en informatique théorique et dans des domaines comme la reconnaissance de motifs ou la biologie computationnelle, où de tels problèmes de chaînes apparaissent fréquemment.",
-        "date": "2000",
-        "origine":"external link",
-        "url": "https://www.sciencedirect.com/science/article/pii/S0304397597002405",
-        "pictogramme": "./pictogramme/recherche.svg"
-      },
-      {
-        "id": "6",
-        "category": "Article",
-        "nature": "Expert",
-        "type":"Article",
-        "author": "Colin de la Higuera",
-        "title": "Characteristic Sets for Polynomial Grammatical Inference",
-        "description": "Cet article explore la notion de ensembles caractéristiques dans l’inférence grammaticale, définissant des ensembles de chaînes qui permettent d’apprendre correctement un langage grammatical à partir d’exemples. Il montre que, sous certaines conditions, la taille de ces ensembles doit être polynomiale et examine les limitations d’apprentissage efficace pour divers types de grammaires.",
-        "date": "1997",
-        "origine":"external link",
-        "url": "https://link.springer.com/article/10.1023/A:1007353007695",
-        "pictogramme": "./pictogramme/recherche.svg"
-      },
-      {
-        "id": "7",
-        "category": "Article",
-        "nature": "Expert",
-        "type":"Article",
-        "author": "Colin de la Higuera",
-        "title": "Computational Complexity of Problems on Probabilistic Grammars and Transducers",
-        "description": "Cet article analyse la complexité computationnelle de problèmes liés aux grammaires probabilistes et aux transducteurs, montrant notamment que certaines de ces tâches sont très difficiles à résoudre efficacement. Il apporte des résultats importants sur les limites d’algorithmes d’apprentissage pour des modèles grammaticaux utilisés en reconnaissance de motifs et traitement du langage.",
-        "date": "2000",
-        "origine":"external link",
-        "url": "https://link.springer.com/chapter/10.1007/978-3-540-45257-7_2",
-        "pictogramme": "./pictogramme/recherche.svg"
-      },
-      {
-        "id": "8",
-        "category": "Article",
-        "nature": "Expert",
-        "type":"Article",
-        "author": "Colin de la Higuera",
-        "title": "Marginal Inference queries in Hidden Markov Models under context-free grammar constraints",
-        "description": "Cet article propose une méthode d’entraînement efficace pour les modèles de langage, réduisant le besoin de supervision coûteuse grâce à une nouvelle stratégie d’apprentissage auto‑supervisé. Les résultats montrent que cette approche améliore la performance des modèles tout en diminuant la quantité de données annotées nécessaires.",
-        "date": "2022",
-        "origine":"external link",
-        "url": "https://arxiv.org/abs/2206.12862",
-        "pictogramme": "./pictogramme/recherche.svg"
-      },
-      {
+       {
         "id": "9",
         "category": "Article",
         "nature": "General",
@@ -127,6 +68,7 @@
         "url": "https://chaireunescorelia.univ-nantes.fr/?s=La+triche%E2%80%A6+et+si+l%E2%80%99IA",
         "pictogramme": "./pictogramme/article.svg"
       },
+         
       {
         "id": "10",
         "category": "Article",
@@ -179,7 +121,7 @@
         "url": "https://mediaserver.univ-nantes.fr/videos/gtnum-ia_eo-axe-3-atelier-du-1er-juin-2022-lintelligence-artificielle-lecole-les-enseignantes-partie-2/",
         "pictogramme": "./pictogramme/conference.svg"
       },
-      {
+       {
         "id": "14",
         "category": "Conference",
         "nature": "Journalistique",
@@ -230,19 +172,7 @@
         "url": "https://mediaserver.univ-nantes.fr/videos/ressources-educatives-libres-pour-et-par-les-enseignants-dne-salon-educatec-educatice-novembre-2021/",
         "pictogramme": "./pictogramme/podcast.svg"
       },
-      {
-        "id": "18",
-        "category": "Livre",
-        "nature": "Expert",
-        "type":"Article",
-        "author": "Colin de la Higuera, Jotsna Iyer",
-        "title": "IA pour les enseignants : un manuel ouvert",
-        "description": "Ce manuel ouvert propose une introduction claire et progressive à l’intelligence artificielle pour les enseignants, avec des explications, des ressources et des activités pour intégrer l’IA dans leurs pratiques pédagogiques. Il a été conçu pour être accessible, utile et adapté à différents niveaux d’enseignement afin de soutenir la formation des enseignants à l’IA.",
-        "date": "2024",
-        "origine":"external link",
-        "url": "https://sti.ac-versailles.fr/IMG/pdf/ia-pour-les-enseignants-un-manuel-ouvert.pdf",
-        "pictogramme": "./pictogramme/livre.svg"
-      },
+     
       {
         "id": "19",
         "category": "Conference",
