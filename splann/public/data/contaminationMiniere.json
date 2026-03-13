@@ -1,7 +1,7 @@
 {
   "titreEnquete" : "Intoxication minière en Bretagne",
   "chapeauEnquete" : "« Vous voyez cette poussière ? Nos animaux la boivent, nos enfants la respirent », s’inquiète une habitante de Glomel.",
-  "imgPath" :"img/mine_intro.png",
+  "imgPath" :"img/FOND_INTRO.png",
   "dessinPath" : "img/mainDraw.jpg",
   "nVolet": 2,
   "volet" : [
