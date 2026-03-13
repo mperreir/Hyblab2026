@@ -5,6 +5,7 @@ let Mediatique = null;
 let Public = null;
 let Judiciaire = null;
 let Actions = null;
+let QHeader = null;
 
 let count_institutionnel = 0;
 let count_mediatique = 0;
@@ -88,19 +89,24 @@ function createButtonBox(boxId = "box1", aRow = 1, aColumn = 1) {
       // Remove all rows
       box.querySelectorAll('.row').forEach(row => row.remove());
 
-      // Change box background color
-      const textDisplay = document.createElement('p');
-      textDisplay.id = "base";
-      switch (parseInt(value)) {
-        case 1:
-          box.color = 1;
-          box.ngroup = count_judiciaire;
-          count_judiciaire++;
+
+        // Change box background color
+        const textDisplay = document.createElement('p');
+        textDisplay.id = "base";
+        let qheader = document.querySelector('.main-question');
+        console.log(qheader);
+        switch (parseInt(value)) {
+          case 1:
+            box.color = 1;
+            box.ngroup = count_judiciaire;
+            count_judiciaire ++;
 
           if (box.ngroup >= Judiciaire.length) {
 
             if (Actions.length > count_actions) {
               textDisplay.textContent = Actions[count_actions].Base;
+              
+
               box.nAction = count_actions;
               count_actions++;
               box.className += " finished box-action";
@@ -111,22 +117,25 @@ function createButtonBox(boxId = "box1", aRow = 1, aColumn = 1) {
             }
             State[value] = true;
 
-          } else {
 
-            textDisplay.textContent = Judiciaire[box.ngroup].Base;
+            } else{
 
-          }
-
-          break;
-        case 2:
-          box.color = 2;
-          box.ngroup = count_mediatique;
-          count_mediatique++;
+              textDisplay.textContent = Judiciaire[box.ngroup].Base;
+              qheader.textContent = Judiciaire[box.ngroup].Question;
+            }
+            
+            break;
+          case 2:
+            box.color = 2;
+            box.ngroup = count_mediatique;
+            count_mediatique ++;
 
           if (box.ngroup >= Mediatique.length) {
 
             if (Actions.length > count_actions) {
               textDisplay.textContent = Actions[count_actions].Base;
+
+
               box.nAction = count_actions;
               count_actions++;
               box.className += " finished box-action";
@@ -139,9 +148,11 @@ function createButtonBox(boxId = "box1", aRow = 1, aColumn = 1) {
 
           } else {
 
-            textDisplay.textContent = Mediatique[box.ngroup].Base;
-
-          }
+              textDisplay.textContent = Mediatique[box.ngroup].Base;
+              console.log(Mediatique[box.ngroup].Question);
+              console.log(box.ngroup);
+              qheader.textContent = Mediatique[box.ngroup].Question;
+            }
 
           break;
         case 3:
@@ -153,6 +164,7 @@ function createButtonBox(boxId = "box1", aRow = 1, aColumn = 1) {
 
             if (Actions.length > count_actions) {
               textDisplay.textContent = Actions[count_actions].Base;
+              
               box.nAction = count_actions;
               count_actions++;
               box.className += " finished box-action";
@@ -165,20 +177,21 @@ function createButtonBox(boxId = "box1", aRow = 1, aColumn = 1) {
 
           } else {
 
-            textDisplay.textContent = Public[box.ngroup].Base;
-
-          }
-
-          break;
-        case 4:
-          box.color = 4;
-          box.ngroup = count_institutionnel;
-          count_institutionnel++;
+              textDisplay.textContent = Public[box.ngroup].Base;
+              qheader.textContent = Public[box.ngroup].Question;
+            }
+            
+            break;
+          case 4:
+            box.color = 4;
+            box.ngroup = count_institutionnel;
+            count_institutionnel ++;
 
           if (box.ngroup >= Institutionnel.length) {
 
             if (Actions.length > count_actions) {
               textDisplay.textContent = Actions[count_actions].Base;
+              
               box.nAction = count_actions;
               count_actions++;
               box.className += " finished box-action";
@@ -191,9 +204,9 @@ function createButtonBox(boxId = "box1", aRow = 1, aColumn = 1) {
 
           } else {
 
-            textDisplay.textContent = Institutionnel[box.ngroup].Base;
+              textDisplay.textContent = Institutionnel[box.ngroup].Base;
 
-          }
+            }
 
           break;
         default:
@@ -205,7 +218,7 @@ function createButtonBox(boxId = "box1", aRow = 1, aColumn = 1) {
 
       box.addEventListener('click', () => {
         // Do not trigger while choice buttons are still visible.
-        if (box.querySelector('button')) {
+        if (box.querySelector('button[id^="button"]')) {
           return;
         }
 
@@ -238,6 +251,31 @@ function createButtonBox(boxId = "box1", aRow = 1, aColumn = 1) {
             popupBox.className = "action";
             console.log(box.nAction);
             popupText.textContent = Actions[box.nAction].Texteplus;
+            
+            
+            //Possibility to copy the text of the action
+            if(document.getElementById("copy-button") === null){
+              let copyb = document.createElement("p");
+              copyb.textContent = "Appuyez ici";
+              copyb.id = "copy-button";
+              copyb.style.textDecoration = "underline";
+              copyb.style.cursor = "pointer";
+              copyb.style.color =" #BAA2EA";
+              copyb.addEventListener('click', () => {
+                navigator.clipboard.writeText(Actions[box.nAction].Texteplus);
+                const msg = document.createElement("div");
+                msg.textContent = "Texte copié !";
+                msg.className = "copy-toast";
+                document.body.appendChild(msg);
+
+                // Disparition après 1 seconde
+                setTimeout(() => {
+                  msg.remove();
+                }, 1000);
+              });
+              popupBox.appendChild(copyb);
+              console.log(popupBox);
+            }
             break;
         }
         popupBox.className += " animate__animated animate__slideInUp"
@@ -255,7 +293,6 @@ function createButtonBox(boxId = "box1", aRow = 1, aColumn = 1) {
       }
 
       let boxNum = Math.floor(Math.random() * boxsFreeList.length);
-
       let theChoosenBox = boxsFreeList[boxNum];
       while (theChoosenBox.row == box.row && theChoosenBox.column == box.column) {
         console.warn('The chosen box is the same as the current box. Choosing another one.');
@@ -471,6 +508,7 @@ const initPageProjet = async function () {
   Public = article.Public;
   Judiciaire = article.Judiciaire;
   Actions = article.Actions;
+  QHeader = article.QHeader;
 
   addEmptyRow();
 
@@ -484,4 +522,13 @@ const arrow = document.querySelector(".summary-container img");
 
 arrow.addEventListener("click", () => {
   summary.classList.toggle("is-open");
+});
+
+const sommet = document.querySelector("#top");
+const dest = document.querySelector(".swiper-slide");
+// const body = document.querySelector("post-template tag-impact");
+console.log(sommet);
+
+sommet.addEventListener("click", () => {
+  dest.scrollTo({ top: 0, behavior: 'smooth' });
 });
