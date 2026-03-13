@@ -2,12 +2,16 @@
 
 // Init of the (touch friendly) Swiper slider
 const swiper = new Swiper("#mySwiper", {
-  direction: "vertical",
+  direction: "horizontal",
   mousewheel: true,
   pagination: {
     el: ".swiper-pagination",
     clickable: true,
   },
+  navigation: {
+    nextEl: ".swiper-button-next",
+    prevEl: ".swiper-button-prev"
+  }
 });
 
 swiper.on("slideChange", function () {
@@ -17,6 +21,18 @@ swiper.on("slideChange", function () {
       break;
     case 1:
       initSlide2();
+      break;
+    case 2:
+      initSlide3();
+      break;
+    case 3:
+      initSlide4();
+      break;
+    case 4:
+      initSlide5();
+      break;
+    case 5:
+      initSlide6();
       break;
   }
 });
@@ -35,4 +51,4 @@ setTimeout(() => {
   });
   // Init first slide
   initSlide1();
-}, 1000);
+}, 1);

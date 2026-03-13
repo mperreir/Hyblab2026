@@ -43,7 +43,32 @@ body{
     position: absolute;
 }
 
+.swiper-button-next,
+.swiper-button-prev {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #ffffff;
+    border-radius: 4px;
+    position:sticky;
+    position: top;
+}
+
+.swiper-button-next:after,
+.swiper-button-prev:after {
+    font-size: 20px;
+}
+
 /* white navigation bullets */
+.swiper-pagination {
+    bottom: 108px !important;
+}
+
+.swiper-pagination.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+.swiper-pagination{
+    transition: opacity 0.3s ease;
+}
 .swiper-pagination-bullet-active {
     background-color: white !important;
 }
@@ -56,7 +81,7 @@ body{
 }
 
 /* Most of the elements in this demo are absolute positioned with percentages */
-#first-slide header, #second-slide header{
+#first-slide header, #second-slide header, #third-slide header, #fourth-slide header, #fifth-slide header, #sixth-slide header{
     text-align: center;
     width: 100%;
     top: 10%;
@@ -95,7 +120,7 @@ main > section{
 }
 
 /* Footer of last slide is at the bottom and content is centered */
-#first-slide footer{
+#first-slide footer, #third-slide footer, #fifth-slide footer, #sixth-slide footer{
     bottom: 5%;
     position: absolute;
     box-sizing: border-box; /* So that padding is not added to width (and width: 100% works) */
@@ -203,5 +228,55 @@ body{
     body{
         font-size: 15vw;
     }
+}
+/* Content pour la pop up qui a les infos approfondis des bullets points */
+.bottom-sheet {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  padding-bottom: 16px;
+  background: white;
+  border-radius: 16px 16px 0 0;
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.2);
+  max-height: 75vh;
+  display: flex;
+  flex-direction: column;
+  z-index: 101;
+  
+  /* Caché : on ne montre que la barre du haut (60px) */
+  transform: translateY(calc(100% - 90px));
+  transition: transform 0.4s ease;
+}
+
+.bottom-sheet.open {
+  transform: translateY(0);
+}
+
+.handle-bar {
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.bottom-sheet .content {
+  color:black;
+  font-size: large;
+  height: calc(100% - 60px); /* 100% du sheet moins la handle-bar */
+  overflow-y:auto;
+  padding: 16px;
+}
+.toggle-btn {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  transition: rotate 0.3s ease;
+}
+
+.bottom-sheet.open .toggle-btn {
+  rotate: 180deg;
 }
 
