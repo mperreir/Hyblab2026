@@ -35,13 +35,12 @@ export const useFilterStore = defineStore("filterStore", () => {
     // Mapping entre labels et noms de champs API
     const fieldMapping = {
         // Dietary
-        vegan: "Vegan",
         vegetarien: "Végétarien",
         gluten_free: "Sans gluten",
         halal: "Halal",
 
         // Cuisine
-        french: "Tourangelle",
+        tourgangelle: "Tourangelle",
         asian: "Asiatique",
         italian: "Italienne",
         american: "Américaine",

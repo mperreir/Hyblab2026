@@ -12,9 +12,6 @@
                 </span>
             </div>
             <div class="mini-box-content">
-                <div class="div-date">
-                    <p class="date">{{ date }}</p>
-                </div>
                 <div class="div-title">
                     <h3 class="title">{{ title }}</h3>
                 </div>
@@ -97,17 +94,6 @@ defineProps({
     align-self: stretch;
 
     box-shadow: 2px 2px 2px 0 rgba(0, 0, 0, 0.15);
-}
-
-.div-date {
-    display: flex;
-    padding: 1.865px 6.216px;
-    align-items: center;
-    gap: 6.216px;
-
-    border-radius: 10px;
-    background: #FFF;
-    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.15);
 }
 
 .date {

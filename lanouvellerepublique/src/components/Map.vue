@@ -14,9 +14,9 @@
                 <l-marker v-if="userCoords" :lat-lng="userCoords" :icon="markerIcon" />
 
                 <MapMarker
-                    v-for="(r, index) in restaurants"
+                    v-for="(r, index) in restaurantsWithCoords"
                     :key="r.name"
-                    :coords="[r.latitude, r.longitude]"
+                    :coords="r.coords"
                     :image="r.image"
                     :is-active="selectedIndex === index"
                     :restaurant-index="index"
@@ -31,7 +31,7 @@
         >
             <div ref="carouselRef" class="restaurant-carousel" @scroll.passive="onCarouselScroll">
                 <div
-                    v-for="(r, index) in restaurants"
+                    v-for="(r, index) in restaurantsWithCoords"
                     :key="r.name"
                     class="restaurant-carousel__slide"
                     @click="focusRestaurant(index)"
@@ -40,17 +40,14 @@
                         @click="openDetail(index)"
                         :name="r.name"
                         :image="r.image"
-                        :latitude="r.latitude"
-                        :longitude="r.longitude"
+                        :latitude="r.coords[0]"
+                        :longitude="r.coords[1]"
                         :is-active="selectedIndex === index"
                         @focus-box="focusRestaurant(index)"
                     />
                     <RestaurantDetail
                         v-if="isClicked && selectedIndex === index"
-                        :name="r.name"
-                        :image="r.image"
-                        :latitude="r.latitude"
-                        :longitude="r.longitude"
+                        :restaurant="r"
                     />
                 </div>
             </div>
@@ -61,6 +58,7 @@
 <script setup>
 import "leaflet/dist/leaflet.css"
 import { ref, watch, computed, onMounted } from "vue"
+import { useRoute } from "vue-router"
 import { control, divIcon } from "leaflet"
 import { LMap, LTileLayer, LMarker } from "@vue-leaflet/vue-leaflet"
 import MapMarker from "./MapMarker.vue"
@@ -70,7 +68,30 @@ import { userCoords, requestGeolocation } from "@/stores/mapStore"
 import { useFilterStore } from "@/stores/filterStore"
 
 const filterStore = useFilterStore()
+const route = useRoute()
 const restaurants = computed(() => filterStore.filteredRestaurants)
+
+const parseCoords = (restaurant) => {
+    const rawLat = restaurant?.latitude ?? restaurant?.[",latitude"]
+    const rawLng = restaurant?.longitude
+    const lat = Number(rawLat)
+    const lng = Number(rawLng)
+
+    if (!Number.isFinite(lat) || !Number.isFinite(lng)) {
+        return null
+    }
+
+    return [lat, lng]
+}
+
+const restaurantsWithCoords = computed(() =>
+    restaurants.value
+        .map((restaurant) => ({
+            ...restaurant,
+            coords: parseCoords(restaurant),
+        }))
+        .filter((restaurant) => restaurant.coords),
+)
 
 const API_KEY = "b4BxT11KjV5Zzm2lo2V1"
 const STYLE = "dataviz-v4"
@@ -122,22 +143,22 @@ const scrollToRestaurant = (index) => {
 }
 
 const centerMapToRestaurant = (index) => {
-    const list = restaurants.value
+    const list = restaurantsWithCoords.value
     if (!list.length) return
 
-    const map = mapRef.value.leafletObject
+    const map = mapRef.value?.leafletObject
     if (!map) return
 
     const restaurant = list[index]
     if (!restaurant) return
 
-    map.flyTo([restaurant.latitude, restaurant.longitude], 14, {
+    map.flyTo(restaurant.coords, 14, {
         duration: 0.8,
     })
 }
 
 const focusRestaurant = (index) => {
-    const list = restaurants.value
+    const list = restaurantsWithCoords.value
     if (!list.length) return
 
     if (index < 0 || index >= list.length) return
@@ -145,6 +166,27 @@ const focusRestaurant = (index) => {
     selectedIndex.value = index
     scrollToRestaurant(index)
     centerMapToRestaurant(index)
+}
+
+const openRestaurantFromQuery = () => {
+    const key = route.query.restaurant
+    if (!key || !restaurantsWithCoords.value.length) {
+        return
+    }
+
+    const target = String(key)
+    const index = restaurantsWithCoords.value.findIndex(
+        (restaurant) =>
+            String(restaurant.id ?? "") === target ||
+            String(restaurant.name ?? "").toLowerCase() === target.toLowerCase(),
+    )
+
+    if (index < 0) {
+        return
+    }
+
+    focusRestaurant(index)
+    isClicked.value = route.query.detail === "1"
 }
 
 const onCarouselScroll = () => {
@@ -181,16 +223,26 @@ const onMapReady = (map) => {
 }
 
 watch(restaurants, (list) => {
-    if (!list.length) {
+    if (!restaurantsWithCoords.value.length) {
         selectedIndex.value = 0
         isClicked.value = false
         return
     }
 
-    if (selectedIndex.value >= list.length) {
-        selectedIndex.value = list.length - 1
+    if (selectedIndex.value >= restaurantsWithCoords.value.length) {
+        selectedIndex.value = restaurantsWithCoords.value.length - 1
     }
+
+    openRestaurantFromQuery()
 })
+
+watch(
+    () => [route.query.restaurant, route.query.detail, route.query.pick],
+    () => {
+        openRestaurantFromQuery()
+    },
+    { immediate: true },
+)
 </script>
 
 <style scoped>
