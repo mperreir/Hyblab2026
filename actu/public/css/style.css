@@ -3,6 +3,7 @@
 
 .film{
     position: relative;
+
 }
 
 .film > div{
@@ -10,10 +11,9 @@
     /* width: 350px;
     height: 600px; */
     
-    width: 120px;
-    height: 206px;
+    width: 335px;
+    height: 613px;
     
-    border: 1px solid black;
     border-radius: 10px;
     overflow: hidden;
 
@@ -25,19 +25,35 @@
 
 }
 
+.film h3{
+    font-family: "Black_italic",sans-serif
+}
+
 .film > .affiche_front{
     /* z-index: 1; */
-    transform: rotateY(0deg)
+    transform: rotateY(0deg);
+    background-color: #6ECA97;
 
+    display: flex;
+    flex-direction: column;
+}
+
+.film > .affiche_front > div:last-child{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .film > .affiche_front > img{
     /* max-width: 350px; */
-    z-index: -1;
-    max-width: 120px;
-    position: absolute;
-    
+    max-width: 335px;
 }
+
+
+.film > .affiche_front  span{
+    font-family: "semi_blod_italic",sans-serif;
+}
+
 
 
 
@@ -106,3 +122,7 @@ body{
 
     transform: translate(70%,0);
 }
+/* 
+*{
+    background-color: red;
+} */
