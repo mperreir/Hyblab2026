@@ -1,3 +1,22 @@
+function hidePin(entrepriseDiv) {
+    const anim = entrepriseDiv.querySelector(".pin-anim");
+    anim.classList.remove("visible");
+    anim.classList.add("hiding");
+    anim.addEventListener("transitionend", () => {
+        if (anim.classList.contains("hiding")) {
+            entrepriseDiv.style.display = "none";
+        }
+    }, { once: true });
+}
+
+function showPin(entrepriseDiv) {
+    const anim = entrepriseDiv.querySelector(".pin-anim");
+    entrepriseDiv.style.display = "block";
+    anim.classList.remove("hiding");
+    void anim.offsetWidth;
+    anim.classList.add("visible");
+}
+
 function filter(e){
     if (e.target.tagName === "BUTTON"){
         e.target.classList.toggle("active")
@@ -11,9 +30,9 @@ function filter(e){
     entreprises.forEach((entreprise) => {
         const entrepriseDiv = document.getElementById("E"+String(entreprise.id))
         if (includesAny(entreprise.secteur,secteursSelectionnes) && includesAny(entreprise.taille,taillesSelectionnees) && includesAny(entreprise.tags, tagsSelectionnes)){
-            entrepriseDiv.style.display = "block";
+            showPin(entrepriseDiv);
         }else{
-            entrepriseDiv.style.display = "none";
+            hidePin(entrepriseDiv);
         }
     });
 }

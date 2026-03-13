@@ -4,7 +4,7 @@ const pinData = {
     E3: { left: 19, top: 21 },
     E4: { left: 75, top: 32 },
     E5: { left: 74, top: 43 },
-    E6: { left: 22, top: 19 },
+    E6: { left: 22, top: 20.5 },
     E7: { left: 37, top: 62 },
     E8: { left: 40, top: 65 },
     E9: { left: 37, top: 55.5 },

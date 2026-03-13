@@ -30,7 +30,7 @@ function sauvegarderVus() {
 }
 
 let entreprises = [
-  new Entreprise(1,"PME", "Alimentaire", "Ecofrost", [],false),
+  new Entreprise(1,"Grande entreprise", "Alimentaire", "Ecofrost", [],false),
   new Entreprise(2,"PME", "Tech", "Red System", ["Jobs pas comme les autres"],false),
   new Entreprise(3,"PME", "Alimentaire", "Storme", ["Affaire de famille"],false),
   new Entreprise(4,"Independant", "Alimentaire", "Les Glaces d'Élodie", [],false),
@@ -61,11 +61,50 @@ entreprises.forEach((entreprise) => {
     const entreprise_pin = document.createElement("img");
     entreprise_pin.alt = "Pin entreprise " + entreprise.nom;
     entreprise_pin.src = pins[entreprise.secteur];
-    entreprise_div.appendChild(entreprise_pin)
+
+    if (entreprise.secteur == "Commerce" || entreprise.secteur == "Art"){
+        entreprise_pin.style.scale = "0.875";
+    }else if (entreprise.secteur == "Tech"){
+        entreprise_pin.style.scale = "0.9";
+    }
+
+    const wrapper = document.createElement("span");
+    wrapper.classList.add("pin-anim");
+    wrapper.appendChild(entreprise_pin);
+    entreprise_div.appendChild(wrapper);
 
     const parentDiv = document.getElementById("pinLayer");
     const nextDiv = document.getElementById("V1");
 
   parentDiv.insertBefore(entreprise_div, nextDiv);
   i++;
+});
+
+window.addEventListener("load", () => {
+    const pins = document.querySelectorAll(".pin-anim");
+    pins.forEach((anim, index) => {
+        setTimeout(() => {
+            void anim.offsetWidth;
+            anim.classList.add("visible");
+        }, 200 + index * 20); // 80ms entre chaque pin
+    });
+});
+
+window.addEventListener("load", () => {
+    const buttons = document.querySelectorAll("#GenZ_filters button");
+    const total = buttons.length;
+    
+    // Cache tous les boutons au départ
+    buttons.forEach(btn => btn.classList.add("avant-chute"));
+
+    buttons.forEach((btn, index) => {
+        setTimeout(() => {
+            btn.classList.remove("avant-chute"); // rend visible
+            btn.classList.add("visible");         // lance l'animation
+            btn.addEventListener("animationend", () => {
+                btn.classList.remove("visible");  // retire l'animation
+                // opacity reste à 1 car .avant-chute est retirée
+            }, { once: true });
+        }, 850 + (total - 1 - index) * 120);
+    });
 });
