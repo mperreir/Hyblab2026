@@ -1,4 +1,4 @@
-import { color } from "framer-motion";
+import { PATH_PUBLIC } from "../../data/debate";
 
 /**
  * PhotoQuote — bulle de citation avec photo, comme dans le Figma.
@@ -41,11 +41,11 @@ export default function Quote({ photo, quote, isLeft = true }) {
               width: '64px',
               height: '64px',
               backgroundColor: COLOR,
-              maskImage: 'url(/icons/quoteArrow.svg)',
+              maskImage: `url(${PATH_PUBLIC}/icons/quoteArrow.svg)`,
               maskSize: 'contain',
               maskRepeat: 'no-repeat',
               maskPosition: 'center',
-              WebkitMaskImage: 'url(/icons/quoteArrow.svg)',
+              WebkitMaskImage: `url(${PATH_PUBLIC}/icons/quoteArrow.svg)`,
               WebkitMaskSize: 'contain',
               WebkitMaskRepeat: 'no-repeat',
               WebkitMaskPosition: 'center',

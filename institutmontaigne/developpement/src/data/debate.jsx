@@ -5,7 +5,7 @@ import DoughnutChart from "../components/infographie/DoughnutChart";
 import {DropZone, AnswerBank} from "../components/infographie/Puzzle";
 import RepartitionDynamique from "../components/infographie/RepartitionDynamique";
 
-const PATH_PUBLIC = import.meta.env.DEV ? '.' : './public';
+const PATH_PUBLIC = '.';
 
 const debateData = {
   "meta": {
@@ -289,3 +289,4 @@ const debateData = {
 };
 
 export default debateData;
+export { PATH_PUBLIC };

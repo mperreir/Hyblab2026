@@ -1,4 +1,5 @@
 import { useEffect, useState, useRef, useCallback } from 'react';
+import { PATH_PUBLIC } from '../data/debate';
 
 export default function Quiz({ meta = {}, onScoreChange }) {
   const [response, setResponse] = useState(50);
@@ -135,7 +136,7 @@ export default function Quiz({ meta = {}, onScoreChange }) {
                 zIndex: 2,
               }}
             >
-              <img src="/icons/BarreGauche.svg" alt="" style={{ height: 44, width: 'auto', display: 'block' }} />
+              <img src={`${PATH_PUBLIC}/icons/BarreGauche.svg`} alt="" style={{ height: 44, width: 'auto', display: 'block' }} />
             </div>
 
             {/* Barre droite */}
@@ -149,7 +150,7 @@ export default function Quiz({ meta = {}, onScoreChange }) {
                 zIndex: 2,
               }}
             >
-              <img src="/icons/BarreDroite.svg" alt="" style={{ height: 44, width: 'auto', display: 'block' }} />
+              <img src={`${PATH_PUBLIC}/icons/BarreDroite.svg`} alt="" style={{ height: 44, width: 'auto', display: 'block' }} />
             </div>
 
             {/* Draggable thumb */}

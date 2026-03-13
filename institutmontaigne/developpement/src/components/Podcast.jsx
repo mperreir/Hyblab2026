@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
+import { PATH_PUBLIC } from '../data/debate';
 
 export default function Podcast({ src, episode, title, cover }) {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -59,13 +60,6 @@ export default function Podcast({ src, episode, title, cover }) {
   return (
     <section className="mx-auto max-w-sm bg-white rounded-2xl overflow-hidden shadow-xl my-10">
       {src && <audio ref={audioRef} src={src} preload="metadata" />}
-
-      {/* Vignette */}
-      <img
-        src={cover || '/img/carte_article.png'}
-        alt="Couverture du podcast"
-        className="w-full object-cover"
-      />
 
       <div className="px-5 pt-4 pb-6">
         {/* Titre épisode */}

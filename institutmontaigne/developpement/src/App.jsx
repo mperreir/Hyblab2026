@@ -20,12 +20,12 @@ export default function App() {
       <Header meta={debateData.meta} isQuestionOpen={isQuestionOpen} />
       <Hero meta={debateData.meta} />
       <Scrollytelling accroches={debateData.accroches} images={debateData.accrocheImages} />
+      <Quiz meta={debateData.meta} onScoreChange={setInitialScore} />
       <Podcast
         episode={debateData.podcast.episode}
         title={debateData.podcast.title}
         cover={debateData.podcast.cover}
       />
-      <Quiz meta={debateData.meta} onScoreChange={setInitialScore} />
       <QuestionAccordion
         questions={debateData.questions}
         intervenants={debateData.meta.intervenants}

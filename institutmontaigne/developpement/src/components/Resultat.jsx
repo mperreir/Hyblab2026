@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import PATH_PUBLIC from "../data/debate.jsx";
 
 function getMessage(score) {
   if (score < 20) return "Très en désaccord";
@@ -90,7 +91,7 @@ export default function Resultat({ initialScore, finalScore }) {
         <div className="flex items-center gap-5">
 
           <div className="flex-shrink-0 w-14 h-14">
-            <img src="/img/2.png" alt="Pas d'accord" className="w-full h-full object-cover" />
+            <img src={`${PATH_PUBLIC}/img/2.png`} alt="Pas d'accord" className="w-full h-full object-cover" />
           </div>
 
           {/* Barre + curseurs */}
@@ -116,7 +117,7 @@ export default function Resultat({ initialScore, finalScore }) {
           </div>
 
           <div className="flex-shrink-0 w-14 h-14">
-            <img src="/img/1.png" alt="D'accord" className="w-full h-full object-cover" />
+            <img src={`${PATH_PUBLIC}/img/1.png`} alt="D'accord" className="w-full h-full object-cover" />
           </div>
         </div>
 

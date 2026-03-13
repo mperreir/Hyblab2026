@@ -80,6 +80,7 @@ export default function QuestionAccordion({ questions, intervenants, onQuestionO
 
   return (
     <section className="bg-white ">
+      <p className="text-center text-montaigne-burgundy text-lg font-helvetica font-bold font-italic mb-6">LES CHAPITRES DE L'ARTICLE</p> 
       <div className="w-full">
         {questions.map((q, i) => (
           <QuestionItem
