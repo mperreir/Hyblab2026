@@ -7,6 +7,35 @@ export default function QuestionAccordion({ questions, intervenants, onQuestionO
   const lastActionTimeRef = useRef(0);
   const ACTION_LOCK_MS = 650;
 
+  const NAVBAR_HEIGHT = 61; // px, correspond à la hauteur de la navbar
+  const SCROLL_MARGIN = 5; // petit espacement entre le header et la question
+
+  const scrollToWithOffset = (el) => {
+    if (!el) return;
+    const rect = el.getBoundingClientRect();
+    const top = window.scrollY + rect.top - NAVBAR_HEIGHT - SCROLL_MARGIN;
+    window.scrollTo({ top, behavior: 'smooth' });
+  };
+
+  // Scroll that tracks the element position during animations (for next/prev)
+  const scrollTrackingRef = useRef(null);
+  const scrollToTracking = useCallback((el) => {
+    if (!el) return;
+    // Cancel any previous tracking
+    if (scrollTrackingRef.current) cancelAnimationFrame(scrollTrackingRef.current);
+    const startTime = Date.now();
+    const TRACK_DURATION = 600; // ms, slightly longer than animation
+    const tick = () => {
+      const rect = el.getBoundingClientRect();
+      const top = window.scrollY + rect.top - NAVBAR_HEIGHT - SCROLL_MARGIN;
+      window.scrollTo({ top, behavior: 'auto' });
+      if (Date.now() - startTime < TRACK_DURATION) {
+        scrollTrackingRef.current = requestAnimationFrame(tick);
+      }
+    };
+    scrollTrackingRef.current = requestAnimationFrame(tick);
+  }, []);
+
   useEffect(() => {
     onQuestionOpenChange?.(openIndex !== null);
   }, [openIndex, onQuestionOpenChange]);
@@ -16,7 +45,7 @@ export default function QuestionAccordion({ questions, intervenants, onQuestionO
     setOpenIndex(idx);
     // Scroll to the question header after a tick
     setTimeout(() => {
-      questionRefs.current[idx]?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      scrollToWithOffset(questionRefs.current[idx]);
     }, 100);
   }, []);
 
@@ -37,12 +66,12 @@ export default function QuestionAccordion({ questions, intervenants, onQuestionO
       const next = prev !== null && prev < questions.length - 1 ? prev + 1 : null;
       if (next !== null) {
         setTimeout(() => {
-          questionRefs.current[next]?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }, 100);
+            scrollToTracking(questionRefs.current[next]);
+        }, 50);
       }
       return next;
     });
-  }, [questions.length]);
+  }, [questions.length, scrollToTracking]);
 
   const openPrev = useCallback(() => {
     const now = Date.now();
@@ -53,12 +82,12 @@ export default function QuestionAccordion({ questions, intervenants, onQuestionO
       const prevIdx = prev !== null && prev > 0 ? prev - 1 : null;
       if (prevIdx !== null) {
         setTimeout(() => {
-          questionRefs.current[prevIdx]?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }, 100);
+            scrollToTracking(questionRefs.current[prevIdx]);
+        }, 50);
       }
       return prevIdx;
     });
-  }, []);
+  }, [scrollToTracking]);
 
   // Fix mobile viewport height instability (address bar changes)
   useEffect(() => {
@@ -81,7 +110,7 @@ export default function QuestionAccordion({ questions, intervenants, onQuestionO
   return (
     <section className="bg-white ">
       <p className="text-center text-montaigne-burgundy text-lg font-helvetica font-bold font-italic mb-6">LES CHAPITRES DE L'ARTICLE</p> 
-      <div className="w-full">
+      <div className="w-full pt-10">
         {questions.map((q, i) => (
           <QuestionItem
             key={i}
@@ -124,28 +153,60 @@ const QuestionItem = forwardRef(function QuestionItem(
   const wheelCooldownRef = useRef(false);
   const cooldownTimerRef = useRef(null);
 
+  // Track expansion for closing animation
+  const [isExpanded, setIsExpanded] = useState(false);
+  // Delay fixed viewport height until after open animation, remove before close animation
+  const [isFullHeight, setIsFullHeight] = useState(false);
+
+  useEffect(() => {
+    if (isOpen) {
+      setIsExpanded(true);
+      // Apply fixed viewport height after the grid-rows transition finishes
+      const timer = setTimeout(() => setIsFullHeight(true), 520);
+      return () => clearTimeout(timer);
+    } else {
+      // Remove fixed height immediately so grid-rows can collapse
+      setIsFullHeight(false);
+      const timer = setTimeout(() => setIsExpanded(false), 500);
+      return () => clearTimeout(timer);
+    }
+  }, [isOpen]);
+
+  const showContent = isOpen || isExpanded;
+
+  // Continuously pin scroll to bottom during the opening animation when startAtBottom
+  useEffect(() => {
+    if (!isOpen || !startAtBottom) return;
+    const container = scrollContainerRef.current;
+    if (!container) return;
+    let rafId;
+    const startTime = Date.now();
+    const tick = () => {
+      if (container.scrollHeight > container.clientHeight) {
+        container.scrollTop = container.scrollHeight;
+      }
+      // Keep pinning for the duration of the grid-rows animation
+      if (Date.now() - startTime < 600) {
+        rafId = requestAnimationFrame(tick);
+      }
+    };
+    rafId = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(rafId);
+  }, [isOpen, startAtBottom]);
+
   // Reset state when opening
   useEffect(() => {
     if (isOpen) {
       wheelCooldownRef.current = true;
       clearTimeout(cooldownTimerRef.current);
-      setActiveSnap(0); // Will be recalculated by handleScroll anyway
+      setActiveSnap(0);
       setAtEnd(false);
       setAtTop(true);
       endScrollCount.current = 0;
       topScrollCount.current = 0;
       lastWheelTime.current = Date.now();
-      if (scrollContainerRef.current) {
-        if (startAtBottom) {
-          // Attendre que le conteneur soit bien rendu pour obtenir la bonne hauteur finale
-          setTimeout(() => {
-            if (scrollContainerRef.current) {
-              scrollContainerRef.current.scrollTop = scrollContainerRef.current.scrollHeight;
-            }
-          }, 10);
-        } else {
-          scrollContainerRef.current.scrollTop = 0;
-        }
+      if (scrollContainerRef.current && !startAtBottom) {
+        scrollContainerRef.current.scrollTop = 0;
       }
     }
   }, [isOpen, startAtBottom]);
@@ -295,8 +356,8 @@ const QuestionItem = forwardRef(function QuestionItem(
   return (
     <div
       ref={ref}
-      style={isOpen ? { height: 'calc(var(--vh, 1vh) * 100)' } : undefined}
-      className={`${isOpen ? 'flex flex-col' : ''} max-w-3xl mx-auto transition-all duration-300 relative z-[${20 + index}] ${index === 0 ? '' : '-mt-3'}`}
+      style={isFullHeight ? { height: 'calc(var(--vh, 1vh) * 100 - 61px)' } : undefined}
+      className={`${isFullHeight ? 'flex flex-col' : ''} max-w-3xl mx-auto relative z-[${20 + index}] ${index === 0 ? '' : '-mt-3'}`}
     >
       {/* Question header button */}
       <button
@@ -327,32 +388,40 @@ const QuestionItem = forwardRef(function QuestionItem(
         </svg>
       </button>
 
-      {/* Dialogue panel */}
-      {isOpen && (
-        <div className="relative mb-3 animate-slide-down flex flex-col flex-1 min-h-0">
-          {/* Scroll container */}
-          <div
-            ref={scrollContainerRef}
-            className="dialogue-scroll flex-1 overflow-y-auto bg-white min-h-0"
-            onTouchStart={handleTouchStart}
-            onTouchEnd={handleTouchEnd}
-          >
-            {question.dialogue.map((block, j) => {
-              const info = getIntervenantInfo(block.intervenant);
-              const intervenantIndex = intervenants.findIndex(p => p.id === block.intervenant);
-              return (
-                <DialogueCard
-                  key={j}
-                  block={block}
-                  info={info}
-                  intervenantIndex={intervenantIndex}
-                  index={j}
-                />
-              );
-            })}
-          </div>
+      {/* Dialogue panel with height animation */}
+      <div
+        className={`grid transition-[grid-template-rows] duration-500 ease-in-out ${
+          isOpen ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'
+        } ${showContent ? 'flex-1 min-h-0' : ''}`}
+      >
+        <div className="overflow-hidden min-h-0">
+          {showContent && (
+            <div className="relative mb-3 flex flex-col min-h-0 h-full">
+              {/* Scroll container */}
+              <div
+                ref={scrollContainerRef}
+                className="dialogue-scroll flex-1 overflow-y-auto bg-white min-h-0"
+                onTouchStart={handleTouchStart} 
+                onTouchEnd={handleTouchEnd}
+              >
+                {question.dialogue.map((block, j) => {
+                  const info = getIntervenantInfo(block.intervenant);
+                  const intervenantIndex = intervenants.findIndex(p => p.id === block.intervenant);
+                  return (
+                    <DialogueCard
+                      key={j}
+                      block={block}
+                      info={info}
+                      intervenantIndex={intervenantIndex}
+                      index={j}
+                    />
+                  );
+                })}
+              </div>
+            </div>
+          )}
         </div>
-      )}
+      </div>
     </div>
   );
 });
@@ -371,7 +440,13 @@ function DialogueCard({ block, intervenantIndex }) {
       { threshold: 0.3, root: el.closest('.dialogue-scroll') }
     );
     obs.observe(el);
-    return () => obs.disconnect();
+    // Fallback: re-check after the grid-rows opening animation finishes,
+    // because IntersectionObserver doesn't detect root size changes from CSS transitions.
+    const timer = setTimeout(() => {
+      obs.unobserve(el);
+      obs.observe(el);
+    }, 600);
+    return () => { clearTimeout(timer); obs.disconnect(); };
   }, []);
 
   return (
