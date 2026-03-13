@@ -550,7 +550,7 @@ function DialogueCard({ block, intervenantIndex, isLastDialogue }) {
     <div
       ref={ref}
       data-card
-      className={`flex items-center px-5 md:px-10 pb-5 max-w-2xl mx-auto w-full transition-all duration-700 print:!opacity-100 print:!translate-y-0 print:!transform-none ${
+      className={`flex items-center px-5 text-justify md:px-10 pb-20 max-w-2xl mx-auto w-full transition-all duration-700 print:!opacity-100 print:!translate-y-0 print:!transform-none ${
            visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
         }`}
     >
