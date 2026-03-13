@@ -9,6 +9,7 @@ import Resultat from './components/quiz/Resultat.jsx';
 import Podcast from './components/Podcast';
 import debateData from './data/debate.jsx';
 import Footer from './components/Footer';
+import CTA from './components/CTA.jsx';
 
 export default function App() {
   const [initialScore, setInitialScore] = useState(50);
@@ -21,6 +22,7 @@ export default function App() {
       <Hero meta={debateData.meta} />
       <Scrollytelling accroches={debateData.accroches} images={debateData.accrocheImages} />
       <Quiz meta={debateData.meta} onScoreChange={setInitialScore} />
+      <CTA className='w-fit mx-auto my-6'/>
       <QuestionAccordion
         questions={debateData.questions}
         intervenants={debateData.meta.intervenants}
@@ -32,6 +34,7 @@ export default function App() {
         episode={debateData.podcast.episode}
         title={debateData.podcast.title}
         cover={debateData.podcast.cover}
+        id="podcast"
       />
       <Footer />
     </div>

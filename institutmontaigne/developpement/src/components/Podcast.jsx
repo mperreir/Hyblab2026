@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { PATH_PUBLIC } from '../data/debate';
 
-export default function Podcast({ src="/audio/cafeconron.mp3", episode, title, cover }) {
+export default function Podcast({ src="/audio/cafeconron.mp3", episode, title, cover, id = '', className = '' }) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [showOverlay, setShowOverlay] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
@@ -93,7 +93,7 @@ export default function Podcast({ src="/audio/cafeconron.mp3", episode, title, c
       </div>
     )}
 
-    <section className="mx-auto max-w-sm bg-white rounded-2xl overflow-hidden shadow-xl my-10">
+    <section id={id} className={`mx-auto my-10 max-w-sm overflow-hidden rounded-2xl bg-white shadow-md ${className}`.trim()}>
       {src && <audio ref={audioRef} src={src} preload="metadata" />}
 
       <div className="px-5 pt-4 pb-6">
