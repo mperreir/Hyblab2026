@@ -280,13 +280,13 @@ article {
 
 
 /* ================= QUIZ INLINE ================= */
+/* ================= QUIZ (CONDENSE) ================= */
+/* Conteneur principal du quiz */
 .quiz-container {
   width: 80%;
-  margin: 20px auto;
-  padding: 40px 20px 20px; 
+  margin: auto;
+  padding: 10px 20px 2px; 
   background: rgba(255, 255, 255, 0.9);
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   font-family: Arial, sans-serif;
   text-align: center;
   color: #333;
@@ -297,17 +297,21 @@ article {
   position: absolute;
   top: -20px;
   left: -20px;
-  width: 80px;
-  height: 80px;
-  background-color: #B8E986;
+  
+  background-color: #D9EDD7;
   color: #000;
-  border-radius: 50%;
-  display: flex;
+
+  padding: 10px 16px;
+  border-radius: 40px;
+
+  display: inline-flex;
   align-items: center;
   justify-content: center;
+
   font-weight: bold;
   font-size: 1.2rem;
-  transform: rotate(-30deg);
+
+  transform: rotate(-20deg);
 }
 
 .quiz-header {
@@ -323,7 +327,8 @@ article {
 
 .quiz-container .question {
   font-size: 1.1rem;
-  margin-bottom: 20px;
+  line-height: 1.1;
+  margin-bottom: 10px;
   background: transparent;
   padding: 0;
 }
@@ -337,11 +342,10 @@ article {
 
 .quiz-container .option-btn {
   padding: 15px 20px;
-  font-size: 1rem;
-  background: #fafafa;
+  font-size: 0.9rem;
+  background: #ffffff;
   color: #000;
   border: 1px solid #000; 
-  border-radius: 5px;
   cursor: pointer;
   text-align: left;
   width: 100%;

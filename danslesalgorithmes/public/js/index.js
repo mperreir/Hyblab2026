@@ -117,7 +117,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const isCorrect = selectedButton.dataset.correct === 'true';
     selectedButton.textContent = isCorrect ? 'Effectivement' : 'Et non';
-    selectedButton.style.backgroundColor = isCorrect ? '#5cb85c' : '#d9534f';
+    selectedButton.style.backgroundColor = isCorrect ? '#D9EDD7' : '#EDD7D7';
 
     selectedButtonQuiz1 = selectedButton;
   }
