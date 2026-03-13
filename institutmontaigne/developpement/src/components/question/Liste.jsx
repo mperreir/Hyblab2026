@@ -25,9 +25,10 @@ export default function Liste({
 					{items.map((item, index) => (
 						<li key={`${item.lead}-${index}`} className="flex items-start gap-3">
 							<StarBullet className=" h-8 w-8 shrink-0" color={color}/>
-							<p className="">
-                                {item}
-							</p>
+							<p
+								className=""
+								dangerouslySetInnerHTML={{ __html: `${item}` }}
+							/>
 						</li>
 					))}
 				</ul>

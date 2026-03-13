@@ -4,7 +4,7 @@ import Timeline from "../components/infographie/Timeline";
 import DoughnutChart from "../components/infographie/DoughnutChart";
 import {DropZone, AnswerBank} from "../components/infographie/Puzzle";
 import RepartitionDynamique from "../components/infographie/RepartitionDynamique";
-import Liste from "../components/infographie/Liste";
+import Liste from "../components/question/Liste";
 
 const PATH_PUBLIC = '.';
 
@@ -201,8 +201,8 @@ const debateData = {
               "Cherche-t-on à instaurer un régime plus parlementaire ?",
               "Une meilleure représentativité ?",
               "Davantage de stabilité politique ?",
-            ]}/>,
-             
+            ]} color="#4657C6" />,
+
             <Quote
               quote="C'est pourquoi <b>je préconise des améliorations à l'intérieur du système actuel</b>, en passant simplement par une loi ordinaire."
               isLeft={ true }
@@ -245,8 +245,12 @@ const debateData = {
               quote="Peut-être faudrait-il faire intervenir un élément de psychologie, ou plus exactement de stratégie politique, et <b>questionner la volonté effective du RN d'arriver au pouvoir</b>."
               isLeft={ false }
             />,
-            <>La représentation proportionnelle lui garantit : de ne pas obtenir une majorité absolue embarrassante pour un parti qui ne veut pas gouverner tout de suite, pour en être mieux capable à terme. Il désactive le front républicain, ou ce qu'il en reste, et facilite donc l'ascension du Rassemblement National.</>
-          ]
+            <><b>Anne LEVADE montre que la représentation proportionnelle garantit au RN:</b></>,
+            <Liste items={[
+              "<b>de ne pas obtenir une majorité absolue embarrassante</b> pour un parti qui ne veut pas gouverner tout de suite, pour en être mieux capable à terme.",
+              "<b>il désactive le front républicain</b>, ou ce qu'il en reste, et facilite l'ascension du Rassemblement National."
+            ]}/>,
+            ]
         }
       ]
     }
