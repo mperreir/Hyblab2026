@@ -186,14 +186,14 @@ article {
 }
 
 .step p {
-    font-size: 1.2rem; /* <-- C'est ici qu'on augmente la taille (au lieu de 0.8rem) */
-    line-height: 1.6;  /* Un peu plus d'espace entre les lignes pour que ce soit lisible */
+    font-size: 1.2rem;
+    line-height: 1.5;
     background: rgb(255, 255, 255);
     text-align: left;
     padding: 15px;
-    border-radius: 8px; /* Optionnel : arrondit les angles du fond blanc */
     transition: border-color 0.3s;
 }
+
 /* ================= SPHÈRES ANIMÉES ================= */
 .spheres-container {
     position: relative; 
@@ -234,19 +234,48 @@ article {
     opacity: 1; 
     transform: translate(-50%, 0) scale(1.5); 
 }
+/* Conteneur principal pour la superposition */
+.quiz-superposition-container {
+    position: relative; /* Permet le positionnement absolu des enfants */
+    width: 100%;
+    max-width: 500px; /* Ajuste selon la taille de tes images */
+    margin: 0 auto;
+    text-align: center;
+}
 
-.probleme {
-    background: rgba(255, 255, 255, 0.9);
+/* Image de fond (la femme) */
+.quiz-superposition-femme {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Image superposée (la fléchette) */
+.quiz-superposition-flechette {
+    position: absolute;
+    top: 90%; /* Positionne la fléchette au centre verticalement */
+    left: 50%; /* Positionne la fléchette au centre horizontalement */
+    transform: translate(-50%, -50%); /* Centre parfaitement la fléchette */
+    width: 400px; /* Ajuste selon la taille souhaitée */
+    height: auto;
+    z-index: 2; /* Assure que la fléchette est au-dessus de l'image de fond */
+}
+
+/* Texte superposé */
+.quiz-superposition-texte {
+    position: absolute;
+    bottom: 20px; /* Positionne le texte en bas de l'image */
+    left: 20px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.9); /* Fond semi-transparent pour le texte */
     padding: 15px;
     border-radius: 5px;
-    margin-top: 20px;
-    display: inline-block;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    font-size: 4rem;
     z-index: 3; /* Assure que le texte est au-dessus des images */
+    font-size: 1.2rem;
     color: #000;
-    font-weight: bold; 
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Ombre légère pour le texte */
 }
+
 
 
 /* ================= QUIZ INLINE ================= */
