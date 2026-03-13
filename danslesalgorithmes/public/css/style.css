@@ -277,6 +277,17 @@ article {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Ombre légère pour le texte */
 }
 
+.probleme {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 15px;
+    border-radius: 5px;
+    margin-top: 20px;
+    display: inline-block;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    font-size: 4rem;
+    color: #000;
+    font-weight: bold; 
+}
 
 
 /* ================= QUIZ INLINE ================= */
