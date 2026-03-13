@@ -58,7 +58,7 @@
                 <div style="height: 100dvh;"></div>
                 <div class="step">
                     <div class="step-content">
-                        <p>Depuis toutes les données qu'elle a à sa disposition, la CAF calcule ce qu'elle appelle un "score de risque de fraude" selon une note allant de 0 (le risque de fraude est faible) à 1 (le risque est maximum).</p>
+                        <p>Depuis toutes les données qu'elle a à sa disposition, la CAF calcule ce qu'elle appelle un <strong>"score de risque de fraude" selon une note allant de 0 (le risque de fraude est faible) à 1 (le risque est maximum).</strong></p>
                     </div>
                 </div>
                 <div style="height: 0dvh;"></div>
@@ -74,20 +74,36 @@
                 <div style="height: 0dvh;"></div>
                 <div class="step step-uni"></div>
 
-                <div class="step">
-                    <div class="step-content">
-                        <div class="quiz-container" id="quiz-1">
-                          <div class="quiz-header">
-                            <div class="quiz-badge">QUIZ</div>
-                            <p class="question">Alors, selon vous, qui fraude à la CAF ?</p>
-                          </div>
-                          <div class="options">
-                            <button class="option-btn" data-correct="false" data-original-text="Gyunay qui fait un petit trafic de cartes vitales volées ?">Gyunay qui fait un petit trafic de cartes vitales volées ?</button>
-                            <button class="option-btn" data-correct="true" data-original-text="Marion, mère isolée 3 enfants, aux revenus aléatoires qui bénéficie d'aides sociales ?">Marion, mère isolée 3 enfants, aux revenus aléatoires qui bénéficie d'aides sociales ?</button>
-                          </div>
+                    <div class="step">
+                        <div class="step-content">
+                            <div class="quiz-container" id="quiz-1">
+                            <div class="quiz-header">
+                                <div class="quiz-badge">QUIZ</div>
+                                <p class="question">Selon vous, qui fraude à la CAF ?</p>
+                            </div>
+
+                            <div class="options">
+                                <button
+                                class="option-btn"
+                                data-correct="true"
+                                data-original-text="Marion, mère isolée 3 enfants, aux revenus aléatoires qui bénéficie d'aides sociales."
+                                data-answer="Effectivement. Pour la CAF, ce sont des profils comme Marion qui sont les plus à risque."
+                                >
+                                Marion, mère isolée 3 enfants, aux revenus aléatoires qui bénéficie d'aides sociales.
+                                </button>
+
+                                <button
+                                class="option-btn"
+                                data-correct="false"
+                                data-original-text="Gyunay qui fait un petit trafic de cartes vitales volées."
+                                data-answer="Et non. Ce type de fraude est très rare et mal détecté par le score de la CAF."
+                                >
+                                Gyunay qui fait un petit trafic de cartes vitales volées.
+                                </button>
+                            </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
+                        </div>
 
                 <div class="step">
                     <div class="step-content">
@@ -316,6 +332,15 @@
                 <div class="step" data-audio="audio/DLA - 5.mp3">
                     <div class="step-content">
                         <p style="font-style: italic;">« Le contrôle se termine. Je n'ai pas fraudé. Mais la CAF estime que j'ai touché 300 € en trop. Toutes mes aides sont immédiatement suspendues. »</p>
+                    </div>
+                </div>
+                
+                <div class="step step-argent-trigger">
+                    <div class="step-content">
+                        <div id = "animation-argent" class = "is-hidden">
+                            <img src="img/marion_perte_argent.png" alt="Marion atterrée d'avoir perdu ses aides" id="marion-argent">
+                            <img src="img/argent_perdu.png" alt="Une liasse de billets qui s'envolent" id="argent">
+                        </div>
                     </div>
                 </div>
 

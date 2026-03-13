@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
       debug: false
     })
     .onStepEnter((response) => {
-      // 1. Cadre jaune actif
+      // 1. Cadre actif
       steps.forEach(step => step.classList.remove('is-active'));
       response.element.classList.add('is-active');
 
@@ -121,6 +121,13 @@ document.addEventListener('DOMContentLoaded', function() {
           console.warn("Son bloqué (interaction requise sur mobile) :", erreur);
         });
       }
+
+
+      // 6. --- Animation argent ---
+      if (response.element.classList.contains("step-argent-trigger")) {
+        document.getElementById("animation-argent").classList.add("visible");
+      }
+
     });
 
   window.addEventListener("resize", scroller.resize);
@@ -130,30 +137,39 @@ document.addEventListener('DOMContentLoaded', function() {
   // ==========================================
 
   // --- Quizz 1 ---
-  const quiz1 = {
-    options: document.querySelectorAll('#quiz-1 .option-btn'),
-  };
+  function setupFlipQuiz(quizId) {
+    const quiz = document.querySelector(quizId);
+    if (!quiz) return;
 
-  let selectedButtonQuiz1 = null;
+    const buttons = quiz.querySelectorAll('.option-btn');
 
-  function handleQuiz1(selectedButton) {
-    if (selectedButtonQuiz1 !== null) {
-      selectedButtonQuiz1.textContent = selectedButtonQuiz1.dataset.originalText;
-      selectedButtonQuiz1.style.backgroundColor = '#fafafa';
-    }
+    buttons.forEach(button => {
+      button.addEventListener('click', () => {
+        const isOpen = button.classList.contains('is-flipped');
 
-    const isCorrect = selectedButton.dataset.correct === 'true';
-    selectedButton.textContent = isCorrect ? 'Effectivement' : 'Et non';
-    selectedButton.style.backgroundColor = isCorrect ? '#5cb85c' : '#d9534f';
+        // reset all buttons in this quiz
+        buttons.forEach(btn => {
+          btn.textContent = btn.dataset.originalText;
+          btn.classList.remove('is-flipped', 'is-correct', 'is-wrong');
+        });
 
-    selectedButtonQuiz1 = selectedButton;
+        // if clicked button was already open, just close it
+        if (isOpen) return;
+
+        // otherwise open it
+        button.textContent = button.dataset.answer;
+        button.classList.add('is-flipped');
+
+        if (button.dataset.correct === 'true') {
+          button.classList.add('is-correct');
+        } else {
+          button.classList.add('is-wrong');
+        }
+      });
+    });
   }
 
-  document.querySelectorAll('#quiz-1 .option-btn').forEach(button => {
-    button.addEventListener('click', function() {
-      handleQuiz1(this);
-    });
-  });
+  setupFlipQuiz('#quiz-1');
 
   // --- Quizz 2 ---
   const quiz2 = {

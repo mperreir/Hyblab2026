@@ -14,7 +14,6 @@ img, video, canvas {
 
 /* ================= L'EN-TÊTE FIXE ================= */
 .top-bar {
-    background-color: #fbf5cd;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -244,40 +243,46 @@ article {
     display: inline-block;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     font-size: 4rem;
+    z-index: 3; /* Assure que le texte est au-dessus des images */
     color: #000;
     font-weight: bold; 
 }
 
 
 /* ================= QUIZ INLINE ================= */
+/* ================= QUIZ (CONDENSE) ================= */
+/* Conteneur principal du quiz */
 .quiz-container {
   width: 80%;
-  margin: 20px auto;
-  padding: 40px 20px 20px; 
+  margin: auto;
+  padding: 10px 20px 2px; 
   background: rgba(255, 255, 255, 0.9);
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   font-family: Arial, sans-serif;
   text-align: center;
   color: #333;
   position: relative; 
+  opacity: 1;
 }
 
 .quiz-badge {
   position: absolute;
   top: -20px;
   left: -20px;
-  width: 80px;
-  height: 80px;
-  background-color: #B8E986;
+  
+  background-color: #D9EDD7;
   color: #000;
-  border-radius: 50%;
-  display: flex;
+
+  padding: 10px 16px;
+  border-radius: 40px;
+
+  display: inline-flex;
   align-items: center;
   justify-content: center;
+
   font-weight: bold;
   font-size: 1.2rem;
-  transform: rotate(-30deg);
+
+  transform: rotate(-20deg);
 }
 
 .quiz-header {
@@ -292,8 +297,9 @@ article {
 }
 
 .quiz-container .question {
-  font-size: 1.1rem;
-  margin-bottom: 20px;
+  font-size: 1.2rem;
+  line-height: 1.1;
+  margin-bottom: 10px;
   background: transparent;
   padding: 0;
 }
@@ -308,10 +314,9 @@ article {
 .quiz-container .option-btn {
   padding: 15px 20px;
   font-size: 1rem;
-  background: #fafafa;
+  background: #ffffff;
   color: #000;
   border: 1px solid #000; 
-  border-radius: 5px;
   cursor: pointer;
   text-align: left;
   width: 100%;
@@ -323,8 +328,9 @@ article {
 }
 
 .quiz-container .validate-btn {
-  padding: 10px 20px;
+  padding: 10px 20px ;
   background: #f0ad4e;
+  font-size: 1rem;
   color: white;
   border: none;
   border-radius: 5px;
@@ -356,6 +362,75 @@ article {
 
 .option-btn.selected {
     border: 1px solid #000;
+}
+
+.flip-btn {
+  position: relative;
+  perspective: 1000px;
+  background: transparent;
+  border: none;
+  padding: 0;
+  width: 100%;
+  cursor: pointer;
+}
+
+.option-inner {
+  position: relative;
+  width: 100%;
+  min-height: 180px;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+
+.flip-btn.is-flipped .option-inner {
+  transform: rotateY(180deg);
+}
+
+.option-face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 28px 30px;
+  box-sizing: border-box;
+
+  border: 1px solid #222;
+  background: #f7f7f2;
+  color: #000;
+  text-align: left;
+  font-size: 1.1rem;
+  line-height: 1.4;
+}
+
+.option-front {
+  z-index: 2;
+}
+
+.option-back {
+  transform: rotateY(180deg);
+  font-weight: 700;
+  text-align: center;
+  justify-content: center;
+}
+
+.option-btn {
+  background-color: #fafafa;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.option-btn.is-correct {
+  background-color: #D9EDD7;
+  color: #000;
+}
+
+.option-btn.is-wrong {
+  background-color: #EDD7D7;
+  color: #000;
 }
 
 /* ================= SOURCES / FOOTER ================= */
@@ -399,7 +474,7 @@ article {
 
 .credits-names {
     margin-top: 30px;
-    font-size: 0.9rem;
+    font-size: 1rem;
     opacity: 0.8;
 }
 
