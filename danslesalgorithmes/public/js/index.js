@@ -71,14 +71,15 @@ document.addEventListener('DOMContentLoaded', function() {
           if (spheresAnim) spheresAnim.classList.remove('is-transformed');
       }
 
-      // 5. --- LOGIQUE POUR L'AUDIO ---
-      const newAudioFile = response.element.getAttribute('data-audio');
+      // Audio
+      const newAudioFile = response.element.querySelector(".step-content")?.getAttribute("data-audio");
       if (currentAudio) {
         currentAudio.pause();
         currentAudio.currentTime = 0; 
         currentAudio = null;
       }
       if (newAudioFile) {
+        console.log("aaa")
         currentAudio = new Audio(newAudioFile);
         currentAudio.play().catch(erreur => {
           console.warn("Son bloqué (interaction requise sur mobile) :", erreur);
@@ -170,22 +171,38 @@ document.addEventListener('DOMContentLoaded', function() {
   if(quiz2.validateButton) quiz2.validateButton.addEventListener('click', validateQuiz2);
 
   // --- Quizz 3 ---
-  function handleQuiz3(selectedButton) {
-    const quizStep = selectedButton.closest('.quiz-container');
-    const allOptions = quizStep.querySelectorAll('.option-btn');
-    
-    allOptions.forEach(button => {
-      button.disabled = true;
-    });
-    selectedButton.style.backgroundColor = '#f0ad4e'; 
+  // Fonction pour gérer le Quizz 3 (sélection simple, pas de feedback correct/incorrect nécessaire)
+  let selectedButtonQuiz3 = null;
+  const quiz3 = {
+    options: document.querySelectorAll('#quiz-3 .option-btn'),
+    feedback: document.getElementById('feedback-3'),
+    validateButton: document.getElementById('validate-btn-3'),
+  };
+
+// Fonction pour gérer le quiz 3
+function handleQuiz3(selectedButton) {
+  // Réinitialise le bouton précédemment sélectionné (s'il y en a un)
+  if (selectedButtonQuiz3 !== null) {
+    selectedButtonQuiz3.style.backgroundColor = '#fafafa';
   }
 
-  const quiz3Options = document.querySelectorAll('#quiz-3 .option-btn');
-  quiz3Options.forEach(button => {
-    button.addEventListener('click', function() {
-      handleQuiz3(this);
-    });
+  // Gère la réponse sélectionnée
+  const isCorrect = selectedButton.dataset.correct === 'true';
+  selectedButton.style.backgroundColor = isCorrect ? '#5cb85c' : '#fcf075';
+
+  // Met à jour la variable globale
+  selectedButtonQuiz3 = selectedButton;
+  quiz3.feedback.textContent = "Toutes les propositions mènent à une situation irrégulière.";
+  quiz3.feedback.style.color = '#f63b32'
+
+}
+
+// Attache les écouteurs d'événements UNE SEULE FOIS (en dehors de la fonction)
+document.querySelectorAll('#quiz-3 .option-btn').forEach(button => {
+  button.addEventListener('click', function() {
+    handleQuiz3(this);
   });
+});
 
   // --- Quizz Chapitre 4 (Boutons avec paragraphes cachés) ---
   const quizChap4Buttons = document.querySelectorAll('.chap4-btn');
