@@ -29,8 +29,6 @@
             class="restaurant-carousel-wrapper"
             :class="{ 'restaurant-carousel-wrapper--detail': isClicked }"
         >
-            <button class="carousel-nav" type="button" @click="goPrevious">&#8249;</button>
-
             <div ref="carouselRef" class="restaurant-carousel" @scroll.passive="onCarouselScroll">
                 <div
                     v-for="(r, index) in restaurants"
@@ -56,8 +54,6 @@
                     />
                 </div>
             </div>
-
-            <button class="carousel-nav" type="button" @click="goNext">&#8250;</button>
         </div>
     </div>
 </template>
@@ -245,27 +241,14 @@ watch(restaurants, (list) => {
 .restaurant-carousel-wrapper {
     position: absolute;
     left: 0;
-    bottom: calc(max(0.75rem, env(safe-area-inset-bottom)));
+    bottom: 5rem;
     width: 100%;
     z-index: 500;
-    display: grid;
-    grid-template-columns: auto minmax(0, 560px) auto;
+    display: block;
     align-items: center;
     justify-content: center;
     gap: 0.65rem;
     transition: transform 0.4s ease-in-out;
-}
-
-.carousel-nav {
-    width: 34px;
-    height: 34px;
-    border-radius: 999px;
-    border: 1px solid #cbd5e1;
-    background: #ffffff;
-    color: #0f172a;
-    font-size: 1.4rem;
-    line-height: 1;
-    cursor: pointer;
 }
 
 .restaurant-carousel {
@@ -293,28 +276,22 @@ watch(restaurants, (list) => {
     position: absolute;
     left: 0;
     bottom: 0;
+    top: 5rem;
 
     width: 100%;
     height: 100%;
 
     z-index: 1000;
 
-    display: grid;
-    grid-template-columns: auto minmax(0, 560px) auto;
+    display: block;
     align-items: start;
     justify-content: center;
     gap: 0.65rem;
-
-    transform: translateY(0);
 
     background-color: #ffffff;
 
     overflow-y: auto;
     overflow-x: hidden;
-}
-
-.restaurant-carousel-wrapper--detail .carousel-nav {
-    visibility: hidden;
 }
 
 .restaurant-carousel__slide :deep(.mini-box) {
