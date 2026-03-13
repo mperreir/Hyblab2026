@@ -427,3 +427,55 @@ article {
 .option-btn.selected {
     border: 1px solid #000;
 }
+
+
+
+/* ================= ANIMATION HACKER ================= */
+.hacker-container {
+    position: relative; 
+    width: 100%;
+    max-width: 500px; 
+    height: 60dvh; 
+    margin: 0 auto; 
+    transition: transform 1s ease-in-out;
+    transform: translateY(0);
+}
+
+.hacker-container img {
+    position: absolute; 
+    top: 50%;
+    left: 50%; 
+    height: auto; 
+    pointer-events: none; 
+    mix-blend-mode: multiply; 
+}
+
+/* Photo 1 (Marion) */
+.img-mere_hack {
+    width: 100%; 
+    transform: translate(-50%, -50%); 
+    opacity: 1; 
+    z-index: 1; 
+}
+
+/* Photo 2 (Le masque Anonymous) */
+.img-anonymous {
+    width: 20%; 
+    z-index: 2; 
+    /* Caché en bas ET invisible (opacity: 0) au départ */
+    transform: translate(-50%, 200%); 
+    opacity: 0; 
+    /* On anime le mouvement ET l'apparition en même temps */
+    transition: transform 0.8s ease-out, opacity 0.5s ease-in; 
+}
+
+/* État 1 : Le masque se pose sur le visage ET devient visible (opacity: 1) */
+#hacker-animation.is-hacked .img-anonymous {
+    transform: translate(-50%, -100%); 
+    opacity: 1; 
+}
+
+/* État 2 : Toutes les images remontent hors de l'écran */
+#hacker-animation.is-scrolling-up {
+    transform: translateY(-150vh); 
+}
