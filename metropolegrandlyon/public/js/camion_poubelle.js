@@ -1,13 +1,14 @@
 const truck = document.getElementById('truck');
 const panorama = document.getElementById('panorama');
 const worker = document.getElementById('worker');
+const scrollSpace = document.querySelector('.scroll-space');
 
 function lerp(a, b, t) { return a + (b - a) * Math.max(0, Math.min(1, t)); }
 
 function update() {
     truck.style.display = "";
     const scrollTop = window.scrollY;
-    const maxScroll = Math.max(1, document.body.scrollHeight - window.innerHeight);
+    const maxScroll = Math.max(1, scrollSpace.scrollHeight - window.innerHeight);
     const progress = scrollTop / maxScroll;
 
     const vw = window.innerWidth;
