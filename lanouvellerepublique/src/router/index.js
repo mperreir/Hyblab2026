@@ -7,11 +7,13 @@ const router = createRouter({
     routes: [
         {
             path: "/",
+            alias: "/lanouvellerepublique/",
             name: "home",
             component: ListView,
         },
         {
             path: "/carte",
+            alias: "/lanouvellerepublique/carte",
             name: "carte",
             component: MapView,
         },

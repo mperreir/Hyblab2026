@@ -1,11 +1,13 @@
 <script setup>
 import { computed } from 'vue'
+import { useRouter } from 'vue-router'
 import ListItem from '@/components/List_item.vue'
 import IntroListe from '@/components/intro_liste.vue'
 import { COLORS } from '@/assets/Couleurs/Coulleurs.js'
 import { useFilterStore } from '@/stores/filterStore'
 
 const filterStore = useFilterStore()
+const router = useRouter()
 const listBg = COLORS.cream
 
 const toTimestamp = (dateStr) => {
@@ -24,6 +26,21 @@ const toTimestamp = (dateStr) => {
 const sortedRestaurants = computed(() =>
   [...filterStore.filteredRestaurants].sort((a, b) => toTimestamp(b.date) - toTimestamp(a.date)),
 )
+
+const openRestaurantDetail = async (restaurant) => {
+  if (!restaurant) return
+
+  const restaurantKey = restaurant.id ?? restaurant.name
+
+  await router.push({
+    path: '/carte',
+    query: {
+      restaurant: String(restaurantKey),
+      detail: '1',
+      pick: String(Date.now()),
+    },
+  })
+}
 </script>
 
 <template>
@@ -36,6 +53,7 @@ const sortedRestaurants = computed(() =>
       :image="restaurant.image"
       :badges="restaurant.badges || []"
       :date="restaurant.date || ''"
+      @select="openRestaurantDetail(restaurant)"
     >
     </ListItem>
   </main>

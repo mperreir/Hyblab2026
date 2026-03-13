@@ -1,5 +1,5 @@
 <template>
-    <div class="list-item">
+    <div class="list-item" role="button" tabindex="0" @click="emit('select')" @keydown.enter.prevent="emit('select')" @keydown.space.prevent="emit('select')">
         <div
             class="list-item-image-div"
             :style="{ backgroundImage: `url('${image}')` }"
@@ -26,6 +26,8 @@
 
 <script setup>
 
+const emit = defineEmits(['select'])
+
 defineProps({
     title: {
         type: String,
@@ -49,6 +51,7 @@ defineProps({
 <style scoped>
 .list-item {
     position: relative;
+    cursor: pointer;
 
     display: flex;
     height: 400px;
