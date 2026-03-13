@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import MainLayout from './layouts/MainLayout';
 import Home from './pages/Home';
 import ImageCrawl from './test';
@@ -20,17 +20,13 @@ function App() {
   return (
     <BrowserRouter basename="/vivant">
       <Routes>
-        <Route path="/" element={<MainLayout />}>
-          {/* Default Route, the new landing page */}
-          <Route index element={<Home />} />
-          
-          {/* Route to whatever they were previously testing */}
-          <Route path="test" element={<OldTestComponents />} />
-
-          {/* Route for the map */}
-          <Route path="carte" element={<Carte />} />
-
-          {/* You can add more routes here, e.g. <Route path="about" element={<About />} /> */}
+        {/* Redirection racine vers /home */}
+        <Route path="/" element={<Navigate to="/home" replace />} />
+        
+        {/* Wrapper pour conserver le MainLayout sur toutes ces routes */}
+        <Route element={<MainLayout />}>
+          <Route path="/home" element={<Home />} />
+          <Route path="/carte" element={<OldTestComponents />} />
         </Route>
       </Routes>
     </BrowserRouter>

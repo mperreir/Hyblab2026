@@ -77,7 +77,7 @@ const Home = () => {
   const handleGeolocation = () => {
     if (!navigator.geolocation) {
       alert("La géolocalisation n'est pas supportée par votre navigateur.");
-      navigate('/test', { state: { hasCity: false } });
+      navigate('/carte', { state: { hasCity: false } });
       return;
     }
     setIsLoadingLocation(true);
@@ -95,7 +95,7 @@ const Home = () => {
           const nearestArticles = findNearestArticles(articles, centre, N_ARTICLES);
           const lastDist = getLastArticleDistance(nearestArticles, centre);
           setIsLoadingLocation(false);
-          navigate('/test', {
+          navigate('/carte', {
             state: {
               hasCity: true,
               lat: position.coords.latitude,
@@ -107,12 +107,12 @@ const Home = () => {
           });
         } catch {
           setIsLoadingLocation(false);
-          navigate('/test', { state: { hasCity: false, articles } });
+          navigate('/carte', { state: { hasCity: false, articles } });
         }
       },
       () => {
         setIsLoadingLocation(false);
-        navigate('/test', { state: { hasCity: false, articles } });
+        navigate('/carte', { state: { hasCity: false, articles } });
       }
     );
   };
