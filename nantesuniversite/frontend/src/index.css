@@ -124,18 +124,36 @@ body {
 
 .class-pupop {
   width: 80%;
-  max-width: 1100px; /* Sécurité pour les grands écrans */
-  height: 800px;    /* Ajuste selon tes besoins */
+  max-width: 1100px;
+  height: 800px;
   background-color: white;
-  position: relative; /* Plus besoin de transform/top/left si tu utilises le flex de l'overlay */
+  position: relative;
   box-shadow: 0 18px 40px rgba(0,0,0,0.25);
   border-radius: 8px;
   z-index: 1000;
   padding: 20px;
-
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 
   transform: scaleX(0);
   transform-origin: center center;
+}
+
+.popup-title {
+  font-size: 18px;
+  font-weight: bold;
+  color: #111827;
+  margin: 0;
+  padding-top: 10px;
+  padding-left: 90px;
+  padding-right: 50px;
+}
+
+.popup-content-area {
+  flex: 1;
+  overflow: hidden;
+  border-radius: 4px;
 }
 
 .class-pupop.open {
@@ -148,8 +166,6 @@ body {
 
 @keyframes bookOpen {
   0%   { transform: scaleX(0); opacity: 0.4; }
-  60%  { transform: scaleX(1.04); }
-  80%  { transform: scaleX(0.97); }
   100% { transform: scaleX(1); opacity: 1; }
 }
 
@@ -186,8 +202,10 @@ body {
 
 .class-pictogramme-openPopup{
   position: absolute;
-  top: -10px;
-  left: -30px;
+  top: 16px;
+  left: 16px;
+  width: 60px;
+  height: 60px;
   object-fit: contain;
   animation: floating 1s ease-in-out infinite;
 }

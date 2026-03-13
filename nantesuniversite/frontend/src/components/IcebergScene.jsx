@@ -74,10 +74,10 @@ const cardDocuments = data.researcher.documents;
 
 export default function IcebergScene() {
   const [openPopup, setOpenPopup] = useState(false);
-  const [type, setType] = useState("");
+  const [selectedDoc, setSelectedDoc] = useState(null);
 
-  const handleCardClick = (type) => {
-    setType(type);
+  const handleCardClick = (doc) => {
+    setSelectedDoc(doc);
     setOpenPopup(true);
   };
 
@@ -98,12 +98,18 @@ export default function IcebergScene() {
           title={doc.title}
           description={doc.description}
           {...CARD_POSITIONS[i]}
-          onClick={() => handleCardClick(doc.type)}
+          onClick={() => handleCardClick(doc)}
         />
       ))}
 
-      {openPopup ? (
-        <Popup type={type} onClick={() => setOpenPopup(false)} />
+      {openPopup && selectedDoc ? (
+        <Popup
+          pictogramme={PICTOGRAMMES[selectedDoc.category]}
+          type={selectedDoc.type}
+          url={selectedDoc.url}
+          title={selectedDoc.title}
+          onClick={() => setOpenPopup(false)}
+        />
       ) : (
         ""
       )}
