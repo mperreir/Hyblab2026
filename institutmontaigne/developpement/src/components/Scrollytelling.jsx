@@ -25,18 +25,10 @@ const STORY_PARTS = [
     positionClass: 'bottom-[18%] left-1/2 -translate-x-1/2 w-[84%] sm:w-[62%] text-center',
   },
   {
-    id: 's3-top',
+    id: 's3-4-top',
     text: <>La France est la seule de toute l'Union europeenne a elire ses deputes au <strong>scrutin majoritaire a deux tours</strong>.</>,
     from: 'top',
     startScene: 1,
-    endScene: 1,
-    positionClass: 'top-[18%] left-1/2 -translate-x-1/2 w-[84%] sm:w-[60%] text-center',
-  },
-  {
-    id: 's4-top',
-    text: <>La France est la seule de toute l'Union europeenne a elire ses deputes au scrutin majoritaire a deux tours.</>,
-    from: 'top',
-    startScene: 2,
     endScene: 2,
     positionClass: 'top-[18%] left-1/2 -translate-x-1/2 w-[84%] sm:w-[60%] text-center',
   },
@@ -72,14 +64,14 @@ const STORY_PARTS = [
     endScene: 4,
     positionClass: 'bottom-[18%] right-[7%] w-[40%] sm:w-[32%] text-right',
   },
-//   {
-//     id: 's7-8-top',
-//     text: <>Une <strong>crise de confiance profonde</strong> est aussi a l'oeuvre :</>,
-//     from: 'left',
-//     startScene: 5,
-//     endScene: 6,
-//     positionClass: 'top-[22%] left-[7%] w-[76%] sm:w-[52%] text-left',
-//   },  
+  {
+    id: 's7-8-top',
+    text: <>Une <strong>crise de confiance profonde</strong> est aussi a l'oeuvre :</>,
+    from: 'left',
+    startScene: 5,
+    endScene: 6,
+    positionClass: 'top-[22%] left-[7%] w-[76%] sm:w-[52%] text-left',
+  },  
   {
     id: 's8-bottom',
     text: <>lors des dernieres legislatives, <strong>plus d'un electeur sur deux s'est abstenu</strong>, avec des taux d'abstention record chez les jeunes.</>,
@@ -107,6 +99,26 @@ const STORY_PARTS = [
 ];
 
 const SCENE_COUNT = 9;
+const FRANCE_ZOOM_SCALE = 2;
+const EUROPE_ZOOM_SCALE = 1;
+
+function getBackgroundScale(sceneProgress) {
+  if (sceneProgress < 1.3) return FRANCE_ZOOM_SCALE;
+
+  if (sceneProgress < 1.9) {
+    const progress = (sceneProgress - 1.3) / (1.9 - 1.3);
+    return FRANCE_ZOOM_SCALE + (EUROPE_ZOOM_SCALE - FRANCE_ZOOM_SCALE) * progress;
+  }
+
+  if (sceneProgress < 2.3) return EUROPE_ZOOM_SCALE;
+
+  if (sceneProgress < 2.9) {
+    const progress = (sceneProgress - 2.3) / (2.9 - 2.3);
+    return EUROPE_ZOOM_SCALE + (FRANCE_ZOOM_SCALE - EUROPE_ZOOM_SCALE) * progress;
+  }
+
+  return FRANCE_ZOOM_SCALE;
+}
 
 function getDirectionOffsets(direction) {
   const width = window.innerWidth;
@@ -127,10 +139,13 @@ function getDirectionOffsets(direction) {
 
 export default function Scrollytelling() {
   const sectionRef = useRef(null);
+  const bgRef = useRef(null);
   const [errorMsg, setErrorMsg] = useState(null);
 
   useGSAP(
     () => {
+      let bgZoomTrigger = null;
+
       try {
         if (!sectionRef.current) return;
         const totalScroll = SCENE_COUNT * window.innerHeight;
@@ -149,6 +164,25 @@ export default function Scrollytelling() {
           },
         });
 
+        // --- Background zoom/dezoom ---
+        // Keep zoom fully tied to scroll progress so it remains reliable with scrub.
+        const bgEl = bgRef.current;
+        if (bgEl) {
+          gsap.set(bgEl, { scale: FRANCE_ZOOM_SCALE, transformOrigin: '0% 95%' });
+
+          bgZoomTrigger = ScrollTrigger.create({
+            trigger: sectionRef.current,
+            start: 'top top',
+            end: `+=${totalScroll}`,
+            onUpdate: (self) => {
+              const sceneProgress = self.progress * SCENE_COUNT;
+              const nextScale = getBackgroundScale(sceneProgress);
+              gsap.set(bgEl, { scale: nextScale });
+            },
+          });
+        }
+
+        // --- Text animations ---
         STORY_PARTS.forEach((part) => {
           const rawSelector = `[data-part-id="${part.id}"] [data-anim-node="true"]`;
           const elements = q(rawSelector);
@@ -163,20 +197,18 @@ export default function Scrollytelling() {
           const enterStart = part.startScene + 0.06;
           const exitStart = part.endScene + 0.78;
 
-          gsap.set(element, {
-            autoAlpha: 0,
-            x: enter.x,
-            y: enter.y,
-          });
-
-          tl.to(
+          // Utilisation de fromTo avec immediateRender pour garantir 
+          // qu'ils sont invisibles au départ et parfaitement gérés dans la timeline
+          tl.fromTo(
             element,
+            { autoAlpha: 0, x: enter.x, y: enter.y },
             {
               autoAlpha: 1,
               x: 0,
               y: 0,
               duration: 0.24,
-            },  
+              immediateRender: true,
+            },
             enterStart
           );
 
@@ -196,6 +228,12 @@ export default function Scrollytelling() {
         console.error('GSAP Error:', err);
         setErrorMsg(err.message || String(err));
       }
+
+      return () => {
+        if (bgZoomTrigger) {
+          bgZoomTrigger.kill();
+        }
+      };
     },
     { scope: sectionRef, dependencies: [] }
   );
@@ -207,15 +245,15 @@ export default function Scrollytelling() {
           Désolé, une erreur technique : {errorMsg}
         </div>
       )}
-      <div
-        className="absolute inset-0"
-        style={{
-          backgroundImage: "url('/story/europe.svg')",
-          backgroundRepeat: 'no-repeat',
-          backgroundSize: 'auto 100%',
-          backgroundPosition: 'center center',
-        }}
-      />
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+        <img
+          ref={bgRef}
+          src="/story/europe.svg"
+          className="w-full h-full object-cover object-[20%_100%] sm:object-center"
+          alt="Map of Europe"
+          style={{ willChange: 'transform' }}
+        />
+      </div>
 
       <div className="absolute inset-0 pointer-events-none">
         {STORY_PARTS.map((part) => (
@@ -224,11 +262,11 @@ export default function Scrollytelling() {
             data-part-id={part.id}
             className={`absolute ${part.positionClass}`}
           >
-            <div data-anim-node="true" style={{ willChange: 'transform, opacity' }}>
+            <div data-anim-node="true" className="opacity-0" style={{ willChange: 'transform, opacity' }}>
               <p
                 className="text-black text-[1.05rem] font-semibold leading-[1.14] tracking-[-0.03em] sm:text-[1.45rem]"
                 style={{
-                  fontFamily: 'Arial, Helvetica, sans-serif',
+                  fontFamily: 'Helvetica',
                 }}
               >
                 {part.text}
