@@ -94,7 +94,7 @@ function createButtonBox(boxId = "box1", aRow = 1, aColumn = 1) {
         // Change box background color
         const textDisplay = document.createElement('p');
         textDisplay.id = "base";
-        let qheader = document.querySelector('.main-question');
+        let qheader = document.querySelector('.main-question-text');
         console.log(qheader);
         switch (parseInt(value)) {
           case 1:
