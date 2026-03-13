@@ -12,13 +12,14 @@
  */
 
 // Accent colours match each SVG pictogram's own stroke/fill colour
+
 const CATEGORY_COLORS = {
-  prix: '#ffc800',
-  article: '#ff0000',
-  conference: '#a900f9',
-  livre: '#00c450',
-  podcast: '#ff0064',
-  recherche: '#00c9ff',
+  prix: "#ffc800",
+  article: "#ff0000",
+  conference: "#a900f9",
+  livre: "#00c450",
+  podcast: "#ff0064",
+  recherche: "#00c9ff",
 };
 
 export default function ResourceCard({
@@ -28,8 +29,9 @@ export default function ResourceCard({
   left,
   top,
   description = null,
+  onClick,
 }) {
-  const color = CATEGORY_COLORS[category] ?? '#3552ff';
+  const color = CATEGORY_COLORS[category] ?? "#3552ff";
   const label = category.charAt(0).toUpperCase() + category.slice(1);
 
   return (
@@ -37,6 +39,7 @@ export default function ResourceCard({
       // className="absolute bg-white rounded-2xl px-6 shadow-sm overflow-hidden "
       className="class-resource-card"
       style={{ left, top }}
+      onClick={onClick}
     >
       {/* Pictogram pinned to top-left */}
       <img
@@ -47,9 +50,9 @@ export default function ResourceCard({
         // style={{ top: 14, left: 16, width: 44, height: 44 }}
       />
       {/* Category badge + title — offset right to leave room for the icon */}
-      <div 
-        // className="flex flex-col gap-2 min-w-0 h-full justify-center" 
-        className="class-ressource-contain" 
+      <div
+        // className="flex flex-col gap-2 min-w-0 h-full justify-center"
+        className="class-ressource-contain"
         // style={{ paddingLeft: 72 }}
       >
         <span

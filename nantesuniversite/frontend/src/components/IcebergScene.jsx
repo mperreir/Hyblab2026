@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -16,8 +16,12 @@ import podcastSvg from '../data/pictogramme/podcast.svg';
 import rechercheSvg from '../data/pictogramme/recherche.svg';
 
 const PICTOGRAMMES = {
-  prix: prixSvg, article: articleSvg, conference: conferenceSvg,
-  livre: livreSvg, podcast: podcastSvg, recherche: rechercheSvg,
+  prix: prixSvg,
+  article: articleSvg,
+  conference: conferenceSvg,
+  livre: livreSvg,
+  podcast: podcastSvg,
+  recherche: rechercheSvg,
 };
 
 // ─── Adjust card positions here ────────────────────────────────────────────
@@ -72,6 +76,14 @@ const cardDocuments = data.researcher.documents;
 
 export default function IcebergScene() {
   const containerRef = useRef(null);
+  const [openPopup, setOpenPopup] = useState(false);
+  const [type, setType] = useState("");
+
+  const handleCardClick = (type) => {
+    setType(type);
+    setOpenPopup(true);
+  };
+
 
   useGSAP(() => {
     const cards = gsap.utils.toArray('.class-resource-card');
@@ -97,23 +109,33 @@ export default function IcebergScene() {
   }, { scope: containerRef });
 
   return (
-    <div ref={containerRef}>
-      <div className="absolute left-[45px] top-[775px] w-[1832px] h-[3200px]">
-        <DataIceberg className="w-full h-full" />
+    <>
+      <div ref={containerRef}>
+        <div className="absolute left-[45px] top-[775px] w-[1832px] h-[3200px]">
+          <DataIceberg className="w-full h-full" />
+        </div>
+
+
+
+        {cardDocuments.map((doc, i) => (
+          <ResourceCard
+            key={doc.id}
+            pictogramme={PICTOGRAMMES[doc.category]}
+            category={doc.category}
+            title={doc.title}
+            description={doc.description}
+            {...CARD_POSITIONS[i]}
+            onClick={() => handleCardClick(doc.type)}
+          />
+        ))}
       </div>
-
-
-
-      {cardDocuments.map((doc, i) => (
-        <ResourceCard
-          key={doc.id}
-          pictogramme={PICTOGRAMMES[doc.category]}
-          category={doc.category}
-          title={doc.title}
-          description={doc.description}
-          {...CARD_POSITIONS[i]}
-        />
-      ))}
-    </div>
+      {
+        openPopup ? (
+          <Popup type={type} onClick={() => setOpenPopup(false)} />
+        ) : (
+          ""
+        )
+      }
+    </>
   );
 }

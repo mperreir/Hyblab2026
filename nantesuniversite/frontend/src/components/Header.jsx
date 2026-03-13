@@ -51,6 +51,6 @@ export default function Header() {
 
       {/* Trait horizontal */}
       <div ref={lineRef} className="absolute left-0 top-[146px] w-full h-px bg-brand-grey" />
-    </header>
+    </header >
   );
 }

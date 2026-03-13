@@ -13,11 +13,11 @@ export default function TopicTitle() {
   useGSAP(() => {
     // Staggered entrance after the header line finishes drawing (0.4s offset)
     const base = 0.4;
-    gsap.from(iconRef.current,    { opacity: 0, x: -20, duration: 0.6, ease: 'power2.out', delay: base });
-    gsap.from(barRef.current,     { scaleY: 0, transformOrigin: 'top center', duration: 0.5, ease: 'power2.out', delay: base + 0.1 });
-    gsap.from(topicRef.current,   { opacity: 0, x: -28, duration: 0.7, ease: 'power2.out', delay: base + 0.15 });
-    gsap.from(nameRef.current,    { opacity: 0, y: -18, duration: 0.8, ease: 'power3.out', delay: base + 0.25 });
-    gsap.from(subtopicRef.current,{ opacity: 0, y: 14,  duration: 0.7, ease: 'power2.out', delay: base + 0.38 });
+    gsap.from(iconRef.current, { opacity: 0, x: -20, duration: 0.6, ease: 'power2.out', delay: base });
+    gsap.from(barRef.current, { scaleY: 0, transformOrigin: 'top center', duration: 0.5, ease: 'power2.out', delay: base + 0.1 });
+    gsap.from(topicRef.current, { opacity: 0, x: -28, duration: 0.7, ease: 'power2.out', delay: base + 0.15 });
+    gsap.from(nameRef.current, { opacity: 0, y: -18, duration: 0.8, ease: 'power3.out', delay: base + 0.25 });
+    gsap.from(subtopicRef.current, { opacity: 0, y: 14, duration: 0.7, ease: 'power2.out', delay: base + 0.38 });
   });
 
   return (
