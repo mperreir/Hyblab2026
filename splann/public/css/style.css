@@ -419,7 +419,7 @@ main > section{
     height: 100%;   /* even on mobile devices with url or navigation bars */
     margin-left: calc((100vw - 100 * 3vh / 4) / 2); /* Add black bands on left and right */
     width: calc(100 * 3vh / 4); /* Force 3/4 aspect ratio */
-    margin-top: 70px; pour /* Pour que le contenu ne soit pas caché sous le header */
+    margin-top: 70px; /*pour  Pour que le contenu ne soit pas caché sous le header */
 
 }
 
