@@ -61,7 +61,7 @@ defineProps({
     align-self: stretch;
 
     border-radius: 12px;
-    background-image: url('img/Vector.png');
+    background-image: url('/lanouvellerepublique/img/Vector.png');
     background-color: #FFF;
     background-position: 50%;
     background-size: cover;
