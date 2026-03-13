@@ -11,20 +11,21 @@ gsap.registerPlugin(ScrollTrigger);
 // Section starts at absolute top=300; child positions are section-relative.
 export default function ExpertQuote() {
   const sectionRef = useRef(null);
-  const portraitRef = useRef(null);
+  const portraitParallaxRef = useRef(null); // outer wrapper — only receives y (parallax)
+  const portraitRef = useRef(null);         // inner wrapper — only receives x + opacity (entrance)
   const quoteRef = useRef(null);
   const attributionRef = useRef(null);
 
   useGSAP(() => {
     const trigger = { trigger: sectionRef.current, start: 'top 80%', toggleActions: 'play none none reverse' };
 
-    // Entrance animations — refs are now wired to their DOM elements below
-    gsap.from(portraitRef.current, { ...trigger, x: -60, opacity: 0, duration: 0.9, ease: 'power3.out' });
-    gsap.from(quoteRef.current, { ...trigger, x: 60, opacity: 0, duration: 0.9, ease: 'power3.out', delay: 0.15 });
-    gsap.from(attributionRef.current, { ...trigger, y: 30, opacity: 0, duration: 0.7, ease: 'power2.out', delay: 0.35 });
+    // Entrance: x + opacity on the inner div — no y involved
+    gsap.from(portraitRef.current,    { ...trigger, x: -60, opacity: 0, duration: 0.9, ease: 'power3.out' });
+    gsap.from(quoteRef.current,       { ...trigger, x:  60, opacity: 0, duration: 0.9, ease: 'power3.out', delay: 0.15 });
+    gsap.from(attributionRef.current, { ...trigger, y:  30, opacity: 0, duration: 0.7, ease: 'power2.out', delay: 0.35 });
 
-    // Portrait parallax — drifts upward slightly as the section scrolls through the viewport
-    gsap.to(portraitRef.current, {
+    // Parallax: only y on the outer wrapper — completely separate from the entrance tween
+    gsap.to(portraitParallaxRef.current, {
       y: -50,
       ease: 'none',
       scrollTrigger: {
@@ -38,9 +39,11 @@ export default function ExpertQuote() {
 
   return (
     <section ref={sectionRef} className="absolute top-[300px] left-0 right-0">
-      {/* Portrait photo: abs left=158, top=312 → section top=12 */}
-      <div ref={portraitRef} className="absolute left-[158px] top-[12px] w-[442px] h-[373px] overflow-hidden">
-        <img src={portrait} alt="Portrait de Colin de la Higuera" className="w-full h-full object-cover" />
+      {/* Portrait photo: outer div handles parallax y, inner div handles entrance x/opacity */}
+      <div ref={portraitParallaxRef} className="absolute left-[158px] top-[12px]">
+        <div ref={portraitRef} className="w-[442px] h-[373px] overflow-hidden">
+          <img src={portrait} alt="Portrait de Colin de la Higuera" className="w-full h-full object-cover" />
+        </div>
       </div>
 
       {/* Colorful overlay on portrait: abs left=134, top=514 → section top=214 */}
