@@ -7,6 +7,7 @@
   "volet" : [
     {
     "titreVolet" : "La mine d’Imerys contamine la réserve naturelle",
+    "lienVolet" : "https://splann.org/enquete/intoxication-miniere-en-bretagne/mine-imerys-contamine-reserve-naturelle-glomel/",
     "nBullet" : 3,
     "bullet" : [
       [{"type" : "title", "content" : "La mine d’Imerys contamine la réserve naturelle de Glomel"},
@@ -24,17 +25,13 @@
         "content" : "L'équipe de Splann ! a prélevé des sédiments dans un cours d'eau de la réserve naturelle régionale."
       },
       { "type" : "text",
-        "content" : "Nos analyses révèlent des concentrations de métaux lourds jusqu'à 60 fois supérieures aux valeurs guides pour un bon état écologique des sédiments."
-      },
-      {
-        "type" : "img",
-        "content" : "https://splann.org/wp-content/uploads/2024/11/Rejets-Imerys-800x441.png"
+        "content" : "Nos analyses révèlent des concentrations de métaux lourds jusqu'à <b>60 fois supérieures</b> aux valeurs guides pour un bon état écologique des sédiments."
       },
       { "type" : "text",
         "content" : "Les métaux lourds détectés dans les analyses comprennent notamment le nickel et le cobalt, jusqu'à vingt fois supérieures aux valeurs de référence."
       },
       { "type" : "text",
-        "content" : "Les prélèvements réalisés en amont du site industriel ne montrent aucune contamination notable. À l'inverse, les échantillons prélevés en aval présentent des niveaux de métaux lourds particulièrement élevés. "
+        "content" : "Les prélèvements réalisés en amont du site industriel ne montrent <b>aucune contamination notable.</b> À l'inverse, les échantillons prélevés en aval présentent des niveaux de métaux lourds particulièrement élevés. "
       },
       { "type" : "text",
         "content" : "La contamination se propage le long du cours d'eau. Plusieurs kilomètres en aval, les concentrations restent supérieures aux valeurs guides. Les ruisseaux qui serpentent dans les sous-bois transportent les particules contaminées."
@@ -43,7 +40,7 @@
         "content" : "Ces concentrations élevées de métaux lourds peuvent s'accumuler dans les sédiments et les organismes aquatiques."
       },
       { "type" : "text",
-        "content" : "Les scientifiques soulignent que ces niveaux de contamination sont incompatibles avec un bon état écologique des cours d'eau."
+        "content" : "Les scientifiques soulignent que ces niveaux de contamination sont <b>incompatibles</b> avec un <b>bon état écologique</b> des cours d'eau."
       },
       { "type" : "text",
         "content" : "Imerys n'a pas informé la population de la présence d'arsenic et de cadmium, tous deux cancérigènes, mutagènes et reprotoxiques."
@@ -56,6 +53,7 @@
     {
     "titreVolet" : "Dans les côtes d’Armor, Imerys mine la démocratie locale",
     "nBullet" : 4,
+    "lienVolet": "https://splann.org/enquete/intoxication-miniere-en-bretagne/imerys-mine-democratie-locale/",
     "bullet" : [
       [{"type" : "title", "content" : "Dans les côtes d’Armor, Imerys mine la démocratie locale"},
       {"type" : "paragraph", "content" : "Imerys a annoncé vouloir étendre son exploitation, et creuser une nouvelle fosse. Le soutien à Imerys est un enjeu fort des élections municipales et une source de tensions au sein de la population."}

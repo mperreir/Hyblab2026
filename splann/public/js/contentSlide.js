@@ -60,6 +60,7 @@ const createEmptyContent = async function(){
             
             sliderWrapper.insertBefore(slide, endSlide);
             }
+
             const bottom_sheet = document.createElement("div")
             bottom_sheet.classList.add("bottom-sheet")
 
@@ -72,14 +73,24 @@ const createEmptyContent = async function(){
             button.textContent = "▲"
             handle_bar.appendChild(button)
 
+            handle_bar.appendChild(document.createElement('br'))
+            
+            const textHandle = document.createElement("p")
+            textHandle.id= "handle-bar-text"
+            textHandle.innerHTML = "ENVIE DE CREUSER ?"
+            handle_bar.appendChild(textHandle)
+
             const content = document.createElement("div")
             content.classList.add("content")
             bottom_sheet.appendChild(content)
             content.id = "extended-content"
             content.className="content"
-            console.log(data.volet[i].extendedContent)//
+            console.log(data.volet[i].extendedContent)
 
-
+            const extendTitle = document.createElement("p")
+            extendTitle.id = "extended-content-title"
+            extendTitle.innerHTML = "EN PROFONDEUR"
+            content.appendChild(extendTitle)
 
             for(let j = 0; j < data.volet[i].extendedContent.length; j++){
                 extendedElmt = data.volet[i].extendedContent[j]
@@ -95,6 +106,13 @@ const createEmptyContent = async function(){
                     content.appendChild(img)
                 }
             }
+
+            const linkEnquete = document.createElement("a")
+            linkEnquete.id = "link-enquete"
+            linkEnquete.href = data.volet[i].lienVolet
+            linkEnquete.innerHTML = "CREUSE ENCORE PLUS LOIN?"
+
+            content.appendChild(linkEnquete);
 
             slide.appendChild(bottom_sheet)
 
