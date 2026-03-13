@@ -138,26 +138,37 @@ document.querySelectorAll('#quiz-1 .option-btn').forEach(button => {
 
   // --- Quizz 3 ---
   // Fonction pour gérer le Quizz 3 (sélection simple, pas de feedback correct/incorrect nécessaire)
-  function handleQuiz3(selectedButton) {
-    // Désactive tous les boutons après une première sélection
-    const quizStep = selectedButton.closest('.quiz-container');
-    const allOptions = quizStep.querySelectorAll('.option-btn');
-    
-    allOptions.forEach(button => {
-      button.disabled = true;
-      // Optionnel: Ajouter du style pour marquer la réponse cliquée
-      // button.style.backgroundColor = '#d9534f'; 
-    });
-    // Marquez spécifiquement le bouton cliqué pour donner un retour visuel
-    selectedButton.style.backgroundColor = '#f0ad4e'; // Orange pour le bouton sélectionné
+  let selectedButtonQuiz3 = null;
+  const quiz3 = {
+    options: document.querySelectorAll('#quiz-3 .option-btn'),
+    feedback: document.getElementById('feedback-3'),
+    validateButton: document.getElementById('validate-btn-3'),
+  };
+
+// Fonction pour gérer le quiz 3
+function handleQuiz3(selectedButton) {
+  // Réinitialise le bouton précédemment sélectionné (s'il y en a un)
+  if (selectedButtonQuiz3 !== null) {
+    selectedButtonQuiz3.style.backgroundColor = '#fafafa';
   }
 
-  const quiz3Options = document.querySelectorAll('#quiz-3 .option-btn');
-  quiz3Options.forEach(button => {
-    button.addEventListener('click', function() {
-      handleQuiz3(this);
-    });
+  // Gère la réponse sélectionnée
+  const isCorrect = selectedButton.dataset.correct === 'true';
+  selectedButton.style.backgroundColor = isCorrect ? '#5cb85c' : '#fcf075';
+
+  // Met à jour la variable globale
+  selectedButtonQuiz3 = selectedButton;
+  quiz3.feedback.textContent = "Toutes les propositions mènent à une situation irrégulière.";
+  quiz3.feedback.style.color = '#f63b32'
+
+}
+
+// Attache les écouteurs d'événements UNE SEULE FOIS (en dehors de la fonction)
+document.querySelectorAll('#quiz-3 .option-btn').forEach(button => {
+  button.addEventListener('click', function() {
+    handleQuiz3(this);
   });
+});
 
   // --- Quizz Chapitre 4 (Boutons avec paragraphes cachés) ---
   const quizChap4Buttons = document.querySelectorAll('.chap4-btn');
