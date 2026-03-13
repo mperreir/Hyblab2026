@@ -1,35 +1,5 @@
 "use strict";
 
-// const img = document.getElementById('img');
-
-// const segments = [
-//   { type: "y", length: 500 },
-//   { type: "x", length: 500 },
-//   { type: "y", length: 500 }
-// ];
-
-// window.addEventListener('scroll', () => {
-//   const scroll = window.scrollY;
-//   let x = 0;
-//   let y = 0;
-//   let remaining = window.scrollY;
-
-//   for (const seg of segments) {
-
-//     const move = Math.min(remaining, seg.length);
-
-//     if (seg.type === "x") x += move;
-//     if (seg.type === "y") y += move;
-
-//     remaining -= seg.length;
-
-//     if (remaining <= 0) break;
-//   }
-
-//   img.style.transform = `translate(${-x}px, ${-y}px)`;
-// });
-
-
 const pointsInterets = [
   {
     label: "vue globale",
@@ -37,19 +7,9 @@ const pointsInterets = [
     zoom: 0.5
   },
   {
-    label: "Canada",
+    label: "Ciel",
     cx: 500, cy: 500,
     zoom: 1.6
-  },
-  {
-    label: "Bresil",
-    cx: 1000, cy: 1500,
-    zoom: 1.6
-  },
-  {
-    label: "France",
-    cx: 1525, cy: 725,
-    zoom: 2
   }
 ]
 

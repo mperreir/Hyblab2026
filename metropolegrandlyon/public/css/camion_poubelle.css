@@ -1,0 +1,111 @@
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    overflow-x: hidden;
+}
+
+body {
+    overflow-x: hidden;
+}
+
+.scroll-space {
+    height: 1500vh;
+}
+
+:root {
+    --bg-h: 100vh;
+    --road-h: clamp(24px, 5vh, 80px);
+    --truck-h: 50vh;
+    --scene-width: 70vh;
+}
+
+.scene {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: var(--scene-width);
+    height: 100vh;
+    overflow: hidden;
+}
+
+
+@media (min-aspect-ratio: 1/1) {
+    :root {
+        --bg-h: 100vh;
+        --road-h: clamp(64px, 12vh, 200px);
+        --truck-h: 42vh;
+    }
+}
+
+.panorama-track {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 140vh;
+    height: var(--bg-h);
+    overflow: hidden;
+}
+
+.panorama {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 280vh;
+    height: var(--bg-h);
+    display: flex;
+    will-change: transform;
+}
+
+.panorama img {
+    width: auto;
+    height: var(--bg-h);
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+    flex-shrink: 0;
+}
+
+
+.road-strip {
+    position: absolute;
+    left: 0;
+    width: var(--scene-width);
+    top: var(--bg-h);
+    height: var(--road-h);
+    z-index: 10;
+}
+
+#route {
+    height: var(--road-h);
+}
+
+.truck {
+    position: absolute;
+    bottom: 10vh;
+    left: 0;
+    height: var(--truck-h);
+    width: auto;
+    will-change: transform;
+    z-index: 20;
+    filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.4));
+    transform-origin: bottom left;
+}
+
+.worker {
+    position: absolute;
+    bottom: 10vh;
+    right: 5vh;
+    transform: translateX(-50%) translateY(100%);
+    height: calc(var(--truck-h) * 0.75);
+    width: auto;
+    z-index: 30;
+    opacity: 0;
+    will-change: transform, opacity;
+    transition: none;
+}
