@@ -1,13 +1,7 @@
-//import { useEffect, useRef, useState } from "react";
-//import ReactPlayer from "react-player";
-//import { Document, Page, pdfjs } from "react-pdf";
-
-//pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`;
 import { useState } from "react";
 
-export default function Popup({pictogramme, type, onClick }) {
+export default function Popup({ pictogramme, type, url, title, onClick }) {
   const [animClass, setAnimClass] = useState("open");
-
 
   function handleClose() {
     setAnimClass("close");
@@ -16,18 +10,51 @@ export default function Popup({pictogramme, type, onClick }) {
     }, 350);
   }
 
+  function renderContent() {
+    if (type === "pdf") {
+      return (
+        <embed
+          src={url}
+          type="application/pdf"
+          width="100%"
+          height="100%"
+          style={{ border: "none", borderRadius: "4px" }}
+        />
+      );
+    }
+
+    if (type === "video") {
+      return (
+        <iframe title="Video player" src={url} allowFullScreen allow="autoplay" style={{ border: "none", borderRadius: "4px", width: "100%", height: "100%" }}></iframe>
+      );
+    }
+
+    // type === "web" (default)
+    return (
+      <iframe
+        src={url}
+        title={title}
+        width="100%"
+        height="100%"
+        style={{ border: "none", borderRadius: "4px" }}
+        allowFullScreen
+      />
+    );
+  }
+
   return (
     <div className="popup-overlay" onClick={handleClose}>
       <div className={`class-pupop ${animClass}`} onClick={(e) => e.stopPropagation()}>
         <img
           src={pictogramme}
-          // className="absolute object-contain"
           alt="pictogramme"
           className="class-pictogramme-openPopup"
-          // style={{ top: 14, left: 16, width: 44, height: 44 }}
         />
-        <h1>{type}</h1>
-        <button className="class-close-popup" onClick={handleClose}>X</button>
+        <button className="class-close-popup" onClick={handleClose}>✕</button>
+        {title && <h2 className="popup-title">{title}</h2>}
+        <div className="popup-content-area">
+          {renderContent()}
+        </div>
       </div>
     </div>
   );

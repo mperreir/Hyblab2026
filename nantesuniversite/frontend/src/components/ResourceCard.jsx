@@ -20,6 +20,7 @@ const CATEGORY_COLORS = {
   livre: "#00c450",
   podcast: "#ff0064",
   recherche: "#00c9ff",
+  biographie:"#ff6c00"
 };
 
 export default function ResourceCard({
@@ -31,7 +32,7 @@ export default function ResourceCard({
   description = null,
   onClick,
 }) {
-  const color = CATEGORY_COLORS[category] ?? "#3552ff";
+  const color = CATEGORY_COLORS[category.toLowerCase()] ?? "#3552ff";
   const label = category.charAt(0).toUpperCase() + category.slice(1);
 
   return (
