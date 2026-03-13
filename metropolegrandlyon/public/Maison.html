@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Descente</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;1,300&display=swap');
+  </style>
+  <link rel="stylesheet" href="css/maison.css">
+    <script src="js/maison.js" defer></script>
+</head>
+
+<body>
+
+  <div class="scene">
+    <img class="colline"   src="img/collines/collines_new.png"       alt="colline">
+
+    <!-- Groupe scène 1 : part vers la droite et le bas -->
+    <div class="groupe-scene1">
+        
+      </div>
+      
+      <img class="route" src="img/collines/route.png" alt="route">
+      <img class="maison" src="img/maison/maison.png" alt ="maison">
+      <img class="maison_a" src="img/maison/maison_arbres.png" alt="maison_a">
+
+      <img class="femme" src="img/femme.png" alt="femme">
+    </div>
+
+    <!-- Scène 2 : zoom vers l'avant -->
+    <div class="scene2">
+      <div class="scene2-contenu">
+        <p class="titre">Titre scène 2</p>
+        <p class="description">Texte de la nouvelle scène</p>
+      </div>
+    </div>
+
+    <!-- UI permanente -->
+    <p class="altitude" id="altitude">↓ &nbsp;en descente</p>
+    <img class="bouton_fleche" src="img/fleche_haut.png" alt="flèche">
+    <div class="scroll-hint" id="scrollHint">
+      <span>scroller</span>
+      <div class="fleche"></div>
+    </div>
+  </div>
+</body>
+</html>

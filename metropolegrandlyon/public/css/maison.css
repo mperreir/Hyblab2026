@@ -1,0 +1,163 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      height: 900vh;
+      background: #000;
+      overflow-x: hidden;
+    }
+
+    .scene {
+      position: fixed;
+      bottom: 0; left: 0;
+      width: 100%; height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* ── Calques de fond ────────────────────────────────── */
+    .scene {
+      background-image: url("../img/plan_03_ciel.png");
+    }
+
+    .colline {
+      position: relative;
+      left: -5vw;
+      bottom: -20vh;
+      width: 120%;
+    }
+
+    /* ── Groupe scène 1 : part vers la droite et le bas ───────────── */
+    .groupe-scene1 {
+      position: absolute;
+      inset: 0;
+      overflow: visible;
+      will-change: transform;
+    }
+
+    /* ── Base commune aux 3 images ──────────────────────── */
+    .route, .maison, .femme, .maison_a, .maison {
+      position: absolute;
+      opacity: 0;
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .maison_a {
+      z-index: 4;
+      width:18%;
+      left:5vh;
+      bottom: 29vh;
+    }
+
+    .maison {
+      z-index: 2;
+      bottom: 1vh;
+      left: -55vw;
+      width: 80%;
+    }
+
+    .route {
+      z-index: 3;
+      bottom: 0;
+      left: center;
+      height: 13.5%;
+    }
+
+    .femme {
+      z-index: 5;
+      bottom: 12vh;
+      left: 50%;
+      width: 10%;
+    }
+
+    .maison_m.visible   { opacity: 1; transform: translateY(0); }
+    .route.visible  { opacity: 1; transform: translateY(0); }
+    .femme.visible { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+    /* ── Scène 2 : arrive depuis la gauche ──────────────── */
+    .scene2 {
+      position: absolute;
+      top: 0;
+      left: -100%; /* commence hors écran à gauche */
+      width: 100%;
+      height: 100%;
+      background-image: url('img/chantier/avant.png');
+      background-size: cover;
+      background-position: center;
+      will-change: transform;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .scene2-contenu {
+      text-align: center;
+      color: white;
+      font-family: 'Cormorant Garamond', serif;
+      opacity: 0;
+      transition: opacity 0.8s ease;
+      padding: 24px;
+    }
+
+    .scene2-contenu.visible { opacity: 1; }
+
+    .scene2-contenu .titre {
+      font-size: 2.4rem;
+      font-weight: 300;
+      color: #f97316;
+      margin-bottom: 16px;
+    }
+
+    .scene2-contenu .description {
+      font-size: 1.1rem;
+      font-style: italic;
+      line-height: 1.75;
+    }
+
+
+    /* ── Indicateur scroll ──────────────────────────────── */
+    .scroll-hint {
+      position: absolute;
+      bottom: 36px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      opacity: 1;
+      transition: opacity 1s ease;
+      z-index: 200;
+    }
+
+    .scroll-hint span {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      color: rgba(255,255,255,0.5);
+      font-size: 0.85rem;
+      letter-spacing: 0.2em;
+    }
+
+    .scroll-hint .fleche {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, rgba(255,255,255,0.5), transparent);
+      animation: glisser 1.5s ease-in-out infinite;
+    }
+
+    .bouton_fleche {
+      position: absolute;
+      bottom: 5%;
+      left: 5%;
+      height: 40px;
+      opacity: 0;
+      transition: opacity 1s ease;
+      cursor: pointer;
+      z-index: 200;
+    }
+
+    @keyframes glisser {
+      0%   { transform: scaleY(0); transform-origin: top; opacity: 1; }
+      50%  { transform: scaleY(1); transform-origin: top; opacity: 1; }
+      100% { transform: scaleY(1); transform-origin: top; opacity: 0; }
+    }
