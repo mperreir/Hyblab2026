@@ -341,3 +341,10 @@ const arrow = document.querySelector(".summary-container img");
 arrow.addEventListener("click", () => {
   summary.classList.toggle("is-open");
 });
+
+const impact_explanation = document.querySelector(".impact-explanation");
+const impact_arrow = document.querySelector(".impact-unfolding img");
+
+impact_arrow.addEventListener("click", () => {
+  impact_explanation.classList.toggle("is-open");
+});
