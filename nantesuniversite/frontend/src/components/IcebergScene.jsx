@@ -12,7 +12,7 @@ import conferenceSvg from "../data/pictogramme/conference.svg";
 import livreSvg from "../data/pictogramme/livre.svg";
 import podcastSvg from "../data/pictogramme/podcast.svg";
 import rechercheSvg from "../data/pictogramme/recherche.svg";
-
+import biographieSvg from "../data/pictogramme/biographie.svg"
 const PICTOGRAMMES = {
   prix: prixSvg,
   article: articleSvg,
@@ -20,6 +20,7 @@ const PICTOGRAMMES = {
   livre: livreSvg,
   podcast: podcastSvg,
   recherche: rechercheSvg,
+  biographie:biographieSvg
 };
 
 // ─── Adjust card positions here ────────────────────────────────────────────

@@ -20,6 +20,7 @@ const CATEGORY_COLORS = {
   livre: "#00c450",
   podcast: "#ff0064",
   recherche: "#00c9ff",
+  biographie:"#ff6c00"
 };
 
 export default function ResourceCard({
