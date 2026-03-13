@@ -4,8 +4,8 @@ import nantesLogo from '../assets/nantesLogo.svg';
 export default function Header() {
   return (
     <header>
-      {/* Logo Parole d'Expert */}
-      <div className="absolute top-[34px] left-[69px] w-[245px] h-[82px]">
+      {/* Logo Nantes Université */}
+      <div className="absolute top-[34px] left-[69px] w-[187px] h-[63px]">
         <img
           src={nantesLogo}
           alt="Parole d'Expert"
@@ -13,8 +13,8 @@ export default function Header() {
         />
       </div>
 
-      {/* Logo Nantes Université */}
-      <div className="absolute top-[27px] left-[806px] w-[306px] h-[93px]">
+      {/* Logo Parole d'Expert */}
+      <div className="absolute top-[27px] left-[806px] w-[234px] h-[71px]">
         <img
           src={paroleExpertLogo}
           alt="Nantes Université"
@@ -23,7 +23,7 @@ export default function Header() {
       </div>
 
       {/* Trait horizontal */}
-      <div className="absolute left-0 top-[146px] w-full h-px bg-brand-grey" />
+      <div className="absolute left-0 top-[120px] w-full h-px bg-brand-grey" />
     </header>
   );
 }
