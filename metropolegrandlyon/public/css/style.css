@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;1,300&display=swap');
+
 html {
     scroll-behavior: auto;
     height: 100%;
@@ -8,29 +10,43 @@ html {
 
 body {
     overflow-x: hidden;
-    height: 100%;
+    /* 8400px pour que le slider (scrollFin = 8200px) soit atteignable */
+    height: 8400px;
     width: 100%;
     margin: 0;
     padding: 0;
+    background: #000;
 }
 
 #scene-container {
-    position: relative;
-    height: 800vh;
+    position: fixed;
+    inset: 0;
     width: 100%;
+    height: 100dvh;
     overflow: hidden;
 }
 
 #scene {
-    position: relative;
+    position: absolute;
+    inset: 0;
     width: 100%;
-    height: 100vh;
+    height: 100%;
     overflow: hidden;
 }
 
+/* ── Progression ── */
+#progress-bar {
+    position: absolute;
+    top: 0; left: 0;
+    height: 2px;
+    background: rgba(249,115,22,.8);
+    z-index: 300;
+    width: 0%;
+}
 
+/* ── Ciel ── */
 #ciel {
-    position: fixed; 
+    position: absolute;
     object-fit: cover;
     z-index: 0;
     width: 100%;
@@ -38,133 +54,141 @@ body {
     transform-origin: center top;
 }
 
+/* ── Cartes ── */
 #map-container {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
     z-index: 1;
-    object-fit: cover;
 }
 
-#map{
-    top: 54%;
-    left: 0%;
-    position: fixed;
+#map {
+    top: 54%; left: 0%;
+    position: absolute;
     width: 100%;
     object-fit: cover;
     display: block;
     transform-origin: center bottom;
 }
 
-#map2{
-    top: 45%;
-    left: 0%;
-    position: fixed;
+#map2 {
+    top: 45%; left: 0%;
+    position: absolute;
     width: 100%;
     object-fit: cover;
     display: block;
     transform-origin: center bottom;
 }
 
-/*GIF*/
-.GIF{
+/* ── GIFs ── */
+.GIF {
     display: none;
     width: auto;
-    transform: translateX(-50%) scale(0.5);
 }
 
-#NuageGIF1{
-    position: fixed;
-    top: 25%;
-    left: 60%;
+#NuageGIF1 {
+    position: absolute;
+    top: 25%; left: 60%;
     transform: translateX(-50%) scale(0.4);
+    z-index: 5;
 }
 
-#NuageGIF2{
-    position: fixed;
-    top: 30%;
-    left:40%;
+#NuageGIF2 {
+    position: absolute;
+    top: 30%; left: 40%;
     transform: translateX(-50%) scale(0.4);
+    z-index: 5;
 }
 
-#NuageGIF3{
-    position: fixed;
-    top: 25%;
-    left: 60%;
+#NuageGIF3 {
+    position: absolute;
+    top: 25%; left: 60%;
     transform: translateX(-50%) scale(0.4);
+    z-index: 5;
 }
 
-/*Txt Info*/
-#TxtInfo{
-    position: fixed;
+/* ── Texte info ── */
+#TxtInfo {
+    position: absolute;
     color: black;
     display: block;
-    top: 50%;
-    left: 50%;
+    top: 50%; left: 50%;
     z-index: 10;
     transform: translateX(-50%);
     opacity: 0;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2vh;
+    text-align: center;
+    pointer-events: none;
+    white-space: nowrap;
 }
 
-/*Pour les zoom*/
-
-#nuage1_zoom{
-    position: fixed;
+/* ── Nuages zoom ── */
+#nuage1_zoom {
+    position: absolute;
     width: auto;
-    top: 22%;
-    left: 30%;
+    top: 22%; left: 30%;
     z-index: 10;
     transform: translateX(-50%) translateY(-50%) scale(0.4);
 }
 
-#nuage2_zoom{
-    position: fixed;
+#nuage2_zoom {
+    position: absolute;
     width: auto;
-    top: 27%;
-    left: 20%;
+    top: 27%; left: 20%;
     z-index: 10;
     transform: translateX(-50%) translateY(-50%) scale(0.07);
 }
 
-#nuage3_zoom{
-    position: fixed;
+#nuage3_zoom {
+    position: absolute;
     width: auto;
-    top: 27%;
-    left: 75%;
+    top: 27%; left: 75%;
     z-index: 10;
     transform: translateX(-50%) translateY(-50%) scale(0.45);
 }
 
-/*Phase 3*/
-.scene-musee{
-    position: fixed;
-    top: 200vh; /* apparaît après ton ciel */
+/* ════════════════════════
+   PHASE 3 — MUSÉE
+════════════════════════ */
+.scene-musee {
+    position: absolute;
+    inset: 0;
     width: 100%;
     height: 100%;
+    z-index: 20;
+    overflow: visible;
 }
 
-.calque-ville{
-    position: fixed;
-    opacity: 1;
-    bottom: -27.8%;
-    left: -90%;
-    width: 100%;
-    transform: scale(0.13);
+.calque-ville {
+    position: absolute;
+    inset: 0;
+    overflow: visible;
+}
+
+/* imgVille : cachée jusqu'à la descente, puis animée par JS */
+#imgVille {
+    position: absolute;
+    bottom: -2.36vh;
+    left: -50%;
+    height: 100%;
+    width: auto;
+    will-change: left, transform;
+    opacity: 0;
 }
 
 .musee,
 .ruines,
-.ecolier{
-    opacity:0;
+.ecolier {
+    opacity: 0;
     z-index: 20;
+    transition: opacity .6s ease;
 }
 
 .musee.visible,
 .ruines.visible,
-.ecolier.visible{
-    opacity:1;
+.ecolier.visible {
+    opacity: 1;
 }
 
 .musee {
@@ -177,13 +201,138 @@ body {
 .ruines {
     position: fixed;
     bottom: -30vh;
-    right: -5vh;
-    width: 400px;
+    left: 0vw;
+    width: 100vw;
 }
 
 .ecolier {
     position: fixed;
     bottom: -30vh;
-    left: 8vh;
+    left: -8vw;
     width: 260px;
+}
+
+/* Texte musée */
+.bloc-texte-musee {
+    position: absolute;
+    top: 20%; left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    opacity: 0;
+    transition: opacity .8s ease;
+    max-width: 66vh;
+    padding: 0 2.84vh;
+    z-index: 100;
+    pointer-events: none;
+}
+.bloc-texte-musee.visible { opacity: 1; pointer-events: all; }
+
+/* ════════════════════════
+   PHASE 4 — CHANTIER
+════════════════════════ */
+.scene-chantier {
+    position: absolute;
+    top: 0; left: 100%;
+    width: 100%; height: 100%;
+    will-change: left;
+    z-index: 30;
+}
+
+/* avant/après en background sur des divs (pas des <img>) */
+.avant {
+    position: absolute; inset: 0;
+    background-image: url('../img/chantier/Plan-av.png');
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    background-position: left bottom;
+}
+
+.apres {
+    position: absolute; inset: 0;
+    background-image: url('../img/chantier/Plan-ap.png');
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    background-position: left bottom;
+    clip-path: inset(0 100% 0 0);
+    will-change: clip-path;
+}
+
+.separateur {
+    position: absolute; top: 0; bottom: 0;
+    width: 0.35vh;
+    background: white;
+    box-shadow: 0 0 1.42vh rgba(255,255,255,0.8);
+    left: 0%;
+    will-change: left;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity .6s ease;
+}
+.separateur.visible { opacity: 1; }
+.separateur::after {
+    content: '◀ ▶';
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%,-50%);
+    color: white;
+    font-size: 0.89vh; letter-spacing: 0.24vh; white-space: nowrap;
+    background: rgba(0,0,0,0.5);
+    padding: 0.71vh 0.95vh; border-radius: 2.36vh;
+}
+
+.label {
+    position: absolute; top: 2.84vh;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.18vh; letter-spacing: .15em; text-transform: uppercase;
+    padding: 0.71vh 1.65vh; border-radius: 0.47vh;
+    background: rgba(0,0,0,0.4); color: white;
+    pointer-events: none; opacity: 0;
+    transition: opacity .6s ease;
+}
+.label.visible { opacity: 1; }
+.label-avant { left: 2.84vh; }
+.label-apres { right: 2.84vh; }
+
+.scene2-contenu {
+    position: absolute; top: 20%; left: 50%;
+    transform: translate(-50%,-50%);
+    text-align: center; color: white;
+    font-family: 'Cormorant Garamond', serif;
+    opacity: 0; transition: opacity 1.2s ease;
+    padding: 2.84vh; max-width: 70vh;
+    z-index: 10; pointer-events: none;
+}
+.scene2-contenu.visible { opacity: 1; pointer-events: all; }
+
+/* ── Arbre ── */
+.arbre {
+    position: absolute;
+    bottom: -10%; height: 95%; width: auto;
+    z-index: 60; pointer-events: none;
+    transform-origin: right bottom;
+    will-change: right, transform, opacity;
+    display: none;
+}
+
+/* ════════════════════════
+   TYPOGRAPHIE
+════════════════════════ */
+.titre {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3vh; font-weight: 300; color: #f97316;
+    letter-spacing: .1em; margin-bottom: 1.89vh;
+    text-shadow: 0 0.24vh 1.89vh rgba(0,0,0,.8);
+}
+.description {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.36vh; font-style: italic;
+    color: rgba(255,255,255,.92); line-height: 1.75;
+    text-shadow: 0 0.24vh 1.18vh rgba(0,0,0,.9);
+}
+.button {
+    display: inline-block; margin-top: 1.42vh;
+    padding: 0.47vh 1.65vh;
+    border: 0.12vh outset; border-radius: 0.35vh;
+    color: orange; background: white;
+    text-decoration: none;
+    font-family: 'Cormorant Garamond', serif; font-size: 1.2vh;
 }
