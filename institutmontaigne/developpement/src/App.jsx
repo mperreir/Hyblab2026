@@ -21,11 +21,6 @@ export default function App() {
       <Hero meta={debateData.meta} />
       <Scrollytelling accroches={debateData.accroches} images={debateData.accrocheImages} />
       <Quiz meta={debateData.meta} onScoreChange={setInitialScore} />
-      <Podcast
-        episode={debateData.podcast.episode}
-        title={debateData.podcast.title}
-        cover={debateData.podcast.cover}
-      />
       <QuestionAccordion
         questions={debateData.questions}
         intervenants={debateData.meta.intervenants}
@@ -33,6 +28,11 @@ export default function App() {
       />
       <QuizFin onScoreComputed={setFinalScore} />
       <Resultat initialScore={initialScore} finalScore={finalScore} />
+      <Podcast
+        episode={debateData.podcast.episode}
+        title={debateData.podcast.title}
+        cover={debateData.podcast.cover}
+      />
       <Footer />
     </div>
   );
