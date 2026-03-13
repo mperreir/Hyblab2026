@@ -495,7 +495,6 @@ article {
     font-size: 1rem;
     opacity: 0.8;
 }
-
 /* ================= ANIMATION HACKER ================= */
 .hacker-container {
     position: relative; 
@@ -513,26 +512,29 @@ article {
     left: 50%; 
     height: auto; 
     pointer-events: none; 
-    mix-blend-mode: multiply; 
+    /* J'ai retiré le mix-blend-mode ici pour le gérer image par image */
 }
 
 .img-mere_hack {
     width: 100%; 
     transform: translate(-50%, -50%); 
     opacity: 1; 
-    z-index: 1; 
+    z-index: 1; /* Reste en dessous */
+    mix-blend-mode: multiply; /* Gardé uniquement pour la photo du fond */
 }
 
 .img-anonymous {
-    width: 20%; 
-    z-index: 2; 
+    width: 55%; 
+    z-index: 10; /* Un z-index très fort pour s'assurer qu'il passe au-dessus */
     transform: translate(-50%, 200%); 
     opacity: 0; 
     transition: transform 0.8s ease-out, opacity 0.5s ease-in; 
+    mix-blend-mode: normal; /* FORCE LE MASQUE À ÊTRE TOTALEMENT OPAQUE */
 }
 
 #hacker-animation.is-hacked .img-anonymous {
-    transform: translate(-50%, -100%); 
+    /* J'ai remis -50% au lieu de -100% pour que le masque s'arrête parfaitement au centre du visage */
+    transform: translate(-45%, -100%); 
     opacity: 1; 
 }
 
