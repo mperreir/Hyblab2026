@@ -779,3 +779,49 @@ article {
   left: 70%;
   bottom: 15%;
 }
+
+    #bandeau {
+    width:100%;
+    bottom:0;
+    background-color:white;
+    font-size:20%;
+    z-index:999;
+    }
+
+  #bandeau li{
+    list-style-type: none;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 0.5em;
+    height: 25em;
+  }
+
+  #bandeau img{
+    height: 25em;
+  }
+
+  #bandeau #hyblab{
+    margin: 1em auto;
+    height: 30em;
+    display: block;
+  }
+
+  #bandeau #cc, #bandeau #opensource
+  {
+    height: 20em;
+  }
+
+  #bandeau .stacked{
+    display:block;
+  }
+
+  #bandeau ul{
+    text-align: center;
+    padding: 0 0;
+    margin: 1.5em auto;
+  }
+
+  #bandeau .institutionnel
+  {
+    height: 20em;
+  }
