@@ -145,6 +145,8 @@ export default function Scrollytelling() {
   const dilemmaContainerRef = useRef(null);
   const dilemmaLeftRef = useRef(null);
   const dilemmaRightRef = useRef(null);
+  const crackContainerRef = useRef(null);
+  const crackRef = useRef(null);
 
   const hemicycleSegments = [
     { label: '', percentage: Math.max(0, 100 - hemicycleValue), color: '#D2D2D2' },
@@ -246,6 +248,23 @@ export default function Scrollytelling() {
             exitStart
           );
         });
+
+        // --- Scene 3.5: Cassure (Déchirure de la France) ---
+        if (crackContainerRef.current && crackRef.current) {
+          // Rend le conteneur visible
+          tl.to(crackContainerRef.current, { autoAlpha: 1, duration: 0.01 }, 3.5);
+
+          // Effet d'apparition de haut en bas avec clipPath
+          tl.fromTo(
+            crackRef.current,
+            { clipPath: 'inset(0% 0% 100% 0%)' }, // 100% masqué en partant du bas
+            { clipPath: 'inset(0% 0% 0% 0%)', duration: 0.7, ease: 'power2.out' }, // Dévoilement vers le bas
+            3.5
+          );
+
+          // Fait disparaître la cassure à la fin de la scène 4 (en même temps que les bulles)
+          tl.to(crackContainerRef.current, { autoAlpha: 0, duration: 0.2 }, 4.8);
+        }
 
         // --- Scene 4: Dilemme (SVG Gauche & Droite) ---
         if (dilemmaContainerRef.current) {
@@ -388,6 +407,24 @@ export default function Scrollytelling() {
         />
       </div>
 
+      {/* Scene 3.5: Cassure de la France */}
+      <div 
+        ref={crackContainerRef} 
+        className="absolute inset-0 flex items-center justify-center pointer-events-none" 
+        style={{ visibility: 'hidden', zIndex: 5 }}
+      >
+        {/* Les classes top et left te permettent de caler la cassure exactement sur la France de ta carte de fond. */}
+        {/* N'hésite pas à ajuster "-top-[2%]" ou "-left-[4%]" selon le rendu sur ton écran ! */}
+        <div className="relative w-[20%] h-[90%]  -top-[0%] -left-[0%]">
+          <img 
+            ref={crackRef} 
+            src="/story/casse.svg" 
+            alt="Cassure France" 
+            className="w-full h-full object-contain origin-top" 
+          />
+        </div>
+      </div>0
+
       {/* Scene 4: Dilemme SVGs */}
       <div ref={dilemmaContainerRef} className="absolute inset-0 pointer-events-none" style={{ visibility: 'hidden' }}>
         <div className="relative w-full h-full max-w-5xl mx-auto">
@@ -397,15 +434,15 @@ export default function Scrollytelling() {
             ref={dilemmaLeftRef} 
             className="absolute left-[2%] sm:left-[5%] bottom-[25%] sm:bottom-[25%] w-[48%] max-w-[300px]"
           >
-            <img src="/story/gauche.svg" alt="Parlement représentatif" className="w-full h-auto" />
+            <img src="/story/gauche.svg" alt="Parlement représentatif" className="w-full h-auto z-1000" />
           </div>
 
           {/* SVG Droite (légèrement décalé vers le bas pour le style asymétrique) */}
           <div 
             ref={dilemmaRightRef} 
-            className="absolute right-[2%] sm:right-[5%] bottom-[25%] sm:bottom-[25%] w-[48%] max-w-[300px]"
+            className="absolute right-[2%] sm:right-[5%] bottom-[25%] sm:bottom-[25%] w-[48%] max-w-[300px] "
           >
-            <img src="/story/droite.svg" alt="Majorités stables" className="w-full h-auto" />
+            <img src="/story/droite.svg" alt="Majorités stables" className="w-full h-auto z-1000" />
           </div>
 
         </div>
