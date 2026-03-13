@@ -3,7 +3,7 @@ body, html {
     margin: 0;
     padding: 0;
     font-family: sans-serif;
-    background-color: #f2efe9; /* Crème par défaut pour la suite */
+    background-color: rgba(252, 250, 212, 1);
     max-width: 100%;
 }
 
@@ -14,7 +14,6 @@ img, video, canvas {
 
 /* ================= L'EN-TÊTE FIXE ================= */
 .top-bar {
-    background-color: #fbf5cd; /* Le jaune pâle */
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -52,8 +51,13 @@ img, video, canvas {
 /* ================= LA ZONE BLANCHE AVEC TITRE ET DÉGRADÉ ================= */
 /* ================= LA ZONE BLANCHE AVEC TITRE ET DÉGRADÉ ================= */
 .hero {
-    background: linear-gradient(to bottom, #ffffff 0%, #ffffff 80%, #f2efe9 100%);
-    min-height: 70vh; 
+    background: linear-gradient(
+        to bottom,
+        #ffffff 0%,
+        #ffffff 70%,
+        rgba(255,255,255,0) 100%
+    );
+    min-height: 140vh; 
     display: flex;
     flex-direction: column;
     /* On change l'alignement vertical : de 'center' à 'flex-start' */
@@ -150,6 +154,13 @@ img, video, canvas {
     filter: brightness(0.6); 
 }
 
+/* ================= TEXTES QUI DÉFILENT ================= */
+@font-face {
+    font-family: "Lab Grotesque";
+    src: url("../fonts/LabGrotesque-Regular.woff2") format("woff2");
+    font-weight: 400;
+}
+
 article {
     position: relative;
     z-index: 1;
@@ -158,37 +169,32 @@ article {
 
 .step {
     height: 100dvh;
+    font-size: 20px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    color: white;
+    color: rgb(0, 0, 0);
+    font-family: "Lab Grotesque", sans-serif;
     padding: 0 5%; 
 }
 
 .step-content {
     width: 100%;
     margin: 0 auto;
-    text-align: center;
 }
 
 .step h1 {
     font-size: 2.5rem;
     margin: 0 0 10px 0;
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
 }
 
 .step p {
-    font-size: 1.1rem;
+    font-size: 0.8rem;
     line-height: 1.5;
-    background: rgba(0, 0, 0, 0.75); /* Maintient la lisibilité sur les images */
+    background: rgb(255, 255, 255);
+    text-align: left;
     padding: 15px;
-    border-radius: 8px;
-    border: 2px solid transparent;
     transition: border-color 0.3s;
-}
-
-.step.is-active p {
-    border-color: #ffcc00;
 }
 
 /* ================= SPHÈRES ANIMÉES ================= */
