@@ -1,12 +1,12 @@
 {
   "titreEnquete" : "Intoxication minière en Bretagne",
   "chapeauEnquete" : "« Vous voyez cette poussière ? Nos animaux la boivent, nos enfants la respirent », s’inquiète une habitante de Glomel.",
-  "imgPath" :"img/mainDraw.jpg",
-  "dessinPath" : "img/logo_hyblab.png",
+  "imgPath" :"img/FOND_INTRO.png",
+  "dessinPath" : "img/mainDraw.jpg",
   "nVolet": 2,
   "volet" : [
     {
-    "titreVolet" : "La mine d’Imerys contamine la réserve naturelle de Glomel",
+    "titreVolet" : "La mine d’Imerys contamine la réserve naturelle",
     "nBullet" : 3,
     "bullet" : [
       [{"type" : "title", "content" : "La mine d’Imerys contamine la réserve naturelle de Glomel"},
