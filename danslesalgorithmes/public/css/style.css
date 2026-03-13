@@ -293,11 +293,11 @@ article {
     }
 }
 .image-side.left.animated {
-    animation: slideInLeft 0.8s ease-out forwards;
+    animation: slideInLeft 2s ease-out forwards;
 }
 
 .image-side.right.animated {
-    animation: slideInRight 0.8s ease-out forwards;
+    animation: slideInRight 2s ease-out forwards;
 }
 
 .quiz-superposition-container {
