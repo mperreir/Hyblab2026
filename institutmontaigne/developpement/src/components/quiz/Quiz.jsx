@@ -245,7 +245,7 @@ export default function Quiz({ meta = {}, onScoreChange }) {
           </div>
 
           {/* Labels */}
-          <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 8 }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: -14 }}>
             {['Plutôt\ncontre', 'Plutôt\npour'].map((label, i) => (
               <div key={i} style={{ textAlign: i === 0 ? 'left' : 'right' }}>
                 {label.split('\n').map((line, j) => (
