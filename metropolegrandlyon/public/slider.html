@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Avant / Après</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      height: 400vh;
+      background: #000;
+      overflow-x: hidden;
+    }
+
+    .scene {
+      position: fixed;
+      inset: 0;
+    }
+
+    /* ── Image AVANT (gauche, en dessous) ───────────────── */
+    .avant {
+      position: absolute;
+      inset: 0;
+      background-image: url('img/chantier/avant`.png');
+      background-size: cover;
+      background-position: center;
+    }
+
+    /* ── Image APRÈS (droite, par dessus, révélée par clip) */
+    .apres {
+      position: absolute;
+      inset: 0;
+      background-image: url('img/chantier/Après.png');
+      background-size: cover;
+      background-position: center;
+      /* clip-path révèle l'image depuis la droite */
+      clip-path: inset(0 100% 0 0); /* 100% = totalement caché à droite */
+      will-change: clip-path;
+    }
+
+    /* ── Ligne de séparation ────────────────────────────── */
+    .separateur {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: white;
+      box-shadow: 0 0 12px rgba(255,255,255,0.8);
+      left: 0%; /* mis à jour par JS */
+      will-change: left;
+      pointer-events: none;
+    }
+
+    /* ── Icône sur la ligne ─────────────────────────────── */
+    .separateur::after {
+      content: '◀ ▶';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+      font-size: 0.75rem;
+      letter-spacing: 2px;
+      white-space: nowrap;
+      background: rgba(0,0,0,0.5);
+      padding: 6px 8px;
+      border-radius: 20px;
+    }
+
+    /* ── Labels avant / après ───────────────────────────── */
+    .label {
+      position: absolute;
+      top: 24px;
+      font-family: Georgia, serif;
+      font-size: 1rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 4px;
+      background: rgba(0,0,0,0.4);
+      color: white;
+      pointer-events: none;
+    }
+
+    .label-avant { left: 24px; }
+    .label-apres { right: 24px; }
+
+    /* ── Hint scroll ────────────────────────────────────── */
+    .scroll-hint {
+      position: absolute;
+      bottom: 36px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      opacity: 1;
+      transition: opacity 1s ease;
+      pointer-events: none;
+    }
+
+    .scroll-hint span {
+      font-family: Georgia, serif;
+      font-style: italic;
+      color: rgba(255,255,255,0.6);
+      font-size: 0.85rem;
+      letter-spacing: 0.2em;
+    }
+
+    .scroll-hint .fleche {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, rgba(255,255,255,0.6), transparent);
+      animation: glisser 1.5s ease-in-out infinite;
+    }
+
+    @keyframes glisser {
+      0%   { transform: scaleY(0); transform-origin: top; opacity: 1; }
+      50%  { transform: scaleY(1); transform-origin: top; opacity: 1; }
+      100% { transform: scaleY(1); transform-origin: top; opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="scene">
+    <div class="avant"></div>
+    <div class="apres"></div>
+    <div class="separateur"></div>
+
+    <span class="label label-avant">Avant</span>
+    <span class="label label-apres">Après</span>
+
+    <div class="scroll-hint" id="scrollHint">
+      <span>scroller</span>
+      <div class="fleche"></div>
+    </div>
+  </div>
+
+  <script>
+    const apres      = document.querySelector('.apres');
+    const separateur = document.querySelector('.separateur');
+    const scrollHint = document.getElementById('scrollHint');
+
+    const scrollDebut = 200;  // révélation commence
+    const scrollFin   = 700; // image "après" occupe tout l'écran
+    // ──────────────────────────────────────────────────────
+
+    function clamp(v, min, max) { return Math.min(Math.max(v, min), max); }
+    function avancement(s, debut, fin) { return clamp((s - debut) / (fin - debut), 0, 1); }
+
+    window.addEventListener('scroll', () => {
+      const s = window.scrollY;
+
+      scrollHint.style.opacity = s > 100 ? 0 : 1;
+
+      // progression 0 → 1 : l'image "après" prend de + en + de place
+      const p = avancement(s, scrollDebut, scrollFin);
+
+      // clip-path : révèle depuis la gauche (bord droit recule de 100% → 0%)
+      const bord = 100 - (p * 100);
+      apres.style.clipPath  = `inset(0 ${bord}% 0 0)`;
+      separateur.style.left = `${p * 100}%`;
+
+    }, { passive: true });
+  </script>
+</body>
+</html>

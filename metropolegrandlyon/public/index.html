@@ -1,10 +1,8 @@
 <!DOCTYPE html>
-
 <html lang="fr">
-
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no"">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
     <title>Hyblab 2025</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
@@ -13,54 +11,72 @@
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script src="js/zoom.js" defer></script>
 </head>
-
 <body>
+    <div id="scroll-fleche">
+    <span>scroller</span>
+    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 4v16M6 14l6 6 6-6" stroke="red" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    </div>
+    
+    <!-- Logos page d'accueil -->
+    <div id="logos-accueil">
+        <img src="img/Logo_lyon_metropole.png" id="logo-metropole">
+        <img src="img/LOGO-DE-LA-TEETE-AUX-PIEDS.svg"   id="logo-teteaupied">
+    </div>
     <div id="scene-container">
+
+        <!-- SCÈNE 1 : zoom aérien + nuages -->
         <div id="scene">
             <div id="progress-bar"></div>
-
             <img src="./img/plan_03_ciel.png" id="ciel">
-
             <img src="./img/Nuage1.png" id="nuage1_zoom">
             <img src="./img/Nuage2.png" id="nuage2_zoom">
             <img src="./img/Nuage3.png" id="nuage3_zoom">
-
             <div id="map-container">
-                <img src="./img/plan_02.png" alt="e" id="map2">
-                <img src="./img/plan_01.png" alt="e" id="map">
+                <img src="./img/plan_02.png" alt="" id="map2">
+                <img src="./img/plan_01.png" alt="" id="map">
             </div>
-
             <img class="GIF" src="img/gif/nuage1/aeb8c171-9452-4a2a-b87b-e009aae9a6f3-0.png" id="NuageGIF1">
             <img class="GIF" src="img/gif/nuage2/frame_0001.png" id="NuageGIF2">
             <img class="GIF" src="img/gif/nuage3/e0d3feff-487d-45bc-9795-fcc0d8687090-0.png" id="NuageGIF3">
-
-            <div id="TxtInfo">
-                <p></p>
-            </div>
+            <div id="TxtInfo"><p></p></div>
         </div>
 
+        <!-- SCÈNE 2 : musée -->
         <div id="sceneMusee" class="scene-musee">
-
             <div class="calque-ville">
-                <img src="img/musee/colline_fourviere.png">
+                <img id="imgVille" src="img/musee/fond_fourviere.png">
             </div>
-
-            <img class="musee" src="img/musee/003_musee_lugdunum.png">
-            <img class="ruines" src="img/musee/002_ruines.png">
+            <img class="musee"   src="img/musee/003_musee_lugdunum.png">
+            <img class="ruines"  src="img/musee/002_ruines.png">
             <img class="ecolier" src="img/musee/001_ecolier_illustration.png">
-
             <div class="bloc-texte-musee">
                 <p class="titre">Musée de Lugdunum</p>
-                <p class="description">
-                Le musée de Lugdunum a été construit...
-                </p>
+                <p class="description">Le musée de Lugdunum a été construit...</p>
+            </div>
         </div>
 
-    </div>
+        <!-- SCÈNE 3 : chantier -->
+        <div id="sceneChantier" class="scene-chantier">
+            <div class="avant"></div>
+            <div class="apres" id="apres"></div>
+            <img class="colline" src="img/chantier/collines_new.png">
+            <div class="separateur" id="separateur"></div>
+            <div class="scene2-contenu" id="scene2Contenu">
+                <p class="titre">Chantier de fouilles</p>
+                <p class="description">
+                    Entre démolition et renaissance, ce chantier révèle les strates
+                    millénaires enfouies sous la ville moderne.
+                </p>
+            </div>
+        </div>
+
+        <img class="arbre" id="arbre" src="img/chantier/ARBRE.png">
+
+        <!-- Flèche "continuez à scroller" -->
+        
 
     </div>
-
-
 </body>
-
 </html>
