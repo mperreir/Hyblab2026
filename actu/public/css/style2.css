@@ -1,0 +1,94 @@
+body,.affiches{
+    background-color: #52A0E9;
+}
+
+.affiches{
+    display: flex;
+    flex-direction: row;
+
+    /*  */
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    /* perspective: 800px; */
+    margin : 8px;  
+    padding: 10px;
+}
+
+.affiches>.container:first-of-type{
+    margin-left: 100px;
+}
+
+
+.container{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto auto;
+    grid-template-areas:
+        "a ."
+        "a b"
+        ". b";
+}
+
+
+.container > section:first-child{
+    grid-area: a;
+}
+
+.container > section:last-child{
+    grid-area: b;
+}
+
+#line{
+    max-width:100%;
+    position: fixed;
+}
+
+.film{
+    position: relative;
+}
+
+.film > div{
+
+    /* width: 350px;
+    height: 600px; */
+    
+    width: 120px;
+    height: 206px;
+    
+    border: 1px solid black;
+    border-radius: 10px;
+    overflow: hidden;
+
+   
+    
+    transform-style: preserve-3d;
+
+}
+
+.film > .affiche_front{
+    /* z-index: 1; */
+    transform: rotateY(0deg)
+
+}
+
+.film > .affiche_front > img{
+    /* max-width: 350px; */
+    max-width: 120px;
+    
+}
+
+
+
+.film > .affiche_back{
+    background-color: white;
+}
+
+
+
+
+/* /// */
+
+body{
+    margin: 0;
+}
