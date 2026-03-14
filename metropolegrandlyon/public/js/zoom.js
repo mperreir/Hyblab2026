@@ -5,34 +5,40 @@
 ════════════════════════════════════ */
 const logosAccueil = document.getElementById('logos-accueil');
 
-const ciel         = document.getElementById("ciel");
-const map          = document.getElementById("map");
-const map2         = document.getElementById("map2");
-const Nuage1_Z     = document.getElementById("nuage1_zoom");
-const Nuage2_Z     = document.getElementById("nuage2_zoom");
-const Nuage3_Z     = document.getElementById("nuage3_zoom");
-const txt          = document.getElementById("TxtInfo");
-const progressBar  = document.getElementById("progress-bar");
+const ciel        = document.getElementById("ciel");
+const map         = document.getElementById("map");
+const map2        = document.getElementById("map2");
+const Nuage1_Z    = document.getElementById("nuage1_zoom");
+const Nuage2_Z    = document.getElementById("nuage2_zoom");
+const Nuage3_Z    = document.getElementById("nuage3_zoom");
+const txt         = document.getElementById("TxtInfo");
+const progressBar = document.getElementById("progress-bar");
 
 const sceneMusee     = document.getElementById('sceneMusee');
-const calqueVille    = document.querySelector('.calque-ville');
 const imgVille       = document.getElementById('imgVille');
 const musee          = document.querySelector('.musee');
 const ruines         = document.querySelector('.ruines');
 const ecolier        = document.querySelector('.ecolier');
 const blocTexteMusee = document.querySelector('.bloc-texte-musee');
 
-const sceneChantier  = document.getElementById('sceneChantier');
-const avant          = document.querySelector('.avant');
-const apres          = document.getElementById('apres');
-const separateur     = document.getElementById('separateur');
-const labelAvant     = document.getElementById('labelAvant');
-const labelApres     = document.getElementById('labelApres');
-const scene2Contenu  = document.getElementById('scene2Contenu');
-const arbre          = document.getElementById('arbre');
+const sceneChantier = document.getElementById('sceneChantier');
+const avant         = document.querySelector('.avant');
+const apres         = document.getElementById('apres');
+const separateur    = document.getElementById('separateur');
+const labelAvant    = document.getElementById('labelAvant');
+const labelApres    = document.getElementById('labelApres');
+const scene2Contenu = document.getElementById('scene2Contenu');
+const arbre         = document.getElementById('arbre');
+
+/* ── Scène maison ── */
+const sceneMaison = document.getElementById('sceneMaison');
+const mRoute      = document.querySelector('.m-route');
+const mArbres     = document.querySelector('.m-arbres');
+const mFemme      = document.querySelector('.m-femme');
 
 /* ════════════════════════════════════
-   REPÈRES SCROLL (px)
+   REPÈRES SCROLL (px) — tous fixes
+   La hauteur du body est déduite ici.
 ════════════════════════════════════ */
 const scrollFinStep1          = 800;
 const scrollFinStep2          = 1200;
@@ -44,14 +50,32 @@ const scrollDebutEcolier      = 2800;
 const scrollDebut_pano        = 4000;
 const scrollFin_pano          = 5000;
 const scrollFin_glisse        = 5800;
-const scrollFin_arbre         = scrollFin_glisse + 300;
-const scrollDebut_slider      = scrollFin_arbre  + 600;
-// scrollFin_slider = max scroll réel (body height - 100vh)
-// On le calcule dynamiquement pour s'adapter à toutes les tailles d'écran
-const scrollFin_slider        = document.body.scrollHeight - window.innerHeight - 800;
-const scrollDebut_descente    = scrollFin_slider;          // début descente av/ap
-const scrollFin_descente_img  = scrollFin_slider + 800;    // fin descente = bas de page
-const scrollDebut_arbreGlisse = scrollFin_pano - 1500; // ← plus grand = entrée plus douce/tôt
+const scrollFin_arbre         = scrollFin_glisse + 300;   // 6100
+const scrollDebut_slider      = scrollFin_arbre  + 600;   // 6700
+const DUREE_SLIDER            = 1500;
+const scrollFin_slider        = scrollDebut_slider + DUREE_SLIDER; // 8200
+const scrollDebut_desc2       = scrollFin_slider;          // 8200
+const scrollFin_desc2         = scrollFin_slider + 800;    // 9000
+const scrollDebut_arbreGlisse = scrollFin_pano - 1500;     // 3500
+
+/* ── Repères phase 5 ─────────────────────────────
+   scrollFin_desc2 (9000) : chantier sorti → zoom
+   sM_zoomFin      (9800) : zoom terminé → maison
+   Ordre : route (bas↑) → arbres (haut↓) → femme (opacité)   */
+const sM          = scrollFin_desc2;     // 9000
+const sM_zoomFin  = sM + 800;           // 9800
+const sM_route    = sM_zoomFin;         // 9800
+const sM_routeFin = sM_zoomFin + 700;   // 10500
+const sM_arbres   = sM_zoomFin + 300;   // 10100
+const sM_arbresFin= sM_zoomFin + 1000;  // 10800
+const sM_femme      = sM_zoomFin + 800;   // 10600
+const sM_femmeFin   = sM_zoomFin + 1400;  // 11200
+const sM_zoom2      = sM_femmeFin + 200;  // 11400 — début zoom sur femme+arbres
+const sM_zoom2Fin   = sM_zoom2    + 1200; // 12600 — fin zoom
+const sM_fin        = sM_zoom2Fin + 400;  // 13000
+
+// Le body est exactement assez haut pour atteindre le dernier repère
+document.body.style.height = (sM_fin + window.innerHeight + 200) + 'px';
 
 const departVw = -160;
 const arbreVw  = 94;
@@ -104,38 +128,30 @@ function TXT(id) {
 
 /* ════════════════════════════════════
    FLÈCHE SCROLL
-   Apparaît 2s après l'arrêt du scroll.
-   Disparaît dès qu'on rescroll.
 ════════════════════════════════════ */
-const fleche   = document.getElementById('scroll-fleche');
+const fleche = document.getElementById('scroll-fleche');
 let timerFleche = null;
 
 function montrerFleche() {
     const maxScr = document.body.scrollHeight - window.innerHeight;
-    if (window.scrollY >= maxScr - 10) return; // déjà en bas
+    if (window.scrollY >= maxScr - 10) return;
     if (fleche) fleche.classList.add('visible');
 }
-
 function cacherFleche() {
     if (fleche) fleche.classList.remove('visible');
 }
 
-// Lancer le timer au chargement de la page
 timerFleche = setTimeout(montrerFleche, 2000);
 
 /* ════════════════════════════════════
-   SCROLL LISSÉ — vitesse limitée
-   VITESSE_MAX : px avancés par frame ← à ajuster
-   Plus petit = plus lent / plus fluide
+   SCROLL LISSÉ
 ════════════════════════════════════ */
 let scrollCible  = 0;
 let scrollActuel = 0;
-const VITESSE_MAX = 18; // ← ajuster
+const VITESSE_MAX = 18;
 
 window.addEventListener("scroll", () => {
     scrollCible = window.scrollY;
-
-    // Flèche : cache dès qu'on scroll, relance le timer
     cacherFleche();
     clearTimeout(timerFleche);
     timerFleche = setTimeout(montrerFleche, 2000);
@@ -162,9 +178,7 @@ function majScene(s) {
     ────────────────────────────── */
     const avance1 = av(s, 0, scrollFinStep1);
 
-    // Logos : disparaissent dès le premier pixel de scroll
     if (logosAccueil) logosAccueil.classList.toggle('cache', s > 0);
-
 
     ciel.style.transform       = `scale(${lerp(1, 3, avance1)})`;
     ciel.style.transformOrigin = "center top";
@@ -243,7 +257,7 @@ function majScene(s) {
     }
 
     /* ──────────────────────────────
-       PHASE 4 : panoramique + glissement chantier + arbre
+       PHASE 4 : panoramique + chantier + arbre + slider
     ────────────────────────────── */
     if (s >= scrollDebut_pano) {
         const imgW   = imgNaturalRatio * window.innerHeight;
@@ -270,24 +284,14 @@ function majScene(s) {
 
         if (s >= scrollDebut_arbreGlisse && s < scrollFin_arbre) {
             arbre.style.display = 'block';
-
-            // La jointure est à (1 - pGlisse) * 100vw depuis la gauche
-            // → on positionne l'arbre en left pour être dans le même référentiel
-            const jointurePct   = (1 - pGlisse) * 1;   // vw, suit Fourvière
-            const arbreW_vw     = arbreVw;                // largeur arbre en vw
-            const arriveeLeft   = jointurePct - arbreW_vw / 2 - 70; // centré sur jointure
-
-            // Entrée : part de hors écran à droite (>100vw) vers arriveeLeft
-            // departVw est négatif → on s'en sert comme offset depuis la droite
-            // On convertit : départ = 100 + (-departVw) vw depuis la gauche
-            const departLeft    = 100 + (-departVw);
-            const leftVw        = departLeft + pGlisseArbre * (arriveeLeft - departLeft);
-
+            const jointurePct = (1 - pGlisse) * 1;
+            const arriveeLeft = jointurePct - arbreVw / 2 - 70;
+            const departLeft  = 100 + (-departVw);
+            const leftVw      = departLeft + pGlisseArbre * (arriveeLeft - departLeft);
             arbre.style.left      = `${leftVw}vw`;
             arbre.style.right     = 'auto';
             arbre.style.opacity   = `${1 - pDisparait}`;
             arbre.style.transform = `scaleX(${1 + pDisparait * 0.7}) scaleY(${1 + pDisparait * 0.3})`;
-
         } else {
             arbre.style.display = 'none';
         }
@@ -303,26 +307,21 @@ function majScene(s) {
 
         if (arbreDisp) {
             const pct = pSlider * 100;
-
-            // .apres : révélé de gauche à droite par clip-path
             apres.style.clipPath  = `inset(0 ${100 - pct}% 0 0)`;
             separateur.style.left = `${pct}%`;
 
-            // .avant : masque dégradé
             const fondu = 15;
             const debut = Math.max(0, pct - fondu);
             avant.style.webkitMaskImage =
             avant.style.maskImage =
                 `linear-gradient(to right, transparent ${debut}%, black ${pct}%)`;
 
-            // Descente des images av/ap après fin du slider
-            const pDescente = av(s, scrollDebut_descente, scrollFin_descente_img);
-            const translateY = pDescente * 110; // % vers le bas ← ajuster
-            avant.style.transform = `translateY(${translateY}%)`;
-            apres.style.transform = `translateY(${translateY}%)`;
-
-            // Le séparateur et les labels descendent aussi
-            separateur.style.transform = `translateY(${translateY}%)`;
+            // Descente av/ap vers le bas après fin du slider
+            const pDesc2 = av(s, scrollDebut_desc2, scrollFin_desc2);
+            const tY     = pDesc2 * 110;
+            avant.style.transform      = `translateY(${tY}%)`;
+            apres.style.transform      = `translateY(${tY}%)`;
+            separateur.style.transform = `translateY(${tY}%)`;
 
         } else {
             apres.style.clipPath  = 'inset(0 100% 0 0)';
@@ -334,4 +333,83 @@ function majScene(s) {
         }
     }
 
+    /* ──────────────────────────────
+       PHASE 5 : zoom haut-droit + scène maison
+
+       9000→9800 : zoom sur le coin haut-droit du chantier
+                   (transform-origin: top right, scale 1→2.5)
+       9800+     : chantier masqué, scène maison affichée
+         route   : monte du bas   — translateX(-50%) translateY(100vh→0)
+         arbres  : descend du haut — translate(-50%, -50%+(-100vh→0))
+         femme   : opacité pure 0→1, transform CSS inchangé
+    ────────────────────────────── */
+
+    if (s >= sM && s < sM_zoomFin) {
+        /* ── Zoom centre-droit ──
+           On zoome vers le milieu du bord droit (50% 50% right → center right).
+           scale 1 → 2.5 sur 800px de scroll.                              */
+        const pZoom = av(s, sM, sM_zoomFin);
+        sceneChantier.style.transformOrigin = 'center right';
+        sceneChantier.style.transform       = `scale(${lerp(1, 2.5, pZoom)})`;
+        sceneChantier.style.visibility      = 'visible';
+        sceneMaison.style.display           = 'none';
+
+    } else if (s >= sM_zoomFin) {
+        /* ── Scène maison ──
+           On garde le chantier zoomé à 2.5 en arrière-plan
+           (visibility visible, mais sceneMaison par-dessus z-index:40) */
+        sceneChantier.style.transformOrigin = 'center right';
+        sceneChantier.style.transform       = 'scale(2.5)';
+        sceneChantier.style.visibility      = 'visible';
+        sceneMaison.style.display           = 'block';
+
+        // ── Hauteur route pour aligner arbres au-dessus ──
+        const routeH = mRoute.offsetHeight || 0;
+
+        // Offset vertical commun arbres+femme :
+        // bas des arbres = haut de la route, puis -10% de la hauteur écran vers le bas
+        const offsetFinal = -routeH + window.innerHeight * 0.10;
+
+        // 1. Route : monte du bas
+        const pRoute = av(s, sM_route, sM_routeFin);
+        mRoute.style.opacity   = pRoute;
+        mRoute.style.transform = `translateX(-50%) translateY(${(1 - pRoute) * 100}vh)`;
+
+        // 2. Arbres : descend du haut, position finale décalée -10%
+        const pArbres      = av(s, sM_arbres, sM_arbresFin);
+        const entreeArbres = offsetFinal - window.innerHeight;
+        const tyArbres     = lerp(entreeArbres, offsetFinal, pArbres);
+        mArbres.style.opacity   = pArbres;
+        mArbres.style.transform = `translateX(-50%) translateY(${tyArbres}px)`;
+
+        // 3. Femme : opacité, même offset que les arbres (-10%)
+        const pFemme = av(s, sM_femme, sM_femmeFin);
+        mFemme.style.opacity   = pFemme;
+        mFemme.style.transform = `translateX(-50%) translateY(${offsetFinal}px)`;
+
+        // 4. Zoom sur femme + arbres après leur apparition complète
+        //    On zoome le groupe depuis leur centre commun (center de la scène)
+        const pZoom2 = av(s, sM_zoom2, sM_zoom2Fin);
+        if (pZoom2 > 0) {
+            const scaleZ = lerp(1, 2.5, pZoom2);
+            // On zoome sceneMaison en entier, ancré sur le centre des arbres/femme
+            // transform-origin : centre horizontal, vertical = position de offsetFinal depuis le bas
+            const originY = window.innerHeight + offsetFinal; // px depuis le haut
+            sceneMaison.style.transformOrigin = `50% ${originY}px`;
+            sceneMaison.style.transform       = `scale(${scaleZ})`;
+        } else {
+            sceneMaison.style.transformOrigin = '';
+            sceneMaison.style.transform       = '';
+        }
+
+    } else {
+        /* ── État initial (avant phase 5) ── */
+        sceneMaison.style.display  = 'none';
+        mRoute.style.opacity       = 0;
+        mRoute.style.transform     = 'translateX(-50%) translateY(100vh)';
+        mArbres.style.opacity      = 0;
+        mArbres.style.transform    = `translateX(-50%) translateY(${-window.innerHeight}px)`;
+        mFemme.style.opacity       = 0;
+        mFemme.style.transform     = 'translateX(-50%) translateY(0)';
+    }
 }
