@@ -4,7 +4,7 @@ import TopicTitle from '../components/TopicTitle';
 import ExpertQuote from '../components/ExpertQuote';
 import ProgressBar from '../components/ProgressBar';
 import IcebergScene from '../components/IcebergScene';
-import ScrollArrow from '../components/ScrollArrow';
+import { ArrowDown, ArrowUp } from '../components/ScrollArrow';
 import ResearcherFooter from "../components/ResearcherFooter";
 
 const DESIGN_WIDTH = 1920;
@@ -12,6 +12,7 @@ const DESIGN_HEIGHT = 6000;
 
 export default function ResearcherPage({ scrollProgress = 0 }) {
   const [scale, setScale] = useState(() => window.innerWidth / DESIGN_WIDTH);
+  const [scrollY, setScrollY] = useState(0);
 
   useEffect(() => {
     const onResize = () => setScale(window.innerWidth / DESIGN_WIDTH);
@@ -19,7 +20,11 @@ export default function ResearcherPage({ scrollProgress = 0 }) {
     return () => window.removeEventListener('resize', onResize);
   }, []);
 
-  // state (isPopup)
+  useEffect(() => {
+    const onScroll = () => setScrollY(window.scrollY);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   return (
     <>
@@ -27,9 +32,8 @@ export default function ResearcherPage({ scrollProgress = 0 }) {
         <ProgressBar level={scrollProgress} />
       </div>
 
-      <div className="fixed bottom-[33px] right-[60px] z-50">
-        <ScrollArrow direction="up" scale={0.5} />
-      </div>
+      <ArrowDown scale={scale} scrollY={scrollY} />
+      <ArrowUp scrollY={scrollY} />
 
       <div
         className="relative font-sans"
