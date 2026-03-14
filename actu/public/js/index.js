@@ -9,6 +9,9 @@ const affiches = document.querySelector(".affiches");
 const zone_pour = document.querySelector(".zone_pour");
 const zone_contre = document.querySelector(".zone_contre");
 
+const icon_interesse = document.querySelector(".icon_interesse");
+const icon_pasinteresse = document.querySelector(".icon_pasinteresse");
+
 const film_cards = [];
 // generate affiche
 
@@ -35,6 +38,11 @@ function degtoscale(angle) {
 
 
 loadFilm().then((filmsNodes) => {
+
+  if(filmsNodes.length == 0) {
+    window.location.href = "podium.html"
+  }
+
   filmsNodes.forEach((card) => {
     film_cards.push(card);
     affiches.appendChild(card);
@@ -56,6 +64,8 @@ loadFilm().then((filmsNodes) => {
   });
 
 }).finally(() => {
+
+  window.scrollTo(0, 0);
 
 
   const rect_poss = Array(nb_card)
@@ -184,6 +194,17 @@ loadFilm().then((filmsNodes) => {
       yoyo: true,
       ease: "power1.inOut"
     }, "<")
+    .to(icon_pasinteresse,{
+      duration : 1,
+      x : "+=120",
+      rotate : 450,
+      repeat : 1,
+      yoyo:true,
+      ease: "power1.inOut"
+
+    },"<")
+
+
     .to(current_elem, {
       duration: 1,
       x: `+=100`, // aller à droite
@@ -197,7 +218,16 @@ loadFilm().then((filmsNodes) => {
       repeat: 1,
       yoyo: true,
       ease: "power1.inOut"
-    }, "<");
+    }, "<")
+    .to(icon_interesse,{
+      duration : 1,
+      x : "-=120",
+      rotate : -450,
+      repeat : 1,
+      yoyo:true,
+      ease: "power1.inOut"
+
+    },"<");
  
 
 })
@@ -298,10 +328,10 @@ function observer() {
           x: decalageX + window.innerWidth / 2,
         })
         gsap.set(zone_pour, {
-          "--transparance_pour": `${((-30) * (decalageX / (window.innerWidth / 2)) + 30)}%`
+          "--transparance_pour": `${((-50) * (decalageX / (window.innerWidth / 2)) + 50)}%`
         })
         gsap.set(zone_contre, {
-          "--transparance_contre": `${((100 - 70) * (decalageX / (-window.innerWidth / 2)) + 70)}%`
+          "--transparance_contre": `${((100 - 50) * (decalageX / (-window.innerWidth / 2)) + 50)}%`
         })
       },
 
@@ -357,11 +387,11 @@ function observer() {
         })
           .to(zone_pour, {
             duration: 0.2,
-            "--transparance_pour": `${30}%`
+            "--transparance_pour": `${50}%`
           }, "<")
           .to(zone_contre, {
             duration: 0.2,
-            "--transparance_contre": `${70}%`
+            "--transparance_contre": `${50}%`
           }, "<")
 
         curentX_film_index = null
@@ -394,3 +424,8 @@ function updateroue() {
 
   })
 }
+
+
+setTimeout(()=>{
+  window.scrollTo(0, 0);
+},1000)
