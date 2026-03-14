@@ -17,7 +17,7 @@ const film_cards = [];
 
 let nb_card = 0;
 let nb_tours = Math.round(Math.random() * 30 + 10);
-const distance = 200;
+const distance = 100;
 
 
 function get_current_index() {
@@ -205,6 +205,7 @@ loadFilm().then((filmsNodes) => {
     .to(current_elem, {
       duration: 1,
       x: `-=${100}`, // aller à gauche
+      rotate : -3,
       repeat: 1,      // revient automatiquement au centre
       yoyo: true,
       ease: "power1.inOut"
@@ -229,6 +230,7 @@ loadFilm().then((filmsNodes) => {
     .to(current_elem, {
       duration: 1,
       x: `+=100`, // aller à droite
+      rotate : 3,
       repeat: 1,
       yoyo: true,
       ease: "power1.inOut"
@@ -346,6 +348,7 @@ function observer() {
 
       gsap.set(curent_elem, {
         x: decalageX + window.innerWidth / 2,
+        rotate: 3 * (decalageX / (window.innerWidth / 2))
       })
       gsap.set(zone_pour, {
         "--transparance_pour": `${((-50) * (decalageX / (window.innerWidth / 2)) + 50)}%`
@@ -367,7 +370,7 @@ function observer() {
       const curent_elem = film_cards[curentX_film_index]
 
       if (decalageX > 100) {
-        decalageX = window.innerWidth / 2 + 300;
+        decalageX = window.innerWidth / 2 + 200;
         console.log("DROIT");
         await fetch(API + "/film-like", {
           method: "POST",
@@ -385,7 +388,7 @@ function observer() {
         updateroue();
       }
       else if (decalageX < -100) {
-        decalageX = -window.innerWidth / 2 - 300;
+        decalageX = -window.innerWidth / 2 - 200;
         console.log("GAUCHE");
         await fetch(API + "/film-unlike", {
           method: "POST",
@@ -409,6 +412,7 @@ function observer() {
       gsap.timeline().to(curent_elem, {
         duration: 0.2,
         x: decalageX + window.innerWidth / 2,
+        rotate : 3 * (decalageX / window.innerWidth / 2),
         onComplete() {
           decalageX = 0;
         }
