@@ -13,6 +13,8 @@ import livreSvg from "../data/pictogramme/livre.svg";
 import podcastSvg from "../data/pictogramme/podcast.svg";
 import rechercheSvg from "../data/pictogramme/recherche.svg";
 import biographieSvg from "../data/pictogramme/biographie.svg";
+import jeuSvg from "../data/pictogramme/jeu.svg";
+import videoSvg from "../data/pictogramme/video.svg";
 import Popup from "./Popup";
 import Robot from "./Robot";
 
@@ -24,7 +26,9 @@ const PICTOGRAMMES = {
   livre: livreSvg,
   podcast: podcastSvg,
   recherche: rechercheSvg,
-  biographie:biographieSvg
+  biographie:biographieSvg,
+  jeu:jeuSvg,
+  video:videoSvg
 };
 
 // ─── Adjust card positions here ────────────────────────────────────────────
@@ -43,34 +47,35 @@ const PICTOGRAMMES = {
 //
 const CARD_POSITIONS = [
   // ── Narrow top ────────────────────────────────
-  { top: 999, left: 620 }, //  1
-  { top: 1130, left: 380 }, //  2
-  { top: 1170, left: 1180 }, //  3
+  { top: 999, left: 620 }, //  1 Colin de la Higuera
+  { top: 1130, left: 380 }, //  2 Open Education Global Awards
+  { top: 1080, left: 1180 }, //  3 Le Prix MERLOT
   // ── Widening ──────────────────────────────────
-  { top: 1290, left: 420 }, //  4
-  { top: 1320, left: 1240 }, //  5
-  { top: 1470, left: 250 }, //  6
+  { top: 1280, left: 340 }, //  4 Faire en sorte que l’IA serve à mieux apprendre
+  { top: 1230, left: 1240 }, //  5 Résultats de la recherche pour «La triche… et si l’IA»
+  { top: 1450, left: 100 }, //  6  Article Entretien avec Colin de la Higuera, chaire UNESCO
   // ── Widest zone ──
-  { top: 1500, left: 1100 }, //  7
-  { top: 1650, left: 390 }, //  8
-  { top: 1670, left: 1200 }, //  9 
-  { top: 1890, left: 910 }, // 10
-  { top: 1850, left: 100 }, // 11
-  { top: 2080, left: 1100 }, // 12
+  { top: 1400, left: 1500 }, //  7 Conference L’éducation ouverte : partager et innover grâce aux 
+  { top: 1600, left: 80 }, //  8 L’intelligence artificielle, l’école, les enseignant.es. Partie 1
+  { top: 1600, left: 1450 }, //  9 L’intelligence artificielle, l’école, les enseignant.es. Partie 2
+  { top: 1610, left: 700 }, // 10 LIVRE
+  { top: 1430, left:740 }, // 11 JEU
+  { top: 1830, left: 1100 }, // 12 Lancement du reseau unitwin UNOE
   // ── Narrowing ─────────────────────────────────
-  { top: 2040, left: 300 }, // 13
-  { top: 2300, left: 1250 }, // 14
-  { top: 2270, left: 350 }, // 15
-  { top: 2490, left: 1000 }, // 16
-  { top: 2450, left: 280 }, // 17
+  { top: 1880, left: 300 }, // 13 Comment mettre l’IA au service de l’autonomisation des femmes ?
+  { top: 2050, left: 1250 }, // 14 Les IA génératives bousculent l’éducation, quels impacts sur l’évaluation ?
+  { top: 2080, left: 350 }, // 15 Ressources éducatives libres pour et par les enseignants -DNE- Salon Educatec / Educatice
+  { top: 2290, left: 1000 }, // 16 Peut-on remplacer un enseignant par une machine ?
+  { top: 2300, left: 280 }, // 17 L'inteligence artificielle où en sommes nous?
   // ── Lower ─────────────────────────────────────
-  { top: 2700, left: 1200 }, // 18
-  { top: 2670, left: 500 }, // 19
-  { top: 2880, left: 845 }, // 20
+  { top: 2500, left: 1200 }, // 18 Penser face à l'IA, à quoi bon ? - restitution de la journée
+  { top: 2550, left: 500 }, // 19 Les intelligences artificielle génératives bousculent l'éducation, quels impacts sur l'évaluation?
+  { top: 2760, left: 845 }, // 20On the complexity of submap isomorphism and maximum common submap problems
   // ── Narrow base ───────────────────────────────
-  { top: 3050, left: 500 }, // 21
-  { top: 3200, left: 999 },
-  { top: 3400, left: 800 },  // 22
+  { top: 2900, left: 500 }, // 21 Topology of strings: Median string is NP-complete
+  { top: 3000, left: 999 },//
+  { top: 3200, left: 400 }, //
+  { top: 3300, left: 1000 }, // 22
 ];
 // ───────────────────────────────────────────────────────────────────────────
 // ───────────────────────────────────────────────────────────────────────────
@@ -124,7 +129,15 @@ export default function IcebergScene() {
         {cardDocuments.map((doc, i) => (
           <ResourceCard
             key={doc.id}
-            pictogramme={PICTOGRAMMES[doc.category.split(" ")[0].toLowerCase()]}
+            //pictogramme={PICTOGRAMMES[doc.category.split(" ")[0].toLowerCase()]}
+            pictogramme={
+  ["conference", "podcast", "table ronde"].includes(doc.category.toLowerCase())
+    ? videoSvg
+    : PICTOGRAMMES[doc.category.split(" ")[0].toLowerCase()]
+}
+
+
+
             category={doc.category.toLowerCase()}
             title={doc.title}
             description={doc.description}
@@ -138,7 +151,16 @@ export default function IcebergScene() {
 
       {openPopup && selectedDoc ? (
         <Popup
-          pictogramme={PICTOGRAMMES[selectedDoc.category.toLowerCase()]}
+          //pictogramme={PICTOGRAMMES[selectedDoc.category.toLowerCase()]}
+          pictogramme={
+  ["conference", "podcast", "table ronde"].includes(selectedDoc.category.toLowerCase())
+    ? videoSvg
+    : PICTOGRAMMES[selectedDoc.category.split(" ")[0].toLowerCase()]
+}
+
+
+
+
           type={selectedDoc.type}
           url={selectedDoc.url}
           title={selectedDoc.title}

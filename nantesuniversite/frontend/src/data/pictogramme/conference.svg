@@ -3,6 +3,20 @@
   <defs>
     <style>
       .cls-1 {
+<<<<<<< HEAD
+        fill: none;
+        stroke: red;
+        stroke-miterlimit: 10;
+        stroke-width: 28px;
+      }
+    </style>
+  </defs>
+  <polyline class="cls-1" points="142.58 370.28 127.27 288.01 89.01 299.49 72.75 260.27 212.42 111.67 281.29 263.14 138.7 284.47"/>
+  <line class="cls-1" x1="257.54" y1="124.7" x2="281.29" y2="82.73"/>
+  <line class="cls-1" x1="281.29" y1="176.97" x2="354.76" y2="143.71"/>
+  <line class="cls-1" x1="304.87" y1="226.86" x2="354.76" y2="236.36"/>
+  <line class="cls-1" x1="109.52" y1="330.42" x2="157.09" y2="321.01"/>
+=======
         stroke-miterlimit: 10;
       }
 
@@ -19,4 +33,5 @@
   </defs>
   <polygon class="cls-1" points="58.48 332.38 58.48 140.91 350.42 140.91 350.42 332.38 161.8 332.38 58.48 332.38"/>
   <polygon class="cls-2" points="172.94 195.51 172.94 279.98 254.57 236.31 172.94 195.51"/>
+>>>>>>> 83ce3a94c2fb12c23fdb10d8da3ccbbf88326d55
 </svg>

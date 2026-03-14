@@ -92,7 +92,7 @@
         "description": "La vidéo intitulée “L’éducation ouverte : partager et innover grâce aux Ressources Éducatives Libres (REL)” explique comment les ressources éducatives libres favorisent le partage du savoir et l’innovation dans l’éducation en rendant l’apprentissage accessible à tous. Elle met en avant l’importance des pratiques pédagogiques ouvertes et des REL comme outils pour démocratiser l’accès à la connaissance dans différents contextes éducatifs.",
         "date": "2020",
         "url": "https://www.youtube.com/embed/zNYIK603qkg?si=GiadLGfLx50HEf0D",
-        "pictogramme": "./pictogramme/conference.svg",
+        "pictogramme": "./pictogramme/video.svg",
         "type": "video"
       },
       {
@@ -105,7 +105,7 @@
         "date": "2022",
         
         "url": "https://mediaserver.univ-nantes.fr/permalink/v1263f4cd3b586g8vw59/iframe/",
-        "pictogramme": "./pictogramme/conference.svg",
+        "pictogramme": "./pictogramme/video.svg",
         "type": "web"
       },
       {
@@ -117,8 +117,32 @@
         "description": "L’intelligence artificielle est déjà là dans de nombreux secteurs. L’école ne fait pas exception. Lors de cet atelier, Colin et Margarida échangent au sujet de l’intelligence artificielle, de ses différentes interactions dans l’école et à l’extérieur de celle-ci. La discussion porte en particulier sur les questions d’éthique et sur la formation de toutes et tous à l’intelligence artificielle.",
         "date": "2022",
         "url": "https://mediaserver.univ-nantes.fr/permalink/v1263fae175d3s4tdgmc/iframe/",
-        "pictogramme": "./pictogramme/conference.svg",
+        "pictogramme": "./pictogramme/video.svg",
         "type": "video"
+      },
+         {
+        "id": "18",
+        "category": "livre",
+        "nature": "General",
+        "author": "Colin de la Higuera, Jotsna Iyer",
+        "title": "IA pour les enseignants : un manuel ouvert",
+        "description": "Le document « IA pour les enseignants : un manuel ouvert » est un manuel libre et gratuit conçu dans le cadre du projet européen AI4T (Artificial Intelligence for Teachers) pour aider les enseignants à comprendre ce qu’est l’intelligence artificielle, ses enjeux éducatifs et comment l’utiliser de façon responsable en contexte scolaire.",
+        "date": "",
+        "url": "https://sti.ac-versailles.fr/IMG/pdf/ia-pour-les-enseignants-un-manuel-ouvert.pdf",
+        "pictogramme": "./pictogramme/livre.svg",
+        "type": "pdf"
+      },
+      {
+        "id":"23",
+        "category": "Jeu",
+        "nature": "General",
+        "author": "Colin de la Higuera",
+        "title": "Jeu IA  & Triche",
+        "description": "C est un mini jeu qui permet de débattre entre les participants et voir leurs points de vue sur la triche avec l'IA",
+        "date": "2022",
+        "url": "./pdfs/NpComplete.pdf",
+        "pictogramme": "./pictogramme/Jeu.svg",
+        "type": "pdf"
       },
       {
         "id": "14",
@@ -129,7 +153,7 @@
         "description": "La vidéo couvre le lancement du réseau UNITWIN UNOE (Unitwin Network – Open Education), une initiative mondiale coordonnée par Nantes Université et la Chaire UNESCO RELIA pour promouvoir l’éducation ouverte. On y voit les acteurs présenter les objectifs du réseau et les collaborations internationales visant à renforcer l’accès libre aux ressources pédagogiques.",
         "date": "2024",
         "url": "https://mediaserver.univ-nantes.fr/permalink/v1268a363c9a2zw8kyj7/iframe/",
-        "pictogramme": "./pictogramme/conference.svg",
+        "pictogramme": "./pictogramme/video.svg",
         "type": "video"
       },
       {
@@ -141,7 +165,7 @@
         "description": "La vidéo montre une table ronde de septembre 2023 sur l’intelligence artificielle et l’autonomisation des femmes, où plusieurs expertes discutent de la manière dont l’IA peut être utilisée pour soutenir l’égalité des genres et l’émancipation. Les intervenantes partagent des exemples concrets et des réflexions sur les opportunités et défis liés à l’IA dans des contextes sociaux et éducatifs.",
         "date": "2023",
         "url": "https://mediaserver.univ-nantes.fr/permalink/v12666c124b4ewfckg8a/iframe/",
-        "pictogramme": "./pictogramme/podcast.svg",
+        "pictogramme": "./pictogramme/video.svg",
         "type": "web"
       },
       {
@@ -153,7 +177,7 @@
         "description": "La vidéo montre une table ronde sur les IA génératives et l’éducation, où des spécialistes discutent des impacts de ces technologies sur les pratiques d’apprentissage et, en particulier, sur les méthodes d’évaluation. Les intervenants explorent les défis et les opportunités que présentent les outils d’IA pour redéfinir l’évaluation des compétences des élèves et étudiants.",
         "date": "2023",
         "url": "https://mediaserver.univ-nantes.fr/permalink/v12664f0bb295ya5xsbb/iframe/",
-        "pictogramme": "./pictogramme/podcast.svg",
+        "pictogramme": "./pictogramme/video.svg",
         "type": "video"
       },
       {
@@ -166,7 +190,7 @@
         "description": "La vidéo présente une session du salon Éducatec‑Éducatice 2021 consacrée aux ressources éducatives libres pour et par les enseignants, où des acteurs éducatifs partagent des exemples et bonnes pratiques. Elle met en lumière comment ces ressources peuvent enrichir les pratiques pédagogiques et favoriser l’accès libre aux savoirs.",
         "date": "2021",
         "url": "https://mediaserver.univ-nantes.fr/permalink/v1264005d4d662151z57/iframe/",
-        "pictogramme": "./pictogramme/podcast.svg"
+        "pictogramme": "./pictogramme/video.svg"
       },
       {
         "id": "19",
@@ -178,7 +202,7 @@
         "description": "La vidéo explore la question « Peut‑on remplacer un enseignant par une machine ? », avec une présentation sur l’intelligence artificielle, l’éducation ouverte et le rôle des technologies dans l’apprentissage. Elle met en perspective les possibilités et les limites de l’IA dans l’éducation tout en soulignant l’importance continue de l’interaction humaine dans l’enseignement.",
         "date": "2021",
         "url": "https://www.youtube.com/embed/2G-LzIHSSN4?si=LdEYIHYIdFEw5_Ys",
-        "pictogramme": "./pictogramme/conference.svg"
+        "pictogramme": "./pictogramme/video.svg"
       },
       {
         "id": "20",
@@ -191,11 +215,11 @@
         "date": "2021",
         "origine":"external link",
         "url": "https://mediaserver.univ-nantes.fr/permalink/v1261954061d2zz92qr9/iframe/",
-        "pictogramme": "./pictogramme/conference.svg"
+        "pictogramme": "./pictogramme/video.svg"
       },
       {
         "id": "21",
-        "category": "Conference",
+        "category": "Table Ronde",
         "nature": "Journalistique",
         "type": "video",
         "author": "Colin de la Higuera",
@@ -203,10 +227,10 @@
         "description": "La vidéo restitue les temps forts d’une journée de débats et d’ateliers organisée dans le cadre de la Nantes Digital Week 2024 par la Chaire Unesco RELIA et ses partenaires, qui invitait à réfléchir collectivement aux enjeux éthiques, philosophiques et éducatifs de l’intelligence artificielle. Elle donne la parole à des intervenant·es — chercheurs, enseignants et médiateurs — qui explorent comment l’IA impacte notre rapport à la pensée, à la transparence et aux droits d’auteur, tout en mobilisant des lycéen·nes dans des discussions stimulantes.",
         "date": "2025",
         "url": "https://mediaserver.univ-nantes.fr/permalink/v1268c0798c7f06qmzbz/iframe/",
-        "pictogramme": "./pictogramme/conference.svg"
+        "pictogramme": "./pictogramme/video.svg"
       },
       {
-        "id": "22",
+        "id": "24",
         "category": "Conference",
         "nature": "Journalistique",
         "type": "video",
@@ -215,7 +239,7 @@
         "description": "La vidéo présente une table ronde organisée par la DRANE Nantes où plusieurs intervenants, dont Colin de la Higuera, discutent de l’impact des IA génératives sur l’éducation, en particulier sur les méthodes d’évaluation, la question de l’utilisation d’outils comme ChatGPT et la manière d’évaluer autrement. Elle aborde aussi les inquiétudes et les opportunités liées à ces technologies pour les enseignants et les élèves.",
         "date": "2023",
         "url": "https://podeduc.apps.education.fr/video/17490-les-ia-generatives-bousculent-leducation-quels-impacts-sur-levaluation/?is_iframe=true&autoplay=true",
-        "pictogramme": "./pictogramme/conference.svg"
+        "pictogramme": "./pictogramme/video.svg"
       },
       {
         "id": "4",
@@ -276,19 +300,8 @@
         "url": "./pdfs/MarkovModels.pdf",
         "pictogramme": "./pictogramme/recherche.svg",
         "type": "pdf"
-      },
-      {
-        "id": "18",
-        "category": "livre",
-        "nature": "expert",
-        "author": "Colin de la Higuera, Jotsna Iyer",
-        "title": "IA pour les enseignants : un manuel ouvert",
-        "description": "Le document « IA pour les enseignants : un manuel ouvert » est un manuel libre et gratuit conçu dans le cadre du projet européen AI4T (Artificial Intelligence for Teachers) pour aider les enseignants à comprendre ce qu’est l’intelligence artificielle, ses enjeux éducatifs et comment l’utiliser de façon responsable en contexte scolaire.",
-        "date": "",
-        "url": "https://sti.ac-versailles.fr/IMG/pdf/ia-pour-les-enseignants-un-manuel-ouvert.pdf",
-        "pictogramme": "./pictogramme/livre.svg",
-        "type": "pdf"
       }
+   
     ]
   }
 }
