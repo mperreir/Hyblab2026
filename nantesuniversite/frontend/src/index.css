@@ -210,6 +210,42 @@ body {
   animation: floating 1s ease-in-out infinite;
 }
 
+@keyframes sidebar-slide-in {
+  0%   { transform: translateX(-100%); }
+  100% { transform: translateX(0); }
+}
+
+@keyframes sidebar-slide-out {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
+}
+
+@keyframes sidebar-overlay-in {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes sidebar-overlay-out {
+  0%   { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+.sidebar-panel.open {
+  animation: sidebar-slide-in 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.sidebar-panel.close {
+  animation: sidebar-slide-out 0.3s cubic-bezier(0.55, 0, 0.78, 0) forwards;
+}
+
+.sidebar-overlay.open {
+  animation: sidebar-overlay-in 0.35s ease forwards;
+}
+
+.sidebar-overlay.close {
+  animation: sidebar-overlay-out 0.3s ease forwards;
+}
+
 .biographie-portrait{
   width: 350px;
   height: 250px;
