@@ -146,6 +146,7 @@ const QuestionItem = forwardRef(function QuestionItem(
   const [atEnd, setAtEnd] = useState(false);
   const [atTop, setAtTop] = useState(true);
   const touchStartY = useRef(0);
+  const ignoreSwipeTouchRef = useRef(false);
   const wasAtBottomOnTouchStart = useRef(false);
   const wasAtTopOnTouchStart = useRef(false);
   const endScrollCount = useRef(0);
@@ -409,7 +410,17 @@ const QuestionItem = forwardRef(function QuestionItem(
   }, [isOpen, handleWheel]);
 
   // Touch: detect swipe past end or top
+  const isBlockedTouchTarget = (target) => {
+    return target instanceof Element && !!target.closest('[data-disable-dialogue-swipe="true"]');
+  };
+
   const handleTouchStart = (e) => {
+    if (isBlockedTouchTarget(e.target)) {
+      ignoreSwipeTouchRef.current = true;
+      return;
+    }
+
+    ignoreSwipeTouchRef.current = false;
     touchStartY.current = e.touches[0].clientY;
     const container = scrollContainerRef.current;
     if (container) {
@@ -419,6 +430,11 @@ const QuestionItem = forwardRef(function QuestionItem(
   };
 
   const handleTouchEnd = useCallback((e) => {
+    if (ignoreSwipeTouchRef.current || isBlockedTouchTarget(e.target)) {
+      ignoreSwipeTouchRef.current = false;
+      return;
+    }
+
     const container = scrollContainerRef.current;
     if (!container) return;
 
@@ -440,6 +456,10 @@ const QuestionItem = forwardRef(function QuestionItem(
       }
     }
   }, [onFinish, onPrev, onToggle, isLast, isFirstItem]);
+
+  const handleTouchCancel = () => {
+    ignoreSwipeTouchRef.current = false;
+  };
 
   const getIntervenantInfo = (id) => intervenants.find(p => p.id === id);
 
@@ -500,6 +520,7 @@ const QuestionItem = forwardRef(function QuestionItem(
               }}
               onTouchStart={handleTouchStart} 
               onTouchEnd={handleTouchEnd}
+              onTouchCancel={handleTouchCancel}
             >
               {question.dialogue.map((block, j) => {
                 const info = getIntervenantInfo(block.intervenant);

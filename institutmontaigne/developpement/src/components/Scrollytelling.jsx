@@ -391,7 +391,7 @@ export default function Scrollytelling() {
   );
 
   return (
-    <section ref={sectionRef} className="relative bg-[#d5d5d5] h-screen overflow-hidden" aria-label="Scrollytelling Europe">
+    <section ref={sectionRef} className="relative bg-[#d5d5d5] h-screen overflow-hidden print:hidden" aria-label="Scrollytelling Europe">
       {errorMsg && (
         <div className="absolute z-50 bg-red-500 font-bold text-white p-4 top-0 left-0 w-full whitespace-pre-wrap">
           Désolé, une erreur technique : {errorMsg}

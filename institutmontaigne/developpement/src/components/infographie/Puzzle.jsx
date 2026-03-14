@@ -64,6 +64,7 @@ export function DropZone({ correctAnswer, placeholder = "···" }) {
   return (
     <motion.span
       ref={ref}
+      data-disable-dialogue-swipe="true"
       animate={shakeControls}
       style={{
         display: "inline-flex", alignItems: "center", justifyContent: "center",
@@ -217,7 +218,7 @@ function AnswerChip({ value, index, accepted, onAccepted }) {
     window.addEventListener("pointerup", onUp);
   }, [accepted, value, bg, onAccepted, ghostState]);
 
-  if (accepted) return <div style={{ width: 80, height: 34 }} />;
+  if (accepted) return <div data-disable-dialogue-swipe="true" style={{ width: 80, height: 34 }} />;
 
   const isDragging = ghostState !== null && !ghostState.returning;
 
@@ -225,6 +226,7 @@ function AnswerChip({ value, index, accepted, onAccepted }) {
     <>
       <motion.div
         ref={chipRef}
+        data-disable-dialogue-swipe="true"
         onPointerDown={handlePointerDown}
         whileHover={!isDragging ? { scale: 1.08 } : {}}
         style={{
@@ -280,7 +282,10 @@ export function AnswerBank({ answers }) {
   }, []);
 
   return (
-    <div style={{ display: "flex", gap: 28, justifyContent: "center", flexWrap: "wrap" }}>
+    <div
+      data-disable-dialogue-swipe="true"
+      style={{ display: "flex", gap: 28, justifyContent: "center", flexWrap: "wrap" }}
+    >
       {answers.map((value, i) => (
         <motion.div key={value}
           className="print:!opacity-100 print:!transform-none"
