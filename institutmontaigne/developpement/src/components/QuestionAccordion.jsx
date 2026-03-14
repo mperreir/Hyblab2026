@@ -109,7 +109,7 @@ export default function QuestionAccordion({ questions, intervenants, onQuestionO
 
   return (
     <section className="bg-white ">
-      <p className="text-center text-montaigne-burgundy text-lg font-helvetica font-bold font-italic mt-16">LES CHAPITRES DE L'ARTICLE</p> 
+      <p className="text-center text-montaigne-burgundy text-lg font-helvetica font-bold font-italic mt-16 print:!hidden">LES CHAPITRES DE L'ARTICLE</p> 
       <div className="w-full pt-4 mb-10 px-1">
         {questions.map((q, i) => (
           <QuestionItem
@@ -582,9 +582,17 @@ function DialogueCard({ block, intervenantIndex, isLastDialogue }) {
           );
         })}
         {isLastDialogue && (
-          <div className=" text-center text-2xl leading-none text-gray-400 select-none" aria-hidden="true">
-            ...
-          </div>
+          <svg
+            className={"w-4 h-3 mt-5 shrink-0 transition-transform mx-auto text-gray-500 duration-300 -translate-y-2"}
+            viewBox="0 0 14 8"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path d="M1 1L7 7L13 1" />
+          </svg>
         )}
       </div>
     </div>

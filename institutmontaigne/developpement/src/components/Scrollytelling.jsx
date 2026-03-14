@@ -523,3 +523,53 @@ export default function Scrollytelling() {
     </section>
   );
 }
+
+function ScrollPanel({ phrase, index, total, isLast, onEnter }) {
+  const ref = useRef(null);
+  const [progress, setProgress] = useState(0);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+
+    const obs = new IntersectionObserver(
+      ([entry]) => {
+        const r = entry.intersectionRatio;
+        setProgress(r);
+        if (r > 0.4) onEnter();
+      },
+      { threshold: Array.from({ length: 21 }, (_, i) => i / 20) }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, [onEnter]);
+
+  // Opacité maximale au centre de l'écran, faible en entrée/sortie.
+  const opacity = useMemo(() => {
+    const distanceToCenter = Math.abs(progress - 0.5) / 0.5;
+    return Math.max(0, distanceToCenter);
+  }, [progress]);
+
+  const translateY = (1 - Math.min(progress * 2.5, 1)) * 50;
+  const scale = 0.95 + Math.min(progress * 2, 1) * 0.05;
+
+  return (
+    <div
+      ref={ref}
+      className="min-h-screen flex items-center justify-center px-6 sm:px-10 md:px-16 print:hidden"
+    >
+      <div
+        className="max-w-3xl w-full text-center pointer-events-none"
+        style={{
+          opacity,
+          transform: `translateY(${translateY}px) scale(${scale})`,
+        }}
+      >
+        {/* Phrase d'accroche */}
+        <p className="text-[1.5rem] sm:text-3xl md:text-4xl lg:text-[2.75rem] font-serif font-bold leading-[1.25] text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.4)]">
+          {phrase}
+        </p>
+      </div>
+    </div>
+  );
+}

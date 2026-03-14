@@ -189,7 +189,7 @@ export default function QuizFin({ onScoreComputed }) {
   );
 
   return (
-    <div className="relative w-full h-fit max-w-md mx-auto px-3 py-6 sm:py-8">
+    <div className="relative w-full h-fit max-w-md mx-auto px-3 py-6 sm:py-8 print:!hidden">
       {/* Ghost cards: absolute inside the relative parent so they inherit the exact same width */}
       <div className="absolute left-0 top-0 -z-10 h-0 w-full overflow-hidden opacity-0 pointer-events-none" aria-hidden="true">
         {questions.map((question, idx) => (

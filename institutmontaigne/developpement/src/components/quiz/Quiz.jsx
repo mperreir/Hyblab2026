@@ -161,7 +161,7 @@ export default function Quiz({ meta = {}, onScoreChange }) {
   const thumbColor = getThumbColor(response, colors);
 
   return (
-    <div className="w-full pt-10 px-6 bg-white">
+    <div className="w-full pt-10 px-6 bg-white print:!hidden">
       <div className="max-w-2xl mx-auto">
 
         {/* Header */}

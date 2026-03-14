@@ -10,6 +10,7 @@ import Podcast from './components/Podcast';
 import debateData from './data/debate.jsx';
 import Footer from './components/Footer';
 import CTA from './components/CTA.jsx';
+import ExportPDF from './components/ExportPDF.jsx';
 
 export default function App() {
   const [initialScore, setInitialScore] = useState(50);
@@ -36,6 +37,7 @@ export default function App() {
         cover={debateData.podcast.cover}
         id="podcast"
       />
+      <ExportPDF />
       <Footer />
     </div>
   );
