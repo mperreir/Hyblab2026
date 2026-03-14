@@ -324,9 +324,10 @@ function createButtonBox(boxId = "box1", aRow = 1, aColumn = 1) {
         box.className = box.className.replace(" animate__animated animate__fadeInLeft", ""); // Remove action class if it exists
         box.className = box.className.replace(" animate__animated animate__fadeInUp", ""); // Remove action class if it exists
         box.className = box.className.replace(" animate__animated animate__fadeInDown", ""); // Remove action class if it exists
+      } else {
+        let finale_page = document.querySelector(".finale-page")
+        finale_page.style.display = "block";
       }
-
-
 
 
       box.className += " text-box";
