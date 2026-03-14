@@ -1,1 +1,1 @@
-sqlite3 database.db ".dump Film" > base.sql
+sqlite3 database.db ".dump" > base.sql
