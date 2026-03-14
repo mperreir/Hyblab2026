@@ -13,17 +13,18 @@
 </head>
 <body>
     <div id="scroll-fleche">
-    <span>scroller</span>
-    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M12 4v16M6 14l6 6 6-6" stroke="red" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
+        <span>scroller</span>
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 4v16M6 14l6 6 6-6" stroke="red" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
     </div>
-    
+
     <!-- Logos page d'accueil -->
     <div id="logos-accueil">
         <img src="img/Logo_lyon_metropole.png" id="logo-metropole">
-        <img src="img/LOGO-DE-LA-TEETE-AUX-PIEDS.svg"   id="logo-teteaupied">
+        <img src="img/LOGO-DE-LA-TEETE-AUX-PIEDS.svg" id="logo-teteaupied">
     </div>
+
     <div id="scene-container">
 
         <!-- SCÈNE 1 : zoom aérien + nuages -->
@@ -74,8 +75,20 @@
 
         <img class="arbre" id="arbre" src="img/chantier/ARBRE.png">
 
-        <!-- Flèche "continuez à scroller" -->
-        
+        <!-- SCÈNE 4 : maison
+             Zoom haut-droit sur le chantier, puis apparition :
+             - route      : monte du bas
+             - maison_arbres : descend du haut, centrée à l'écran
+             - femme      : opacité pure, au centre des arbres
+             La colline (m-colline) ne bouge jamais.
+        -->
+        <div id="sceneMaison" class="scene-maison">
+            <img class="m-ciel"    src="img/plan_03_ciel.png"          alt="">
+            <img class="m-colline" src="img/chantier/collines_new.png" alt="colline">
+            <img class="m-route"   src="img/collines/route.png"        alt="route">
+            <img class="m-arbres"  src="img/maison/maison_arbres.png"  alt="arbres maison">
+            <img class="m-femme"   src="img/femme.png"                 alt="femme">
+        </div>
 
     </div>
 </body>
