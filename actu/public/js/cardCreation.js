@@ -59,18 +59,12 @@ function createFrontCard(titre, affiche, genre, realisateur){
   const real_span = document.createElement("span");
   real_span.innerText = realisateur;
 
-  const icon = document.createElement("img");
-  icon.src = "./img/coin.png";
-  icon.classList.add("icon-bottom");
-
-
   info.appendChild(title);
   info.appendChild(genre_span);
   info.appendChild(real_span);
 
   front.appendChild(img);
   front.appendChild(info);
-  front.appendChild(icon);
   
 
   return front;

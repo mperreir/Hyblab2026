@@ -165,7 +165,7 @@ loadFilm().then((filmsNodes) => {
     })
 
   }, 2000);
-  film_cards[(film_cards.length + (-nb_tours) % film_cards.length) % film_cards.length]?.setAttribute("style", "border:3px solid red;")
+  // film_cards[(film_cards.length + (-nb_tours) % film_cards.length) % film_cards.length]?.setAttribute("style", "border:3px solid red;")
 
 
 });
