@@ -297,9 +297,12 @@ h3 {
 
 /* the slides and the loader should fill the whole 9:16 zone */
 .swiper-wrapper section, #loader{
-    background-color: dodgerblue;
     width: 100%;
     height: 100%;
+}
+
+#loader{
+    background-color: #1E1E1E;
 }
 
 #title-slide header{
@@ -435,7 +438,7 @@ body{
     font-size: calc(15vh * 3 / 4);
 }
 
-#instagram-box{
+#content-slide, #title-slide-2, #instagram-box{
     position: relative;
     display: flex; 
     flex-direction: column;
@@ -453,16 +456,16 @@ body{
     text-align: left;
     flex-shrink: 0;
     padding-left: 7%;
+    font-weight:bold;
+    font-size: 30px;
+    position: absolute;
+    top: 10%
 
 }
 #instagram-header p{
     font-size: 20px;
 }
-#instagram-header h1{
-    font-weight:bold;
-    font-size: 30px;
-    text-align: left;
-}
+
 #instagram-detail{
     align-items: flex-start;
 }
@@ -483,6 +486,8 @@ body{
     max-width:42vh;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(231, 101, 101, 0.2);
+    position: absolute;
+    top: 40%;
 }
 /* Swipe hint on the right of the screen */
 .swipe-hint {
@@ -548,13 +553,15 @@ b {
     margin-top: 10px ;
     padding-left: 7%;
     flex-shrink: 0;
-    max-width: 87%;
+    width: 87%;
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding-top: 10px;
     background: var(--white);
     z-index: 50;
+    top: 5%;
+    position: absolute;
 }
 .title-bar h2 {
     font-family: "Albert Sans", sans-serif;
@@ -573,6 +580,8 @@ b {
     padding: 3px 9px;
     border-radius: 20px;
     white-space: nowrap;
+    position: absolute;
+    right: 0%
 }
 
 

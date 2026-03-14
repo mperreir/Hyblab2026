@@ -7,6 +7,7 @@ const createEmptyContent = async function(){
     const data = await response.json();
     const nVolet = data.nVolet;
     let nBullet = 0;
+    let nSlide=0;
 
     const endSlide = document.querySelector("#last-slide");
     console.log("aA");
@@ -17,6 +18,7 @@ const createEmptyContent = async function(){
     for (let i = 0; i < nVolet; i++) {
         nBullet = data.volet[i].nBullet;
         for(let j=0; j < nBullet; j++){
+            nSlide++
             slide = document.createElement("section");
             slide.classList.add("swiper-slide")
             slide.id = "content-slide"
@@ -29,22 +31,41 @@ const createEmptyContent = async function(){
             console.log(i)
             console.log(bulletContent)
 
+            let titleBar = document.createElement("div")
+            titleBar.classList.add("title-bar")
+
+            let titleVolet = document.createElement("h2")
+            titleVolet.innerHTML = data.volet[i].titreVolet
+
+            let progressBadge = document.createElement("span")
+            progressBadge.classList.add("progress-badge")
+            progressBadge.id = "badge"
+            progressBadge.innerHTML = (2+nSlide)+"/";
+            
+            titleBar.appendChild(titleVolet)
+            titleBar.appendChild(progressBadge)
+
+            slide.appendChild(titleBar)
+
             instaBox = document.createElement("section")
-            instaBox.id = "instagram-box"
+            //instaBox.id = "instagram-box"
             for(let k=0; k<bulletContent.length; k++){
                 if(bulletContent[k].type == "title"){
-                    let title = document.createElement("h3");
+                    let title = document.createElement("h1");
                     title.innerHTML = bulletContent[k].content
+                    title.id = "instagram-header"
                     instaBox.appendChild(title)
                     titleSlide = true;
                 }
                 else if(bulletContent[k].type == "paragraph"){
                     let paragraph = document.createElement("p");
+                    paragraph.id = "instagram-content"
                     paragraph.innerHTML = bulletContent[k].content
                     instaBox.appendChild(paragraph)
                 }
                 else if(bulletContent[k].type == "img"){
                     let img = document.createElement("img");
+                    img.classList.add("illustration")
                     img.src = bulletContent[k].content
                     instaBox.appendChild(img)
                 }
@@ -124,6 +145,12 @@ const createEmptyContent = async function(){
 
 
 
+    }
+    let progressBadgeList = document.querySelectorAll(".progress-badge")
+    for(let i=0; i<progressBadgeList.length; i++){
+        console.log(i)
+        badge = progressBadgeList[i]
+        badge.innerHTML = badge.innerHTML + String(nSlide+3)
     }
 
 }
