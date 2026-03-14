@@ -76,7 +76,7 @@ export default function ResearcherFooter() {
         className="absolute not-italic m-0 text-white whitespace-pre-wrap"
         style={{
           left: '176px',
-          top: '4750px',
+          top: '4900px',
           width: '780px',
           fontSize: '128px',
           lineHeight: '1',
