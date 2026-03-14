@@ -74,9 +74,9 @@ const debateData = {
               quote="J'ajouterai à cela que De Gaulle est d'abord <b>favorable à la proportionnelle</b> sous la IVe, qu'il perçoit comme un <b>moyen de contenir le Parti communiste.</b>"
               isLeft={false}
             />,
-            <><Manuscrit>D'après Anne LEVADE, la proportionnelle</Manuscrit> est le mode de scrutin "le plus récent". Il s'est développé à la naissance des partis, à la fin du <DropZone correctAnswer="XIX" /> siècle.</>,
+            <>D'après Anne LEVADE, <Manuscrit color="#872339">la proportionnelle</Manuscrit> est le mode de scrutin "le plus récent". Il s'est développé à la naissance des partis, à la fin du <DropZone correctAnswer="XIX" /> siècle.</>,
             <AnswerBank answers={["XVIII", "XIX", "XX"]} />,
-            <>Avant cela, les programmes reposaient avant tout sur <Manuscrit surrounded={false}>une personne</Manuscrit>. Ainsi, le mode de scrutin et la structuration des partis influent l'un sur l'autre. Et il s'agit toujours d'un processus au <Manuscrit surrounded={false}>long cours</Manuscrit>.</>,
+            <>Avant cela, les programmes reposaient avant tout sur <Manuscrit  color="#872339" surrounded={false}>une personne</Manuscrit>. Ainsi, le mode de scrutin et la structuration des partis influent l'un sur l'autre. Et il s'agit toujours d'un processus au <Manuscrit surrounded={false} color="#872339">long cours</Manuscrit>.</>,
           ]
         },
       ]
@@ -98,7 +98,7 @@ const debateData = {
               isLeft={ false }
               hasImage={false}
             />,
-            <>Anne LEVADE remarque que l'idée d'un scrutin proportionnel revient souvent <Manuscrit surrounded={false}>dans le débat</Manuscrit>, mais souvent sans rentrer dans le détail des modalités.</>
+            <>Anne LEVADE remarque que l'idée d'un scrutin proportionnel revient souvent <Manuscrit surrounded={false} color="#872339">dans le débat</Manuscrit>, mais souvent sans rentrer dans le détail des modalités.</>
           ],
         },
         {
@@ -124,7 +124,7 @@ const debateData = {
               quote="Certes, mais le mode de scrutin <b>ne suffit pas à structurer la vie politique</b>, et c'est là que l'observation comparée des systèmes politiques et constitutionnels montre ses limites."
               isLeft={ false }
             />,
-            <>Anne LEVADE explique qu'on ne peut <Manuscrit surrounded={false}>pas se baser sur des exemples étrangers</Manuscrit> pour anticiper les résultats en France, ni convertir un scrutin majoritaire pour imaginer un résultat en scrutin proportionnel. Par ailleurs, la France pratique le scrutin proportionnel lors de <Manuscrit surrounded={false}>certaines élections</Manuscrit>, comme les européennes.</>
+            <>Anne LEVADE explique qu'on ne peut <Manuscrit  color="#872339" surrounded={false}>pas se baser sur des exemples étrangers</Manuscrit> pour anticiper les résultats en France, ni convertir un scrutin majoritaire pour imaginer un résultat en scrutin proportionnel. Par ailleurs, la France pratique le scrutin proportionnel lors de <Manuscrit surrounded={false} color="#872339">certaines élections</Manuscrit>, comme les européennes.</>
           ],
         }
       ]
@@ -217,8 +217,8 @@ const debateData = {
               quote="<b>La crise actuelle n'est pas tant politique que démocratique</b>. Dans ce contexte, se précipiter de remettre en cause les institutions me paraît particulièrement dangereux."
               isLeft={ false }
             />,
-            <>Anne LEVADE montre que si le résultat de la proportionnelle suscite l'insatisfaction, comme c'est probable, la contestation sera <Manuscrit>encore aggravée.</Manuscrit></>,
-            <>Ce n'est pas "le système" <Manuscrit surrounded={false}>qui est défaillant</Manuscrit> et interdit la formation de coalitions, mais la structuration politique qui fait défaut : le débat est <Manuscrit surrounded={false}>dysfonctionnel</Manuscrit>, les politiques semblent déconnectés du réel et on voit <Manuscrit>une crise</Manuscrit> de la représentativité.</>
+            <>Anne LEVADE montre que si le résultat de la proportionnelle suscite l'insatisfaction, comme c'est probable, la contestation sera <Manuscrit  color="#872339">encore aggravée.</Manuscrit></>,
+            <>Ce n'est pas "le système" <Manuscrit surrounded={false}  color="#872339">qui est défaillant</Manuscrit> et interdit la formation de coalitions, mais la structuration politique qui fait défaut : le débat est <Manuscrit  color="#872339" surrounded={false}>dysfonctionnel</Manuscrit>, les politiques semblent déconnectés du réel et on voit <Manuscrit color="#872339">une crise</Manuscrit> de la représentativité.</>
           ],
         }
       ]
