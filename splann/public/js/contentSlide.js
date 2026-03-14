@@ -7,34 +7,55 @@ const createEmptyContent = async function(){
     const data = await response.json();
     const nVolet = data.nVolet;
     let nBullet = 0;
+    let nSlide=0;
 
     const endSlide = document.querySelector("#last-slide");
-    console.log("aA");
-    console.log(endSlide);
+    
     const sliderWrapper = document.querySelector(".swiper-wrapper");
 
     let slide;
     for (let i = 0; i < nVolet; i++) {
         nBullet = data.volet[i].nBullet;
         for(let j=0; j < nBullet; j++){
+            nSlide++
             slide = document.createElement("section");
             slide.classList.add("swiper-slide")
             slide.id = "content-slide"
+
+            let buttNext = document.createElement("div")
+            buttNext.classList.add('swiper-button-next')
+            slide.appendChild(buttNext)
+
 
             // Ajout du contenu
 
             let bulletContent = data.volet[i].bullet[j]
             let titleSlide = false;
             
-            console.log(i)
-            console.log(bulletContent)
+
+            let titleBar = document.createElement("div")
+            titleBar.classList.add("title-bar")
+
+            let titleVolet = document.createElement("h2")
+            titleVolet.innerHTML = data.volet[i].titreVolet
+
+            let progressBadge = document.createElement("span")
+            progressBadge.classList.add("progress-badge")
+            progressBadge.id = "badge"
+            progressBadge.innerHTML = (2+nSlide)+"/";
+            
+            titleBar.appendChild(titleVolet)
+            titleBar.appendChild(progressBadge)
+
+            slide.appendChild(titleBar)
 
             instaBox = document.createElement("section")
-            instaBox.id = "instagram-box"
+            instaBox.id = "instagram-content"
             for(let k=0; k<bulletContent.length; k++){
                 if(bulletContent[k].type == "title"){
-                    let title = document.createElement("h3");
-                    title.innerHTML = bulletContent[k].content
+                    let title = document.createElement("h1");
+                    title.innerHTML = "<span id='titleHighlight'>"+bulletContent[k].content+"</span>"
+                    title.id = "instagram-header"
                     instaBox.appendChild(title)
                     titleSlide = true;
                 }
@@ -45,15 +66,10 @@ const createEmptyContent = async function(){
                 }
                 else if(bulletContent[k].type == "img"){
                     let img = document.createElement("img");
+                    img.classList.add("illustration")
                     img.src = bulletContent[k].content
                     instaBox.appendChild(img)
                 }
-            }
-
-            if(!titleSlide){
-                let voletTitle = document.createElement("h2");
-                voletTitle.innerHTML = data.volet[i].titreVolet
-                slide.appendChild(voletTitle)
             }
 
             slide.appendChild(instaBox)
@@ -85,7 +101,6 @@ const createEmptyContent = async function(){
             bottom_sheet.appendChild(content)
             content.id = "extended-content"
             content.className="content"
-            console.log(data.volet[i].extendedContent)
 
             const extendTitle = document.createElement("p")
             extendTitle.id = "extended-content-title"
@@ -125,5 +140,12 @@ const createEmptyContent = async function(){
 
 
     }
+    let progressBadgeList = document.querySelectorAll(".progress-badge")
+    for(let i=0; i<progressBadgeList.length; i++){
+        
+        badge = progressBadgeList[i]
+        badge.innerHTML = badge.innerHTML + String(nSlide+3)
+    }
+
 
 }

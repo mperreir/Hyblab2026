@@ -273,6 +273,17 @@ h3 {
     position: top;
 }
 
+#content-slide > .swiper-button-next, #title-slide-2 > .swiper-button-next {
+    background: none;
+    color: #000000 !important;
+    border-radius: 4px;
+    position: sticky;
+    right: 2% !important;
+    position: absolute;
+    width: 3%;
+    height: auto;
+}
+
 .swiper-button-next:after,
 .swiper-button-prev:after {
     font-size: 20px;
@@ -297,9 +308,12 @@ h3 {
 
 /* the slides and the loader should fill the whole 9:16 zone */
 .swiper-wrapper section, #loader{
-    background-color: dodgerblue;
     width: 100%;
     height: 100%;
+}
+
+#loader{
+    background-color: #1E1E1E;
 }
 
 #title-slide header{
@@ -333,13 +347,6 @@ h3 {
     font-size: 30%;
     font-family: 'Albert Sans';
     z-index: 2;
-}
-
-.chapeau {
-    font-size:150%;
-    text-align: left;
-    top: 100%;
-    position: absolute;
 }
 
 .logo-splann-slide{
@@ -435,7 +442,7 @@ body{
     font-size: calc(15vh * 3 / 4);
 }
 
-#instagram-box{
+#content-slide, #title-slide-2, #instagram-box, #last-slide{
     position: relative;
     display: flex; 
     flex-direction: column;
@@ -447,37 +454,36 @@ body{
     
 }
 #instagram-header{
-    margin-top: 40px;
     width: 75%;
     margin-bottom: 40px  ;
     text-align: left;
     flex-shrink: 0;
-    padding-left: 7%;
+    font-weight:bold;
+    font-size: 30px;
 
 }
 #instagram-header p{
     font-size: 20px;
 }
-#instagram-header h1{
-    font-weight:bold;
-    font-size: 30px;
-    text-align: left;
-}
+
 #instagram-detail{
     align-items: flex-start;
 }
-#instagram-content{
+
+#instagram-content {
     padding-left: 7%;
     min-height: 0;
-    flex : 1;
-    width: 75%;
+    flex: 1;
+    width: 85%;
+    height: 85vw;
     text-align: justify;
     font-size: 20px;
-
+    position: absolute;
+    top: 25%;
 }
 #instagram-content p{
     font-size: 20px;
-
+    margin-bottom: 10%;
 }
 .illustration{
     max-width:42vh;
@@ -532,7 +538,7 @@ body{
   opacity: 0.6;
 }
 
-b {
+#instagram-content > p > b{
   font-weight: 700;
   color: #111;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' preserveAspectRatio='none' viewBox='0 0 100 100'%3E%3Crect x='0' y='60' width='100' height='50' rx='3' fill='%23e8474a' opacity='0.55'/%3E%3Crect x='2' y='55' width='96' height='15' rx='4' fill='%23e8474a' opacity='0.4'/%3E%3C/svg%3E");
@@ -543,18 +549,30 @@ b {
   box-decoration-break: clone;
 }
 
+#titleHighlight{
+    color: #111;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' preserveAspectRatio='none' viewBox='0 0 100 100'%3E%3Crect x='0' y='60' width='100' height='50' rx='3' fill='%23e8474a' opacity='0.55'/%3E%3Crect x='2' y='55' width='96' height='15' rx='4' fill='%23e8474a' opacity='0.4'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    padding: 0 3px 2px 2px;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+}
+
 /* ── TITLE BAR ── */
 .title-bar {
     margin-top: 10px ;
     padding-left: 7%;
     flex-shrink: 0;
-    max-width: 87%;
+    width: 87%;
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding-top: 10px;
     background: var(--white);
     z-index: 50;
+    top: 5%;
+    position: absolute;
 }
 .title-bar h2 {
     font-family: "Albert Sans", sans-serif;
@@ -573,6 +591,8 @@ b {
     padding: 3px 9px;
     border-radius: 20px;
     white-space: nowrap;
+    position: absolute;
+    right: 0%
 }
 
 
@@ -725,19 +745,10 @@ b {
 
 /* ---- Slide d'ouverture vers d'autres articles -----*/
 
-#last-page {
-    background-color: white !important;
-    color: #1a1a1a;
-    display: flex;
-    flex-direction: column;
-    padding: 15px;
-    box-sizing: border-box;
-    overflow-y: auto;
-}
-
 .last-page-content {
     width: 100%;
-    margin-top: 20px;
+    position: absolute;
+    top: 10%;
 }
 
 .author-credits {
