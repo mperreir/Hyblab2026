@@ -11,6 +11,7 @@ import debateData from './data/debate.jsx';
 import Footer from './components/Footer';
 import CTA from './components/CTA.jsx';
 import ExportPDF from './components/ExportPDF.jsx';
+import PDFHero from './components/PDFHero.jsx';
 
 export default function App() {
   const [initialScore, setInitialScore] = useState(50);
@@ -20,6 +21,7 @@ export default function App() {
   return (
     <div className="min-h-screen">
       <Header meta={debateData.meta} isQuestionOpen={isQuestionOpen} />
+      <PDFHero meta={debateData.meta} />
       <Hero meta={debateData.meta} />
       <Scrollytelling accroches={debateData.accroches} images={debateData.accrocheImages} />
       <Quiz meta={debateData.meta} onScoreChange={setInitialScore} />

@@ -93,7 +93,7 @@ export default function Podcast({ src=PATH_PUBLIC+"/audio/cafeconron.mp3", episo
       </div>
     )}
 
-    <section id={id} className={`mx-auto my-10 max-w-sm overflow-hidden rounded-2xl bg-white shadow-[0_0_0_1px_rgba(0,0,0,0.04),0_12px_12px_rgba(0,0,0,0.16)] ${className}`.trim()}>
+    <section id={id} className={`mx-auto my-10 max-w-sm overflow-hidden rounded-2xl bg-white shadow-[0_0_0_1px_rgba(0,0,0,0.04),0_12px_12px_rgba(0,0,0,0.16)] print:hidden ${className}`.trim()}>
       {src && <audio ref={audioRef} src={src} preload="metadata" />}
 
       <div className="px-5 pt-4 pb-6">
