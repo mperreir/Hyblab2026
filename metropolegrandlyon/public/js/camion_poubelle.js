@@ -192,11 +192,7 @@ function update() {
 
             el.style.opacity = t;
 
-            if (el.id === 'fin-ciel' || el.id === 'fin-route') {
-                el.style.transform = '';
-            } else {
-                el.style.transform = `translateY(${(1 - t) * 50}px)`;
-            }
+            el.style.transform = `translateY(${(1 - t) * 50}px)`;
         });
 
 
