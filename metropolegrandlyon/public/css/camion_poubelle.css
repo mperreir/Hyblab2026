@@ -101,7 +101,6 @@ body {
     height: 100%;
     object-fit: cover;
     object-position: left top;
-    /* cadre sur la rue piétonne = haut gauche */
     z-index: 10;
     transform-origin: top left;
     will-change: transform;
@@ -150,10 +149,8 @@ body {
 #velo {
     position: absolute;
     bottom: 50vh;
-    /* même baseline que le truck */
     left: 0;
     height: calc(var(--truck-h)* 0.7);
-    /* plus petit que le camion */
     width: auto;
     will-change: transform;
     z-index: 20;
@@ -162,10 +159,8 @@ body {
 #metro {
     position: absolute;
     bottom: 7vh;
-    /* même baseline que le truck */
     left: -80vh;
     height: calc(var(--truck-h)* 0.5);
-    /* plus petit que le camion */
     width: auto;
     will-change: transform;
     z-index: 20;

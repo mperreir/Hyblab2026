@@ -70,19 +70,19 @@ function update() {
 
     } else if (progress < 1.05) {
         const t = (progress - 1) / 0.05;
-        // Reset displays
+
         truck.style.display = '';
         panorama.style.display = '';
         worker.style.display = '';
         panorama2.style.display = 'none';
-        // Tout est sorti, on attend progress=1 sans rien faire
+
         truckX = halfOutX + truckW;
         panX = lerp(maxPan, maxPan + vw / 2, t);
         workerOpacity = 0;
         workerY = 30;
 
     } else if (progress < 1.25) {
-        // Swap instantané : panorama disparaît, fond_eau apparaît
+
         truck.style.display = 'none';
         worker.style.display = 'none';
         panorama.style.display = 'none';
@@ -91,7 +91,6 @@ function update() {
         velo.style.display = 'none';
         metro.style.display = 'none';
 
-        // Dézoom depuis la rue piétonne (top left) vers plein écran
         const ZOOM_START = 0.8;
         const t = (progress - 1.05) / 0.15;
         const scale = lerp(ZOOM_START, 0.5, t);
@@ -131,7 +130,6 @@ function update() {
 
 
 window.addEventListener('scroll', update, { passive: true });
-// window.addEventListener('resize', update);
 update();
 truck.style.display = "none";
 panorama2.style.display = '';
