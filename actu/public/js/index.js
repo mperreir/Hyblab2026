@@ -35,26 +35,27 @@ loadFilm().then((filmsNodes) => {
     affiches.appendChild(card);
 
     const front = card.querySelector(".affiche_front");
-  const back = card.querySelector(".affiche_back");
-  const tl = gsap.timeline({ paused: true })
-    .to(front, { duration: 1, rotationY: 180 })
-    .to(back, { duration: 1, rotationY: 0 }, 0)
+    const back = card.querySelector(".affiche_back");
+    const tl = gsap.timeline({ paused: true })
+      .to(front, { duration: 1, rotationY: 180 })
+      .to(back, { duration: 1, rotationY: 0 }, 0)
 
-  card.addEventListener("click", function () {
-    if (tl.progress() === 0) {
-      tl.play();
-    } else {
-      tl.reverse();
-    }
+    card.addEventListener("click", function () {
+      if (tl.progress() === 0) {
+        tl.play();
+      } else {
+        tl.reverse();
+      }
+    });
   });
-  });
+}).finally(()=> {
   nb_card = film_cards.length;
 
-  const rect_poss = Array(nb_card)
+  const rect_poss = Array(nb_card);
   let timelinesRestantes = 0;
   film_cards.forEach((elem, index) => {
     rect_poss[index] = elem.getBoundingClientRect();
-  })
+  });
   setTimeout(function () {
 
     window.scrollTo(0, 0);
@@ -187,15 +188,7 @@ loadFilm().then((filmsNodes) => {
 
 ///////////////////////
 
-// const img = document.getElementById("img");
-// const card = document.getElementById("card");
 
-// img.onload = () => {
-//   const colorThief = new ColorThief();
-//   const color = colorThief.getColor(img);
-
-//   card.style.backgroundColor = `rgb(${color[0]}, ${color[1]}, ${color[2]})`;
-// };
 
 
 

@@ -1,4 +1,13 @@
 function averageColor(img) {
+  // const img = document.getElementById("img");
+// const card = document.getElementById("card");
+
+// img.onload = () => {
+//   const colorThief = new ColorThief();
+//   const color = colorThief.getColor(img);
+
+//   card.style.backgroundColor = `rgb(${color[0]}, ${color[1]}, ${color[2]})`;
+// };
   const canvas = document.createElement("canvas");
   const ctx = canvas.getContext("2d");
 
