@@ -5,6 +5,11 @@ const velo = document.getElementById('velo');
 const metro = document.getElementById('metro');
 const panorama2 = document.getElementById('fond_eau');
 const scrollSpace = document.querySelector('.scroll-space');
+const finScene = document.getElementById('fin-scene');
+const finCiel = document.getElementById('fin-ciel');
+
+const els = document.querySelectorAll('.el');
+const total = els.length;
 
 function lerp(a, b, t) { return a + (b - a) * Math.max(0, Math.min(1, t)); }
 
@@ -15,9 +20,11 @@ function update() {
     const progress = (scrollTop / maxScroll) * 2;
 
     const vw = window.innerWidth;
+    const vh = window.innerHeight;
     const truckW = truck.offsetWidth;
     const panoramaW = panorama.offsetWidth;
     const panorama2W = panorama2.offsetWidth;
+    const panorama2H = panorama2.offsetHeight;
     const veloW = velo.offsetWidth;
     const metroW = metro.offsetWidth;
 
@@ -26,6 +33,7 @@ function update() {
     const halfOutX = vw - truckW * 0.33;
     const maxPan = -panoramaW;
     const maxPan2 = -panorama2W;
+    const maxPanY2 = panorama2H
 
     let truckX, panX, workerOpacity, workerY;
 
@@ -104,8 +112,15 @@ function update() {
     }
     else if (progress < 1.45) {
         const t = (progress - 1.25) / 0.20;
+        truck.style.display = 'none';
+        worker.style.display = 'none';
+        panorama.style.display = 'none';
+        panorama2.style.display = '';
+        panorama2.style.opacity = '1';
         velo.style.display = '';
         metro.style.display = '';
+
+        panorama2.style.transform = `scale(0.5)`;
 
         const veloX = lerp(vw + veloW, -veloW - 20, t);
         velo.style.transform = `translateX(${veloX}px)`;
@@ -114,11 +129,76 @@ function update() {
     }
     else if (progress < 1.75) {
         const t = (progress - 1.45) / 0.30;
+        truck.style.display = 'none';
+        worker.style.display = 'none';
+        panorama.style.display = 'none';
+        panorama2.style.display = '';
+        panorama2.style.opacity = '1';
+        velo.style.display = 'none';
+        metro.style.display = '';
 
         const panX2 = lerp(0, (maxPan2) / 2 + vw, t);
         panorama2.style.transform = `translateX(${panX2}px) scale(0.5)`;
-        const metroX = lerp(metroW + (vw - metroW) / 2, (maxPan2) / 2 + vw, t);
+        const metroX = lerp(metroW + (vw - metroW) / 2, ((maxPan2) / 2 + vw) + metroW + (vw - metroW) / 2, t);
         metro.style.transform = `translateX(${metroX}px)`;
+
+    }
+    else if (progress < 1.80) {
+        truck.style.display = 'none';
+        worker.style.display = 'none';
+        panorama.style.display = 'none';
+        panorama2.style.display = '';
+        panorama2.style.opacity = '1';
+        velo.style.display = 'none';
+        metro.style.display = '';
+
+        panorama2.style.transform = `translateX(${(maxPan2) / 2 + vw}px) scale(0.5)`;
+    }
+    else if (progress < 1.90) {
+        truck.style.display = 'none';
+        worker.style.display = 'none';
+        panorama.style.display = 'none';
+        panorama2.style.display = '';
+        panorama2.style.opacity = '1';
+        velo.style.display = 'none';
+        metro.style.display = '';
+        finScene.style.display = 'none';
+
+        finCiel.style.display = '';
+
+        const t = (progress - 1.80) / 0.10;
+        const panY = lerp(0, (maxPanY2) - vh, t);
+        panorama2.style.transform = `translate(${(maxPan2) / 2 + vw}px, ${panY}px) scale(0.5)`;
+
+    }
+    else {
+        truck.style.display = 'none';
+        worker.style.display = 'none';
+        panorama.style.display = 'none';
+        panorama2.style.display = 'none';
+        metro.style.display = 'none';
+        velo.style.display = 'none';
+
+        finCiel.style.display = '';
+        finScene.style.display = '';
+
+        const DURATION = 0.008;
+        const SPREAD = 0.10 - DURATION;
+        els.forEach(el => {
+            const delay = parseInt(el.dataset.delay);
+            const start = 1.90 + (delay / (total - 1)) * SPREAD;
+            const t = Math.max(0, Math.min(1, (progress - start) / DURATION));
+
+
+            el.style.opacity = t;
+
+            if (el.id === 'fin-ciel' || el.id === 'fin-route') {
+                el.style.transform = '';
+            } else {
+                el.style.transform = `translateY(${(1 - t) * 50}px)`;
+            }
+        });
+
 
     }
 
@@ -130,9 +210,10 @@ function update() {
 
 
 window.addEventListener('scroll', update, { passive: true });
-update();
 truck.style.display = "none";
 panorama2.style.display = '';
 velo.style.display = 'none';
 metro.style.display = 'none';
+finCiel.style.display = 'none';
+update();
 
