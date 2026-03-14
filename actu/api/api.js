@@ -132,6 +132,36 @@ app.get('/film-week', async function ( req, res ) {
     res.json(data);
 } );
 
+app.get('/film-week-unknown', async function ( req, res ) {
+    let token = req.cookies.token;
+    let user = null;
+
+    if(token){
+        user = await GetUserByToken(token);
+    }
+
+    if(!user){
+        res.status(400).json({ error: 'Utilisateur non identifié' });
+    }
+    
+    const lastDate = lastWednesday();
+    const day = String(lastDate.getDate()).padStart(2, "0");
+    const month = String(lastDate.getMonth()+1).padStart(2, "0");
+    const year = String(lastDate.getFullYear()); 
+
+    const lastDateBD = await GetLastDate();
+
+    if(`${year}-${month}-${day}`!=lastDateBD){
+        
+        const ficheObjs = await recuperation_film_site();
+        ficheObjs.forEach((fiche)=>{
+            ajoutFilm(fiche.titre,fiche.affiche,fiche.bande_annonce,fiche.critique,fiche.nb_etoile,"",fiche.realisateur,fiche.date);
+        })
+    }
+    const data = await GetFilmsByDateNewByUser(user?.id,lastDateBD);
+    res.json(data);
+} );
+
 app.get('/film-like', async (req, res) => {
 
     const token = req.cookies.token;
@@ -779,6 +809,17 @@ async function  GetFilmsByDate(date){
         SELECT * FROM Film WHERE date_sortie LIKE ?
     `;
     const result = await db.all(query, [date]);
+
+    return result;
+}
+
+async function  GetFilmsByDateNewByUser(id_user, date){
+    const db = await getDB();
+    
+    const query = `
+        SELECT * FROM Film F WHERE date_sortie LIKE ? and F.id not in (SELECT id_film FROM FilmAime FA where id_utilisateur = ?)
+    `;
+    const result = await db.all(query, [date,id_user]);
 
     return result;
 }
