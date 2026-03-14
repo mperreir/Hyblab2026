@@ -109,8 +109,8 @@ export default function QuestionAccordion({ questions, intervenants, onQuestionO
 
   return (
     <section className="bg-white ">
-      <p className="text-center text-montaigne-burgundy text-lg font-helvetica font-bold font-italic mt-16">LES CHAPITRES DE L'ARTICLE</p> 
-      <div className="w-full pt-4 mb-10 px-1">
+      <p className="text-center text-montaigne-burgundy text-lg font-helvetica font-bold font-italic mt-6">LES CHAPITRES DE L'ARTICLE</p> 
+      <div className="w-full pt-10 px-1">
         {questions.map((q, i) => (
           <QuestionItem
             key={i}
@@ -550,8 +550,8 @@ function DialogueCard({ block, intervenantIndex, isLastDialogue }) {
     <div
       ref={ref}
       data-card
-      className={`flex items-center px-5 text-justify md:px-10 pb-20 max-w-2xl mx-auto w-full transition-all duration-700 print:!opacity-100 print:!translate-y-0 print:!transform-none ${
-           visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+      className={`flex items-center px-5 md:px-10 pb-5 max-w-2xl mx-auto w-full transition-all duration-700 print:!opacity-100 print:!translate-y-0 print:!transform-none ${
+          visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
         }`}
     >
       {/* Content */}

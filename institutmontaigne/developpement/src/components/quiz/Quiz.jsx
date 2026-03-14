@@ -9,14 +9,14 @@ const COLOR_THUMB   = '#9CA3AF';  // Gris neutre pour le curseur
 
 const COMPARISONS = [
   {
-    logo: './icons/LogoInstitut.svg',
+    logo: '/icons/LogoInstitut.svg',
     alt: 'Institut Montaigne',
     value: 30,
     color: '#08275F',
     text: (pct) => `À la majorité, les lecteur·ices de Montaigne sont à ${pct}% contre.`,
   },
   {
-    logo: './img/LogoFrance.png',
+    logo: '/img/LogoFrance.png',
     alt: 'Français',
     value: 75,
     color: '#872339',
@@ -209,8 +209,8 @@ export default function Quiz({ meta = {}, onScoreChange }) {
             </div>
           </div>
 
-          {/* Labels */}
-          <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: -14 }}>
+          {/* Libellés « Plutôt contre / pour » */}
+          <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 8 }}>
             {['Plutôt\ncontre', 'Plutôt\npour'].map((label, i) => (
               <div key={i} style={{ textAlign: i === 0 ? 'left' : 'right' }}>
                 {label.split('\n').map((line, j) => (
@@ -241,13 +241,8 @@ export default function Quiz({ meta = {}, onScoreChange }) {
           {showResults && (
             <div className="mt-6 flex items-center justify-center" style={{ position: 'relative', width: '100%', minHeight: 90 }}>
               <img
-                src="./icons/GreenShape.svg"
-                alt=""
-                style={{
-                  width: '65%', height: 'auto',
-                  transform: 'rotate(-5deg) translateX(6px)',
-                  display: 'block',
-                }}
+                src="/icons/GreenShape.svg" alt=""
+                style={{ width: '65%', height: 'auto', transform: 'rotate(-5deg) translateX(6px)', display: 'block' }}
               />
               <p style={{
                 position: 'absolute', inset: 0,

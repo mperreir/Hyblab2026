@@ -177,7 +177,7 @@ export default function Quote({ quote, isLeft = true, hasImage = true }) {
       {/* Bulle de citation */}
       <blockquote className="rounded-2xl pt-6 pb-5 px-5">
         <p
-          className="text-sm md:text-base italic text-ink/90 text-center"
+          className="text-sm md:text-base font-helvetica leading-relaxed text-ink/90 text-center"
           style={{ color: COLOR }}
           dangerouslySetInnerHTML={{ __html: `" ${quote} "` }}
         />

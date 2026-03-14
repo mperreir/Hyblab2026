@@ -4,7 +4,6 @@ import {
 	Legend,
 	Tooltip,
 } from 'chart.js';
-import { isNumericalString } from 'framer-motion';
 import { Doughnut } from 'react-chartjs-2';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
@@ -19,9 +18,7 @@ function buildSegmentLabel(label, percentage) {
 	if (!label) {
 		return '';
 	}
-	if (isNumericalString(percentage)) {
-		return `${Math.round(percentage)}%`;
-	}
+
 	return `${percentage}`;
 }
 

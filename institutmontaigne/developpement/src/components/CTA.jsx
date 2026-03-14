@@ -3,7 +3,7 @@ import Manuscrit from "./infographie/Manuscrit";
 export default function CTA({
 	className = '',
 	href = '#podcast',
-	texte = <>Retrouvez la version longue <br/>de cet article <b>en podcast</b><br/><Manuscrit surrounded={false} color="#4657C6"> en bas de la page</Manuscrit></>,
+	texte = <>Retrouvez la version longue <br/>de cet article <b>en podcast</b><br/><Manuscrit surrounded={false}> en bas de la page</Manuscrit></>,
 }) {
 	return (
 		<div className={className}>
