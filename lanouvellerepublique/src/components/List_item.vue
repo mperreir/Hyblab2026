@@ -9,7 +9,7 @@
     >
         <div
             class="list-item-image-div"
-            :style="{ backgroundImage: `url('${image}')` }"
+            :style="{ backgroundImage: `url('${displayImage}')` }"
             :title="title"
         >
             <div class="badges-panel">
@@ -62,6 +62,8 @@ const props = defineProps({
     },
 })
 
+const vectorBgUrl = `url('${import.meta.env.BASE_URL}img/Vector.png')`
+
 const badgeAssets = import.meta.glob("../assets/badges/*.svg", {
     eager: true,
     import: "default",
@@ -76,6 +78,7 @@ const badgeFileByKey = {
     family: "familial.svg",
     french: "tourangelle.svg",
     friends: "amical.svg",
+    gluten_free: "sans_gluten.svg",
     halal: "hallal.svg",
     indian: "indian.svg",
     italian: "italien.svg",
@@ -86,6 +89,8 @@ const badgeFileByKey = {
     romantic: "love.svg",
     street_food: "street_food.svg",
     traditional: "tradi.svg",
+    vegan: "vegan.svg",
+    vegetarien: "vege.svg",
     world_cuisine: "monde.svg",
     coeur_tmv: "coeur.svg",
 }
@@ -114,6 +119,11 @@ const displayBadges = computed(() => {
         .map((badge) => ({ key: badge, src: loadSVG(badge) }))
         .filter((badge) => badge.src)
 })
+
+const displayImage = computed(() => {
+    if (!props.image) return ""
+    return encodeURI(String(props.image))
+})
 </script>
 
 <style scoped>
@@ -132,7 +142,7 @@ const displayBadges = computed(() => {
     align-self: stretch;
 
     border-radius: 12px;
-    background-image: url("/img/Vector.png");
+    background-image: v-bind(vectorBgUrl);
     background-color: #fff;
     background-position: 50%;
     background-size: cover;

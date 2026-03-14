@@ -2,17 +2,17 @@
     <div class="mini-box">
         <div
             class="mini-box-image-div"
-            :style="{ backgroundImage: `url('${image}')` }"
-            :title="title"
+            :style="{ backgroundImage: `url('${displayImage}')` }"
+            :title="props.title"
         >
             <div class="badges-panel">
-                <span v-for="badge in badges" :key="badge" class="badge">
+                <span v-for="badge in props.badges" :key="badge" class="badge">
                     {{ badge }}
                 </span>
             </div>
             <div class="mini-box-content">
                 <div class="div-title">
-                    <h3 class="title">{{ title }}</h3>
+                    <h3 class="title">{{ props.title }}</h3>
                 </div>
             </div>
         </div>
@@ -21,7 +21,12 @@
 </template>
 
 <script setup>
-defineProps({
+
+import { computed } from "vue"
+
+const vectorBgUrl = `url('${import.meta.env.BASE_URL}img/Vector.png')`
+
+const props = defineProps({
     title: {
         type: String,
         default: "Item Title",
@@ -38,6 +43,11 @@ defineProps({
         type: String,
         default: "",
     },
+})
+
+const displayImage = computed(() => {
+    if (!props.image) return ""
+    return encodeURI(String(props.image))
 })
 </script>
 
@@ -57,8 +67,8 @@ defineProps({
     align-self: stretch;
 
     border-radius: 12px;
-    background-image: url("/img/Vector.png");
-    background-color: #fff;
+    background-image: v-bind(vectorBgUrl);
+    background-color: #FFF;
     background-position: 50%;
     background-size: cover;
     background-repeat: no-repeat;

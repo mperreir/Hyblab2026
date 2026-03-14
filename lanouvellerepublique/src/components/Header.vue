@@ -105,15 +105,15 @@
 /* ── Header wrapper ── */
 .nrco-header {
     position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
+    inset: 0 0 auto 0;
     display: block;
     width: 100%;
     align-items: center;
     background: #fff;
     border-bottom: 0.1rem solid #c8c8c8;
-    z-index: 1100;
+    z-index: 4000;
+    transform: translateZ(0);
+    backface-visibility: hidden;
     font-family: "Open Sans", sans-serif;
 }
 

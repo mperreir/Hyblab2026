@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from "vue"
 import { COLORS } from "@/assets/colors.js"
+import mapping_categories from "@/constants/categories"
 
 defineProps({ show: Boolean })
 const emit = defineEmits(["close", "apply"])
@@ -13,49 +14,39 @@ const green = "#16A34A"
 /* ── état des filtres ── */
 const coupDeCoeur = ref(false)
 
-const dietaryOptions = ["Vegan", "Végétarien", "Sans gluten", "Halal"]
-const selectedDietary = ref([])
+const title_mapping = {
+    diet: "Préférences alimentaires",
+    cuisine_type: "Type de cuisine",
+    ambiance: "Ambiance",
+    budget: "Budget",
+    service: "Service",
+}
 
-const cuisineOptions = [
-    "Tourangelle",
-    "Asiatique",
-    "Italienne",
-    "Américaine",
-    "Orientale",
-    "Méditerranéenne",
-    "Indienne",
-    "Cuisine du monde",
-    "Traditionnelle",
-    "Street Food",
-]
-const selectedCuisine = ref([])
+const selectedCategories = ref(
+    Object.keys(mapping_categories).reduce((acc, key) => {
+        acc[key] = []
+        return acc
+    }, {}),
+)
 
-const ambianceOptions = ["Entre amis", "Famille", "Romantique", "Professionnel"]
-const selectedAmbiance = ref([])
-
-const budgetOptions = ["1-10€", "10-20€", "20-30€", "+30€"]
-const selectedBudget = ref([])
-
-const serviceOptions = ["Sur place", "À emporter", "Livraison"]
-const selectedService = ref([])
+const availableCategories = Object.keys(mapping_categories).reduce((acc, key) => {
+    acc[key] = Object.values(mapping_categories[key])
+    return acc
+}, {})
 
 const clearAll = () => {
     coupDeCoeur.value = false
-    selectedDietary.value = []
-    selectedCuisine.value = []
-    selectedAmbiance.value = []
-    selectedBudget.value = []
-    selectedService.value = []
+    for (let k in selectedCategories.value) selectedCategories.value[k] = []
 }
 
 const apply = () => {
     emit("apply", {
         coupDeCoeur: coupDeCoeur.value,
-        diet: selectedDietary.value,
-        cuisine_type: selectedCuisine.value,
-        ambiance: selectedAmbiance.value,
-        budget: selectedBudget.value,
-        service: selectedService.value,
+        diet: selectedCategories.value.diet,
+        cuisine_type: selectedCategories.value.cuisine_type,
+        ambiance: selectedCategories.value.ambiance,
+        budget: selectedCategories.value.budget,
+        service: selectedCategories.value.service,
     })
     emit("close")
 }
@@ -89,101 +80,21 @@ const apply = () => {
                     </div>
 
                     <!-- ── Préférences alimentaires ── -->
-                    <div class="filtres-section">
-                        <h3 class="section-title">Préférences alimentaires</h3>
+                    <div
+                        class="filtres-section"
+                        v-for="category, key in availableCategories"
+                        :key="category"
+                    >
+                        <h3 class="section-title">{{ title_mapping[key] }}</h3>
                         <div class="tags-row">
                             <label
-                                v-for="opt in dietaryOptions"
+                                v-for="opt in category"
                                 :key="opt"
                                 class="option-chip option-chip--green"
-                                :class="{ 'is-selected': selectedDietary.includes(opt) }"
+                                :class="{ 'is-selected': selectedCategories[key].includes(opt) }"
                             >
                                 <input
-                                    v-model="selectedDietary"
-                                    type="checkbox"
-                                    :value="opt"
-                                    class="option-chip__input"
-                                />
-                                <span class="tag">{{ opt }}</span>
-                            </label>
-                        </div>
-                    </div>
-
-                    <!-- ── Type de cuisine ── -->
-                    <div class="filtres-section">
-                        <h3 class="section-title">Type de cuisine</h3>
-                        <div class="tags-row">
-                            <label
-                                v-for="opt in cuisineOptions"
-                                :key="opt"
-                                class="option-chip option-chip--blue"
-                                :class="{ 'is-selected': selectedCuisine.includes(opt) }"
-                            >
-                                <input
-                                    v-model="selectedCuisine"
-                                    type="checkbox"
-                                    :value="opt"
-                                    class="option-chip__input"
-                                />
-                                <span class="tag">{{ opt }}</span>
-                            </label>
-                        </div>
-                    </div>
-
-                    <!-- ── Ambiance ── -->
-                    <div class="filtres-section">
-                        <h3 class="section-title">Ambiance</h3>
-                        <div class="tags-row">
-                            <label
-                                v-for="opt in ambianceOptions"
-                                :key="opt"
-                                class="option-chip option-chip--pink"
-                                :class="{ 'is-selected': selectedAmbiance.includes(opt) }"
-                            >
-                                <input
-                                    v-model="selectedAmbiance"
-                                    type="checkbox"
-                                    :value="opt"
-                                    class="option-chip__input"
-                                />
-                                <span class="tag">{{ opt }}</span>
-                            </label>
-                        </div>
-                    </div>
-
-                    <!-- ── Budget ── -->
-                    <div class="filtres-section">
-                        <h3 class="section-title">Budget</h3>
-                        <div class="tags-row">
-                            <label
-                                v-for="opt in budgetOptions"
-                                :key="opt"
-                                class="option-chip option-chip--pink"
-                                :class="{ 'is-selected': selectedBudget.includes(opt) }"
-                            >
-                                <input
-                                    v-model="selectedBudget"
-                                    type="checkbox"
-                                    :value="opt"
-                                    class="option-chip__input"
-                                />
-                                <span class="tag">{{ opt }}</span>
-                            </label>
-                        </div>
-                    </div>
-
-                    <!-- ── Service ── -->
-                    <div class="filtres-section">
-                        <h3 class="section-title">Service</h3>
-                        <div class="tags-row">
-                            <label
-                                v-for="opt in serviceOptions"
-                                :key="opt"
-                                class="option-chip option-chip--pink"
-                                :class="{ 'is-selected': selectedService.includes(opt) }"
-                            >
-                                <input
-                                    v-model="selectedService"
+                                    v-model="selectedCategories[key]"
                                     type="checkbox"
                                     :value="opt"
                                     class="option-chip__input"

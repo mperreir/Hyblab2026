@@ -1,6 +1,7 @@
 import { defineStore } from "pinia"
 import { ref, computed } from "vue"
-import restaurants from "@/restaurants.js"
+import restaurants from "@/constants/restaurants.js"
+import mapping_categories from "@/constants/categories"
 
 export const useFilterStore = defineStore("filterStore", () => {
     // État des filtres
@@ -32,44 +33,6 @@ export const useFilterStore = defineStore("filterStore", () => {
         }
     }
 
-    // Mapping entre labels et noms de champs API
-    const fieldMapping = {
-        // Dietary
-        vegetarien: "Végétarien",
-        gluten_free: "Sans gluten",
-        halal: "Halal",
-
-        // Cuisine
-        tourgangelle: "Tourangelle",
-        asian: "Asiatique",
-        italian: "Italienne",
-        american: "Américaine",
-        middle_eastern: "Orientale",
-        mediterranean: "Méditerranéenne",
-        indian: "Indienne",
-        world_cuisine: "Cuisine du monde",
-        traditional: "Traditionnelle",
-        street_food: "Street Food",
-
-        // Ambiance
-        friends: "Entre amis",
-        family: "Famille",
-        romantic: "Romantique",
-        professional: "Professionnel",
-
-        // Budget
-        budget_1_10: "1-10€",
-        budget_10_20: "10-20€",
-        budget_20_30: "20-30€",
-        budget_30_plus: "+30€",
-
-        // Service
-        on_site: "Sur place",
-        takeaway: "À emporter",
-        delivery: "Livraison",
-    }
-
-    // Restaurants filtrés (computed)
     const filteredRestaurants = computed(() => {
         return restaurants.filter((restaurant) => {
 
@@ -80,7 +43,7 @@ export const useFilterStore = defineStore("filterStore", () => {
             for (let category of Object.keys(restaurant.categories)) {
                 if (filters.value[category].length > 0) {
                     let filterHasValue = restaurant.categories[category].some((element) =>
-                        filters.value[category].includes(fieldMapping[element]),
+                        filters.value[category].includes(mapping_categories[category][element]),
                     )
                     if (!filterHasValue) return false
                 }

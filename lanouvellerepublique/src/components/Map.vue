@@ -37,7 +37,9 @@
                     @click="focusRestaurant(index)"
                 >
                     <RestaurantMiniBox
+                        v-if="!isClicked"
                         @click="openDetail(index)"
+                        :title="r.hook"
                         :name="r.name"
                         :image="r.image"
                         :latitude="r.latitude"
@@ -45,7 +47,10 @@
                         :is-active="selectedIndex === index"
                         @focus-box="focusRestaurant(index)"
                     />
-                    <RestaurantDetail v-if="isClicked && selectedIndex === index" :restaurant="r" />
+                    <RestaurantFullArticle
+                        v-if="isClicked && selectedIndex === index"
+                        :restaurant="r"
+                    />
                 </div>
             </div>
         </div>
@@ -60,7 +65,7 @@ import { control, divIcon } from "leaflet"
 import { LMap, LTileLayer, LMarker } from "@vue-leaflet/vue-leaflet"
 import MapMarker from "./MapMarker.vue"
 import RestaurantMiniBox from "./RestaurantMiniBox.vue"
-import RestaurantDetail from "./RestaurantDetail.vue"
+import RestaurantFullArticle from "./RestaurantFullArticle.vue"
 import { userCoords, requestGeolocation } from "@/stores/mapStore"
 import { useFilterStore } from "@/stores/filterStore"
 

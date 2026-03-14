@@ -1,15 +1,17 @@
 <script setup>
 import { ref, onMounted, computed } from "vue"
-import { RouterLink, RouterView, useRoute } from "vue-router"
+import { RouterLink, RouterView, useRoute, useRouter } from "vue-router"
 import { COLORS } from "@/assets/colors.js"
 import reglageIcon from "@/assets/Icones/Reglage.svg"
 import decouvrirIcon from "@/assets/Icones/Decouvrir.svg"
 import Header from "@/components/Header.vue"
 import Filtres from "./components/Filtres.vue"
 import { useFilterStore } from "@/stores/filterStore"
+import restaurants from "./constants/restaurants"
 
 const filterStore = useFilterStore()
 const route = useRoute()
+const router = useRouter()
 const showFiltres = ref(false)
 
 const isListRoute = computed(() => route.path === "/")
@@ -27,6 +29,21 @@ const bottomBtnColor = COLORS.pinkSwitch
 const bottomBtnFilterColor = COLORS.switchTextBlue
 
 const isCarteActive = computed(() => route.path === "/carte")
+
+const randomSelection = () => {
+    let i = Math.floor(Math.random() * restaurants.length);
+    let restaurant = restaurants[i];
+
+    router.push({
+        path: "/carte",
+        query: {
+            restaurant: String(restaurant.id ?? restaurant.name),
+            detail: "1",
+            pick: String(Date.now()),
+        },
+    })
+}
+
 </script>
 
 <template>
@@ -51,8 +68,8 @@ const isCarteActive = computed(() => route.path === "/carte")
                 <span>Filtrer</span>
                 <img :src="reglageIcon" alt="" class="action-btn__icon" aria-hidden="true" />
             </button>
-            <button type="button" class="action-btn">
-                <span>Fais-moi decouvrir</span>
+            <button type="button" class="action-btn" @click="randomSelection()">
+                <span>Fais-moi découvrir</span>
                 <img :src="decouvrirIcon" alt="" class="action-btn__icon" aria-hidden="true" />
             </button>
         </div>
