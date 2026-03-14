@@ -47,14 +47,15 @@
                         :is-active="selectedIndex === index"
                         @focus-box="focusRestaurant(index)"
                     />
-                    <RestaurantFullArticle
-                        v-if="isClicked && selectedIndex === index"
-                        :restaurant="r"
-                    />
                 </div>
             </div>
         </div>
     </div>
+    <RestaurantOverlay
+        v-if="isClicked"
+        :restaurant="restaurants[selectedIndex]"
+        @close="isClicked = false"
+    />
 </template>
 
 <script setup>
@@ -66,6 +67,7 @@ import { LMap, LTileLayer, LMarker } from "@vue-leaflet/vue-leaflet"
 import MapMarker from "./MapMarker.vue"
 import RestaurantMiniBox from "./RestaurantMiniBox.vue"
 import RestaurantFullArticle from "./RestaurantFullArticle.vue"
+import RestaurantOverlay from "./RestaurantOverlay.vue"
 import { userCoords, requestGeolocation } from "@/stores/mapStore"
 import { useFilterStore } from "@/stores/filterStore"
 

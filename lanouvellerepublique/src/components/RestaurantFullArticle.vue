@@ -10,7 +10,6 @@
                 :restaurant="restaurant"
             />
     </div>
-    <div>{{restaurant}}</div>
 </template>
     
 
