@@ -5,7 +5,7 @@ const ARROW_DOWN_DESIGN_TOP = 750;
 const ARROW_DOWN_DESIGN_LEFT = 1065;
 
 // Scroll réel (px) à partir duquel la flèche "haut" devient visible
-const ARROW_UP_SHOW_AFTER_SCROLL = 300;
+const ARROW_UP_SHOW_AFTER_SCROLL = 800;
 
 // Scroll réel (px) au-delà duquel la flèche "bas" disparaît
 const ARROW_DOWN_HIDE_AFTER_SCROLL = 100;
@@ -21,11 +21,15 @@ const ARROW_DOWN_HIDE_AFTER_SCROLL = 100;
 export function ArrowDown({ scale, scrollY }) {
   const visible = scrollY < ARROW_DOWN_HIDE_AFTER_SCROLL;
 
+  // Position cible = milieu de l'iceberg dans l'espace design, converti en px écran
+  const ICEBERG_MIDDLE_DESIGN = 800;
+
   function handleClick() {
     const lenis = getLenis();
+    const targetPx = ICEBERG_MIDDLE_DESIGN * scale;
     lenis
-      ? lenis.scrollTo('bottom', { duration: 2 })
-      : window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+      ? lenis.scrollTo(targetPx, { duration: 2.0, easing: (t) => t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t })
+      : window.scrollTo({ top: targetPx, behavior: 'smooth' });
   }
 
   const topPx  = ARROW_DOWN_DESIGN_TOP  * scale;
@@ -49,7 +53,7 @@ export function ArrowDown({ scale, scrollY }) {
         viewBox="0 0 45 107"
         fill="none"
         className="cursor-pointer hover:opacity-70 transition-opacity"
-        aria-label="Descendre en bas de la page"
+        aria-label="Descendre un peu dans l'IceBerg"
       >
         <path
           d="M25.0919 3C25.0919 1.34315 23.7487 -1.20467e-07 22.0919 0C20.435 1.20467e-07 19.0919 1.34315 19.0919 3L22.0919 3L25.0919 3ZM19.9705 106.121C21.1421 107.293 23.0416 107.293 24.2132 106.121L43.3051 87.0294C44.4766 85.8579 44.4766 83.9584 43.3051 82.7868C42.1335 81.6152 40.234 81.6152 39.0624 82.7868L22.0919 99.7574L5.1213 82.7868C3.94973 81.6152 2.05023 81.6152 0.87866 82.7868C-0.292913 83.9584 -0.292913 85.8579 0.878661 87.0294L19.9705 106.121ZM22.0919 3L19.0919 3L19.0919 104L22.0919 104L25.0919 104L25.0919 3L22.0919 3Z"
@@ -91,8 +95,8 @@ export function ArrowUp({ scrollY }) {
       <svg
         onClick={handleClick}
         xmlns="http://www.w3.org/2000/svg"
-        width="28"
-        height="67"
+        width="37"
+        height="59"
         viewBox="0 0 37 59"
         fill="none"
         className="cursor-pointer hover:opacity-70 transition-opacity"
