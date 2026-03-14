@@ -15,7 +15,7 @@ body {
 }
 
 .scroll-space {
-    height: 2000vh;
+    height: 4000vh;
 }
 
 :root {
@@ -23,6 +23,7 @@ body {
     --road-h: clamp(24px, 5vh, 80px);
     --truck-h: 50vh;
     --scene-width: 70vh;
+    --bg-h2: 200vh;
 }
 
 .scene {
@@ -40,6 +41,8 @@ body {
         --bg-h: 100vh;
         --road-h: clamp(64px, 12vh, 200px);
         --truck-h: 42vh;
+        --bg-h2: 200vh;
+
     }
 }
 
@@ -71,6 +74,40 @@ body {
     flex-shrink: 0;
 }
 
+.panorama-track2 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 300vh;
+    height: var(--bg-h2);
+    overflow: hidden;
+}
+
+.panorama2 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 370vh;
+    height: var(--bg-h2);
+    display: flex;
+    will-change: transform;
+}
+
+#fond_eau {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: left top;
+    /* cadre sur la rue piétonne = haut gauche */
+    z-index: 10;
+    transform-origin: top left;
+    will-change: transform;
+    opacity: 0;
+    pointer-events: none;
+}
 
 .road-strip {
     position: absolute;
@@ -108,4 +145,28 @@ body {
     opacity: 0;
     will-change: transform, opacity;
     transition: none;
+}
+
+#velo {
+    position: absolute;
+    bottom: 50vh;
+    /* même baseline que le truck */
+    left: 0;
+    height: calc(var(--truck-h)* 0.7);
+    /* plus petit que le camion */
+    width: auto;
+    will-change: transform;
+    z-index: 20;
+}
+
+#metro {
+    position: absolute;
+    bottom: 7vh;
+    /* même baseline que le truck */
+    left: -80vh;
+    height: calc(var(--truck-h)* 0.5);
+    /* plus petit que le camion */
+    width: auto;
+    will-change: transform;
+    z-index: 20;
 }
