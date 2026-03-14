@@ -128,6 +128,18 @@ function createCard(titre,affiche, genre, realisateur, critique,nb_etoile,lien_b
   section.setAttribute("data-film-name",titre);
   section.setAttribute("data-film-real",realisateur);
 
+
+  const init_scale = 0.3
+  const init_width = 335*init_scale
+  const init_height = 613*init_scale
+  const init_style = 
+    `transform: scale(${init_scale});
+    width: ${init_width}px;
+    height:  ${init_height}px;`
+
+    
+  section.setAttribute("style",init_style)
+
   const front = createFrontCard(titre,affiche==null?"img/affiche-cine.png":affiche, genre==null?"Film":genre, realisateur);
   const back = createBackCard(titre, affiche==null?"img/affiche-cine.png":affiche, critique,nb_etoile,lien_bande_annonce, lien_article);
 
