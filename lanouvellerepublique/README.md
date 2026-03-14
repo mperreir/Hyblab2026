@@ -1,14 +1,14 @@
 # Descriptif du projet
 
-Porteur de projet : La nouvelle république 
+Porteur de projet : Aurélien Germain
 
-Sujet :
+Sujet : Chronique les restaus TMV pour La nouvelle république 
 
-Nom d'équipe : 
+Nom d'équipe : La république galactique
 
 Participants : 
 
-- EDNA :
+- EDNA : LEROUX Chloé, BRAUD Victoria, Alice
 - Polytech : DOMENICHINI Nathan, ALLETRU Nolan, PIERRE Pablo, BOUDAUD Antonin
 
 
@@ -18,6 +18,7 @@ Si votre projet nécessite des instructions spécifiques pour son déploiement, 
 
 Il faut build le projet Vue.js : 
 ```bash
+cd lanouvellerepublique
 npm i
 npm run build
 ```
