@@ -22,6 +22,11 @@ const createEmptyContent = async function(){
             slide.classList.add("swiper-slide")
             slide.id = "content-slide"
 
+            let buttNext = document.createElement("div")
+            buttNext.classList.add('swiper-button-next')
+            slide.appendChild(buttNext)
+
+
             // Ajout du contenu
 
             let bulletContent = data.volet[i].bullet[j]
@@ -141,4 +146,6 @@ const createEmptyContent = async function(){
         badge = progressBadgeList[i]
         badge.innerHTML = badge.innerHTML + String(nSlide+3)
     }
+
+
 }

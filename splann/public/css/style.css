@@ -273,6 +273,17 @@ h3 {
     position: top;
 }
 
+#content-slide > .swiper-button-next, #title-slide-2 > .swiper-button-next {
+    background: none;
+    color: #000000 !important;
+    border-radius: 4px;
+    position: sticky;
+    right: 2% !important;
+    position: absolute;
+    width: 3%;
+    height: auto;
+}
+
 .swiper-button-next:after,
 .swiper-button-prev:after {
     font-size: 20px;
@@ -431,7 +442,7 @@ body{
     font-size: calc(15vh * 3 / 4);
 }
 
-#content-slide, #title-slide-2, #instagram-box{
+#content-slide, #title-slide-2, #instagram-box, #last-slide{
     position: relative;
     display: flex; 
     flex-direction: column;
@@ -734,19 +745,10 @@ body{
 
 /* ---- Slide d'ouverture vers d'autres articles -----*/
 
-#last-page {
-    background-color: white !important;
-    color: #1a1a1a;
-    display: flex;
-    flex-direction: column;
-    padding: 15px;
-    box-sizing: border-box;
-    overflow-y: auto;
-}
-
 .last-page-content {
     width: 100%;
-    margin-top: 20px;
+    position: absolute;
+    top: 10%;
 }
 
 .author-credits {
