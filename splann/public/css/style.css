@@ -557,21 +557,24 @@ body{
 
 .toggle-btn {
     color: white;
-    background: red;
+    background: none;
     border: none;
     font-size: 30px;
     cursor: pointer;
     transition: rotate 0.3s ease;
-    border-radius: 50%;
     position: absolute;
-    top: -3%;
-    shape-outside: circle(50%);
-    width: 10%;
-    height: 7%;
+    top: -4%;
+    width: 100%;
+    height: auto;
+    left: 0%;
 }
 
 .bottom-sheet.open .toggle-btn {
   rotate: 180deg;
+}
+
+.bottom-sheet.done .toggle-btn {
+  rotate: 0deg !important;
 }
 
 /* ---- Slide d'ouverture vers d'autres articles -----*/
