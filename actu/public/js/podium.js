@@ -40,9 +40,9 @@ async function loadpodium(){
     ease: "back.out(1.7)"
   });
 
-  const classementCritiqueResponse = await 
+  
 
-  buildBackSide(data);
+  buildBackSide();
   initFlip();
 }
 
@@ -89,34 +89,42 @@ loadpodium();
 //   .catch(error => console.error('failed to read json', error));
 
 function scoreToStars(score, max = 4) {
-  const filled = Math.round((score / 100) * max);
   let html = '';
   for (let i = 0; i < max; i++) {
-    html += `<span class="star${i < filled ? '' : ' empty'}">&#9733;</span>`;
+    html += `<span class="star${i < score ? '' : '.empty'}">&#9733;</span>`;
   }
   return html;
 }
 
-function buildBackSide() {
+async function buildBackSide() {
+  //chargement du classement des critiques 
+  const classementCritiqueResponse = await fetch(API + "/film-week", {
+      method: "GET",
+      credentials: "include"
+  });
+  let classementCritique = await classementCritiqueResponse.json();
+
+  //trier par étoile décroissan
+  classementCritique.sort((a,b)=> b.nb_etoile.length - a.nb_etoile.length); //mal trié
+
   const heroImg = document.getElementById('back-hero-img');
   const backList = document.getElementById('back-list');
 
-  const sorted = [...data].sort((a, b) => a.critic_rank - b.critic_rank);
+  const top = classementCritique[0];
+  heroImg.src = top.affiche;
+  heroImg.alt = top.titre;
 
-  const top = sorted[0];
-  heroImg.src = top.image;
-  heroImg.alt = top.title;
-
-  sorted.forEach((movie, i) => {
+  classementCritique.forEach((movie, i) => {
+    const nb_etoile = movie.nb_etoile.length;
     const item = document.createElement('div');
     item.className = 'back-item';
     item.style.animationDelay = `${i * 55}ms`;
     item.innerHTML = `
-      <img src="${movie.image}" alt="${movie.title}" class="back-item-img">
+      <img src="${movie.affiche}" alt="${movie.titre}" class="back-item-img">
       <div class="back-item-content">
-        <span class="back-item-title">${movie.title}</span>
-        <span class="back-item-critic">${movie.director || ''}</span>
-        <div class="back-item-stars">${scoreToStars(movie.critic_score)}</div>
+        <span class="back-item-title">${movie.titre}</span>
+        <span class="back-item-critic">${movie.realisateur || ''}</span>
+        <div class="back-item-stars">${scoreToStars(nb_etoile)}</div>
       </div>
     `;
     backList.appendChild(item);
