@@ -33,6 +33,8 @@ export default function Timeline({
 	const shouldAnimate = animate && hasEnteredViewport;
 	const effectiveDelay = 1000 + delay;
 
+	const figureBaseStyle = { width: '100%', maxWidth: '341px' };
+
 	return (
 		<figure
 			ref={figureRef}
@@ -41,19 +43,20 @@ export default function Timeline({
 			style={
 				shouldAnimate
 					? {
-							'--timeline-duration': `${duration}ms`,
-							'--timeline-delay': `${effectiveDelay}ms`,
-						}
-					: undefined
+						...figureBaseStyle,
+						'--timeline-duration': `${duration}ms`,
+						'--timeline-delay': `${effectiveDelay}ms`,
+					}
+					: figureBaseStyle
 			}
 		>
 			<svg
-				width="341"
-				height="81"
 				viewBox="0 0 341 81"
+				preserveAspectRatio="xMidYMid meet"
 				fill="none"
 				xmlns="http://www.w3.org/2000/svg"
 				role="img"
+				style={{ width: '100%', height: 'auto', maxWidth: '341px', display: 'block' }}
 			>
 				<rect x="5" y="52" width="336" height="15" rx="7.5" fill="#00483B" />
 				<rect x="320" y="34" width="7" height="44" rx="3.5" fill="#00483B" />
