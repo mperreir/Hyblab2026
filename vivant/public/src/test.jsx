@@ -32,7 +32,7 @@ const milestoneFiles = import.meta.glob('./assets/elements/milestone/*.svg', { e
 const signFiles = import.meta.glob('./assets/elements/sign/*.svg', { eager: true, import: 'default' });
 
 const elements = {
-  tree: { svg : Object.values(treeFiles), style : 'xl:scale-[95%] scale-[40%] origin-bottom'},
+  tree: { svg : Object.values(treeFiles), style : 'xl:scale-[95%] scale-[60%] origin-bottom'},
   milestone:  { svg : Object.values(milestoneFiles), style : 'xl:scale-[60%]'},
   sign: { svg : Object.values(signFiles)}
 };
@@ -511,7 +511,7 @@ const InfinitePath = () => {
                     return (
                       <div
                         key={obj.id}
-                        className="absolute z-40 cursor-pointer flex flex-col items-center gap-1"
+                        className={`absolute z-40 cursor-pointer flex flex-col items-center`}
                         style={{
                           left:            `${safeLeft}%`,
                           top:             `${pos.yPercent}%`,
@@ -522,17 +522,30 @@ const InfinitePath = () => {
                         }}
                       > 
                         
-                        {/* --- L'AFFICHAGE CONDITIONNEL MOBILE / DESKTOP --- */}
-                        { activeArticleId === obj.id ? (
-                            <ArticlePreview articleData={obj.articleData} />
-                          ) : (
-                            <div 
-                              className="w-[15px] h-[15px] rounded-full shadow-lg border-2 border-white" 
-                              style={{ backgroundColor: obj.articleData.category_color }}
-                            />
-                          )
-                        }
 
+                        <AnimatePresence mode="wait">
+                          {activeArticleId === obj.id ? (
+                            <motion.div
+                              key={`article-${obj.id}`}
+                              initial={{ opacity: 0, scale: 0.8, x: isMobile && `calc(${50 - safeLeft}vw)`, y: isMobile && "-10vh"}}
+                              animate={{ opacity: 1,  scale: 1, x: isMobile && `calc(${50 - safeLeft}vw)`, y: isMobile && "-10vh"}}
+                              exit={{ opacity: 0, scale: 0.8, x: isMobile && `calc(${50 - safeLeft}vw)`,  y: isMobile && "-10vh"}}
+                              transition={{ duration: 0.5, ease: "out" }}
+                            >
+                              <ArticlePreview articleData={obj.articleData} />
+                            </motion.div>
+                          ) : (
+                            <motion.div
+                              key={`dot-${obj.id}`}
+                              initial={{ opacity: 0, scale: 1, x: isMobile ? `calc(${50 - safeLeft}vw)` : 0, y: isMobile ? "-15vh" : -50 }}
+                              animate={{ opacity: 1, scale: 0.25, y: 20, x: 0 }}
+                              exit={{ opacity: 0, scale: 1, x: isMobile ? `calc(${50 - safeLeft}vw)` : 0, y: isMobile ? "-15vh" : -50}}
+                              className="xl:w-16 xl:h-16 w-10 h-10 rounded-full"
+                              style={{ backgroundColor: obj.articleData.category_color }}
+                              transition={{ duration: 0.5 }}
+                            />
+                          )}
+                        </AnimatePresence>
                         <img 
                           src={obj.svg} 
                           alt="element" 

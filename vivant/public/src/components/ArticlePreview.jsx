@@ -5,14 +5,16 @@ const ArticlePreview = ({ articleData }) => {
   const metadesc = articleData.fullArticle?._yoast_wpseo_metadesc || "";
 
   return (
-    <div className="bg-[#f2f2f2] rounded-[36px] p-5 xl:w-80 w-40 s:h-40 text-left text-black shadow-xl flex flex-col group pointer-events-auto">
+    <div className="bg-white/80 border-5 rounded-[36px] p-5 xl:w-120 w-[70vw] s:h-40 text-left shadow-xl flex flex-col"
+      style={{borderColor : articleData.category_color}}
+    >
       {/* Contenu textuel */}
       <div className="xl:mb-4 mb-1">
         <h3 className="font-extrabold xl:text-lg text-[7px] leading-snug mb-2">
           {articleData.nom}
         </h3>
         {metadesc && (
-          <p className="xl:text-lg text-[7px] italic font-medium leading-snug text-gray-800 line-clamp-4">
+          <p className="xl:text-lg text-[7px] italic font-medium leading-snug line-clamp-4">
             {metadesc}
           </p>
         )}
@@ -36,7 +38,8 @@ const ArticlePreview = ({ articleData }) => {
             e.stopPropagation();
             window.open(articleData.fullArticle.Permalink, '_blank');
           }}
-          className="flex-1 bg-[#FF3B83] hover:bg-[#E02967] text-white xl:py-[14px] py-[4px] px-4 rounded-full font-bold xl:text-lg text-[7px] transition-colors shadow-sm text-center tracking-normal"
+          className="flex-1 hover:brightness-75 text-white xl:py-[14px] py-[4px] px-4 rounded-full font-bold xl:text-lg text-[7px] transition-colors shadow-sm text-center tracking-normal"
+          style={{backgroundColor : articleData.category_color}}
         >
           Lire la suite de l'article
         </button>
