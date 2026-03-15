@@ -11,12 +11,12 @@
             />
     </div>
 </template>
-    
+
 
 <script setup lang="ts">
 import CartePostale from './CartePostale.vue';
 import RestaurantDetail from './RestaurantDetail.vue';
-const p = defineProps({
+defineProps({
     restaurant: {
         type: Object,
         default: () => ({}),

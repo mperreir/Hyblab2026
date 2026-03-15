@@ -62,7 +62,7 @@
 import "leaflet/dist/leaflet.css"
 import { ref, watch, computed, onMounted } from "vue"
 import { useRoute } from "vue-router"
-import { control, divIcon } from "leaflet"
+import { divIcon } from "leaflet"
 import { LMap, LTileLayer, LMarker } from "@vue-leaflet/vue-leaflet"
 import MapMarker from "./MapMarker.vue"
 import RestaurantMiniBox from "./RestaurantMiniBox.vue"
@@ -100,7 +100,6 @@ const openDetail = (index) => {
     isClicked.value = !isClicked.value
     focusRestaurant(index)
 }
-let zoomControlInstance = null
 let scrollEndTimer = null
 
 const stopWatch = watch(userCoords, (newCoords) => {
@@ -198,9 +197,6 @@ const onCarouselScroll = () => {
 
 const onMapReady = (map) => {
     if (map?.zoomControl) map.removeControl(map.zoomControl)
-    if (zoomControlInstance) zoomControlInstance.remove()
-    zoomControlInstance = control.zoom({ position: "topright" })
-    zoomControlInstance.addTo(map)
 }
 
 watch(restaurants, (list) => {
