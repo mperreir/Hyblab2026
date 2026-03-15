@@ -31,12 +31,6 @@ const treeFiles = import.meta.glob('./assets/elements/tree/*.svg', { eager: true
 const milestoneFiles = import.meta.glob('./assets/elements/milestone/*.svg', { eager: true, import: 'default' });
 const signFiles = import.meta.glob('./assets/elements/sign/*.svg', { eager: true, import: 'default' });
 
-const elements = {
-  tree: { svg : Object.values(treeFiles), style : 'xl:scale-[95%] scale-[60%] origin-bottom'},
-  milestone:  { svg : Object.values(milestoneFiles), style : 'xl:scale-[60%]'},
-  sign: { svg : Object.values(signFiles)}
-};
-
 const ESPACEMENT = 0.33; 
 const OFFSET_DEPART = 0.20; // Décale le premier article pour ne pas qu'il soit au tout début
 export const NB_ARTICLES = 10;
@@ -59,6 +53,18 @@ const posCyclist = {
   left,
 };
 
+const elements = {
+  tree: { svg : Object.values(treeFiles), style : 'xl:scale-[95%] scale-[60%] origin-bottom'},
+  milestone:  { svg : Object.values(milestoneFiles), style : 'xl:h-[9vh] h-[4vh] origin-bottom'},
+  sign: { svg : Object.values(signFiles), dotPos: [
+    { x: 91, y: 15}, //sign1
+    { x: 91, y: 15}, //sign2
+    { x: 73, y: 20}, //sign3
+    { x: 83, y: 17}, //sign4
+    { x: 88, y: 38}, //sign5
+  ]}
+};
+
 const pathOptions = Object.values(dicoPaths);
 const pathList = Array.from({ length: NB_PATH }, () => 
   pathOptions[Math.floor(Math.random() * pathOptions.length)]
@@ -77,6 +83,22 @@ const CategoryList = {
 const InfinitePath = () => {
   const location = useLocation();
   const initialState = location.state || {};
+
+  const containerRef = useRef(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  const SPEED_DESKTOP = 5000;
+  const SPEED_MOBILE  = 2500;
+ 
+  const dynamicHeight = useMemo(() => {
+    const speed = isMobile ? SPEED_MOBILE : SPEED_DESKTOP;
+    const multiplier = Math.max(1, pathList.length / 2);
+    return `${multiplier * speed}vh`;
+  }, [isMobile]);
+
+
+
+
 
   // ── État provenant du Router ──
   const [lat, setLat] = useState(initialState.lat ?? null);
@@ -124,6 +146,7 @@ const InfinitePath = () => {
       const globalPos = OFFSET_DEPART + (index * ESPACEMENT);
       const pathIndex = Math.floor(globalPos) % pathList.length;
       const progress = globalPos % 1;
+      const signIdx = Math.floor(Math.random() * signLength)
       return { 
         id: article.ID, 
         pathIndex, 
@@ -137,13 +160,12 @@ const InfinitePath = () => {
           fullArticle: article,
           category_color: CategoryList[article.categorie_tag]
         },
-        svg: elements.sign.svg[Math.floor(Math.random() * signLength)],
+        svg: elements.sign.svg[signIdx],
+        dotPos: elements.sign.dotPos[signIdx]
       };
     });
   }, [allArticles, selectedCats, lat, long]);
 
-  const containerRef = useRef(null);
-  const [isMobile, setIsMobile] = useState(false);
   const pathRefs = useRef([]);
   const [pathsData, setPathsData] = useState([]);
   const [pathsPointsData, setPathsPointsData] = useState([]);
@@ -166,14 +188,6 @@ const InfinitePath = () => {
   // --- INDICATION DE SCROLL ---
   const [showScrollHint, setShowScrollHint] = useState(true);
  
-  const SPEED_DESKTOP = 5000;
-  const SPEED_MOBILE  = 2500;
- 
-  const dynamicHeight = useMemo(() => {
-    const speed = isMobile ? SPEED_MOBILE : SPEED_DESKTOP;
-    const multiplier = Math.max(1, pathList.length / 2);
-    return `${multiplier * speed}vh`;
-  }, [isMobile]);
  
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768);
@@ -527,29 +541,33 @@ const InfinitePath = () => {
                           {activeArticleId === obj.id ? (
                             <motion.div
                               key={`article-${obj.id}`}
-                              initial={{ opacity: 0, scale: 0.5, x: isMobile ? `calc(${50 - safeLeft}vw)` : 0, y: isMobile ? "-10vh" : 0}}
+                              initial={{ opacity: 0.3, scale: 0.5, x: isMobile ? `calc(${50 - safeLeft}vw)` : 0, y: isMobile ? "-10vh" : 0}}
                               animate={{ opacity: 1,  scale: 1, x: isMobile ? `calc(${50 - safeLeft}vw)` : 0, y: isMobile ? "-10vh" : 0}}
-                              exit={{ opacity: 0, scale: 0.5, x: isMobile ? `calc(${50 - safeLeft}vw)` : 0,  y: isMobile ? "-10vh" : 0}}
-                              transition={{ duration: 0.5, ease: "in-out" }}
+                              exit={{ opacity: 0.3, scale: 0.5, x: isMobile ? `calc(${50 - safeLeft}vw)` : 0,  y: isMobile ? "-10vh" : 0}}
+                              transition={{ duration: 0.5, ease: "out" }}
                             >
                               <ArticlePreview articleData={obj.articleData} />
                             </motion.div>
                           ) : (
                             <motion.div
                               key={`dot-${obj.id}`}
-                              initial={{ opacity: 0, scale: 1, x: isMobile ? `calc(${50 - safeLeft}vw)` : 0, y: isMobile ? "-15vh" : -50 }}
-                              animate={{ opacity: 1, scale: 0.25, y: 20, x: 0 }}
-                              exit={{ opacity: 0, scale: 1, x: isMobile ? `calc(${50 - safeLeft}vw)` : 0, y: isMobile ? "-15vh" : -50}}
-                              className="xl:w-16 xl:h-16 w-10 h-10 rounded-full"
-                              style={{ backgroundColor: obj.articleData.category_color }}
-                              transition={{ duration: 0.5 }}
+                              initial={{ opacity: 0.3, scale: 1, x: isMobile ? `calc(${50 - safeLeft}vw)` : -50 , y: isMobile ? "-20vh" : -100 }}
+                              animate={{ opacity: 1, scale: 0.25, x: "-50%", y: "-50%" }} 
+                              exit={{ opacity: 0.3, scale: 1, x: isMobile ? `calc(${50 - safeLeft}vw)` : -50, y: isMobile ? "-20vh" : -100}}
+                              className="xl:w-16 xl:h-16 w-10 h-10 rounded-full z-99 border-7 border-white absolute" 
+                              style={{ 
+                                backgroundColor: obj.articleData.category_color,
+                                left: `${obj.dotPos.x}%`,
+                                top: `${obj.dotPos.y}%`,
+                              }}  
+                              transition={{ duration: isMobile ? 1 : 0.33 }}
                             />
                           )}
                         </AnimatePresence>
                         <img 
                           src={obj.svg} 
                           alt="element" 
-                          className="xl:h-[8vh] xl:w-[8vw] h-[7vh] w-[7vw] object-contain drop-shadow-sm" 
+                          className=" xl:w-[4vw] h-auto w-[7vw] object-contain drop-shadow-sm" 
                         />
                       </div>
                     );
