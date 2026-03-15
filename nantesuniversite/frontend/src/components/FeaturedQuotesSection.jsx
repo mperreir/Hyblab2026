@@ -233,7 +233,7 @@ function ColinCard() {
         style={{ right: 181, top: 403, width: 948, fontFamily: 'Inter, sans-serif' }}
       >
         <p className="m-0 font-bold text-[32px] leading-normal">Colin de la Higuera</p>
-        <p className="m-0 text-[24px] underline leading-normal">Professeur à Nantes Université</p>
+        <p className="m-0 text-[24px] underline leading-normal">Professeur à Nantes Université.</p>
         <p className="m-0 text-[24px] underline leading-normal">Titulaire de la Chaire UNESCO RELIA</p>
       </div>
     </HoverCard>
