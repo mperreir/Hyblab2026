@@ -121,13 +121,30 @@ document.addEventListener('DOMContentLoaded', function() {
               console.warn("Vidéo bloquée :", erreur);
           });
       }
-
-      // 6. --- Animation argent ---
+// 6. --- Animation argent ---
       if (response.element.classList.contains("step-argent-trigger")) {
         document.getElementById("animation-argent").classList.add("visible");
       }
 
-    });
+      // 7. --- LOGIQUE POUR L'ANIMATION FRAUDES / INDUS ---
+      const fraudeInduAnim = document.getElementById('fraude-indu-animation');
+      
+      if (fraudeInduAnim) {
+          if (response.element.classList.contains('step-fraudes')) {
+              fraudeInduAnim.className = 'fraude-indu-container state-fraudes';
+          } 
+          else if (response.element.classList.contains('step-ligne')) {
+              fraudeInduAnim.className = 'fraude-indu-container state-ligne';
+          } 
+          else if (response.element.classList.contains('step-indus')) {
+              fraudeInduAnim.className = 'fraude-indu-container state-indus';
+          } 
+          else {
+              fraudeInduAnim.className = 'fraude-indu-container';
+          }
+      }
+
+    }); // <-- FIN DE LA FONCTION onStepEnter (le code doit bien être AVANT)
 
   window.addEventListener("resize", scroller.resize);
 

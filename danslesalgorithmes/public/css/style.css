@@ -927,3 +927,45 @@ article {
     opacity: 1; 
     transform: translate(-50%, 0) scale(1.3); /* Bulle 3 prend la place centrale */
 }
+
+/* ================= ANIMATION FRAUDES / INDUS ================= */
+.fraude-indu-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    max-width: 31rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1; /* Derrière le hacker s'il est encore là, mais l'opacité gèrera le reste */
+    pointer-events: none;
+}
+
+.fraude-indu-container img {
+    position: absolute;
+    width: 100%; /* Ajustez le % si l'image est trop grande/petite par rapport au texte */
+    height: auto;
+    opacity: 0;
+    transition: opacity 0.4s ease-in-out;
+    mix-blend-mode: multiply; /* Permet de bien incruster les images dans le fond crème */
+}
+
+/* ÉTATS DÉCLENCHÉS PAR LE JS */
+
+/* État 1 : Seul le mot FRAUDES apparait */
+#fraude-indu-animation.state-fraudes .img-fraudes {
+    opacity: 1;
+}
+
+/* État 2 : La Ligne apparait sur le mot FRAUDES */
+#fraude-indu-animation.state-ligne .img-fraudes,
+#fraude-indu-animation.state-ligne .img-ligne {
+    opacity: 1;
+}
+
+/* État 3 : On efface Fraudes+Ligne, on affiche INDUS */
+#fraude-indu-animation.state-indus .img-indus {
+    opacity: 1;
+}
