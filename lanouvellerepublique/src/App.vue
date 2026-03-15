@@ -176,8 +176,7 @@ const randomSelection = () => {
     right: 0;
     bottom: 0;
     z-index: 1002;
-    display: grid;
-    grid-template-columns: 125px 235px;
+    display: flex;
     justify-content: center;
     gap: 0.6rem;
     padding: 0.75rem 1.4rem calc(1rem + env(safe-area-inset-bottom));
@@ -198,7 +197,7 @@ const randomSelection = () => {
     gap: 0.45rem;
     border: none;
     border-radius: 999px;
-    padding: 0.72rem 0.72rem;
+    padding: 1rem 1rem;
     background: v-bind(bottomBtnBg);
     color: v-bind(bottomBtnColor);
     font-weight: 700;
