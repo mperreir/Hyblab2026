@@ -140,6 +140,7 @@ const rotateBadge = (index) => {
     flex-direction: column;
     align-items: center;
     padding: 20px;
+    width: 100%;
 }
 .list-item {
     position: relative;
