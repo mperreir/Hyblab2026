@@ -24,17 +24,16 @@
         </section>
 
         <section
-            v-if="resolvedDetailPhoto"
+            v-if="sectionImages[0]"
             class="detail-photo-block"
-            aria-label="Photo du restaurant"
         >
-            <img
-                :src="resolvedDetailPhoto"
-                :alt="photoAlt"
-                class="detail-photo"
-                @error="onDetailPhotoError"
-            />
-            <p v-if="detailPhotoCaption" class="detail-photo__caption">{{ detailPhotoCaption }}</p>
+            <div class="detail-photo-block__div">
+                <img
+                    :src="sectionImages[0].src"
+                    class="detail-photo__img"
+                />
+            </div>
+            <p class="detail-photo__caption">{{ sectionImages[0].description }}, {{ sectionImages[0].auteur }}</p>
         </section>
 
         <section class="detail-section--degustation">
@@ -42,6 +41,19 @@
                 <p class="detail-section--degustation__title">La dégustation</p>
             </div>
             <p class="detail-section--degustation__text">{{ degustationText }}</p>
+        </section>
+
+        <section
+            v-if="sectionImages[1]"
+            class="detail-photo-block"
+        >
+            <div class="detail-photo-block__div">
+                <img
+                    :src="sectionImages[1].src"
+                    class="detail-photo__img"
+                />
+            </div>
+            <p class="detail-photo__caption">{{ sectionImages[1].description }}, {{ sectionImages[1].auteur }}</p>
         </section>
 
         <section class="detail-section--addition">
@@ -115,7 +127,9 @@
 </template>
 
 <script setup>
-import { computed, ref, watch } from "vue"
+import { computed} from "vue"
+
+const vectorBgUrl = `url('${import.meta.env.BASE_URL}img/Vector.png')`
 
 const props = defineProps({
     isActive: {
@@ -144,80 +158,15 @@ const additionText = computed(
     () => props.restaurant?.carte || "Information sur les prix indisponible.",
 )
 
-const normalizePath = (value) =>
-    String(value || "")
-        .trim()
-        .replace(/https?:\/\/[^/]+/i, "")
-
-const detailPhotoData = computed(() => {
-    const articleImages = (props.restaurant?.article?.images || []).map((img) => ({
+const sectionImages = (props.restaurant?.article?.sections || []).flatMap((section) =>
+    (section?.images || []).map((img) => ({
         src: img?.content,
         description: img?.description,
-    }))
-
-    const sectionImages = (props.restaurant?.article?.sections || []).flatMap((section) =>
-        (section?.images || []).map((img) => ({
-            src: img?.content,
-            description: img?.description,
-        })),
-    )
-
-    const all = [...sectionImages, ...articleImages].filter((img) => img?.src)
-    if (!all.length) {
-        return null
-    }
-
-    const topImage = normalizePath(props.restaurant?.image)
-    const differentFromTop = all.find((img) => normalizePath(img.src) !== topImage)
-
-    // If there is no distinct image from the top card, we hide this block entirely.
-    return differentFromTop || null
-})
-
-const detailPhoto = computed(() => detailPhotoData.value?.src || "")
-const detailPhotoCaption = computed(() => detailPhotoData.value?.description || "")
-const photoAlt = computed(
-    () => detailPhotoCaption.value || `Photo de ${props.restaurant?.name || "ce restaurant"}`,
+        auteur: img?.auteur,
+    })),
 )
 
-const buildPhotoCandidates = (src) => {
-    if (!src) return []
-
-    const raw = String(src).trim()
-    const candidates = [raw]
-
-    if (raw.startsWith("/lanouvellerepublique/")) {
-        candidates.push(raw.replace(/^\/lanouvellerepublique/, ""))
-    } else if (raw.startsWith("/img/")) {
-        candidates.push(`/lanouvellerepublique${raw}`)
-    }
-
-    return [...new Set(candidates.map((item) => encodeURI(item)))]
-}
-
-const detailPhotoCandidates = computed(() => buildPhotoCandidates(detailPhoto.value))
-const detailPhotoCandidateIndex = ref(0)
-
-watch(
-    () => detailPhotoCandidates.value,
-    () => {
-        detailPhotoCandidateIndex.value = 0
-    },
-)
-
-const resolvedDetailPhoto = computed(
-    () => detailPhotoCandidates.value[detailPhotoCandidateIndex.value] || "",
-)
-
-const onDetailPhotoError = () => {
-    if (detailPhotoCandidateIndex.value < detailPhotoCandidates.value.length - 1) {
-        detailPhotoCandidateIndex.value += 1
-        return
-    }
-
-    // No valid URL left: hide the photo block completely.
-    detailPhotoCandidateIndex.value = detailPhotoCandidates.value.length
-}
+console.log(sectionImages)
 
 const getSocialHandle = (url) => {
     if (!url) return ""
@@ -431,5 +380,36 @@ const getSocialHandle = (url) => {
     width: 18px;
     height: 18px;
     flex-shrink: 0;
+}
+
+.detail-photo-block{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.detail-photo-block__div{
+    border-radius: 12px;
+    background-image: v-bind(vectorBgUrl);
+    background-color: #fff;
+    background-position: 50%;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    transform: rotate(-3deg);
+}
+.detail-photo__img{
+    padding: 10px;
+    border-radius: 24px;
+}
+.detail-photo__caption{
+    align-self: stretch;
+
+    color: #CC9642;
+    font-family: Abordage;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 16px;
+
+    padding-top: 20px;
 }
 </style>
