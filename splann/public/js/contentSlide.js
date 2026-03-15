@@ -24,6 +24,7 @@ const createEmptyContent = async function(){
 
             let buttNext = document.createElement("div")
             buttNext.classList.add('swiper-button-next')
+            buttNext.classList.add('arrow')
             slide.appendChild(buttNext)
 
 

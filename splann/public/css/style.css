@@ -282,6 +282,7 @@ h3 {
     position: absolute;
     width: 3%;
     height: auto;
+    animation: slideRight 1.4s ease-in-out infinite;
 }
 
 .swiper-button-next:after,
@@ -537,27 +538,35 @@ body{
   text-transform: uppercase;
   opacity: 0.6;
 }
-
-#instagram-content > p > b{
+#titleHighlight, #instagram-content > p > b {
   font-weight: 700;
   color: #111;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' preserveAspectRatio='none' viewBox='0 0 100 100'%3E%3Crect x='0' y='60' width='100' height='50' rx='3' fill='%23e8474a' opacity='0.55'/%3E%3Crect x='2' y='55' width='96' height='15' rx='4' fill='%23e8474a' opacity='0.4'/%3E%3C/svg%3E");
+  
+  /* Le dégradé remplace le SVG : rouge en bas, transparent en haut */
+  background-image: linear-gradient(
+    to bottom,
+    transparent 45%,
+    rgba(232, 71, 74, 0.45) 45%,
+    rgba(232, 71, 74, 0.55) 100%
+  );
   background-repeat: no-repeat;
-  background-size: 100% 100%;
+  
+  /* Démarre à 0% de large, pleine hauteur */
+  background-size: 0% 100%;
+  
   padding: 0 3px 2px 2px;
   -webkit-box-decoration-break: clone;
   box-decoration-break: clone;
+  
+  animation: fillHighlight 0.6s ease forwards;
 }
 
-#titleHighlight{
-    color: #111;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' preserveAspectRatio='none' viewBox='0 0 100 100'%3E%3Crect x='0' y='60' width='100' height='50' rx='3' fill='%23e8474a' opacity='0.55'/%3E%3Crect x='2' y='55' width='96' height='15' rx='4' fill='%23e8474a' opacity='0.4'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
+@keyframes fillHighlight {
+  to {
     background-size: 100% 100%;
-    padding: 0 3px 2px 2px;
-    -webkit-box-decoration-break: clone;
-    box-decoration-break: clone;
+  }
 }
+
 
 /* ── TITLE BAR ── */
 .title-bar {
@@ -640,7 +649,7 @@ body{
   display: flex;
   flex-direction: column;
   z-index: 101;
-  
+
   /* Caché : on ne montre que la barre du haut (60px) */
   transform: translateY(calc(100% - 60px));
   transition: transform 0.4s ease;
@@ -717,9 +726,9 @@ body{
 .toggle-btn {
     color: white;
     background: none;
-    border: none;
+  border: none;
     font-size: 30px;
-    cursor: pointer;
+  cursor: pointer;
     transition: rotate 0.3s ease;
     position: absolute;
     top: -4%;
@@ -747,8 +756,9 @@ body{
 
 .last-page-content {
     width: 100%;
-    position: absolute;
-    top: 10%;
+    flex: 1;
+    padding-top: 3%;
+    min-height: 0;
 }
 
 .author-credits {
@@ -766,17 +776,6 @@ body{
     font-weight: bold;
 }
 
-#last-page b::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: 3px;
-    width: 100%;
-    height: 8px;
-    background-color: #FD707D; 
-    z-index: -1;
-    opacity: 0.8;
-}
 
 .section-title {
     font-size: 1.3rem;

@@ -37,6 +37,21 @@
     }
   });
 
+  swiper.on('slideChange', function () {
+  document.querySelectorAll('#instagram-content > p > b').forEach(el => {
+    el.style.animation = 'none';
+    void el.offsetWidth; // force reflow
+    el.style.animation = '';
+  });
+  
+  document.querySelectorAll('#titleHighlight').forEach(el => {
+    el.style.animation = 'none';
+    void el.offsetWidth; // force reflow
+    el.style.animation = '';
+  });
+});
+
+
   // Wait for the content to preload and display 1st slide
   // Here we simulate a loading time of one second
   setTimeout(() => { 
