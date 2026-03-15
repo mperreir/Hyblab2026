@@ -1,12 +1,14 @@
 <script setup>
 import { computed } from "vue"
-import { useRouter } from "vue-router"
+import { useRoute, useRouter } from "vue-router"
 import ListItem from "@/components/List_item.vue"
 import IntroListe from "@/components/intro_liste.vue"
+import RestaurantOverlay from "@/components/RestaurantOverlay.vue"
 import { COLORS } from "@/assets/colors.js"
 import { useFilterStore } from "@/stores/filterStore"
 
 const filterStore = useFilterStore()
+const route = useRoute()
 const router = useRouter()
 const listBg = COLORS.cream
 
@@ -27,18 +29,52 @@ const sortedRestaurants = computed(() =>
     [...filterStore.filteredRestaurants].sort((a, b) => toTimestamp(b.date) - toTimestamp(a.date)),
 )
 
+const getRestaurantKey = (restaurant) => String(restaurant?.id ?? restaurant?.name ?? "")
+
+const selectedRestaurant = computed(() => {
+    const restaurantKey = route.query.restaurant
+
+    if (route.query.detail !== "1" || !restaurantKey) {
+        return null
+    }
+
+    const target = String(restaurantKey)
+
+    return (
+        sortedRestaurants.value.find(
+            (restaurant) =>
+                getRestaurantKey(restaurant) === target ||
+                String(restaurant?.name ?? "").toLowerCase() === target.toLowerCase(),
+        ) ?? null
+    )
+})
+
 const openRestaurantDetail = async (restaurant) => {
     if (!restaurant) return
 
-    const restaurantKey = restaurant.id ?? restaurant.name
+    const restaurantKey = getRestaurantKey(restaurant)
 
     await router.push({
-        path: "/carte",
+        path: route.path,
         query: {
+            ...route.query,
             restaurant: String(restaurantKey),
             detail: "1",
             pick: String(Date.now()),
         },
+    })
+}
+
+const closeRestaurantDetail = async () => {
+    const nextQuery = { ...route.query }
+
+    delete nextQuery.restaurant
+    delete nextQuery.detail
+    delete nextQuery.pick
+
+    await router.replace({
+        path: route.path,
+        query: nextQuery,
     })
 }
 </script>
@@ -58,17 +94,22 @@ const openRestaurantDetail = async (restaurant) => {
         >
         </ListItem>
     </main>
+    <RestaurantOverlay
+        v-if="selectedRestaurant"
+        :restaurant="selectedRestaurant"
+        @close="closeRestaurantDetail"
+    />
 </template>
 
 <style scoped>
 .list-view {
-  min-height: 100vh;
-  padding: 8.6rem 1.25rem 80px;
-  background: v-bind(listBg);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
+    min-height: 100vh;
+    padding: 8.6rem 1.25rem 80px;
+    background: v-bind(listBg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
 }
 
 .list-view > :deep(.list-item) {
