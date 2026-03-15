@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
       steps.forEach(step => step.classList.remove('is-active'));
       response.element.classList.add('is-active');
 
-      // 3. --- LOGIQUE INTELLIGENTE POUR HACKER ET VIDÉO (SCÈNE 3) ---
+      // 2. --- LOGIQUE INTELLIGENTE POUR HACKER ET VIDÉO (SCÈNE 3) ---
       const hackerScene = document.querySelector('#hacker-animation')?.closest('.scene');
       
       if (hackerScene && response.element.closest('.scene') === hackerScene) {
@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', function() {
           }
       }
 
-      // 3.5 --- LOGIQUE POUR L'ANIMATION CIBLE ET FLÉCHETTE ---
+      // 3 --- LOGIQUE POUR L'ANIMATION CIBLE ET FLÉCHETTE ---
       const targetScene = document.querySelector('#target-animation')?.closest('.scene');
       
       if (targetScene && response.element.closest('.scene') === targetScene) {

@@ -66,7 +66,7 @@ img, video, canvas {
 }
 
 .main-title {
-    font-size: clamp(2rem, 7vw, 3rem);
+    font-size: clamp(1rem, 7vw, 3rem);
     font-weight: 800;
     line-height: 1.1;
     color: #000;
@@ -668,11 +668,10 @@ article {
     transform: translate(-50%, 200%); 
     opacity: 0; 
     transition: transform 0.8s ease-out, opacity 0.5s ease-in; 
-    mix-blend-mode: normal; /* FORCE LE MASQUE À ÊTRE TOTALEMENT OPAQUE */
+    /*mix-blend-mode: normal;  FORCE LE MASQUE À ÊTRE TOTALEMENT OPAQUE */
 }
 
 #hacker-animation.is-hacked .img-anonymous {
-    /* J'ai remis -50% au lieu de -100% pour que le masque s'arrête parfaitement au centre du visage */
     transform: translate(-45%, -100%); 
     opacity: 1; 
 }
