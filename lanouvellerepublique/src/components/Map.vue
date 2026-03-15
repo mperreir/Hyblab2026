@@ -54,14 +54,14 @@
     <RestaurantOverlay
         v-if="isClicked"
         :restaurant="restaurants[selectedIndex]"
-        @close="isClicked = false"
+        @close="closeDetail"
     />
 </template>
 
 <script setup>
 import "leaflet/dist/leaflet.css"
 import { ref, watch, computed, onMounted } from "vue"
-import { useRoute } from "vue-router"
+import { useRoute, useRouter } from "vue-router"
 import { divIcon } from "leaflet"
 import { LMap, LTileLayer, LMarker } from "@vue-leaflet/vue-leaflet"
 import MapMarker from "./MapMarker.vue"
@@ -72,6 +72,7 @@ import { useFilterStore } from "@/stores/filterStore"
 
 const filterStore = useFilterStore()
 const route = useRoute()
+const router = useRouter()
 const restaurants = computed(() => filterStore.filteredRestaurants)
 
 const API_KEY = "b4BxT11KjV5Zzm2lo2V1"
@@ -96,10 +97,38 @@ const carouselRef = ref(null)
 const zoom = ref(13)
 const isClicked = ref(false)
 
-const openDetail = (index) => {
-    isClicked.value = !isClicked.value
+const getRestaurantKey = (restaurant) => String(restaurant?.id ?? restaurant?.name ?? "")
+
+const openDetail = async (index) => {
+    const restaurant = restaurants.value[index]
+    if (!restaurant) return
+
     focusRestaurant(index)
+
+    await router.push({
+        path: route.path,
+        query: {
+            ...route.query,
+            restaurant: getRestaurantKey(restaurant),
+            detail: "1",
+            pick: String(Date.now()),
+        },
+    })
 }
+
+const closeDetail = async () => {
+    const nextQuery = { ...route.query }
+
+    delete nextQuery.restaurant
+    delete nextQuery.detail
+    delete nextQuery.pick
+
+    await router.replace({
+        path: route.path,
+        query: nextQuery,
+    })
+}
+
 let scrollEndTimer = null
 
 const stopWatch = watch(userCoords, (newCoords) => {
@@ -149,8 +178,14 @@ const focusRestaurant = (index) => {
 }
 
 const openRestaurantFromQuery = () => {
+    if (route.query.detail !== "1") {
+        isClicked.value = false
+        return
+    }
+
     const key = route.query.restaurant
     if (!key || !restaurants.value.length) {
+        isClicked.value = false
         return
     }
 
@@ -162,11 +197,12 @@ const openRestaurantFromQuery = () => {
     )
 
     if (index < 0) {
+        isClicked.value = false
         return
     }
 
     focusRestaurant(index)
-    isClicked.value = route.query.detail === "1"
+    isClicked.value = true
 }
 
 const onCarouselScroll = () => {
