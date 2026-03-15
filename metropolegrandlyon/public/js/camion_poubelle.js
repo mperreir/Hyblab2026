@@ -130,8 +130,22 @@ function update() {
         const metroX = lerp(0, metroW + (vw - metroW) / 2, t);
         metro.style.transform = `translateX(${metroX}px)`;
     }
+    else if (progress < 1.55) {
+        const t = (progress - 1.45) / 0.10;
+        truck.style.display = 'none';
+        worker.style.display = 'none';
+        panorama.style.display = 'none';
+        panorama2.style.display = '';
+        panorama2.style.opacity = '1';
+        velo.style.display = '';
+        metro.style.display = '';
+
+        panorama2.style.transform = `scale(0.5)`;
+        velo.style.transform = `translateX(${-veloW - 20}px)`;
+        metro.style.transform = `translateX(${metroW + (vw - metroW) / 2}px)`;
+    }
     else if (progress < 1.75) {
-        const t = (progress - 1.45) / 0.30;
+        const t = (progress - 1.55) / 0.20;
         truck.style.display = 'none';
         worker.style.display = 'none';
         panorama.style.display = 'none';
@@ -185,7 +199,7 @@ function update() {
         finCiel.style.display = '';
         finScene.style.display = '';
 
-        const DURATION = 0.008;
+        const DURATION = 0.02;
         const SPREAD = 0.10 - DURATION;
         els.forEach(el => {
             const delay = parseInt(el.dataset.delay);
