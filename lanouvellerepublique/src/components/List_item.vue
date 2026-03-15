@@ -14,7 +14,7 @@
         >
             <div class="badges-panel">
                 <img
-                    v-for="badge, i in displayBadges"
+                    v-for="(badge, i) in displayBadges"
                     :key="badge.key"
                     class="badge"
                     :src="badge.src"
@@ -127,10 +127,9 @@ const displayImage = computed(() => {
 })
 
 const rotateBadge = (index) => {
-    const rotation = index % 2 === 0 ? '-10deg' : '10deg';
+    const rotation = index % 2 === 0 ? "-10deg" : "10deg"
     return `transform: rotate(${rotation})`
 }
-
 </script>
 
 <style scoped>

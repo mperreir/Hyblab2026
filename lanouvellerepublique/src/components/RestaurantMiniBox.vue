@@ -21,7 +21,6 @@
 </template>
 
 <script setup>
-
 import { computed } from "vue"
 
 const vectorBgUrl = `url('${import.meta.env.BASE_URL}img/Vector.png')`
@@ -68,7 +67,7 @@ const displayImage = computed(() => {
 
     border-radius: 12px;
     background-image: v-bind(vectorBgUrl);
-    background-color: #FFF;
+    background-color: #fff;
     background-position: 50%;
     background-size: cover;
     background-repeat: no-repeat;
