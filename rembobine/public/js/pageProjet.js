@@ -90,6 +90,12 @@ function createButtonBox(boxId = "box1", aRow = 1, aColumn = 1) {
       nb_clicked++;
       const value = option.number;
 
+      // Play a pulse animation on the box when an option is clicked
+      box.style.animation = "pulse 0.5s ease-out";
+      setTimeout(() => {
+        box.style.animation = "";
+      }, 500);
+
       if(nb_clicked === 1){
         response_first = value;
       }
@@ -97,12 +103,10 @@ function createButtonBox(boxId = "box1", aRow = 1, aColumn = 1) {
       //Check if the answer to the question header is correct, and display the corresponding message before changing the question header
       let qheader = document.querySelector(".main-question-text");
       if(was_asked){
-        console.log("Response to the question header: " + value);
-        console.log("Expected response: " + response_qheader);
+
         if(response_qheader === value){
           qheader.textContent = good_answer;
-          console.log("Good answer to the question header." + qheader.textContent);
-          console.log(qheader.textContent);
+          
         }else{
           qheader.textContent = wrong_answer;
         }
@@ -120,7 +124,7 @@ function createButtonBox(boxId = "box1", aRow = 1, aColumn = 1) {
       const textDisplay = document.createElement("p");
       textDisplay.id = "base";
 
-      console.log(nb_clicked);
+
 
       switch (parseInt(value)) {
         case 1:
@@ -142,9 +146,8 @@ function createButtonBox(boxId = "box1", aRow = 1, aColumn = 1) {
             State[value] = true;
           } else {
             textDisplay.textContent = Judiciaire[box.ngroup].Base;
-            console.log("J'y suis");
+
             if (nb_clicked % 2 == 0 && !was_asked) {
-              console.log("get question header");
               qheader.textContent = getquestionHeader();
             }else{
               if(!was_asked){
@@ -290,7 +293,6 @@ function createButtonBox(boxId = "box1", aRow = 1, aColumn = 1) {
             break;
           case 5:
             popupBox.className = "action";
-            console.log(box.nAction);
             popupText.textContent = Actions[box.nAction].Texteplus;
 
             //Possibility to copy the text of the action
@@ -314,7 +316,6 @@ function createButtonBox(boxId = "box1", aRow = 1, aColumn = 1) {
                 }, 1000);
               });
               popupBox.appendChild(copyb);
-              console.log(popupBox);
             }
             break;
         }
@@ -489,14 +490,8 @@ function getquestionHeader() {
   let qheader = document.querySelector(".main-question-text");
   let compteur = 0;
   qheader.textContent = "";
-  console.log("compteur: " + compteur);
-  console.log("QHeader length: " + QHeader.length);
   while (qheader.textContent === "" && compteur < QHeader.length) {
-    console.log(compteur);
-    console.log("Je suis dans le while");
-    if(compteur === 1){
-      console.log("State:" + State[QHeader[compteur].Reponse -1]);
-    }
+    //Check if the answer is still available, if not get to the next one
     if (State[QHeader[compteur].Reponse - 1] === false) {
       if (Asked.includes(compteur)) { compteur++; continue; }
       Asked.push(compteur);
@@ -504,13 +499,12 @@ function getquestionHeader() {
       response_qheader = QHeader[compteur].Reponse;
       good_answer = QHeader[compteur].Right;
       wrong_answer = QHeader[compteur].Wrong;
-      console.log("New question header: " + qheader.textContent);
       was_asked = true;
       return qheader.textContent;
     }
     compteur++;
   }
-  console.log("No more question available or all questions have been asked.");
+  // No question available so we put the default text
   qheader.textContent = "Explorez librement !";
   return qheader.textContent;
 }
@@ -661,7 +655,6 @@ impact_arrow.addEventListener("click", () => {
 const sommet = document.querySelector("#top");
 const dest = document.querySelector(".swiper-slide");
 // const body = document.querySelector("post-template tag-impact");
-console.log(sommet);
 
 sommet.addEventListener("click", () => {
   dest.scrollTo({ top: 0, behavior: "smooth" });
