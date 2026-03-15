@@ -295,9 +295,19 @@ body {
 .class-all-researchers{
   display: flex;
   flex-direction: row;
+  padding: 0 0px 20px 0;
   gap: 20px;
   width: 100%;
   overflow-x: scroll;
+  margin: 0 20px;
+}
+.class-all-researchers img{
+  cursor: pointer;
+  transition: transform 0.3s ease-out, filter 0.3s ease-out;
+}
+.class-all-researchers img:hover{
+  transform: translateY(-0.75rem); /* équivalent de -translate-y-3 */
+  filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.12));
 }
 
 .custom-element {
