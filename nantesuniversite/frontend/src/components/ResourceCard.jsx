@@ -35,7 +35,7 @@ export default function ResourceCard({
   onClick,
 }) {
   //const color = CATEGORY_COLORS[category.split(" ")[0].toLowerCase()] ?? "#3552ff";
-  const isVideoCategory = ["conference", "podcast", "table ronde"].includes(
+  const isVideoCategory = ["conférence", "podcast", "table ronde"].includes(
   category.toLowerCase()
 );
 

@@ -131,7 +131,7 @@ export default function IcebergScene() {
             key={doc.id}
             //pictogramme={PICTOGRAMMES[doc.category.split(" ")[0].toLowerCase()]}
             pictogramme={
-  ["conference", "podcast", "table ronde"].includes(doc.category.toLowerCase())
+  ["conférence", "podcast", "table ronde"].includes(doc.category.toLowerCase())
     ? videoSvg
     : PICTOGRAMMES[doc.category.split(" ")[0].toLowerCase()]
 }
@@ -153,7 +153,7 @@ export default function IcebergScene() {
         <Popup
           //pictogramme={PICTOGRAMMES[selectedDoc.category.toLowerCase()]}
           pictogramme={
-  ["conference", "podcast", "table ronde"].includes(selectedDoc.category.toLowerCase())
+  ["conférence", "podcast", "table ronde"].includes(selectedDoc.category.toLowerCase())
     ? videoSvg
     : PICTOGRAMMES[selectedDoc.category.split(" ")[0].toLowerCase()]
 }
