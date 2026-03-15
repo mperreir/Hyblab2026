@@ -4,6 +4,7 @@ import HeroSection from '../components/HeroSection';
 import FeaturedQuotesSection from '../components/FeaturedQuotesSection';
 import ResearcherGallery from '../components/ResearcherGallery';
 import ExpertCard from '../components/ExpertCard';
+import imgBande from '../assets/bande.svg';
 
 /* ---------- Expert card portrait assets ---------- */
 const imgSandrine =
@@ -13,6 +14,7 @@ const imgSophie =
 const imgColin =
   'https://www.figma.com/api/mcp/asset/e7ab9536-1ef9-4685-b237-00f9b347dcc5';
 
+const colin_researcher = './images/chercheur1.svg'
 /* ---------- Expert data ---------- */
 const EXPERTS = [
   {
@@ -77,12 +79,34 @@ export default function ParoleExpertHomePage() {
 
       {/* ── Featured quotes + researcher images ── */}
       <FeaturedQuotesSection />
+      <div
+        className="absolute"
+        style={{ left: -450, top: 2200, width: 2687, height: 543 }}
+      >
+        <img alt="" src={imgBande} className="block w-full h-full" />
+      </div>
+      <div
+        className="absolute"
+        style={{ left: 40, top: 2700}}
+      >
+        <p className='class-all-researchers-title'>Découvrir nos chercheurs dans différents domaines </p>
+      </div>
+      <div
+        className="absolute class-all-researchers"
+        style={{ left: 40, top: 2800}}
+      >
+        <img alt="" src={colin_researcher} className="block w-full h-full" />
+        <img alt="" src={colin_researcher} className="block w-full h-full" />
+        <img alt="" src={colin_researcher} className="block w-full h-full" />
+        <img alt="" src={colin_researcher} className="block w-full h-full" />
+      </div>
+
 
       {/* ── "Fiers de nos chercheuses" gallery ── */}
-      <ResearcherGallery />
+      {/* <ResearcherGallery /> */}
 
       {/* ── Expert profile cards ── */}
-      {EXPERTS.map((expert) => (
+      {/* {EXPERTS.map((expert) => (
         <ExpertCard
           key={expert.name}
           portrait={expert.portrait}
@@ -97,7 +121,7 @@ export default function ParoleExpertHomePage() {
             width: expert.width,
           }}
         />
-      ))}
+      ))} */}
     </div>
   );
 }

@@ -288,3 +288,25 @@ body {
   height: 250px;
   object-fit: contain;
 }
+.class-all-researchers-title{
+  font-size: 50px;
+  font-weight: bold;
+}
+.class-all-researchers{
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  width: 100%;
+  overflow-x: scroll;
+}
+
+.custom-element {
+  position: absolute;
+  cursor: pointer;
+  transition: transform 0.3s ease-out, filter 0.3s ease-out;
+}
+
+.custom-element:hover {
+  transform: translateY(-0.75rem); /* équivalent de -translate-y-3 */
+  filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.12));
+}
