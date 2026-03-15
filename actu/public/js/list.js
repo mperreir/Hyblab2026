@@ -74,7 +74,7 @@ const MovieList = (() => {
     const btn = document.querySelector('.toggle-btn');
     if (btn) btn.classList.toggle('expanded', isExpanded);
 
-    render(isExpanded);
+    render(!isExpanded);
   }
 
   function initToggleButton() {
