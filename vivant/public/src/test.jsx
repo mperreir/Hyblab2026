@@ -511,7 +511,7 @@ const InfinitePath = () => {
                     return (
                       <div
                         key={obj.id}
-                        className={`absolute z-40 cursor-pointer flex flex-col items-center`}
+                        className={`absolute z-40 flex flex-col items-center`}
                         style={{
                           left:            `${safeLeft}%`,
                           top:             `${pos.yPercent}%`,
@@ -527,10 +527,10 @@ const InfinitePath = () => {
                           {activeArticleId === obj.id ? (
                             <motion.div
                               key={`article-${obj.id}`}
-                              initial={{ opacity: 0, scale: 0.8, x: isMobile && `calc(${50 - safeLeft}vw)`, y: isMobile && "-10vh"}}
-                              animate={{ opacity: 1,  scale: 1, x: isMobile && `calc(${50 - safeLeft}vw)`, y: isMobile && "-10vh"}}
-                              exit={{ opacity: 0, scale: 0.8, x: isMobile && `calc(${50 - safeLeft}vw)`,  y: isMobile && "-10vh"}}
-                              transition={{ duration: 0.5, ease: "out" }}
+                              initial={{ opacity: 0, scale: 0.5, x: isMobile ? `calc(${50 - safeLeft}vw)` : 0, y: isMobile ? "-10vh" : 0}}
+                              animate={{ opacity: 1,  scale: 1, x: isMobile ? `calc(${50 - safeLeft}vw)` : 0, y: isMobile ? "-10vh" : 0}}
+                              exit={{ opacity: 0, scale: 0.5, x: isMobile ? `calc(${50 - safeLeft}vw)` : 0,  y: isMobile ? "-10vh" : 0}}
+                              transition={{ duration: 0.5, ease: "in-out" }}
                             >
                               <ArticlePreview articleData={obj.articleData} />
                             </motion.div>
@@ -549,7 +549,7 @@ const InfinitePath = () => {
                         <img 
                           src={obj.svg} 
                           alt="element" 
-                          className="xl:h-[8vh] xl:w-[8vw] h-[7vh] w-[7vw] object-contain drop-shadow-md" 
+                          className="xl:h-[8vh] xl:w-[8vw] h-[7vh] w-[7vw] object-contain drop-shadow-sm" 
                         />
                       </div>
                     );
