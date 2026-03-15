@@ -35,7 +35,7 @@ async function loadClassement(){
         return aRatio<bRatio;
     }).map((obj, index) => ({
         ...obj,
-        classement: index
+        classement: index +1
     }));
 
     const filmLikedResponse = await fetch(API + "/film-like", {
