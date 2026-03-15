@@ -141,7 +141,7 @@ function createButtonBox(boxId = "box1", aRow = 1, aColumn = 1) {
               box.className += " finished box-action";
               box.color = 5;
             } else {
-              textDisplay.textContent = "Vous avez vu tout les impacts judiciaires !";              
+              textDisplay.textContent = "Vous avez vu tous les impacts judiciaires !";              
             }
             State[value] = true;
           } else {
@@ -171,7 +171,7 @@ function createButtonBox(boxId = "box1", aRow = 1, aColumn = 1) {
               box.className += " finished box-action";
               box.color = 5;
             } else {
-              textDisplay.textContent = "Vous avez vu tout les impacts médiatiques !";
+              textDisplay.textContent = "Vous avez vu tous les impacts médiatiques !";
             }
             State[value] = true;
           } else {
@@ -200,7 +200,7 @@ function createButtonBox(boxId = "box1", aRow = 1, aColumn = 1) {
               box.className += " finished box-action";
               box.color = 5;
             } else {
-              textDisplay.textContent = "Vous avez vu tout les impacts publics !";
+              textDisplay.textContent = "Vous avez vu tous les impacts publics !";
             }
             State[value] = true;
           } else {
@@ -229,7 +229,7 @@ function createButtonBox(boxId = "box1", aRow = 1, aColumn = 1) {
               box.className += " finished box-action";
               box.color = 5;
             } else {
-              textDisplay.textContent = "Vous avez vu tout les impacts institutionnels !";
+              textDisplay.textContent = "Vous avez vu tous les impacts institutionnels !";
             }
             State[value] = true;
           } else {
@@ -391,7 +391,7 @@ function createButtonBox(boxId = "box1", aRow = 1, aColumn = 1) {
         finale_page.style.display = "block";
         let bandeau = document.querySelector(".bandeau");
         if(response_first === 4){
-          bandeau.textContent = "Super intuition ! L'impact institutionnel était bien le plus impacté et on espère que cela continuera !";
+          bandeau.textContent = "Super intuition ! L'impact institutionnel était bien le plus important et on espère que cela continuera !";
 
         }else{
           bandeau.textContent = "Votre intuition n'était peut-être pas la bonne cette fois-ci, mais n'hésitez pas à retenter votre chance sur d'autres articles !";
