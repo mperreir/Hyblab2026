@@ -193,13 +193,12 @@ const randomSelection = () => {
 }
 
 .action-btn {
-    display: inline-flex;
-    align-items: center;
+    display: flex;
     justify-content: center;
     gap: 0.45rem;
     border: none;
     border-radius: 999px;
-    padding: 0.72rem 1.1rem;
+    padding: 0.72rem 0.72rem;
     background: v-bind(bottomBtnBg);
     color: v-bind(bottomBtnColor);
     font-weight: 700;
@@ -216,6 +215,5 @@ const randomSelection = () => {
     width: 0.95rem;
     height: 0.95rem;
     object-fit: contain;
-    transform: translateY(2px);
 }
 </style>

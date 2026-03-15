@@ -98,7 +98,7 @@
 
 .intro-liste-badge {
     display: flex;
-    padding: 3px 16px;
+    padding: 3px 3px;
     flex-direction: column;
     justify-content: center;
     align-items: flex-end;
