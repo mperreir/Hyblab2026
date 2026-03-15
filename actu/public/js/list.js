@@ -98,57 +98,12 @@ const MovieList = (() => {
     btn.innerHTML = `
       <div class="arrow">
         <div class="arrow-up">
-          <svg xmlns="http://www.w3.org/2000/svg" width="31" height="19" viewBox="0 0 31 19" fill="none">
-            <g filter="url(#filter0_dd_105_576)">
-              <path d="M19.6147 7.69433C20.183 8.10769 20.9795 7.98227 21.393 7.41405C21.8063 6.84568 21.6809 6.04922 21.1127 5.63573L13.3637 -1.00136e-05L5.61466 5.63573C5.04644 6.04922 4.92103 6.84568 5.33439 7.41405C5.74788 7.98227 6.54434 8.10769 7.11271 7.69433L13.3637 3.14843L19.6147 7.69433Z" fill="#E5231A"/>
-            </g>
-            <defs>
-              <filter id="filter0_dd_105_576" x="-8.86917e-05" y="0" width="30.5457" height="18.1197" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-                <feFlood flood-opacity="0" result="BackgroundImageFix"/>
-                <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
-                <feOffset dx="3.81818" dy="5.09091"/>
-                <feGaussianBlur stdDeviation="2.54545"/>
-                <feComposite in2="hardAlpha" operator="out"/>
-                <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
-                <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_105_576"/>
-                <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
-                <feOffset dy="5.09091"/>
-                <feGaussianBlur stdDeviation="2.54545"/>
-                <feComposite in2="hardAlpha" operator="out"/>
-                <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
-                <feBlend mode="normal" in2="effect1_dropShadow_105_576" result="effect2_dropShadow_105_576"/>
-                <feBlend mode="normal" in="SourceGraphic" in2="effect2_dropShadow_105_576" result="shape"/>
-              </filter>
-            </defs>
-          </svg>
+            <img src="img/arrow.svg" alt="arrow">
         </div>
         <div class="arrow-down">
-          <svg xmlns="http://www.w3.org/2000/svg" width="31" height="19" viewBox="0 0 31 19" fill="none">
-            <g filter="url(#filter0_dd_105_575)">
-              <path d="M19.6147 0.24357C20.183 -0.16979 20.9795 -0.0443755 21.393 0.523844C21.8063 1.09221 21.6809 1.88867 21.1127 2.30216L13.3637 7.93791L5.61466 2.30216C5.04644 1.88867 4.92103 1.09221 5.33439 0.523844C5.74788 -0.0443756 6.54434 -0.16979 7.11271 0.24357L13.3637 4.78947L19.6147 0.24357Z" fill="#E5231A"/>
-            </g>
-            <defs>
-              <filter id="filter0_dd_105_575" x="-8.86917e-05" y="0" width="30.5457" height="18.1197" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-                <feFlood flood-opacity="0" result="BackgroundImageFix"/>
-                <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
-                <feOffset dx="3.81818" dy="5.09091"/>
-                <feGaussianBlur stdDeviation="2.54545"/>
-                <feComposite in2="hardAlpha" operator="out"/>
-                <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
-                <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_105_575"/>
-                <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
-                <feOffset dy="5.09091"/>
-                <feGaussianBlur stdDeviation="2.54545"/>
-                <feComposite in2="hardAlpha" operator="out"/>
-                <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
-                <feBlend mode="normal" in2="effect1_dropShadow_105_575" result="effect2_dropShadow_105_575"/>
-                <feBlend mode="normal" in="SourceGraphic" in2="effect2_dropShadow_105_575" result="shape"/>
-              </filter>
-            </defs>
-          </svg>
+            <img src="img/arrow.svg" alt="arrow">
         </div>
       </div>
-
     `;
     btn.addEventListener('click', toggle);
     wrapper.appendChild(btn);
