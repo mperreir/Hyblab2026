@@ -16,7 +16,7 @@
 }
 
 #scrollable_page {
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: ApfelMittel;
   background: var(--company-purple);
   color: var(--company-white);
   overflow-x: hidden;
@@ -39,7 +39,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 12px 36px;
+  padding: 12px 15px;
   background: var(--company-purple);
   transition: box-shadow 0.2s ease;
 }
@@ -664,7 +664,7 @@
 .company-quiz__layout {
   display: flex;
   align-items: flex-end;
-  gap: 24px;
+  gap: 35px;
 }
 
 .company-quiz__question {
@@ -812,6 +812,7 @@
 .company-end-popup__actions {
   display: flex;
   justify-content: flex-end;
+  gap: 15px;
 }
 
 .company-end-popup__button {

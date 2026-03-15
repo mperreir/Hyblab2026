@@ -5,3 +5,7 @@ for (let i = 0; i < entreprises.length ;i++){
         pin.style.filter = "brightness(0) saturate(100%) invert(34%) sepia(14%) saturate(2266%) hue-rotate(210deg) brightness(95%) contrast(84%)";
     } 
 }
+
+function seePin(){
+    
+}

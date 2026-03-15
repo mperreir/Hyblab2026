@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     if (track) {
-      track.style.transform = `translateX(-${activeIndex * 116.5}%)`;
+      track.style.transform = `translateX(-${activeIndex * 113.5}%)`;
     }
   };
 
@@ -204,9 +204,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (feedback && feedbackStatus && feedbackBody) {
           feedback.hidden = false;
-          feedbackStatus.textContent = isCorrect ? "BIEN JOUE" : "DOMMAGE";
+          feedbackStatus.textContent = isCorrect ? "BIEN JOUE !" : "DOMMAGE !";
           feedbackBody.textContent = feedbackText;
         }
+        /* Affichage bonne réponse */
+        answers.forEach((answerBtn) => {
+          if (answerBtn.getAttribute("data-correct") === "true"){
+            if (answerBtn.style.scale == "1.15"){
+              answerBtn.style.scale = "1";
+            }else answerBtn.style.scale = "1.15";
+          }else{
+            if (answerBtn.classList.contains("light_blurred")){
+              answerBtn.classList.remove("light_blurred")
+            }else answerBtn.classList.add("light_blurred");
+          }
+        });
       });
     });
   });

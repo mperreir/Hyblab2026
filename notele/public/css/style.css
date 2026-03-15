@@ -5,20 +5,19 @@
 /* Normalize margin and padding to ease elements positioning */
 
 @font-face {
-    font-family: Ivy;
-    src: url(../data/Polices-Labeleco/Ivystyle\ Sans\ Regular.otf);
+    font-family: Apfel;
+    src: url("../data/Polices-Labeleco/Apfel/ApfelGrotezk-Regular.otf");
 }
 
 @font-face {
-    font-family: IvyBold;
-    src: url(../data/Polices-Labeleco/Ivystyle\ Sans\ Bold.otf);
+    font-family: ApfelMittel;
+    src: url("../data/Polices-Labeleco/Apfel/ApfelGrotezk-Mittel.otf");
 }
 
 @font-face {
-    font-family: IvySemiBold;
-    src: url(../data/Polices-Labeleco/Ivystyle\ Sans\ Semibold.otf);
+    font-family: ApfelSatt;
+    src: url("../data/Polices-Labeleco/Apfel/ApfelGrotezk-Satt.otf");
 }
-
 
 *{
     padding:0;
@@ -58,7 +57,7 @@ header{
     border: 1px solid white;
     background-color: #17003F;
     color: white;
-    font-family: IvySemiBold;
+    font-family: ApfelMittel;
     font-size: 18px;
     border-radius: 10px;
     height: fit-content;
@@ -104,7 +103,7 @@ header{
     align-items: center;
     gap: 10px;
     color: white;
-    font-family: IvySemiBold;
+    font-family: ApfelMittel;
     font-size: 16px;
     padding: 6px 0;
     cursor: pointer;
@@ -227,7 +226,7 @@ main {
 
 .villePin{
     font-size: 14px;
-    font-family: IvyBold;
+    font-family: Apfel;
     color: white;
     display: flex;
     align-items: center;
@@ -240,12 +239,16 @@ main {
 
 #title{
     position: absolute;
-    font-family: IvyBold;
+    font-family: ApfelSatt;
     color: white;
     font-size: 32px;
     max-width: 365px;
-    left: 7%;
-    top: 75%;
+    left: 5%;
+    top: 53%;
+}
+
+#title #subtitle{
+    font-family:Apfel;
 }
 
 #GenZ_filters{
@@ -266,7 +269,7 @@ main {
     text-align: center;
     font-size: 16px;
     cursor: pointer;
-    font-family: IvySemiBold;
+    font-family: ApfelMittel;
     border-radius: 10px;
     width: fit-content;
     height: fit-content;

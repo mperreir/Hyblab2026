@@ -62,6 +62,7 @@ entreprises.forEach((entreprise) => {
     const entreprise_pin = document.createElement("img");
     entreprise_pin.alt = "Pin entreprise " + entreprise.nom;
     entreprise_pin.src = pins[entreprise.secteur];
+    entreprise_pin.draggable = false;
 
     if (entreprise.secteur == "Commerce" || entreprise.secteur == "Art"){
         entreprise_pin.style.scale = "0.875";
@@ -87,7 +88,7 @@ window.addEventListener("load", () => {
         setTimeout(() => {
             void anim.offsetWidth;
             anim.classList.add("visible");
-        }, 200 + index * 20); // 80ms entre chaque pin
+        }, 200 + index * 20);
     });
 });
 
