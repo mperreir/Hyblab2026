@@ -85,7 +85,7 @@ export default function ResearcherFooter() {
           textShadow: '0px 4px 4px rgba(0,0,0,0.25)',
         }}
       >
-        {`DANS LA MEME THEMATIQUE`}
+        {`DANS LA MÊME THÉMATIQUE`}
       </p>
 
       {/* "OU" separator 
