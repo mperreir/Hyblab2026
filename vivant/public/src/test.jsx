@@ -88,7 +88,7 @@ const InfinitePath = () => {
   const [isMobile, setIsMobile] = useState(false);
 
   const SPEED_DESKTOP = 5000;
-  const SPEED_MOBILE  = 2500;
+  const SPEED_MOBILE  = 5000;
  
   const dynamicHeight = useMemo(() => {
     const speed = isMobile ? SPEED_MOBILE : SPEED_DESKTOP;
