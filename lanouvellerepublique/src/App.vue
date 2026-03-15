@@ -111,7 +111,7 @@ const randomSelection = () => {
 
 .mini-nav {
     position: fixed;
-    top: 5rem;
+    top: 9rem;
     left: 50%;
     transform: translateX(-50%);
     z-index: 1000;
