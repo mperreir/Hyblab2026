@@ -32,7 +32,7 @@ async function loadClassement(){
     classement = classement.sort((a,b)=>{
         const aRatio = a?.nb_likes/a?.nb_dislikes;
         const bRatio = b?.nb_likes/b?.nb_dislikes;
-        return aRatio<bRatio;
+        return aRatio-bRatio;
     }).map((obj, index) => ({
         ...obj,
         classement: index +1
@@ -43,9 +43,19 @@ async function loadClassement(){
         credentials: "include"
     });
     let filmLiked = await filmLikedResponse.json();
-    filmLiked = filmLiked.filter((f) => {
-            return classement.some((e) => f?.nom === e?.nom);
-        });
+    filmLiked = classement.filter((film)=>{
+        for (let film_like of filmLiked){
+            if (film.nom == film_like.nom){
+                return film
+            }
+        }
+    })
+
+    // filmLiked = filmLiked.filter((f) => {
+    //         return classement.some((e) => f?.nom === e?.nom);
+    //     });
+
+
     return {filmLiked,classement};
 }
 
