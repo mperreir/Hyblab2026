@@ -3,8 +3,8 @@
             <CartePostale
                 :title="restaurant.name"
                 :image="restaurant.image"
-                :badges="restaurant.badges"
-                :date="restaurant.date"
+                :badges="restaurant.categories || {}"
+                :coup-de-coeur="restaurant.coupDeCoeur"
             />
             <RestaurantDetail
                 :restaurant="restaurant"
@@ -16,6 +16,7 @@
 <script setup lang="ts">
 import CartePostale from './CartePostale.vue';
 import RestaurantDetail from './RestaurantDetail.vue';
+import ListItem from "@/components/List_item.vue"
 defineProps({
     restaurant: {
         type: Object,
@@ -29,7 +30,7 @@ defineProps({
 .article {
     position: absolute;
     bottom: 0;
-    top: 5rem;
+    top: 8.5rem;
 
     width: 100%;
     height: 100%;
