@@ -14,6 +14,7 @@ html, body {
 /* ===================== general color ===================== */
 :root {
   --background-color:white;
+  --starColor:#FFDD00;
   --color1: #30A1EF;
   --color2: #E5231A;
   --titleColor: #000;
@@ -310,6 +311,7 @@ html, body {
 
 .back-item-content {
   flex: 1;
+  position:relative;
   display: flex;
   flex-direction: column;
   gap: 3px;
@@ -317,34 +319,42 @@ html, body {
 }
 
 .back-item-title {
-  font-size: 12px;
-  font-weight: 800;
-  letter-spacing: 0.04em;
-  color: #fff;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  color: var(--titleColor);
+  font-family: Inter;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
 }
 
 .back-item-critic {
-  font-size: 10px;
-  color: rgba(255,255,255,0.6);
+  color: var(--titleColor);
+  font-family: Inter;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 }
 
 .back-item-stars {
+  position: absolute;
   display: flex;
-  gap: 2px;
-  margin-top: 2px;
+  margin-top: 10%;
+  margin-left: 66%;
+  gap: 5%;
+  /* box-shadow: var(--card-shadow); */
 }
 
 .star {
   font-size: 13px;
-  color: #FFD600;
+  color: var(--starColor);
+  text-shadow: var(--card-shadow);
   line-height: 1;
 }
 
 .star.empty {
   color: rgba(255,255,255,0.3);
+  text-shadow: var(--card-shadow);
 }
 
 /* ==================== LIST (FRONT) ==================== */
