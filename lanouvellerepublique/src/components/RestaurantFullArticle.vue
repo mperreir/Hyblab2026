@@ -6,6 +6,9 @@
                 :badges="restaurant.badges"
                 :date="restaurant.date"
             />
+            <div v-for="badge in allBadges">
+                {{ badge }}
+            </div>
             <RestaurantDetail
                 :restaurant="restaurant"
             />
@@ -14,14 +17,27 @@
 
 
 <script setup lang="ts">
+import { computed } from 'vue';
 import CartePostale from './CartePostale.vue';
 import RestaurantDetail from './RestaurantDetail.vue';
-defineProps({
+import MAPPING_CAT from '@/constants/categories';
+
+const p = defineProps({
     restaurant: {
         type: Object,
         default: () => ({}),
     },
 })
+
+const allBadges = computed(() => {
+    let badges = []
+    Object.keys(p.restaurant.categories).forEach(category => {
+        p.restaurant.categories[category].forEach(v => badges.push(MAPPING_CAT[category][v]))
+    })
+    return badges
+})
+
+console.log(allBadges.value)
 
 </script>
 
