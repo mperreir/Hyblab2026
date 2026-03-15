@@ -35,7 +35,7 @@ const randomSelection = () => {
     let restaurant = restaurants[i];
 
     router.push({
-        path: "/carte",
+        path: "/",
         query: {
             restaurant: String(restaurant.id ?? restaurant.name),
             detail: "1",
@@ -68,7 +68,7 @@ const randomSelection = () => {
                 <span>Filtrer</span>
                 <img :src="reglageIcon" alt="" class="action-btn__icon" aria-hidden="true" />
             </button>
-            <button type="button" class="action-btn" @click="randomSelection()">
+            <button type="button" class="action-btn" @click="randomSelection">
                 <span>Fais-moi découvrir</span>
                 <img :src="decouvrirIcon" alt="" class="action-btn__icon" aria-hidden="true" />
             </button>
