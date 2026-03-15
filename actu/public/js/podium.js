@@ -75,6 +75,7 @@ function buildBackSide(data) {
         <span class="back-item-critic">${movie.director || ''}</span>
         <div class="back-item-stars">${scoreToStars(movie.critic_score)}</div>
       </div>
+      
     `;
     backList.appendChild(item);
   });

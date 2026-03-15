@@ -14,7 +14,7 @@ html, body {
 /* ===================== general color ===================== */
 :root {
   --background-color:white;
-  --background-flurry: rgba(255, 255, 255, 0.15);
+  --background-flurry: rgba(255, 255, 255, 0.35);
   --starColor:#FFDD00;
   --color1: #30A1EF;
   --color2: #E5231A;
@@ -283,6 +283,7 @@ html, body {
 
 .back-list {
   display: flex;
+  width: 94%;
   flex-direction: column;
   gap: 8px;
 }
@@ -290,6 +291,8 @@ html, body {
 .back-item {
   display: flex;
   align-items: center;
+  margin:auto;
+  width: 100%;
   gap: 10px;
   padding: 7px 8px;
   border-radius: 12px;
@@ -297,6 +300,11 @@ html, body {
   backdrop-filter: blur(10px);
   box-shadow: var(--card-shadow);
   animation: fadeInDown 0.35s ease both;
+}
+
+.point{
+  position: absolute;
+  width: 7%;
 }
 
 @keyframes fadeInDown {
