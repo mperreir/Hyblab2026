@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import paroleExpertByNantesLogo from '../assets/paroleExpertByNantesLogo.svg';
 import menuIcon from '../assets/menu.svg';
 import santeIcon from '../assets/sante.svg';
@@ -83,9 +84,9 @@ export default function Header() {
         </div>
 
         {/* Logo combiné Parole d'Expert·E by Nantes */}
-        <div className="absolute top-[27px] left-1/2 -translate-x-1/2">
+        <Link to="/" className="absolute top-[27px] left-1/2 -translate-x-1/2 cursor-pointer">
           <img src={paroleExpertByNantesLogo} alt="Parole d'Expert·E by Nantes Université" width={382} height={77} />
-        </div>
+        </Link>
 
         {/* Trait horizontal */}
         <div className="absolute left-0 top-[146px] w-full h-px bg-brand-grey" />
