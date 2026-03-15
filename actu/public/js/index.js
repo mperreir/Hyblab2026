@@ -1,6 +1,7 @@
 "use strict"
 
 
+
 gsap.ticker.fps(30);
 
 
@@ -18,6 +19,8 @@ const film_cards = [];
 let nb_card = 0;
 let nb_tours = Math.round(Math.random() * 30 + 10);
 const distance = 100;
+
+let total = 0
 
 
 function get_current_index() {
@@ -38,10 +41,6 @@ function degtoscale(angle) {
 
 
 loadFilm().then((filmsNodes) => {
-
-  if (filmsNodes.length == 0) {
-    window.location.href = "podium.html"
-  }
 
   filmsNodes.forEach((card) => {
     film_cards.push(card);
@@ -66,6 +65,7 @@ loadFilm().then((filmsNodes) => {
 }).finally(() => {
 
   window.scrollTo(0, 0);
+
 
 
   const rect_poss = Array(nb_card)
@@ -112,7 +112,18 @@ loadFilm().then((filmsNodes) => {
       filter: "blur(4px)",
     })
 
-  const total = film_cards.length
+  if (film_cards.length === 0) {
+    const text = text_fin()
+    tl.from(text, {
+      duration: 5,
+      opacity: 0,
+      y: "-=200",
+      onComplete: () => window.location.href = "podium.html"
+    })
+    return;
+  }
+
+  total = film_cards.length
   const getAngle = (i) => ((2 * Math.PI) / total) * i
 
   gsap.set(affiches, {
@@ -156,8 +167,11 @@ loadFilm().then((filmsNodes) => {
   })
   for (let tour = 1; tour <= nb_tours; tour++) {
 
+    const dur = 0.5 * (tour / nb_tours) / 2
+    const cur_elem = film_cards[(film_cards.length + (-tour) % film_cards.length) % film_cards.length]
+
     tl.to(film_cards, {
-      duration: 0.5 * (tour / nb_tours) / 2,
+      duration: dur,
       xPercent: -50,
       yPercent: -50,
 
@@ -173,19 +187,17 @@ loadFilm().then((filmsNodes) => {
         return Math.cos(angle) * distance
       },
       x: window.innerWidth / 2,
-
-
-    })
+    }).to("body", {
+      duration: dur,
+      backgroundColor: () => cur_elem.querySelector(".affiche_front").style.backgroundColor
+    }, "<")
   }
 
 
   const current_elem = film_cards[get_current_index()]
 
-
-
-
   tl.to(current_elem.querySelector(".affiche_front"), {
-    duration:1,
+    duration: 1,
     rotationY: 180
   })
     .to(current_elem.querySelector(".affiche_back"), {
@@ -205,7 +217,7 @@ loadFilm().then((filmsNodes) => {
     .to(current_elem, {
       duration: 1,
       x: `-=${100}`, // aller à gauche
-      rotate : -3,
+      rotate: -3,
       repeat: 1,      // revient automatiquement au centre
       yoyo: true,
       ease: "power1.inOut"
@@ -230,7 +242,7 @@ loadFilm().then((filmsNodes) => {
     .to(current_elem, {
       duration: 1,
       x: `+=100`, // aller à droite
-      rotate : 3,
+      rotate: 3,
       repeat: 1,
       yoyo: true,
       ease: "power1.inOut"
@@ -276,10 +288,6 @@ function observer() {
 
           y: () => {
             const angle = getAngle(current_index)
-            console.log(angle)
-            console.log(decalageY)
-            console.log((((2 * Math.PI) / film_cards.length) * ((current_index + nb_tours) % film_cards.length)))
-            console.log(Math.sin(angle) * distance + window.innerHeight / 2, window.innerHeight / 2)
             return Math.sin(angle) * distance + window.innerHeight / 2
           },
 
@@ -310,20 +318,22 @@ function observer() {
 
       if (Math.abs(decalageX) <= 100) {
 
-        const getAngle = (i) => (((2 * Math.PI) / film_cards.length) * ((i + nb_tours) % film_cards.length))
-        gsap.to(film_cards, {
-          duration: 0.2,
-          y: (i) => {
-            const angle = getAngle(i)
-            return Math.sin(angle) * distance + window.innerHeight / 2
-          },
+        updateroue()
 
-          z: (i) => {
-            const angle = getAngle(i)
-            return Math.cos(angle) * distance
-          },
+        // const getAngle = (i) => (((2 * Math.PI) / film_cards.length) * ((i + nb_tours) % film_cards.length))
+        // gsap.to(film_cards, {
+        //   duration: 0.2,
+        //   y: (i) => {
+        //     const angle = getAngle(i)
+        //     return Math.sin(angle) * distance + window.innerHeight / 2
+        //   },
 
-        })
+        //   z: (i) => {
+        //     const angle = getAngle(i)
+        //     return Math.cos(angle) * distance
+        //   },
+
+        // })
       }
     }
   });
@@ -341,7 +351,7 @@ function observer() {
       decalageX += self.deltaX
 
       if (curentX_film_index == null) {
-        curentX_film_index = (film_cards.length + (-nb_tours) % film_cards.length) % film_cards.length
+        curentX_film_index = get_current_index()//(film_cards.length + (-nb_tours) % film_cards.length) % film_cards.length
       }
 
       const curent_elem = film_cards[curentX_film_index]
@@ -385,6 +395,24 @@ function observer() {
         });
 
         film_cards.splice(curentX_film_index, 1);
+
+
+        const compteur = create_view_compter(film_cards.length, total);
+        const green = getComputedStyle(document.documentElement).getPropertyValue("--green")
+
+        gsap.timeline({ ease: "power4.out" }).set(compteur, {
+          color: green,
+        }).from(compteur, {
+          duration: 1,
+          x: decalageX,
+          rotate: 100,
+        }).to(compteur, {
+          duration: 0.2,
+          opacity: 0,
+          onComplete: () => compteur.remove()
+        })
+
+
         updateroue();
       }
       else if (decalageX < -100) {
@@ -404,6 +432,20 @@ function observer() {
 
         film_cards.splice(curentX_film_index, 1);
 
+        const compteur = create_view_compter(film_cards.length, total)
+        const red = getComputedStyle(document.documentElement).getPropertyValue("--red")
+        gsap.timeline({ ease: "power4.out" }).set(compteur, {
+          color: red,
+        }).from(compteur, {
+          duration: 1,
+          x: decalageX,
+          rotate: 100,
+        }).to(compteur, {
+          duration: 0.2,
+          opacity: 0,
+          onComplete: () => compteur.remove()
+        })
+
         updateroue();
       } else {
         decalageX = 0;
@@ -412,7 +454,7 @@ function observer() {
       gsap.timeline().to(curent_elem, {
         duration: 0.2,
         x: decalageX + window.innerWidth / 2,
-        rotate : 3 * (decalageX / window.innerWidth / 2),
+        rotate: 3 * (decalageX / window.innerWidth / 2),
         onComplete() {
           decalageX = 0;
         }
@@ -436,7 +478,6 @@ function observer() {
           rotate: 0,
         }, "<")
 
-
       curentX_film_index = null
     }
   })
@@ -445,30 +486,55 @@ function observer() {
 
 function updateroue() {
   if (film_cards.length === 0) {
-    window.location.href = "podium.html";
-  }
-  film_cards.forEach((elem, index) => {
-    const angle = (((2 * Math.PI) / film_cards.length) * ((index + nb_tours) % film_cards.length))
-
-    const getAngle = (i) => (((2 * Math.PI) / film_cards.length) * ((i + nb_tours) % film_cards.length))
-    gsap.to(film_cards, {
-      duration: 0.2,
-      y: (i) => {
-        const angle = getAngle(i)
-        return Math.sin(angle) * distance + window.innerHeight / 2
-      },
-
-      z: (i) => {
-        const angle = getAngle(i)
-        return Math.cos(angle) * distance
-      },
-
+    const text = text_fin()
+    gsap.from(text, {
+      duration: 5,
+      opacity: 0,
+      y: "-=200",
+      onComplete: () => window.location.href = "podium.html"
     })
+    return;
+  }
 
+  const angles = film_cards.map((_, i) =>
+    ((2 * Math.PI) / film_cards.length) * ((i + nb_tours) % film_cards.length)
+  );
+
+  const curent_elem = film_cards[get_current_index()]
+  console.log(curent_elem.querySelector(".affiche_front").style.backgroundColor)
+  gsap.timeline().to(film_cards, {
+    duration: 0.2,
+    y: (i) => Math.sin(angles[i]) * distance + window.innerHeight / 2,
+    z: (i) => Math.cos(angles[i]) * distance
   })
+    .to("body", {
+      duration: 0.2,
+      backgroundColor: curent_elem.querySelector(".affiche_front").style.backgroundColor
+    }, "<")
+    ;
 }
 
 
 setTimeout(() => {
   window.scrollTo(0, 0);
-}, 1000)
+}, 500)
+
+
+function create_view_compter(cpt, total) {
+  const compteur = document.createElement("span")
+  compteur.innerText = `${cpt}/${total}`
+  compteur.classList.add("compteur")
+
+  document.querySelector("body").appendChild(compteur);
+  return compteur
+}
+
+function text_fin() {
+  const text_fin = document.createElement("h1")
+  text_fin.innerText = "Il n'y a plus de film.\nRevenez la semaine prochaine pour découvrir de nouveaux films"
+  text_fin.classList.add("text_fin")
+
+  document.querySelector("body").appendChild(text_fin);
+  return text_fin
+}
+
