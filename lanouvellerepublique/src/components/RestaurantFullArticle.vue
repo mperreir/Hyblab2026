@@ -6,8 +6,10 @@
             :badges="restaurant.categories || {}"
             :coup-de-coeur="restaurant.coupDeCoeur"
         />
-        <div v-for="(badge, index) in allBadges" :key="index">
-            {{ badge }}
+        <div class="badges">
+            <div v-for="(badge, index) in allBadges" :key="index" :class="`badge--${badge[1]}`">
+                {{ badge[0] }}
+            </div>
         </div>
         <RestaurantDetail :restaurant="restaurant" />
         <button class="share-button" @click="sharePage">
@@ -37,7 +39,7 @@ const p = defineProps({
 const allBadges = computed(() => {
     let badges = []
     Object.keys(p.restaurant.categories).forEach((category) => {
-        p.restaurant.categories[category].forEach((v) => badges.push(MAPPING_CAT[category][v]))
+        p.restaurant.categories[category].forEach((v) => badges.push([MAPPING_CAT[category][v], category]))
     })
     return badges
 })
@@ -85,5 +87,66 @@ const allBadges = computed(() => {
     width: 20px;
     height: 20px;
     flex-shrink: 0;
+}
+
+.badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+
+    color: #000;
+    font-family: "OpenSans";
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 16.5px;
+}
+
+.badge--diet {
+    display: flex;
+    padding: 3px 9px;
+    align-items: center;
+    gap: 3px;
+
+    border-radius: 37.5px;
+    background: #EBF8E7;
+}
+.badge--cuisine_type {
+    display: flex;
+    padding: 3px 9px;
+    align-items: center;
+    gap: 3px;
+
+    border-radius: 37.5px;
+    background: #E6F2FB;
+}
+.badge--ambiance {
+    display: flex;
+    padding: 3px 9px;
+    align-items: center;
+    gap: 3px;
+
+    border-radius: 37.5px;
+    background: #FFEBCB;
+}
+.badge--budget {
+    display: flex;
+    padding: 3px 9px;
+    align-items: center;
+    gap: 3px;
+
+    border-radius: 37.5px;
+    background: #FFC8B8;
+}
+.badge--service {
+    display: flex;
+    padding: 3px 9px;
+    align-items: center;
+    gap: 3px;
+
+    border-radius: 37.5px;
+
 }
 </style>
