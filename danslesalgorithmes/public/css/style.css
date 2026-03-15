@@ -825,41 +825,49 @@ article {
 
 
 /* ================= LOUPE ================= */
-#box-loupe{
-  position: relative;
-  width: 100%;
-  height: 60vh;
-}
-
-#loupe {    
-    position: absolute;
-    width: 50%;
-    /* Position de départ : sur fraude-sociale */
-    top: 10%;
-    left: 50%;
-    transition: left 1.5s ease-in-out, top 1.5s ease-in-out;
-}
-
-#fraude-fiscale {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 40%;
+#box-loupe {
+    position: relative;
+    width: 100%;
+    height: 100%;
 }
 
 #fraude-sociale {
     position: absolute;
-    top: 0;
-    right: 0;
-    width: 40%;
+    width: 80%;
+    height: auto;
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%); /* centré horizontalement */
+    right: auto;
+    bottom: auto;
+}
+
+#fraude-fiscale {
+    position: absolute;
+    width: 80%;
+    height: auto;
+    bottom: -10%;
+    left: 50%;
+    transform: translateX(-50%); /* centré horizontalement */
+    top: auto;
+    right: auto;
+}
+
+#loupe {
+    position: absolute;
+    width: 100%;
+    height: auto;
+    top: 15%;
+    left: 40%;
+    transform: translateX(-20%);
+    right: auto;
+    bottom: auto;
+    transition: top 3s ease-in-out;
 }
 
 #loupe.loupe-moved {
-    /* Position d'arrivée : sur fraude-fiscale */
-    top: 10%;
-    left: 10%;
+    top: 70%; /* remplace bottom: 8% par une valeur top équivalente */
 }
-
     #bandeau {
     width:100%;
     bottom:0;

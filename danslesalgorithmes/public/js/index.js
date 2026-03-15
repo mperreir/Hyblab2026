@@ -143,8 +143,14 @@ document.addEventListener('DOMContentLoaded', function() {
               fraudeInduAnim.className = 'fraude-indu-container';
           }
       }
+      if (response.element.classList.contains('step-loupe-gauche')) {
+        document.getElementById('loupe').classList.add('loupe-moved');
+      }
+      if (response.element.classList.contains('step-loupe-droite')) {
+        document.getElementById('loupe').classList.remove('loupe-moved');
+      }
 
-    }); // <-- FIN DE LA FONCTION onStepEnter (le code doit bien être AVANT)
+    }); 
 
   window.addEventListener("resize", scroller.resize);
 
@@ -275,18 +281,3 @@ const observer = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.image-side').forEach(el => observer.observe(el));
 
-const loupeObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            setTimeout(() => {
-                document.getElementById('loupe').classList.add('loupe-moved');
-            }, 500); 
-            loupeObserver.unobserve(entry.target);
-        }
-    });
-}, { threshold: 0.5 });
-
-const loupeElement = document.getElementById('box-loupe');
-if (loupeElement) {
-    loupeObserver.observe(loupeElement);
-}
