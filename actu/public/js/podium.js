@@ -1,3 +1,10 @@
+document.addEventListener('DOMContentLoaded', () => {
+  const backBtn = document.getElementById('goto-favoris-btn');
+  backBtn.addEventListener('click', () => {
+    window.location.href = 'favoris.html';
+  });
+});
+
 fetch('data/movies.json')
   .then(response => response.json())
   .then(data => {
