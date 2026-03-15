@@ -25,7 +25,7 @@ function createFrontCard(titre, affiche, genre, realisateur){
   front.style.backgroundColor = color;
 
   const img = document.createElement("img");
-  img.src = affiche;//"img/exemple/affiche_cine.png";
+  img.src = affiche;
 
   const info = document.createElement("div");
 
