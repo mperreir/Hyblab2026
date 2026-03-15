@@ -6,7 +6,7 @@ async function loadpodium(){
   console.log(podium);
   let stepsHtmlString = podium.map(item => `
       <div class="step step-${item?.classement}">
-        <img src="${item?.affiche}" alt="${item?.nom}" class="step-img img-${item?.classement}">
+        <img src="${item?.affiche||"img/affiche-cine.png"}" alt="${item?.nom}" class="step-img img-${item?.classement}">
         <span class="step-rank">${item?.classement}</span>
       </div>
     `).join("");
@@ -62,7 +62,7 @@ async function buildBackSide() {
   backList.innerHTML = '';
 
   const top = classementCritique[0];
-  heroImg.src = top.affiche;
+  heroImg.src = top?.affiche||"img/affiche-cine.png";
   heroImg.alt = top.nom;
 
   classementCritique.forEach((movie, i) => {
@@ -71,7 +71,7 @@ async function buildBackSide() {
     item.className = 'back-item';
     item.style.animationDelay = `${i * 55}ms`;
     item.innerHTML = `
-      <img src="${movie?.affiche}" alt="${movie?.nom}" class="back-item-img">
+      <img src="${movie?.affiche||"img/affiche-cine.png"}" alt="${movie?.nom}" class="back-item-img">
       <div class="back-item-content">
         <span class="back-item-title">${movie?.nom}</span>
         <span class="back-item-critic">${movie?.realisateur || ''}</span>
