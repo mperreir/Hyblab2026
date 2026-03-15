@@ -806,19 +806,19 @@ article {
 }
 
 #animation-argent.visible #argent{
-  animation: argentFly 7s ease forwards;
+  animation: argentFly 5s ease forwards;
 }
 
 @keyframes argentFly{
   10%{
     transform: translateY(0) rotate(0deg);
-    opacity: 0;
-  }
-  50%{
     opacity: 1;
   }
-  100%{
-    transform: translateY(-30vh) rotate(360deg);
+  40%{
+    opacity: 0.5;
+  }
+  60%{
+    transform: translateY(-30vh) ;
     opacity: 0;
   }
 }
