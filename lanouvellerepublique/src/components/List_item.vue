@@ -237,8 +237,8 @@ const rotateBadge = (index) => {
 }
 
 .badge {
-    width: clamp(36px, 10vw, 50px);
-    height: clamp(36px, 10vw, 50px);
+    width: clamp(50px, 70px, 70px);
+    height: clamp(50px, 70px, 70px);
     flex-shrink: 0;
 }
 </style>
