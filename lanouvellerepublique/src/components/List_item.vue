@@ -14,11 +14,12 @@
         >
             <div class="badges-panel">
                 <img
-                    v-for="badge in displayBadges"
+                    v-for="badge, i in displayBadges"
                     :key="badge.key"
                     class="badge"
                     :src="badge.src"
                     :alt="badge.key"
+                    :style="rotateBadge(i)"
                 />
             </div>
             <div class="list-item-content">
@@ -124,6 +125,12 @@ const displayImage = computed(() => {
     if (!props.image) return ""
     return encodeURI(String(props.image))
 })
+
+const rotateBadge = (index) => {
+    const rotation = index % 2 === 0 ? '-10deg' : '10deg';
+    return `transform: rotate(${rotation})`
+}
+
 </script>
 
 <style scoped>
@@ -224,16 +231,15 @@ const displayImage = computed(() => {
 
 .badges-panel {
     display: flex;
-    width: 354px;
+    width: 100%;
     justify-content: flex-end;
     align-items: flex-start;
-    gap: -24px;
+    gap: 0;
 }
 
 .badge {
-    width: 70.227px;
-    height: 70px;
-    transform: rotate(10deg);
+    width: clamp(36px, 10vw, 50px);
+    height: clamp(36px, 10vw, 50px);
     flex-shrink: 0;
 }
 </style>

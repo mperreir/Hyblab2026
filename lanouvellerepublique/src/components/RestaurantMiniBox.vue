@@ -56,8 +56,8 @@ const displayImage = computed(() => {
     position: relative;
 
     display: flex;
-    height: 208px;
-    width: 332px;
+    height: 100%;
+    width: 100%;
     padding: 6.25px;
     gap: 6.25;
     flex-direction: column;
@@ -82,8 +82,8 @@ const displayImage = computed(() => {
     align-items: flex-start;
     flex: 1 0 0;
     align-self: stretch;
-    width: 319.5px;
-    height: 195.5px;
+    width: 100%;
+    height: 100%;
 
     border-radius: 13.179px;
     background-color: #fffcf8;
@@ -140,15 +140,15 @@ const displayImage = computed(() => {
 
 .badges-panel {
     display: flex;
-    width: 354px;
+    width: 100%;
     justify-content: flex-end;
     align-items: flex-start;
-    gap: -24px;
+    gap: 0;
 }
 
 .badge {
-    width: 70.227px;
-    height: 70px;
+    width: clamp(36px, 10vw, 50px);
+    height: clamp(36px, 10vw, 50px);
     transform: rotate(10deg);
     flex-shrink: 0;
 }

@@ -263,6 +263,8 @@ watch(
     padding: 0.4rem 0;
     gap: 16px;
     z-index: 1000;
+    max-width: 400px;
+    margin: 0 auto;
 }
 
 .restaurant-carousel::-webkit-scrollbar {
@@ -277,10 +279,10 @@ watch(
     justify-content: center;
     cursor: pointer;
 
-    width: 364px;
-    height: 240px;
+    width: 92%;
+    height: 190px;
     border-radius: 12px;
-    padding: 16px;
+    padding: 10px;
     gap: 10px;
     background-color: #ffffff;
 }
