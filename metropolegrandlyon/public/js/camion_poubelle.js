@@ -67,7 +67,10 @@ function update() {
 
     }
     else if (progress < 0.90) {
-
+        truckX = halfOutX;
+        panX = maxPan;
+        workerOpacity = 1;
+        workerY = 0;
     }
     else if (progress < 1) {
         const t = (progress - 0.90) / 0.10;
