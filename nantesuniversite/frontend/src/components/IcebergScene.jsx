@@ -224,7 +224,7 @@ export default function IcebergScene() {
             onMouseEnter={registerResourceInteraction}
             onClick={doc.url ? () => handleCardClick(doc) : undefined}
           />
-        ))}
+        })}
       </div>
 
       <Robot
