@@ -4,28 +4,57 @@
             <div class="mode-menu">
                 <div class="menu-scroll">
                     <button class="btn-transparent menu-btn" type="button" aria-label="Menu">
-                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 32 32">
+                        <svg
+                            version="1.1"
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 32 32"
+                        >
                             <title>Menu</title>
-                            <path d="M4.267 16c0-0.589 0.478-1.067 1.067-1.067h21.333c0.589 0 1.067 0.478 1.067 1.067s-0.478 1.067-1.067 1.067h-21.333c-0.589 0-1.067-0.478-1.067-1.067z"></path>
-                            <path d="M4.267 8c0-0.589 0.478-1.067 1.067-1.067h21.333c0.589 0 1.067 0.478 1.067 1.067s-0.478 1.067-1.067 1.067h-21.333c-0.589 0-1.067-0.478-1.067-1.067z"></path>
-                            <path d="M4.267 24c0-0.589 0.478-1.067 1.067-1.067h21.333c0.589 0 1.067 0.478 1.067 1.067s-0.478 1.067-1.067 1.067h-21.333c-0.589 0-1.067-0.478-1.067-1.067z"></path>
+                            <path
+                                d="M4.267 16c0-0.589 0.478-1.067 1.067-1.067h21.333c0.589 0 1.067 0.478 1.067 1.067s-0.478 1.067-1.067 1.067h-21.333c-0.589 0-1.067-0.478-1.067-1.067z"
+                            ></path>
+                            <path
+                                d="M4.267 8c0-0.589 0.478-1.067 1.067-1.067h21.333c0.589 0 1.067 0.478 1.067 1.067s-0.478 1.067-1.067 1.067h-21.333c-0.589 0-1.067-0.478-1.067-1.067z"
+                            ></path>
+                            <path
+                                d="M4.267 24c0-0.589 0.478-1.067 1.067-1.067h21.333c0.589 0 1.067 0.478 1.067 1.067s-0.478 1.067-1.067 1.067h-21.333c-0.589 0-1.067-0.478-1.067-1.067z"
+                            ></path>
                         </svg>
                         <span class="menu-label">Menu</span>
                     </button>
                 </div>
                 <div class="logo-img">
                     <a href="https://www.lanouvellerepublique.fr/">
-                        <img alt="La Nouvelle République" loading="lazy" width="220" height="65" decoding="async" src="https://www.lanouvellerepublique.fr/_next/static/svg/logo.3ee3466abe0d1c7768b5df3ee595f280.svg" />
+                        <img
+                            alt="La Nouvelle République"
+                            loading="lazy"
+                            width="220"
+                            height="65"
+                            decoding="async"
+                            src="https://www.lanouvellerepublique.fr/_next/static/svg/logo.3ee3466abe0d1c7768b5df3ee595f280.svg"
+                        />
                     </a>
                 </div>
             </div>
             <div class="block-compte">
                 <div class="login-btn-wrap">
                     <button class="btn-transparent" type="button" aria-label="S'identifier">
-                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 32 32">
+                        <svg
+                            version="1.1"
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="18"
+                            height="18"
+                            viewBox="0 0 32 32"
+                        >
                             <title>Gestionnaire</title>
-                            <path d="M5.641 20.808c1.2-1.2 2.828-1.875 4.525-1.875h10.667c1.697 0 3.325 0.674 4.525 1.875 0 0 0 0 0 0zM5.641 20.808c0 0-0 0-0 0-1.2 1.2-1.875 2.828-1.875 4.525v2.667c0 0.589 0.478 1.067 1.067 1.067s1.067-0.478 1.067-1.067v-2.667c0-1.132 0.45-2.217 1.25-3.017h0c0.8-0.8 1.885-1.25 3.017-1.25h10.667c1.132 0 2.217 0.449 3.017 1.25h0c0.8 0.8 1.25 1.885 1.25 3.017v2.667c0 0.589 0.478 1.067 1.067 1.067s1.067-0.478 1.067-1.067v-2.667c0-1.697-0.674-3.325-1.875-4.525z"></path>
-                            <path d="M9.1 9.333c0-3.535 2.865-6.4 6.4-6.4s6.4 2.865 6.4 6.4-2.865 6.4-6.4 6.4c-3.535 0-6.4-2.865-6.4-6.4zM15.5 5.067c-2.356 0-4.267 1.91-4.267 4.267s1.91 4.267 4.267 4.267c2.356 0 4.267-1.91 4.267-4.267s-1.91-4.267-4.267-4.267z"></path>
+                            <path
+                                d="M5.641 20.808c1.2-1.2 2.828-1.875 4.525-1.875h10.667c1.697 0 3.325 0.674 4.525 1.875 0 0 0 0 0 0zM5.641 20.808c0 0-0 0-0 0-1.2 1.2-1.875 2.828-1.875 4.525v2.667c0 0.589 0.478 1.067 1.067 1.067s1.067-0.478 1.067-1.067v-2.667c0-1.132 0.45-2.217 1.25-3.017h0c0.8-0.8 1.885-1.25 3.017-1.25h10.667c1.132 0 2.217 0.449 3.017 1.25h0c0.8 0.8 1.25 1.885 1.25 3.017v2.667c0 0.589 0.478 1.067 1.067 1.067s1.067-0.478 1.067-1.067v-2.667c0-1.697-0.674-3.325-1.875-4.525z"
+                            ></path>
+                            <path
+                                d="M9.1 9.333c0-3.535 2.865-6.4 6.4-6.4s6.4 2.865 6.4 6.4-2.865 6.4-6.4 6.4c-3.535 0-6.4-2.865-6.4-6.4zM15.5 5.067c-2.356 0-4.267 1.91-4.267 4.267s1.91 4.267 4.267 4.267c2.356 0 4.267-1.91 4.267-4.267s-1.91-4.267-4.267-4.267z"
+                            ></path>
                         </svg>
                         <span class="sr-only">S'identifier</span>
                     </button>
@@ -33,13 +62,29 @@
                 <div class="btn-papier">
                     <a href="https://www.lanouvellerepublique.fr/kiosque" class="lien-link">
                         <span class="lien-icon-container">
-                            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 32 32">
+                            <svg
+                                version="1.1"
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 32 32"
+                            >
                                 <title>Papier</title>
-                                <path d="M1.6 2.667c0-0.589 0.478-1.067 1.067-1.067h19.363c0.589 0 1.067 0.478 1.067 1.067v22.527c0 0.589-0.478 1.067-1.067 1.067s-1.067-0.478-1.067-1.067v-21.46h-17.229v23.684h20.954c0.589 0 1.067 0.478 1.067 1.067s-0.478 1.067-1.067 1.067h-22.020c-0.589 0-1.067-0.478-1.067-1.067v-25.817z"></path>
-                                <path d="M21.089 8.994c0-0.589 0.478-1.067 1.067-1.067h7.087c0.589 0 1.067 0.478 1.067 1.067v15.946c0 2.487-2.123 4.61-4.61 4.61-2.639 0-4.61-2.148-4.61-4.61v-15.946zM23.223 10.061v14.879c0 1.334 1.066 2.477 2.477 2.477 1.309 0 2.477-1.168 2.477-2.477v-14.879h-4.954z"></path>
-                                <path d="M5.333 17.333c0-0.589 0.478-1.067 1.067-1.067h12c0.589 0 1.067 0.478 1.067 1.067s-0.478 1.067-1.067 1.067h-12c-0.589 0-1.067-0.478-1.067-1.067z"></path>
-                                <path d="M5.333 22.667c0-0.589 0.478-1.067 1.067-1.067h12c0.589 0 1.067 0.478 1.067 1.067s-0.478 1.067-1.067 1.067h-12c-0.589 0-1.067-0.478-1.067-1.067z"></path>
-                                <path d="M5.333 6.667c0-0.589 0.478-1.067 1.067-1.067h12c0.589 0 1.067 0.478 1.067 1.067v5.333c0 0.589-0.478 1.067-1.067 1.067h-12c-0.589 0-1.067-0.478-1.067-1.067v-5.333zM7.467 7.733v3.2h9.867v-3.2h-9.867z"></path>
+                                <path
+                                    d="M1.6 2.667c0-0.589 0.478-1.067 1.067-1.067h19.363c0.589 0 1.067 0.478 1.067 1.067v22.527c0 0.589-0.478 1.067-1.067 1.067s-1.067-0.478-1.067-1.067v-21.46h-17.229v23.684h20.954c0.589 0 1.067 0.478 1.067 1.067s-0.478 1.067-1.067 1.067h-22.020c-0.589 0-1.067-0.478-1.067-1.067v-25.817z"
+                                ></path>
+                                <path
+                                    d="M21.089 8.994c0-0.589 0.478-1.067 1.067-1.067h7.087c0.589 0 1.067 0.478 1.067 1.067v15.946c0 2.487-2.123 4.61-4.61 4.61-2.639 0-4.61-2.148-4.61-4.61v-15.946zM23.223 10.061v14.879c0 1.334 1.066 2.477 2.477 2.477 1.309 0 2.477-1.168 2.477-2.477v-14.879h-4.954z"
+                                ></path>
+                                <path
+                                    d="M5.333 17.333c0-0.589 0.478-1.067 1.067-1.067h12c0.589 0 1.067 0.478 1.067 1.067s-0.478 1.067-1.067 1.067h-12c-0.589 0-1.067-0.478-1.067-1.067z"
+                                ></path>
+                                <path
+                                    d="M5.333 22.667c0-0.589 0.478-1.067 1.067-1.067h12c0.589 0 1.067 0.478 1.067 1.067s-0.478 1.067-1.067 1.067h-12c-0.589 0-1.067-0.478-1.067-1.067z"
+                                ></path>
+                                <path
+                                    d="M5.333 6.667c0-0.589 0.478-1.067 1.067-1.067h12c0.589 0 1.067 0.478 1.067 1.067v5.333c0 0.589-0.478 1.067-1.067 1.067h-12c-0.589 0-1.067-0.478-1.067-1.067v-5.333zM7.467 7.733v3.2h9.867v-3.2h-9.867z"
+                                ></path>
                             </svg>
                         </span>
                     </a>
@@ -54,20 +99,43 @@
 
         <div class="tmv-subheader">
             <button class="tmv-btn-circle" aria-label="Retour" @click="goBack">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1F1F1F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M15 18l-6-6 6-6"/>
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="18"
+                    height="18"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="#1F1F1F"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                >
+                    <path d="M15 18l-6-6 6-6" />
                 </svg>
             </button>
 
             <div class="tmv-title-wrapper">
                 <h1 class="tmv-title">{{ headerTitle }}</h1>
                 <div class="tmv-breadcrumbs">
-                    <svg class="tmv-breadcrumb-home-icon" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#020617" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <svg
+                        class="tmv-breadcrumb-home-icon"
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="15"
+                        height="15"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="#020617"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    >
                         <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
                         <polyline points="9 22 9 12 15 12 15 22"></polyline>
                     </svg>
                     <span class="tmv-breadcrumb-sep">></span>
-                    <a href="https://www.lanouvellerepublique.fr/tmv" class="tmv-breadcrumb-link">TMV</a>
+                    <a href="https://www.lanouvellerepublique.fr/tmv" class="tmv-breadcrumb-link"
+                        >TMV</a
+                    >
                     <span class="tmv-breadcrumb-sep">></span>
                     <RouterLink to="/" class="tmv-breadcrumb-link">Les Restos TMV</RouterLink>
                     <template v-if="activeRestaurantName">
@@ -78,14 +146,24 @@
             </div>
 
             <button class="tmv-btn-circle" aria-label="Partager" @click="sharePage">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1F1F1F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="18"
+                    height="18"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="#1F1F1F"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                >
                     <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path>
                     <polyline points="16 6 12 2 8 6"></polyline>
                     <line x1="12" y1="2" x2="12" y2="15"></line>
                 </svg>
             </button>
         </div>
-        </header>
+    </header>
 </template>
 
 <script setup>
@@ -119,7 +197,6 @@ const activeRestaurantName = computed(() => {
 })
 
 const headerTitle = computed(() => activeRestaurantName.value || "Les Restos TMV")
-
 
 const clearDetailQuery = () => {
     const nextQuery = { ...route.query }
@@ -157,7 +234,6 @@ const goBack = async () => {
 
     await router.push("/")
 }
-
 </script>
 
 <style scoped>
@@ -518,7 +594,7 @@ const goBack = async () => {
     padding: 12px;
     width: 42px;
     height: 42px;
-    border: 1px solid #C7C7C7;
+    border: 1px solid #c7c7c7;
     border-radius: 50px;
     background: transparent;
     cursor: pointer;
@@ -541,12 +617,12 @@ const goBack = async () => {
 
 .tmv-title {
     margin: 0;
-    font-family: 'Open Sans', sans-serif;
+    font-family: "Open Sans", sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 20px;
     line-height: 28px;
-    color: #1F1F1F;
+    color: #1f1f1f;
     text-align: center;
 }
 
@@ -566,7 +642,7 @@ const goBack = async () => {
 }
 
 .tmv-breadcrumb-sep {
-    font-family: 'Open Sans', sans-serif;
+    font-family: "Open Sans", sans-serif;
     font-size: 12px;
     line-height: 16px;
     color: #6b6b6b;
@@ -574,12 +650,12 @@ const goBack = async () => {
 }
 
 .tmv-breadcrumb-link {
-    font-family: 'Open Sans', sans-serif;
+    font-family: "Open Sans", sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 12px;
     line-height: 16px;
-    color: #1F1F1F;
+    color: #1f1f1f;
     text-decoration: none;
     white-space: nowrap;
     flex-shrink: 0;
@@ -591,7 +667,7 @@ const goBack = async () => {
 }
 
 .tmv-breadcrumb-text {
-    font-family: 'Open Sans', sans-serif;
+    font-family: "Open Sans", sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 12px;
