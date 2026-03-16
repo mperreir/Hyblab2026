@@ -5,7 +5,6 @@ const list_int = document.getElementsByClassName("interactive");
  * Affiche un Pop-Up avec un texte correpondant à l'ID de l'élément donné en paramètre
  */
 function popUp(id) {
-  console.log("ta mere");
   fetch('data/text.json')
     .then(response => response.json())
     .then(data => {
@@ -59,13 +58,12 @@ const observer = new IntersectionObserver(entries => {
 /**
  * Récupérer tous les éléments interactifs et affectent les fonctions correspondantes
  */
-for(const int of list_int) {//On récupère chaque élément interactif de index.html
+for (const int of list_int) {//On récupère chaque élément interactif de index.html
   observer.observe(int);
-  if (int){
+  if (int) {
     int.addEventListener("click", () => {//A chaque clic sur un élément on affiche le Pop-Up avec le texte indiqué
-      console.log("zezz");
-    popUp(int.id);
-  })
+      popUp(int.id);
+    })
   }
-;
+  ;
 };
