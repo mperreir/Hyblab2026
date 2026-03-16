@@ -7,6 +7,7 @@ import IcebergScene from '../components/IcebergScene';
 import { ArrowDown, ArrowUp } from '../components/ScrollArrow';
 import ResearcherFooter from "../components/ResearcherFooter";
 import Coordonnees from '../components/Coordonnes'; 
+import Tableau from '../components/Tableau';
 
 const DESIGN_WIDTH = 1920;
 const DESIGN_HEIGHT = 5820;
@@ -50,8 +51,10 @@ export default function ResearcherPage({ scrollProgress = 0 }) {
         <TopicTitle />
         <ExpertQuote />
         <IcebergScene />
+        <Tableau/>
         <Coordonnees/>
         <ResearcherFooter />
+
       </div>
     </>
   );
