@@ -32,7 +32,7 @@ export default function ExpertQuote() {
 
       <div className="absolute left-[696px] top-[350px] w-[943px] text-right text-black font-sans">
         <p className="font-bold text-[36px] mb-0">{expertInfo.full_name}</p>
-        <p className="text-[30px] underline mb-0">{expertInfo.profession}</p>
+        <p className="text-[30px] mb-0">{expertInfo.profession}</p>
         <p className="text-[30px] underline">{expertInfo.position}</p>
       </div>
 
