@@ -817,7 +817,7 @@ function majCamion(progress) {
         if (metro) {
             metro.style.display = '';
             const panX2 = lerp(0, (maxPan2) / 2 + vw, t);
-            const metroX = lerp(metroW + (vw - metroW) / 2, panX2 + metroW + (vw - metroW) / 2, t);
+            const metroX = lerp(metroW + (vw - metroW) / 2, ((maxPan2) / 2 + vw) + metroW + (vw - metroW) / 2, t);
             metro.style.transform = `translateX(${metroX}px)`;
         }
         if (finCiel) finCiel.style.display = 'none';
