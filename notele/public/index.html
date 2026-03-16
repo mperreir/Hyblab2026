@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 
 <html lang="fr">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
@@ -10,7 +11,7 @@
   <link rel="stylesheet" href="css/scrollable.css">
   <link rel="stylesheet" href="css/pagecredits.css">
   <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/loadingio/loading.css@v2.0.0/dist/loading.css" >
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/loadingio/loading.css@v2.0.0/dist/loading.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.2/anime.min.js"></script>
   <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
   <script src="js/scrollable.js" defer></script>
@@ -18,446 +19,494 @@
   <script src="js/pinPosition.js" defer></script>
   <script src="js/selecteur.js" defer></script>
   <script src="js/filters.js" defer></script>
-  <script src="js/company.js" defer></script> 
+  <script src="js/company.js" defer></script>
   <script src="js/video.js" defer></script>
 
 
 </head>
+
 <body>
-<header>
-  <a href="/notele/index.html" id="logoLink"><img alt="logo LabelEco" src="img/logo_noir.svg" id="logo" draggable="false"></a>
-  <nav id="filters">
-    <div class="selector-wrapper">
-      <button class="selector" onclick="toggleDropdown('tailleDropdown', this)">
-        Taille de l'entreprise
-        <img alt="drop Icon" src="img/fleche_filtres.svg" draggable="false">
-      </button>
-      <div class="dropdown" id="tailleDropdown">
-        <label onclick="filter(event)"><input type="checkbox" value="Independant"> Indépendant</label>
-        <label onclick="filter(event)"><input type="checkbox" value="PME"> PME</label>
-        <label onclick="filter(event)"><input type="checkbox" value="Grande"> Grande entreprise</label>
+  <!-- <div id="video-intro">
+    <video id="intro-player" autoplay muted playsinline>
+      <source src="img/intro.mp4" type="video/mp4">
+    </video>
+  </div> -->
+  <header>
+    <a href="/notele/index.html" id="logoLink"><img alt="logo LabelEco" src="img/logo_noir.svg" id="logo"
+        draggable="false"></a>
+    <nav id="filters">
+      <div class="selector-wrapper">
+        <button class="selector" onclick="toggleDropdown('tailleDropdown', this)">
+          Taille de l'entreprise
+          <img alt="drop Icon" src="img/fleche_filtres.svg" draggable="false">
+        </button>
+        <div class="dropdown" id="tailleDropdown">
+          <label onclick="filter(event)"><input type="checkbox" value="Independant"> Indépendant</label>
+          <label onclick="filter(event)"><input type="checkbox" value="PME"> PME</label>
+          <label onclick="filter(event)"><input type="checkbox" value="Grande"> Grande entreprise</label>
+        </div>
       </div>
-    </div>
 
-    <div class="selector-wrapper">
-      <button class="selector" onclick="toggleDropdown('secteurDropdown', this)">
-        Secteurs
-        <img alt="drop Icon" src="img/fleche_filtres.svg" draggable="false">
-      </button>
-      <div class="dropdown" id="secteurDropdown">
-        <label onclick="filter(event)"><img src="img/pin_alimentaire.svg" draggable="false"></img><input type="checkbox" value="Alimentaire"> Food & gastronomie</label>
-        <label onclick="filter(event)"><img src="img/pin_tech.svg" draggable="false"><input type="checkbox" value="Tech"> Tech & innovation</label>
-        <label onclick="filter(event)"><img src="img/pin_industrie.svg" draggable="false"><input type="checkbox" value="Industrie"> Industrie & production</label>
-        <label onclick="filter(event)"><img src="img/pin_commerce.svg" draggable="false"><input type="checkbox" value="Commerce"> Commerces & services</label>
-        <label onclick="filter(event)"><img src="img/pin_agriculture.svg" draggable="false"><input type="checkbox" value="Agriculture"> Agriculture & artisanat</label>
-        <label onclick="filter(event)"><img src="img/pin_art.svg" draggable="false"><input type="checkbox" value="Art"> Créatif & culture</label>
-        <label onclick="filter(event)"><img src="img/pin_sante.svg" draggable="false"><input type="checkbox" value="Sante"> Santé & bien-être</label>
+      <div class="selector-wrapper">
+        <button class="selector" onclick="toggleDropdown('secteurDropdown', this)">
+          Secteurs
+          <img alt="drop Icon" src="img/fleche_filtres.svg" draggable="false">
+        </button>
+        <div class="dropdown" id="secteurDropdown">
+          <label onclick="filter(event)"><img src="img/pin_alimentaire.svg" draggable="false"></img><input
+              type="checkbox" value="Alimentaire"> Food & gastronomie</label>
+          <label onclick="filter(event)"><img src="img/pin_tech.svg" draggable="false"><input type="checkbox"
+              value="Tech"> Tech & innovation</label>
+          <label onclick="filter(event)"><img src="img/pin_industrie.svg" draggable="false"><input type="checkbox"
+              value="Industrie"> Industrie & production</label>
+          <label onclick="filter(event)"><img src="img/pin_commerce.svg" draggable="false"><input type="checkbox"
+              value="Commerce"> Commerces & services</label>
+          <label onclick="filter(event)"><img src="img/pin_agriculture.svg" draggable="false"><input type="checkbox"
+              value="Agriculture"> Agriculture & artisanat</label>
+          <label onclick="filter(event)"><img src="img/pin_art.svg" draggable="false"><input type="checkbox"
+              value="Art"> Créatif & culture</label>
+          <label onclick="filter(event)"><img src="img/pin_sante.svg" draggable="false"><input type="checkbox"
+              value="Sante"> Santé & bien-être</label>
+        </div>
       </div>
-    </div>
-  </nav>
-</header>
-<main>
-  <div id="mapWrapper">
-    <img src="img/map.svg" alt="carte wallonie picarde" id="regionMap" draggable="false">
-    <div id="pinLayer">
-      <div class="villePin Pin" id="V1">
-        <p>&#9679;</p>
-        <p class="villeName">Comines</p>
-      </div>
-      <div class="villePin Pin" id="V2">
-        <p>&#9679;</p>
-        <p class="villeName">Mouscron</p>
-      </div>
-      <div class="villePin Pin" id="V3">
-        <p>&#9679;</p>
-        <p class="villeName">Tournai</p>
-      </div>
-      <div class="villePin Pin" id="V4">
-        <p>&#9679;</p>
-        <p class="villeName">Peruwiez</p>
-      </div>
-      <div class="villePin Pin" id="V5">
-        <p>&#9679;</p>
-        <p class="villeName">Lessines</p>
-      </div>
-      <div class="villePin Pin" id="V6">
-        <p>&#9679;</p>
-        <p class="villeName">Ath</p>
-      </div>
-      <div class="villePin Pin" id="V7">
-        <p>&#9679;</p>
-        <p class="villeName">Enghien</p>
-      </div>
-    </div>
-  </div>
-  <aside id="title">
-    <p>Explore autrement le tissu entreprenarial de ta région !</p>
-    <p id="subtitle">à travers + de 150 émissions réalisées par LabelEco</p>
-  </aside>
-  <nav id="GenZ_filters">
-    <button onclick="filter(event)" id="B1" value="Plot twist">Plot twist</button>
-    <button onclick="filter(event)" id="B2" value="Affaire de famille">Affaire de famille<span class="famille-emoji">👨</span><span class="famille-emoji">👩</span><span class="famille-emoji">👧</span><span class="famille-emoji">👦</span></button>
-    <button onclick="filter(event)" id="B3" value="Boss ladies">Boss ladies<span class="ruban">🎀</span></button>
-    <button onclick="surprise()" id="B4" value="Surprise me">Surprise me</button>
-    <button onclick="filter(event)" id="B5" value="Jobs pas comme les autres">Jobs pas comme les autres</button>
-  </nav>
-  <button class="creditButton" onclick="displayScroll('scrollable_page_2')">Credits</button>
-</main>
-<aside id="scrollable_page">
-
-  <header class="company-header" id="companyHeader">
-    <a class="company-logo" onclick="hideScroll('scrollable_page')" aria-label="Retour à la map" style="cursor: pointer;">
-      <img src="img/labeleco-blanc.png" alt="Logo Label Eco" draggable="false">
-    </a>
-    <a class="company-back" onclick="hideScroll('scrollable_page')" style="cursor: pointer;">Retour à la map</a>
+    </nav>
   </header>
-
-  <div class="company-page">
-    <section class="company-layout">
-      <div class="company-photo company-photo--left" data-reveal>
-        <img src="img/pomme-terre.png" alt="Pommes de terre sur la ligne de production" draggable="false">
-      </div>
-
-      <div class="company-intro" data-reveal>
-        <div class="company-headline">
-          <h1>
-            Ecofrost<br>
-            exporte <span>la frite<br>belge</span> à travers<br>
-            <span>le monde</span>
-          </h1>
+  <main>
+    <div id="mapWrapper">
+      <img src="img/map.svg" alt="carte wallonie picarde" id="regionMap" draggable="false">
+      <div id="pinLayer">
+        <div class="villePin Pin" id="V1">
+          <p>&#9679;</p>
+          <p class="villeName">Comines</p>
         </div>
-
-        <div class="company-info">
-          <h2>L’entreprise Ecofrost</h2>
-          <ul>
-            <li>Créée en 2003 à Péruwelz</li>
-            <li>250 employés</li>
-            <li>332 000 000 € de CA en 2024</li>
-          </ul>
+        <div class="villePin Pin" id="V2">
+          <p>&#9679;</p>
+          <p class="villeName">Mouscron</p>
         </div>
-      </div>
-    </section>
-
-    <section class="company-interviews" aria-labelledby="interviewsTitle">
-      <div class="company-interviews__inner">
-        <div class="company-interviews__header" data-reveal>
-          <h2 id="interviewsTitle">Ils nous racontent<br>leur quotidien</h2>
+        <div class="villePin Pin" id="V3">
+          <p>&#9679;</p>
+          <p class="villeName">Tournai</p>
         </div>
-
-        <div class="company-interviews__carousel" data-carousel>
-          <button class="company-interviews__arrow company-interviews__arrow--left" type="button" data-carousel-nav="prev" aria-label="Interview précédente">&lt;</button>
-
-          <div class="company-interviews__viewport">
-            <div class="company-interviews__track" data-carousel-track>
-              <article class="company-interview-slide is-active" data-carousel-slide>
-                <div class="company-interview">
-                  <div class="company-interview__copy">
-                    <p class="company-interview__name"><strong>Claire Hoflack</strong> - CEO</p>
-                    <p class="company-interview__text"><br>Elle dirige l’entreprise et porte la stratégie de développement.</p>
-                    <div class="customAudioPlayer">
-                      <img src="img/play-circle.svg" alt="bouton play interview" id="customAudioButton" draggable="false">
-                      <div id="waveform-1"></div>
-                    </div>
-                  </div>
-                  <div class="company-interview__visual">
-                    <img src="img/interview-1.png" alt="Claire Hoflack" draggable="false">
-                  </div>
-                </div>
-
-                <div class="company-interview">
-                  <div class="company-interview__copy">
-                    <p class="company-interview__name"><strong>Olivier Maes</strong> - Production / R&amp;D</p>
-                    <p class="company-interview__text"><br>Responsable de la production et de l’innovation.</p>
-                    <div class="customAudioPlayer">
-                      <img src="img/play-circle.svg" alt="bouton play interview" id="customAudioButton" draggable="false">
-                      <div id="waveform-2"></div>
-                    </div>
-                  </div>
-                  <div class="company-interview__visual">
-                    <img src="img/interview-2.png" alt="Olivier Maes" draggable="false">
-                  </div>
-                </div>
-              </article>
-
-              <article class="company-interview-slide" data-carousel-slide>
-                <div class="company-interview">
-                  <div class="company-interview__copy">
-                    <p class="company-interview__name"><strong>Antoine Van Wynsberghe</strong> - Agriculteur</p>
-                    <p class="company-interview__text"><br>Il raconte le lien entre les cultures, la ferme et les besoins d’Ecofrost.</p>
-                    <div class="customAudioPlayer">
-                      <img src="img/play-circle.svg" alt="bouton play interview" id="customAudioButton" draggable="false">
-                      <div id="waveform-3"></div>
-                    </div>
-                  </div>
-                  <div class="company-interview__visual">
-                    <img src="img/interview-3.png" alt="Antoine Van Wynsberghe" draggable="false">
-                  </div>
-                </div>
-
-                <div class="company-interview">
-                  <div class="company-interview__copy">
-                    <p class="company-interview__name"><strong>Pauline Jean</strong> - Stockage</p>
-                    <p class="company-interview__text"><br>Elle gère l’approvisionnement et le stockage des pommes de terre.</p>
-                    <div class="customAudioPlayer">
-                      <img src="img/play-circle.svg" alt="bouton play interview" id="customAudioButton" draggable="false">
-                      <div id="waveform-4"></div>
-                    </div>
-                  </div>
-                  <div class="company-interview__visual">
-                    <img src="img/interview-5.png" alt="Pauline Jean" draggable="false">
-                  </div>
-                </div>
-              </article>
-            </div>
-          </div>
-
-          <button class="company-interviews__arrow company-interviews__arrow--right" type="button" data-carousel-nav="next" aria-label="Interview suivante">&gt;</button>
+        <div class="villePin Pin" id="V4">
+          <p>&#9679;</p>
+          <p class="villeName">Peruwiez</p>
+        </div>
+        <div class="villePin Pin" id="V5">
+          <p>&#9679;</p>
+          <p class="villeName">Lessines</p>
+        </div>
+        <div class="villePin Pin" id="V6">
+          <p>&#9679;</p>
+          <p class="villeName">Ath</p>
+        </div>
+        <div class="villePin Pin" id="V7">
+          <p>&#9679;</p>
+          <p class="villeName">Enghien</p>
         </div>
       </div>
-    </section>
-
-    <section class="company-potato-story__text company-potato-story__text--standalone" data-reveal>
-      <p>
-        À Péruwelz, l'entreprise Ecofrost transforme chaque année des centaines de milliers de tonnes de pommes de terre en frites surgelées.
-      </p>
-      <div class="company-potato-story__hero">
-        <img src="img/pesage-pomme-de-terre.png" alt="Pesage de pommes de terre" draggable="false">
-      </div>
-    </section>
-
-    <section class="company-potato-story__text company-potato-story__text--standalone company-potato-story__text--reversed" data-reveal>
-      <div class="company-potato-story__hero">
-        <img src="img/recolte.png" alt="Récolte de pommes de terre" draggable="false">
-      </div>
-      <p>
-        Exportées mondialement, elles montrent qu'une entreprise locale peut avoir un impact mondial, tout en travaillant avec des agriculteurs situés à moins de 100 km de l'usine.
-      </p>
-    </section>
-
-    <section class="company-potato-story__text company-potato-story__text--standalone" data-reveal>
-      <p>
-        Les goûts en matière de frites changent selon les pays. En Belgique, on préfère les coupes classiques, au Royaume-Uni des frites bien dorées, tandis qu'au Japon elles doivent être très régulières.
-      </p>
-      <div class="company-potato-story__hero">
-        <img src="img/mere-fille.png" alt="Mère et fille dans un champ" draggable="false">
-      </div>
-    </section>
-
-    <section class="company-potato-story__text company-potato-story__text--standalone company-potato-story__text--reversed" data-reveal>
-      <div class="company-potato-story__hero">
-        <img src="img/frites.png" alt="Frites surgelées" draggable="false">
-      </div>
-      <p>
-        Pour exporter dans le monde entier, Ecofrost adapte donc ses produits aux habitudes des consommateurs.
-      </p>
-    </section>
-
-    <section class="company-didyouknow" aria-labelledby="companyDidYouKnowTitle" data-reveal>
-      <div class="company-didyouknow__inner">
-        <div class="company-didyouknow__nav">
-          <button class="company-didyouknow__arrow company-didyouknow__arrow--prev is-hidden" type="button" data-didyouknow-nav="prev" aria-label="Revenir à l'information précédente">&lt;</button>
-          <button class="company-didyouknow__arrow company-didyouknow__arrow--next" type="button" data-didyouknow-nav="next" aria-label="Voir l'information suivante">&gt;</button>
-        </div>
-
-        <div class="company-didyouknow__viewport" data-didyouknow-viewport>
-          <div class="company-didyouknow__track" data-didyouknow-track>
-            <article class="company-didyouknow__slide is-active" data-didyouknow-slide>
-              <div class="company-didyouknow__title" id="companyDidYouKnowTitle">Le savais-tu ?</div>
-              <div class="company-didyouknow__text">
-                <span>Si on alignait</span> toutes les frites produites en une année,
-                <span>elles pourraient</span> faire plusieurs fois le tour de la Terre.
-              </div>
-            </article>
-
-            <article class="company-didyouknow__slide" data-didyouknow-slide aria-label="Deuxième information">
-              <h2 class="company-didyouknow__title">Envie d’une activité ?</h2>
-              <p class="company-didyouknow__text">
-                <span>De plus en plus de</span> consommateurs
-                <span>veulent savoir</span> d’où viennent les produits
-                <span>et rencontrer directement les producteurs.</span> Certains vont chercher leurs pommes de terre directement dans les champs ou à la ferme,
-                <span>montrant l’intérêt croissant pour les circuits courts.</span>
-              </p>
-            </article>
-
-            <article class="company-didyouknow__slide" data-didyouknow-slide aria-label="Troisième information">
-              <h2 class="company-didyouknow__title">Le savais-tu ?</h2>
-              <p class="company-didyouknow__text">
-                Dans la transformation, <span>seulement 50 %</span> de la pomme de terre devient une frite.
-                <span>Le reste est utilisé</span> pour fabriquer : purée, croquettes, noisettes, flocons ou alimentation animale.
-              </p>
-            </article>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="company-quiz" aria-labelledby="companyQuizTitle" data-reveal>
-      <div class="company-quiz__inner">
-        <h2 class="company-quiz__title" id="companyQuizTitle">QUIZZ TIME</h2>
-
-        <div class="company-quiz__group" data-quiz-question="countries">
-          <div class="company-quiz__layout">
-            <div class="company-quiz__main">
-              <p class="company-quiz__question">
-                À ton avis combien de pays mangent des frites produites à Péruwelz ?
-              </p>
-              <div class="company-quiz__answers company-quiz__answers--compact">
-                <button class="company-quiz__answer" type="button" data-quiz-answer data-correct="false">+ de 10 pays</button>
-                <button class="company-quiz__answer" type="button" data-quiz-answer data-correct="false">+ de 50 pays</button>
-                <button class="company-quiz__answer" type="button" data-quiz-answer data-correct="false">+ de 100 pays</button>
-                <button class="company-quiz__answer" type="button" data-quiz-answer data-correct="true">+ de 150 pays</button>
-              </div>
-            </div>
-
-            <aside class="company-quiz__feedback" data-quiz-feedback hidden>
-              <p class="company-quiz__feedback-status" data-quiz-feedback-status>BIEN JOUÉ !</p>
-              <p class="company-quiz__feedback-text" data-quiz-feedback-text></p>
-            </aside>
-          </div>
-        </div>
-
-        <div class="company-quiz__group" data-quiz-question="storage">
-          <div class="company-quiz__layout">
-            <div class="company-quiz__main">
-              <p class="company-quiz__question">
-                Pourquoi doit-on sécher les pommes de terre avant de les stocker ?
-              </p>
-              <div class="company-quiz__answers company-quiz__answers--wide">
-                <button class="company-quiz__answer" type="button" data-quiz-answer data-correct="false">Pour avoir plus de goût</button>
-                <button class="company-quiz__answer" type="button" data-quiz-answer data-correct="false">Pour utiliser les épluchures comme textile</button>
-                <button class="company-quiz__answer" type="button" data-quiz-answer data-correct="true">Pour éviter le développement de maladies ou de pourriture</button>
-                <button class="company-quiz__answer" type="button" data-quiz-answer data-correct="false">Pour honorer une tradition belge</button>
-              </div>
-            </div>
-
-            <aside class="company-quiz__feedback" data-quiz-feedback hidden>
-              <p class="company-quiz__feedback-status" data-quiz-feedback-status>BIEN JOUE !</p>
-              <p class="company-quiz__feedback-text" data-quiz-feedback-text></p>
-            </aside>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="company-end-screen" aria-labelledby="companyEndTitle">
-      <div class="company-end-screen__inner">
-        <div class="company-end-popup" data-end-popup>
-          <div class="company-end-popup__content">
-            <h2 class="company-end-popup__title" id="companyEndTitle">
-              Découverte terminée !<br>
-              Pour aller plus loin, découvre<br>
-              le reportage de LabelÉco.
-            </h2>
-
-            <div class="company-end-popup__actions">
-              <a class="company-end-popup__button company-end-popup__button--primary" href="/notele/pagevideo.html">Voir la vidéo</a>
-              <a class="company-end-popup__button company-end-popup__button--primary" onclick="hideScroll('scrollable_page')">Retour à la carte</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  </div>
-</aside>
-<aside id="scrollable_page_2">
-  <div class="container">
-    <div class="header">
-      <img class="logo-img" src="img/labelecoimg.png" onclick="hideScroll('scrollable_page_2')">
-      <a class="map-btn" onclick="hideScroll('scrollable_page_2')">Retour à la map</a>
     </div>
+    <aside id="title">
+      <p>Explore autrement le tissu entreprenarial de ta région !</p>
+      <p id="subtitle">à travers + de 150 émissions réalisées par LabelEco</p>
+    </aside>
+    <nav id="GenZ_filters">
+      <button onclick="filter(event)" id="B1" value="Plot twist">Plot twist</button>
+      <button onclick="filter(event)" id="B2" value="Affaire de famille">Affaire de famille<span
+          class="famille-emoji">👨</span><span class="famille-emoji">👩</span><span class="famille-emoji">👧</span><span
+          class="famille-emoji">👦</span></button>
+      <button onclick="filter(event)" id="B3" value="Boss ladies">Boss ladies<span class="ruban">🎀</span></button>
+      <button onclick="surprise()" id="B4" value="Surprise me">Surprise me</button>
+      <button onclick="filter(event)" id="B5" value="Jobs pas comme les autres">Jobs pas comme les autres</button>
+    </nav>
+    <button class="creditButton" onclick="displayScroll('scrollable_page_2')">Crédits</button>
+  </main>
+  <aside id="scrollable_page">
+
+    <header class="company-header" id="companyHeader">
+      <a class="company-logo" onclick="hideScroll('scrollable_page')" aria-label="Retour à la map"
+        style="cursor: pointer;">
+        <img src="img/labeleco-blanc.png" alt="Logo Label Eco" draggable="false">
+      </a>
+      <a class="company-back" onclick="hideScroll('scrollable_page')" style="cursor: pointer;">Retour à la map</a>
+    </header>
+
+    <div class="company-page">
+      <section class="company-layout">
+        <div class="company-photo company-photo--left" data-reveal>
+          <img src="img/pomme-terre.png" alt="Pommes de terre sur la ligne de production" draggable="false">
+        </div>
+
+        <div class="company-intro" data-reveal>
+          <div class="company-headline">
+            <h1>
+              Ecofrost<br>
+              exporte <span>la frite<br>belge</span> à travers<br>
+              <span>le monde</span>
+            </h1>
+          </div>
+
+          <div class="company-info">
+            <h2>L’entreprise Ecofrost</h2>
+            <ul>
+              <li>Créée en 2003 à Péruwelz</li>
+              <li>250 employés</li>
+              <li>332 000 000 € de CA en 2024</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="company-interviews" aria-labelledby="interviewsTitle">
+        <div class="company-interviews__inner">
+          <div class="company-interviews__header" data-reveal>
+            <h2 id="interviewsTitle">Ils nous racontent<br>leur quotidien</h2>
+          </div>
+
+          <div class="company-interviews__carousel" data-carousel>
+            <button class="company-interviews__arrow company-interviews__arrow--left" type="button"
+              data-carousel-nav="prev" aria-label="Interview précédente">&lt;</button>
+
+            <div class="company-interviews__viewport">
+              <div class="company-interviews__track" data-carousel-track>
+                <article class="company-interview-slide is-active" data-carousel-slide>
+                  <div class="company-interview">
+                    <div class="company-interview__copy">
+                      <p class="company-interview__name"><strong>Claire Hoflack</strong> - CEO</p>
+                      <p class="company-interview__text"><br>Elle dirige l’entreprise et porte la stratégie de
+                        développement.</p>
+                      <div class="customAudioPlayer">
+                        <img src="img/play-circle.svg" alt="bouton play interview" id="customAudioButton"
+                          draggable="false">
+                        <div id="waveform-1"></div>
+                      </div>
+                    </div>
+                    <div class="company-interview__visual">
+                      <img src="img/interview-1.png" alt="Claire Hoflack" draggable="false">
+                    </div>
+                  </div>
+
+                  <div class="company-interview">
+                    <div class="company-interview__copy">
+                      <p class="company-interview__name"><strong>Olivier Maes</strong> - Production / R&amp;D</p>
+                      <p class="company-interview__text"><br>Responsable de la production et de l’innovation.</p>
+                      <div class="customAudioPlayer">
+                        <img src="img/play-circle.svg" alt="bouton play interview" id="customAudioButton"
+                          draggable="false">
+                        <div id="waveform-2"></div>
+                      </div>
+                    </div>
+                    <div class="company-interview__visual">
+                      <img src="img/interview-2.png" alt="Olivier Maes" draggable="false">
+                    </div>
+                  </div>
+                </article>
+
+                <article class="company-interview-slide" data-carousel-slide>
+                  <div class="company-interview">
+                    <div class="company-interview__copy">
+                      <p class="company-interview__name"><strong>Antoine Van Wynsberghe</strong> - Agriculteur</p>
+                      <p class="company-interview__text"><br>Il raconte le lien entre les cultures, la ferme et les
+                        besoins d’Ecofrost.</p>
+                      <div class="customAudioPlayer">
+                        <img src="img/play-circle.svg" alt="bouton play interview" id="customAudioButton"
+                          draggable="false">
+                        <div id="waveform-3"></div>
+                      </div>
+                    </div>
+                    <div class="company-interview__visual">
+                      <img src="img/interview-3.png" alt="Antoine Van Wynsberghe" draggable="false">
+                    </div>
+                  </div>
+
+                  <div class="company-interview">
+                    <div class="company-interview__copy">
+                      <p class="company-interview__name"><strong>Pauline Jean</strong> - Stockage</p>
+                      <p class="company-interview__text"><br>Elle gère l’approvisionnement et le stockage des pommes de
+                        terre.</p>
+                      <div class="customAudioPlayer">
+                        <img src="img/play-circle.svg" alt="bouton play interview" id="customAudioButton"
+                          draggable="false">
+                        <div id="waveform-4"></div>
+                      </div>
+                    </div>
+                    <div class="company-interview__visual">
+                      <img src="img/interview-5.png" alt="Pauline Jean" draggable="false">
+                    </div>
+                  </div>
+                </article>
+              </div>
+            </div>
+
+            <button class="company-interviews__arrow company-interviews__arrow--right" type="button"
+              data-carousel-nav="next" aria-label="Interview suivante">&gt;</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="company-potato-story__text company-potato-story__text--standalone" data-reveal>
+        <p>
+          À Péruwelz, l'entreprise Ecofrost transforme chaque année des centaines de milliers de tonnes de pommes de
+          terre en frites surgelées.
+        </p>
+        <div class="company-potato-story__hero">
+          <img src="img/pesage-pomme-de-terre.png" alt="Pesage de pommes de terre" draggable="false">
+        </div>
+      </section>
+
+      <section
+        class="company-potato-story__text company-potato-story__text--standalone company-potato-story__text--reversed"
+        data-reveal>
+        <div class="company-potato-story__hero">
+          <img src="img/recolte.png" alt="Récolte de pommes de terre" draggable="false">
+        </div>
+        <p>
+          Exportées mondialement, elles montrent qu'une entreprise locale peut avoir un impact mondial, tout en
+          travaillant avec des agriculteurs situés à moins de 100 km de l'usine.
+        </p>
+      </section>
+
+      <section class="company-potato-story__text company-potato-story__text--standalone" data-reveal>
+        <p>
+          Les goûts en matière de frites changent selon les pays. En Belgique, on préfère les coupes classiques, au
+          Royaume-Uni des frites bien dorées, tandis qu'au Japon elles doivent être très régulières.
+        </p>
+        <div class="company-potato-story__hero">
+          <img src="img/mere-fille.png" alt="Mère et fille dans un champ" draggable="false">
+        </div>
+      </section>
+
+      <section
+        class="company-potato-story__text company-potato-story__text--standalone company-potato-story__text--reversed"
+        data-reveal>
+        <div class="company-potato-story__hero">
+          <img src="img/frites.png" alt="Frites surgelées" draggable="false">
+        </div>
+        <p>
+          Pour exporter dans le monde entier, Ecofrost adapte donc ses produits aux habitudes des consommateurs.
+        </p>
+      </section>
+
+      <section class="company-didyouknow" aria-labelledby="companyDidYouKnowTitle" data-reveal>
+        <div class="company-didyouknow__inner">
+          <div class="company-didyouknow__nav">
+            <button class="company-didyouknow__arrow company-didyouknow__arrow--prev is-hidden" type="button"
+              data-didyouknow-nav="prev" aria-label="Revenir à l'information précédente">&lt;</button>
+            <button class="company-didyouknow__arrow company-didyouknow__arrow--next" type="button"
+              data-didyouknow-nav="next" aria-label="Voir l'information suivante">&gt;</button>
+          </div>
+
+          <div class="company-didyouknow__viewport" data-didyouknow-viewport>
+            <div class="company-didyouknow__track" data-didyouknow-track>
+              <article class="company-didyouknow__slide is-active" data-didyouknow-slide>
+                <div class="company-didyouknow__title" id="companyDidYouKnowTitle">Le savais-tu ?</div>
+                <div class="company-didyouknow__text">
+                  <span>Si on alignait</span> toutes les frites produites en une année,
+                  <span>elles pourraient</span> faire plusieurs fois le tour de la Terre.
+                </div>
+              </article>
+
+              <article class="company-didyouknow__slide" data-didyouknow-slide aria-label="Deuxième information">
+                <h2 class="company-didyouknow__title">Envie d’une activité ?</h2>
+                <p class="company-didyouknow__text">
+                  <span>De plus en plus de</span> consommateurs
+                  <span>veulent savoir</span> d’où viennent les produits
+                  <span>et rencontrer directement les producteurs.</span> Certains vont chercher leurs pommes de terre
+                  directement dans les champs ou à la ferme,
+                  <span>montrant l’intérêt croissant pour les circuits courts.</span>
+                </p>
+              </article>
+
+              <article class="company-didyouknow__slide" data-didyouknow-slide aria-label="Troisième information">
+                <h2 class="company-didyouknow__title">Le savais-tu ?</h2>
+                <p class="company-didyouknow__text">
+                  Dans la transformation, <span>seulement 50 %</span> de la pomme de terre devient une frite.
+                  <span>Le reste est utilisé</span> pour fabriquer : purée, croquettes, noisettes, flocons ou
+                  alimentation animale.
+                </p>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="company-quiz" aria-labelledby="companyQuizTitle" data-reveal>
+        <div class="company-quiz__inner">
+          <h2 class="company-quiz__title" id="companyQuizTitle">QUIZZ TIME</h2>
+
+          <div class="company-quiz__group" data-quiz-question="countries">
+            <div class="company-quiz__layout">
+              <div class="company-quiz__main">
+                <p class="company-quiz__question">
+                  À ton avis combien de pays mangent des frites produites à Péruwelz ?
+                </p>
+                <div class="company-quiz__answers company-quiz__answers--compact">
+                  <button class="company-quiz__answer" type="button" data-quiz-answer data-correct="false">+ de 10
+                    pays</button>
+                  <button class="company-quiz__answer" type="button" data-quiz-answer data-correct="false">+ de 50
+                    pays</button>
+                  <button class="company-quiz__answer" type="button" data-quiz-answer data-correct="false">+ de 100
+                    pays</button>
+                  <button class="company-quiz__answer" type="button" data-quiz-answer data-correct="true">+ de 150
+                    pays</button>
+                </div>
+              </div>
+
+              <aside class="company-quiz__feedback" data-quiz-feedback hidden>
+                <p class="company-quiz__feedback-status" data-quiz-feedback-status>BIEN JOUÉ !</p>
+                <p class="company-quiz__feedback-text" data-quiz-feedback-text></p>
+              </aside>
+            </div>
+          </div>
+
+          <div class="company-quiz__group" data-quiz-question="storage">
+            <div class="company-quiz__layout">
+              <div class="company-quiz__main">
+                <p class="company-quiz__question">
+                  Pourquoi doit-on sécher les pommes de terre avant de les stocker ?
+                </p>
+                <div class="company-quiz__answers company-quiz__answers--wide">
+                  <button class="company-quiz__answer" type="button" data-quiz-answer data-correct="false">Pour avoir
+                    plus de goût</button>
+                  <button class="company-quiz__answer" type="button" data-quiz-answer data-correct="false">Pour utiliser
+                    les épluchures comme textile</button>
+                  <button class="company-quiz__answer" type="button" data-quiz-answer data-correct="true">Pour éviter le
+                    développement de maladies ou de pourriture</button>
+                  <button class="company-quiz__answer" type="button" data-quiz-answer data-correct="false">Pour honorer
+                    une tradition belge</button>
+                </div>
+              </div>
+
+              <aside class="company-quiz__feedback" data-quiz-feedback hidden>
+                <p class="company-quiz__feedback-status" data-quiz-feedback-status>BIEN JOUE !</p>
+                <p class="company-quiz__feedback-text" data-quiz-feedback-text></p>
+              </aside>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="company-end-screen" aria-labelledby="companyEndTitle">
+        <div class="company-end-screen__inner">
+          <div class="company-end-popup" data-end-popup>
+            <div class="company-end-popup__content">
+              <h2 class="company-end-popup__title" id="companyEndTitle">
+                Découverte terminée !<br>
+                Pour aller plus loin, découvre<br>
+                le reportage de LabelÉco.
+              </h2>
+
+              <div class="company-end-popup__actions">
+                <a class="company-end-popup__button company-end-popup__button--primary"
+                  href="/notele/pagevideo.html">Voir la vidéo</a>
+                <a class="company-end-popup__button company-end-popup__button--primary"
+                  onclick="hideScroll('scrollable_page')">Retour à la carte</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </aside>
+  <aside id="scrollable_page_2">
+    <div class="container">
+      <div class="header">
+        <img class="logo-img" src="img/labelecoimg.png" onclick="hideScroll('scrollable_page_2')">
+        <a class="map-btn" onclick="hideScroll('scrollable_page_2')">Retour à la map</a>
+      </div>
 
       <h1>Crédits</h1>
 
-    <div class="section">
-      <div>
-        <h2>HYPLAB 2026</h2>
-        <p>Concours : Hyblab 2026 – “Remixer vos contenus”, organisé par Médias Ouest.</p>
+      <div class="section">
+        <div>
+          <h2>HYPLAB 2026</h2>
+          <p>Concours : Hyblab 2026 – “Remixer vos contenus”, organisé par Médias Ouest.</p>
+        </div>
+        <img src="img/hyblabb.png">
       </div>
-      <img src="img/hyblabb.png">
-    </div>
 
-    <div class="section">
-      <div>
-        <h2>COLLABORATION PÉDAGOGIQUE</h2>
-        <div class="collab-tags">
-          <span>EDNA</span>
-          <span>Polytech Nantes</span>
+      <div class="section">
+        <div>
+          <h2>COLLABORATION PÉDAGOGIQUE</h2>
+          <div class="collab-tags">
+            <span>EDNA</span>
+            <span>Polytech Nantes</span>
+          </div>
+        </div>
+        <img src="img/ednapolytech.png">
+      </div>
+
+      <div class="section">
+        <div>
+          <h2>CONTENUS</h2>
+          <p>LabelEco</p>
+          <p>Notélé</p>
         </div>
       </div>
-      <img src="img/ednapolytech.png">
-    </div>
 
-    <div class="section">
-      <div>
-        <h2>CONTENUS</h2>
-        <p>LabelEco</p>
-        <p>Notélé</p>
+      <div class="students">
+
+        <div class="student-col">
+          <h3>ETUDIANTS - POLYTECH</h3>
+          <p>Sara AIT DAOUD</p>
+          <p>Lina CHOUKI</p>
+          <p>Esteban GIROUX</p>
+          <p>Hajare OULBAZ</p>
+          <p>Anas TAIMOUR</p>
+        </div>
+
+        <div class="student-col">
+          <h3>ETUDIANTS - EDNA</h3>
+          <p>Gwenn MELIS</p>
+          <p>Jeanne MÉNORET</p>
+          <p>Rohif SAKA</p>
+        </div>
+
       </div>
     </div>
-
-    <div class="students">
-
-      <div class="student-col">
-        <h3>ETUDIANTS - POLYTECH</h3>
-        <p>Sara AIT DAOUD</p>
-        <p>Lina CHOUKI</p>
-        <p>Esteban GIROUX</p>
-        <p>Hajare OULBAZ</p>
-        <p>Anas TAIMOUR</p>
-      </div>
-
-      <div class="student-col">
-        <h3>ETUDIANTS - EDNA</h3>
-        <p>Gwenn MELIS</p>
-        <p>Jeanne MÉNORET</p>
-        <p>Rohif SAKA</p>
-      </div>
-
-    </div>
-  </div>
-</aside>
+  </aside>
 </body>
 <script type="module">
   import WaveSurfer from 'https://cdn.jsdelivr.net/npm/wavesurfer.js@7/dist/wavesurfer.esm.js'
   const customAudioButtons = document.querySelectorAll("#customAudioButton")
   let wavesurfsInitialized = false;
 
-  window.initWavesurfers = function() {
-      if (wavesurfsInitialized) return;
-      wavesurfsInitialized = true;
+  window.initWavesurfers = function () {
+    if (wavesurfsInitialized) return;
+    wavesurfsInitialized = true;
 
-      const configs = [
-          { container: '#waveform-1', url: 'data/claire-hoflack.mp4' },
-          { container: '#waveform-2', url: 'data/olivier-maes.mp4' },
-          { container: '#waveform-3', url: 'data/antoine-van.mp4' },
-          { container: '#waveform-4', url: 'data/claire-hoflack.mp4' },
-      ];
+    const configs = [
+      { container: '#waveform-1', url: 'data/claire-hoflack.mp4' },
+      { container: '#waveform-2', url: 'data/olivier-maes.mp4' },
+      { container: '#waveform-3', url: 'data/antoine-van.mp4' },
+      { container: '#waveform-4', url: 'data/claire-hoflack.mp4' },
+    ];
 
-      window.wavesurfers = configs.map((cfg, i) => {
-          const ws = WaveSurfer.create({
-              container: cfg.container,
-              waveColor: '#FFF',
-              progressColor: '#FFD400',
-              url: cfg.url,
-              barWidth: 2,
-              responsive: true,
-              height: 45,
-              barGap: 2,
-          });
-
-          const btn = customAudioButtons[i];
-          btn.onclick = function() {
-              ws.playPause();
-              btn.src = ws.isPlaying() ? "img/pause-circle.svg" : "img/play-circle.svg";
-          };
-
-          ws.on('finish', function() {
-              btn.src = "img/play-circle.svg";
-              ws.stop();
-          });
-
-          return ws;
+    window.wavesurfers = configs.map((cfg, i) => {
+      const ws = WaveSurfer.create({
+        container: cfg.container,
+        waveColor: '#FFF',
+        progressColor: '#FFD400',
+        url: cfg.url,
+        barWidth: 2,
+        responsive: true,
+        height: 45,
+        barGap: 2,
       });
+
+      const btn = customAudioButtons[i];
+      btn.onclick = function () {
+        ws.playPause();
+        btn.src = ws.isPlaying() ? "img/pause-circle.svg" : "img/play-circle.svg";
+      };
+
+      ws.on('finish', function () {
+        btn.src = "img/play-circle.svg";
+        ws.stop();
+      });
+
+      return ws;
+    });
   }
 </script>
+
 </html>

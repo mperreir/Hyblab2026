@@ -52,6 +52,7 @@ const pins = {  "Alimentaire" : "./img/pin_alimentaire.svg", "Tech" : "./img/pin
                 "Art" : "./img/pin_art.svg", "Commerce" : "./img/pin_commerce.svg", "Industrie" : "./img/pin_industrie.svg",
                 "Sante" : "./img/pin_sante.svg",};
 
+                
 var i = 1;
 entreprises.forEach((entreprise) => {
     const entreprise_div = document.createElement("div");

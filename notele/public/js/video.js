@@ -1,11 +1,20 @@
-// const videoIntro = document.getElementById('video-intro');
-// const videoPlayer = document.getElementById('intro-player');
-
+// const videoIntro    = document.getElementById('video-intro');
+// const videoPlayer   = document.getElementById('intro-player');
+// const title         = document.querySelector('#title');
+// const buttons       = document.querySelector('#GenZ_filters');
+// const creditButton  = document.querySelector(".creditButton");
+// const pinsRaph          = document.querySelectorAll(".entreprisePin");
 // videoPlayer.onended = function() {
 //     videoIntro.classList.add('fade-out');
     
 //     setTimeout(() => {
-//         videoIntro.remove();
+//         videoIntro.style.display = 'none';
+//         title.style.display = 'block';
+//         buttons.style.display = 'flex';
+//         creditButton.style.display = 'block';
+//         pinsRaph.forEach((pin)=> {
+//             pin.style.display = 'block';
+//         })
 //     }, 300); 
 // };
 

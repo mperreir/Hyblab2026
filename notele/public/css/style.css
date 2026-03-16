@@ -19,6 +19,11 @@
     src: url("../data/Polices-Labeleco/Apfel/ApfelGrotezk-Satt.otf");
 }
 
+/* #intro-player{
+    width: 100vw;
+    height: 100vh;
+} */
+
 *{
     padding:0;
     margin:0;
@@ -194,6 +199,7 @@ main {
     cursor: pointer;
     font-size: 2rem;
     filter: brightness(0) saturate(100%) invert(89%) sepia(14%) saturate(6723%) hue-rotate(358deg) brightness(101%) contrast(105%);
+    /* display: none; */
 }
 
 .entreprisePin {
@@ -254,6 +260,7 @@ main {
     max-width: 365px;
     left: 5%;
     top: 53%;
+    /* display: none; */
 }
 
 #title #subtitle{
@@ -263,6 +270,7 @@ main {
 #GenZ_filters{
     position: absolute;
     display: flex;
+    /* display: none; */
     flex-direction: column;
     align-items: center;
     gap: 5px;
@@ -300,6 +308,7 @@ main {
 }
 
 .creditButton{
+    /* display: none; */
     position: absolute;
     bottom: 3%;
     left: 3%;
