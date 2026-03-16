@@ -150,7 +150,7 @@ export default function Scrollytelling() {
 
   const hemicycleSegments = [
     { label: '', percentage: Math.max(0, 100 - hemicycleValue), color: '#D2D2D2' },
-    { label: 'RN', percentage: Math.max(0, hemicycleValue), color: '#A4BAE8' },
+    { label: 'RN', percentage: Math.max(0, hemicycleValue), color: '#4657C6' },
   ];
 
   useGSAP(
@@ -411,11 +411,10 @@ export default function Scrollytelling() {
       <div 
         ref={crackContainerRef} 
         className="absolute inset-0 flex items-center justify-center pointer-events-none" 
-        style={{ visibility: 'hidden', zIndex: 5 }}
+        style={{ visibility: 'hidden', zIndex: 1 }}
       >
         {/* Les classes top et left te permettent de caler la cassure exactement sur la France de ta carte de fond. */}
-        {/* N'hésite pas à ajuster "-top-[2%]" ou "-left-[4%]" selon le rendu sur ton écran ! */}
-        <div className="relative w-[20%] h-[90%]  -top-[0%] -left-[0%]">
+        <div className="relative w-[17%] sm:w-[12%] h-[45%] top-[5%] -right-[5%]">
           <img 
             ref={crackRef} 
             src="./story/casse.svg" 
@@ -426,13 +425,13 @@ export default function Scrollytelling() {
       </div>0
 
       {/* Scene 4: Dilemme SVGs */}
-      <div ref={dilemmaContainerRef} className="absolute inset-0 pointer-events-none" style={{ visibility: 'hidden' }}>
+      <div ref={dilemmaContainerRef} className="absolute inset-0 pointer-events-none" style={{ visibility: 'hidden', zIndex: 10}}>
         <div className="relative w-full h-full max-w-5xl mx-auto">
           
           {/* SVG Gauche */}
           <div 
             ref={dilemmaLeftRef} 
-            className="absolute left-[2%] sm:left-[5%] bottom-[25%] sm:bottom-[25%] w-[48%] max-w-[300px]"
+            className="absolute left-[2%] sm:left-[5%] bottom-[25%] sm:bottom-[25%] w-[48%] max-w-[300px] z-1000"
           >
             <img src="./story/gauche.svg" alt="Parlement représentatif" className="w-full h-auto z-1000" />
           </div>
@@ -440,7 +439,7 @@ export default function Scrollytelling() {
           {/* SVG Droite (légèrement décalé vers le bas pour le style asymétrique) */}
           <div 
             ref={dilemmaRightRef} 
-            className="absolute right-[2%] sm:right-[5%] bottom-[25%] sm:bottom-[25%] w-[48%] max-w-[300px] "
+            className="absolute right-[2%] sm:right-[5%] bottom-[25%] sm:bottom-[25%] w-[48%] max-w-[300px] z-1000 "
           >
             <img src="./story/droite.svg" alt="Majorités stables" className="w-full h-auto z-1000" />
           </div>
@@ -500,7 +499,7 @@ export default function Scrollytelling() {
         </div>
       </div>
 
-      <div className="absolute inset-0 pointer-events-none">
+      <div className="absolute inset-0 pointer-events-none z-50">
         {STORY_PARTS.map((part) => (
           <article
             key={part.id}
