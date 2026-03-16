@@ -61,7 +61,7 @@ const panorama2 = document.getElementById('fond_eau');
 const finScene = document.getElementById('fin-scene');
 const finCiel = document.getElementById('fin-ciel');
 
-sceneCamion.style.display = "none";
+if (sceneCamion) sceneCamion.style.display = "none";
 
 const elsFin = document.querySelectorAll('.el');
 const totalEl = elsFin.length;
@@ -900,8 +900,3 @@ function majCamion(progress) {
         worker.style.transform = `translateX(-50%) translateY(${workerY}%)`;
     }
 }
-
-/* ════════════════════════════════════
-   ÉTAT INITIAL — Scène camion
-════════════════════════════════════ */
-if (sceneCamion) sceneCamion.style.display = 'none';
