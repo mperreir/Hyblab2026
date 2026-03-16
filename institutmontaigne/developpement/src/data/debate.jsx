@@ -29,23 +29,7 @@ const debateData = {
         "titre": "Constitutionnaliste, professeure de droit public à l'Université Paris 1 Panthéon-Sorbonne"
       }
     ]
-  },
-  "accroches": [
-    "Entre représentativité et stabilité, faut-il vraiment choisir ?",
-    "Six formations au Bundestag avec la proportionnelle. Onze à l'Assemblée nationale avec le scrutin majoritaire.",
-    "+7 points de participation. +12 chez les jeunes. La proportionnelle change la donne.",
-    "Mille formules de proportionnelle existent. Aucune ne fait l'unanimité.",
-    "La crise n'est pas politique. Elle est démocratique.",
-    "Deux visions du pouvoir. Un seul choix de société."
-  ],
-  "accrocheImages": [
-    "https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?w=1200&q=80",
-    "https://images.unsplash.com/photo-1494172961521-33799ddd43a5?w=1200&q=80",
-    "https://images.unsplash.com/photo-1540910419892-4a36d2c3266c?w=1200&q=80",
-    "https://images.unsplash.com/photo-1577415124269-fc1140354569?w=1200&q=80",
-    "https://images.unsplash.com/photo-1531206715517-5c0ba140b2b8?w=1200&q=80",
-    "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=1200&q=80"
-  ],
+},
   "podcast": {
       "episode": "EP 3 : Le scrutin proportionnel est-il un remède à la crise démocratique ?",
       "title": "Avec Benjamin MOREL et Anne LEVADE",
