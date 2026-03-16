@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/loadingio/loading.css@v2.0.0/dist/loading.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.2/anime.min.js"></script>
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <!-- Un seul script unifié -->
     <script src="js/zoom.js" defer></script>
 </head>
 <body>
@@ -26,6 +27,10 @@
     </div>
 
     <div id="scene-container">
+
+        <!-- ═══════════════════════════════════
+             SCÈNES 1-5 : zoom aérien → maison
+        ════════════════════════════════════ -->
 
         <!-- SCÈNE 1 : zoom aérien + nuages -->
         <div id="scene">
@@ -75,13 +80,7 @@
 
         <img class="arbre" id="arbre" src="img/chantier/ARBRE.png">
 
-        <!-- SCÈNE 4 : maison
-             Zoom haut-droit sur le chantier, puis apparition :
-             - route      : monte du bas
-             - maison_arbres : descend du haut, centrée à l'écran
-             - femme      : opacité pure, au centre des arbres
-             La colline (m-colline) ne bouge jamais.
-        -->
+        <!-- SCÈNE 4 : maison -->
         <div id="sceneMaison" class="scene-maison">
             <img class="m-ciel"    src="img/plan_03_ciel.png"          alt="">
             <img class="m-colline" src="img/chantier/collines_new.png" alt="colline">
@@ -90,6 +89,16 @@
             <img class="m-femme"   src="img/femme.png"                 alt="femme">
         </div>
 
-    </div>
+        <div id="sceneBio" class="scene-bio">
+            <img src="./img/bio/IMAGE-PARC-FOND.png"              id="fond">
+            <img src="./img/bio/ecolier_01.png"                   id="mec">
+            <img src="./img/bio/ARBRE_01.png"                     id="arbre1">
+            <img src="./img/bio/ARBRE_02.png"                     id="arbre2">
+            <img src="./img/bio/arbre_04.png"                     id="arbreDessin">
+            <img src="./img/bio/ARBRE-3.png"                      id="arbre3">
+            <img src="./img/bio/personnes plantent arbres.png"    id="planter">
+        </div>
+
+    </div><!-- /#scene-container -->
 </body>
 </html>

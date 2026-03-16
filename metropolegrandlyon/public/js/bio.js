@@ -1,7 +1,7 @@
 //Repères de scroll (en pixels)
 const DebutSLideDroite = 1500;
 const FinSLideDroite = 9500;
-
+document.body.style.height = (FinSLideDroite + window.innerHeight + 200) + 'px';
 
 //Récupère les éléments
 const fond = document.getElementById("fond");

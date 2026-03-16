@@ -1,7 +1,7 @@
 "use strict";
 
 /* ════════════════════════════════════
-   SÉLECTEURS
+   SÉLECTEURS — Scène 1-5 (zoom)
 ════════════════════════════════════ */
 const logosAccueil = document.getElementById('logos-accueil');
 
@@ -37,8 +37,19 @@ const mArbres     = document.querySelector('.m-arbres');
 const mFemme      = document.querySelector('.m-femme');
 
 /* ════════════════════════════════════
-   REPÈRES SCROLL (px) — tous fixes
-   La hauteur du body est déduite ici.
+   SÉLECTEURS — Scène Bio
+════════════════════════════════════ */
+const sceneBio  = document.getElementById('sceneBio');
+const fond      = document.getElementById("fond");
+const arbre1    = document.getElementById("arbre1");
+const arbre2    = document.getElementById("arbre2");
+const mec       = document.getElementById('mec');
+const arbreD    = document.getElementById("arbreDessin");
+const arbre3    = document.getElementById("arbre3");
+const planter   = document.getElementById("planter");
+
+/* ════════════════════════════════════
+   REPÈRES SCROLL (px) — Scènes 1-5
 ════════════════════════════════════ */
 const scrollFinStep1          = 800;
 const scrollFinStep2          = 1200;
@@ -54,29 +65,45 @@ const scrollFin_arbre         = scrollFin_glisse + 300;   // 6100
 const scrollDebut_slider      = scrollFin_arbre  + 600;   // 6700
 const DUREE_SLIDER            = 1500;
 const scrollFin_slider        = scrollDebut_slider + DUREE_SLIDER; // 8200
-const scrollDebut_desc2       = scrollFin_slider;          // 8200
-const scrollFin_desc2         = scrollFin_slider + 800;    // 9000
-const scrollDebut_arbreGlisse = scrollFin_pano - 1500;     // 3500
+const scrollDebut_desc2       = scrollFin_slider;                  // 8200
+const scrollFin_desc2         = scrollFin_slider + 800;            // 9000
+const scrollDebut_arbreGlisse = scrollFin_pano - 1500;             // 3500
 
-/* ── Repères phase 5 ─────────────────────────────
-   scrollFin_desc2 (9000) : chantier sorti → zoom
-   sM_zoomFin      (9800) : zoom terminé → maison
-   Ordre : route (bas↑) → arbres (haut↓) → femme (opacité)   */
-const sM          = scrollFin_desc2;     // 9000
-const sM_zoomFin  = sM + 800;           // 9800
-const sM_route    = sM_zoomFin;         // 9800
-const sM_routeFin = sM_zoomFin + 700;   // 10500
-const sM_arbres   = sM_zoomFin + 300;   // 10100
-const sM_arbresFin= sM_zoomFin + 1000;  // 10800
-const sM_femme      = sM_zoomFin + 800;   // 10600
-const sM_femmeFin   = sM_zoomFin + 1400;  // 11200
-const sM_zoom2      = sM_femmeFin + 200;  // 11400 — début zoom sur femme+arbres
-const sM_zoom2Fin   = sM_zoom2    + 1200; // 12600 — fin zoom
-const sM_fin        = sM_zoom2Fin + 400;  // 13000
+/* ── Phase 5 ── */
+const sM          = scrollFin_desc2;       // 9000
+const sM_zoomFin  = sM + 800;             // 9800
+const sM_route    = sM_zoomFin;           // 9800
+const sM_routeFin = sM_zoomFin + 700;     // 10500
+const sM_arbres   = sM_zoomFin + 300;     // 10100
+const sM_arbresFin= sM_zoomFin + 1000;    // 10800
+const sM_femme    = sM_zoomFin + 800;     // 10600
+const sM_femmeFin = sM_zoomFin + 1400;    // 11200
+const sM_zoom2    = sM_femmeFin + 200;    // 11400
+const sM_zoom2Fin = sM_zoom2    + 1200;   // 12600
+const sM_fin      = sM_zoom2Fin + 400;    // 13000
 
-// Le body est exactement assez haut pour atteindre le dernier repère
-document.body.style.height = (sM_fin + window.innerHeight + 200) + 'px';
+/* ── Transition sortie maison → Bio ──
+   13000 → 13600 : route, arbres, femme glissent dans le sol
+   13600 → 13800 : sceneChantier+Maison s'effacent en fondu
+   13800          : Bio entre en scène                       */
+const sT_debut    = sM_fin;               // 13000
+const sT_fin      = sT_debut + 600;       // 13600
+const sFade_fin   = sT_fin   + 200;       // 13800
 
+/* ════════════════════════════════════
+   REPÈRES SCROLL — Bio
+════════════════════════════════════ */
+const sB_debut          = sFade_fin;              // 13800
+const sB_arbresSortie   = sB_debut + 1500;        // 15300  arbres quittent l'écran
+const sB_slideDroite    = sB_debut + 1500;        // 15300  début slide panoramique
+const sB_slideFinale    = sB_slideDroite + 8000;  // 23300  fin slide
+
+/* Hauteur totale du body */
+document.body.style.height = (sB_slideFinale + window.innerHeight + 400) + 'px';
+
+/* ════════════════════════════════════
+   CONSTANTES
+════════════════════════════════════ */
 const departVw = -160;
 const arbreVw  = 94;
 
@@ -98,6 +125,17 @@ const frames_gif3 = Array.from({ length: NOMBRE_FRAMES }, (_, i) =>
 frames_gif1.forEach(src => { const img = new Image(); img.src = src; });
 frames_gif2.forEach(src => { const img = new Image(); img.src = src; });
 frames_gif3.forEach(src => { const img = new Image(); img.src = src; });
+
+/* Préchargement images Bio */
+[
+    'img/bio/IMAGE-PARC-FOND.png',
+    'img/bio/écolier_01.png',
+    'img/bio/ARBRE_01.png',
+    'img/bio/ARBRE_02.png',
+    'img/bio/arbre_04.png',
+    'img/bio/ARBRE-3.png',
+    'img/bio/personnes plantent arbres.png'
+].forEach(src => { const img = new Image(); img.src = src; });
 
 let frameAffichee = 0;
 
@@ -167,7 +205,7 @@ window.addEventListener("scroll", () => {
 })();
 
 /* ════════════════════════════════════
-   BOUCLE SCÈNE
+   BOUCLE SCÈNE PRINCIPALE
 ════════════════════════════════════ */
 function majScene(s) {
     const maxScr = document.body.scrollHeight - window.innerHeight;
@@ -291,6 +329,9 @@ function majScene(s) {
             arbre.style.left      = `${leftVw}vw`;
             arbre.style.right     = 'auto';
             arbre.style.opacity   = `${1 - pDisparait}`;
+            if (arbre.style.opacity <1 ){
+                imgVille.style.opacity = 0;
+            }
             arbre.style.transform = `scaleX(${1 + pDisparait * 0.7}) scaleY(${1 + pDisparait * 0.3})`;
         } else {
             arbre.style.display = 'none';
@@ -306,6 +347,7 @@ function majScene(s) {
         toggle(labelApres,    arbreDisp);
 
         if (arbreDisp) {
+            imgVille.style.opacity = 0;
             const pct = pSlider * 100;
             apres.style.clipPath  = `inset(0 ${100 - pct}% 0 0)`;
             separateur.style.left = `${pct}%`;
@@ -316,7 +358,6 @@ function majScene(s) {
             avant.style.maskImage =
                 `linear-gradient(to right, transparent ${debut}%, black ${pct}%)`;
 
-            // Descente av/ap vers le bas après fin du slider
             const pDesc2 = av(s, scrollDebut_desc2, scrollFin_desc2);
             const tY     = pDesc2 * 110;
             avant.style.transform      = `translateY(${tY}%)`;
@@ -335,66 +376,52 @@ function majScene(s) {
 
     /* ──────────────────────────────
        PHASE 5 : zoom haut-droit + scène maison
-
-       9000→9800 : zoom sur le coin haut-droit du chantier
-                   (transform-origin: top right, scale 1→2.5)
-       9800+     : chantier masqué, scène maison affichée
-         route   : monte du bas   — translateX(-50%) translateY(100vh→0)
-         arbres  : descend du haut — translate(-50%, -50%+(-100vh→0))
-         femme   : opacité pure 0→1, transform CSS inchangé
     ────────────────────────────── */
 
     if (s >= sM && s < sM_zoomFin) {
-        /* ── Zoom centre-droit ──
-           On zoome vers le milieu du bord droit (50% 50% right → center right).
-           scale 1 → 2.5 sur 800px de scroll.                              */
         const pZoom = av(s, sM, sM_zoomFin);
         sceneChantier.style.transformOrigin = 'center right';
         sceneChantier.style.transform       = `scale(${lerp(1, 2.5, pZoom)})`;
         sceneChantier.style.visibility      = 'visible';
         sceneMaison.style.display           = 'none';
+        sceneBio.style.display              = 'none';
 
-    } else if (s >= sM_zoomFin) {
-        /* ── Scène maison ──
-           On garde le chantier zoomé à 2.5 en arrière-plan
-           (visibility visible, mais sceneMaison par-dessus z-index:40) */
+    } else if (s >= sM_zoomFin && s < sT_debut) {
+        /* ── Maison active ── */
         sceneChantier.style.transformOrigin = 'center right';
         sceneChantier.style.transform       = 'scale(2.5)';
         sceneChantier.style.visibility      = 'visible';
+        sceneChantier.style.opacity         = '1';
         sceneMaison.style.display           = 'block';
+        sceneMaison.style.opacity           = '1';
+        /* Bio cachée derrière (z-index 25 < maison 40) mais display:none pour perf */
+        sceneBio.style.display              = 'none';
 
-        // ── Hauteur route pour aligner arbres au-dessus ──
-        const routeH = mRoute.offsetHeight || 0;
-
-        // Offset vertical commun arbres+femme :
-        // bas des arbres = haut de la route, puis -10% de la hauteur écran vers le bas
+        const routeH    = mRoute.offsetHeight || 0;
         const offsetFinal = -routeH + window.innerHeight * 0.10;
 
-        // 1. Route : monte du bas
+        // 1. Route
         const pRoute = av(s, sM_route, sM_routeFin);
         mRoute.style.opacity   = pRoute;
         mRoute.style.transform = `translateX(-50%) translateY(${(1 - pRoute) * 100}vh)`;
 
-        // 2. Arbres : descend du haut, position finale décalée -10%
+        // 2. Arbres
         const pArbres      = av(s, sM_arbres, sM_arbresFin);
         const entreeArbres = offsetFinal - window.innerHeight;
         const tyArbres     = lerp(entreeArbres, offsetFinal, pArbres);
         mArbres.style.opacity   = pArbres;
         mArbres.style.transform = `translateX(-50%) translateY(${tyArbres}px)`;
 
-        // 3. Femme : opacité, même offset que les arbres (-10%)
+        // 3. Femme
         const pFemme = av(s, sM_femme, sM_femmeFin);
         mFemme.style.opacity   = pFemme;
         mFemme.style.transform = `translateX(-50%) translateY(${offsetFinal}px)`;
 
-        // 4. Zoom sur femme + arbres après leur apparition complète
-        //    On zoome le groupe depuis leur centre commun (center de la scène)
+        // 4. Zoom 2 sur femme+arbres
         const pZoom2 = av(s, sM_zoom2, sM_zoom2Fin);
         if (pZoom2 > 0) {
-            const scaleZ = lerp(1, 2.5, pZoom2);
-            // On zoome sceneMaison en entier, ancré sur le centre des arbres/femme
-            // transform-origin : centre horizontal, vertical = position de offsetFinal depuis le bas
-            const originY = window.innerHeight + offsetFinal; // px depuis le haut
+            const scaleZ  = lerp(1, 2.5, pZoom2);
+            const originY = window.innerHeight + offsetFinal;
             sceneMaison.style.transformOrigin = `50% ${originY}px`;
             sceneMaison.style.transform       = `scale(${scaleZ})`;
         } else {
@@ -402,14 +429,133 @@ function majScene(s) {
             sceneMaison.style.transform       = '';
         }
 
+    /* ──────────────────────────────
+       TRANSITION : maison → bio
+       
+       Stratégie z-index :
+         sceneBio    = z-index 25  (CSS fixe, TOUJOURS derrière)
+         sceneChantier = z-index 30
+         sceneMaison   = z-index 40
+       
+       On affiche sceneBio en display:block (derrière),
+       puis on fait disparaître chantier+maison via opacity.
+       La bio se révèle naturellement en dessous.
+       
+       sT_debut → sT_fin  (600px) : route/arbres/femme descendent
+       sT_fin   → sFade_fin (200px) : chantier+maison fondent en noir
+    ────────────────────────────── */
+    } else if (s >= sT_debut && s < sFade_fin) {
+        /* ── Bio affichée en arrière-plan (z-index 25, derrière tout) ── */
+        sceneBio.style.display = 'block';
+        sceneBio.style.opacity = '1';
+        /* Éléments bio à leur position initiale, immobiles pendant la transition */
+        arbre1.style.transform  = 'translateX(0)';
+        arbre1.style.opacity    = '1';
+        arbre2.style.transform  = 'translateX(0)';
+        arbre2.style.opacity    = '1';
+        fond.style.transform    = 'translateX(0)';
+        mec.style.transform     = 'translateX(0)';
+        arbreD.style.transform  = 'translateX(0)';
+        arbre3.style.transform  = 'translateX(0)';
+        planter.style.transform = 'translateX(0)';
+
+        /* ── Chantier : fond de la scène maison → opacité 0 immédiatement ── */
+        sceneChantier.style.transformOrigin = 'center right';
+        sceneChantier.style.transform       = 'scale(2.5)';
+        sceneChantier.style.visibility      = 'visible';
+        sceneChantier.style.opacity         = '0';   /* fond noir dès le 1er pixel */
+
+        /* ── Maison reste devant (z-index 40), fond transparent ── */
+        sceneMaison.style.display           = 'block';
+        sceneMaison.style.opacity           = '1';
+
+        /* La maison garde son zoom 2.5 final pour éviter tout saut visuel */
+        const routeH_T      = mRoute.offsetHeight || 0;
+        const offsetFinal_T = -routeH_T + window.innerHeight * 0.10;
+        const originY_T     = window.innerHeight + offsetFinal_T;
+        sceneMaison.style.transformOrigin = `50% ${originY_T}px`;
+        sceneMaison.style.transform       = 'scale(2.5)';
+
+        /* ── Descente éléments (sT_debut → sT_fin) ── */
+        const pSortie  = av(s, sT_debut, sT_fin);
+        const tySortie = pSortie * window.innerHeight;
+
+        mRoute.style.opacity   = lerp(1, 0, pSortie);
+        mRoute.style.transform = `translateX(-50%) translateY(${tySortie}px)`;
+
+        mArbres.style.opacity   = lerp(1, 0, pSortie);
+        mArbres.style.transform = `translateX(-50%) translateY(${offsetFinal_T + tySortie}px)`;
+
+        mFemme.style.opacity   = lerp(1, 0, pSortie);
+        mFemme.style.transform = `translateX(-50%) translateY(${offsetFinal_T + tySortie}px)`;
+
+        /* ── Fondu maison (sT_fin → sFade_fin) ── */
+        const pFade = av(s, sT_fin, sFade_fin);
+        sceneMaison.style.opacity = lerp(1, 0, pFade);
+
+    /* ──────────────────────────────
+       PHASE BIO
+    ────────────────────────────── */
+    } else if (s >= sFade_fin) {
+        /* Nettoyer les scènes précédentes */
+        sceneChantier.style.visibility = 'hidden';
+        sceneChantier.style.opacity    = '1'; /* reset pour réutilisation éventuelle */
+        sceneMaison.style.display      = 'none';
+        sceneMaison.style.opacity      = '1';
+
+        sceneBio.style.display = 'block';
+        sceneBio.style.opacity = '1';
+
+        majBio(s);
+
     } else {
         /* ── État initial (avant phase 5) ── */
         sceneMaison.style.display  = 'none';
+        sceneMaison.style.opacity  = '1';
         mRoute.style.opacity       = 0;
         mRoute.style.transform     = 'translateX(-50%) translateY(100vh)';
         mArbres.style.opacity      = 0;
         mArbres.style.transform    = `translateX(-50%) translateY(${-window.innerHeight}px)`;
         mFemme.style.opacity       = 0;
         mFemme.style.transform     = 'translateX(-50%) translateY(0)';
+        sceneBio.style.display     = 'none';
     }
+}
+
+/* ════════════════════════════════════
+   BOUCLE BIO
+   Logique d'origine de bio.js intégrée.
+   s = scrollActuel absolu (inclut tout le scroll amont)
+════════════════════════════════════ */
+function majBio(s) {
+    /* Scroll relatif à l'entrée de la bio */
+    const sRel = s - sFade_fin;
+
+    /* Durées relatives (calquées sur les repères d'origine) */
+    const debutSortieArbres  = sB_arbresSortie - sFade_fin;   // ~1500
+    const debutSlide         = sB_slideDroite  - sFade_fin;   // ~1500
+    const finSlide           = sB_slideFinale  - sFade_fin;   // ~9500
+
+    /* ── Sortie des arbres d'intro ──
+       arbre2 (droite) part en premier.
+       arbre1 (gauche) démarre avec un décalage de 200px de scroll. */
+    const decalageArbre1  = 200; // px de scroll de retard
+    const finSortie       = debutSortieArbres - 100;
+
+    const pSortieArbre2 = av(sRel, 0,              finSortie);
+    const pSortieArbre1 = av(sRel, decalageArbre1, finSortie + decalageArbre1);
+
+    arbre1.style.transform = `translateX(${lerp(0, -120, pSortieArbre1)}vw)`;
+    arbre1.style.opacity   = lerp(1, 0, pSortieArbre1);
+    arbre2.style.transform = `translateX(${lerp(0, 80,   pSortieArbre2)}vw)`;
+    arbre2.style.opacity   = lerp(1, 0, pSortieArbre2);
+    mec.style.transform    = `translateY(${lerp(0, -10,  pSortieArbre2)}vh)`;
+
+    /* ── Slide panoramique vers la droite ── */
+    const pSlide = av(sRel, debutSlide, finSlide);
+    fond.style.transform   = `translateX(${lerp(0, -220, pSlide)}vw)`;
+    mec.style.transform    = `translateX(${lerp(0, -220, pSlide)}vw)`;
+    arbreD.style.transform = `translateX(${lerp(0, -220, pSlide)}vw)`;
+    arbre3.style.transform = `translateX(${lerp(0, -220, pSlide)}vw)`;
+    planter.style.transform= `translateX(${lerp(0, -220, pSlide)}vw)`;
 }
