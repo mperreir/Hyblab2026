@@ -44,9 +44,6 @@ const animateSheetText = function(content) {
 // async init function (because of the awaits on fetches)
 const addExtend = async function(swiper){
   const sheets = document.querySelectorAll('.bottom-sheet');
-  const pagination = document.querySelector('.nav-bar-hierarchical');
-
-
   const instagramBoxs=document.querySelectorAll('#instagram-box');
   let isOpen=false;
   for(let i = 0; i < sheets.length; i++){
@@ -56,6 +53,7 @@ const addExtend = async function(swiper){
   sheet.dataset.initialized = true;
   
   const handlebars = document.querySelectorAll('.handle-bar'); 
+  const pagination = document.querySelector('.swiper-pagination');
   const contents = document.querySelectorAll('.content')
   const butts = document.querySelectorAll('.toggle-btn')
   const degrades = document.querySelectorAll("#degrade-extended")
