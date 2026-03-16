@@ -39,13 +39,13 @@ function popUp(id) {
         if (data[id]["links"].length > 0) {
           voirPlusLien.style.display = 'block';
           voirPlusIcone.style.display = 'block';
-          PopUpTxt.style.maxHeight = 60 + 'vh';
+          PopUpTxt.style.maxHeight = 55 + 'vh';
           voirPlusLien.setAttribute('href', data[id]["links"][0]);
         }
         else {
           voirPlusLien.style.display = 'none';
           voirPlusIcone.style.display = 'none';
-          PopUpTxt.style.maxHeight = 70 + 'vh';
+          PopUpTxt.style.maxHeight = 60 + 'vh';
         }
 
         document.body.style.overflow = "hidden";
