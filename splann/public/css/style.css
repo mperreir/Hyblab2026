@@ -225,9 +225,7 @@ body{
   letter-spacing: 0.05em;
 }
 #btn-download {
-  position: absolute;
-  bottom: 11%;
-  left: 0;
+    padding-top: 35%;
 }
 .icon-flag {
     width: 32px;
@@ -466,6 +464,7 @@ body{
     font-style: normal;
     font-weight: normal;
     color: black;
+    background-size: contain;
     
 }
 #instagram-header{
@@ -774,12 +773,13 @@ body{
 /* ---- Slide d'ouverture vers d'autres articles -----*/
 
 .last-page-content {
-    width: 100vw;
+    width: 94vw;
     flex: 1;
-    padding-top: 3vh;
+    padding-top: 7vh;
     min-height: 0;
+    padding-left: 3%;
+    padding-right: 3%;
 }
-
 .author-credits {
     font-size: 0.7rem;
     color: #666;
