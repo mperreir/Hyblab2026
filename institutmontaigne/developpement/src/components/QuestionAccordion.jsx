@@ -411,6 +411,7 @@ const QuestionItem = forwardRef(function QuestionItem(
 
   // Touch: detect swipe past end or top
   const isBlockedTouchTarget = (target) => {
+    if (document.body.hasAttribute('data-dialogue-swipe-lock')) return true;
     return target instanceof Element && !!target.closest('[data-disable-dialogue-swipe="true"]');
   };
 
