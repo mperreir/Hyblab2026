@@ -1,37 +1,42 @@
 //Liste de tous les éléments intéractifs de la page
 const list_int = document.getElementsByClassName("interactive");
 
-
-
 /**
  * Affiche un Pop-Up avec un texte correpondant à l'ID de l'élément donné en paramètre
  */
-function popUp(id){
+function popUp(id) {
   fetch('data/text.json')
-  .then(response => response.json())
-  .then(data => {
-    const PopUp = document.getElementById('P');
-    const PopUpTxt = document.getElementById('PopUpTxt');
-    const PopUpTitre = document.getElementById('PopUpTitre');
+    .then(response => response.json())
+    .then(data => {
+      const PopUp = document.getElementById('P');
+      const PopUpTxt = document.getElementById('PopUpTxt');
+      const PopUpTitre = document.getElementById('PopUpTitre');
 
-    PopUpTitre.innerHTML = data[id]["title"];
-    PopUpTxt.innerHTML = data[id]["text"];//On affecte le texte au PopUp
-    PopUp.style.display = "flex";//On affiche le Pop-Up
+      PopUpTitre.innerHTML = data[id]["title"];
+      PopUpTxt.innerHTML = data[id]["text"];
+      PopUp.style.display = "flex";
 
-    document.body.style.overflow = "hidden";//Bloquer le scroll
+      document.body.style.overflow = "hidden";
 
-    //FERMER LE POP-UP
-    const closeBtn = document.getElementById('close');
+      function fermer() {
+        PopUp.style.display = "none";
+        // document.body.style.overflow = "auto";
+        PopUp.removeEventListener('click', fermerSiClic);
+      }
 
-    closeBtn.onclick = () => {PopUp.style.display = "none"; document.body.style.overflow = "auto";}
-    window.onclick = (event) => {
-      if (event.target == PopUp){ PopUp.style.display = "none"; document.body.style.overflow = "auto"}
-    };
+      function fermerSiClic(event) {
+        if (event.target === PopUp) fermer();
+      }
 
-  })
-};
+      const closeBtn = document.getElementById('close');
+      // Cloner le bouton pour supprimer les anciens listeners
+      const newClose = closeBtn.cloneNode(true);
+      closeBtn.replaceWith(newClose);
+      newClose.onclick = fermer;
 
-
+      PopUp.addEventListener('click', fermerSiClic);
+    });
+}
 
 /**
  * Observeur pour l'animation de l'apparition des éléments interactifs
@@ -50,14 +55,15 @@ const observer = new IntersectionObserver(entries => {
   });
 });
 
-
-
 /**
  * Récupérer tous les éléments interactifs et affectent les fonctions correspondantes
  */
-for(const int of list_int) {//On récupère chaque élément interactif de index.html
+for (const int of list_int) {//On récupère chaque élément interactif de index.html
   observer.observe(int);
-  int.addEventListener("click", () => {//A chaque clic sur un élément on affiche le Pop-Up avec le texte indiqué
-    popUp(int.id);
-  });
+  if (int) {
+    int.addEventListener("click", () => {//A chaque clic sur un élément on affiche le Pop-Up avec le texte indiqué
+      popUp(int.id);
+    })
+  }
+  ;
 };

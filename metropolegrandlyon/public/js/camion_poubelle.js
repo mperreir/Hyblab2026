@@ -131,6 +131,7 @@ function update() {
         metro.style.transform = `translateX(${metroX}px)`;
     }
     else if (progress < 1.55) {
+        /*Pause Métro*/
         const t = (progress - 1.45) / 0.10;
         truck.style.display = 'none';
         worker.style.display = 'none';
@@ -161,6 +162,7 @@ function update() {
 
     }
     else if (progress < 1.80) {
+        /*Pause eau et assainissement*/
         truck.style.display = 'none';
         worker.style.display = 'none';
         panorama.style.display = 'none';
