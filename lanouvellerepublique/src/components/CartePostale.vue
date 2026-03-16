@@ -8,6 +8,7 @@
             @keydown.space.prevent="emit('select')"
         >
             <div
+                v-if="!isFlipped"
                 class="list-item-image-div"
                 :style="{ backgroundImage: `url('${image}')` }"
                 :title="title"
@@ -28,9 +29,19 @@
                     </div>
                 </div>
             </div>
-            <slot />
+            <div v-else class="carte-dos">
+                <div class="catch-phrase">
+                    <p>{{ description }}</p>
+                </div>
+                <div class="localisation">
+                    <p class="nom">{{ nom }}</p>
+                    <p class="adresse">{{ adresse }}</p>
+                    <p class="code-postal">{{ codePostal }}</p>
+                </div>
+            </div>
+            <slot />          
         </div>
-        <div class="retourner-carte">
+        <div class="retourner-carte" @click="toggleCard">
             <p>Retourner la carte</p>
             <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M8 1.5L10 3.5M10 3.5L8 5.5M10 3.5H2M4 10.5L2 8.5M2 8.5L4 6.5M2 8.5H10" stroke="#E815B2" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -40,7 +51,7 @@
 </template>
 
 <script setup>
-import { computed } from "vue"
+import { computed, ref } from "vue"
 
 const emit = defineEmits(["select"])
 
@@ -60,7 +71,11 @@ const props = defineProps({
     coupDeCoeur: {
         type: Boolean,
         default: false,
-    }
+    },
+    address: {
+        type: String,
+        default: "",
+    },
 })
 
 const vectorBgUrl = `url('${import.meta.env.BASE_URL}img/Vector.png')`
@@ -132,6 +147,17 @@ const rotateBadge = (index) => {
         zIndex: 100 - index,
     }
 }
+
+const isFlipped = ref(false)
+
+const toggleCard = () => {
+    isFlipped.value = !isFlipped.value
+}
+
+const description = "blabla"
+const nom = computed(() => props.title)
+const adresse = computed(() => props.address)
+const codePostal = "37000"
 </script>
 
 <style scoped>
@@ -235,6 +261,20 @@ const rotateBadge = (index) => {
 
 .badge + .badge {
     margin-left: -18px;
+}
+
+.carte-dos {
+    position: absolute;
+    inset: 8px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    border-radius: 13.179px;
+    background-color: #fffcf8;
+
+    padding: 8px;
 }
 
 .retourner-carte {
