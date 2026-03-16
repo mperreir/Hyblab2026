@@ -1,5 +1,4 @@
-const calendarIcon =
-  'https://www.figma.com/api/mcp/asset/ce115877-adaa-4d9b-b937-d288ba9080fe';
+import calendarIcon from '../assets/figma/calendar-icon.svg';
 
 /**
  * Expert profile card for the "Parole d'Expert" home page.
@@ -65,3 +64,4 @@ export default function ExpertCard({
     </div>
   );
 }
+  

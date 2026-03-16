@@ -1,5 +1,5 @@
 export const DESIGN_WIDTH = 1920;
-export const DESIGN_HEIGHT = 5820;
+export const DESIGN_HEIGHT = 5420;
 export const WATER_SURFACE_TOP = 1750;
 export const UNDERWATER_TRIGGER = 1880;
 export const SCROLL_PROBE_RATIO = 0.45;

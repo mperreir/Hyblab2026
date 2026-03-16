@@ -1,5 +1,4 @@
-const imgGallery =
-  'https://www.figma.com/api/mcp/asset/e5ac1e89-e311-4d4b-ab7a-e33e5fda3779';
+import imgGallery from '../assets/figma/researcher-gallery.png';
 
 /**
  * "Fiers de nos chercheuses" gallery section.

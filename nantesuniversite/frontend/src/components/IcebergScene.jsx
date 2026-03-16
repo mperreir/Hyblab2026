@@ -169,26 +169,32 @@ export default function IcebergScene() {
 
 
   useGSAP(() => {
-    const cards = gsap.utils.toArray('.class-resource-card');
-    cards.forEach((card, i) => {
-      // Cards on the left half of the iceberg slide in from the left; right half from the right
-      const pos = CARD_POSITIONS[i];
-      const fromX = pos && pos.left < 750 ? -35 : 35;
+    // Defer setup by one tick so ScrollToTop has time to reset scroll to 0
+    // before GSAP calculates ScrollTrigger positions.
+    const id = setTimeout(() => {
+      ScrollTrigger.refresh();
+      const cards = gsap.utils.toArray('.class-resource-card');
+      cards.forEach((card, i) => {
+        // Cards on the left half of the iceberg slide in from the left; right half from the right
+        const pos = CARD_POSITIONS[i];
+        const fromX = pos && pos.left < 750 ? -35 : 35;
 
-      gsap.from(card, {
-        scrollTrigger: {
-          trigger: card,
-          start: 'top 92%',
-          toggleActions: 'play none none reverse',
-        },
-        opacity: 0,
-        x: fromX,
-        y: 20,
-        scale: 0.96,
-        duration: 0.5,
-        ease: 'power3.out',
+        gsap.from(card, {
+          scrollTrigger: {
+            trigger: card,
+            start: 'top 92%',
+            toggleActions: 'play none none reverse',
+          },
+          opacity: 0,
+          x: fromX,
+          y: 20,
+          scale: 0.96,
+          duration: 0.5,
+          ease: 'power3.out',
+        });
       });
-    });
+    }, 100);
+    return () => clearTimeout(id);
   }, { scope: containerRef });
 
   return (

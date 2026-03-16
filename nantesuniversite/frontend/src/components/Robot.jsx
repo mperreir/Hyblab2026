@@ -623,10 +623,9 @@ export default function Robot({
       });
     }
 
-    function moveToLevel(level, immediate = false) {
+    function moveToLevel(level) {
       const viewport = getViewport();
       const target = getPositionForLevel(level, viewport);
-      const fromLevel = currentLevelRef.current;
 
       if (moveTimelineRef.current) {
         moveTimelineRef.current.kill();
@@ -641,60 +640,22 @@ export default function Robot({
       setStageIndex(getStageForLevel(level));
       setActiveLevel(level);
 
-      if (immediate || fromLevel === level) {
-        gsap.set(root, { x: target.x, y: target.y });
-        applyForms(level, false);
-        currentLevelRef.current = level;
-        return;
-      }
-
-      const controls = getPathControlPoints(fromLevel, level, viewport);
-      const timeline = gsap.timeline({
-        defaults: { ease: 'power2.inOut' },
-        onComplete: () => {
-          moveTimelineRef.current = null;
-          currentLevelRef.current = level;
-        },
-      });
-
-      if (controls[0]) {
-        timeline.to(root, {
-          x: controls[0].x,
-          y: controls[0].y,
-          duration: 0.48,
-        });
-      }
-
-      if (controls[1]) {
-        timeline.to(root, {
-          x: controls[1].x,
-          y: controls[1].y,
-          duration: 0.62,
-        });
-      }
-
-      timeline.to(root, {
-        x: target.x,
-        y: target.y,
-        duration: 0.54,
-      });
-
-      applyForms(level, true);
-      moveTimelineRef.current = timeline;
+      gsap.set(root, { x: target.x, y: target.y });
+      applyForms(level, false);
       currentLevelRef.current = level;
     }
 
-    function syncRobotWithScroll(immediate = false) {
+    function syncRobotWithScroll() {
       const probeY = window.scrollY + (window.innerHeight * ROBOT_LEVEL_TRIGGER_RATIO);
       const level = getLevelFromScroll(probeY, { ...DEFAULT_RANGES, ...levelRanges });
-      moveToLevel(level, immediate);
+      moveToLevel(level);
     }
 
     function handleResize() {
-      syncRobotWithScroll(true);
+      syncRobotWithScroll();
     }
 
-    syncRobotWithScroll(true);
+    syncRobotWithScroll();
     window.addEventListener('scroll', syncRobotWithScroll, { passive: true });
     window.addEventListener('resize', handleResize);
 

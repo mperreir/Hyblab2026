@@ -1,10 +1,8 @@
 import paroleExpertLogo from '../assets/paroleExpertByNantesLogo.svg';
-
-// Figma asset URLs (expire after 7 days — replace with permanent assets when available)
-const imgLogoWhite = 'https://www.figma.com/api/mcp/asset/6474731b-6109-4b99-b268-103ea120a50d';
-const imgFacebook  = 'https://www.figma.com/api/mcp/asset/adffdc41-103b-49c3-b8ac-bcab99a197e3';
-const imgInstagram = 'https://www.figma.com/api/mcp/asset/58a7eb6b-128e-49f3-9cab-2a0806b78398';
-const imgLinkedin  = 'https://www.figma.com/api/mcp/asset/64407574-731e-4d03-9bfd-537baf9cb6b0';
+import imgLogoWhite from '../assets/figma/nantes-logo-white.png';
+import imgFacebook  from '../assets/figma/facebook-icon.svg';
+import imgInstagram from '../assets/figma/instagram-icon.svg';
+import imgLinkedin  from '../assets/figma/linkedin-icon.svg';
 
 /**
  * Reusable site footer rendered in the absolute-positioned design canvas.

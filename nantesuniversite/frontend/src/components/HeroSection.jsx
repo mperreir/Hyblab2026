@@ -4,13 +4,12 @@ import { SplitText } from 'gsap/SplitText';
 
 gsap.registerPlugin(SplitText);
 
-/* ---------- Figma asset URLs ---------- */
-const imgCalque1 = 'https://www.figma.com/api/mcp/asset/e3b3c517-ec4f-4a6f-ba90-998f89667624';
-const imgCalque2 = 'https://www.figma.com/api/mcp/asset/cd39dc93-d278-47b7-8bef-345d78168b09';
-const imgCalque3 = 'https://www.figma.com/api/mcp/asset/08b55e8f-4a5e-48c3-9dea-cfdd3ccbd61d';
-const imgCalque4 = 'https://www.figma.com/api/mcp/asset/543c1b75-44a5-40af-a95e-840c3a4aa340';
-const imgCalque8 = 'https://www.figma.com/api/mcp/asset/a0a6e4a2-fbf9-4a72-a0ff-9ed9cab2718f';
-const imgVector1 = 'https://www.figma.com/api/mcp/asset/66692520-20fa-4a4c-85da-ff1fe35bdcf1';
+import imgCalque1 from '../assets/figma/calque1.svg';
+import imgCalque2 from '../assets/figma/calque2.svg';
+import imgCalque3 from '../assets/figma/calque3.svg';
+import imgCalque4 from '../assets/figma/calque4.svg';
+import imgCalque8 from '../assets/figma/calque8.svg';
+import imgVector1 from '../assets/figma/vector1.svg';
 
 /* ---------- Sub-components ---------- */
 

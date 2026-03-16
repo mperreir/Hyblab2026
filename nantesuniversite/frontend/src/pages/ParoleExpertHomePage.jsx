@@ -13,10 +13,9 @@ import { useNavigate } from 'react-router-dom';
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
-/* ---------- Expert card portrait assets ---------- */
-const imgSandrine = 'https://www.figma.com/api/mcp/asset/865e7534-2021-4d79-bd07-44c2a5db616f';
-const imgSophie   = 'https://www.figma.com/api/mcp/asset/3752d59c-d55a-4458-89e3-ad7d24aa0e16';
-const imgColin    = 'https://www.figma.com/api/mcp/asset/e7ab9536-1ef9-4685-b237-00f9b347dcc5';
+import imgSandrine from '../assets/figma/sandrine-portrait.png';
+import imgSophie   from '../assets/figma/sophie-portrait.png';
+import imgColin    from '../assets/figma/colin-portrait.png';
 
 const colin_researcher = './images/chercheur1.svg';
 
