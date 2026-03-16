@@ -142,7 +142,6 @@ body {
   display: flex;
   flex-direction: column;
   gap: 12px;
-
   transform-origin: center center;
 }
 
@@ -158,7 +157,7 @@ body {
 
 .popup-content-area {
   flex: 1;
-  overflow: hidden;
+  overflow: auto;
   border-radius: 4px;
   position: relative;
 }
@@ -351,3 +350,12 @@ body {
   transform: translateY(-0.75rem); /* équivalent de -translate-y-3 */
   filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.12));
 }
+
+.class-img-credit {
+  width: 100%;
+  display: block;
+}
+/* .credit-container{
+  height: 100%;
+  overflow-y: scroll;
+} */

@@ -71,7 +71,7 @@ export default function Popup({ pictogramme, type, url, title, onClick }) {
   }
 
   return (
-    <div className="popup-overlay" onClick={handleClose}>
+    <div className="popup-overlay" onClick={handleClose} onWheel={(e) => e.stopPropagation()}>
       <div className={`class-pupop ${animClass}`} onClick={(e) => e.stopPropagation()}>
         {pictogramme && (
           <img
