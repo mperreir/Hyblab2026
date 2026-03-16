@@ -155,8 +155,9 @@ function dessinerLaBarre(swiper) {
 
   const structureManuelle = [
     { name: "Intro", slides: 2 }, 
-    { name: "Enquête", slides: 7 }, 
-    { name: "Fin", slides: 2 }
+    { name: "Volet1", slides: 3 },
+    { name: "Volet2", slides: 4 }, 
+    { name: "Fin", slides: 1 }
   ];
 
 
