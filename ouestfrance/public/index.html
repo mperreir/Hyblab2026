@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>Ouest-France — Epstein</title>
+  <title>Ouest-France — Intro</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -42,20 +42,11 @@
               <h1 class="s1-title">L'appartement Epstein&nbsp;:<br>l'enquête à 360°</h1>
 
               <div class="s1-body">
-                <p>Cette expérience immersive vous transporte dans une reconstitution fidèle de l'appartement new-yorkais de Jeffrey Epstein.</p>
-                <p>À travers 18 objets clés, découvrez les mécanismes d'un réseau d'influence planétaire.</p>
+                <p>Bienvenue dans l'appartement de Jeffrey Epstein. Explorez une reconstitution immersive de ce lieu au cœur d'un réseau d'influence mondial.</p>
+                <p>Autour de vous, 18 objets clés. Chacun cache un indice, une histoire, une connexion. En les découvrant, pièce après pièce, vous remontez le fil d'une affaire tentaculaire qui mêle pouvoir, argent et secrets.</p>
               </div>
-               <br>
-              <br>
-              <br>
-
-              <div class="s1-note-wrap">
-                <div class="note">
-                  Ce décor est une reconstitution, conçue à partir des photos et plan de l'appartement de Jeffrey Epstein, et assisté par IA.
-                </div>
-              </div>
-              <br>
-              <br>
+              <br><br><br>
+              <br><br><br>
 
               <div class="s1-btn-wrap">
                 <button class="btn-next" id="btn-next">C'est parti !</button>
@@ -86,12 +77,12 @@
               </div>
 
               <p class="instruction-text">
-                Interagissez avec les objets mis en surbrillance, apprenez en plus avec les articles liés, et consultez votre avancée dans votre dossier de suivi.
+                Cliquez sur les objets mis en lumière pour révéler leurs secrets. Chaque élément ouvre la porte à des explications, des documents et des articles pour approfondir l'enquête. Au fil de votre exploration, suivez votre progression et rassemblez les pièces du puzzle dans votre dossier de suivi.
               </p>
 
               <div class="s2-note-wrap">
-                <div class="note">
-                  Ce décor est une reconstitution, conçue à partir des photos et plan de l'appartement de Jeffrey Epstein, et assisté par IA.
+                <div class="note s1-note-ia">
+                  Cette expérience s'appuie sur les photos et les plans réels de l'appartement new-yorkais d'Epstein. La reconstitution a été réalisée à partir de ces documents, avec l'aide de l'intelligence artificielle.
                 </div>
               </div>
 
@@ -143,10 +134,7 @@
     // ── Hardware back button (Android / Samsung) ──────────────
     window.addEventListener('popstate', (e) => {
       if (onSlide2) {
-        // slide back to 1 without popping again
         track.style.transform = 'translateX(0)';
-        dot1.classList.add('active');
-        dot2.classList.remove('active');
         onSlide2 = false;
       }
     });

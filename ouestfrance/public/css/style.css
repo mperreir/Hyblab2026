@@ -278,3 +278,9 @@ body {
   .s1-title        { font-size: 22px; }
   .slide-inner     { padding-top: 16px; }
 }
+
+/* note on slide 1 — slightly larger */
+.s1-note-ia {
+  font-size: clamp(13px, 3.5vw, 15px);
+  line-height: 1.5;
+}
