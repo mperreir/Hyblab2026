@@ -47,35 +47,35 @@ const PICTOGRAMMES = {
 //
 const CARD_POSITIONS = [
   // ── Narrow top ────────────────────────────────
-  { top: 999, left: 620 }, //  1 Colin de la Higuera
-  { top: 1130, left: 380 }, //  2 Open Education Global Awards
-  { top: 1080, left: 1180 }, //  3 Le Prix MERLOT
+  { top: 999,  left: 620  }, //  1 Colin de la Higuera
+  { top: 1130, left: 410  }, //  2 Open Education Global Awards
+  { top: 1130, left: 900  }, //  3 Le Prix MERLOT               [was 1180 – outside right]
   // ── Widening ──────────────────────────────────
-  { top: 1280, left: 340 }, //  4 Faire en sorte que l’IA serve à mieux apprendre
-  { top: 1230, left: 1240 }, //  5 Résultats de la recherche pour «La triche… et si l’IA»
-  { top: 1450, left: 100 }, //  6  Article Entretien avec Colin de la Higuera, chaire UNESCO
+  { top: 1280, left: 320  }, //  4 Faire en sorte que l’IA serve à mieux apprendre
+  { top: 1280, left: 1040 }, //  5 Résultats de la recherche pour «La triche… et si l’IA»  [was 1240 – outside right]
+  { top: 1450, left: 190  }, //  6 Article Entretien avec Colin de la Higuera, chaire UNESCO  [was 100 – outside left]
   // ── Widest zone ──
-  { top: 1400, left: 1500 }, //  7 Conference L’éducation ouverte : partager et innover grâce aux 
-  { top: 1600, left: 80 }, //  8 L’intelligence artificielle, l’école, les enseignant.es. Partie 1
-  { top: 1600, left: 1450 }, //  9 L’intelligence artificielle, l’école, les enseignant.es. Partie 2
-  { top: 1610, left: 700 }, // 10 LIVRE
-  { top: 1430, left:740 }, // 11 JEU
-  { top: 1830, left: 1100 }, // 12 Lancement du reseau unitwin UNOE
+  { top: 1430, left: 1200 }, //  7 Conférence L’éducation ouverte : partager et innover grâce aux  [was 1500 – outside right]
+  { top: 1600, left: 165  }, //  8 L’intelligence artificielle, l’école, les enseignant.es. Partie 1  [was 80 – outside left]
+  { top: 1600, left: 1290 }, //  9 L’intelligence artificielle, l’école, les enseignant.es. Partie 2  [was 1450 – outside right]
+  { top: 1615, left: 720  }, // 10 LIVRE
+  { top: 1440, left: 745  }, // 11 JEU
+  { top: 1830, left: 1080 }, // 12 Lancement du reseau unitwin UNOE
   // ── Narrowing ─────────────────────────────────
-  { top: 1880, left: 300 }, // 13 Comment mettre l’IA au service de l’autonomisation des femmes ?
-  { top: 2050, left: 1250 }, // 14 Les IA génératives bousculent l’éducation, quels impacts sur l’évaluation ?
-  { top: 2080, left: 350 }, // 15 Ressources éducatives libres pour et par les enseignants -DNE- Salon Educatec / Educatice
-  { top: 2290, left: 1000 }, // 16 Peut-on remplacer un enseignant par une machine ?
-  { top: 2300, left: 280 }, // 17 L'inteligence artificielle où en sommes nous?
+  { top: 1880, left: 295  }, // 13 Comment mettre l’IA au service de l’autonomisation des femmes ?
+  { top: 2050, left: 1190 }, // 14 Les IA génératives bousculent l’éducation, quels impacts sur l’évaluation ?  [was 1250 – outside right]
+  { top: 2080, left: 330  }, // 15 Ressources éducatives libres pour et par les enseignants -DNE- Salon Educatec / Educatice
+  { top: 2290, left: 990  }, // 16 Peut-on remplacer un enseignant par une machine ?
+  { top: 2310, left: 285  }, // 17 L’inteligence artificielle où en sommes nous?
   // ── Lower ─────────────────────────────────────
-  { top: 2500, left: 1200 }, // 18 Penser face à l'IA, à quoi bon ? - restitution de la journée
-  { top: 2550, left: 500 }, // 19 Les intelligences artificielle génératives bousculent l'éducation, quels impacts sur l'évaluation?
-  { top: 2760, left: 845 }, // 20On the complexity of submap isomorphism and maximum common submap problems
-  // ── Narrow base ───────────────────────────────
-  { top: 2900, left: 500 }, // 21 Topology of strings: Median string is NP-complete
-  { top: 3000, left: 999 },//
-  { top: 3200, left: 400 }, //
-  { top: 3300, left: 1000 }, // 22
+  { top: 2510, left: 1055 }, // 18 Penser face à l’IA, à quoi bon ? - restitution de la journée  [was 1200 – outside right]
+  { top: 2555, left: 475  }, // 19 Les intelligences artificielle génératives bousculent l’éducation, quels impacts sur l’évaluation?
+  { top: 2760, left: 773  }, // 20 On the complexity of submap isomorphism and maximum common submap problems
+  // ── Narrow base ─ only 2 cards; iceberg too narrow for more ───────────────
+  { top: 2930, left: 545  }, // 21 Topology of strings: Median string is NP-complete
+  { top: 3100, left: 820  }, // 22 — right-side card at the deepest visible point
+  { top: 2930, left: 1050}
+  // cards 23 & 24 removed: iceberg is too narrow at y=3200-3300 to avoid overlap
 ];
 // ───────────────────────────────────────────────────────────────────────────
 // ───────────────────────────────────────────────────────────────────────────
@@ -130,10 +130,9 @@ export default function IcebergScene() {
           <DataIceberg className="w-full h-full" />
         </div>
 
-
-
-        {cardDocuments.map((doc, i) => (
-          <ResourceCard
+        {cardDocuments.map((doc, i) => {
+          if (!CARD_POSITIONS[i]) return null;
+          return <ResourceCard
             key={doc.id}
             //pictogramme={PICTOGRAMMES[doc.category.split(" ")[0].toLowerCase()]}
             pictogramme={
@@ -149,8 +148,8 @@ export default function IcebergScene() {
             description={doc.description}
             {...CARD_POSITIONS[i]}
             onClick={() => handleCardClick(doc)}
-          />
-        ))}
+          />;
+        })}
       </div>
 
       <Robot />
