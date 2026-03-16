@@ -168,7 +168,7 @@ export default function HeroSection() {
       <div
         ref={highlightRef}
         className="absolute bg-[#3452ff]"
-        style={{ left: 655, top: 476, width: 672, height: 112, opacity: 0 }}
+        style={{ left: 616, top: 476, width: 750, height: 112, opacity: 0 }}
       />
 
       {/* ── Hero title ── */}
@@ -189,7 +189,7 @@ export default function HeroSection() {
       >
         <p style={{ margin: 0 }}>DÉCOUVREZ{'  '}L'UNIVERS</p>
         <p style={{ margin: 0 }}>
-          DES <span style={{ color: '#fff' }}>CHERCHEURS</span> DE
+          DES <span style={{ color: '#fff' }}>CHERCHEUR.ES</span> DE
         </p>
         <p style={{ margin: 0 }}>NANTES UNIVERSITÉ</p>
       </div>
