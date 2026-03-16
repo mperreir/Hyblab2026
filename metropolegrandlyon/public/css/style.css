@@ -93,25 +93,25 @@ body {
 
 #NuageGIF1 {
     position: absolute;
-    top: 25%;
-    left: 60%;
-    transform: translateX(-50%) scale(0.4);
+    top: 0vh;
+    left: 0vw;
+    width: 100vw;
     z-index: 5;
 }
 
 #NuageGIF2 {
     position: absolute;
-    top: 30%;
-    left: 40%;
-    transform: translateX(-50%) scale(0.4);
+    top: 60vh;
+    left: 0vw;
+    width:80vw;
     z-index: 5;
 }
 
 #NuageGIF3 {
     position: absolute;
-    top: 25%;
-    left: 60%;
-    transform: translateX(-50%) scale(0.4);
+    top: 45vh;
+    right:0vw;
+    width: 80vw;
     z-index: 5;
 }
 
@@ -122,14 +122,20 @@ body {
     display: block;
     top: 50%;
     left: 50%;
-    z-index: 10;
+    z-index: 100;
     transform: translateX(-50%);
     opacity: 0;
     font-family: 'Cormorant Garamond', serif;
-    font-size: 2vh;
+    font-size: 2.5vh;
     text-align: center;
     pointer-events: none;
-    white-space: nowrap;
+    width: 80vw;
+    height: auto;
+    
+}
+
+#TxtInfo p{
+    width: 80vw;
 }
 
 /* ── Nuages zoom ── */
@@ -205,7 +211,7 @@ body {
 .musee {
     position: fixed;
     bottom: -55vh;
-    right: 0px;
+    right: 0vh;
     width: 300px;
 }
 
@@ -824,9 +830,11 @@ body {
 /*FIN*/
 
 .interactive {
+    display: none;
     position: fixed;
     width: 10vw;
     cursor: pointer;
+    z-index: 100;
 
 }
 
@@ -959,13 +967,12 @@ body {
 .PopUp {
     display: none;
     position: fixed;
-    z-index: 100;
+    z-index: 500;
     left: 0;
     top: 0;
     width: 100vw;
     height: 100vh;
     overflow: auto;
-
     justify-content: center;
     align-items: center;
 }

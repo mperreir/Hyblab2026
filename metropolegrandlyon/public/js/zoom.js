@@ -66,6 +66,9 @@ sceneCamion.style.display = "none";
 const elsFin = document.querySelectorAll('.el');
 const totalEl = elsFin.length;
 
+//Scène de fin
+const listInt = document.getElementsByClassName("interactive");
+
 /* ════════════════════════════════════
    REPÈRES SCROLL (px) — Scènes 1-5
 ════════════════════════════════════ */
@@ -119,7 +122,7 @@ const sB_slideFinale = sB_slideDroite + 2000;  // 23300
    23800          : début scène camion
 ════════════════════════════════════ */
 const sC_fadeDebut = sB_slideFinale;             // 23300
-const sC_fadeFin = sC_fadeDebut + 500;         // 23800
+const sC_fadeFin = sC_fadeDebut + 1000;         // 23800
 const sC_debut = sC_fadeFin;                 // 23800
 
 /* ── Durée interne de la scène camion (calée sur les 2× progress de l'original) ──
@@ -281,17 +284,18 @@ function majScene(s) {
             frameAffichee = indexFrame;
         }
 
-        TXT("ZFE");
 
         if (s > scrollFinStep1 && s < scrollFinStep2 + 50) {
-            txt.style.opacity = lerp(0, 1, av(s, scrollFinStep1 + 10, scrollFinStep2 + 50));
-            txt.style.top = "50%";
+            txt.style.opacity = lerp(0, 1, av(s, scrollFinStep1 + 10, scrollFinStep2 - 100));
+            txt.style.top = "30vh";
+            TXT("nuage_int");
         }
 
         ciel.style.transform = `scale(${lerp(3, 1, av(s, 1500, scrollDebutDescente))})`;
 
         if (s > 1500 && s < scrollDebutDescente - 25) {
-            const o = lerp(1, 0, av(s, 1500, scrollDebutDescente - 30));
+            TXT("nuage_int");
+            const o = lerp(1, 0, av(s, 1500, scrollDebutDescente - 50));
             gif1.style.opacity = gif2.style.opacity = gif3.style.opacity = o;
             txt.style.opacity = o;
         }
@@ -320,7 +324,14 @@ function majScene(s) {
         if (s > scrollDebutEcolier && s < scrollDebutEcolier + 200) {
             ecolier.classList.add("visible");
             ecolier.style.transform = `translateY(${-av(s, scrollDebutEcolier, scrollDebutEcolier + 100) * 30}vh)`;
+            TXT("musee_int");
+            txt.style.opacity = lerp(0,1,av(s, scrollDebutEcolier, scrollDebutEcolier + 100))
+            txt.style.top = "10vh";
         }
+        if (s > scrollDebutEcolier + 200 && s < scrollDebut_pano){
+            txt.style.opacity = 1;
+        }
+        
     } else {
         imgVille.style.opacity = '0';
     }
@@ -329,6 +340,7 @@ function majScene(s) {
        PHASE 4 : panoramique + chantier + arbre + slider
     ────────────────────────────── */
     if (s >= scrollDebut_pano) {
+        txt.style.opacity = 0;
         const imgW = imgNaturalRatio * window.innerHeight;
         const W = window.innerWidth;
 
@@ -372,12 +384,18 @@ function majScene(s) {
         const arbreDisp = s >= scrollFin_arbre;
         const pSlider = av(s, scrollDebut_slider, scrollFin_slider);
 
-        toggle(scene2Contenu, arbreDisp);
         toggle(separateur, arbreDisp);
         toggle(labelAvant, arbreDisp);
         toggle(labelApres, arbreDisp);
 
         if (arbreDisp) {
+            if (s <= sM){
+                TXT("ville_int");
+            }
+            
+            txt.style.opacity = 1;
+            txt.style.top = '4vh';
+
             imgVille.style.opacity = 0;
             const pct = pSlider * 100;
             apres.style.clipPath = `inset(0 ${100 - pct}% 0 0)`;
@@ -394,6 +412,7 @@ function majScene(s) {
             avant.style.transform = `translateY(${tY}%)`;
             apres.style.transform = `translateY(${tY}%)`;
             separateur.style.transform = `translateY(${tY}%)`;
+            txt.style.opacity = lerp(1,0,tY);
 
         } else {
             apres.style.clipPath = 'inset(0 100% 0 0)';
@@ -447,6 +466,9 @@ function majScene(s) {
 
         const pZoom2 = av(s, sM_zoom2, sM_zoom2Fin);
         if (pZoom2 > 0) {
+        txt.style.opacity = 1;
+        txt.style.top = '10vh';
+        txt.style.backgroundColor = 'white';
             const scaleZ = lerp(1, 2.5, pZoom2);
             const originY = window.innerHeight + offsetFinal;
             sceneMaison.style.transformOrigin = `50% ${originY}px`;
@@ -523,9 +545,15 @@ function majScene(s) {
         ────────────────────────────── */
     } else if (s >= sC_fadeDebut && s < sC_fadeFin) {
         /* Bio se finit (slide arrêtée à sa position finale) */
+        txt.style.opacity = 1;
+        TXT("arbre_int");
+        txt.style.color = 'black';
+        txt.style.backgroundColor = 'white';
+
         majBio(s);   // maintient les positions finales des éléments bio
-        const pFadeOut = av(s, sC_fadeDebut, sC_fadeFin);
+        const pFadeOut = av(s, sC_fadeDebut+500, sC_fadeFin);
         sceneBio.style.opacity = lerp(1, 0, pFadeOut);
+        txt.style.opacity = lerp(1, 0, pFadeOut);
 
         /* Scène camion entre en fondu simultanément */
         if (sceneCamion) {
@@ -545,6 +573,7 @@ function majScene(s) {
            PHASE CAMION
         ────────────────────────────── */
     } else if (s >= sC_debut) {
+        txt.style.opacity = 0;
         /* Nettoyer les scènes précédentes */
         sceneChantier.style.visibility = 'hidden';
         sceneMaison.style.display = 'none';
@@ -596,11 +625,11 @@ function majBio(s) {
     mec.style.transform = `translateY(${lerp(0, -10, pSortieArbre2)}vh)`;
 
     const pSlide = av(sRel, debutSlide, finSlide);
-    fond.style.transform = `translateX(${lerp(0, -220, pSlide)}vw)`;
-    mec.style.transform = `translateX(${lerp(0, -220, pSlide)}vw)`;
-    arbreD.style.transform = `translateX(${lerp(0, -220, pSlide)}vw)`;
-    arbre3.style.transform = `translateX(${lerp(0, -220, pSlide)}vw)`;
-    planter.style.transform = `translateX(${lerp(0, -220, pSlide)}vw)`;
+    fond.style.transform = `translateX(${lerp(0, -195, pSlide)}vw)`;
+    mec.style.transform = `translateX(${lerp(0, -195, pSlide)}vw)`;
+    arbreD.style.transform = `translateX(${lerp(0, -195, pSlide)}vw)`;
+    arbre3.style.transform = `translateX(${lerp(0, -195, pSlide)}vw)`;
+    planter.style.transform = `translateX(${lerp(0, -195, pSlide)}vw)`;
 }
 
 /* ════════════════════════════════════
@@ -696,6 +725,8 @@ function majCamion(progress) {
         panX = maxPan;
         workerOpacity = 1;
         workerY = 0;
+        txt.style.opacity = 1;
+        TXT("poubelle_int");
         if (truck) truck.style.display = '';
         if (panorama) panorama.style.display = '';
         if (worker) worker.style.display = '';
@@ -706,6 +737,7 @@ function majCamion(progress) {
         if (finScene) finScene.style.display = 'none';
 
     } else if (progress < 1.00) {
+        txt.style.opacity=0;
         const t = (progress - 0.90) / 0.10;
         truckX = lerp(halfOutX, halfOutX + truckW / 2, t);
         panX = maxPan;
@@ -801,8 +833,11 @@ function majCamion(progress) {
         panX = maxPan;
         workerOpacity = 0;
         workerY = 30;
+        txt.style.opacity = 1;
+        TXT("velo_int");
 
     } else if (progress < 1.75) {
+        txt.style.opacity = 0;
         const t = (progress - 1.55) / 0.20;
         if (truck) truck.style.display = 'none';
         if (worker) worker.style.display = 'none';
@@ -828,6 +863,9 @@ function majCamion(progress) {
         workerY = 30;
 
     } else if (progress < 1.80) {
+        txt.style.opacity = 1;
+        TXT("velo_int");
+        txt.style.top = '70vh';
         if (truck) truck.style.display = 'none';
         if (worker) worker.style.display = 'none';
         if (panorama) panorama.style.display = 'none';
@@ -865,6 +903,10 @@ function majCamion(progress) {
         workerOpacity = 0;
         workerY = 30;
 
+        for(const int of listInt)  {
+            int.style.display = 'none';
+        }
+
     } else {
         /* Scène finale — apparition des éléments .el */
         if (truck) truck.style.display = 'none';
@@ -885,6 +927,11 @@ function majCamion(progress) {
             el.style.opacity = t;
             el.style.transform = `translateY(${(1 - t) * 50}px)`;
         });
+
+        for(const int of listInt)  {
+            int.style.display = 'block';
+        }
+        
 
         truckX = halfOutX + truckW;
         panX = maxPan;
