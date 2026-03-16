@@ -22,13 +22,13 @@ export default function Header({ meta }) {
       }
     `}</style>
     <header
-      className="flex flex-col items-center justify-evenly text-center py-8 px-3 sm:py-10 sm:px-4"
+      className="flex flex-col items-center justify-evenly text-center py-3 px-3 sm:py-10 sm:px-4"
       style={{ minHeight: `calc(100dvh - ${NAVBAR_HEIGHT}px)` }}
     >
 
         <div className='flex w-full max-w-4xl flex-col items-center justify-center bg-[#E3F280] p-5 pt-8 rounded-xl'>
           <span className='px-3 sm:px-4 py-1 mb-8 rounded-full border-[#872339] border-2 text-[#872339] text-sm sm:text-base mx-5'>
-            [A Contrevoix]
+            [À Contrevoix]
           </span>
           <h1 className='font-bold text-[#00483B] text-xl sm:text-2xl px-5 pb-5'>{meta.titreDynamique}</h1>
 
