@@ -4,7 +4,7 @@ const FILL_WIDTH = 27;
 
 export default function ProgressBar({ level = 0 }) {
   const safeLevel = Math.min(1, Math.max(0, level));
-  const fillHeight = Math.round(TRACK_HEIGHT * safeLevel);
+  const fillHeight = Math.round(TRACK_HEIGHT * safeLevel - 30 );
 
   return (
     <div
@@ -24,6 +24,7 @@ export default function ProgressBar({ level = 0 }) {
       <div
         className="absolute left-[9px] top-0 transition-[height] duration-300 ease-in-out"
         style={{
+          marginTop: 15,
           width: FILL_WIDTH,
           height: fillHeight,
           borderRadius: 13.5,
