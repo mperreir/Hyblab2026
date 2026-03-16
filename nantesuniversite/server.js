@@ -22,7 +22,6 @@ app.use(express.static(path.join(__dirname, '../__common-logos__')));
 // React Router can handle client-side paths (e.g. /researcher) on
 // direct access or page refresh.
 app.get('/{*path}', (req, res) => {
-  console.log(`Received request for path: ${req.path}`);
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
