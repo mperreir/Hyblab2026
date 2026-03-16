@@ -47,7 +47,7 @@ const allBadges = computed(() => {
 
 <style scoped>
 .article {
-    position: absolute;
+    position: relative;
     top: 9rem;
 
     z-index: 1003;
@@ -147,6 +147,6 @@ const allBadges = computed(() => {
     gap: 3px;
 
     border-radius: 37.5px;
-
+    background: #C1ADFF;
 }
 </style>

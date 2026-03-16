@@ -23,6 +23,7 @@ defineProps({
   z-index: 2000;
 
   overflow-y: auto;
+    background: #fffcf8;
 }
 
 .overlay-close {

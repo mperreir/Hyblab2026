@@ -16,51 +16,33 @@
             <p class="detail-section__chapeau">{{ props.restaurant.article.catch_phrase }}</p>
         </section>
 
-        <section class="detail-section--lieu">
-            <div class="detail-section--lieu__title-div">
-                <p class="detail-section--lieu__title">Le lieu</p>
-            </div>
-            <p class="detail-section--lieu__text">{{ lieuText }}</p>
-        </section>
+        <div v-for="section in props.restaurant.article.sections" :key="section.title">
+            <section :class="`detail-section--${section.tag}`">
+                <div :class="`detail-section--${section.tag}__title-div`">
+                    <p :class="`detail-section--${section.tag}__title`">{{ section.title }}</p>
+                </div>
+                <p :class="`detail-section--${section.tag}__text`">{{ section.content }}</p>
+            </section>
 
-        <section
-            v-if="sectionImages[0]"
-            class="detail-photo-block"
-        >
-            <div class="detail-photo-block__div">
-                <img
-                    :src="sectionImages[0].src"
-                    class="detail-photo__img"
-                />
-            </div>
-            <p class="detail-photo__caption">{{ sectionImages[0].description }}, {{ sectionImages[0].auteur }}</p>
-        </section>
-
-        <section class="detail-section--degustation">
-            <div class="detail-section--degustation__title-div">
-                <p class="detail-section--degustation__title">La dégustation</p>
-            </div>
-            <p class="detail-section--degustation__text">{{ degustationText }}</p>
-        </section>
-
-        <section
-            v-if="sectionImages[1]"
-            class="detail-photo-block"
-        >
-            <div class="detail-photo-block__div">
-                <img
-                    :src="sectionImages[1].src"
-                    class="detail-photo__img"
-                />
-            </div>
-            <p class="detail-photo__caption">{{ sectionImages[1].description }}, {{ sectionImages[1].auteur }}</p>
-        </section>
+            <section
+                v-for="image in section.images" :key="image.content"
+                class="detail-photo-block"
+            >
+                <div class="detail-photo-block__div">
+                    <img
+                        :src="image.content"
+                        class="detail-photo__img"
+                    />
+                </div>
+                <p class="detail-photo__caption">{{ image.description }} {{ image.auteur }}</p>
+            </section>
+        </div>
 
         <section class="detail-section--addition">
             <div class="detail-section--addition__title-div">
                 <p class="detail-section--addition__title">L'addition</p>
             </div>
-            <p class="detail-section--addition__text">{{ additionText }}</p>
+            <p class="detail-section--addition__text">{{ props.restaurant.carte }}</p>
         </section>
 
         <section class="detail-section--coords">
@@ -127,8 +109,6 @@
 </template>
 
 <script setup>
-import { computed} from "vue"
-
 const vectorBgUrl = `url('${import.meta.env.BASE_URL}img/Vector.png')`
 
 const props = defineProps({
@@ -142,31 +122,6 @@ const props = defineProps({
     },
 })
 
-const findSectionText = (title) => {
-    const sections = props.restaurant?.article?.sections || []
-    const section = sections.find((item) =>
-        String(item?.title || "")
-            .toLowerCase()
-            .includes(title.toLowerCase()),
-    )
-    return section?.content || "Information indisponible."
-}
-
-const lieuText = computed(() => findSectionText("lieu"))
-const degustationText = computed(() => findSectionText("dégustation"))
-const additionText = computed(
-    () => props.restaurant?.carte || "Information sur les prix indisponible.",
-)
-
-const sectionImages = (props.restaurant?.article?.sections || []).flatMap((section) =>
-    (section?.images || []).map((img) => ({
-        src: img?.content,
-        description: img?.description,
-        auteur: img?.auteur,
-    })),
-)
-
-console.log(sectionImages)
 
 const getSocialHandle = (url) => {
     if (!url) return ""
@@ -186,7 +141,7 @@ const getSocialHandle = (url) => {
 .detail-box {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 1.5rem;
     width: 100%;
     padding: 1rem;
 }
@@ -227,7 +182,7 @@ const getSocialHandle = (url) => {
     justify-content: center;
     width: fit-content;
 
-    margin-bottom: -20px;
+    margin-bottom: -40px;
 
     border-radius: 10px;
     background: #fff;
@@ -262,7 +217,7 @@ const getSocialHandle = (url) => {
     justify-content: center;
     width: fit-content;
 
-    margin-bottom: -20px;
+    margin-bottom: -40px;
 
     border-radius: 10px;
     background: #fff;
@@ -291,13 +246,48 @@ const getSocialHandle = (url) => {
     background: #FFF;
 }
 
+.detail-section--commande__title-div {
+    display: flex;
+    transform: rotate(-3deg);
+    justify-content: center;
+    width: fit-content;
+
+    margin-bottom: -40px;
+
+    border-radius: 10px;
+    background: #fff;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+    padding: 0 10px;
+}
+.detail-section--commande__title {
+    color: #B8E8AA;
+    font-family: Lalezar;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 46px;
+
+    padding-top: 8px;
+}
+.detail-section--commande__text {
+    display: flex;
+    padding: 56px 16px 16px 16px;
+    align-items: center;
+    gap: 10px;
+    align-self: stretch;
+
+    border-radius: 15px;
+    border: 2px dashed #B8E8AA;
+    background: #FFF;
+}
+
 .detail-section--addition__title-div {
     display: flex;
     transform: rotate(-3deg);
     justify-content: center;
     width: fit-content;
 
-    margin-bottom: -20px;
+    margin-bottom: -40px;
 
     border-radius: 10px;
     background: #fff;
@@ -332,7 +322,7 @@ const getSocialHandle = (url) => {
     justify-content: center;
     width: fit-content;
 
-    margin-bottom: -20px;
+    margin-bottom: -40px;
 
     border-radius: 10px;
     background: #fff;
@@ -383,8 +373,7 @@ const getSocialHandle = (url) => {
 }
 
 .detail-photo-block{
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding-top: 30px;
 }
 .detail-photo-block__div{
     border-radius: 12px;
