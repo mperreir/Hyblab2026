@@ -482,7 +482,7 @@ const QuestionItem = forwardRef(function QuestionItem(
         }}
         className={`w-full py-10 flex flex-col items-center justify-center gap-3 transition-all duration-200 rounded-t-2xl bg-[${color}] size-4`}
       >
-        <span className="max-w-[75%] mx-auto text-base md:text-lg font-bold italic uppercase text-center leading-tight"
+        <span className="max-w-[75%] mx-auto text-base md:text-lg font-bold uppercase text-center leading-tight"
           style={{ color: textColor }}
         >
           {question.question}

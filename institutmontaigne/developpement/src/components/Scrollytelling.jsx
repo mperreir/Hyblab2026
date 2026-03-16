@@ -451,11 +451,11 @@ export default function Scrollytelling() {
       {/* Scene 5: Abstention / Urne */}
       <div 
         ref={urnContainerRef} 
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[85%] max-w-[500px] flex items-center justify-between pointer-events-none" 
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[75%] max-w-[500px] flex items-center justify-between pointer-events-none" 
         style={{ visibility: 'hidden' }}
       >
         {/* L'urne à gauche avec sa propre Ref pour l'animer de la gauche */}
-        <div className="w-[45%]">
+        <div className="w-[65%]">
           <img ref={urnImageRef} src="./story/MainUrne.svg" alt="Urne" className="w-full h-auto" />
         </div>
 
@@ -509,7 +509,7 @@ export default function Scrollytelling() {
           >
             <div data-anim-node="true" className="opacity-0" style={{ willChange: 'transform, opacity' }}>
               <p
-                className="text-black text-[1.05rem] font-semibold leading-[1.14] tracking-[-0.03em] sm:text-[1.45rem]"
+                className="text-montaigne-burgundy text-[1.05rem] font-semibold leading-[1.14] tracking-[-0.03em] sm:text-[1.45rem]"
                 style={{
                   fontFamily: 'Helvetica',
                 }}
