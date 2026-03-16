@@ -29,6 +29,15 @@ function hideScroll(id){
     }, { once: true })
 }
 
+document.addEventListener("DOMContentLoaded", () => {
+    const params = new URLSearchParams(window.location.search);
+    const requestedView = params.get("view");
+
+    if (requestedView === "company") {
+        displayScroll("scrollable_page");
+    }
+});
+
 window.addEventListener('mouseup', function(event) {
     var scrollable = document.getElementById('scrollable_page');
     var scrollable_2 = document.getElementById('scrollable_page_2');
