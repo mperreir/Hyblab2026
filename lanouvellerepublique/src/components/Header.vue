@@ -62,11 +62,18 @@
             <div class="tmv-title-wrapper">
                 <h1 class="tmv-title">{{ headerTitle }}</h1>
                 <div class="tmv-breadcrumbs">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#020617" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <svg class="tmv-breadcrumb-home-icon" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#020617" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
                         <polyline points="9 22 9 12 15 12 15 22"></polyline>
                     </svg>
-                    <span class="tmv-breadcrumb-text">{{ breadcrumbText }}</span>
+                    <span class="tmv-breadcrumb-sep">></span>
+                    <a href="https://www.lanouvellerepublique.fr/tmv" class="tmv-breadcrumb-link">TMV</a>
+                    <span class="tmv-breadcrumb-sep">></span>
+                    <RouterLink to="/" class="tmv-breadcrumb-link">Les Restos TMV</RouterLink>
+                    <template v-if="activeRestaurantName">
+                        <span class="tmv-breadcrumb-sep">></span>
+                        <span class="tmv-breadcrumb-text">{{ activeRestaurantName }}</span>
+                    </template>
                 </div>
             </div>
 
@@ -113,15 +120,6 @@ const activeRestaurantName = computed(() => {
 
 const headerTitle = computed(() => activeRestaurantName.value || "Les Restos TMV")
 
-const breadcrumbText = computed(() => {
-    const basePath = "> TMV > Les Restos TMV"
-
-    if (!activeRestaurantName.value) {
-        return basePath
-    }
-
-    return `${basePath} > ${activeRestaurantName.value}`
-})
 
 const clearDetailQuery = () => {
     const nextQuery = { ...route.query }
@@ -555,8 +553,41 @@ const goBack = async () => {
 .tmv-breadcrumbs {
     display: flex;
     flex-direction: row;
-    align-items: center;
-    gap: 5px;
+    align-items: flex-start;
+    gap: 4px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.tmv-breadcrumb-home-icon {
+    display: block;
+    flex-shrink: 0;
+    margin-top: 1px;
+}
+
+.tmv-breadcrumb-sep {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 12px;
+    line-height: 16px;
+    color: #6b6b6b;
+    flex-shrink: 0;
+}
+
+.tmv-breadcrumb-link {
+    font-family: 'Open Sans', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 16px;
+    color: #1F1F1F;
+    text-decoration: none;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.tmv-breadcrumb-link:hover {
+    color: #ce181e;
+    text-decoration: underline;
 }
 
 .tmv-breadcrumb-text {
@@ -565,6 +596,6 @@ const goBack = async () => {
     font-weight: 400;
     font-size: 12px;
     line-height: 16px;
-    color: #1F1F1F;
+    color: #6b6b6b;
 }
 </style>
