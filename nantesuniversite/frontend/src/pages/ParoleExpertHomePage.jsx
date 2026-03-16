@@ -7,6 +7,7 @@ import HeroSection from '../components/HeroSection';
 import FeaturedQuotesSection from '../components/FeaturedQuotesSection';
 import ResearcherGallery from '../components/ResearcherGallery';
 import ExpertCard from '../components/ExpertCard';
+import SiteFooter from '../components/SiteFooter';
 import imgBande from '../assets/bande.svg';
 import { useNavigate } from 'react-router-dom';
 
@@ -26,7 +27,7 @@ const EXPERTS = [
 ];
 
 const DESIGN_WIDTH  = 1920;
-const DESIGN_HEIGHT = 3200;
+const DESIGN_HEIGHT = 3600;
 const CARDS_TOP     = 2758;
 
 export default function ParoleExpertHomePage() {
@@ -226,18 +227,21 @@ if (titleRef.current) {
         className="absolute class-all-researchers"
         style={{ top: 2800}}
       >
-        {[0, 1, 2, 3].map((i) => (
+        {[0, 1, 2].map((i) => (
           <img
             key={i}
             ref={(el) => (researcherImgRefs.current[i] = el)}
             alt=""
             src={colin_researcher}
             onClick={() => navigate('/researcher')}
-            className="block w-full h-full"
+            className="block w-[589px] h-[250px]"
             style={{ opacity: 0 }}
           />
         ))}
       </div>
+
+      {/* ── Site footer ── */}
+      <SiteFooter top={3260} height={340} />
     </div>
   );
 }
