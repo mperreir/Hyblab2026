@@ -3,7 +3,6 @@ import imgLogoWhite from '../assets/figma/nantes-logo-white.png';
 import imgFacebook  from '../assets/figma/facebook-icon.svg';
 import imgInstagram from '../assets/figma/instagram-icon.svg';
 import imgLinkedin  from '../assets/figma/linkedin-icon.svg';
-
 /**
  * Reusable site footer rendered in the absolute-positioned design canvas.
  * `top` — Y position within the canvas where the footer background starts.
@@ -21,10 +20,10 @@ export default function SiteFooter({ top, height = 300 }) {
       />
 
       {/* Separator line */}
-      <div
+      {/* <div
         className="absolute bg-white opacity-30"
         style={{ left: '94px', top: `${contentTop}px`, width: '1732px', height: '1px' }}
-      />
+      /> */}
 
       {/* Parole d'expert logo */}
       <img
@@ -62,11 +61,12 @@ export default function SiteFooter({ top, height = 300 }) {
           lineHeight: '1.4',
         }}
       >
-        <p className="m-0 font-bold">Mentions légales</p>
+        <p className="m-0 font-bold underline">Mentions légales</p>
         <p className="m-0 mt-[12px] font-normal">Crédits et aspects légaux</p>
         <p className="m-0 font-normal">Cookies</p>
         <p className="m-0 font-normal">Plan du site</p>
         <p className="m-0 font-normal">Accessibilité : partiellement conforme</p>
+        <p className="m-0 font-normal cursor-pointer">Crédits</p>
       </div>
 
       {/* Nantes Université white logo */}

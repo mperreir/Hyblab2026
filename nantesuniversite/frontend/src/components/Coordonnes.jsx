@@ -2,8 +2,8 @@
 
 export default function Coordonnees() {
   return (
-    <div style={{ marginTop: "80px", marginLeft: "90px" }}>
-      <p style={{ fontSize: "50px", fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.08em", margin: "0 0 4px",color: "#ffffff",fontFamily: "Inter, sans-serif"}}>
+    <div style={{ marginTop: "80px", marginLeft: "130px" }}>
+      <p style={{ fontSize: "50px", fontWeight: 700, textTransform: "uppercase", margin: "0 0 4px",color: "#ffffff",fontFamily: "'Chakra Petch', sans-serif"}}>
         Pour aller plus loin
       </p>
       <p style={{ fontSize: "20px", margin: "0 0 20px", color: "#ffffff" }}>
@@ -17,7 +17,7 @@ export default function Coordonnees() {
         <div style={{ display: "flex", alignItems: "center", gap: "10px" ,left:"66px"}}>
             <img src="./images/logoPC.svg"></img>
           <a href="https://chaireunescorelia.univ-nantes.fr/" target="_blank" rel="noreferrer" style={{ fontSize: "24px" ,color: "#ffffff"  }}>
-            https://chaireunescorelia.univ-nantes.fr/
+            Site Web - Chaire Unesco Relia
           </a>
         </div>
 
