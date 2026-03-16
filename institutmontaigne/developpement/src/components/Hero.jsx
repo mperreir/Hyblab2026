@@ -22,7 +22,7 @@ export default function Header({ meta }) {
       }
     `}</style>
     <header
-      className="flex flex-col items-center justify-evenly text-center py-3 px-3 sm:py-10 sm:px-4"
+      className="flex flex-col items-center justify-evenly text-center py-3 px-3 sm:py-10 sm:px-4 print:hidden"
       style={{ minHeight: `calc(100dvh - ${NAVBAR_HEIGHT}px)` }}
     >
 
