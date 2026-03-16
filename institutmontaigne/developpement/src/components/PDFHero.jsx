@@ -1,8 +1,6 @@
 import { PATH_PUBLIC } from "../data/debate";
 
 export default function PDFHero({ meta }) {
-    const intervenantsData = [meta.intervenants[0], meta.intervenants[1]];
-
     return (
         <div className="bg-white h-screen max-w-3xl flex-col items-center justify-center mx-auto hidden print:flex">
             <h1 className="text-4xl font-bold text-center text-[#00483B]">
@@ -14,7 +12,7 @@ export default function PDFHero({ meta }) {
             <div className="flex items-center gap-10 mt-10">
                 <div className="flex flex-col items-center justify-center w-[220px]">
                     <div className="relative w-[220px]">
-                        <img src={`${PATH_PUBLIC}/pp/${intervenantsData[0].id}-3.png`} alt="" className="relative z-[2] w-full"/>
+                        <img src={`${PATH_PUBLIC}/pp/${meta.intervenants[0].id}-3.png`} alt="" className="relative z-[2] w-full"/>
                         <img className="absolute -top-10 right-15" src={`${PATH_PUBLIC}/icons/EtoileBleue.svg`} alt="" />
                     </div>
                     <svg width="10" height="31" viewBox="0 0 10 31" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -34,7 +32,7 @@ export default function PDFHero({ meta }) {
                 </div>
                 <div className="flex flex-col items-center justify-center w-[220px]">
                     <div className="relative w-[220px]">
-                        <img src={`${PATH_PUBLIC}/pp/${intervenantsData[1].id}-1.png`} alt="" className="relative z-[2] w-full" />
+                        <img src={`${PATH_PUBLIC}/pp/${meta.intervenants[1].id}-1.png`} alt="" className="relative z-[2] w-full" />
                         <img className="absolute -top-10 -right-10" src={`${PATH_PUBLIC}/icons/EtoileJaune.svg`} alt="" />
                     </div>
                     <svg width="34" height="97" viewBox="0 0 34 97" fill="none" xmlns="http://www.w3.org/2000/svg">

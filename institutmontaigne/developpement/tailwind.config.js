@@ -11,6 +11,7 @@ export default {
         'accent-red': '#C41E3A',
         'montaigne-burgundy': '#872339',
         'montaigne-contrast': '#FFFFFF',
+        'vert-sapin': '#004832',
       },
       fontFamily: {
         serif: ['"Source Serif 4"', 'Georgia', 'serif'],

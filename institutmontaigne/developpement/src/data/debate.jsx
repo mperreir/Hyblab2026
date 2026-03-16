@@ -12,8 +12,11 @@ const debateData = {
   "meta": {
     "serie": "contrevoix",
     "titre": "LE SCRUTIN PROPORTIONNEL, UN REMÈDE À LA CRISE DÉMOCRATIQUE ?",
+    "titreDynamique": <>LE SCRUTIN PROPORTIONNEL, UN <Manuscrit color="#4657C6" surrounded={true}>REMÈDE</Manuscrit> À LA CRISE <Manuscrit color="#4657C6" surrounded={false}>DÉMOCRATIQUE</Manuscrit> ?</>,
     "sousTitre": "Cet entretien croise les regards de deux spécialistes du droit constitutionnel :",
     "date": "11 octobre 2024",
+    "dateFormat": "11/10/2024",
+    "type": "Social",
     "thematique": "Vie démocratique",
     "chapeau": "Entre représentativité du corps électoral et stabilité gouvernementale, faut-il choisir ? C'est habituellement sous ce dilemme que l'on présente le débat entre scrutin proportionnel et scrutin majoritaire. Le contexte politique lui donne une actualité renouvelée depuis la dissolution de l'Assemblée nationale, alors que Michel Barnier, dans son discours de politique générale, s'est dit ouvert à une « réflexion sur le sujet ». Le scrutin proportionnel peut-il répondre à la crise démocratique que traverse notre pays ? Entre enjeu démocratique de fond et tactique politique habile, la réforme du mode de scrutin doit-elle être mise à l'agenda ?",
     "credits": "Propos recueillis par Hortense Miginiac",
