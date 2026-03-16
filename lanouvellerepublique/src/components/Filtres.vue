@@ -7,9 +7,6 @@ defineProps({ show: Boolean })
 const emit = defineEmits(["close", "apply"])
 
 const pink = COLORS.pinkSwitch // #E815B2
-const pinkLight = COLORS.pinkLight // #FDE8F7
-const blue = COLORS.switchTextBlue // #007FD8
-const green = "#16A34A"
 
 /* ── état des filtres ── */
 const coupDeCoeur = ref(false)
@@ -79,10 +76,9 @@ const apply = () => {
                         </button>
                     </div>
 
-                    <!-- ── Préférences alimentaires ── -->
                     <div
                         class="filtres-section"
-                        v-for="category, key in availableCategories"
+                        v-for="(category, key) in availableCategories"
                         :key="category"
                     >
                         <h3 class="section-title">{{ title_mapping[key] }}</h3>
@@ -90,8 +86,10 @@ const apply = () => {
                             <label
                                 v-for="opt in category"
                                 :key="opt"
-                                class="option-chip option-chip--green"
-                                :class="{ 'is-selected': selectedCategories[key].includes(opt) }"
+                                :class="[
+                                    `option-chip option-chip--${key}`,
+                                    { 'is-selected': selectedCategories[key].includes(opt) },
+                                ]"
                             >
                                 <input
                                     v-model="selectedCategories[key]"
@@ -154,7 +152,7 @@ const apply = () => {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 1.25rem 1.4rem 0.75rem;
+    padding: 3rem 1.4rem 0.75rem;
     border-bottom: 1px solid #f0f0f0;
     flex-shrink: 0;
 }
@@ -209,7 +207,7 @@ const apply = () => {
     padding: 0.55rem 1.2rem;
     border-radius: 50px;
     border: 2px solid var(--Pink-500, #e815b2);
-    background: var(--Pink-100, #fde8f7);
+    /* background: var(--Pink-100, #fde8f7); */
     color: #e815b2;
     font-size: 0.95rem;
     font-weight: 700;
@@ -262,22 +260,48 @@ const apply = () => {
 }
 
 .option-chip.is-selected .tag {
-    color: #fff;
+    color: #111;
 }
 
-.option-chip--green.is-selected .tag {
-    background: v-bind(green);
-    border-color: v-bind(green);
+/* ── Couleurs par catégorie (identiques aux badges RestaurantFullArticle) ── */
+.option-chip--diet .tag {
+    border-color: #a7d9a0;
+}
+.option-chip--diet.is-selected .tag {
+    background: #ebf8e7;
+    border-color: #a7d9a0;
 }
 
-.option-chip--blue.is-selected .tag {
-    background: v-bind(blue);
-    border-color: v-bind(blue);
+.option-chip--cuisine_type .tag {
+    border-color: #93c5e8;
+}
+.option-chip--cuisine_type.is-selected .tag {
+    background: #e6f2fb;
+    border-color: #93c5e8;
 }
 
-.option-chip--pink.is-selected .tag {
-    background: v-bind(pink);
-    border-color: v-bind(pink);
+.option-chip--ambiance .tag {
+    border-color: #f5c97a;
+}
+.option-chip--ambiance.is-selected .tag {
+    background: #ffebcb;
+    border-color: #f5c97a;
+}
+
+.option-chip--budget .tag {
+    border-color: #f09788;
+}
+.option-chip--budget.is-selected .tag {
+    background: #ffc8b8;
+    border-color: #f09788;
+}
+
+.option-chip--service .tag {
+    border-color: #9b87e0;
+}
+.option-chip--service.is-selected .tag {
+    background: #c1adff;
+    border-color: #9b87e0;
 }
 
 /* ── Pied ── */

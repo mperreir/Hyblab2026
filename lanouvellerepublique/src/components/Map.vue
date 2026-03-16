@@ -308,14 +308,15 @@ watch(
 }
 
 .restaurant-carousel__slide {
-    flex: 0 0 92%;
+    flex: 0 0 100%;
     scroll-snap-align: center;
+    scroll-snap-stop: always;
     display: grid;
     align-items: start;
     justify-content: center;
     cursor: pointer;
 
-    width: 92%;
+    width: 100%;
     height: 190px;
     border-radius: 12px;
     padding: 10px;
