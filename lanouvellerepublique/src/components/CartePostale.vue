@@ -47,7 +47,7 @@
                                     fill="#E815B2"
                                 />
                             </svg>
-                            <p>{{ description }}</p>
+                            <p>{{ description.split('.')[0] }}.</p>
                         </div>
                         <div class="localisation">
                             <p class="nom">{{ nom }}</p>
