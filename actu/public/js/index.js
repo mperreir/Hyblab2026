@@ -337,7 +337,7 @@ function observer() {
       decalageX += self.deltaX
 
       if (curentX_film_index == null) {
-        curentX_film_index = get_current_index()//(film_cards.length + (-nb_tours) % film_cards.length) % film_cards.length
+        curentX_film_index = get_current_index()
       }
 
       const curent_elem = film_cards[curentX_film_index]
