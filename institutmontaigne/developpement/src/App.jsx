@@ -12,6 +12,7 @@ import Footer from './components/Footer';
 import CTA from './components/CTA.jsx';
 import ExportPDF from './components/ExportPDF.jsx';
 import PDFHero from './components/PDFHero.jsx';
+import Share from './components/Share.jsx';
 
 export default function App() {
   const [initialScore, setInitialScore] = useState(50);
@@ -30,7 +31,7 @@ export default function App() {
         questions={debateData.questions}
         intervenants={debateData.meta.intervenants}
         onQuestionOpenChange={setIsQuestionOpen}
-      />
+        />
       <QuizFin onScoreComputed={setFinalScore} />
       <Resultat initialScore={initialScore} finalScore={finalScore} />
       <Podcast
@@ -40,6 +41,7 @@ export default function App() {
         id="podcast"
       />
       <ExportPDF />
+      <Share />
       <Footer />
     </div>
   );

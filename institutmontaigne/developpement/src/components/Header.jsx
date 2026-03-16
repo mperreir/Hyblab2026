@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function Navbar() {
   return (
-    <nav className="bg-white text-montaigne-burgundy px-4 sm:px-6 py-3 h-[61px] sticky top-0 z-[9999] shadow-[0px_6px_20px_rgba(0,0,0,0.1)] transition-all duration-300 ease-out translate-y-0 opacity-100">
+    <nav className="bg-montaigne-burgundy text-white px-4 sm:px-6 py-3 h-[61px] sticky top-0 z-[9999] shadow-[0px_6px_20px_rgba(0,0,0,0.1)] transition-all duration-300 ease-out translate-y-0 opacity-100">
       <div className="mx-auto w-full max-w-6xl flex items-center justify-between">
         <a
           href="#"

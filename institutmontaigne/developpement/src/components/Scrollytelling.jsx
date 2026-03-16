@@ -10,7 +10,7 @@ gsap.registerPlugin(useGSAP);
 const STORY_PARTS = [
   {
     id: 's2-left',
-    text: <>Le debat sur la reforme du mode de scrutin revient a chaque <strong>crise politique</strong>,</>,
+    text: <>Le débat sur la réforme du mode de scrutin revient à chaque <strong>crise politique</strong>,</>,
     from: 'left',
     startScene: 0,
     endScene: 0,
@@ -18,7 +18,7 @@ const STORY_PARTS = [
   },
   {
     id: 's2-bottom',
-    text: <>mais il est aujourd'hui plus brulant que jamais apres la <strong>dissolution de l'Assemblee nationale</strong>.</>,
+    text: <>mais il est aujourd'hui plus brulant que jamais après la <strong>dissolution de l'Assemblée nationale</strong>.</>,
     from: 'bottom',
     startScene: 0,
     endScene: 0,
@@ -26,7 +26,7 @@ const STORY_PARTS = [
   },
   {
     id: 's3-4-top',
-    text: <>La France est la seule de toute l'Union europeenne a elire ses deputes au <strong>scrutin majoritaire a deux tours</strong>.</>,
+    text: <>La France est la seule de toute l'Union européenne à élire ses députés au <strong>scrutin majoritaire à deux tours</strong>.</>,
     from: 'top',
     startScene: 1,
     endScene: 2,
@@ -34,7 +34,7 @@ const STORY_PARTS = [
   },
   {
     id: 's4-bottom',
-    text: <>Les 26 autres Etats membres ont opte pour des formes plus ou moins <strong>proportionnelles</strong>.</>,
+    text: <>Les 26 autres États membres ont opté pour des formes plus ou moins <strong>proportionnelles</strong>.</>,
     from: 'bottom',
     startScene: 1,
     endScene: 2,
@@ -42,7 +42,7 @@ const STORY_PARTS = [
   },
   {
     id: 's5-6-top',
-    text: <>Derriere cette question technique se joue un choix de <strong>modele democratique</strong> :</>,
+    text: <>Derrière cette question technique se joue un choix de <strong>modèle démocratique</strong> :</>,
     from: 'left',
     startScene: 3,
     endScene: 4,
@@ -50,7 +50,7 @@ const STORY_PARTS = [
   },
   {
     id: 's7-8-top',
-    text: <>Une <strong>crise de confiance profonde</strong> est aussi a l'oeuvre :</>,
+    text: <>Une <strong>crise de confiance profonde</strong> est aussi à l'oeuvre :</>,
     from: 'left',
     startScene: 5,
     endScene: 5,
@@ -58,7 +58,7 @@ const STORY_PARTS = [
   },  
   {
     id: 's8-bottom',
-    text: <>lors des dernieres legislatives, <strong>plus d'un electeur sur deux s'est abstenu</strong>, avec des taux d'abstention record chez les jeunes.</>,
+    text: <>lors des dernières législatives, <strong>plus d'un électeur sur deux s'est abstenu</strong>, avec des taux d'abstention record chez les jeunes.</>,
     from: 'bottom',
     startScene: 5,
     endScene: 5,
@@ -66,7 +66,7 @@ const STORY_PARTS = [
   },
   {
     id: 's9-top',
-    text: <>Dans le meme temps, des partis comme le Rassemblement national, qui tournent autour d'un tiers des voix au premier tour, peinent encore a transformer ces scores en majorite de sieges, <strong>nourrissant un sentiment de sous-representation</strong>.</>,
+    text: <>Dans le même temps, des partis comme le Rassemblement national, qui tournent autour d'un tiers des voix au premier tour, peinent encore à transformer ces scores en majorité de sièges, <strong>nourrissant un sentiment de sous-représentation</strong>.</>,
     from: 'top',
     startScene: 6,
     endScene: 6,
@@ -74,7 +74,7 @@ const STORY_PARTS = [
   },
   {
     id: 's10-top',
-    text: <>Pour eclairer ces enjeux, cet entretien croise les regards de deux specialistes du <strong>droit constitutionnel</strong> :</>,
+    text: <>Pour éclairer ces enjeux, cet entretien croise les regards de deux specialistes du <strong>droit constitutionnel</strong> :</>,
     from: 'top',
     startScene: 7,
     endScene: 8,
@@ -86,7 +86,7 @@ const STORY_PARTS = [
     from: 'bottom',
     startScene: 8,
     endScene: 8,
-    positionClass: 'bottom-[18%] left-1/2 -translate-x-1/2 w-[84%] sm:w-[62%] text-center',
+    positionClass: 'bottom-[10%] left-1/2 -translate-x-1/2 w-[84%] sm:w-[62%] text-center',
   }
 ];
 
@@ -150,7 +150,7 @@ export default function Scrollytelling() {
 
   const hemicycleSegments = [
     { label: '', percentage: Math.max(0, 100 - hemicycleValue), color: '#D2D2D2' },
-    { label: 'RN', percentage: Math.max(0, hemicycleValue), color: '#A4BAE8' },
+    { label: 'RN', percentage: Math.max(0, hemicycleValue), color: '#4657C6' },
   ];
 
   useGSAP(
@@ -411,11 +411,10 @@ export default function Scrollytelling() {
       <div 
         ref={crackContainerRef} 
         className="absolute inset-0 flex items-center justify-center pointer-events-none" 
-        style={{ visibility: 'hidden', zIndex: 5 }}
+        style={{ visibility: 'hidden', zIndex: 1 }}
       >
         {/* Les classes top et left te permettent de caler la cassure exactement sur la France de ta carte de fond. */}
-        {/* N'hésite pas à ajuster "-top-[2%]" ou "-left-[4%]" selon le rendu sur ton écran ! */}
-        <div className="relative w-[20%] h-[90%]  -top-[0%] -left-[0%]">
+        <div className="relative w-[17%] sm:w-[12%] h-[45%] top-[5%] -right-[5%]">
           <img 
             ref={crackRef} 
             src="./story/casse.svg" 
@@ -426,13 +425,13 @@ export default function Scrollytelling() {
       </div>0
 
       {/* Scene 4: Dilemme SVGs */}
-      <div ref={dilemmaContainerRef} className="absolute inset-0 pointer-events-none" style={{ visibility: 'hidden' }}>
+      <div ref={dilemmaContainerRef} className="absolute inset-0 pointer-events-none" style={{ visibility: 'hidden', zIndex: 10}}>
         <div className="relative w-full h-full max-w-5xl mx-auto">
           
           {/* SVG Gauche */}
           <div 
             ref={dilemmaLeftRef} 
-            className="absolute left-[2%] sm:left-[5%] bottom-[25%] sm:bottom-[25%] w-[48%] max-w-[300px]"
+            className="absolute left-[2%] sm:left-[5%] bottom-[25%] sm:bottom-[25%] w-[48%] max-w-[300px] z-1000"
           >
             <img src="./story/gauche.svg" alt="Parlement représentatif" className="w-full h-auto z-1000" />
           </div>
@@ -440,7 +439,7 @@ export default function Scrollytelling() {
           {/* SVG Droite (légèrement décalé vers le bas pour le style asymétrique) */}
           <div 
             ref={dilemmaRightRef} 
-            className="absolute right-[2%] sm:right-[5%] bottom-[25%] sm:bottom-[25%] w-[48%] max-w-[300px] "
+            className="absolute right-[2%] sm:right-[5%] bottom-[25%] sm:bottom-[25%] w-[48%] max-w-[300px] z-1000 "
           >
             <img src="./story/droite.svg" alt="Majorités stables" className="w-full h-auto z-1000" />
           </div>
@@ -451,11 +450,11 @@ export default function Scrollytelling() {
       {/* Scene 5: Abstention / Urne */}
       <div 
         ref={urnContainerRef} 
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[85%] max-w-[500px] flex items-center justify-between pointer-events-none" 
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[75%] max-w-[500px] flex items-center justify-between pointer-events-none" 
         style={{ visibility: 'hidden' }}
       >
         {/* L'urne à gauche avec sa propre Ref pour l'animer de la gauche */}
-        <div className="w-[45%]">
+        <div className="w-[65%]">
           <img ref={urnImageRef} src="./story/MainUrne.svg" alt="Urne" className="w-full h-auto" />
         </div>
 
@@ -500,7 +499,7 @@ export default function Scrollytelling() {
         </div>
       </div>
 
-      <div className="absolute inset-0 pointer-events-none">
+      <div className="absolute inset-0 pointer-events-none z-50">
         {STORY_PARTS.map((part) => (
           <article
             key={part.id}
@@ -509,7 +508,7 @@ export default function Scrollytelling() {
           >
             <div data-anim-node="true" className="opacity-0" style={{ willChange: 'transform, opacity' }}>
               <p
-                className="text-black text-[1.05rem] font-semibold leading-[1.14] tracking-[-0.03em] sm:text-[1.45rem]"
+                className="text-vert-sapin text-[1.05rem] font-semibold leading-[1.14] tracking-[-0.03em] sm:text-[1.45rem]"
                 style={{
                   fontFamily: 'Helvetica',
                 }}
