@@ -6,6 +6,7 @@ import ProgressBar from '../components/ProgressBar';
 import IcebergScene from '../components/IcebergScene';
 import { ArrowDown, ArrowUp } from '../components/ScrollArrow';
 import ResearcherFooter from "../components/ResearcherFooter";
+import Coordonnees from '../components/Coordonnes'; 
 
 const DESIGN_WIDTH = 1920;
 const DESIGN_HEIGHT = 5820;
@@ -49,6 +50,7 @@ export default function ResearcherPage({ scrollProgress = 0 }) {
         <TopicTitle />
         <ExpertQuote />
         <IcebergScene />
+        <Coordonnees/>
         <ResearcherFooter />
       </div>
     </>
