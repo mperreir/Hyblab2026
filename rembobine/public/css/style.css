@@ -75,7 +75,7 @@ main{
 
 }
 .main-question{
-  padding-bottom: 170px;
+  padding-bottom: 200px;
 }
 .main-question-block{
   position: absolute;
@@ -570,7 +570,7 @@ button {
   margin-bottom: -50px;
 }
 
-.impact-explanation p {
+.impact-explanation p, .impact-explanation h2{
     text-align: left;
 }
 
