@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
     <title>Hyblab 2025</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
@@ -12,11 +14,13 @@
     <!-- Un seul script unifié -->
     <script src="js/zoom.js" defer></script>
 </head>
+
 <body>
     <div id="scroll-fleche">
         <span>scroller</span>
         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12 4v16M6 14l6 6 6-6" stroke="red" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M12 4v16M6 14l6 6 6-6" stroke="red" stroke-width="3" stroke-linecap="round"
+                stroke-linejoin="round" />
         </svg>
     </div>
 
@@ -46,7 +50,9 @@
             <img class="GIF" src="img/gif/nuage1/aeb8c171-9452-4a2a-b87b-e009aae9a6f3-0.png" id="NuageGIF1">
             <img class="GIF" src="img/gif/nuage2/frame_0001.png" id="NuageGIF2">
             <img class="GIF" src="img/gif/nuage3/e0d3feff-487d-45bc-9795-fcc0d8687090-0.png" id="NuageGIF3">
-            <div id="TxtInfo"><p></p></div>
+            <div id="TxtInfo">
+                <p></p>
+            </div>
         </div>
 
         <!-- SCÈNE 2 : musée -->
@@ -54,8 +60,8 @@
             <div class="calque-ville">
                 <img id="imgVille" src="img/musee/fond_fourviere.png">
             </div>
-            <img class="musee"   src="img/musee/003_musee_lugdunum.png">
-            <img class="ruines"  src="img/musee/002_ruines.png">
+            <img class="musee" src="img/musee/003_musee_lugdunum.png">
+            <img class="ruines" src="img/musee/002_ruines.png">
             <img class="ecolier" src="img/musee/001_ecolier_illustration.png">
             <div class="bloc-texte-musee">
                 <p class="titre">Musée de Lugdunum</p>
@@ -82,23 +88,67 @@
 
         <!-- SCÈNE 4 : maison -->
         <div id="sceneMaison" class="scene-maison">
-            <img class="m-ciel"    src="img/plan_03_ciel.png"          alt="">
+            <img class="m-ciel" src="img/plan_03_ciel.png" alt="">
             <img class="m-colline" src="img/chantier/collines_new.png" alt="colline">
-            <img class="m-route"   src="img/collines/route.png"        alt="route">
-            <img class="m-arbres"  src="img/maison/maison_arbres.png"  alt="arbres maison">
-            <img class="m-femme"   src="img/femme.png"                 alt="femme">
+            <img class="m-route" src="img/collines/route.png" alt="route">
+            <img class="m-arbres" src="img/maison/maison_arbres.png" alt="arbres maison">
+            <img class="m-femme" src="img/femme.png" alt="femme">
         </div>
 
         <div id="sceneBio" class="scene-bio">
-            <img src="./img/bio/IMAGE-PARC-FOND.png"              id="fond">
-            <img src="./img/bio/ecolier_01.png"                   id="mec">
-            <img src="./img/bio/ARBRE_01.png"                     id="arbre1">
-            <img src="./img/bio/ARBRE_02.png"                     id="arbre2">
-            <img src="./img/bio/arbre_04.png"                     id="arbreDessin">
-            <img src="./img/bio/ARBRE-3.png"                      id="arbre3">
-            <img src="./img/bio/personnes plantent arbres.png"    id="planter">
+            <img src="./img/bio/IMAGE-PARC-FOND.png" id="fond">
+            <img src="./img/bio/ecolier_01.png" id="mec">
+            <img src="./img/bio/ARBRE_01.png" id="arbre1">
+            <img src="./img/bio/ARBRE_02.png" id="arbre2">
+            <img src="./img/bio/arbre_04.png" id="arbreDessin">
+            <img src="./img/bio/ARBRE-3.png" id="arbre3">
+            <img src="./img/bio/personnes plantent arbres.png" id="planter">
         </div>
+
+        <!-- SCÈNE 5 : Déchets, eau et assainissement -->
+        <div class="scroll-space">
+            <div class="sceneDechets">
+
+                <div class="panorama-track">
+                    <div class="panorama" id="panorama">
+                        <img src="./img/fond_dechets_new.jpg" alt="Fond déchet">
+                    </div>
+                </div>
+                <div class="panorama-track2">
+                    <div class="panorama2" id="panorama2">
+                        <img src="./img/psd-eau-et-assainissement.jpg" alt="fond eau et assainissement" id="fond_eau">
+
+                    </div>
+                </div>
+
+                <div class="road-strip" id="road">
+                    <img class="truck" src="./img/camion_new.png" alt="Camion" id="truck">
+                    <img class="worker" src="./img/eboueuse.png" alt=" Éboueus" id="worker">
+                    <img src="./img/velo_new.png" alt="Vélo" id="velo">
+                    <img src="./img/métro.png" alt="métro" id="metro">
+                </div>
+
+                <div id="fin-ciel">
+                    <div class="fin-scene" id="fin-scene">
+                        <img src="./img/fin/ciel.png" id="ciel_fin" class="el" data-delay="0">
+                        <img src="./img/fin/nuage_3_image.png" id="nuage_fin" class="el" data-delay="1">
+                        <img src="./img/fin/VILLE.png" id="ville_fin" class="el" data-delay="2">
+                        <img src="./img/fin/ARBRE_01.png" id="arbre_fin" class="el" data-delay="3">
+                        <img src="./img/fin/musee.png" id="musee_fin" class="el" data-delay="4">
+                        <img src="./img/fin/MONSIEUR DE L_EAU.png" id="eau_fin" class="el" data-delay="5">
+                        <img src="./img/fin/maisonmetro.png" id="metro_fin" class="el" data-delay="6">
+                        <img src="./img/fin/velo.png" id="velo_fin" class="el" data-delay="7">
+                        <img src="./img/fin/TRAVAUX.png" id="travaux_fin" class="el" data-delay="8">
+                        <img src="./img/fin/POUBELLE.png" id="poubelle_fin" class="el" data-delay="9">
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
 
     </div><!-- /#scene-container -->
 </body>
+
 </html>
