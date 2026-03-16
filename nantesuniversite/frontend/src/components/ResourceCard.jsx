@@ -52,7 +52,7 @@ const color = isVideoCategory
     <div
       // className="absolute bg-white rounded-2xl px-6 shadow-sm overflow-hidden "
       className="class-resource-card"
-      style={{ left, top }}
+      style={{ left, top, cursor: onClick ? "pointer" : "default" }}
       onClick={onClick}
       onMouseEnter={onMouseEnter}
     >

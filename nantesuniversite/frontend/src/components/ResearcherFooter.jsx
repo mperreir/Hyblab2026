@@ -39,7 +39,7 @@ export default function ResearcherFooter({ offset = 0 }) {
         style={{
           left: '1050px',
           top: `${BASE_TOP + offset}px`,
-          fontFamily: "'Massilia', Inter, sans-serif",
+          fontFamily: "'Chakra Petch', sans-serif",
           fontWeight: 700,
         }}
       >
@@ -55,11 +55,11 @@ export default function ResearcherFooter({ offset = 0 }) {
         className="absolute not-italic m-0 text-white whitespace-pre-wrap"
         style={{
           left: '135px',
-          top: `${4450 + offset}px`,
+          top: `${4550 + offset}px`,
           width: '780px',
-          fontSize: '128px',
+          fontSize: '108px',
           lineHeight: '1',
-          fontFamily: "'Poppins', Inter, sans-serif",
+          fontFamily: "'Chakra Petch', sans-serif",
           fontWeight: 800,
           textShadow: '0px 4px 4px rgba(0,0,0,0.25)',
         }}

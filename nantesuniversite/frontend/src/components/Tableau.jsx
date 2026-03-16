@@ -15,7 +15,7 @@ export default function DocumentsSources({ open, onToggle, page, onPageChange })
       style={{
         marginLeft: "120px",
         width: "1680px",
-        fontFamily: "Inter, sans-serif",
+        fontFamily: "'Chakra Petch', sans-serif",
         color: "#ffffff",
       }}
     >

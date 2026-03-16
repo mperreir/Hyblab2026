@@ -140,7 +140,7 @@
         "title": "Jeu IA  & Triche",
         "description": "C est un mini jeu qui permet de débattre entre les participants et voir leurs points de vue sur la triche avec l'IA",
         "date": "2022",
-        "url": "./pdfs/NpComplete.pdf",
+        "url": null,
         "pictogramme": "./pictogramme/Jeu.svg",
         "type": "pdf"
       },
