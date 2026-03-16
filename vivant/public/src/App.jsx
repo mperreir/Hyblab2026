@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import MainLayout from './layouts/MainLayout';
 import Home from './pages/Home';
-import ImageCrawl from './test';
+import PathComponent from './PathComponent';
 import './App.css';
 
 import { Carte } from './pages/Carte';
@@ -10,7 +10,7 @@ import { Carte } from './pages/Carte';
 // Component wrapper for the old structure to be accessible via /test
 const OldTestComponents = () => (
   <div>
-    <ImageCrawl />
+    <PathComponent />
   </div>
 );
 

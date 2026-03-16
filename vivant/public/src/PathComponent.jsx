@@ -76,7 +76,7 @@ const CategoryList = {
   "Initiative personnelle/quotidienne": "#FFCBC1"
 };
 
-const InfinitePath = () => {
+const PathComponent = () => {
   const location = useLocation();
   const initialState = location.state || {};
 
@@ -748,4 +748,4 @@ const InfinitePath = () => {
   );
 };
 
-export default InfinitePath;
+export default PathComponent;

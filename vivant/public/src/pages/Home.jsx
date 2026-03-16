@@ -14,7 +14,7 @@ import Local2 from './../assets/home_illustrations/Local 1-2.svg';
 import Article2Shadow from './../assets/home_illustrations/Article 2_shadow.svg';
 import Article1 from './../assets/home_illustrations/Article 1.svg';
 
-import { NB_ARTICLES } from '../test';
+import { NB_ARTICLES } from '../PathComponent';
 
 const SwitchIcon = ({ imgShadow, imgFlat, active, size = 70 }) => (
   <div className="switch-icon" style={{ width: size, height: size }}>
