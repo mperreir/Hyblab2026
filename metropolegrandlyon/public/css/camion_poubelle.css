@@ -15,7 +15,7 @@ body {
 }
 
 .scroll-space {
-    height: 4000vh;
+    height: 5000vh;
 }
 
 :root {
@@ -164,4 +164,148 @@ body {
     width: auto;
     will-change: transform;
     z-index: 20;
+}
+
+#fin-ciel {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(60, 180, 255);
+    z-index: -4;
+}
+
+#fin-scene {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.el {
+    position: absolute;
+    opacity: 1;
+    pointer-events: none;
+}
+
+#ciel_fin {
+    position: fixed;
+    height: 100vh;
+}
+
+#nuage_fin {
+    position: fixed;
+    top: 0.5vh;
+    width: 90vw;
+}
+
+#ville_fin {
+    position: fixed;
+    top: 4vh;
+    width: 110vw;
+}
+
+#arbre_fin {
+    position: fixed;
+    width: 80vw;
+    right: 0vw;
+    top: 10vh;
+}
+
+#musee_fin {
+    position: fixed;
+    width: 40vw;
+    left: 32vw;
+    top: 55vh;
+}
+
+#eau_fin {
+    position: fixed;
+    top: 53vh;
+    left: 0vw;
+    width: 110vw;
+}
+
+#metro_fin {
+    position: fixed;
+    width: 35vw;
+    top: 30vh;
+    left: 0vw;
+}
+
+#travaux_fin {
+    position: fixed;
+    width: 24vw;
+    top: 68vh;
+    left: 25vw;
+
+}
+
+#poubelle_fin {
+    position: fixed;
+    width: 50vw;
+    bottom: 0vh;
+    left: -5vw;
+}
+
+#velo_fin {
+    position: fixed;
+    width: 60vw;
+    bottom: 0vh;
+    right: -5vw;
+}
+
+
+
+#ciel_int {
+    right: 2vw;
+    top: 2vh;
+}
+
+#nuage_int {
+    left: 15vw;
+    top: 2vh;
+}
+
+#ville_int {
+    left: 60vw;
+    top: 5vh;
+}
+
+#arbre_int {
+    right: 2vw;
+    top: 13vh;
+}
+
+#musee_int {
+    left: 60vw;
+    top: 55vh;
+}
+
+#eau_int {
+    right: 5vw;
+    top: 50vh;
+}
+
+#metro_int {
+    left: 5vw;
+    top: 30vh;
+}
+
+#velo_int {
+    right: 5vw;
+    bottom: 30vh;
+}
+
+#travaux_int {
+    left: 35vw;
+    bottom: 30vh;
+}
+
+#poubelle_int {
+    left: 25vw;
+    bottom: 12vh;
 }
