@@ -214,8 +214,8 @@ const randomSelection = () => {
 }
 
 .action-btn__icon {
-    width: 14px;
-    height: 14px;
+    width: 13px;
+    height: 13px;
     object-fit: contain;
 }
 </style>
