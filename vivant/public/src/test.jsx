@@ -417,6 +417,8 @@ const InfinitePath = () => {
     let prevArticle = mapObjectsConfig[0];
     let nextArticle = mapObjectsConfig[mapObjectsConfig.length - 1];
 
+    if (!prevArticle) return null;
+
     for (let obj of mapObjectsConfig) {
       if (obj.globalPos <= milestoneGlobalPos) prevArticle = obj;
       if (obj.globalPos >= milestoneGlobalPos) {

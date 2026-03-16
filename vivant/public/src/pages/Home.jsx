@@ -15,15 +15,8 @@ import Article1 from './../assets/home_illustrations/Article 1.svg';
 
 import { NB_ARTICLES } from '../test';
 
-// ─── Composant icône avec bascule shadow / no-shadow au clic ────────────────
-//
-//  imgShadow : chemin vers la version avec ombre (état normal / "soulevé")
-//  imgFlat   : chemin vers la version sans ombre (état pressé / "enfoncé")
-//  active    : booléen – true quand le bouton est pressé
-//
 const SwitchIcon = ({ imgShadow, imgFlat, active, size = 70 }) => (
   <div className="switch-icon" style={{ width: size, height: size }}>
-    {/* Version avec ombre – visible au repos */}
     <img
       src={imgShadow}
       alt=""
@@ -32,7 +25,6 @@ const SwitchIcon = ({ imgShadow, imgFlat, active, size = 70 }) => (
       className="switch-icon__img switch-icon__img--shadow"
       style={{ opacity: active ? 0 : 1 }}
     />
-    {/* Version sans ombre – visible au clic */}
     <img
       src={imgFlat}
       alt=""
@@ -44,7 +36,46 @@ const SwitchIcon = ({ imgShadow, imgFlat, active, size = 70 }) => (
   </div>
 );
 
-// ─── Page Home ───────────────────────────────────────────────────────────────
+// Chaque entrée = un groupe qui apparaît simultanément.
+// 'velo' est un marqueur spécial : fait apparaître le personnage/vélo.
+const SEQUENCE = [
+  ['tiret-14'],
+  ['tiret-6'],
+  ['tiret-5'],
+  ['btn-geo'],                                                  // bouton pres de chez vous
+  ['tiret-2'],
+  ['tiret-4'],
+  ['tiret-17'],
+  ['tiret-41', 'tiret-29', 'tiret-33', 'tiret-35', 'tiret-36'], // herbe 1
+  ['tiret-24'],
+  ['tiret-21'],
+  ['btn-ville'],                                                // bouton par une ville
+  ['tiret-13'],
+  ['tiret-16'],
+  ['tiret-15'],
+  ['tiret-9'],
+  ['tiret-19'],
+  ['tiret-7'],
+  ['tiret-12'],
+  ['btn-article'],                                              // bouton dernier article
+  ['tiret-11'],
+  ['tiret-10'],
+  ['tiret-40', 'tiret-22', 'tiret-27', 'tiret-38'],             // herbe 2
+  ['tiret-3'],
+  ['tiret-8'],
+  ['tiret-20'],
+  ['tiret-18', 'tiret-26', 'tiret-32', 'tiret-34'],             // herbe 3
+  ['tiret-25'],
+  ['tiret-28'],
+  ['tiret-30'],
+  ['tiret-23'],
+  ['__velo__'],                                                 // apparition du vélo
+  ['tiret-31'],
+  ['tiret-37'],
+  ['tiret-1', 'tiret-39'],                                      // points d'interrogation
+];
+
+const DELAY_MS = 80;
 
 const Home = () => {
   const navigate = useNavigate();
@@ -52,8 +83,8 @@ const Home = () => {
   const [isLoadingLocation, setIsLoadingLocation] = useState(false);
   const [articles, setArticles] = useState([]);
   const [activeBtn, setActiveBtn] = useState(null);
+  const svgContainerRef = useRef(null);
 
-  // ── Modale CityModal ──
   const [cityError, setCityError] = useState('');
   const [isModalLoading, setIsModalLoading] = useState(false);
   const modalRef = useRef(null);
@@ -61,11 +92,79 @@ const Home = () => {
   useEffect(() => {
     fetch('/vivant/api/articles')
       .then(r => r.json())
-      .then((data) => {setArticles(data)})
+      .then((data) => { setArticles(data); })
       .catch(err => console.error('Error fetching articles:', err));
   }, []);
 
-  // Feedback visuel 600 ms puis déclenchement de l'action
+  // ── Fetch SVG, injection inline, animation dans l'ordre de SEQUENCE ──
+  useEffect(() => {
+    const container = svgContainerRef.current;
+    if (!container) return;
+
+    const timers = [];
+
+    fetch(RoutePoinillee)
+      .then(r => r.text())
+      .then(svgText => {
+        container.innerHTML = svgText;
+
+        const svg = container.querySelector('svg');
+        if (svg) {
+          svg.style.width = '100%';
+          svg.style.height = '100%';
+        }
+
+        // Le premier <g> contient le personnage/vélo
+        const svgEl = container.querySelector('svg');
+        const allGroups = svgEl ? Array.from(svgEl.children).filter(el => el.tagName === 'g') : [];
+        const veloGroup = allGroups[0]; // premier g = vélo
+
+        if (veloGroup) {
+          veloGroup.style.opacity = '0';
+          veloGroup.style.transition = 'opacity 0.4s ease';
+        }
+
+        // Initialement, on masque tout ce qui est dans la séquence
+        SEQUENCE.flat().forEach(id => {
+          if (id === '__velo__') return;
+          // On cherche dans l'élément SVG injecté OU dans son parent direct (pour les boutons)
+          const el = container.querySelector(`#${id}`) || container.parentElement.querySelector(`#${id}`);
+          if (el) {
+            el.style.opacity = '0';
+            if (id.startsWith('tiret')) {
+              el.style.transform = 'scale(0.5)';
+              el.style.transformBox = 'fill-box';
+              el.style.transformOrigin = 'center';
+            }
+            el.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+          }
+        });
+
+        // Déclencher chaque étape
+        SEQUENCE.forEach((group, index) => {
+          const t = setTimeout(() => {
+            group.forEach(id => {
+              if (id === '__velo__') {
+                if (veloGroup) veloGroup.style.opacity = '1';
+                return;
+              }
+              const el = container.querySelector(`#${id}`) || container.parentElement.querySelector(`#${id}`);
+              if (el) {
+                el.style.opacity = '1';
+                if (id.startsWith('tiret')) {
+                  el.style.transform = 'scale(1)';
+                }
+              }
+            });
+          }, index * DELAY_MS);
+          timers.push(t);
+        });
+      })
+      .catch(err => console.error('Erreur chargement SVG chemin:', err));
+
+    return () => timers.forEach(clearTimeout);
+  }, []);
+
   const handlePress = (btnId, action) => {
     setActiveBtn(btnId);
     setTimeout(() => {
@@ -128,7 +227,6 @@ const Home = () => {
     let long = null;
     const firstArticle = articles[0];
 
-    // Récupérer les coordonnées du tout premier article (le plus récent)
     if (firstArticle._latlngmarker) {
       try {
         const marker = JSON.parse(firstArticle._latlngmarker);
@@ -147,12 +245,11 @@ const Home = () => {
       const centre = { latitude: lat, longitude: long };
       const nearestArticles = findNearestArticles(articles, centre, NB_ARTICLES);
       const lastDist = getLastArticleDistance(nearestArticles, centre);
-
       navigate('/carte', {
         state: {
           hasCity: true,
-          lat: lat,
-          long: long,
+          lat,
+          long,
           name: cityName || 'Dernier article',
           articles: nearestArticles,
           allArticles: articles,
@@ -160,7 +257,6 @@ const Home = () => {
         },
       });
     } else {
-      // Fallback si le dernier article n'a pas de coordonnées
       navigate('/carte', { state: { hasCity: false, articles, allArticles: articles } });
     }
   };
@@ -178,10 +274,10 @@ const Home = () => {
 
       navigate('/carte', {
         state: {
-          hasCity: true,  
-          lat: lat,
+          hasCity: true,
+          lat,
           long: lng,
-          name: name,
+          name,
           articles: (nearest && nearest.length > 0) ? nearest : articles,
           allArticles: articles,
           lastArticleDist: (nearest && nearest.length > 0) ? lastDist : null,
@@ -196,117 +292,105 @@ const Home = () => {
 
   return (
     <>
-    <div className={`home-page transition-all duration-300`}>
+      <div className="home-page transition-all duration-300">
 
-      {/* ── Titre ── */}
-      <div className="text-center text-xl mb-2">
-        <h1>
-          Comment voulez-vous<br />
-          démarrer votre{" "}
-          <span className="relative inline-block">
-            exploration
-            <img
-              src={TraitJaune}
-              alt=""
-              className="absolute left-0 top-[-7px] w-full"
-            />
-          </span>{" "}
-          ?
-        </h1>
-      </div>
+        {/* ── Titre ── */}
+        <div className="text-center text-xl mb-2">
+          <h1>
+            Comment voulez-vous<br />
+            démarrer votre{" "}
+            <span className="relative inline-block">
+              exploration
+              <img
+                src={TraitJaune}
+                alt=""
+                className="absolute left-0 top-[-7px] w-full"
+              />
+            </span>{" "}
+            ?
+          </h1>
+        </div>
 
-      {/* ── Colonne de boutons ── */}
-      <div
-        className="home-buttons-col"
-        style={{ position: 'relative', width: '100%' }}
-      >
-
-        {/* ── Route pointillée en arrière-plan ── */}
-        <img
-          src={RoutePoinillee}
-          alt=""
-          aria-hidden="true"
-          style={{
-            position: 'absolute',
-            top: '50%',
-            left: '50%',
-            transform: 'translate(-50%, -50%) scaleY(1.18)',
-            width: '120%',
-            height: '150%',
-            minWidth: '320px',
-            minHeight: '380px',
-            objectFit: 'contain',
-            zIndex: 0,
-            pointerEvents: 'none',
-          }}
-        />
-
-        {/* ── Bouton 1 : Près de chez vous ── */}
-        <button
-          className="home-btn"
-          onClick={() => handlePress('geo', handleGeolocation)}
-          disabled={isLoadingLocation}
-          style={{ position: 'relative', zIndex: 1 }}
+        {/* ── Colonne de boutons ── */}
+        <div
+          className="home-buttons-col"
+          style={{ position: 'relative', width: '100%' }}
         >
-          {isLoadingLocation ? (
-            <span className="loading loading-spinner loading-lg" style={{ width: 35, height: 35 }} />
-          ) : (
+
+          {/* ── SVG route injecté inline via fetch ── */}
+          <div
+            ref={svgContainerRef}
+            className="route-svg"
+            aria-hidden="true"
+          />
+
+          {/* ── Bouton 1 : Près de chez vous ── */}
+          <button
+            id="btn-geo"
+            className="home-btn"
+            onClick={() => handlePress('geo', handleGeolocation)}
+            disabled={isLoadingLocation}
+            style={{ position: 'relative', zIndex: 1 }}
+          >
+            {isLoadingLocation ? (
+              <span className="loading loading-spinner loading-lg" style={{ width: 35, height: 35 }} />
+            ) : (
+              <SwitchIcon
+                imgShadow={Pin2Shadow}
+                imgFlat={Pin2}
+                active={activeBtn === 'geo'}
+              />
+            )}
+            <span className="text-sm">Près de chez vous</span>
+          </button>
+
+          {/* ── Bouton 2 : Par une ville ── */}
+          <button
+            id="btn-ville"
+            className="home-btn"
+            onClick={() => handlePress('ville', () => modalRef.current?.showModal())}
+            style={{ position: 'relative', zIndex: 1 }}
+          >
             <SwitchIcon
-              imgShadow={Pin2Shadow}
-              imgFlat={Pin2}
-              active={activeBtn === 'geo'}
+              imgShadow={Local2Shadow}
+              imgFlat={Local2}
+              active={activeBtn === 'ville'}
             />
-          )}
-          <span className="text-sm">Près de chez vous</span>
-        </button>
+            <span className="text-sm">Par une ville de notre région</span>
+          </button>
 
-        {/* ── Bouton 2 : Par une ville ── */}
-        <button
-          className="home-btn"
-          onClick={() =>
-            handlePress('ville', () => modalRef.current?.showModal())
-          }
-          style={{ position: 'relative', zIndex: 1 }}
-        >
-          <SwitchIcon
-            imgShadow={Local2Shadow}
-            imgFlat={Local2}
-            active={activeBtn === 'ville'}
-          />
-          <span className="text-sm">Par une ville de notre région</span>
-        </button>
+          {/* ── Bouton 3 : Dernier article ── */}
+          <button
+            id="btn-article"
+            className="home-btn"
+            onClick={() => handlePress('article', handleLastArticle)}
+            style={{ position: 'relative', zIndex: 1 }}
+          >
+            <SwitchIcon
+              imgShadow={Article2Shadow}
+              imgFlat={Article1}
+              active={activeBtn === 'article'}
+            />
+            <span className="text-sm">
+              Depuis la localisation de<br />notre dernier article
+            </span>
+          </button>
 
-        {/* ── Bouton 3 : Dernier article ── */}
-        <button
-          className="home-btn"
-          onClick={() => handlePress('article', handleLastArticle)}
-          style={{ position: 'relative', zIndex: 1 }}
-        >
-          <SwitchIcon
-            imgShadow={Article2Shadow}
-            imgFlat={Article1}
-            active={activeBtn === 'article'}
-          />
-          <span className="text-sm">
-            Depuis la localisation de<br />notre dernier article
-          </span>
-        </button>
-
+        </div>
       </div>
-    </div>
-    
-    <CityModal
-      isOpen={false} // Laissé contrôlé via modalRef depuis Home
-      cityError={cityError}
-      isLoading={isModalLoading}
-      nArticles={NB_ARTICLES}
-      onSubmit={handleCitySubmit}
-      onSkip={() => {
-        modalRef.current?.close();
-        navigate('/carte', { state: { hasCity: false, articles, allArticles: articles } });
-      }}
-      modalRef={modalRef}
-    />
+
+      <CityModal
+        isOpen={false}
+        cityError={cityError}
+        isLoading={isModalLoading}
+        nArticles={NB_ARTICLES}
+        onSubmit={handleCitySubmit}
+        onSkip={() => {
+          modalRef.current?.close();
+          navigate('/carte', { state: { hasCity: false, articles, allArticles: articles } });
+        }}
+        modalRef={modalRef}
+      />
     </>
   );
 };
