@@ -86,7 +86,7 @@ const STORY_PARTS = [
     from: 'bottom',
     startScene: 8,
     endScene: 8,
-    positionClass: 'bottom-[18%] left-1/2 -translate-x-1/2 w-[84%] sm:w-[62%] text-center',
+    positionClass: 'bottom-[10%] left-1/2 -translate-x-1/2 w-[84%] sm:w-[62%] text-center',
   }
 ];
 
