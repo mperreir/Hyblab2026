@@ -508,7 +508,7 @@ export default function Scrollytelling() {
           >
             <div data-anim-node="true" className="opacity-0" style={{ willChange: 'transform, opacity' }}>
               <p
-                className="text-montaigne-burgundy text-[1.05rem] font-semibold leading-[1.14] tracking-[-0.03em] sm:text-[1.45rem]"
+                className="text-vert-sapin text-[1.05rem] font-semibold leading-[1.14] tracking-[-0.03em] sm:text-[1.45rem]"
                 style={{
                   fontFamily: 'Helvetica',
                 }}
