@@ -15,11 +15,15 @@ loadFilm().then((filmsNodes) => {
     .to(back, { duration: 1, rotationY: 0 }, 0)
 
   card.addEventListener("click", function () {
-    if (tl.progress() === 0) {
-      tl.play();
-    } else {
-      tl.reverse();
+    if (card == film_cards[get_current_index()]){
+
+      if (tl.progress() === 0) {
+        tl.play();
+      } else {
+        tl.reverse();
+      }
     }
+
   });
   });
 });

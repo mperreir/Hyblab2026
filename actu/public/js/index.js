@@ -53,11 +53,15 @@ loadFilm().then((filmsNodes) => {
       .to(back, { duration: 1, rotationY: 0 }, 0)
 
     card.addEventListener("click", function () {
-      if (tl.progress() === 0) {
-        tl.play();
-      } else {
-        tl.reverse();
+      if (card == film_cards[get_current_index()]) {
+
+        if (tl.progress() === 0) {
+          tl.play();
+        } else {
+          tl.reverse();
+        }
       }
+
     })
 
   });
@@ -486,17 +490,32 @@ function updateroue() {
     ((2 * Math.PI) / film_cards.length) * ((i + nb_tours) % film_cards.length)
   );
 
+
+  const res = splitCircular(film_cards, get_current_index())
+  console.log(res)
+  const front = res.part1
+  const back = res.part2
+  const indexfront = res.part1Idx
+  const indexback = res.part2Idx
+  console.log([front, back])
+  console.log([indexfront, indexback])
+
   const curent_elem = film_cards[get_current_index()]
-  console.log(curent_elem.querySelector(".affiche_front").style.backgroundColor)
-  gsap.timeline().to(film_cards, {
+
+
+  gsap.timeline().to(front, {
     duration: 0.2,
-    y: (i) => Math.sin(angles[i]) * distance + window.innerHeight / 2,
-    z: (i) => Math.cos(angles[i]) * distance
+    y: (i) => Math.sin(angles[indexfront[i]]) * distance + window.innerHeight / 2,
+    z: (i) => Math.cos(angles[indexfront[i]]) * distance
   })
     .to("body", {
       duration: 0.2,
       backgroundColor: curent_elem.querySelector(".affiche_front").style.backgroundColor
     }, "<")
+    .set(back, {
+      y: (i) => Math.sin(angles[indexback[i]]) * distance + window.innerHeight / 2,
+      z: (i) => Math.cos(angles[indexback[i]]) * distance
+    })
     ;
 }
 
@@ -524,3 +543,36 @@ function text_fin() {
   return text_fin
 }
 
+
+
+function splitCircular(list, index) {
+  const n = list.length
+  const r = Math.floor(n / 4)
+
+  const part1 = []
+  const part2 = []
+  const part1Idx = []
+  const part2Idx = []
+
+  for (let i = 0; i < n; i++) {
+    const dist = Math.min(
+      (i - index + n) % n,
+      (index - i + n) % n
+    )
+
+    if (dist <= r) {
+      part1.push(list[i])
+      part1Idx.push(i)
+    } else {
+      part2.push(list[i])
+      part2Idx.push(i)
+    }
+  }
+
+  return {
+    part1,
+    part2,
+    part1Idx,
+    part2Idx
+  }
+}
