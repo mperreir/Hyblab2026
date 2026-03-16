@@ -84,6 +84,17 @@ function resolveRobotPosition(viewport, config) {
   };
 }
 
+function resolveIcebergTipPosition(viewport) {
+  // Iceberg SVG: design left=45, top=775, size=1832x3200, viewBox=1890x3374
+  // Topmost point of iceberg path: SVG coords (963,18) → design coords (~979, ~792)
+  // Robot sits on top of the tip, centered horizontally
+  const scale = viewport.width / 1920;
+  return {
+    x: (979 - ROBOT_SIZE.width / 2) * scale,
+    y: (792 - ROBOT_SIZE.height - 10) * scale,
+  };
+}
+
 function getAnchorPoints(viewport) {
   const robot1Position = resolveRobotPosition(viewport, ROBOT_POSITION_CONFIG.robot1);
   const robot2Position = resolveRobotPosition(viewport, ROBOT_POSITION_CONFIG.robot2);
@@ -853,7 +864,7 @@ export default function Robot({
       {/* Robot root — GSAP-translated, contains only the robot visuals */}
       <div
         ref={rootRef}
-        className="fixed left-0 top-0 pointer-events-none z-40"
+        className="fixed left-0 top-0 pointer-events-none z-20"
         style={{ width: ROBOT_SIZE.width, height: ROBOT_SIZE.height }}
       >
         <div
@@ -903,7 +914,7 @@ export default function Robot({
       </div>
 
       {/* Speech bubble — separate fixed container, never moves with the robot */}
-      <div ref={speechRootRef} className="fixed left-0 top-0 pointer-events-none z-40">
+      <div ref={speechRootRef} className="fixed left-0 top-0 pointer-events-none z-20">
         {showLevelEntryPrompt || showResourcePrompt || showIntroPrompt ? (
           <div
             ref={speechRef}
