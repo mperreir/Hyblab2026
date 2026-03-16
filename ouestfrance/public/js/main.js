@@ -9,6 +9,11 @@ const CONFIG = {
   clickOpacity : 0.55,
 };
 
+// ── Global state — must be set before any module reads them ──
+window._completionShownOnce = false;
+window.TOTAL_OBJECTS        = 18;
+window.visitedIds           = new Set();
+
 // ════════════════════════════════════════════════════════════════
 //  THREE.JS SETUP
 // ════════════════════════════════════════════════════════════════
@@ -129,7 +134,6 @@ function buildPolygonHotspot(id, points, articleData) {
 fetch('data/epstein-data.json')
   .then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
   .then(data => {
-    // ── Kick off image preloads immediately, before building meshes
     if (window.Popup && Popup.preloadAll) {
       Popup.preloadAll(data.hotspots);
     }
@@ -155,22 +159,31 @@ Popup.init();
 // ════════════════════════════════════════════════════════════════
 const TOTAL_OBJECTS = 18;
 const visitedIds    = new Set();
-window.TOTAL_OBJECTS = TOTAL_OBJECTS;
-window.visitedIds    = visitedIds;
+
+window.TOTAL_OBJECTS        = TOTAL_OBJECTS;
+window.visitedIds           = visitedIds;
+window._completionShownOnce = false;
 
 function markVisited(id) {
   if (visitedIds.has(id)) return;
   visitedIds.add(id);
+
   const found   = document.getElementById('progress-found');
   const counter = document.getElementById('progress-counter');
   if (found) found.textContent = visitedIds.size;
+
   if (visitedIds.size >= TOTAL_OBJECTS && counter) {
-    counter.style.cursor       = 'pointer';
+    counter.style.cursor        = 'pointer';
     counter.style.pointerEvents = 'auto';
-    counter.title              = 'Revoir les résultats';
-    counter.addEventListener('click', () => {
-      if (window.openCompletion) window.openCompletion();
-    }, { once: false });
+    counter.title               = 'Revoir les résultats';
+
+    // Wire up counter click only once — always reopens, no flag check
+    if (!counter._completionBound) {
+      counter._completionBound = true;
+      counter.addEventListener('click', () => {
+        if (window.openCompletion) window.openCompletion();
+      });
+    }
   }
 }
 

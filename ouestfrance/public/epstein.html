@@ -33,26 +33,21 @@
   </div>
   <div id="hint" align="center">Glisser pour explorer <br> Cliquer sur une zone pour l'article</div>
 
-  <!-- POPUP PANEL (bottom drawer, matches screenshot) -->
+  <!-- POPUP PANEL -->
   <div id="popup-backdrop"></div>
   <div id="popup-panel">
-    <!-- top bar -->
     <div id="popup-topbar">
       <button id="popup-close">×</button>
     </div>
-    <!-- tag + title ABOVE image -->
     <div id="popup-header-above">
       <div id="popup-tag"></div>
       <h2 id="popup-title"></h2>
     </div>
-    <!-- object image -->
     <div id="popup-object-img-wrap">
       <img id="popup-object-img" src="" alt="">
     </div>
-    <!-- scrollable content -->
     <div id="popup-content">
       <p id="popup-description"></p>
-      <!-- optional iframe (e.g. video) -->
       <div id="popup-iframe-wrap">
         <iframe id="popup-iframe"
           src=""
@@ -76,7 +71,7 @@
   <script src="js/polygone-zones.js"></script>
   <script src="js/popup.js"></script>
 
-  <!-- Loading overlay hooks — must come before main.js -->
+  <!-- Loading overlay hooks + completion + back button — must come before main.js -->
   <script>
     const _ovBar = document.getElementById('ov-bar');
     const _ovSub = document.getElementById('ov-sub');
@@ -100,7 +95,22 @@
       }, 400);
     };
 
-    // Back button — touchend for instant response on mobile
+    // ── Completion — defined BEFORE main.js so markVisited can call it ──
+    window.openCompletion = function() {
+      const sheet    = document.getElementById('completion-sheet');
+      const backdrop = document.getElementById('completion-backdrop');
+      if (sheet)    sheet.classList.add('open');
+      if (backdrop) backdrop.classList.add('visible');
+    };
+
+    window.closeCompletion = function() {
+      const sheet    = document.getElementById('completion-sheet');
+      const backdrop = document.getElementById('completion-backdrop');
+      if (sheet)    sheet.classList.remove('open');
+      if (backdrop) backdrop.classList.remove('visible');
+    };
+
+    // ── Back button ──
     const _backBtn = document.getElementById('btn-scene-back');
     function _goBack(e) {
       e.preventDefault();
@@ -138,24 +148,10 @@
     </div>
   </div>
 
+  <!-- close buttons only — openCompletion is already defined above -->
   <script>
-    // ── Completion sheet ─────────────────────────────────────────
-    const completionSheet    = document.getElementById('completion-sheet');
-    const completionBackdrop = document.getElementById('completion-backdrop');
-
-    window.openCompletion = function() {
-      completionSheet.classList.add('open');
-      completionBackdrop.classList.add('visible');
-    };
-
-    function closeCompletion() {
-      completionSheet.classList.remove('open');
-      completionBackdrop.classList.remove('visible');
-    }
-
-    document.getElementById('completion-close').addEventListener('click', closeCompletion);
-    document.getElementById('completion-back').addEventListener('click', closeCompletion);
-    // backdrop does NOT close — user must explicitly dismiss
+    document.getElementById('completion-close').addEventListener('click', window.closeCompletion);
+    document.getElementById('completion-back').addEventListener('click',  window.closeCompletion);
   </script>
 
   <!-- CREDITS BOTTOM SHEET -->

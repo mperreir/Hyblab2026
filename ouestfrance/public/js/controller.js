@@ -3,8 +3,7 @@ window.Controller = (() => {
   let isDragging = false;
   let prevX = 0, prevY = 0;
   let dragStartX = 0, dragStartY = 0;
-  let lon = 0, lat = 0;
-
+  let lon = 250.2, lat = -10.2;
   const SPEED     = 0.3;
   const LAT_LIMIT = 85;
   const FOV_MIN   = 30;
@@ -29,7 +28,6 @@ window.Controller = (() => {
 
     // ── Pinch zoom (touch) ────────────────────────────────────
     let lastPinchDist = null;
-
     rendererEl.addEventListener('touchstart', e => {
       if (e.touches.length === 2) {
         lastPinchDist = Math.hypot(

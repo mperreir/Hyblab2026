@@ -2,10 +2,6 @@ window.Popup = (() => {
   let _current = null;
 
   // ── Image preload cache ───────────────────────────────────────
-  // Stores HTMLImageElement objects keyed by src.
-  // Once an Image() is created with a src, the browser caches the
-  // decoded bitmap — reassigning the same src to a visible <img>
-  // will paint instantly from cache instead of re-fetching.
   const _imgCache = {};
 
   function preloadImage(src) {
@@ -15,7 +11,6 @@ window.Popup = (() => {
     _imgCache[src] = img;
   }
 
-  // Called from main.js right after the JSON fetch completes
   function preloadAll(hotspots) {
     (hotspots || []).forEach(h => {
       if (h.article?.objectImage) preloadImage(h.article.objectImage);
@@ -41,7 +36,6 @@ window.Popup = (() => {
     const objWrap = document.getElementById('popup-object-img-wrap');
     const objImg  = document.getElementById('popup-object-img');
     if (a.objectImage) {
-      // Only update src when it actually changes — avoids re-decode flicker
       if (objImg.getAttribute('src') !== a.objectImage) {
         objImg.src = a.objectImage;
       }
@@ -66,9 +60,9 @@ window.Popup = (() => {
     // ── article button ────────────────────────────────────────────
     const btn = document.getElementById('popup-article-btn');
     if (a.link) {
-      btn.href          = a.link;
-      btn.textContent   = a.articleHeadline || 'Lire l\'article →';
-      btn.style.display = '';
+      btn.href             = a.link;
+      btn.textContent      = a.articleHeadline || 'Lire l\'article →';
+      btn.style.display    = '';
       btn.style.background = '#e2001a';
       btn.style.color      = '#ffffff';
       btn.style.border     = 'none';
@@ -83,21 +77,11 @@ window.Popup = (() => {
   function close() {
     document.getElementById('popup-panel').classList.remove('open');
     document.getElementById('popup-backdrop').classList.remove('visible');
-
     // Stop video on close
     const iframe = document.getElementById('popup-iframe');
     if (iframe) iframe.src = '';
-
     _current = null;
-
-    // Trigger completion sheet if all objects visited
-    setTimeout(() => {
-      if (window.visitedIds && window.TOTAL_OBJECTS &&
-          window.visitedIds.size >= window.TOTAL_OBJECTS &&
-          window.openCompletion) {
-        window.openCompletion();
-      }
-    }, 400);
+    // ── NO completion trigger here — handled exclusively by main.js ──
   }
 
   function getCurrent() { return _current; }
