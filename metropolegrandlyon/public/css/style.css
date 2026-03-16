@@ -512,6 +512,7 @@ body {
     pointer-events: none;
     opacity: 0;
     transition: opacity 0.6s ease;
+    width: 400%;
 }
 
 #scroll-fleche.visible {
@@ -521,15 +522,15 @@ body {
 #scroll-fleche span {
     font-family: 'Cormorant Garamond', serif;
     font-style: italic;
-    font-size: 1vh;
+    font-size: 3vh;
     letter-spacing: 0.2em;
     color: rgba(255, 0, 0, 0.6);
     text-transform: lowercase;
 }
 
 #scroll-fleche svg {
-    width: 2.4vh;
-    height: 2.4vh;
+    width: 4.8vh;
+    height: 4.8vh;
     animation: rebond 1.4s ease-in-out infinite;
 }
 

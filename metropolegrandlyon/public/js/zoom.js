@@ -213,7 +213,7 @@ function cacherFleche() {
     if (fleche) fleche.classList.remove('visible');
 }
 
-timerFleche = setTimeout(montrerFleche, 2000);
+timerFleche = setTimeout(montrerFleche, 4000);
 
 /* ════════════════════════════════════
    SCROLL LISSÉ
