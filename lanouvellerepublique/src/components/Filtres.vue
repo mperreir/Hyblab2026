@@ -185,6 +185,12 @@ const apply = () => {
     display: flex;
     flex-direction: column;
     gap: 1.4rem;
+
+    font-family: "OpenSans";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 22px;
 }
 
 /* ── Section ── */
@@ -206,8 +212,7 @@ const apply = () => {
     align-self: flex-start;
     padding: 0.55rem 1.2rem;
     border-radius: 50px;
-    border: 2px solid var(--Pink-500, #e815b2);
-    /* background: var(--Pink-100, #fde8f7); */
+    border: 2px solid #e815b2;
     color: #e815b2;
     font-size: 0.95rem;
     font-weight: 700;

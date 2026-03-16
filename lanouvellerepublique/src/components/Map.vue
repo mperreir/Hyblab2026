@@ -311,7 +311,6 @@ watch(
     flex: 0 0 100%;
     scroll-snap-align: center;
     scroll-snap-stop: always;
-    display: grid;
     align-items: start;
     justify-content: center;
     cursor: pointer;
