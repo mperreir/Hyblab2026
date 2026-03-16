@@ -209,7 +209,7 @@ const debateData = {
       ]
     },
     {
-      "question": "Quels impactes pour le RN ?",
+      "question": "Quels impacts pour le RN ?",
       "color": "#E3F280",
       "textcolor": "#7F8B59",
       "dialogue": [
