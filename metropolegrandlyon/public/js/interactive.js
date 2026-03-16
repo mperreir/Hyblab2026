@@ -12,9 +12,11 @@ function popUp(id) {
       const PopUpB = document.getElementById('bloc');
       const PopUpTxt = document.getElementById('PopUpTxt');
       const PopUpTitre = document.getElementById('PopUpTitre');
+      const voirPlusLien = document.getElementById('voir-plus-lien');
+      const voirPlusIcone = document.getElementById('voir-plus');
 
-      if (id == "credit"){
-        PopUpB.style.backgroundColor =  "rgba(230, 230, 230, 0.7)";
+      if (id == "credit") {
+        PopUpB.style.backgroundColor = "rgba(230, 230, 230, 0.7)";
         PopUpTitre.innerHTML = "Crédits";
         PopUpTitre.style.color = 'black';
 
@@ -26,35 +28,46 @@ function popUp(id) {
         PopUp.style.display = "flex";
         document.body.style.overflow = "hidden";
       }
-      
-      else{
+
+      else {
         PopUpB.style.backgroundColor = "rgba(230, 0, 41, 0.7)";
         PopUpTitre.style.color = 'white';
 
         PopUpTitre.innerHTML = data[id]["title"];
         PopUpTxt.innerHTML = data[id]["text"];
         PopUp.style.display = "flex";
+        if (data[id]["links"].length > 0) {
+          voirPlusLien.style.display = 'block';
+          voirPlusIcone.style.display = 'block';
+          PopUpTxt.style.maxHeight = 60 + 'vh';
+          voirPlusLien.setAttribute('href', data[id]["links"][0]);
+        }
+        else {
+          voirPlusLien.style.display = 'none';
+          voirPlusIcone.style.display = 'none';
+          PopUpTxt.style.maxHeight = 70 + 'vh';
+        }
 
         document.body.style.overflow = "hidden";
       }
 
-        function fermer() {
-          PopUp.style.display = "none";
-          // document.body.style.overflow = "auto";
-          PopUp.removeEventListener('click', fermerSiClic);
-        }
+      function fermer() {
+        PopUp.style.display = "none";
+        // document.body.style.overflow = "auto";
+        PopUp.removeEventListener('click', fermerSiClic);
+      }
 
-        function fermerSiClic(event) {
-          if (event.target === PopUp) fermer();
-        }
+      function fermerSiClic(event) {
+        if (event.target === PopUp) fermer();
+      }
 
-        const closeBtn = document.getElementById('close');
-        // Cloner le bouton pour supprimer les anciens listeners
-        const newClose = closeBtn.cloneNode(true);
-        closeBtn.replaceWith(newClose);
-        newClose.onclick = fermer;
+      const closeBtn = document.getElementById('close');
+      // Cloner le bouton pour supprimer les anciens listeners
+      const newClose = closeBtn.cloneNode(true);
+      closeBtn.replaceWith(newClose);
+      newClose.onclick = fermer;
 
-        PopUp.addEventListener('click', fermerSiClic);
+      PopUp.addEventListener('click', fermerSiClic);
     });
 }
 

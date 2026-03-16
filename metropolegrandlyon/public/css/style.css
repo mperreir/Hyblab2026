@@ -1023,7 +1023,7 @@ body {
     padding: 5vw;
     color: white;
     white-space: pre-line;
-    max-height: 70vh;
+    max-height: 60vh;
     overflow-y: auto;
 }
 
@@ -1032,8 +1032,13 @@ body {
     display: block;
     color: white;
     white-space: pre-line;
-    max-width: 60vh;
+    max-width: 70vh;
     overflow-y: auto;
+}
+
+#voir-plus {
+    display: block;
+    max-height: 10vh;
 }
 
 .close {
