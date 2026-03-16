@@ -12,11 +12,11 @@ function hexToGreyscale(hex) {
 	return `#${h}${h}${h}`;
 }
 
-function ChartView({ title, segments, seats }) {
+function ChartView({ title, segments, seats, showLabels = true }) {
 	return (
 		<div className="w-full">
 			{title && <p className="mb-2 text-center font-bold">{title}</p>}
-			<DoughnutChart className="h-40 w-full" segments={segments} seats={seats} />
+			<DoughnutChart className="h-40 w-full" segments={segments} seats={seats} showLabels={showLabels} />
 		</div>
 	);
 }
@@ -29,7 +29,7 @@ function GifView({ src, alt }) {
 	);
 }
 
-function AlternatingView({ title, repartitions, seats }) {
+function AlternatingView({ title, titles, repartitions, seats }) {
 	const [current, setCurrent] = useState(0);
 
 	useEffect(() => {
@@ -41,10 +41,13 @@ function AlternatingView({ title, repartitions, seats }) {
 	}, [repartitions]);
 
 	const segments = repartitions?.[current] ?? [];
+	const activeTitle = Array.isArray(titles) && titles.length > 0
+		? titles[current % titles.length]
+		: title;
 
 	return (
 		<div className="w-full">
-			{title && <p className="mb-2 text-center font-bold">{title}</p>}
+			{activeTitle && <p className="mb-2 text-center font-bold">{activeTitle}</p>}
 			<DoughnutChart className="h-40 w-full" segments={segments} seats={seats} />
 		</div>
 	);
@@ -65,10 +68,10 @@ const BASE_SEGMENTS = [
 
 const DEFAULT_ITEMS = [
 	{
-		label: 'La répartition réelle des voix',
+		label: <>La répartition réelle des voix</>,
 		color: '#4D5BC0',
 		type: 'chart',
-		title: 'Répartition réelle des voix',
+		title: <>Répartition des voix</>,
 		segments: BASE_SEGMENTS,
 	},
 	{
@@ -83,7 +86,10 @@ const DEFAULT_ITEMS = [
 		color: '#005944',
 		type: 'alternating',
 		seats: 74,
-		title: 'Selon le degré de proportionnelle',
+		titles: [
+			<>PROPORTIONNELLE<br/>Seuil à 3%</>,
+			<>PROPORTIONNELLE<br/>Seuil à 5%</>,
+		],
 		repartitions: [
 			[
 				{ label: 'NFP', percentage: 15, color: '#4D5BC0' },
@@ -108,7 +114,8 @@ const DEFAULT_ITEMS = [
 		color: '#A8B352',
 		type: 'chart',
 		seats: 0,
-		title: 'Impact du seuil électoral',
+		showLabels: false,
+		title: <>-3% des voix</>,
 		segments: BASE_SEGMENTS.map((s) => ({ ...s, color: hexToGreyscale(s.color) })),
 	},
 ];
@@ -143,13 +150,13 @@ export default function RepartitionDynamique({ items = DEFAULT_ITEMS, className 
 
 				<div className="my-6 mt-10 w-full">
 					{activeItem.type === 'chart' && (
-						<ChartView title={activeItem.title} segments={activeItem.segments ?? []} seats={activeItem.seats ?? null} />
+						<ChartView title={activeItem.title} segments={activeItem.segments ?? []} seats={activeItem.seats ?? null} showLabels={activeItem.showLabels ?? true} />
 					)}
 					{activeItem.type === 'gif' && (
 						<GifView src={activeItem.src ?? ''} alt={activeItem.alt ?? ''} />
 					)}
 					{activeItem.type === 'alternating' && (
-						<AlternatingView title={activeItem.title} repartitions={activeItem.repartitions ?? []} seats={activeItem.seats ?? null} />
+						<AlternatingView title={activeItem.title} titles={activeItem.titles} repartitions={activeItem.repartitions ?? []} seats={activeItem.seats ?? null} />
 					)}
 				</div>
 			</div>
