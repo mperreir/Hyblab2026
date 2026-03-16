@@ -97,5 +97,3 @@ window.addEventListener('mouseup', function (event) {
         hideScroll('scrollable_page_2');
     }
 });
-
-hideScroll("scrollable_page");
