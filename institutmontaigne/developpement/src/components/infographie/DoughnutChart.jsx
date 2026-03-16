@@ -25,7 +25,7 @@ function buildSegmentLabel(label, percentage) {
 	return `${percentage}`;
 }
 
-export default function DoughnutChart({ segments = DEFAULT_SEGMENTS, className = '', seats = null }) {
+export default function DoughnutChart({ segments = DEFAULT_SEGMENTS, className = '', seats = null, showLabels = true }) {
 	const safeSegments = segments
 		.filter((segment) => segment && Number.isFinite(segment.percentage) && segment.percentage >= 0)
 		.map((segment) => ({
@@ -45,22 +45,24 @@ export default function DoughnutChart({ segments = DEFAULT_SEGMENTS, className =
 			ctx.textAlign = 'center';
 			ctx.textBaseline = 'middle';
 
-			meta.data.forEach((arc, index) => {
-				const label = labels[index];
+			if (showLabels) {
+				meta.data.forEach((arc, index) => {
+					const label = labels[index];
 
-				if (!label) {
-					return;
-				}
+					if (!label) {
+						return;
+					}
 
-				const angle = (arc.startAngle + arc.endAngle) / 2;
-				const radius = (arc.innerRadius + arc.outerRadius) / 2;
-				const x = arc.x + Math.cos(angle) * radius;
-				const y = arc.y + Math.sin(angle) * radius;
+					const angle = (arc.startAngle + arc.endAngle) / 2;
+					const radius = (arc.innerRadius + arc.outerRadius) / 2;
+					const x = arc.x + Math.cos(angle) * radius;
+					const y = arc.y + Math.sin(angle) * radius;
 
-				ctx.fillStyle = '#FFFFFF';
-				ctx.font = '600 14px "Helvetica", sans-serif';
-				ctx.fillText(String(label), x, y);
-			});
+					ctx.fillStyle = '#FFFFFF';
+					ctx.font = '600 14px "Helvetica", sans-serif';
+					ctx.fillText(String(label), x, y);
+				});
+			}
 
 			if (seats !== null && seats !== undefined) {
 				const firstArc = meta.data[0];
