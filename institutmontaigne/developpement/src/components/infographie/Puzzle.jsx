@@ -72,7 +72,7 @@ export function DropZone({ correctAnswer, placeholder = "···" }) {
         margin: "0 6px", clipPath: HEX_CLIP, background: bg,
         WebkitPrintColorAdjust: "exact", printColorAdjust: "exact",
         transition: "background 0.15s",
-        fontFamily: "Georgia, serif", cursor: "default", userSelect: "none",
+        fontFamily: "Helvetica, serif", cursor: "default", userSelect: "none",
       }}
     >
       <AnimatePresence mode="wait">
@@ -148,9 +148,19 @@ function AnswerChip({ value, index, accepted, onAccepted }) {
 
   const currentHoveredZone = useRef(null);
 
+  useEffect(() => {
+    return () => {
+      document.body.removeAttribute("data-dialogue-swipe-lock");
+    };
+  }, []);
+
   const handlePointerDown = useCallback((e) => {
     if (accepted || ghostState?.returning) return;
     e.preventDefault();
+
+    try {
+      chipRef.current?.setPointerCapture?.(e.pointerId);
+    } catch {}
 
     const rect = chipRef.current.getBoundingClientRect();
     const W = rect.width, H = rect.height;
@@ -163,6 +173,7 @@ function AnswerChip({ value, index, accepted, onAccepted }) {
     });
 
     setGhostState({ pos: toGhostPos(e.clientX, e.clientY), originPos, returning: false });
+    document.body.setAttribute("data-dialogue-swipe-lock", "true");
 
     const onMove = (ev) => {
       setGhostState((g) => g && !g.returning
@@ -185,9 +196,15 @@ function AnswerChip({ value, index, accepted, onAccepted }) {
       }
     };
 
-    const onUp = (ev) => {
+    const endDragListeners = () => {
       window.removeEventListener("pointermove", onMove);
       window.removeEventListener("pointerup", onUp);
+      window.removeEventListener("pointercancel", onCancel);
+      document.body.removeAttribute("data-dialogue-swipe-lock");
+    };
+
+    const onUp = (ev) => {
+      endDragListeners();
 
       currentHoveredZone.current?.zone.setHover(false);
       currentHoveredZone.current = null;
@@ -214,8 +231,16 @@ function AnswerChip({ value, index, accepted, onAccepted }) {
       }
     };
 
+    const onCancel = () => {
+      endDragListeners();
+      currentHoveredZone.current?.zone.setHover(false);
+      currentHoveredZone.current = null;
+      setGhostState((g) => g ? { ...g, returning: true } : null);
+    };
+
     window.addEventListener("pointermove", onMove);
     window.addEventListener("pointerup", onUp);
+    window.addEventListener("pointercancel", onCancel);
   }, [accepted, value, bg, onAccepted, ghostState]);
 
   if (accepted) return <div data-disable-dialogue-swipe="true" style={{ width: 80, height: 34 }} />;
@@ -269,7 +294,7 @@ function ChipLabel({ text, color }) {
     <span style={{
       color, fontWeight: 900, fontSize: "0.75rem",
       letterSpacing: "0.12em", textTransform: "uppercase",
-      fontFamily: "Georgia, serif", pointerEvents: "none",
+      fontFamily: "Helvetica, serif", pointerEvents: "none",
     }}>{text}</span>
   );
 }
