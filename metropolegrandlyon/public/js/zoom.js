@@ -213,8 +213,6 @@ function cacherFleche() {
     if (fleche) fleche.classList.remove('visible');
 }
 
-timerFleche = setTimeout(montrerFleche, 4000);
-
 /* ════════════════════════════════════
    SCROLL LISSÉ
 ════════════════════════════════════ */
@@ -245,7 +243,7 @@ setTimeout(() => {
         scrollCible = window.scrollY;
         cacherFleche();
         clearTimeout(timerFleche);
-        timerFleche = setTimeout(montrerFleche, 2000);
+        timerFleche = setTimeout(montrerFleche, 4000);
     });
 
     // Init first slide
