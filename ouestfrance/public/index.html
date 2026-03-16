@@ -3,12 +3,20 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>Ouest-France — Intro</title>
+  <title>Ouest-France — Epstein</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/intro.css" />
   <link rel="stylesheet" href="css/style.css" />
+  <!-- Prefetch next page and preconnect to CDN -->
+  <link rel="prefetch"    href="epstein.html">
+  <link rel="preconnect"  href="https://cdnjs.cloudflare.com">
+  <!-- Preload heavy assets while user reads intro -->
+  <link rel="preload" href="img/epstein.png"             as="image" fetchpriority="high">
+  <link rel="preload" href="img/epst1.png"               as="image">
+  <link rel="preload" href="img/ouest-france-couleur.png" as="image">
 </head>
 <body>
   <main class="app">
@@ -37,19 +45,17 @@
                 <p>Cette expérience immersive vous transporte dans une reconstitution fidèle de l'appartement new-yorkais de Jeffrey Epstein.</p>
                 <p>À travers 18 objets clés, découvrez les mécanismes d'un réseau d'influence planétaire.</p>
               </div>
-
-              <div class="s1-pager-wrap">
-                <div class="pager" aria-label="Étape 1 sur 2">
-                  <span class="dot active" id="dot-1"></span>
-                  <span class="dot"        id="dot-2"></span>
-                </div>
-              </div>
+               <br>
+              <br>
+              <br>
 
               <div class="s1-note-wrap">
                 <div class="note">
                   Ce décor est une reconstitution, conçue à partir des photos et plan de l'appartement de Jeffrey Epstein, et assisté par IA.
                 </div>
               </div>
+              <br>
+              <br>
 
               <div class="s1-btn-wrap">
                 <button class="btn-next" id="btn-next">C'est parti !</button>
@@ -76,19 +82,12 @@
 
             <div class="inner-card">
               <div class="instruction-img">
-                <img src="img/epst1.png" alt="Aperçu de la scène 360°">
+                <img src="img/simu.jpeg" alt="Aperçu de la scène 360°">
               </div>
 
               <p class="instruction-text">
                 Interagissez avec les objets mis en surbrillance, apprenez en plus avec les articles liés, et consultez votre avancée dans votre dossier de suivi.
               </p>
-
-              <div class="s2-pager-wrap">
-                <div class="pager" aria-label="Étape 2 sur 2">
-                  <span class="dot"></span>
-                  <span class="dot active"></span>
-                </div>
-              </div>
 
               <div class="s2-note-wrap">
                 <div class="note">
@@ -110,15 +109,11 @@
 
   <script>
     const track  = document.getElementById('slides-track');
-    const dot1   = document.getElementById('dot-1');
-    const dot2   = document.getElementById('dot-2');
     let   onSlide2 = false;
 
     // ── Helpers ───────────────────────────────────────────────
     function goToSlide1() {
       track.style.transform = 'translateX(0)';
-      dot1.classList.add('active');
-      dot2.classList.remove('active');
       onSlide2 = false;
       // remove the history entry we pushed when entering slide 2
       history.back();
@@ -126,8 +121,6 @@
 
     function goToSlide2() {
       track.style.transform = 'translateX(-50%)';
-      dot1.classList.remove('active');
-      dot2.classList.add('active');
       onSlide2 = true;
       // push a history entry so the hardware back button can catch it
       history.pushState({ slide: 2 }, '');
@@ -162,6 +155,20 @@
     document.getElementById('btn-start').addEventListener('click', () => {
       window.location.href = 'epstein.html';
     });
+  </script>
+  <script>
+    // Preload all object images while user reads the intro
+    fetch('data/epstein-data.json')
+      .then(r => r.json())
+      .then(data => {
+        (data.hotspots || []).forEach(h => {
+          if (h.article?.objectImage) {
+            const img = new Image();
+            img.src = h.article.objectImage;
+          }
+        });
+      })
+      .catch(() => {});
   </script>
 </body>
 </html>

@@ -32,7 +32,14 @@ new THREE.TextureLoader().load(
   },
   xhr => {
     if (window.ovProgress) {
-      window.ovProgress(Math.round(xhr.loaded / (xhr.total || 1) * 100));
+      // If server sends Content-Length use it, otherwise fake smooth progress
+      if (xhr.total && xhr.total > 0) {
+        window.ovProgress(Math.round(xhr.loaded / xhr.total * 100));
+      } else {
+        // Asymptotic progress — gets close to 90% but never reaches it until done
+        const fakeProgress = Math.round(90 * (1 - Math.exp(-xhr.loaded / 3000000)));
+        window.ovProgress(Math.min(fakeProgress, 89));
+      }
     }
   },
   () => {
@@ -132,6 +139,13 @@ fetch('data/epstein-data.json')
       if (!match) { console.warn('Hotspot "' + zone.id + '" introuvable dans le JSON'); return; }
       buildPolygonHotspot(zone.id, zone.points, match.article);
     });
+    // Preload all object images using the already-fetched data
+    data.hotspots.forEach(h => {
+      if (h.article?.objectImage) {
+        const img = new Image();
+        img.src = h.article.objectImage;
+      }
+    });
   })
   .catch(err => console.error('Impossible de charger les hotspots :', err));
 
@@ -182,7 +196,7 @@ function setPolygonState(mesh, state) {
   if (!mesh || !mesh.userData._isPolygon) return;
   const mat    = mesh.userData._mat;
   const isRead = readIds.has(mesh.userData.id);
-  if      (state === 'idle')   { mat.color.setHex(isRead ? CONFIG.clickColor : CONFIG.hoverColor); mat.opacity = isRead ? 0.55 : 0; }
+  if      (state === 'idle')   { mat.color.setHex(isRead ? CONFIG.clickColor : CONFIG.hoverColor); mat.opacity = isRead ? 0.58 : 0; }
   else if (state === 'hover')  { mat.color.setHex(isRead ? CONFIG.clickColor : CONFIG.hoverColor); mat.opacity = CONFIG.hoverOpacity; }
   else if (state === 'active') { mat.color.setHex(CONFIG.clickColor); mat.opacity = CONFIG.clickOpacity; readIds.add(mesh.userData.id); }
 }

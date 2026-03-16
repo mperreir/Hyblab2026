@@ -161,7 +161,9 @@
   <!-- CREDITS BOTTOM SHEET -->
   <div id="credits-backdrop"></div>
   <div id="credits-sheet">
-    <div id="credits-handle"></div>
+    <div id="credits-topbar">
+      <button id="credits-close-btn" aria-label="Fermer">×</button>
+    </div>
     <div id="credits-inner">
 
       <h2 id="credits-title">Crédit</h2>
@@ -178,13 +180,13 @@
 
       <div id="credits-partners">
         <div class="credits-partner-cell">
-          <img src="img/ed.png" alt="Nantes Design">
+          <img src="img/edna.png" alt="Nantes Design">
         </div>
         <div class="credits-partner-cell">
-          <img src="img/medilab.png" alt="Ouest Médialab">
+          <img src="img/pn.png" alt="Ouest Médialab">
         </div>
         <div class="credits-partner-cell">
-          <img src="img/pn.png" alt="Polytech Nantes">
+          <img src="img/medilab.png" alt="Polytech Nantes">
         </div>
         <div class="credits-partner-cell">
           <img src="img/un.png" alt="Nantes Université">
@@ -221,9 +223,7 @@
 
     document.getElementById('btn-credits').addEventListener('click', openCredits);
     creditsBackdrop.addEventListener('click', closeCredits);
-
-    // drag handle tap also closes
-    document.getElementById('credits-handle').addEventListener('click', closeCredits);
+    document.getElementById('credits-close-btn').addEventListener('click', closeCredits);
   </script>
 
 </body>

@@ -142,25 +142,7 @@ body {
   margin-bottom: clamp(18px, 5vw, 28px);
 }
 
-/* ── Pager dots ── */
-.pager {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 9px;
-  flex-shrink: 0;
-}
-.dot {
-  width: 8px; height: 8px;
-  border-radius: 50%;
-  background: var(--dot-off);
-  flex-shrink: 0;
-  transition: width .2s, height .2s, background .2s;
-}
-.dot.active {
-  width: 10px; height: 10px;
-  background: var(--of-red);
-}
+
 
 /* ── Disclaimer note ── */
 .note {
