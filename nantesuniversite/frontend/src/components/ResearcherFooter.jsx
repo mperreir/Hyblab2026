@@ -43,7 +43,7 @@ export default function ResearcherFooter({ offset = 0 }) {
           fontWeight: 700,
         }}
       >
-        CHERCHEURS À LA UNE
+        CHERCHEUR.ES À LA UNE
       </p>
 
       {LINKED_RESEARCHERS.map((researcher, i) => (

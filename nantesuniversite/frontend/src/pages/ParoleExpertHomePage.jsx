@@ -3,6 +3,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { SplitText } from 'gsap/SplitText';
 import Header from '../components/Header';
+import SearchBar from '../components/SearchBar';
 import HeroSection from '../components/HeroSection';
 import FeaturedQuotesSection from '../components/FeaturedQuotesSection';
 import ResearcherGallery from '../components/ResearcherGallery';
@@ -189,6 +190,10 @@ if (titleRef.current) {
     >
       <Header />
 
+      <div className="absolute top-[38px] right-[69px] z-10">
+        <SearchBar />
+      </div>
+
       {/* ── Hero — référencé pour retarder les quotes ── */}
       <div ref={heroWrapRef}>
         <HeroSection />
@@ -218,7 +223,7 @@ if (titleRef.current) {
           className="class-all-researchers-title"
           style={{ opacity: 0 }}
         >
-          Découvrir nos chercheurs dans différents domaines
+          Découvrir nos chercheur.es dans différents domaines
         </p>
       </div>
 
