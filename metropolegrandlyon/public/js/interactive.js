@@ -9,32 +9,52 @@ function popUp(id) {
     .then(response => response.json())
     .then(data => {
       const PopUp = document.getElementById('P');
+      const PopUpB = document.getElementById('bloc');
       const PopUpTxt = document.getElementById('PopUpTxt');
       const PopUpTitre = document.getElementById('PopUpTitre');
 
-      PopUpTitre.innerHTML = data[id]["title"];
-      PopUpTxt.innerHTML = data[id]["text"];
-      PopUp.style.display = "flex";
+      if (id == "credit"){
+        PopUpB.style.backgroundColor =  "rgba(230, 230, 230, 0.7)";
+        PopUpTitre.innerHTML = "Crédits";
+        PopUpTitre.style.color = 'black';
 
-      document.body.style.overflow = "hidden";
+        PopUpTxt.innerHTML = `
+          <div class="credit-container">
+            <img src="./img/credit.png"  id="Credits"  style="width: 70vw;">
+          </div>
+        `;
+        PopUp.style.display = "flex";
+        document.body.style.overflow = "hidden";
+      }
+      
+      else{
+        PopUpB.style.backgroundColor = "rgba(230, 0, 41, 0.7)";
+        PopUpTitre.style.color = 'white';
 
-      function fermer() {
-        PopUp.style.display = "none";
-        // document.body.style.overflow = "auto";
-        PopUp.removeEventListener('click', fermerSiClic);
+        PopUpTitre.innerHTML = data[id]["title"];
+        PopUpTxt.innerHTML = data[id]["text"];
+        PopUp.style.display = "flex";
+
+        document.body.style.overflow = "hidden";
       }
 
-      function fermerSiClic(event) {
-        if (event.target === PopUp) fermer();
-      }
+        function fermer() {
+          PopUp.style.display = "none";
+          // document.body.style.overflow = "auto";
+          PopUp.removeEventListener('click', fermerSiClic);
+        }
 
-      const closeBtn = document.getElementById('close');
-      // Cloner le bouton pour supprimer les anciens listeners
-      const newClose = closeBtn.cloneNode(true);
-      closeBtn.replaceWith(newClose);
-      newClose.onclick = fermer;
+        function fermerSiClic(event) {
+          if (event.target === PopUp) fermer();
+        }
 
-      PopUp.addEventListener('click', fermerSiClic);
+        const closeBtn = document.getElementById('close');
+        // Cloner le bouton pour supprimer les anciens listeners
+        const newClose = closeBtn.cloneNode(true);
+        closeBtn.replaceWith(newClose);
+        newClose.onclick = fermer;
+
+        PopUp.addEventListener('click', fermerSiClic);
     });
 }
 

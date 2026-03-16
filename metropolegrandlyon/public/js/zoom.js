@@ -553,7 +553,7 @@ function majScene(s) {
         majBio(s);   // maintient les positions finales des éléments bio
         const pFadeOut = av(s, sC_fadeDebut+500, sC_fadeFin);
         sceneBio.style.opacity = lerp(1, 0, pFadeOut);
-        txt.style.opacity = lerp(1, 0, pFadeOut);
+        txt.style.opacity = lerp(1, 0, pFadeOut-0.1);
 
         /* Scène camion entre en fondu simultanément */
         if (sceneCamion) {
