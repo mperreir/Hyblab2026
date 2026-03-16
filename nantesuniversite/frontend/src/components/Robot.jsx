@@ -28,8 +28,9 @@ const DEFAULT_RANGES = {
 
 const ROBOT_SIZE = { width: 206, height: 252 };
 const ROBOT_STAGES = ['robot1', 'robot2', 'robot3'];
-const INTRO_IDLE_DELAY_MS = 6000;
-const INTRO_IDLE_MESSAGE = 'Dive deeper to explore the iceberg.';
+const LEVEL_ORDER = { intro: 0, general: 1, journalistique: 2, expert: 3, outro: 4 };
+const INTRO_IDLE_DELAY_MS = 1500;
+const INTRO_IDLE_MESSAGE = 'Plongez dans l\u2019iceberg de Colin De la Higuera\u00a0!';
 const RESOURCE_IDLE_DELAY_MS = 5000;
 const LEVEL_ENTRY_MESSAGE_MS = 5600;
 const ROBOT_LEVEL_TRIGGER_RATIO = 1.4;
@@ -109,6 +110,10 @@ function getLevelFromScroll(scrollProbeY, ranges) {
     return 'journalistique';
   }
 
+  if (scrollProbeY > ranges.expert.end) {
+    return 'outro';
+  }
+
   return 'expert';
 }
 
@@ -121,6 +126,7 @@ function getStageForLevel(level) {
     return 1;
   }
 
+  // 'expert' and 'outro' both use robot3
   return 2;
 }
 
@@ -131,7 +137,30 @@ function getPositionForLevel(level, viewport) {
     return anchors.intro;
   }
 
+  if (level === 'outro') {
+    return anchors.expert;
+  }
+
   return anchors[level];
+}
+
+function getSpeechContainerPosition(level, viewport) {
+  const robotPos = getPositionForLevel(level, viewport);
+  const stageIdx = getStageForLevel(level);
+  const mirrored = stageIdx === 1;
+  // Mirror: robot is on the left, speech bubble points left (right:-160px in CSS means
+  // speech extends to the right of the robot). Compute matching screen x.
+  if (mirrored) {
+    return {
+      x: robotPos.x + ROBOT_SIZE.width - 60,
+      y: robotPos.y + 10,
+    };
+  }
+  // Normal: robot is on the right, speech bubble is to the left (left:-160px)
+  return {
+    x: robotPos.x - 160,
+    y: robotPos.y + 10,
+  };
 }
 
 function getPathControlPoints(fromLevel, toLevel, viewport) {
@@ -183,6 +212,10 @@ function getFormWeights(level) {
 
   if (level === 'journalistique') {
     return { robot1: 0, robot2: 1, robot3: 0 };
+  }
+
+  if (level === 'outro') {
+    return { robot1: 0, robot2: 0, robot3: 0 };
   }
 
   return { robot1: 0, robot2: 0, robot3: 1 };
@@ -258,6 +291,9 @@ export default function Robot({
   const currentLevelRef = useRef('intro');
   const introPromptEnabledRef = useRef(true);
   const moveTimelineRef = useRef(null);
+  const scrollDebounceRef = useRef(null);
+  const speechRef = useRef(null);
+  const speechRootRef = useRef(null);
 
   const rootRef = useRef(null);
   const shadowRef = useRef(null);
@@ -533,16 +569,25 @@ export default function Robot({
       return undefined;
     }
 
-    setShowLevelEntryPrompt(true);
+    // Hide immediately on level change, show after 2s, hide again after display duration
+    setShowLevelEntryPrompt(false);
 
-    const timeoutId = window.setTimeout(() => {
+    const showId = window.setTimeout(() => {
+      if (currentLevelRef.current === activeLevel) {
+        setShowLevelEntryPrompt(true);
+      }
+    }, 500);
+
+    const hideId = window.setTimeout(() => {
       if (currentLevelRef.current === activeLevel) {
         setShowLevelEntryPrompt(false);
       }
-    }, LEVEL_ENTRY_MESSAGE_MS);
+    }, 500 + LEVEL_ENTRY_MESSAGE_MS);
 
     return () => {
-      window.clearTimeout(timeoutId);
+      window.clearTimeout(showId);
+      window.clearTimeout(hideId);
+      setShowLevelEntryPrompt(false);
     };
   }, [activeLevel, pauseResourcePrompt]);
 
@@ -598,51 +643,162 @@ export default function Robot({
       return undefined;
     }
 
-    function applyForms(level, animate = false) {
-      const weights = getFormWeights(level);
-
-      ROBOT_STAGES.forEach((variant) => {
-        const layer = formLayerRefs[variant];
-        if (!layer) {
-          return;
-        }
-
-        const visible = weights[variant] > 0.5;
-        const vars = getFormTransitionState(variant, visible);
-
-        if (animate) {
-          gsap.to(layer, {
-            ...vars,
-            ...getFormTransitionOptions(variant, visible),
-            overwrite: 'auto',
-          });
-          return;
-        }
-
-        gsap.set(layer, vars);
-      });
-    }
-
-    function moveToLevel(level) {
+    function initLevel(level) {
       const viewport = getViewport();
       const target = getPositionForLevel(level, viewport);
+      const stageIdx = getStageForLevel(level);
 
+      gsap.set(root, { x: target.x, y: target.y });
+
+      const weights = getFormWeights(level);
+      ROBOT_STAGES.forEach((variant) => {
+        const layer = formLayerRefs[variant];
+        if (!layer) return;
+        gsap.set(layer, getFormTransitionState(variant, weights[variant] > 0.5));
+      });
+
+      setStageIndex(stageIdx);
+      setActiveLevel(level);
+      currentLevelRef.current = level;
+    }
+
+    function restoreRobotAtCurrentLevel() {
+      const level = currentLevelRef.current;
+      const viewport = getViewport();
+      const target = getPositionForLevel(level, viewport);
+      const stageIdx = getStageForLevel(level);
+      const variant = ROBOT_STAGES[stageIdx];
+      const weights = getFormWeights(level);
+      const visible = weights[variant] > 0.5;
+
+      // Snap root to the correct position and make it visible again
+      gsap.set(root, { x: target.x, y: target.y, autoAlpha: 1 });
+
+      // Reset all robots to hidden, then enter the correct one
+      ROBOT_STAGES.forEach((v) => {
+        gsap.set(formLayerRefs[v], getFormTransitionState(v, false));
+      });
+
+      setStageIndex(stageIdx);
+      setActiveLevel(level);
+
+      if (visible) {
+        gsap.to(formLayerRefs[variant], {
+          ...getFormTransitionState(variant, true),
+          ...getFormTransitionOptions(variant, true),
+        });
+      }
+    }
+
+    function moveToLevel(nextLevel) {
+      const prevLevel = currentLevelRef.current;
+      if (prevLevel === nextLevel) return;
+
+      const goingUp = LEVEL_ORDER[nextLevel] < LEVEL_ORDER[prevLevel];
+
+      currentLevelRef.current = nextLevel;
+
+      // Kill existing timeline and snap all robots to prevLevel's clean visual state
       if (moveTimelineRef.current) {
         moveTimelineRef.current.kill();
         moveTimelineRef.current = null;
+        const snapWeights = getFormWeights(prevLevel);
+        ROBOT_STAGES.forEach((v) => {
+          const layer = formLayerRefs[v];
+          if (!layer) return;
+          gsap.set(layer, getFormTransitionState(v, snapWeights[v] > 0.5));
+        });
       }
 
-      if (level !== 'intro') {
+      // Hide speech bubbles immediately
+      setShowLevelEntryPrompt(false);
+      setShowResourcePrompt(false);
+      setShowIntroPrompt(false);
+
+      // Scrolling up: hide the robot entirely and restore it once scroll settles
+      if (goingUp) {
+        gsap.set(root, { autoAlpha: 0 });
+        window.clearTimeout(scrollDebounceRef.current);
+        scrollDebounceRef.current = window.setTimeout(restoreRobotAtCurrentLevel, 300);
+        return;
+      }
+
+      // Scrolling down: cancel any pending debounce and ensure robot is visible
+      window.clearTimeout(scrollDebounceRef.current);
+      gsap.set(root, { autoAlpha: 1 });
+
+      if (nextLevel !== 'intro') {
         introPromptEnabledRef.current = false;
-        setShowIntroPrompt(false);
       }
 
-      setStageIndex(getStageForLevel(level));
-      setActiveLevel(level);
+      const viewport = getViewport();
+      const target = getPositionForLevel(nextLevel, viewport);
+      const nextStageIdx = getStageForLevel(nextLevel);
+      const prevStageIdx = getStageForLevel(prevLevel);
+      const prevVariant = ROBOT_STAGES[prevStageIdx];
+      const nextVariant = ROBOT_STAGES[nextStageIdx];
+      const prevLayer = formLayerRefs[prevVariant];
+      const nextLayer = formLayerRefs[nextVariant];
 
-      gsap.set(root, { x: target.x, y: target.y });
-      applyForms(level, false);
-      currentLevelRef.current = level;
+      // expert → outro: exit robot3
+      if (nextLevel === 'outro') {
+        const tl = gsap.timeline({
+          onComplete: () => { moveTimelineRef.current = null; setStageIndex(2); setActiveLevel('outro'); },
+        });
+        moveTimelineRef.current = tl;
+        tl.to(formLayerRefs['robot3'], {
+          ...getFormTransitionState('robot3', false),
+          duration: 0.4,
+          ease: 'power2.in',
+          overwrite: true,
+        });
+        return;
+      }
+
+      // Same robot skin (intro <-> general), just move and update state
+      if (prevVariant === nextVariant) {
+        const tl = gsap.timeline({
+          onComplete: () => {
+            moveTimelineRef.current = null;
+            setStageIndex(nextStageIdx);
+            setActiveLevel(nextLevel);
+          },
+        });
+        moveTimelineRef.current = tl;
+        tl.to(root, { x: target.x, y: target.y, duration: 0.35, ease: 'power2.out', overwrite: true });
+        return;
+      }
+
+      // Different robot: exit (if visible) → move → enter
+      const prevWeights = getFormWeights(prevLevel);
+      const prevRobotVisible = prevWeights[prevVariant] > 0.5;
+
+      const tl = gsap.timeline({
+        onComplete: () => {
+          moveTimelineRef.current = null;
+          setStageIndex(nextStageIdx);
+          setActiveLevel(nextLevel);
+        },
+      });
+      moveTimelineRef.current = tl;
+
+      if (prevRobotVisible) {
+        tl.to(prevLayer, {
+          ...getFormTransitionState(prevVariant, false),
+          duration: 0.3,
+          ease: 'power2.in',
+          overwrite: true,
+        });
+        tl.to(root, { x: target.x, y: target.y, duration: 0.45, ease: 'power2.inOut', overwrite: true }, '-=0.1');
+      } else {
+        tl.to(root, { x: target.x, y: target.y, duration: 0.35, ease: 'power2.out', overwrite: true });
+      }
+
+      tl.set(nextLayer, getFormTransitionState(nextVariant, false));
+      tl.to(nextLayer, {
+        ...getFormTransitionState(nextVariant, true),
+        ...getFormTransitionOptions(nextVariant, true),
+      });
     }
 
     function syncRobotWithScroll() {
@@ -652,10 +808,17 @@ export default function Robot({
     }
 
     function handleResize() {
-      syncRobotWithScroll();
+      const probeY = window.scrollY + (window.innerHeight * ROBOT_LEVEL_TRIGGER_RATIO);
+      const level = getLevelFromScroll(probeY, { ...DEFAULT_RANGES, ...levelRanges });
+      const viewport = getViewport();
+      const target = getPositionForLevel(level, viewport);
+      gsap.set(root, { x: target.x, y: target.y });
     }
 
-    syncRobotWithScroll();
+    // Set initial state without animation
+    const initProbeY = window.scrollY + (window.innerHeight * ROBOT_LEVEL_TRIGGER_RATIO);
+    initLevel(getLevelFromScroll(initProbeY, { ...DEFAULT_RANGES, ...levelRanges }));
+
     window.addEventListener('scroll', syncRobotWithScroll, { passive: true });
     window.addEventListener('resize', handleResize);
 
@@ -663,82 +826,102 @@ export default function Robot({
       if (moveTimelineRef.current) {
         moveTimelineRef.current.kill();
       }
-
+      window.clearTimeout(scrollDebounceRef.current);
       window.removeEventListener('scroll', syncRobotWithScroll);
       window.removeEventListener('resize', handleResize);
     };
   }, [levelRanges]);
 
+  // Reposition the speech container whenever the active level changes (after the robot has arrived)
+  useEffect(() => {
+    const speechRoot = speechRootRef.current;
+    if (!speechRoot) return undefined;
+
+    function positionSpeech() {
+      const viewport = getViewport();
+      const pos = getSpeechContainerPosition(activeLevel, viewport);
+      gsap.set(speechRoot, { x: pos.x, y: pos.y });
+    }
+
+    positionSpeech();
+    window.addEventListener('resize', positionSpeech);
+    return () => window.removeEventListener('resize', positionSpeech);
+  }, [activeLevel]);
+
   return (
-    <div
-      ref={rootRef}
-      className="fixed left-0 top-0 pointer-events-none z-40"
-      style={{ width: ROBOT_SIZE.width, height: ROBOT_SIZE.height }}
-    >
-      {showLevelEntryPrompt || showResourcePrompt || showIntroPrompt ? (
+    <>
+      {/* Robot root — GSAP-translated, contains only the robot visuals */}
+      <div
+        ref={rootRef}
+        className="fixed left-0 top-0 pointer-events-none z-40"
+        style={{ width: ROBOT_SIZE.width, height: ROBOT_SIZE.height }}
+      >
         <div
           className={[
-            styles.robotSpeech,
-            stageIndex === 1 ? styles.robotSpeechMirrored : '',
+            styles.robotShell,
+            styles[`robotShellStage${stageIndex}`] ?? '',
           ].filter(Boolean).join(' ')}
-          role="status"
-          aria-live="polite"
         >
-          {showLevelEntryPrompt
-            ? LEVEL_ENTRY_MESSAGES[activeLevel]
-            : showResourcePrompt
-              ? resourcePromptByLevel[activeLevel]
-              : INTRO_IDLE_MESSAGE}
-        </div>
-      ) : null}
+          <div ref={shadowRef} className={styles.robotShellShadow} />
 
-      <div
-        className={[
-          styles.robotShell,
-          styles[`robotShellStage${stageIndex}`] ?? '',
-        ].filter(Boolean).join(' ')}
-      >
-        <div ref={shadowRef} className={styles.robotShellShadow} />
-        <div className={styles.robotShellHalo} />
-        <div className={`${styles.robotShellRing} ${styles.robotShellRingInner}`} />
-        <div className={`${styles.robotShellRing} ${styles.robotShellRingOuter}`} />
-
-        <div ref={motionRef} className={styles.robotShellMotion}>
-          <div ref={robot1LayerRef} className={styles.robotShellForm}>
-            <div ref={robot1FormRef} className={styles.robotShellFormInner}>
-              <div className={styles.robotShellMirror}>
-                <img ref={robot1BodyRef} src={robot1Body} alt="" aria-hidden className={styles.robotShellPart} />
-                <img ref={robot1WheelRef} src={robot1Wheel} alt="" aria-hidden className={styles.robotShellPart} />
-                <img ref={robot1HeadRef} src={robot1Head} alt="Robot 1" className={styles.robotShellPart} />
+          <div ref={motionRef} className={styles.robotShellMotion}>
+            <div ref={robot1LayerRef} className={styles.robotShellForm}>
+              <div ref={robot1FormRef} className={styles.robotShellFormInner}>
+                <div className={styles.robotShellMirror}>
+                  <img ref={robot1BodyRef} src={robot1Body} alt="" aria-hidden className={styles.robotShellPart} />
+                  <img ref={robot1WheelRef} src={robot1Wheel} alt="" aria-hidden className={styles.robotShellPart} />
+                  <img ref={robot1HeadRef} src={robot1Head} alt="Robot 1" className={styles.robotShellPart} />
+                </div>
               </div>
             </div>
-          </div>
 
-          <div ref={robot2LayerRef} className={styles.robotShellForm}>
-            <div ref={robot2FormRef} className={styles.robotShellFormInner}>
-              <img ref={robot2ArmBackRef} src={robot2ArmBack} alt="" aria-hidden className={styles.robotShellPart} />
-              <img ref={robot2BodyRef} src={robot2LowerBody} alt="" aria-hidden className={styles.robotShellPart} />
-              <img src={robot2UpperBody} alt="" aria-hidden className={styles.robotShellPart} />
-              <img ref={robot2ArmFrontRef} src={robot2ArmFront} alt="" aria-hidden className={styles.robotShellPart} />
-              <img ref={robot2HeadRef} src={robot2Head} alt="Robot 2" className={styles.robotShellPart} />
+            <div ref={robot2LayerRef} className={styles.robotShellForm}>
+              <div ref={robot2FormRef} className={styles.robotShellFormInner}>
+                <img ref={robot2ArmBackRef} src={robot2ArmBack} alt="" aria-hidden className={styles.robotShellPart} />
+                <img ref={robot2BodyRef} src={robot2LowerBody} alt="" aria-hidden className={styles.robotShellPart} />
+                <img src={robot2UpperBody} alt="" aria-hidden className={styles.robotShellPart} />
+                <img ref={robot2ArmFrontRef} src={robot2ArmFront} alt="" aria-hidden className={styles.robotShellPart} />
+                <img ref={robot2HeadRef} src={robot2Head} alt="Robot 2" className={styles.robotShellPart} />
+              </div>
             </div>
-          </div>
 
-          <div ref={robot3LayerRef} className={styles.robotShellForm}>
-            <div ref={robot3FormRef} className={styles.robotShellFormInner}>
-              <div className={styles.robotShellMirror}>
-                <img ref={robot3ArmBackARef} src={robot3ArmBackA} alt="" aria-hidden className={styles.robotShellPart} />
-                <img ref={robot3ArmBackBRef} src={robot3ArmBackB} alt="" aria-hidden className={styles.robotShellPart} />
-                <img ref={robot3LegBackRef} src={robot3LegBackB} alt="" aria-hidden className={styles.robotShellPart} />
-                <img src={robot3LegBackA} alt="" aria-hidden className={styles.robotShellPart} />
-                <img ref={robot3BodyRef} src={robot3Body} alt="" aria-hidden className={styles.robotShellPart} />
-                <img ref={robot3LegFrontRef} src={robot3LegFront} alt="" aria-hidden className={styles.robotShellPart} />
-                <img ref={robot3HeadRef} src={robot3Head} alt="Robot 3" className={styles.robotShellPart} />
+            <div ref={robot3LayerRef} className={styles.robotShellForm}>
+              <div ref={robot3FormRef} className={styles.robotShellFormInner}>
+                <div className={styles.robotShellMirror}>
+                  <img ref={robot3ArmBackARef} src={robot3ArmBackA} alt="" aria-hidden className={styles.robotShellPart} />
+                  <img ref={robot3ArmBackBRef} src={robot3ArmBackB} alt="" aria-hidden className={styles.robotShellPart} />
+                  <img ref={robot3LegBackRef} src={robot3LegBackB} alt="" aria-hidden className={styles.robotShellPart} />
+                  <img src={robot3LegBackA} alt="" aria-hidden className={styles.robotShellPart} />
+                  <img ref={robot3BodyRef} src={robot3Body} alt="" aria-hidden className={styles.robotShellPart} />
+                  <img ref={robot3LegFrontRef} src={robot3LegFront} alt="" aria-hidden className={styles.robotShellPart} />
+                  <img ref={robot3HeadRef} src={robot3Head} alt="Robot 3" className={styles.robotShellPart} />
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+
+      {/* Speech bubble — separate fixed container, never moves with the robot */}
+      <div ref={speechRootRef} className="fixed left-0 top-0 pointer-events-none z-40">
+        {showLevelEntryPrompt || showResourcePrompt || showIntroPrompt ? (
+          <div
+            ref={speechRef}
+            className={[
+              styles.robotSpeech,
+              stageIndex === 1 ? styles.robotSpeechMirrored : '',
+            ].filter(Boolean).join(' ')}
+            role="status"
+            aria-live="polite"
+          >
+            {showLevelEntryPrompt
+              ? LEVEL_ENTRY_MESSAGES[activeLevel]
+              : showResourcePrompt
+                ? resourcePromptByLevel[activeLevel]
+                : INTRO_IDLE_MESSAGE}
+          </div>
+        ) : null}
+      </div>
+    </>
   );
 }
