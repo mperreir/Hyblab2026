@@ -10,7 +10,7 @@ gsap.registerPlugin(useGSAP);
 const STORY_PARTS = [
   {
     id: 's2-left',
-    text: <>Le debat sur la reforme du mode de scrutin revient a chaque <strong>crise politique</strong>,</>,
+    text: <>Le débat sur la réforme du mode de scrutin revient à chaque <strong>crise politique</strong>,</>,
     from: 'left',
     startScene: 0,
     endScene: 0,
@@ -18,7 +18,7 @@ const STORY_PARTS = [
   },
   {
     id: 's2-bottom',
-    text: <>mais il est aujourd'hui plus brulant que jamais apres la <strong>dissolution de l'Assemblee nationale</strong>.</>,
+    text: <>mais il est aujourd'hui plus brulant que jamais après la <strong>dissolution de l'Assemblée nationale</strong>.</>,
     from: 'bottom',
     startScene: 0,
     endScene: 0,
@@ -26,7 +26,7 @@ const STORY_PARTS = [
   },
   {
     id: 's3-4-top',
-    text: <>La France est la seule de toute l'Union europeenne a elire ses deputes au <strong>scrutin majoritaire a deux tours</strong>.</>,
+    text: <>La France est la seule de toute l'Union européenne à élire ses députés au <strong>scrutin majoritaire à deux tours</strong>.</>,
     from: 'top',
     startScene: 1,
     endScene: 2,
@@ -34,7 +34,7 @@ const STORY_PARTS = [
   },
   {
     id: 's4-bottom',
-    text: <>Les 26 autres Etats membres ont opte pour des formes plus ou moins <strong>proportionnelles</strong>.</>,
+    text: <>Les 26 autres États membres ont opté pour des formes plus ou moins <strong>proportionnelles</strong>.</>,
     from: 'bottom',
     startScene: 1,
     endScene: 2,
@@ -42,7 +42,7 @@ const STORY_PARTS = [
   },
   {
     id: 's5-6-top',
-    text: <>Derriere cette question technique se joue un choix de <strong>modele democratique</strong> :</>,
+    text: <>Derrière cette question technique se joue un choix de <strong>modèle démocratique</strong> :</>,
     from: 'left',
     startScene: 3,
     endScene: 4,
@@ -50,7 +50,7 @@ const STORY_PARTS = [
   },
   {
     id: 's7-8-top',
-    text: <>Une <strong>crise de confiance profonde</strong> est aussi a l'oeuvre :</>,
+    text: <>Une <strong>crise de confiance profonde</strong> est aussi à l'oeuvre :</>,
     from: 'left',
     startScene: 5,
     endScene: 5,
@@ -58,7 +58,7 @@ const STORY_PARTS = [
   },  
   {
     id: 's8-bottom',
-    text: <>lors des dernieres legislatives, <strong>plus d'un electeur sur deux s'est abstenu</strong>, avec des taux d'abstention record chez les jeunes.</>,
+    text: <>lors des dernières législatives, <strong>plus d'un électeur sur deux s'est abstenu</strong>, avec des taux d'abstention record chez les jeunes.</>,
     from: 'bottom',
     startScene: 5,
     endScene: 5,
@@ -66,7 +66,7 @@ const STORY_PARTS = [
   },
   {
     id: 's9-top',
-    text: <>Dans le meme temps, des partis comme le Rassemblement national, qui tournent autour d'un tiers des voix au premier tour, peinent encore a transformer ces scores en majorite de sieges, <strong>nourrissant un sentiment de sous-representation</strong>.</>,
+    text: <>Dans le même temps, des partis comme le Rassemblement national, qui tournent autour d'un tiers des voix au premier tour, peinent encore à transformer ces scores en majorité de sièges, <strong>nourrissant un sentiment de sous-représentation</strong>.</>,
     from: 'top',
     startScene: 6,
     endScene: 6,
@@ -74,7 +74,7 @@ const STORY_PARTS = [
   },
   {
     id: 's10-top',
-    text: <>Pour eclairer ces enjeux, cet entretien croise les regards de deux specialistes du <strong>droit constitutionnel</strong> :</>,
+    text: <>Pour éclairer ces enjeux, cet entretien croise les regards de deux specialistes du <strong>droit constitutionnel</strong> :</>,
     from: 'top',
     startScene: 7,
     endScene: 8,
