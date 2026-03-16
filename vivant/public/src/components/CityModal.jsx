@@ -149,11 +149,11 @@ const handleInput = useCallback((e) => {
         {/* Content */}
         <div className="relative z-20 w-full max-w-md mx-auto px-6 pointer-events-auto shadow-none align-center justify-center">
 
-          <div className="text-center italic text-sm">
+          <div className="text-center italic text-md">
             De quelle commune du territoire souhaitez-vous démarrer ? <span className='text-sm'>*</span> 
           </div>
 
-          <div className="text-center italic mb-10 text-[0.38rem] mt-2">
+          <div className="text-center italic mb-10 text-[0.65rem] mt-2">
             * Communes de la Vienne, des Deux-Sèvres, de la Charente-Maritime et de la Charente
           </div>
 
