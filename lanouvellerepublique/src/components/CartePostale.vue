@@ -276,8 +276,6 @@ const adresse = computed(() => props.address)
     gap: 8px;
     align-self: stretch;
     margin-bottom: 15px;
-
-    box-shadow: 2px 2px 2px 0 rgba(0, 0, 0, 0.15);
 }
 
 .div-title {
