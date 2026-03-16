@@ -7,8 +7,8 @@ export default function ExpertQuote() {
   return (
     <section className="absolute top-[300px] left-0 right-0">
       {/* Portrait photo */}
-      <div className="absolute left-[153px] top-[15px]">
-        <div className="w-[442px] h-[373px] overflow-hidden">
+      <div className="absolute left-[175px] top-[23px]">
+        <div className="w-[380px] h-[370px] overflow-hidden">
           <img src={expertInfo.picture} alt="Portrait de Colin de la Higuera" className="w-full h-full object-cover" />
         </div>
       </div>
