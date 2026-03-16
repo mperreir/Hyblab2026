@@ -166,11 +166,6 @@ canvas {
 }
 
 /* ================= TEXTES QUI DÉFILENT ================= */
-@font-face {
-    font-family: "Lab Grotesque";
-    src: url("../fonts/LabGrotesque-Regular.woff2") format("woff2");
-    font-weight: 400;
-}
 
 article {
     position: relative;
