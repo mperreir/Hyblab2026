@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Biography from "./Biography";
+import Credit from "./Credit";
 
 export default function Popup({ pictogramme, type, url, title, onClick }) {
   const [animClass, setAnimClass] = useState("open");
@@ -48,6 +49,10 @@ export default function Popup({ pictogramme, type, url, title, onClick }) {
       )
     }
 
+    if (type === "credits") {
+      return <Credit />;
+    }
+
     // type === "web" (default)
     return (
       <>
@@ -68,11 +73,13 @@ export default function Popup({ pictogramme, type, url, title, onClick }) {
   return (
     <div className="popup-overlay" onClick={handleClose}>
       <div className={`class-pupop ${animClass}`} onClick={(e) => e.stopPropagation()}>
-        <img
-          src={pictogramme}
-          alt="pictogramme"
-          className="class-pictogramme-openPopup"
-        />
+        {pictogramme && (
+          <img
+            src={pictogramme}
+            alt="pictogramme"
+            className="class-pictogramme-openPopup"
+          />
+        )}
         <button className="class-close-popup" onClick={handleClose}>✕</button>
         {title && <h2 className="popup-title">{title}</h2>}
         <div className="popup-content-area">
