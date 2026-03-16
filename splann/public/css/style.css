@@ -257,11 +257,11 @@ h3 {
 /* -------------- End of Loader --------------*/
 
 /* Swiper slider. Need to fill the container */
-#mySwiper{
+#mySwiper {
     width: 100vw;
-    height:100vh;
+    height: 95vh;
     position: absolute;
-    
+    bottom: -2%;
 }
 
 .swiper-button-next,
@@ -331,9 +331,9 @@ h3 {
 
 .imgPrincipale {
     width: 100vw;
-    height: 125vh;
+    height: 95vh;
     text-align: center;
-    bottom: -25vh;
+    bottom: 0vh;
     left: 0vw;
     margin-top: calc(-7.5vh * 9 / 16);
     position: absolute;
