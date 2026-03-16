@@ -158,7 +158,7 @@ app.get('/film-week-unknown', async function ( req, res ) {
         
         const ficheObjs = await recuperation_film_site();
         ficheObjs.forEach((fiche)=>{
-            ajoutFilm(fiche.titre,fiche.affiche,fiche.bande_annonce,fiche.critique,fiche.nb_etoile,"",fiche.realisateur,fiche.date);
+            ajoutFilm(fiche.titre,fiche.affiche,fiche.bande_annonce,null,fiche.critique,fiche.nb_etoile,"",fiche.realisateur,fiche.date);
         })
     }
     const data = await GetFilmsByDateNewByUser(user?.id,lastDateBD);
@@ -264,10 +264,10 @@ app.get("/create-user", async (req,res)=>{
             sameSite: "lax",
             maxAge: 1000*60*60*24*30
         });
-        return res.json({status:"Token created"});
+        return res.status(201).json({status:"Token created"});
     }
 
-    return res.json({status:"Already had one token"});
+    return res.status(200).json({status:"Already had one token"});
 });
 
 
@@ -574,6 +574,7 @@ async function initialisation(){
             nom TEXT,
             affiche TEXT,
             bande_annonce TEXT,
+            lien_article TEXT,
             critique TEXT,
             nb_etoile INTEGER,
             description TEXT,
@@ -653,6 +654,7 @@ async function test1(){
             "Iron Man",
             "ironman.jpg",
             "https://youtube.com/ironman",
+            null,
             "Excellent film Marvel",
             5,
             "Tony Stark construit une armure pour devenir Iron Man",
@@ -664,6 +666,7 @@ async function test1(){
             "Avengers",
             "avengers.jpg",
             "https://youtube.com/avengers",
+            null,
             "Super film d'équipe",
             5,
             "Les héros Marvel s'unissent",
@@ -675,6 +678,7 @@ async function test1(){
             "Spider-Man",
             "spiderman.jpg",
             "https://youtube.com/spiderman",
+            null,
             "Très divertissant",
             4,
             "Peter Parker devient Spider-Man",
@@ -725,6 +729,7 @@ async function Test2Data() {
         "Iron Man",
         "ironman.jpg",
         "https://youtube.com/ironman",
+        null,
         "Excellent film Marvel",
         5,
         "Tony Stark construit une armure pour devenir Iron Man",
@@ -736,6 +741,7 @@ async function Test2Data() {
         "Avengers",
         "avengers.jpg",
         "https://youtube.com/avengers",
+        null,
         "Super film d'équipe",
         5,
         "Les héros Marvel s'unissent",
@@ -747,6 +753,7 @@ async function Test2Data() {
         "Spider-Man",
         "spiderman.jpg",
         "https://youtube.com/spiderman",
+        null,
         "Très divertissant",
         4,
         "Peter Parker devient Spider-Man",
@@ -758,6 +765,7 @@ async function Test2Data() {
         "Black Widow",
         "blackwidow.jpg",
         "https://youtube.com/blackwidow",
+        null,
         "Action et émotion",
         4,
         "Natasha Romanoff affronte son passé",
@@ -769,6 +777,7 @@ async function Test2Data() {
         "Inception",
         "inception.jpg",
         "https://youtube.com/inception",
+        null,
         "Thriller intellectuel",
         5,
         "Un voleur pénètre dans les rêves pour voler des secrets",
@@ -987,12 +996,12 @@ async function ajoutFilmAimePas(id_film, id_utilisateur){
     return insert.lastID;
 }
 
-async function ajoutFilm(nom, affiche, bande_annonce, critique, nb_etoile, description, realisateur, date_sortie){
+async function ajoutFilm(nom, affiche, bande_annonce,lien_article, critique, nb_etoile, description, realisateur, date_sortie){
     const db = await getDB();
     
     const insert = await db.run(`
-        INSERT OR IGNORE INTO Film (nom, affiche, bande_annonce, critique, nb_etoile, description, realisateur, date_sortie) VALUES (?,?,?,?,?,?,?,?)
-    `,[nom, affiche, bande_annonce, critique, nb_etoile, description, realisateur, date_sortie]);
+        INSERT OR IGNORE INTO Film (nom, affiche, bande_annonce,lien_article, critique, nb_etoile, description, realisateur, date_sortie) VALUES (?,?,?,?,?,?,?,?,?)
+    `,[nom, affiche, bande_annonce,lien_article, critique, nb_etoile, description, realisateur, date_sortie]);
 
     return insert.lastID;
 
