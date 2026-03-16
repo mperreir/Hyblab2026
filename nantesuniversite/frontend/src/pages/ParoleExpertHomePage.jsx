@@ -16,6 +16,8 @@ gsap.registerPlugin(ScrollTrigger, SplitText);
 import imgSandrine from '../assets/figma/sandrine-portrait.png';
 import imgSophie   from '../assets/figma/sophie-portrait.png';
 import imgColin    from '../assets/figma/colin-portrait.png';
+const carlos_researcher = './images/carlos_quote.svg';
+const anne_researcher = './images/anne_vion_quote.svg';
 
 const colin_researcher = './images/chercheur1.svg';
 
@@ -226,17 +228,31 @@ if (titleRef.current) {
         className="absolute class-all-researchers"
         style={{ top: 2800}}
       >
-        {[0, 1, 2].map((i) => (
           <img
-            key={i}
-            ref={(el) => (researcherImgRefs.current[i] = el)}
+            key={0}
+            ref={(el) => (researcherImgRefs.current[0] = el)}
             alt=""
             src={colin_researcher}
             onClick={() => navigate('/researcher')}
             className="block w-[589px] h-[250px]"
             style={{ opacity: 0 }}
           />
-        ))}
+          <img
+            key={1}
+            ref={(el) => (researcherImgRefs.current[1] = el)}
+            alt=""
+            src={anne_researcher}
+            className="block w-[589px] h-[250px]"
+            style={{ opacity: 0 }}
+          />
+          <img
+            key={2}
+            ref={(el) => (researcherImgRefs.current[2] = el)}
+            alt=""
+            src={carlos_researcher}
+            className="block w-[589px] h-[250px]"
+            style={{ opacity: 0 }}
+          />
       </div>
 
       {/* ── Site footer ── */}

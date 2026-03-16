@@ -10,7 +10,7 @@ export default function Credit() {
           <p>
             Membres du groupe
           </p>
-          <div>
+          <div className="class-designer-member">
               <p>
                 Designers
               </p>
@@ -20,7 +20,7 @@ export default function Credit() {
                 <li>DOZIAS Adrien </li>
               </ul>
           </div>
-          <div>
+          <div className="class-developper-member">
               <p>
                 Développeurs
               </p>

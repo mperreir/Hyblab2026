@@ -322,11 +322,11 @@ body {
 .class-all-researchers{
   display: flex;
   flex-direction: row;
+  justify-content: space-around;
   padding: 0 0px 20px 0;
   gap: 20px;
   width: 100%;
   /* overflow-x: scroll; */
-  margin: 0 20px;
 }
 .class-all-researchers img{
   cursor: pointer;
