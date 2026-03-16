@@ -1,7 +1,7 @@
 export default {
     diet: {
         "vegan" : "Option Vegan",
-        "vegetarien" : "Option Végétarien",
+        "vegetarien" : "Option Végétarienne",
         "gluten_free" : "Option Sans gluten",
         "halal" : "Option Halal",
     },

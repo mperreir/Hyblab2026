@@ -302,11 +302,11 @@ const apply = () => {
 }
 
 .option-chip--service .tag {
-    border-color: #9b87e0;
+    border-color: #eaeaea;
 }
 .option-chip--service.is-selected .tag {
-    background: #c1adff;
-    border-color: #9b87e0;
+    background: #eaeaea;
+    border-color: #d7d7d7;
 }
 
 /* ── Pied ── */

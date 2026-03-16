@@ -149,6 +149,6 @@ const allBadges = computed(() => {
     gap: 3px;
 
     border-radius: 37.5px;
-    background: #C1ADFF;
+    background: #eaeaea;
 }
 </style>
