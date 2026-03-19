@@ -1,0 +1,7 @@
+/* App-level resets – the Ecran4 page handles all its own layout */
+#root {
+  margin: 0;
+  padding: 0;
+  max-width: none;
+  text-align: left;
+}

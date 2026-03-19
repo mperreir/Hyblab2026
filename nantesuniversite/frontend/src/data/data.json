@@ -1,0 +1,307 @@
+{
+  "researcher": {
+    "id": "1",
+    "identity": {
+      "full_name": "Colin de la Higuera",
+      "title": "Spécialiste de l’apprentissage automatique, de l’intelligence artificielle et de l’Éducation Ouverte",
+      "quote": "L'alphabétisation à l'intelligence artificielle n'est pas une option pour les experts, c'est une condition de la citoyenneté au XXIe siècle.",
+      "field": "Intelligence Artificielle",
+      "contact": {
+        "email": "jp.dupont@university.edu",
+        "linkedIn": "https://www.linkedin.com/in/colin-de-la-higuera-3b30aa62/",
+        "office_location": "Nantes"
+      },
+      "profession": "Professeur à Nantes Université",
+      "position": "Titulaire de la Chaire UNESCO RELIA",
+      "goal": "ACCOMPAGNER LE DÉPLOIEMENT DE L'IA DANS L'ÉDUCATION",
+      "picture": "./portraits/colin.png"
+    },
+    "documents": [
+      {
+        "id":"22",
+        "category":"Biographie",
+        "title":"Colin de la Higuera",
+        "description": "Colin de la Higuera est enseignant-chercheur en informatique, spécialiste reconnu de l’intelligence artificielle appliquée à l’éducation à Nantes Université et membre du laboratoire LS2N (laboratoire des sciences du numérique). Réparti sur cinq sites, le LS2N est la plus importante unité de recherche publique en région Pays de la Loire. ",
+        "pictogramme": "./pictogramme/biographie.svg",
+        "type": "biographie"
+      },
+      {
+        "id": "1",
+        "category": "Prix",
+        "nature": "General",
+        "title": "Open Education Global Awards",
+        "description": "Colin de la Higuera a remporté le prestigieux prix Leadership des Open Education Global Awards, récompensant son engagement de longue date en faveur de l’éducation ouverte et des ressources éducatives libres. Professeur à Nantes Université, il est reconnu comme un pionnier dans ce domaine et contribue activement à rendre l’éducation plus accessible et inclusive à l’échelle mondiale. Cette distinction souligne également l’expertise de Nantes Université dans le développement et la promotion de l’éducation ouverte.",
+        "date": "2024",
+        "url": "https://u-news.univ-nantes.fr/education-ouverte-colin-de-la-higuera-finaliste-des-prestigieux-open-education-global-awards-dans-la-categorie-leadership-1",
+        "pictogramme": "./pictogramme/prix.svg",
+        "type": "web"
+      },
+      {
+        "id": "2",
+        "category": "Prix",
+        "nature": "General",
+        "title": "Le Prix MERLOT",
+        "description": "Colin de la Higuera et Jotsna Iyer ont reçu le Prix MERLOT pour leur manuel ouvert « AI pour les enseignants », salué pour son accessibilité et son impact pédagogique. Ce manuel, utilisé par plus de 45 000 personnes et disponible en cinq langues, illustre l’engagement de Nantes Université en faveur de l’éducation ouverte et de la démocratisation des connaissances.",
+        "date": "2025",
+        "url": "https://www.univ-nantes.fr/universite/vision-strategie-et-grands-projets/deux-chercheurs-de-nantes-universite-recompses-par-le-prestigieux-prix-merlot",
+        "pictogramme": "./pictogramme/prix.svg",
+        "type": "web"
+      },
+      {
+        "id": "3",
+        "category": "Article",
+        "nature": "General",
+        "author": "La Gazette des communes",
+        "title": "Faire en sorte que l’IA serve à mieux apprendre",
+        "description": "Colin de la Higuera explique comment le projet Erasmus « AI for Teachers » vise à former les enseignants à l’usage raisonné de l’intelligence artificielle pour améliorer l’apprentissage, en particulier dans des matières comme les maths et les sciences. Son travail inclut la co‑rédaction du manuel ouvert « IA pour les enseignants », distingué par un prix international, et souligne l’importance de préparer à la fois les éducateurs et les familles à intégrer l’IA de façon utile et réfléchie dans l’éducation.",
+        "date": "2025",
+        "url": "https://www.lagazettedescommunes.com/984968/faire-en-sorte-que-lia-serve-a-mieux-apprendre/",
+        "pictogramme": "./pictogramme/article.svg",
+        "type": "web"
+      },
+      {
+        "id": "9",
+        "category": "Article",
+        "nature": "General",
+        "author": "Colin de la Higuera",
+        "title": "Résultats de la recherche pour «La triche… et si l’IA»",
+        "description": "L’article, écrit par Colin de la Higuera, examine la question de la tricherie académique à l’ère de l’intelligence artificielle, en s’interrogeant sur ses causes, sa perception et les réponses possibles plutôt que de blâmer directement l’IA. Il invite à réfléchir aux raisons profondes de la triche, aux enjeux éducatifs sous‑jacents et à comment l’écosystème éducatif peut y répondre de manière constructive.",
+        "date": "2026",
+        "url": "https://chaireunescorelia.univ-nantes.fr/?s=La+triche%E2%80%A6+et+si+l%E2%80%99IA",
+        "pictogramme": "./pictogramme/article.svg",
+        "type": "web"
+      },
+      {
+        "id": "10",
+        "category": "Article",
+        "nature": "General",
+        "author": "Florence Sèdes",
+        "title": "Entretien avec Colin de la Higuera, chaire UNESCO",
+        "description": "L’article explore les impacts des technologies numériques sur l’éducation, en s’intéressant notamment aux transformations des pratiques pédagogiques et aux enjeux sociétaux qui en découlent. Il met en lumière les défis et les questions posés par l’intégration du numérique dans les apprentissages et les politiques éducatives.",
+        "date": "2024",
+        "url": "https://www.epi.asso.fr/revue/articles/a2501c.htm",
+        "pictogramme": "./pictogramme/article.svg",
+        "type": "web"
+      },
+      {
+        "id": "11",
+        "category": "Conférence",
+        "nature": "General",
+        "author": "Colin de la Higuera",
+        "title": "L’éducation ouverte : partager et innover grâce aux Ressources Éducatives Libres ",
+        "description": "La vidéo intitulée “L’éducation ouverte : partager et innover grâce aux Ressources Éducatives Libres (REL)” explique comment les ressources éducatives libres favorisent le partage du savoir et l’innovation dans l’éducation en rendant l’apprentissage accessible à tous. Elle met en avant l’importance des pratiques pédagogiques ouvertes et des REL comme outils pour démocratiser l’accès à la connaissance dans différents contextes éducatifs.",
+        "date": "2020",
+        "url": "https://www.youtube.com/embed/zNYIK603qkg?si=GiadLGfLx50HEf0D",
+        "pictogramme": "./pictogramme/video.svg",
+        "type": "video"
+      },
+      {
+        "id": "12",
+        "category": "Conférence",
+        "nature": "General",
+        "author": "Colin de la Higuera",
+        "title": "L’intelligence artificielle, l’école, les enseignant.es. Partie 1",
+        "description": "L’intelligence artificielle est déjà là dans de nombreux secteurs. L’école ne fait pas exception. Lors de cet atelier, Colin et Margarida échangent au sujet de l’intelligence artificielle, de ses différentes interactions dans l’école et à l’extérieur de celle-ci. La discussion porte en particulier sur les questions de pensée critique et de citoyenneté numérique, ainsi que sur le rôle que l’IA peut jouer à l’école.",
+        "date": "2022",
+        
+        "url": "https://mediaserver.univ-nantes.fr/permalink/v1263f4cd3b586g8vw59/iframe/",
+        "pictogramme": "./pictogramme/video.svg",
+        "type": "web"
+      },
+      {
+        "id": "13",
+        "category": "Conférence",
+        "nature": "General",
+        "author": "Colin de la Higuera",
+        "title": "L’intelligence artificielle, l’école, les enseignant.es. Partie 2",
+        "description": "L’intelligence artificielle est déjà là dans de nombreux secteurs. L’école ne fait pas exception. Lors de cet atelier, Colin et Margarida échangent au sujet de l’intelligence artificielle, de ses différentes interactions dans l’école et à l’extérieur de celle-ci. La discussion porte en particulier sur les questions d’éthique et sur la formation de toutes et tous à l’intelligence artificielle.",
+        "date": "2022",
+        "url": "https://mediaserver.univ-nantes.fr/permalink/v1263fae175d3s4tdgmc/iframe/",
+        "pictogramme": "./pictogramme/video.svg",
+        "type": "video"
+      },
+         {
+        "id": "18",
+        "category": "livre",
+        "nature": "General",
+        "author": "Colin de la Higuera, Jotsna Iyer",
+        "title": "IA pour les enseignants : un manuel ouvert",
+        "description": "Le document « IA pour les enseignants : un manuel ouvert » est un manuel libre et gratuit conçu dans le cadre du projet européen AI4T (Artificial Intelligence for Teachers) pour aider les enseignants à comprendre ce qu’est l’intelligence artificielle, ses enjeux éducatifs et comment l’utiliser de façon responsable en contexte scolaire.",
+        "date": "",
+        "url": "https://sti.ac-versailles.fr/IMG/pdf/ia-pour-les-enseignants-un-manuel-ouvert.pdf",
+        "pictogramme": "./pictogramme/livre.svg",
+        "type": "pdf"
+      },
+      {
+        "id":"23",
+        "category": "Jeu",
+        "nature": "General",
+        "author": "Colin de la Higuera",
+        "title": "Jeu IA  & Triche",
+        "description": "C est un mini jeu qui permet de débattre entre les participants et voir leurs points de vue sur la triche avec l'IA",
+        "date": "2022",
+        "url": null,
+        "pictogramme": "./pictogramme/Jeu.svg",
+        "type": "pdf"
+      },
+      {
+        "id": "14",
+        "category": "Conférence",
+        "nature": "Journalistique",
+        "author": "Colin de la Higuera",
+        "title": "Lancement du reseau unitwin UNOE",
+        "description": "La vidéo couvre le lancement du réseau UNITWIN UNOE (Unitwin Network – Open Education), une initiative mondiale coordonnée par Nantes Université et la Chaire UNESCO RELIA pour promouvoir l’éducation ouverte. On y voit les acteurs présenter les objectifs du réseau et les collaborations internationales visant à renforcer l’accès libre aux ressources pédagogiques.",
+        "date": "2024",
+        "url": "https://mediaserver.univ-nantes.fr/permalink/v1268a363c9a2zw8kyj7/iframe/",
+        "pictogramme": "./pictogramme/video.svg",
+        "type": "video"
+      },
+      {
+        "id": "15",
+        "category": "Podcast",
+        "nature": "Journalistique",
+        "author": "Colin de la Higuera",
+        "title": "Comment mettre l’IA au service de l’autonomisation des femmes ?",
+        "description": "La vidéo montre une table ronde de septembre 2023 sur l’intelligence artificielle et l’autonomisation des femmes, où plusieurs expertes discutent de la manière dont l’IA peut être utilisée pour soutenir l’égalité des genres et l’émancipation. Les intervenantes partagent des exemples concrets et des réflexions sur les opportunités et défis liés à l’IA dans des contextes sociaux et éducatifs.",
+        "date": "2023",
+        "url": "https://mediaserver.univ-nantes.fr/permalink/v12666c124b4ewfckg8a/iframe/",
+        "pictogramme": "./pictogramme/video.svg",
+        "type": "web"
+      },
+      {
+        "id": "16",
+        "category": "Podcast",
+        "nature": "Journalistique",
+        "author": "Colin de la Higuera",
+        "title": "Les IA génératives bousculent l’éducation, quels impacts sur l’évaluation ?",
+        "description": "La vidéo montre une table ronde sur les IA génératives et l’éducation, où des spécialistes discutent des impacts de ces technologies sur les pratiques d’apprentissage et, en particulier, sur les méthodes d’évaluation. Les intervenants explorent les défis et les opportunités que présentent les outils d’IA pour redéfinir l’évaluation des compétences des élèves et étudiants.",
+        "date": "2023",
+        "url": "https://mediaserver.univ-nantes.fr/permalink/v12664f0bb295ya5xsbb/iframe/",
+        "pictogramme": "./pictogramme/video.svg",
+        "type": "video"
+      },
+      {
+        "id": "17",
+        "category": "Podcast",
+        "nature": "Journalistique",
+        "type": "video",
+        "author": "Colin de la Higuera, Margarida Romero",
+        "title": "Ressources éducatives libres pour et par les enseignants -DNE- Salon Educatec / Educatice",
+        "description": "La vidéo présente une session du salon Éducatec‑Éducatice 2021 consacrée aux ressources éducatives libres pour et par les enseignants, où des acteurs éducatifs partagent des exemples et bonnes pratiques. Elle met en lumière comment ces ressources peuvent enrichir les pratiques pédagogiques et favoriser l’accès libre aux savoirs.",
+        "date": "2021",
+        "url": "https://mediaserver.univ-nantes.fr/permalink/v1264005d4d662151z57/iframe/",
+        "pictogramme": "./pictogramme/video.svg"
+      },
+      {
+        "id": "19",
+        "category": "Conférence",
+        "nature": "Journalistique",
+        "type": "video",
+        "author": "Colin de la Higuera",
+        "title": "Peut-on remplacer un enseignant par une machine ?",
+        "description": "La vidéo explore la question « Peut‑on remplacer un enseignant par une machine ? », avec une présentation sur l’intelligence artificielle, l’éducation ouverte et le rôle des technologies dans l’apprentissage. Elle met en perspective les possibilités et les limites de l’IA dans l’éducation tout en soulignant l’importance continue de l’interaction humaine dans l’enseignement.",
+        "date": "2021",
+        "url": "https://www.youtube.com/embed/2G-LzIHSSN4?si=LdEYIHYIdFEw5_Ys",
+        "pictogramme": "./pictogramme/video.svg"
+      },
+      {
+        "id": "20",
+        "category": "Conférence",
+        "nature": "Journalistique",
+        "type": "video",
+        "author": "Colin de la Higuera",
+        "title": "L'inteligence artificielle où en sommes nous?",
+        "description": "La vidéo montre Colin de la Higuera expliquant l’état actuel de l’intelligence artificielle, ses avancées, ses limites et ses implications pour l’éducation et la société. Il aborde de manière accessible comment l’IA fonctionne et ce qu’elle peut (ou ne peut pas) accomplir aujourd’hui.",
+        "date": "2021",
+        "origine":"external link",
+        "url": "https://mediaserver.univ-nantes.fr/permalink/v1261954061d2zz92qr9/iframe/",
+        "pictogramme": "./pictogramme/video.svg"
+      },
+      {
+        "id": "21",
+        "category": "Table Ronde",
+        "nature": "Journalistique",
+        "type": "video",
+        "author": "Colin de la Higuera",
+        "title": "Penser face à l'IA, à quoi bon ? - restitution de la journée ",
+        "description": "La vidéo restitue les temps forts d’une journée de débats et d’ateliers organisée dans le cadre de la Nantes Digital Week 2024 par la Chaire Unesco RELIA et ses partenaires, qui invitait à réfléchir collectivement aux enjeux éthiques, philosophiques et éducatifs de l’intelligence artificielle. Elle donne la parole à des intervenant·es — chercheurs, enseignants et médiateurs — qui explorent comment l’IA impacte notre rapport à la pensée, à la transparence et aux droits d’auteur, tout en mobilisant des lycéen·nes dans des discussions stimulantes.",
+        "date": "2025",
+        "url": "https://mediaserver.univ-nantes.fr/permalink/v1268c0798c7f06qmzbz/iframe/",
+        "pictogramme": "./pictogramme/video.svg"
+      },
+      {
+        "id": "24",
+        "category": "Conférence",
+        "nature": "Journalistique",
+        "type": "video",
+        "author": "Colin de la Higuera",
+        "title": "Les intelligences artificielle génératives bousculent l'éducation, quels impacts sur l'évaluation?",
+        "description": "La vidéo présente une table ronde organisée par la DRANE Nantes où plusieurs intervenants, dont Colin de la Higuera, discutent de l’impact des IA génératives sur l’éducation, en particulier sur les méthodes d’évaluation, la question de l’utilisation d’outils comme ChatGPT et la manière d’évaluer autrement. Elle aborde aussi les inquiétudes et les opportunités liées à ces technologies pour les enseignants et les élèves.",
+        "date": "2023",
+        "url": "https://podeduc.apps.education.fr/video/17490-les-ia-generatives-bousculent-leducation-quels-impacts-sur-levaluation/?is_iframe=true&autoplay=true",
+        "pictogramme": "./pictogramme/video.svg"
+      },
+      {
+        "id": "4",
+        "category": "Publication Scientifique",
+        "nature": "expert",
+        "author": "Colin de la Higuera",
+        "title": "On the complexity of submap isomorphism and maximum common submap problems",
+        "description": "Les cartes généralisées décrivent la subdivision d’objets en cellules et sont largement utilisées pour modéliser des images 2D et 3D, avec des tâches de reconnaissance de formes impliquant l’isomorphisme de sous-cartes ou le calcul de sous-cartes communes maximales. Cet article montre que l’isomorphisme de sous-cartes est NP-complet lorsque la carte modèle n’est pas connectée, mais reste traitable en temps paramétré (FPT) selon le nombre de composantes connectées, et propose un algorithme FPT comparé expérimentalement aux méthodes de l’état de l’art.",
+        "date": "September 2005",
+        "url": "./pdfs/Complexity.pdf",
+        "pictogramme": "./pictogramme/recherche.svg",
+        "type": "pdf"
+      },
+      {
+        "id": "5",
+        "category": "Publication Scientifique",
+        "nature": "expert",
+        "author": "Colin de la Higuera",
+        "title": "Topology of strings: Median string is NP-complete",
+        "description":"Étant donné un ensemble de chaînes de caractères, le problème de trouver une chaîne qui minimise sa distance par rapport à l’ensemble est directement lié à des problèmes fréquents en reconnaissance de formes ou en biologie computationnelle. En particulier, en utilisant la distance de Levenshtein, la chaîne qui minimise la somme des distances à chaque élément de l’ensemble est appelée la chaîne médiane généralisée, et trouver cette chaîne est un problème NP-complet, pour lequel seules des solutions approximatives efficaces sont connues.",
+        "date": "6 January 2000",
+        "url": "./pdfs/NpComplete.pdf",
+        "pictogramme": "./pictogramme/recherche.svg",
+        "type": "pdf"
+      },
+      {
+        "id": "6",
+        "category": "Publication Scientifique",
+        "nature": "expert",
+        "author": "Colin de la Higuera",
+        "title": "Characteristic Sets for Polynomial Grammatical Inference",
+        "description": "Cet article analyse l’efficacité de l’inférence grammaticale et montre que plusieurs classes de langages ne peuvent pas être apprises efficacement en temps polynomial.",
+        "date": "Mai 1997",
+        "url": "./pdfs/Characteristic.pdf",
+        "pictogramme": "./pictogramme/recherche.svg",
+        "type": "pdf"
+      },
+      {
+        "id": "7",
+        "category": "Publication Scientifique",
+        "nature": "expert",
+        "author": "Colin de la Higuera",
+        "title": "Computational Complexity of Problems on Probabilistic Grammars and Transducers",
+        "description": "Cet article montre que trouver la chaîne la plus probable dans des grammaires stochastiques est un problème NP-difficile, sans solution efficace en temps polynomial.",
+        "date": "",
+        "url": "./pdfs/PreviewArticle.pdf",
+        "pictogramme": "./pictogramme/recherche.svg",
+        "type": "pdf"
+      },
+      {
+        "id": "8",
+        "category": "Publication Scientifique",
+        "nature": "expert",
+        "author": "Colin de la Higuera",
+        "title": "Marginal Inference queries in Hidden Markov Models under context-free grammar constraints",
+        "description": "Cet article étudie l’inférence probabiliste dans les modèles de Markov cachés avec contraintes de grammaires, montrant que le problème est NP-difficile et proposant un algorithme d’approximation.",
+        "date": "26 Jun 2022",
+        "url": "./pdfs/MarkovModels.pdf",
+        "pictogramme": "./pictogramme/recherche.svg",
+        "type": "pdf"
+      }
+   
+    ]
+  }
+}

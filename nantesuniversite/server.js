@@ -18,6 +18,13 @@ app.use(express.static(path.join(__dirname, '../__common-logos__')));
 
 // You can then add whatever routing code you need
 
+// SPA fallback: serve index.html for all non-file routes so that
+// React Router can handle client-side paths (e.g. /researcher) on
+// direct access or page refresh.
+app.get('/{*path}', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
 // This module is exported and served by the main server.js located
 // at the root of this set of projects. You can access it by lanching the main
 // server and visiting http(s)://127.0.0.1:8080/name_of_you_project/ (if on a local server)
