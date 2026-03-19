@@ -1,6 +1,6 @@
 import { motion, useSpring, useMotionValue, useScroll, AnimatePresence } from "framer-motion";
 import { useRef, useState, useEffect, useMemo } from "react";
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { findNearestArticles } from '../../utils/dist';
 import ArticlePreview from './components/ArticlePreview';
 
@@ -29,6 +29,7 @@ import left from './assets/mr_patate/left.svg';
 import dormir from './assets/mr_patate/dormir.svg';
 
 const treeFiles = import.meta.glob('./assets/elements/tree/*.svg', { eager: true, import: 'default' });
+const specialFiles = import.meta.glob('./assets/elements/special/*.svg', { eager: true, import: 'default' });
 const milestoneFiles = import.meta.glob('./assets/elements/milestone/*.svg', { eager: true, import: 'default' });
 const signFiles = import.meta.glob('./assets/elements/sign/*.svg', { eager: true, import: 'default' });
 
@@ -55,7 +56,8 @@ const posCyclist = {
 
 const elements = {
   tree: { svg: Object.values(treeFiles), style: 'xl:scale-[95%] scale-[60%] origin-bottom' },
-  milestone: { svg: Object.values(milestoneFiles), style: 'xl:h-[9vh] h-[5vh] origin-bottom' },
+  special: { svg: Object.values(specialFiles), style: 'xl:h-[22vh] origin-bottom' },
+  milestone: { svg: Object.values(milestoneFiles), style: 'xl:h-[9vh] h-[6vh] origin-bottom' },
   sign: {
     svg: Object.values(signFiles), dotPos: [
       { x: 91, y: 15 }, //sign1
@@ -78,7 +80,14 @@ const CategoryList = {
 
 const PathComponent = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const initialState = location.state || {};
+
+  useEffect(() => {
+    if (!initialState.lat || !initialState.long || !initialState.allArticles || initialState.allArticles.length === 0) {
+      navigate('/home', { replace: true });
+    }
+  }, [initialState, navigate]);
 
   const nbArticles = initialState.nbArticles ?? NB_ARTICLES;
 
@@ -93,7 +102,7 @@ const PathComponent = () => {
   const [isMobile, setIsMobile] = useState(false);
 
   const SPEED_DESKTOP = Math.max(2000, 5000 - (nbArticles - 10) * 150);
-  const SPEED_MOBILE = Math.max(2000, 2000 - (nbArticles - 10) * 150);
+  const SPEED_MOBILE = Math.max(2000, 5500 - (nbArticles - 10) * 150);
 
   const dynamicHeight = useMemo(() => {
     const speed = isMobile ? SPEED_MOBILE : SPEED_DESKTOP;
@@ -103,9 +112,6 @@ const PathComponent = () => {
 
 
 
-
-
-  // ── État provenant du Router ──
   const [lat, setLat] = useState(initialState.lat ?? null);
   const [long, setLong] = useState(initialState.long ?? null);
   const [allArticles, setAllArticles] = useState(initialState.allArticles ?? []);
@@ -124,7 +130,6 @@ const PathComponent = () => {
   const toggleCategory = (cat) => {
     setSelectedCats(prev => {
       if (prev.includes(cat)) {
-        // Bloque la désélection s'il ne reste qu'une seule catégorie
         if (prev.length === 1) return prev;
         return prev.filter(c => c !== cat);
       }
@@ -132,12 +137,9 @@ const PathComponent = () => {
     });
   };
 
-  // --- CONFIG DES ARTICLES ---
   const mapObjectsConfig = useMemo(() => {
-    // 1. On filtre la base de données brute selon la catégorie sélectionnée
     const filteredAll = allArticles.filter(a => selectedCats.includes(a.categorie_tag));
 
-    // 2. On récupère les 10 plus proches si on a une position, sinon les 10 premiers
     let closestArticles = [];
     if (lat !== null && long !== null) {
       closestArticles = findNearestArticles(filteredAll, { latitude: lat, longitude: long }, nbArticles);
@@ -186,11 +188,9 @@ const PathComponent = () => {
   const [articlePositions, setArticlePositions] = useState({});
   const SignDecalage = 12;
 
-  // --- NOUVEAUX STATES POUR L'ARTICLE ACTIF (MOBILE) ---
   const [activeArticleId, setActiveArticleId] = useState(null);
   const activeArticleIdRef = useRef(null);
 
-  // --- INDICATION DE SCROLL ---
   const [showScrollHint, setShowScrollHint] = useState(true);
 
 
@@ -201,119 +201,131 @@ const PathComponent = () => {
     checkMobile();
     window.addEventListener("resize", checkMobile);
 
-    const parser = new DOMParser();
-    const extractedPaths = currentPathList.map(pathObj => {
-      const doc = parser.parseFromString(pathObj.raw, "image/svg+xml");
-      const path = doc.getElementById("cyclist-path");
-      const svgTag = doc.querySelector("svg");
-      const viewBox = svgTag?.getAttribute("viewBox")?.split(" ") || [0, 0, 767.25, 7337.6];
-      return {
-        d: path?.getAttribute("d"),
-        width: parseFloat(viewBox[2]),
-        height: parseFloat(viewBox[3])
-      };
-    });
-
-    const milestoneLength = elements.milestone.svg.length
-    const treeLength = elements.tree.svg.length
-
-    const extractedPoints = currentPathList.map(pathObj => {
-      const doc = parser.parseFromString(pathObj.pointsRaw, "image/svg+xml");
-      const trees = Array.from(doc.getElementsByClassName("cls-1"))
-      const milestones = Array.from(doc.getElementsByClassName("cls-3"))
-      const svgTag = doc.querySelector("svg");
-      const viewBox = svgTag?.getAttribute("viewBox")?.split(" ") || [0, 0, 767.25, 7337.6];
-
-      return [
-        ...milestones.map(mile => ({
-          type: 'milestone', // Différenciation de la borne
-          x: parseFloat(mile.getAttribute("cx")),
-          y: parseFloat(mile.getAttribute("cy")),
+    const run = () => {
+      const parser = new DOMParser();
+      const extractedPaths = currentPathList.map(pathObj => {
+        const doc = parser.parseFromString(pathObj.raw, "image/svg+xml");
+        const path = doc.getElementById("cyclist-path");
+        const svgTag = doc.querySelector("svg");
+        const viewBox = svgTag?.getAttribute("viewBox")?.split(" ") || [0, 0, 767.25, 7337.6];
+        return {
+          d: path?.getAttribute("d"),
           width: parseFloat(viewBox[2]),
-          height: parseFloat(viewBox[3]),
-          svg: elements.milestone.svg[Math.floor(Math.random() * milestoneLength)],
-          svgStyle: elements.milestone.style
-        })),
-        ...trees.map(tree => ({
-          type: 'tree', // Différenciation de l'arbre
-          x: parseFloat(tree.getAttribute("cx")),
-          y: parseFloat(tree.getAttribute("cy")),
-          width: parseFloat(viewBox[2]),
-          height: parseFloat(viewBox[3]),
-          svg: elements.tree.svg[Math.floor(Math.random() * treeLength)],
-          svgStyle: elements.tree.style
-        }))
-      ];
-    });
-    setPathsData(extractedPaths)
-    setPathsPointsData(extractedPoints)
+          height: parseFloat(viewBox[3])
+        };
+      });
 
-    return () => window.removeEventListener("resize", checkMobile);
+      const milestoneLength = elements.milestone.svg.length;
+      const treeLength = elements.tree.svg.length;
+      const specialLength = elements.special.svg.length;
+
+      const extractedPoints = currentPathList.map(pathObj => {
+        const doc = parser.parseFromString(pathObj.pointsRaw, "image/svg+xml");
+        const specials = isMobile ? [] : Array.from(doc.getElementsByClassName("cls-1"));
+        const trees = Array.from(doc.getElementsByClassName("cls-2"));
+        const milestones = Array.from(doc.getElementsByClassName("cls-4"));
+        const svgTag = doc.querySelector("svg");
+        const viewBox = svgTag?.getAttribute("viewBox")?.split(" ") || [0, 0, 767.25, 7337.6];
+        const w = parseFloat(viewBox[2]);
+        const h = parseFloat(viewBox[3]);
+        return [
+          ...milestones.map(mile => ({
+            type: 'milestone',
+            width: w, height: h,
+            xPercent: (parseFloat(mile.getAttribute("cx")) / w) * 100,
+            yPercent: (parseFloat(mile.getAttribute("cy")) / h) * 100,
+            svg: elements.milestone.svg[Math.floor(Math.random() * milestoneLength)],
+            svgStyle: elements.milestone.style
+          })),
+          ...specials.map(special => ({
+            type: 'special',
+            width: w, height: h,
+            xPercent: (parseFloat(special.getAttribute("cx")) / w) * 100,
+            yPercent: (parseFloat(special.getAttribute("cy")) / h) * 100,
+            svg: elements.special.svg[Math.floor(Math.random() * specialLength)],
+            svgStyle: elements.special.style,
+            isReversed: Math.random() > 0.5
+          })),
+          ...trees.map(tree => ({
+            type: 'tree',
+            width: w, height: h,
+            xPercent: (parseFloat(tree.getAttribute("cx")) / w) * 100,
+            yPercent: (parseFloat(tree.getAttribute("cy")) / h) * 100,
+            svg: elements.tree.svg[Math.floor(Math.random() * treeLength)],
+            svgStyle: elements.tree.style
+          }))
+        ];
+      });
+      setPathsData(extractedPaths);
+      setPathsPointsData(extractedPoints);
+    };
+
+    let idleId;
+    if ('requestIdleCallback' in window) {
+      idleId = requestIdleCallback(run, { timeout: 400 });
+    } else {
+      setTimeout(run, 0);
+    }
+
+    return () => {
+      window.removeEventListener("resize", checkMobile);
+      if (idleId) cancelIdleCallback(idleId);
+    };
   }, [currentPathList]);
 
   useEffect(() => {
     if (pathsData.length === 0) return;
     const timer = setTimeout(() => {
       const positions = {};
-      mapObjectsConfig.forEach(obj => {
-        const pathEl = pathRefs.current[obj.pathIndex];
-        const data = pathsData[obj.pathIndex];
-        if (!pathEl || !data) return;
+      const pathCache = {};
 
+      const getPathInfo = (i) => {
+        if (pathCache[i]) return pathCache[i];
+        const pathEl = pathRefs.current[i];
+        const data = pathsData[i];
+        if (!pathEl || !data) return null;
         const length = pathEl.getTotalLength();
         const pStart = pathEl.getPointAtLength(0);
         const pEnd = pathEl.getPointAtLength(length);
-        const isBottomToTop = pStart.y > pEnd.y;
-        const t = isBottomToTop ? obj.progress : 1 - obj.progress;
-        const point = pathEl.getPointAtLength(t * length);
+        const info = { pathEl, data, length, isBottomToTop: pStart.y > pEnd.y };
+        pathCache[i] = info;
+        return info;
+      };
 
+      mapObjectsConfig.forEach(obj => {
+        const info = getPathInfo(obj.pathIndex);
+        if (!info) return;
+        const t = info.isBottomToTop ? obj.progress : 1 - obj.progress;
+        const point = info.pathEl.getPointAtLength(t * info.length);
         positions[obj.id] = {
-          xPercent: (point.x / data.width) * 100,
-          yPercent: (point.y / data.height) * 100,
+          xPercent: (point.x / info.data.width) * 100,
+          yPercent: (point.y / info.data.height) * 100,
         };
       });
 
-      // ── Positionnement de la ville de départ (au tout début du premier chemin) ──
-      const data0 = pathsData[0];
-      const pathEl0 = pathRefs.current[0];
-      if (data0 && pathEl0) {
-        const length = pathEl0.getTotalLength();
-        const pStart = pathEl0.getPointAtLength(0);
-        const pEnd = pathEl0.getPointAtLength(length);
-        const isBottomToTop = pStart.y > pEnd.y;
-
-        // On récupère un point très proche du début (t = 0.005 pour éviter les bords tranchés)
-        const t = isBottomToTop ? 0.005 : 0.995;
-        const point = pathEl0.getPointAtLength(t * length);
-
+      const info0 = getPathInfo(0);
+      if (info0) {
+        const t = info0.isBottomToTop ? 0.005 : 0.995;
+        const point = info0.pathEl.getPointAtLength(t * info0.length);
         positions['start_city'] = {
-          xPercent: (point.x / data0.width) * 100,
-          yPercent: (point.y / data0.height) * 100,
+          xPercent: (point.x / info0.data.width) * 100,
+          yPercent: (point.y / info0.data.height) * 100,
         };
       }
 
-      // ── Positionnement de la fin du chemin ──
       const lastIndex = pathsData.length - 1;
-      const dataLast = pathsData[lastIndex];
-      const pathElLast = pathRefs.current[lastIndex];
-      if (dataLast && pathElLast) {
-        const length = pathElLast.getTotalLength();
-        const pStart = pathElLast.getPointAtLength(0);
-        const pEnd = pathElLast.getPointAtLength(length);
-        const isBottomToTop = pStart.y > pEnd.y;
-
-        // On récupère un point très proche de la fin
-        const t = isBottomToTop ? 0.995 : 0.005;
-        const point = pathElLast.getPointAtLength(t * length);
-
+      const infoLast = getPathInfo(lastIndex);
+      if (infoLast) {
+        const t = infoLast.isBottomToTop ? 0.995 : 0.005;
+        const point = infoLast.pathEl.getPointAtLength(t * infoLast.length);
         positions['end_point'] = {
-          xPercent: (point.x / dataLast.width) * 100,
-          yPercent: (point.y / dataLast.height) * 100,
+          xPercent: (point.x / infoLast.data.width) * 100,
+          yPercent: (point.y / infoLast.data.height) * 100,
         };
       }
 
       setArticlePositions(positions);
-    }, 150);
+    }, 0);
     return () => clearTimeout(timer);
   }, [pathsData, mapObjectsConfig]);
 
@@ -372,23 +384,20 @@ const PathComponent = () => {
         setShowScrollHint(true);
       }
 
-      // --- NOUVEAU : DÉTECTION DE PROXIMITÉ ---
-      const ZONE_DETECTION = 0.03; // Zone de sensibilité autour de l'article (tu peux ajuster)
+      const ZONE_DETECTION = 0.03;
       let foundId = null;
 
       for (let obj of mapObjectsConfig) {
         if (Math.abs(obj.globalPos - globalPos) <= ZONE_DETECTION) {
           foundId = obj.id;
-          break; // On a trouvé un article proche, on s'arrête
+          break;
         }
       }
 
-      // Si l'article actif change, on déclenche une mise à jour React
       if (foundId !== activeArticleIdRef.current) {
         activeArticleIdRef.current = foundId;
         setActiveArticleId(foundId);
       }
-      // ----------------------------------------
 
       const diffScroll = latest - latestProgress.current;
       if (diffScroll < -0.000001) isMovingUpRef.current = true;
@@ -455,7 +464,7 @@ const PathComponent = () => {
 
     const formatDistance = (dist) => {
       const objDist = (dist < 1) ? { num: Math.round(dist * 1000), unit: "m" } : { num: parseFloat(dist).toFixed(1), unit: "km" }
-      return (<><span className="milestone-font">{objDist.num}</span><span className="milestone-font xl:-mt-[0.8vh] -mt-[0.4vh]">{objDist.unit}</span></>)
+      return (<><span className="milestone-font">{objDist.num}</span><span className="milestone-font xl:-mt-[0.8vh] -mt-[0.6vh]">{objDist.unit}</span></>)
     }
 
     if (pos1 === pos2) return formatDistance(dist1);
@@ -470,13 +479,17 @@ const PathComponent = () => {
 
   return (
     <div className="relative">
-      {/* ── Flottant Filtres (Mobile) ── */}
+      {(pathsData.length === 0 || Object.keys(articlePositions).length < mapObjectsConfig.length + 2) && (
+        <div className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-white gap-4">
+          <span className="loading loading-spinner" style={{ width: '4rem', height: '4rem', color: 'var(--color-secondary)' }} />
+        </div>
+      )}
+
       <div className="md:hidden fixed top-[88px] left-6 z-[9999]">
         <button
           onClick={() => setIsFilterOpen(!isFilterOpen)}
           className="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-lg pointer-events-auto border border-gray-100 transition-transform active:scale-95"
         >
-          {/* Trois petits points alignés */}
           <div className="flex gap-1">
             {[...Array(3)].map((_, index) => (
               <div key={index} className="w-1.5 h-1.5 bg-black rounded-full"></div>
@@ -567,15 +580,13 @@ const PathComponent = () => {
                   )}
 
                   {pathsPointsData[i] && pathsPointsData[i].map((c, index) => {
-                    const xPercent = (c.x / c.width) * 100;
-                    const yPercent = (c.y / c.height) * 100;
                     return (
                       <div
                         key={`${c.type}-${i}-${index}`}
                         className="absolute z-20 pointer-events-none flex justify-center"
                         style={{
-                          left: `${xPercent}%`,
-                          top: `${yPercent}%`,
+                          left: `${c.xPercent}%`,
+                          top: `${c.yPercent}%`,
                           transform: "translate(-50%, -100%) rotateX(-50deg) translateZ(10px)",
                           transformOrigin: "bottom center",
                           transformStyle: "preserve-3d"
@@ -584,15 +595,16 @@ const PathComponent = () => {
 
                         {c.type === 'milestone' && (
                           <div
-                            className="absolute z-30 flex flex-col items-center font-extrabold text-[0.7vh] xl:text-[1.25vh] xl:bottom-[1.9vh] bottom-[1vh]"
+                            className="absolute z-30 flex flex-col items-center font-extrabold text-[0.9vh] xl:text-[1.25vh] xl:bottom-[1.9vh] bottom-[1.2vh]"
                           >
-                            {getMilestoneDistance(i, yPercent)}
+                            {getMilestoneDistance(i, c.yPercent)}
                           </div>
                         )}
                         <img
                           src={c.svg}
                           alt={c.type}
                           className={`${c.svgStyle} w-auto object-contain drop-shadow-md`}
+                          style={c.isReversed ? { transform: 'scaleX(-1)' } : {}}
                         />
                       </div>
                     );
@@ -650,7 +662,7 @@ const PathComponent = () => {
                           <img
                             src={obj.svg}
                             alt="sign"
-                            className="xl:w-[4vw] h-auto w-[7vw] object-contain drop-shadow-sm"
+                            className="xl:w-[4vw] h-auto w-[8vw] object-contain drop-shadow-sm"
                           />
                         </div>
                       );
@@ -728,7 +740,7 @@ const PathComponent = () => {
               bottom: "14vh"
             }}
           >
-            <span className="text-sm font-semibold bg-white/90 px-4 py-2 rounded-full shadow-md backdrop-blur-sm border border-gray-100">
+            <span className="text-sm font-semibold bg-white/90 px-4 py-2 rounded-full shadow-md border border-gray-100">
               Scrollez vers le bas
             </span>
 

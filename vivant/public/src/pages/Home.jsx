@@ -97,6 +97,7 @@ const SEQUENCE_PC = [
   ['tiret-pc-14'],
   ['tiret-pc-15'],
   ['tiret-pc-16'],
+
 ];
 
 const Home = () => {
@@ -134,9 +135,14 @@ const Home = () => {
     checkMobile();
     window.addEventListener('resize', checkMobile);
 
+    const checkMobileWidth = () => window.innerWidth < 768;
+    const isCurrentlyMobile = checkMobileWidth();
+
     const timers = [];
 
-    if (container) {
+
+
+    if (container && isCurrentlyMobile) {
       fetch(RoutePoinillee)
         .then(r => r.text())
         .then(svgText => {
@@ -193,7 +199,7 @@ const Home = () => {
         .catch(err => console.error('Erreur chargement SVG chemin:', err));
     }
 
-    if (pcContainer) {
+    if (pcContainer && !isCurrentlyMobile) {
       fetch(BgHomePc)
         .then(r => r.text())
         .then(svgText => {
@@ -249,7 +255,7 @@ const Home = () => {
       window.removeEventListener('resize', checkMobile);
       timers.forEach(clearTimeout);
     };
-  }, []);
+  }, [isMobile]);
 
   const handlePress = (btnId, action) => {
     setActiveBtn(btnId);
@@ -393,10 +399,13 @@ const Home = () => {
     <>
       <div className="home-page transition-all duration-300" style={{ alignItems: isMobile ? 'center' : 'flex-start' }}>
 
-        <div
-          ref={svgContainerPcRef}
-          className="hidden xl:block fixed xl:top-[34vh] left-0 w-full pointer-events-none z-0"
-        />
+        {/* Desktop Background SVG */}
+        {!isMobile && (
+          <div
+            ref={svgContainerPcRef}
+            className="fixed xl:top-[34vh] left-0 w-full pointer-events-none z-0"
+          />
+        )}
 
         <div className="xl:text-left text-center xl:text-[2.5vw] text-xl mb-2 relative z-10 xl:whitespace-nowrap xl:w-full">
           <h1>
@@ -419,11 +428,14 @@ const Home = () => {
           xl:mt-0 xl:fixed xl:w-full xl:max-w-none xl:flex-row xl:top-[25vh] xl:justify-center xl:gap-[3.25vw] xl:pt-[2vw]"
         >
 
-          <div
-            ref={svgContainerRef}
-            className="route-svg xl:hidden"
-            aria-hidden="true"
-          />
+          {/* Mobile Path SVG */}
+          {isMobile && (
+            <div
+              ref={svgContainerRef}
+              className="route-svg"
+              aria-hidden="true"
+            />
+          )}
 
           <button
             id="btn-geo"
