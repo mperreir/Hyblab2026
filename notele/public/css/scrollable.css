@@ -1,0 +1,89 @@
+#scrollable_page {
+    position: absolute;
+    top: 0%;
+    left: 0;
+    display: none;
+    width: 65%;
+    height: 100%;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE/Edge */
+}
+
+#scrollable_page::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
+}
+
+@keyframes slideInRight {
+    from { transform: translateX(-30px); opacity: 0; }
+    to   { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slideOutLeft {
+    from { transform: translateX(0); opacity: 1; }
+    to   { transform: translateX(-30px); opacity: 0; }
+}
+
+.slide-in {
+    animation: slideInRight 0.4s ease forwards;
+}
+
+.slide-out {
+    animation: slideOutLeft 0.4s ease forwards;
+}
+
+.light_blurred{
+    filter: blur(3px);
+}
+
+.blurred {
+    filter: blur(10px);
+}
+
+/*============================= 
+
+  CUSTOM AUDIO PLAYER
+
+============================= */
+
+.customAudioPlayer{
+    padding-top: 50px;
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    gap: 10px;
+    cursor: pointer;
+}
+
+#customAudioButton#customAudioButton{
+  width: 50px;
+  filter: brightness(0) saturate(100%) invert(100%) sepia(100%) saturate(0%) hue-rotate(70deg) brightness(100%) contrast(100%);
+  cursor: pointer;
+}
+
+#customAudioButton#customAudioButton:hover{
+    filter: brightness(0) saturate(100%) invert(89%) sepia(14%) saturate(6723%) hue-rotate(358deg) brightness(101%) contrast(105%);
+}
+
+#waveform-1{
+    width: 100%;
+}
+
+#waveform-2{
+    width: 100%;
+}
+
+#waveform-3{
+    width: 100%;
+}
+
+#waveform-4{
+    width: 100%;
+}
+
+/*============================= 
+
+  CUSTOM AUDIO PLAYER
+
+============================= */

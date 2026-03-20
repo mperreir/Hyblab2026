@@ -1,0 +1,142 @@
+
+@font-face {
+    font-family: Apfel;
+    src: url("../data/Polices-Labeleco/Apfel/ApfelGrotezk-Regular.otf");
+}
+
+@font-face {
+    font-family: ApfelMittel;
+    src: url("../data/Polices-Labeleco/Apfel/ApfelGrotezk-Mittel.otf");
+}
+
+@font-face {
+    font-family: ApfelSatt;
+    src: url("../data/Polices-Labeleco/Apfel/ApfelGrotezk-Satt.otf");
+}
+
+/* page violet = 65% écran */
+#scrollable_page_2{
+    width:65%;
+    min-height:100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: none;
+    background-color:#4b179f;
+    color:white;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE/Edge */
+
+}
+
+.container{
+    padding: 15px 80px 0px 15px;
+}
+
+#scrollable_page_2::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
+}
+
+/* header */
+.header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.logo-img{
+    height: 75px;
+    width:auto;
+    cursor: pointer;
+    display:block;
+}
+
+.map-btn{
+    border:1px solid white;
+    padding:10px 18px;
+    border-radius:20px;
+    text-decoration:none;
+    color:white;
+    font-size:14px;
+    cursor: pointer;
+}
+
+/* title */
+#scrollable_page_2 h1{
+    font-size:70px;
+    margin-bottom:50px;
+    font-family: ApfelMittel;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+#scrollable_page_2 h2{
+    font-size:24px;
+    font-family: Apfel;
+}
+
+#scrollable_page_2 h3{
+    font-size:18px;
+    font-family: Apfel;
+    margin: 25px 0px;
+}
+
+#scrollable_page_2 p{
+    font-size: medium;
+    font-family: Apfel;
+}
+
+/* sections */
+.section{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:40px;
+}
+
+.section-text h2{
+    margin:0;
+    font-size:22px;
+}
+
+.section img{
+    width:180px;
+    height:110px;
+    display:block;
+    object-fit:contain;
+}
+
+/* collaboration tags */
+.collab-tags{
+    display:flex;
+    gap:10px;
+    margin-top:8px;
+}
+
+.collab-tags span{
+    border:1px solid rgba(255,255,255,0.5);
+    border-radius:999px;
+    padding:6px 10px;
+    font-size:13px;
+}
+
+/* students */
+.students{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:24px;
+    margin-top:40px;
+}
+
+.student-col{
+    background: rgba(255,255,255,0.08);
+    border:1px solid rgba(255,255,255,0.2);
+    border-radius:12px;
+    padding:16px;
+}
+
+.students p{
+    margin:4px 0;
+}
