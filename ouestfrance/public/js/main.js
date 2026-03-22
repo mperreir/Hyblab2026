@@ -157,18 +157,16 @@ Popup.init();
 // ════════════════════════════════════════════════════════════════
 //  PROGRESS TRACKING
 // ════════════════════════════════════════════════════════════════
-const TOTAL_OBJECTS = window.TOTAL_OBJECTS;
-const visitedIds    = window.visitedIds;
 
 function markVisited(id) {
-  if (visitedIds.has(id)) return;
-  visitedIds.add(id);
+  if (window.visitedIds.has(id)) return;
+  window.visitedIds.add(id);
 
   const found   = document.getElementById('progress-found');
   const counter = document.getElementById('progress-counter');
-  if (found) found.textContent = visitedIds.size;
+  if (found) found.textContent = window.visitedIds.size;
 
-  if (visitedIds.size >= TOTAL_OBJECTS && counter) {
+  if (window.visitedIds.size >= window.TOTAL_OBJECTS && counter) {
     counter.style.cursor        = 'pointer';
     counter.style.pointerEvents = 'auto';
     counter.title               = 'Revoir les résultats';

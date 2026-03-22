@@ -28,7 +28,6 @@ window.Popup = (() => {
     _current = data;
     const a = data.article || {};
 
-    document.getElementById('popup-tag').textContent         = '';
     document.getElementById('popup-title').textContent       = a.title       || '';
     document.getElementById('popup-description').textContent = a.description || '';
 
@@ -40,10 +39,12 @@ window.Popup = (() => {
         objImg.src = a.objectImage;
       }
       objImg.alt            = a.title || '';
+      document.getElementById('popup-blur-bg').style.backgroundImage = `url(${a.objectImage})`;
       objWrap.style.display = '';
     } else {
       objWrap.style.display = 'none';
       objImg.removeAttribute('src');
+      document.getElementById('popup-blur-bg').style.backgroundImage = '';
     }
 
     // ── iframe (optional video) ───────────────────────────────────
@@ -63,9 +64,6 @@ window.Popup = (() => {
       btn.href             = a.link;
       btn.textContent      = a.articleHeadline || 'Lire l\'article →';
       btn.style.display    = '';
-      btn.style.background = '#e2001a';
-      btn.style.color      = '#ffffff';
-      btn.style.border     = 'none';
     } else {
       btn.style.display = 'none';
     }
@@ -98,7 +96,5 @@ window.Popup = (() => {
     }, 400);
   }
 
-  function getCurrent() { return _current; }
-
-  return { init, open, close, getCurrent, preloadAll, preloadImage };
+  return { init, open, close, preloadAll};
 })();
