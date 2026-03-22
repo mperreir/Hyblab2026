@@ -4,7 +4,7 @@ Porteur de projet : Ouest-France
 
 Sujet : Affaire Epstein — Expérience immersive 360°
 
-Nom d'équipe : HybLab Nantes 2025
+Nom d'équipe : EpsTeam
 
 Participants :
 
