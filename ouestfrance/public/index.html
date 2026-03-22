@@ -1,77 +1,161 @@
 <!DOCTYPE html>
-
 <html lang="fr">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
-  <title>Hyblab 2025</title>
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/loadingio/loading.css@v2.0.0/dist/loading.css" >
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.2/anime.min.js"></script>
-  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-  <script src="js/slide1.js" defer></script>
-  <script src="js/slide2.js" defer></script>
-  <script src="js/index.js" defer></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Ouest-France — Intro</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css" />
+  <!-- Prefetch next page and preconnect to CDN -->
+  <link rel="prefetch"    href="epstein.html">
+  <link rel="preconnect"  href="https://cdnjs.cloudflare.com">
+  <!-- Preload heavy assets while user reads intro -->
+  <link rel="preload" href="img/epstein.png"             as="image" fetchpriority="high">
+  <link rel="preload" href="img/simu.jpeg"               as="image">
+  <link rel="preload" href="img/ouest-france-couleur.png" as="image">
 </head>
 <body>
-    <!-- Le conteneur sert à vérouiller les proportions (aspect ratio) du contenu de la page (ici des slides) -->
-    <div id="container">
-      <!-- Le loader-->
-      <div id="loader">
-        <div id="loader-img" class="ld ld-ring ld-cycle"></div>
-        <p id="loader-text">Veuillez patienter...</p>
-      </div>
-      <div id="mySwiper" class="swiper">
-        <!-- le main est aussi le conteneur des différents slides (contenus à chaque fois dans des sections-->
-        <main class = "swiper-wrapper">
-            <section id="first-slide" class="swiper-slide">
-                <header>
-                    <h1 id="titre">Welcome to</h1>
-                </header>
-                
-                <img src="img/logo_hyblab.png" id="logo-hyblab" alt="logo hyblab">
+  <main class="app">
 
-
-                <!-- le footer sera rempli à partir de données lues dans un fichier Json-->
-                <footer>
-                  <p></p>
-                </footer>
-            </section>
-            <section id="second-slide" class="swiper-slide">
-                <header>
-                  <h1>This was...</h1>
-                </header>
-                <img id="img-fini" alt="logo hyblab" src="hyblab_2026.png">
-                <footer id="bandeau">
-                        <!-- Logo Hyblab -->
-                          <a href="http://www.hyblab.fr/"><img id="hyblab" src="logo_hyblab.png" alt="Hyblab DataSport"></a>
-                      
-                          <!-- Les organisateurs -->
-                          <ul>
-                            <li><a href="https://lecolededesign.com/"><img src="ecoles/logo_edna.png" alt="Ecole de Design Nantes Atlantique"></a></li>
-                            <li><a href="https://www.polytech.univ-nantes.fr/"><img src="ecoles/logo_polytech.png" alt="Polytech Nantes"></a></li>
-                            <!-- Les autres logos -->
-                          </ul>
-                          <ul>
-                            <li><a href="https://www.ouestmedialab.fr/"><img src="logo_oml.png" alt="Ouest Médialab"></a></li>
-                            <!-- Logos CC et opensource -->
-                            <li>
-                            <ul>
-                              <li class="stacked"><img id="cc" src="logo_cc.png" alt="Creative commons"></li>
-                              <li class="stacked"><img id="opensource" src="logo_opensource.png" alt="Open source"></li>
-                            </ul>
-                            </li>
-                            <!-- Logo de votre porteur de projet -->
-                            <li><a href="https://www.mon-porteur-de-projet.org"><img src="no-logo.png" alt="Logo de mon porteur de projet"></a></li>
-                            <!-- Partenaires institutionnels -->
-                            <li><a href="https://www.nantesmetropole.fr/"><img class="institutionnel" src="institutionnels/logo_nantesmetropole.png" alt="Nantes Métropole"></a></li>
-                          </ul>
-                </footer>
-            </section>
-        </main>
-        <div class="swiper-pagination"></div>
+    <!-- ══ Splash (white logo) ══ -->
+    <div class="splash" id="splash">
+      <img id="splash-logo" src="img/ouest-france-couleur.png" alt="Logo Ouest-France">
     </div>
-  </div>
+
+    <!-- ══ Dark card ══ -->
+    <div class="dark-layer" id="dark-layer">
+      <div class="slides-track" id="slides-track">
+
+        <!-- ════ SLIDE 1 — présentation ════ -->
+        <div class="slide">
+          <div class="slide-inner">
+
+            <div class="of-logo">
+              <img src="img/ouest-france-couleur.png" alt="Ouest-France">
+            </div>
+
+            <div class="inner-card">
+              <h1 class="s1-title">L'appartement Epstein&nbsp;:<br>l'enquête à 360°</h1>
+
+              <div class="s1-body">
+                <p>Bienvenue dans l'appartement de Jeffrey Epstein. Explorez une reconstitution immersive de ce lieu au cœur d'un réseau d'influence mondial.</p>
+                <p>Autour de vous, 18 objets clés. Chacun cache un indice, une histoire, une connexion. En les découvrant, pièce après pièce, vous remontez le fil d'une affaire tentaculaire qui mêle pouvoir, argent et secrets.</p>
+              </div>
+              <br><br><br>
+              <br><br><br>
+
+              <div class="s1-btn-wrap">
+                <button class="btn-next" id="btn-next">C'est parti !</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <!-- /SLIDE 1 -->
+
+        <!-- ════ SLIDE 2 — instructions ════ -->
+        <div class="slide">
+          <div class="slide-inner">
+
+            <!-- Back arrow + logo row -->
+            <div class="s2-topbar">
+              <button class="btn-back-arrow" id="btn-back" aria-label="Retour">←</button>
+              <div class="of-logo">
+                <img src="img/ouest-france-couleur.png" alt="Ouest-France">
+              </div>
+              <!-- spacer to centre the logo -->
+              <div class="s2-topbar-spacer"></div>
+            </div>
+
+            <div class="inner-card">
+              <div class="instruction-img">
+                <img src="img/simu.jpeg" alt="Aperçu de la scène 360°">
+              </div>
+
+              <p class="instruction-text">
+                Cliquez sur les objets mis en lumière pour révéler leurs secrets. Chaque élément ouvre la porte à des explications, des documents et des articles pour approfondir l'enquête. Au fil de votre exploration, suivez votre progression et rassemblez les pièces du puzzle dans votre dossier de suivi.
+              </p>
+
+              <div class="s2-note-wrap">
+                <div class="note s1-note-ia">
+                  Cette expérience s'appuie sur les photos et les plans réels de l'appartement new-yorkais d'Epstein. La reconstitution a été réalisée à partir de ces documents, avec l'aide de l'intelligence artificielle.
+                </div>
+              </div>
+
+              <button class="btn-next" id="btn-start">Commencer</button>
+            </div>
+
+          </div>
+        </div>
+        <!-- /SLIDE 2 -->
+
+      </div><!-- /slides-track -->
+    </div><!-- /dark-layer -->
+
+  </main>
+
+  <script>
+    const track  = document.getElementById('slides-track');
+    let   onSlide2 = false;
+
+    // ── Helpers ───────────────────────────────────────────────
+    function goToSlide1() {
+      track.style.transform = 'translateX(0)';
+      onSlide2 = false;
+      // remove the history entry we pushed when entering slide 2
+      history.back();
+    }
+
+    function goToSlide2() {
+      track.style.transform = 'translateX(-50%)';
+      onSlide2 = true;
+      // push a history entry so the hardware back button can catch it
+      history.pushState({ slide: 2 }, '');
+    }
+
+    // ── Splash → slide 1 ──────────────────────────────────────
+    setTimeout(() => {
+      document.getElementById('splash').classList.add('hidden');
+      document.getElementById('dark-layer').classList.add('visible');
+    }, 1800);
+
+    // ── Slide 1 → Slide 2 (C'est parti button) ────────────────
+    document.getElementById('btn-next').addEventListener('click', goToSlide2);
+
+    // ── Slide 2 → Slide 1 (UI back arrow) ────────────────────
+    document.getElementById('btn-back').addEventListener('click', () => {
+      if (onSlide2) goToSlide1();
+    });
+
+    // ── Hardware back button (Android / Samsung) ──────────────
+    window.addEventListener('popstate', (e) => {
+      if (onSlide2) {
+        track.style.transform = 'translateX(0)';
+        onSlide2 = false;
+      }
+    });
+
+    // ── Slide 2 → viewer (Commencer button) ──────────────────
+    document.getElementById('btn-start').addEventListener('click', () => {
+      window.location.href = 'epstein.html';
+    });
+  </script>
+  <script>
+    // Preload all object images while user reads the intro
+    fetch('data/epstein-data.json')
+      .then(r => r.json())
+      .then(data => {
+        (data.hotspots || []).forEach(h => {
+          if (h.article?.objectImage) {
+            const img = new Image();
+            img.src = h.article.objectImage;
+          }
+        });
+      })
+      .catch(() => {});
+  </script>
 </body>
 </html>

@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+  <title>Viewer 360° — Dossier Epstein</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/epstein-style.css?v=8" />
+</head>
+<body>
+
+  <!-- LOADING OVERLAY -->
+  <div id="ov">
+    <div id="ov-card">
+      <div id="ov-label">Ouest-France · Dossier Epstein</div>
+      <div id="ov-title">Chargement de<br>la scène 360°…</div>
+      <div id="ov-bar-track"><div id="ov-bar"></div></div>
+      <div id="ov-sub">Préparation de l'expérience</div>
+    </div>
+  </div>
+
+  <!-- HUD -->
+  <div id="hud">
+    <button id="btn-scene-back" aria-label="Retour">←</button>
+    <h1>Salon Epstein</h1>
+    <div id="progress-counter" title="Objets découverts">
+      <span id="progress-found">0</span>/<span id="progress-total">18</span>
+    </div>
+    <button id="btn-credits" aria-label="Crédits">ⓘ</button>
+  </div>
+  <div id="hint" align="center">Glisser pour explorer <br> Cliquer sur une zone pour l'article</div>
+
+  <!-- POPUP PANEL -->
+  <div id="popup-backdrop"></div>
+  <div id="popup-panel">
+    <div id="popup-topbar">
+      <button id="popup-close">×</button>
+    </div>
+    <div id="popup-header-above">
+      <div id="popup-tag"></div>
+      <h2 id="popup-title"></h2>
+    </div>
+    <div id="popup-object-img-wrap">
+      <div id="popup-blur-bg"></div>
+      <img id="popup-object-img" src="" alt="">
+    </div>
+    <div id="popup-content">
+      <p id="popup-description"></p>
+      <div id="popup-iframe-wrap">
+        <iframe id="popup-iframe"
+          src=""
+          frameborder="0"
+          allowfullscreen
+          allow="autoplay; fullscreen"
+          scrolling="yes">
+        </iframe>
+      </div>
+      <a id="popup-article-btn" href="#" target="_blank" rel="noopener noreferrer">
+        Lire l'article →
+      </a>
+    </div>
+  </div>
+
+  <!-- Three.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+  <!-- Viewer modules (order matters) -->
+  <script src="js/controller.js"></script>
+  <script src="js/polygone-zones.js"></script>
+  <script src="js/popup.js"></script>
+
+  <!-- Loading overlay hooks + completion + back button — must come before main.js -->
+  <script>
+    const _ovBar = document.getElementById('ov-bar');
+    const _ovSub = document.getElementById('ov-sub');
+    const _ov    = document.getElementById('ov');
+
+    window.ovProgress = function(pct) {
+      _ovBar.style.width = pct + '%';
+      if      (pct < 30)  _ovSub.textContent = 'Initialisation de la scène';
+      else if (pct < 60)  _ovSub.textContent = 'Chargement de la texture 360°';
+      else if (pct < 85)  _ovSub.textContent = 'Placement des objets interactifs';
+      else if (pct < 100) _ovSub.textContent = 'Finalisation…';
+      else                _ovSub.textContent = 'Prêt !';
+    };
+
+    window.ovHide = function() {
+      _ovBar.style.width = '100%';
+      _ovSub.textContent = 'Prêt !';
+      setTimeout(() => {
+        _ov.classList.add('done');
+        _ov.addEventListener('transitionend', () => _ov.remove(), { once: true });
+      }, 400);
+    };
+
+    // ── Completion — defined BEFORE main.js so markVisited can call it ──
+    window.openCompletion = function() {
+      const sheet    = document.getElementById('completion-sheet');
+      const backdrop = document.getElementById('completion-backdrop');
+      if (sheet)    sheet.classList.add('open');
+      if (backdrop) backdrop.classList.add('visible');
+    };
+
+    window.closeCompletion = function() {
+      const sheet    = document.getElementById('completion-sheet');
+      const backdrop = document.getElementById('completion-backdrop');
+      if (sheet)    sheet.classList.remove('open');
+      if (backdrop) backdrop.classList.remove('visible');
+    };
+
+    // ── Back button ──
+    const _backBtn = document.getElementById('btn-scene-back');
+    function _goBack(e) {
+      e.preventDefault();
+      window.location.href = 'index.html';
+    }
+    _backBtn.addEventListener('touchend', _goBack, { passive: false });
+    _backBtn.addEventListener('click',    _goBack);
+  </script>
+
+  <script src="js/main.js"></script>
+
+  <!-- COMPLETION SHEET -->
+  <div id="completion-backdrop"></div>
+  <div id="completion-sheet">
+    <div id="completion-topbar">
+      <button id="completion-back" aria-label="Retour">←</button>
+      <button id="completion-close" aria-label="Fermer">×</button>
+    </div>
+    <div id="completion-inner">
+      <h2 id="completion-title">Poursuivez vos<br>recherches</h2>
+      <p id="completion-body">
+        Vous avez trouvé tous les objets secrets de la salle. Cependant, ils ne représentent qu'une infime partie de l'affaire.
+      </p>
+      <p id="completion-body2">
+        Continuez l'enquête en allant consulter les nombreux articles de Ouest‑France réalisés sur l'affaire, ou en inspectant les millions de messages de la boîte « Jmail » de Jeffrey Epstein.
+      </p>
+      <div id="completion-links">
+        <a id="completion-btn-of" class="completion-link-btn" href="https://www.ouest-france.fr/monde/etats-unis/jeffrey-epstein/" target="_blank" rel="noopener">
+          <img src="img/ouest-france-couleur.png" alt="Ouest-France">
+        </a>
+        <a id="completion-btn-jmail" class="completion-link-btn" href="https://jmail.world" target="_blank" rel="noopener">
+          <img src="img/jmail.png" alt="Jmail">
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- close buttons only — openCompletion is already defined above -->
+  <script>
+    document.getElementById('completion-close').addEventListener('click', window.closeCompletion);
+    document.getElementById('completion-back').addEventListener('click',  window.closeCompletion);
+  </script>
+
+  <!-- CREDITS BOTTOM SHEET -->
+  <div id="credits-backdrop"></div>
+  <div id="credits-sheet">
+    <div id="credits-topbar">
+      <button id="credits-close-btn" aria-label="Fermer">×</button>
+    </div>
+    <div id="credits-inner">
+
+      <h2 id="credits-title">Crédit</h2>
+
+      <div id="credits-hyblab">
+        <img src="img/hyblab.png" alt="HYBLAB">
+      </div>
+
+      <p id="credits-team">
+        RMEILLI Hamza · SAUVE Louis · GONDJE-DACKA Crépitus Jacob<br>
+        REBAI Mehdi · RIDAOUI Moncef · GERMAIN Mateo<br>
+        YAHYA Mouhamed Mahmoud · POLIDAT Edouard
+      </p>
+
+      <div id="credits-partners">
+        <div class="credits-partner-cell">
+          <img src="img/edna.png" alt="Nantes Design">
+        </div>
+        <div class="credits-partner-cell">
+          <img src="img/pn.png" alt="Ouest Médialab">
+        </div>
+        <div class="credits-partner-cell">
+          <img src="img/medilab.png" alt="Polytech Nantes">
+        </div>
+        <div class="credits-partner-cell">
+          <img src="img/un.png" alt="Nantes Université">
+        </div>
+        <div class="credits-partner-cell">
+          <img src="img/nm.png" alt="Nantes Métropole">
+        </div>
+      </div>
+
+      <div id="credits-bottom-logos">
+        <div class="credits-bottom-cell">
+          <img src="img/osi.png" alt="Open Data">
+        </div>
+        <div class="credits-bottom-cell">
+          <img src="img/cc.png" alt="Creative Commons">
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    const creditsSheet    = document.getElementById('credits-sheet');
+    const creditsBackdrop = document.getElementById('credits-backdrop');
+
+    function openCredits() {
+      creditsSheet.classList.add('open');
+      creditsBackdrop.classList.add('visible');
+    }
+    function closeCredits() {
+      creditsSheet.classList.remove('open');
+      creditsBackdrop.classList.remove('visible');
+    }
+
+    document.getElementById('btn-credits').addEventListener('click', openCredits);
+    creditsBackdrop.addEventListener('click', closeCredits);
+    document.getElementById('credits-close-btn').addEventListener('click', closeCredits);
+  </script>
+
+</body>
+</html>
