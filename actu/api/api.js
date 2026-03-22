@@ -40,44 +40,37 @@ let db;
 // ========== GET ==========
 // =========================
 
-app.get('/init', async function ( req, res ) {
-    await initialisation();
-    // await test1();
-    // await Test2Data();
-    // await test2();
-    return res.json({'Ok':true});
-} );
 
-app.get('/poly', async function ( req, res ) {
-    if(!fs.existsSync("./actu/api/BDD/dataActu.json")){
-        fetch("https://api.actu.fr/posts?filter%5Bmarque%5D=87725", {
-            method: "GET",    
-            headers: {
-                "Content-Type": "application/json",
-                "user-agent": "Hyblab2026"
-            }
-        })
-        .then(response => response.json())
-        .then(data => {
-            fs.writeFileSync("./actu/api/BDD/dataActu.json", JSON.stringify(data, null, 2));
+// app.get('/poly', async function ( req, res ) {
+//     if(!fs.existsSync("./actu/api/BDD/dataActu.json")){
+//         fetch("https://api.actu.fr/posts?filter%5Bmarque%5D=87725", {
+//             method: "GET",    
+//             headers: {
+//                 "Content-Type": "application/json",
+//                 "user-agent": "Hyblab2026"
+//             }
+//         })
+//         .then(response => response.json())
+//         .then(data => {
+//             fs.writeFileSync("./actu/api/BDD/dataActu.json", JSON.stringify(data, null, 2));
 
-            fs.readFile("./actu/api/BDD/dataActu.json", "utf8", function (err, fileData) {
-                if (err) {
-                    return res.json({error:"Les données n'ont pas pu être récupérés !"});
-                }
-                return res.json(JSON.parse(fileData));
-            });
-        });
-    }else{
-        fs.readFile("./actu/api/BDD/dataActu.json", "utf8", function (err, fileData) {
-                if (err) {
-                    return res.json({error:"Les données n'ont pas pu être récupérés !"});
-                }
-                return res.json(JSON.parse(fileData));
-        });
-    }  
+//             fs.readFile("./actu/api/BDD/dataActu.json", "utf8", function (err, fileData) {
+//                 if (err) {
+//                     return res.json({error:"Les données n'ont pas pu être récupérés !"});
+//                 }
+//                 return res.json(JSON.parse(fileData));
+//             });
+//         });
+//     }else{
+//         fs.readFile("./actu/api/BDD/dataActu.json", "utf8", function (err, fileData) {
+//                 if (err) {
+//                     return res.json({error:"Les données n'ont pas pu être récupérés !"});
+//                 }
+//                 return res.json(JSON.parse(fileData));
+//         });
+//     }  
 
-} );
+// } );
 
 function lastWednesday() {
   const today = new Date()
@@ -558,77 +551,6 @@ async function getDB(){
     return db;
 }
 
-async function initialisation(){
-    const db = await getDB();
-
-    await db.exec(`
-        CREATE TABLE IF NOT EXISTS Utilisateur(
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            token TEXT UNIQUE
-        );
-    `); 
-
-    await db.exec(`
-        CREATE TABLE IF NOT EXISTS Film(
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            nom TEXT,
-            affiche TEXT,
-            bande_annonce TEXT,
-            lien_article TEXT,
-            critique TEXT,
-            nb_etoile INTEGER,
-            description TEXT,
-            realisateur TEXT,
-            date_sortie TEXT
-        );
-    `); 
-
-    await db.exec(`
-        CREATE TABLE IF NOT EXISTS FilmAime(
-            id_film INTEGER,
-            id_utilisateur INTEGER,
-            PRIMARY KEY (id_film, id_utilisateur),
-            FOREIGN KEY (id_film) REFERENCES Film(id),
-            FOREIGN KEY (id_utilisateur) REFERENCES Utilisateur(id)
-        );
-    `); 
-
-    await db.exec(`
-        CREATE TABLE IF NOT EXISTS FilmAimePas(
-            id_film INTEGER,
-            id_utilisateur INTEGER,
-            PRIMARY KEY (id_film, id_utilisateur),
-            FOREIGN KEY (id_film) REFERENCES Film(id),
-            FOREIGN KEY (id_utilisateur) REFERENCES Utilisateur(id)
-        );
-    `); 
-
-    await db.exec(`
-        CREATE TABLE IF NOT EXISTS Acteur(
-            id INTEGER PRIMARY KEY AUTOINCREMENT, 
-            nom TEXT, 
-            prenom TEXT
-        );
-    `); 
-
-    await db.exec(`
-        CREATE TABLE IF NOT EXISTS FilmActeur(
-            id_film INTEGER,
-            id_acteur INTEGER,
-            PRIMARY KEY (id_film, id_acteur),
-            FOREIGN KEY (id_film) REFERENCES Film(id),
-            FOREIGN KEY (id_acteur) REFERENCES Acteur(id)
-        );
-    `); 
-
-    await db.exec(`
-        CREATE TABLE IF NOT EXISTS FilmCoupDeCoeur(
-            id_film INTEGER PRIMARY KEY,
-            date TEXT,
-            FOREIGN KEY (id_film) REFERENCES Film(id)
-        );
-    `); 
-}
 
 async function test1(){
     // Données tests généré par IA
@@ -1055,3 +977,4 @@ async function supprimeFilmAime(id_film, id_utilisateur){
 
 // Export our API
 module.exports = app;
+module.exports.getDB = getDB;
