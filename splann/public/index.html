@@ -1,77 +1,356 @@
 <!DOCTYPE html>
-
 <html lang="fr">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
-  <title>Hyblab 2025</title>
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/loadingio/loading.css@v2.0.0/dist/loading.css" >
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.2/anime.min.js"></script>
-  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-  <script src="js/slide1.js" defer></script>
-  <script src="js/slide2.js" defer></script>
-  <script src="js/index.js" defer></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Splann! — Menu</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black: #0d0d0d;
+    --white: #f5f3ef;
+    --red: #e8292e;
+    --gray: #2a2a2a;
+    --border: rgba(255,255,255,0.1);
+  }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'Albert Sans', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    max-width: 430px;
+    margin: 0 auto;
+  }
+
+  /* ── NAV TOP ── */
+  .top-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .logo {
+    height: 36px;
+    object-fit: contain;
+  }
+
+  .top-icons {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .top-icons button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    padding: 4px;
+    transition: opacity 0.2s;
+  }
+
+  .top-icons button:hover { opacity: 0.6; }
+
+  /* ── MENU ITEMS ── */
+  .menu-list {
+    flex: 1;
+    list-style: none;
+    padding: 8px 0;
+  }
+
+  .menu-item {
+    border-bottom: 1px solid var(--border);
+  }
+
+  .menu-item a,
+  .menu-item button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 18px 24px;
+    background: none;
+    border: none;
+    color: var(--white);
+    font-family: 'Albert Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .menu-item a:hover,
+  .menu-item button:hover {
+    background: rgba(255,255,255,0.05);
+  }
+
+  .menu-item.active > button,
+  .menu-item.active > a {
+    color: var(--red);
+  }
+
+  .chevron {
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+  }
+
+  .menu-item.open .chevron {
+    transform: rotate(180deg);
+  }
+
+  /* ── SOUS-MENU ── */
+  .submenu {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease;
+    background: var(--gray);
+  }
+
+  .menu-item.open .submenu {
+    max-height: 300px;
+  }
+
+  .submenu a {
+    display: block;
+    padding: 14px 24px 14px 36px;
+    color: rgba(255,255,255,0.7);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    text-transform: none;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    transition: color 0.2s, padding-left 0.2s;
+  }
+
+  .submenu a:last-child { border-bottom: none; }
+
+  .submenu a:hover {
+    color: var(--white);
+    padding-left: 44px;
+  }
+
+  /* ── INFOLETTRE ── */
+  .menu-item--plain a {
+    justify-content: flex-start;
+    gap: 0;
+  }
+
+  /* ── BOUTON DON ── */
+  .btn-don {
+    margin: 20px 24px;
+    display: block;
+    text-align: center;
+    background: var(--red);
+    color: var(--white);
+    font-family: 'Albert Sans', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 16px;
+    border-radius: 4px;
+    transition: background 0.2s, transform 0.15s;
+  }
+
+  .btn-don:hover {
+    background: #c8222a;
+    transform: translateY(-1px);
+  }
+
+  /* ── TOGGLE LANGUE ── */
+  .lang-toggle {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 24px 32px;
+  }
+
+  .lang-flag {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--border);
+  }
+
+  .toggle-switch {
+    width: 44px;
+    height: 24px;
+    background: var(--gray);
+    border-radius: 12px;
+    position: relative;
+    cursor: pointer;
+    border: 1px solid var(--border);
+    transition: background 0.2s;
+  }
+
+  .toggle-switch::after {
+    content: '';
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    background: var(--white);
+    border-radius: 50%;
+    top: 2px;
+    left: 2px;
+    transition: transform 0.2s;
+  }
+
+  .toggle-switch.bzh {
+    background: #1a3a5c;
+  }
+
+  .toggle-switch.bzh::after {
+    transform: translateX(20px);
+  }
+</style>
 </head>
 <body>
-    <!-- Le conteneur sert à vérouiller les proportions (aspect ratio) du contenu de la page (ici des slides) -->
-    <div id="container">
-      <!-- Le loader-->
-      <div id="loader">
-        <div id="loader-img" class="ld ld-ring ld-cycle"></div>
-        <p id="loader-text">Veuillez patienter...</p>
-      </div>
-      <div id="mySwiper" class="swiper">
-        <!-- le main est aussi le conteneur des différents slides (contenus à chaque fois dans des sections-->
-        <main class = "swiper-wrapper">
-            <section id="first-slide" class="swiper-slide">
-                <header>
-                    <h1 id="titre">Welcome to</h1>
-                </header>
-                
-                <img src="img/logo_hyblab.png" id="logo-hyblab" alt="logo hyblab">
 
-
-                <!-- le footer sera rempli à partir de données lues dans un fichier Json-->
-                <footer>
-                  <p></p>
-                </footer>
-            </section>
-            <section id="second-slide" class="swiper-slide">
-                <header>
-                  <h1>This was...</h1>
-                </header>
-                <img id="img-fini" alt="logo hyblab" src="hyblab_2026.png">
-                <footer id="bandeau">
-                        <!-- Logo Hyblab -->
-                          <a href="http://www.hyblab.fr/"><img id="hyblab" src="logo_hyblab.png" alt="Hyblab DataSport"></a>
-                      
-                          <!-- Les organisateurs -->
-                          <ul>
-                            <li><a href="https://lecolededesign.com/"><img src="ecoles/logo_edna.png" alt="Ecole de Design Nantes Atlantique"></a></li>
-                            <li><a href="https://www.polytech.univ-nantes.fr/"><img src="ecoles/logo_polytech.png" alt="Polytech Nantes"></a></li>
-                            <!-- Les autres logos -->
-                          </ul>
-                          <ul>
-                            <li><a href="https://www.ouestmedialab.fr/"><img src="logo_oml.png" alt="Ouest Médialab"></a></li>
-                            <!-- Logos CC et opensource -->
-                            <li>
-                            <ul>
-                              <li class="stacked"><img id="cc" src="logo_cc.png" alt="Creative commons"></li>
-                              <li class="stacked"><img id="opensource" src="logo_opensource.png" alt="Open source"></li>
-                            </ul>
-                            </li>
-                            <!-- Logo de votre porteur de projet -->
-                            <li><a href="https://www.mon-porteur-de-projet.org"><img src="no-logo.png" alt="Logo de mon porteur de projet"></a></li>
-                            <!-- Partenaires institutionnels -->
-                            <li><a href="https://www.nantesmetropole.fr/"><img class="institutionnel" src="institutionnels/logo_nantesmetropole.png" alt="Nantes Métropole"></a></li>
-                          </ul>
-                </footer>
-            </section>
-        </main>
-        <div class="swiper-pagination"></div>
-    </div>
+<!-- TOP BAR -->
+<div class="top-bar">
+  <img src="img/Splann! Logo.png" alt="Splann!" class="logo"
+       onerror="this.style.display='none'; this.insertAdjacentHTML('afterend','<span style=\'font-size:1.4rem;font-weight:800;color:#f5f3ef;\'>splann<span style=\'color:#e8292e;\'>!</span></span>')">
+  <div class="top-icons">
+    <button aria-label="Rechercher">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+      </svg>
+    </button>
+    <button aria-label="Fermer" onclick="window.history.back()">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+      </svg>
+    </button>
   </div>
+</div>
+
+<!-- MENU -->
+<ul class="menu-list">
+
+  <!-- ENQUÊTES -->
+  <li class="menu-item" id="item-enquetes">
+    <button onclick="toggleItem('item-enquetes')" aria-expanded="false">
+      Enquêtes
+      <svg class="chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <polyline points="6 9 12 15 18 9"/>
+      </svg>
+    </button>
+    <div class="submenu">
+      <a href="#">Toutes les enquêtes</a>
+      <a href="#">Environnement</a>
+      <a href="#">Social</a>
+      <a href="#">Politique</a>
+    </div>
+  </li>
+
+  <!-- EXSPLANN! → redirige vers une autre page -->
+  <li class="menu-item" id="item-exsplann">
+    <a href="accueil.html">
+      ExSplann!
+      <svg class="chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <polyline points="6 9 12 15 18 9"/>
+      </svg>
+    </a>
+  </li>
+
+  <!-- ACTUALITÉS -->
+  <li class="menu-item" id="item-actu">
+    <button onclick="toggleItem('item-actu')" aria-expanded="false">
+      Actualités
+      <svg class="chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <polyline points="6 9 12 15 18 9"/>
+      </svg>
+    </button>
+    <div class="submenu">
+      <a href="#">Dernières nouvelles</a>
+      <a href="#">Communiqués</a>
+    </div>
+  </li>
+
+  <!-- VIDÉOS -->
+  <li class="menu-item" id="item-videos">
+    <button onclick="toggleItem('item-videos')" aria-expanded="false">
+      Vidéos
+      <svg class="chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <polyline points="6 9 12 15 18 9"/>
+      </svg>
+    </button>
+    <div class="submenu">
+      <a href="#">Documentaires</a>
+      <a href="#">Reportages</a>
+    </div>
+  </li>
+
+  <!-- À PROPOS -->
+  <li class="menu-item" id="item-apropos">
+    <button onclick="toggleItem('item-apropos')" aria-expanded="false">
+      À propos
+      <svg class="chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <polyline points="6 9 12 15 18 9"/>
+      </svg>
+    </button>
+    <div class="submenu">
+      <a href="#">Qui sommes-nous ?</a>
+      <a href="#">Notre équipe</a>
+      <a href="#">Mentions légales</a>
+    </div>
+  </li>
+
+  <!-- INFOLETTRE -->
+  <li class="menu-item menu-item--plain">
+    <a href="#">Infolettre</a>
+  </li>
+
+</ul>
+
+<!-- BOUTON DON -->
+<a href="#" class="btn-don">Faire un don</a>
+
+<!-- TOGGLE LANGUE -->
+<div class="lang-toggle">
+  <img src="img/Drp_Français.jpg" alt="FR" class="lang-flag"
+       onerror="this.style.display='none'">
+  <div class="toggle-switch" id="langToggle" onclick="toggleLang(this)" title="Changer de langue"></div>
+  <img src="img/Drp_breton.png" alt="BZH" class="lang-flag"
+       onerror="this.style.display='none'">
+</div>
+
+<script>
+  function toggleItem(id) {
+    const item = document.getElementById(id);
+    const isOpen = item.classList.contains('open');
+    // Ferme tous les items ouverts
+    document.querySelectorAll('.menu-item.open').forEach(el => {
+      el.classList.remove('open');
+      const btn = el.querySelector('button');
+      if (btn) btn.setAttribute('aria-expanded', 'false');
+    });
+    // Ouvre celui-ci si ce n'était pas déjà ouvert
+    if (!isOpen) {
+      item.classList.add('open');
+      const btn = item.querySelector('button');
+      if (btn) btn.setAttribute('aria-expanded', 'true');
+    }
+  }
+
+  function toggleLang(el) {
+    el.classList.toggle('bzh');
+  }
+</script>
+
 </body>
 </html>

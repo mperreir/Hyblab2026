@@ -2,6 +2,198 @@
 /* ------- that adapts content width and height so that aspect ratio  ----------- */
 /* ------- is kept between 9/16 a,d 3/4 (portait orientation)         ----------- */
 
+
+.nav-bar-hierarchical {
+    position: absolute;
+    bottom: 20%; /* Positionnée au-dessus de la zone de scroll du bas */
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    z-index: 5000; /* Priorité maximale pour passer devant le bleu */
+    padding: 8px 15px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 50px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.volet {
+    height: 18px;
+    min-width: 45px;
+    border: 2px solid #FF5262;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.volet.parcouru { background-color: #FFC9CE; border-color: #FFC9CE; }
+.volet.active { border: none; min-width: auto; gap: 6px; }
+
+.inner-dot { width: 10px; height: 10px; background-color: #ddd; border-radius: 50%; }
+.inner-dot.active { background-color: #FF5262; }
+
+/* Le triangle pour la fin de volet */
+.inner-dot.is-last {
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+    width: 12px; height: 12px;
+    transform: rotate(180deg);
+    background-color: #FFC9CE;
+}
+.inner-dot.is-last.active { background-color: #FF5262; }
+
+
+/* Font Loading*/
+
+@font-face {
+    font-family: Albert Sans;
+    src: url();
+}
+
+/* Static Albert Sans fonts */
+@font-face {
+    font-family: 'Albert Sans';
+    src: url('data/Albert%20Sans%20Font/static/AlbertSans-Thin.ttf') format('truetype');
+    font-weight: 100;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Albert Sans';
+    src: url('data/Albert%20Sans%20Font/static/AlbertSans-ThinItalic.ttf') format('truetype');
+    font-weight: 100;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Albert Sans';
+    src: url('data/Albert%20Sans%20Font/static/AlbertSans-ExtraLight.ttf') format('truetype');
+    font-weight: 200;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Albert Sans';
+    src: url('data/Albert%20Sans%20Font/static/AlbertSans-ExtraLightItalic.ttf') format('truetype');
+    font-weight: 200;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Albert Sans';
+    src: url('data/Albert%20Sans%20Font/static/AlbertSans-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Albert Sans';
+    src: url('data/Albert%20Sans%20Font/static/AlbertSans-LightItalic.ttf') format('truetype');
+    font-weight: 300;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Albert Sans';
+    src: url('data/Albert%20Sans%20Font/static/AlbertSans-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Albert Sans';
+    src: url('data/Albert%20Sans%20Font/static/AlbertSans-Italic.ttf') format('truetype');
+    font-weight: 400;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Albert Sans';
+    src: url('data/Albert%20Sans%20Font/static/AlbertSans-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Albert Sans';
+    src: url('data/Albert%20Sans%20Font/static/AlbertSans-MediumItalic.ttf') format('truetype');
+    font-weight: 500;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Albert Sans';
+    src: url('data/Albert%20Sans%20Font/static/AlbertSans-SemiBold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Albert Sans';
+    src: url('data/Albert%20Sans%20Font/static/AlbertSans-SemiBoldItalic.ttf') format('truetype');
+    font-weight: 600;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Albert Sans';
+    src: url('data/Albert%20Sans%20Font/static/AlbertSans-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Albert Sans';
+    src: url('data/Albert%20Sans%20Font/static/AlbertSans-BoldItalic.ttf') format('truetype');
+    font-weight: 700;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Albert Sans';
+    src: url('data/Albert%20Sans%20Font/static/AlbertSans-ExtraBold.ttf') format('truetype');
+    font-weight: 800;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Albert Sans';
+    src: url('data/Albert%20Sans%20Font/static/AlbertSans-ExtraBoldItalic.ttf') format('truetype');
+    font-weight: 800;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Albert Sans';
+    src: url('data/Albert%20Sans%20Font/static/AlbertSans-Black.ttf') format('truetype');
+    font-weight: 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Albert Sans';
+    src: url('data/Albert%20Sans%20Font/static/AlbertSans-BlackItalic.ttf') format('truetype');
+    font-weight: 900;
+    font-style: italic;
+}
+
+/* Variable fonts */
+@font-face {
+    font-family: 'Albert Sans';
+    src: url('data/Albert%20Sans%20Font/AlbertSans-VariableFont_wght.ttf') format('truetype-variations');
+    font-weight: 100 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Albert Sans';
+    src: url('data/Albert%20Sans%20Font/AlbertSans-Italic-VariableFont_wght.ttf') format('truetype-variations');
+    font-weight: 100 900;
+    font-style: italic;
+}
+
 /* Normalize margin and padding to ease elements positioning */
 *{
     padding:0;
@@ -9,12 +201,101 @@
 }
 
 body{
-    background-color: black;
+    background-color: #000000; /* selon le code colorimétrique fourni */
     color: white;
     overflow: hidden;   /* to avoid slider bugs on some browsers */
-    font-family: sans-serif;
+    font-family: 'Albert Sans', sans-serif;
 }
 
+.main-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 70px;
+    background-color: #000000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    box-sizing: border-box;
+    z-index: 2000;
+}
+.dessinPrincipale{
+    position: absolute; 
+    width: 100vw; 
+    height: 100vh; 
+    object-fit: cover;
+}
+.logo-splann {
+    height: 50px;
+    cursor: pointer;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.btn-icon {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    transition: opacity 0.2s;
+}
+
+.btn-icon:hover {
+    opacity: 0.7;
+}
+#btn-export {
+  position: relative;
+}
+
+#btn-export::after {
+  content: 'Export';
+  position: absolute;
+  bottom: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 9px;
+  color: white;
+  opacity: 0.6;
+  white-space: nowrap;
+  letter-spacing: 0.05em;
+}
+#btn-download {
+    padding-top: 0.5%;
+}
+.icon-flag {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center;
+    border: 1.5px solid #444;
+    display: block;
+}
+
+h3 {
+    font-size:20%;
+}
+
+#content-slide > h2 {
+    top:20vh;
+    position:absolute;
+    font-size:20%;
+}
+
+#topBar {
+    background-color: black;
+    height: 10vh;
+    top:0vh;
+    z-index: 5;
+}
 /* -------------- Loader --------------*/
 #loader{
     z-index: 2;
@@ -22,8 +303,8 @@ body{
 }
 
 #loader-img{
-    top:40%;
-    left:40%;
+    top:40vh;
+    left:40vw;
     position: absolute;
 }
 
@@ -31,79 +312,121 @@ body{
     text-align: center;
     font-size: 25%;
     position: absolute;
-    top:60%;
-    width: 100%
+    top:60vh;
+    width: 100vw
 }
 /* -------------- End of Loader --------------*/
 
 /* Swiper slider. Need to fill the container */
-#mySwiper{
-    width: 100%;
-    height:100%;
+#mySwiper {
+    width: 100vw;
+    height: 96vh;
     position: absolute;
+    top: 5vh;
+}
+/* Navigation buttons */
+
+.swiper-button-next,
+.swiper-button-prev {
+    background: none;
+    color: #000000 !important;
+    border-radius: 4px;
+    position:sticky;
+    position: top;
+}
+
+#content-slide > .swiper-button-next, #title-slide-2 > .swiper-button-next {
+    background: none;
+    color: #000000 !important;
+    border-radius: 4px;
+    position: sticky;
+    right: 2vw !important;
+    position: absolute;
+    width: 3vw;
+    height: auto;
+    animation: slideRight 1.4s ease-in-out infinite;
+}
+
+.swiper-button-next:after,
+.swiper-button-prev:after {
+    font-size: 20px;
 }
 
 /* white navigation bullets */
+.swiper-pagination {
+    bottom: 20vh !important;
+}
+
+.nav-bar-hierarchical.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+.swiper-pagination{
+    transition: opacity 0.3s ease;
+}
 .swiper-pagination-bullet-active {
-    background-color: white !important;
+    background-color: red !important;
+    bottom:5vh !important;
 }
 
 /* the slides and the loader should fill the whole 9:16 zone */
 .swiper-wrapper section, #loader{
-    background-color: dodgerblue;
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
 }
 
-/* Most of the elements in this demo are absolute positioned with percentages */
-#first-slide header, #second-slide header{
+#loader{
+    background-color: #1E1E1E;
+}
+
+#title-slide header{
+    font-size: 40%;
+    bottom: 25vh;
+    position: absolute;
+    margin: 5vh;
+    z-index:2;
+    width: 50vw;
+    font-family: 'Albert Sans', sans-serif;
+    font-weight: bold;
+    color: #FF5262 !important;
+}
+
+.imgPrincipale {
+    width: 100vw;
+    height: 100vh;
     text-align: center;
-    width: 100%;
-    top: 10%;
+    bottom: 0vh;
+    left: 0vw;
+    margin-top: calc(-7.5vh * 9 / 16);
+    position: absolute;
+    z-index: 1;
+}
+
+#credit-slide header{
+    text-align: left;
+    width: 100vw;
+    top: 10vh;
     position: absolute;
     font-size: 30%;
+    font-family: 'Albert Sans';
     z-index: 2;
 }
 
-#logo-hyblab{
-    text-align: center;
-    width: 50%;
-    left: 50%; /* center the logo, in interaction with the negative margin-left */
-    top: 50%;
-    margin-left:-25%; /* this is half the width */
-    margin-top:calc(-7.5% * 9 / 16 ); /* margins are relative to the element width... :-( */
-    position: absolute;
-    font-size: 50%;
-    z-index: 2;
-    cursor: pointer;
+.logo-splann-slide{
+    z-index: 11!important;
+    width:40vw;
+    height: auto;
+    position:absolute;
+    top:-15vh;
 }
-
 /* Last slide image is centered */
 #img-fini{
-    width: 50%;
-    left: 50%; /* center the logo, in interaction with the negative margin-left */
-    top: 40%;
+    width: 70vw;
+    left: 50vw; /* center the logo, in interaction with the negative margin-left */
+    top: 40vh;
     position: absolute;
-    margin-left:-25%; /* this is half the width */
-    margin-top:calc(-25% * 9 / 16 ); /* margins are relative to the element width... :-( */
-}
-
-main > section{
-    background-image: url('../img/background.svg');
-    background-size: 100% auto; /* background is full width and height is proportional to width */
-    background-position: bottom; /* background is bottom aligned */
-}
-
-/* Footer of last slide is at the bottom and content is centered */
-#first-slide footer{
-    bottom: 5%;
-    position: absolute;
-    box-sizing: border-box; /* So that padding is not added to width (and width: 100% works) */
-    width: 100%; /* could also use  width: calc(100% - 2em) if not using box-sizing */
-    font-size: 20%;
-    text-align: center;
-    padding: 1em;
-    background-color: rgba(0, 0, 0, 0.5);
+    margin-left:-35vw; /* this is half the width */
+    margin-top:calc(-25vh * 9 / 16 ); /* margins are relative to the element width... :-( */
 }
 
 
@@ -112,9 +435,9 @@ main > section{
 /* so we cannot use % and use em (which are proportional to the size of the */
 /* slide because of body's font size rule at the end of this CSS           */
 #bandeau {
-    width:100%;
+    width:100vw;
     position: absolute;
-    bottom: 0;
+    bottom: 8vh;
     background-color: white;
     font-size: 20%;
   }
@@ -163,9 +486,11 @@ main > section{
 /* When the aspect ratio is smaller that 3/4, display a 3/4 content */
 #container{
     position: fixed; /* To set the size of the container to 100% of the visible viewport height AND for absolute positioning of child elements*/ 
-    height: 100%;   /* even on mobile devices with url or navigation bars */
+    height: 100vh;   /* even on mobile devices with url or navigation bars */
     margin-left: calc((100vw - 100 * 3vh / 4) / 2); /* Add black bands on left and right */
     width: calc(100 * 3vh / 4); /* Force 3/4 aspect ratio */
+    margin-top: 70px; /*pour  Pour que le contenu ne soit pas caché sous le header */
+
 }
 
 /* We set a default font size here. It will be the base for all other font sizes */
@@ -173,6 +498,169 @@ main > section{
 body{
     font-size: calc(15vh * 3 / 4);
 }
+
+#content-slide, #title-slide-2, #instagram-box, #last-slide{
+    position: relative;
+    display: flex; 
+    flex-direction: column;
+    background-image: url("../img/degrade_fond_blanc.png");
+    font-family: "Albert Sans", sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    color: black;
+    background-size: 100vw auto;
+    
+}
+#instagram-header{
+    width: 75vw;
+    margin-bottom: 40px  ;
+    text-align: left;
+    flex-shrink: 0;
+    font-weight:bold;
+    font-size: 150%;
+
+}
+#instagram-header p{
+    font-size: 20px;
+}
+
+#instagram-detail{
+    align-items: flex-start;
+}
+
+#instagram-content {
+    padding-left: 7vw;
+    min-height: 0;
+    flex: 1;
+    width: 85vw;
+    height: 85vw;
+    text-align: left;
+    font-size: 20px;
+    position: absolute;
+    top: 20vh;
+}
+#instagram-content p{
+    font-size: 90%;
+    margin-bottom: 10vh;
+}
+.illustration{
+    max-width:42vh;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(231, 101, 101, 0.2);
+}
+/* Swipe hint on the right of the screen */
+.swipe-hint {
+  position: absolute;
+  right: 10px;        /* distance du bord gauche */
+  top: 50vh;          /* milieu vertical */
+  transform: translateY(-50vh);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #555;
+}
+
+.dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: 0;
+  animation: trail 1.4s ease-in-out infinite;
+}
+.dot:nth-child(1) { animation-delay: 0s; }
+.dot:nth-child(2) { animation-delay: 0.15s; }
+.dot:nth-child(3) { animation-delay: 0.30s; }
+
+@keyframes trail {
+  0%   { opacity: 0; transform: scale(0.5); }
+  40%  { opacity: 0.4; transform: scale(1); }
+  100% { opacity: 0; transform: scale(0.5); }
+}
+
+.arrow {
+  width: 30px;
+  animation: slideRight 1.4s ease-in-out infinite;
+}
+
+@keyframes slideRight {
+  0%   { transform: translateX(-6px); opacity: 0.6; }
+  50%  { transform: translateX(6px);  opacity: 1; }
+  100% { transform: translateX(-6px); opacity: 0.6; }
+}
+
+.label {
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.6;
+}
+#titleHighlight, #instagram-content > p > b {
+  font-weight: 700;
+  color: #111;
+  
+  /* Le dégradé remplace le SVG : rouge en bas, transparent en haut */
+  background-image: linear-gradient(
+    to bottom,
+    transparent 45%,
+    rgba(232, 71, 74, 0.45) 45%,
+    rgba(232, 71, 74, 0.55) 100%
+  );
+  background-repeat: no-repeat;
+  
+  /* Démarre à 0% de large, pleine hauteur */
+  background-size: 0% 100%;
+  
+  padding: 0 3px 2px 2px;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  
+  animation: fillHighlight 0.6s ease forwards;
+}
+
+@keyframes fillHighlight {
+  to {
+    background-size: 100% 100%;
+  }
+}
+
+
+/* ── TITLE BAR ── */
+.title-bar {
+    margin-top: 10px ;
+    padding-left: 7%;
+    flex-shrink: 0;
+    width: 87vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 10px;
+    background: var(--white);
+    z-index: 50;
+    top: 5vh;
+    position: absolute;
+}
+.title-bar h2 {
+    font-family: "Albert Sans", sans-serif;
+    font-size: 0.82rem;
+    font-weight: bold;
+    color: #8E8E8E;
+    line-height: 1.35;
+    max-width: 76vw;
+}
+.progress-badge {
+    background: #0d0d0d;
+    color: #f5f3ef;
+    font-family: 'Syne', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 3px 9px;
+    border-radius: 20px;
+    white-space: nowrap;
+    position: absolute;
+    right: 0vw
+}
+
 
 /* Fill the whole viewport when its aspect ratio is between 9/16 and 3/4 */
 @media screen and (max-aspect-ratio: 3/4) {
@@ -203,5 +691,232 @@ body{
     body{
         font-size: 15vw;
     }
+}
+/* Content pour la pop up qui a les infos approfondis des bullets points */
+.bottom-sheet {
+  position: absolute;
+  bottom: 35vh;
+  left: 2.5vw;
+  width: 95vw;
+  padding-bottom: 16px;
+  background: #1E1E1E;
+  border-radius: 16px 16px 0 0;
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.2);
+  max-height: 75vh;
+  display: flex;
+  flex-direction: column;
+  z-index: 101;
+
+  /* Caché : on ne montre que la barre du haut (60px) */
+  transform: translateY(calc(100vh - 60px));
+  transition: transform 0.4s ease;
+}
+
+.bottom-sheet.open {
+  transform: translateY(0);
+  bottom:0vh;
+}
+
+.bottom-sheet .content .word {
+  display: inline-block;
+}
+
+.handle-bar {
+  color: #1E1E1E;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+#handle-bar-text{
+    color: white;
+    font-weight: bold;
+    font-size: 40%;
+    top: 5vh;
+    position: absolute;
+}
+.bottom-sheet .content {
+    text-align: left;
+    color:white;
+    font-size: 30%;
+    height: calc(100vh - 80px); /* 100% du sheet moins la handle-bar */
+    overflow-y:auto;
+    padding: 16px;
+}
+
+.content > p {
+    margin-bottom: 5vh;
+}
+
+.content > p > b {
+    font-weight: bolder;
+    color:#FF5262;
+}
+
+.content > a {
+    color: white;
+    z-index: 10;
+    width: 50vw;
+    display: block;
+    margin-left: 12vw;
+    text-align: center;
+    background: #FF5262;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 9999px;
+    padding-left: 5vw;
+    padding-right: 5vw;
+    padding-top: 2vh;
+    padding-bottom: 2vh;
+    font-size: 66%;
+    border: 0.5em solid #8e3a3f;
+    position: relative;
+    bottom: 3vh;
+}
+
+#extended-content-title {
+    text-align: center;
+    color: #FF5262;
+    margin-top: 5vh;
+    font-weight: bold;
+    margin-bottom: 10vh;
+    font-size:110%;
+}
+
+.toggle-btn {
+    color: white;
+    background: none;
+    border: none;
+    font-size: 30px;
+    cursor: pointer;
+    transition: rotate 0.3s ease;
+    position: absolute;
+    top: -4vh;
+    width: 100vw;
+    height: auto;
+    left: -2vw;
+}
+
+.bottom-sheet.open .toggle-btn {
+  rotate: 180deg;
+}
+
+.bottom-sheet.done .toggle-btn {
+  rotate: 0deg !important;
+}
+
+#degrade-extended{
+    width: 100vw;
+    bottom: 0%;
+    position: absolute;
+    left: 0vw;
+}
+
+/* ---- Slide d'ouverture vers d'autres articles -----*/
+
+.last-page-content {
+    width: 94vw;
+    flex: 1;
+    padding-top: 7vh;
+    min-height: 0;
+    padding-left: 3%;
+    padding-right: 3%;
+}
+.author-credits {
+    font-size: 0.7rem;
+    color: #666;
+    margin-bottom: 15px;
+    line-height: 1.4;
+}
+
+/* Effet de surlignage sur les balises bold */
+#last-page b {
+    position: relative;
+    z-index: 1;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+
+.section-title {
+    font-size: 1.3rem;
+    margin: 15px 0 10px 0;
+}
+
+/* --- CARTES D'ENQUÊTES --- */
+.cards-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.enquete-card {
+    background-color: #262b33;
+    border-radius: 20px;
+    display: flex;
+    overflow: hidden;
+    height: 80px;
+    text-decoration: none;
+    color: white;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.enquete-card:hover {
+    background-color: #313741; 
+    transform: translateY(-2px);
+}
+
+.card-text {
+    flex: 1;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.card-text h3 {
+    font-size: 0.75rem;
+    line-height: 1.1;
+    margin: 0;
+    font-weight: bold;
+}
+
+.card-img {
+    width: 80px;
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+}
+
+/* --- Réseaux sociaux --- */
+.social-links {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.social-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    text-decoration: none;
+    color: #000000;
+    transition: opacity 0.2s ease;
+}
+
+.social-item:hover {
+    opacity: 0.7;
+}
+
+.social-icon {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
 }
 
