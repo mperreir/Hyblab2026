@@ -80,7 +80,8 @@ function lastWednesday() {
 
   today.setDate(today.getDate() - diff)
 
-  return today
+//   return today  // When we'll can get easily all movies in a week 
+    return new Date('2026-03-11'); 
 }
 
 
