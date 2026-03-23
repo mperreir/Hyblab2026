@@ -121,7 +121,7 @@ const Home = () => {
   const chosenCountRef = useRef(NB_ARTICLES);
 
   useEffect(() => {
-    fetch('/vivant/api/articles')
+    fetch('api/articles')
       .then(r => r.json())
       .then((data) => { setArticles(data); })
       .catch(err => console.error('Error fetching articles:', err));

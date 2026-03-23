@@ -639,7 +639,7 @@ const initPageProjet = async function () {
     }
   });
 
-  const response2 = await fetch("/rembobine/data/article.json");
+  const response2 = await fetch("data/article.json");
   const article = await response2.json();
   Institutionnel = article.Institutionnel;
   Mediatique = article.Mediatique;
