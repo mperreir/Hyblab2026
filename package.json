@@ -1,17 +1,18 @@
 {
-  "name": "HyblabRouting",
+  "name": "hyblabrouting",
   "version": "1.0.0",
-  "description": "",
+  "description": "Source code of all the projects of [Hyblab 2026]([HybLab by Ouest Médialab |](https://www.ouestmedialab.fr/hackathon/)). Hyblab 2026 is an interactive web content project organized by [Ouest Medialab](http://www.ouestmedialab.fr) in the city of Nantes (France) from March 9 to March 16, 2026.",
   "main": "server.js",
   "scripts": {
     "dev": "nodemon server.js",
     "start": "node server.js"
-  },
+  }
   "dependencies": {
     "@turf/turf": "^7.3.4",
     "cors": "^2.8.6",
     "csv-parser": "^3.2.0",
     "express": "^5.2.1",
+    "pm2": "^6.0.14",
     "node-fetch": "^3.3.2",
     "nodemon": "^3.1.14",
     "turf": "^3.0.14",
