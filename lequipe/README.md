@@ -8,5 +8,5 @@ Nom d'équipe : La VAR
 
 Participants : 
 
-- EDNA :Marie Baguelin, Juliette Matelot, Olivier Ahehehinnou
-- Polytech :  Yassine El Maghraoui, Moutassim Djodallah, Amine Tighiouart, Ayman Mellas, Denis-Marius Vladu
+- EDNA : Marie Baguelin, Juliette Matelot, Olivier Ahehehinnou
+- Polytech : Yassine El Maghraoui, Moutassim Djodallah, Amine Tighiouart, Ayman Mellas, Denis-Marius Vladu
