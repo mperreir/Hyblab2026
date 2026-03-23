@@ -1,207 +1,1028 @@
-/* ------- Important ! Please at least keep the last part of this CSS ----------- */
-/* ------- that adapts content width and height so that aspect ratio  ----------- */
-/* ------- is kept between 9/16 a,d 3/4 (portait orientation)         ----------- */
-
-/* Normalize margin and padding to ease elements positioning */
-*{
-    padding:0;
-    margin:0;
-}
-
-body{
-    background-color: black;
-    color: white;
-    overflow: hidden;   /* to avoid slider bugs on some browsers */
-    font-family: sans-serif;
-}
-
-/* -------------- Loader --------------*/
-#loader{
-    z-index: 2;
-    position:absolute;
-}
-
-#loader-img{
-    top:40%;
-    left:40%;
-    position: absolute;
-}
-
-#loader-text{
-    text-align: center;
-    font-size: 25%;
-    position: absolute;
-    top:60%;
-    width: 100%
-}
-/* -------------- End of Loader --------------*/
-
-/* Swiper slider. Need to fill the container */
-#mySwiper{
-    width: 100%;
-    height:100%;
-    position: absolute;
-}
-
-/* white navigation bullets */
-.swiper-pagination-bullet-active {
-    background-color: white !important;
-}
-
-/* the slides and the loader should fill the whole 9:16 zone */
-.swiper-wrapper section, #loader{
-    background-color: dodgerblue;
-    width: 100%;
-    height: 100%;
-}
-
-/* Most of the elements in this demo are absolute positioned with percentages */
-#first-slide header, #second-slide header{
-    text-align: center;
-    width: 100%;
-    top: 10%;
-    position: absolute;
-    font-size: 30%;
-    z-index: 2;
-}
-
-#logo-hyblab{
-    text-align: center;
-    width: 50%;
-    left: 50%; /* center the logo, in interaction with the negative margin-left */
-    top: 50%;
-    margin-left:-25%; /* this is half the width */
-    margin-top:calc(-7.5% * 9 / 16 ); /* margins are relative to the element width... :-( */
-    position: absolute;
-    font-size: 50%;
-    z-index: 2;
-    cursor: pointer;
-}
-
-/* Last slide image is centered */
-#img-fini{
-    width: 50%;
-    left: 50%; /* center the logo, in interaction with the negative margin-left */
-    top: 40%;
-    position: absolute;
-    margin-left:-25%; /* this is half the width */
-    margin-top:calc(-25% * 9 / 16 ); /* margins are relative to the element width... :-( */
-}
-
-main > section{
-    background-image: url('../img/background.svg');
-    background-size: 100% auto; /* background is full width and height is proportional to width */
-    background-position: bottom; /* background is bottom aligned */
-}
-
-/* Footer of last slide is at the bottom and content is centered */
-#first-slide footer{
-    bottom: 5%;
-    position: absolute;
-    box-sizing: border-box; /* So that padding is not added to width (and width: 100% works) */
-    width: 100%; /* could also use  width: calc(100% - 2em) if not using box-sizing */
-    font-size: 20%;
-    text-align: center;
-    padding: 1em;
-    background-color: rgba(0, 0, 0, 0.5);
+/* Allow long content to scroll vertically inside each slide */
+main{
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    background-color: var(--color-background);
 }
 
 
-/* ---------- Positioning of logos on the last slide -------------------- */
-/* here we have a contraint on the height of the logos (not the width)     */
-/* so we cannot use % and use em (which are proportional to the size of the */
-/* slide because of body's font size rule at the end of this CSS           */
-#bandeau {
-    width:100%;
-    position: absolute;
-    bottom: 0;
-    background-color: white;
-    font-size: 20%;
-  }
 
-  #bandeau li{
-    list-style-type: none;
-    display: inline-block;
-    vertical-align: middle;
-    margin: 0 0.5em;
-  }
+.title-image {
+  width: 100%;
+  height: auto;
+}
 
-  #bandeau img{
-    height: 2.5em;
-  }
+.c-post-media__caption{
+  text-align: center;
+  color: var(--color-gray);
+  font-size: 10px;
+}
 
-  #bandeau #hyblab{
-    margin: 1em auto;
-    height: 3em;
-    display: block;
-  }
 
-  #bandeau #cc, #bandeau #opensource
-  {
-    height: 1em;
-  }
+#main-content {
+  overflow: visible !important;
+}
 
-  #bandeau .stacked{
-    display:block;
-  }
 
-  #bandeau ul{
-    text-align: center;
-    padding: 0 0;
-    margin: 0.5em auto;
-  }
+.swiper-wrapper section {
+  overflow-y: auto;
+  overflow-x: hidden;
+  /* Évite les bugs de largeur */
+  position: relative;
+  /* Donne un point de référence */
+  height: 100%;
+  /* Important pour Swiper */
+}
 
-  #bandeau .institutionnel
-  {
-    height: 2em;
-  }
+.main-question {
+  text-align: center;
+  font-size: 30px;
+  pointer-events: none;
+  font-weight: bold;
+  position: sticky;
+  top: 0px;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  z-index: 999;
+  text-decoration-line:underline;
+  text-decoration-color: var(--color-dark-purple);
+  text-decoration-thickness: 4px;
+}
 
-/* ---------- Important media queries for easy responsive content :-) ----------------- */
-/* Whatever the device used, the content will be displayed full width and height if      */
-/* the aspect ratio is between 3/4 and 9/16. If not it is locked to either 3/4 or 9/16  */
+.c-post-header__title{
+  display: inline;
+  background: linear-gradient(
+    transparent 50%,
+    var(--color-purple) 50%
+  );
+
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  padding: 0 6px;
+}
+
+.main-question-text{
+  background: var(--color-purple);
+  text-align: center;
+  box-shadow: 0px 0px 10px rgba(0,0,0,0.3);
+  text-decoration: underline;
+  text-decoration-color: var(--color-dark-purple);
+  text-decoration-thickness: 5px;
+  padding: 10px;
+  padding-left:15%;
+  padding-right:15%;
+
+}
+.main-question{
+  padding-bottom: 200px;
+}
+.main-question-block{
+  position: absolute;
+  width: 130%;
+  height: 100px;
+}
+
+
+
+/* ---------- Popup overlay ---------- */
+#popup-overlay {
+
+  --animate-duration: 0.2s;
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  font-size: 16px;
+}
+
+#popup-overlay.popup-hidden {
+  display: none;
+}
+
+#popup-text {
+  font-size: 1.2em;
+  /* color | offset-x | offset-y | blur-radius */
+  font-weight: 100;
+}
+
+#popup-box {
+
+  --animate-duration: 0.2s;
+  background-image: url("../img/triangle-.svg");
+  background-size: cover;
+  background-position: bottom left;
+  background-repeat: no-repeat;
+  background-size: 70px, 70px;
+
+  padding: 1.5em 2em;
+  max-width: 80%;
+  text-align: left;
+  box-shadow: 0 0.2em 1em rgba(0, 0, 0, 0.4);
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+/* ---------- End of Popup overlay ---------- */
 
 /* When the aspect ratio is smaller that 3/4, display a 3/4 content */
-#container{
-    position: fixed; /* To set the size of the container to 100% of the visible viewport height AND for absolute positioning of child elements*/ 
-    height: 100%;   /* even on mobile devices with url or navigation bars */
-    margin-left: calc((100vw - 100 * 3vh / 4) / 2); /* Add black bands on left and right */
-    width: calc(100 * 3vh / 4); /* Force 3/4 aspect ratio */
+#container {
+  position: fixed;
+  /* To set the size of the container to 100% of the visible viewport height AND for absolute positioning of child elements*/
+  height: 100%;
+  /* even on mobile devices with url or navigation bars */
+  width: 100%;
+  top: 0;
+  left: 0;
 }
 
 /* We set a default font size here. It will be the base for all other font sizes */
 /* Here the font size is proportional to content width */
-body{
-    font-size: calc(15vh * 3 / 4);
+
+:root {
+  --color-white: #ffffff;
+  --color-transparent: #ffffff2d;
+  --color-dark-purple: #8772fa;
+  --color-purple: #d8d4ff;
+  --color-green: #1CB26B;
+  --color-light-green: #81E2AF;
+  --color-pink: #F7A6DE;
+  --color-light-pink: #F2D1E9;
+  --color-blue: #1F71DA;
+  --color-light-blue: #62A6EF;
+  --color-lighter-blue: #97c7fd;
+  --color-yellow: #FADD3D;
+  --color-light-yellow: #F7F6C6;
+  --color-red: #F14E20;
+  --color-black: #000c2d;
+  --color-dark-gray:#515151
+  --color-light-gray: #f5f5f5;
+  --color-gray: #687385;
+  --color-gray-variant: #dbdddc;
+  --color-background: #f5f7f9;
+  --color-text: #222222;
+  --color-border: #e5e5e5;
 }
 
-/* Fill the whole viewport when its aspect ratio is between 9/16 and 3/4 */
-@media screen and (max-aspect-ratio: 3/4) {
-    #container{
-        margin-left: 0; /* reset margin-left */
-        width: 100vw; /* content is full width (and full height because of the default rule for container height */
-    }
+body {
+  background-color: var(--color-light-gray);
+  color: var(--color-black);
+  overflow-y: auto;
+  overflow-x: hidden;
 
-    /* We set a default font size here. It will be the base for all other font sizes */
-    /* Here the font size is proportional to content width */
-    body{
-        font-size: 15vw;
-    }
+  font-size: 16px;
+  font-family: 'Inter', sans-serif;
 }
 
-/* The content is displayed at 9/16 If the aspect ratio is higher that 9/16  */ 
-@media screen and (max-aspect-ratio: 9/16) {
-    #container{
-        margin-left: 0; /* reset left margin */
-        width: 100vw;   /* content is full width */
-        margin-top: calc(-50 * 16vw / 9); /* move the content half the height to the top */
-        top:50%; /* then center it ! */
-        height: calc(100 * 16vw / 9); /* adjust height so that aspect ratio is 9/16 */
-    }
-
-    /* We set a default font size here. It will be the base for all other font sizes */
-    /* Here the font size is proportional to content width */
-    body{
-        font-size: 15vw;
-    }
+.wrapper {
+  padding-left: 7%;
+  padding-right: 7%;
 }
 
+article p {
+  text-align: left;
+}
+
+#announcement-bar-root {
+  background-color: var(--color-green);
+  color: var(--color-white);
+  font-weight: 100;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.gh-announcement-bar-content {
+  font-size: 14px;
+  font-family: 'Inter', sans-serif;
+  text-align: center;
+  margin-right: 10%;
+  /*marge pour la croix*/
+  margin-left: 10%;
+  /*marge pour la croix*/
+  margin-top: -5px;
+  margin-bottom: -5px;
+}
+
+#announcement-bar-root button {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--color-light-gray);
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.c-header,
+.c-tags-list {
+  font-family: 'Trebuchet MS';
+  background: var(--color-white);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.c-header__inner,
+.c-tags-list-wrap {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  justify-content: space-between;
+  padding: 10px 20px;
+  background-color: var(--color-white);
+}
+
+.c-post-header {
+    text-align: center;
+    background-color: white;
+    border: 1px solid rgb(228, 223, 223);
+    border-radius: 12px;
+    padding: 10px;
+    margin-bottom: 40px;
+}
+
+.c-post-header__excerpt {
+    text-align: center;
+}
+
+.c-post-header__title {
+    text-align: center;
+}
+
+.c-post-header__writter {
+    text-align: center;
+    color: #BAA2EA;
+}
+
+/*SLIDER HORIZONTAL POUR LES TAGS*/
+
+.c-tags-list-wrap {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  padding: 10 20px;
+}
+
+.c-tags-list {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 20px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+}
+
+.c-tags-list li {
+  white-space: nowrap;
+  /* empêche le texte de passer à la ligne */
+}
+
+/* masque dégradé sur les côtés */
+.c-tags-list-wrap::before,
+.c-tags-list-wrap::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 40px;
+  /* largeur du gradient */
+  pointer-events: none;
+  /* laisse passer le scroll */
+  z-index: 1;
+}
+
+.c-tags-list-wrap::before {
+  left: 0;
+  background: linear-gradient(to right, var(--color-white), transparent);
+}
+
+.c-tags-list-wrap::after {
+  right: 0;
+  background: linear-gradient(to left, var(--color-white), transparent);
+}
+
+/* optionnel : cacher la scrollbar sur certains navigateurs */
+.c-tags-list::-webkit-scrollbar {
+  display: none;
+}
+
+.c-post-header__excerpt {
+  color: var(--color-gray);
+}
+
+.c-logo {
+  flex-shrink: 0;
+}
+
+.c-logo__img {
+  width: 50px;
+  height: auto;
+}
+
+.c-nav-wrap {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  justify-content: space-between;
+}
+
+.c-nav--left {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.c-nav__link,
+.c-tags-list__link {
+  color: var(--color-gray);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.c-nav__link:hover,
+.c-tags-list__link:hover {
+  color: var(--color-black)
+}
+
+.c-nav__link.active,
+.c-tags-list__link.active {
+  color: var(--color-black)
+}
+
+.c-nav--right {
+  display: flex;
+  gap: 15px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.toggle-search-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--color-gray)
+}
+
+.toggle-search-button:hover {
+  color: var(--color-black)
+}
+
+.c-nav--right .c-nav__link {
+  color: var(--color-gray)
+}
+
+.c-nav--right .c-nav__link:hover {
+  color: var(--color-black)
+}
+
+.c-header__inner>.c-logo {
+  margin-right: 30px;
+}
+
+.c-nav-wrap {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.c-nav-wrap {
+  display: none;
+}
+
+.c-nav-toggle {
+  font-size: 25px;
+  background: none;
+  border: none;
+}
+
+/* menu mobile */
+
+@media (max-width:768px) {
+
+  /* ================== PARAMETRES DE LA GRILLE ================== */
+
+  .c-nav-wrap {
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    background: white;
+    padding: 20px;
+  }
+
+}
+
+.row {
+  height: auto;
+}
+
+.box,
+.boxCitation {
+  height: 100px;
+  width: 100px;
+}
+
+
+button {
+  font-size: 20%;
+  padding: 0.5em 1em;
+  cursor: pointer;
+}
+
+#map {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  margin-bottom: 50px;
+}
+
+/* =========== SOMMAIRE ==================*/
+
+.legende {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.page-container {
+    background-color: white;
+    border: 1px solid rgb(228, 223, 223);
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 40px;
+}
+
+.summary-container {
+  background-color: var(--color-dark-purple);
+  width: 50%;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  margin-left: -25px;
+}
+
+.summary-container p {
+  text-align: left;
+  margin: 7%;
+}
+
+.summary-container img {
+  margin: 7%;
+  margin-top: 0;
+  width: 30%;
+  height: auto;
+  transform: rotate(180deg);
+  cursor: pointer;
+  align-self: flex-end;
+}
+
+.summary {
+  display: grid;
+  background-color:var(--color-purple);
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.4s ease;
+  margin: 0 -25px;
+  margin-bottom: 20px;
+}
+
+.summary-animation {
+  overflow: hidden;
+  text-align: left;
+  box-sizing: border-box;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+
+}
+
+.summary h4 {
+  width: 60%;
+}
+
+.summary.is-open {
+  grid-template-rows: 1fr;
+}
+
+.summary.is-open div {
+  opacity: 1;
+  margin-bottom: 40px;
+  padding: 20px;
+}
+
+.impact-unfolding {
+  border: 1px solid #8772fa;
+  width: 40%;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  margin-left: auto;
+  margin-right: 8px;
+}
+
+.impact-unfolding p {
+    text-align: left;
+    margin: 7%;
+}
+
+.impact-unfolding img {
+    margin: 7%;
+    margin-top: 0;
+    width: 30%;
+    height: auto;
+    transform: rotate(180deg);
+    cursor: pointer;
+    align-self: flex-end;
+}
+
+.impact-explanation {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.4s ease;
+}
+
+.unfolding-container {
+  overflow: hidden;
+  background-color: white;
+  border: 1px solid rgb(228, 223, 223);
+  border-radius: 8px;
+  padding: 20px;
+  box-sizing: border-box;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  margin-bottom: -50px;
+}
+
+.impact-explanation p, .impact-explanation h2{
+    text-align: left;
+}
+
+.impact-explanation.is-open {
+  grid-template-rows: 1fr;
+  margin-bottom: 40px;
+}
+
+.impact-explanation.is-open div {
+  opacity: 1;
+}
+
+.impact-container {
+    display: grid;
+    /*background-image: url("../img/triangle+.svg");
+    background-position: bottom left;
+    background-repeat: no-repeat;
+    background-size: 40% 40%;*/
+    margin-bottom: 10px;
+}
+
+.impact-container img {
+    padding: 10px;
+    height: 50px;
+    width: auto;
+    aspect-ratio: 1 / 1;
+    opacity: 0.7;
+}
+
+.impact-l1 {
+    grid-row: 1;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.impact-l2 {
+    grid-row: 2;
+    padding: 0 10px;
+}
+
+
+#map > * {
+  flex: 1;
+}
+
+#map .box,
+#map .boxCitation {
+
+  --animate-duration: 0.1s;
+
+  display: flex;
+  aspect-ratio: 1 / 1;
+  width: 100%;
+  height: auto;
+}
+
+#map .text-box {
+  display: flex;
+
+  align-items: flex-start;
+
+  background-image: url("../img/triangle+.svg");
+  /*triangle +*/
+
+  background-size: cover;
+  background-position: bottom left;
+  background-repeat: no-repeat;
+  background-size: 30% 30%;
+}
+
+#map .text-box p {
+  padding: 10%;
+  margin-top: 0em;
+  font-size: 16px;
+  text-align: left;
+}
+
+#mapColum1 {
+  justify-content: left;
+}
+
+#mapColum1 {
+
+  justify-content: right;
+}
+
+#map .box button {
+  height: 50%;
+  width: auto;
+  aspect-ratio: 1 / 1;
+  border: none
+}
+
+#map button img {
+  height: 80%;
+  width: auto;
+  aspect-ratio: 1 / 1;
+  opacity: 0.7;
+}
+
+/* ================== COULEUR DES CASES ================== */
+
+/* JUDICIAIRE (VERT) */
+.jud {
+  background-color: var(--color-green);
+}
+
+.jud-highlight {
+    background: linear-gradient(
+        transparent 50%,
+        #1CB26B59 50%
+    );
+}
+
+.jud #popup-text, .jud.text-box {
+  text-shadow: var(--color-light-green) 1.5px 1.5px 0px;
+}
+
+#map .text-box.finished.jud {
+  background-image: url("../img/triangle_green.svg");
+}
+
+#map .boxCitation.jud {
+  background-image: url("../img/guillemet_green.svg");
+  box-sizing: border-box;
+  border: solid 2px var(--color-purple);
+}
+
+/* INSTITUTIONNEL (BLEU) */
+.inst {
+  background-color: var(--color-light-blue);
+}
+
+.inst-highlight {
+    background: linear-gradient(
+        transparent 50%,
+        #62A6EF59 50%
+    );
+}
+
+.inst #popup-text, .inst.text-box {
+  text-shadow: var(--color-lighter-blue) 1.5px 1.5px 0px;
+}
+
+#map .text-box.finished.inst {
+  background-image: url("../img/triangle_blue.svg");
+}
+
+#map .boxCitation.inst {
+  background-image: url("../img/guillemet_blue.svg");
+  box-sizing: border-box;
+  border: solid 2px var(--color-purple);
+}
+
+/* PUBLIC (ROSE) */
+.pub {
+  background-color: var(--color-pink);
+}
+
+.pub-highlight{
+    background: linear-gradient(
+        transparent 50%,
+        #F7A6DE59 50%
+    );
+}
+
+.pub #popup-text, .pub.text-box {
+  text-shadow: var(--color-light-pink) 1.5px 1.5px 0px;
+}
+
+#map .text-box.finished.pub {
+  background-image: url("../img/triangle_pink.svg");
+}
+
+#map .boxCitation.pub {
+  background-image: url("../img/guillemet_pink.svg");
+  box-sizing: border-box;
+  border: solid 2px var(--color-purple);
+}
+
+/* MEDIATIQUE (JAUNE) */
+.med {
+  background-color: var(--color-yellow);
+}
+
+.med #popup-text,
+.text-box.med {
+  text-shadow: var(--color-light-yellow) 1.5px 1.5px 0px;
+}
+
+.med-highlight {
+    background: linear-gradient(
+        transparent 50%,
+        #f7f6c6c1 50%
+    );
+}
+
+#map .text-box.finished.med{
+  background-image: url("../img/triangle_yellow.svg");
+}
+
+#map .boxCitation.med {
+  background-image: url("../img/guillemet_yellow.svg");
+  box-sizing: border-box;
+  border: solid 2px var(--color-purple);
+}
+
+/* ================== FOOTER ===================== */
+.footer {
+  margin-top: 50px;
+  padding: 30px;
+  padding-bottom: 70px;
+  text-align: center;
+  color: var(--color-gray);
+  background-color: var(--color-white);
+  border-color: var(--color-dark-purple);
+  border-width: 10px;
+  height: 50px;
+}
+
+#top{
+  z-index: 999;
+  bottom: 10px;
+  right: 10px;
+  width: 40px;
+  border: #000c2d;
+  position: fixed
+
+}
+
+.finished {
+  background-color: var(--color-gray-variant);
+}
+
+.text-box.finished {
+  text-shadow: var(--color-light-gray) 1.5px 1.5px 0px;
+}
+
+/* ================== CASES CITATIONS ET POSITION DU TEXTE ================== */
+.boxCitation {
+  background-color: var(--color-transparent);
+
+  justify-content: center;
+  align-items: center;
+  display: flex;
+
+  background-size: cover;
+  background-position: top left;
+  background-repeat: no-repeat;
+  background-size: 30% 30%;
+}
+
+/* ================== COULEUR DES CASES ACTIONS ================== */
+
+.box-action {
+  box-sizing: border-box;
+  border: solid 2px var(--color-purple);
+
+  background-color: var(--color-white);
+}
+
+.action {
+
+  background-color: var(--color-white);
+
+}
+
+#map .text-box.finished.box-action {
+  background-image: url("../img/RBB_Action_Symbole_carre.png");
+  background-size: 35%;
+  background-position: bottom right;
+}
+
+#popup-box.action {
+
+  background-image: url("../img/triangleAction-.svg");
+  white-space: pre-wrap;
+  box-sizing: border-box;
+  border: solid 1px var(--color-purple);
+
+}
+
+/* ========= BOUTON POUR REVENIR EN HAUT ============*/
+
+#top{
+
+}
+
+/* ========= ARTICLE ORIGINAL ============*/
+
+.original-article-discover {
+  border: 1px solid #8772fa;
+  background-color: white;
+  width: 40%;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.original-article-discover p {
+    text-align: left;
+    margin: 7%;
+}
+
+.original-article-discover img {
+    margin: 7%;
+    margin-top: 0;
+    width: 30%;
+    height: auto;
+    transform: rotate(180deg);
+    cursor: pointer;
+    align-self: flex-end;
+}
+
+.original-article-container {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.4s ease;
+  margin-bottom: 40px;
+}
+
+.original-article {
+  overflow: hidden;
+  box-sizing: border-box;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border: 1px solid #8772fa;
+  background-color: white;
+}
+
+.original-article-container a {
+  color: black !important;
+  font-weight: 400;
+  text-decoration: none;
+}
+
+.original-article-container.is-open {
+  grid-template-rows: 1fr;
+}
+
+.original-article-container.is-open div {
+  opacity: 1;
+  padding: 20px;
+}
+
+.logo-media {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin: 16px 0 0 0;
+}
+
+.logo-media img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.c-post-article__caption {
+  margin: 0;
+  font-size: 16px;
+  font-weight: bold;
+  color: var(--color-dark-gray);
+}
+
+/* ========= PAGE FINALE ============*/
+
+.finale-page {
+    display: none;
+}
+
+.bandeau {
+    margin: 0 -25px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    background-color: var(--color-purple);
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.3);
+    margin-bottom: 40px;
+}
+
+.code-article {
+    background-color: white;
+    border: 1px solid rgb(228, 223, 223);
+    border-radius: 12px;
+    padding: 15px;
+    margin-bottom: 40px;
+    display: flex;              
+    justify-content: center;   
+    align-items: center;        
+    flex-direction: column; 
+}
+
+.code-article img {
+    width: 90%;       
+    height: auto;
+    margin: 0;     
+}
+
+.conclusion {
+  border: 1px solid #8772fa;
+  background-color: white;
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  margin-bottom: 40px;
+  padding: 0 20px;
+}
+
+.other-articles {
+  border: 1px solid #8772fa;
+  background-color: white;
+  width: 60%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  margin-left: auto;
+  margin-right: 8px;
+  margin-bottom: 40px;
+  padding: 0 20px;
+}
+/*==============================Pop-up copie===================*/
+
+.copy-toast {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: white;
+  color: black;
+  padding: 10px 15px;
+  border-radius: 6px;
+  border: 1px solid #BAA2EA;
+  font-size: 14px;
+  opacity: 0;
+  animation: fadeInOut 1s ease forwards;
+  z-index: 9999;
+}
+
+@keyframes fadeInOut {
+  0% { opacity: 0; transform: translateY(10px); }
+  20% { opacity: 1; transform: translateY(0); }
+  80% { opacity: 1; }
+  100% { opacity: 0; transform: translateY(10px); }
+}

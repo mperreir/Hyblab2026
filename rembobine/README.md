@@ -1,15 +1,21 @@
 # Descriptif du projet
 
-Porteur de projet :
+Porteur de projet : Rembobine
 
-Sujet :
-
-Nom d'équipe :
+Nom d'équipe : La Bobine
 
 Participants : 
 
 - EDNA :
+    - Cylian Guibert
+    - Lorène Toubeaux
+    - Lilou Bravo
+    - Julie Louveau
 - Polytech :  
+    - Ryan Lamrous
+    - Mathis Gillaizeau
+    - Augustin Bernard
+    - Matis Hadet
 
 
 
