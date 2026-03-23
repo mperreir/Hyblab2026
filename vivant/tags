@@ -1,0 +1,41 @@
+# A tibble: 38 × 2
+   Étiquettes                           n
+   <chr>                            <int>
+ 1 ""                                 120
+ 2 "agriculture &amp; alimentation"    65
+ 3 "biodiversité"                      54
+ 4 "ESS"                               48
+ 5 "solidarité"                        45
+ 6 "engagement citoyen"                43
+ 7 "consommation responsable"          39
+ 8 "ruralité"                          38
+ 9 "entrepreneuriat"                   37
+10 "climat"                            36
+11 "circuit court"                     29
+12 "culture"                           29
+13 "economie circulaire"               29
+14 "coopération"                       27
+15 "pédagogie alternative"             27
+16 "innovation sociale"                22
+17 "mobilité"                          20
+18 "science"                           20
+19 "tiers-lieu"                        19
+20 "diversité"                         18
+21 "zéro-déchet"                       18
+22 "ecohabitat"                        16
+23 "DIY"                               15
+24 "santé environnement"               13
+25 "eau"                               12
+26 "ralentir"                          12
+27 "innovation technologique"          11
+28 "biomatériaux"                      10
+29 "numérique"                          9
+30 "autonomie énergétique"              8
+31 "energie renouvelable"               8
+32 "low-tech"                           8
+33 "economie d'énergie"                 6
+34 "autonomie alimentaire"              5
+35 "ecolieu"                            5
+36 "ecologie industrielle"              4
+37 "santé"                              4
+38 "fablab"                             2

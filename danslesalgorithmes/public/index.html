@@ -1,77 +1,630 @@
 <!DOCTYPE html>
-
 <html lang="fr">
+
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
-  <title>Hyblab 2025</title>
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/loadingio/loading.css@v2.0.0/dist/loading.css" >
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.2/anime.min.js"></script>
-  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-  <script src="js/slide1.js" defer></script>
-  <script src="js/slide2.js" defer></script>
-  <script src="js/index.js" defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Article sur l'algorithme de score de fraude de la CAF">
+    <title>Qui fraude la CAF ?</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://unpkg.com/scrollama"></script>
+    <script src="js/index.js" defer></script>
 </head>
+
 <body>
-    <!-- Le conteneur sert à vérouiller les proportions (aspect ratio) du contenu de la page (ici des slides) -->
-    <div id="container">
-      <!-- Le loader-->
-      <div id="loader">
-        <div id="loader-img" class="ld ld-ring ld-cycle"></div>
-        <p id="loader-text">Veuillez patienter...</p>
-      </div>
-      <div id="mySwiper" class="swiper">
-        <!-- le main est aussi le conteneur des différents slides (contenus à chaque fois dans des sections-->
-        <main class = "swiper-wrapper">
-            <section id="first-slide" class="swiper-slide">
-                <header>
-                    <h1 id="titre">Welcome to</h1>
-                </header>
-                
-                <img src="img/logo_hyblab.png" id="logo-hyblab" alt="logo hyblab">
+
+    <header class="top-bar">
+        <div class="logo"> <a href="https://danslesalgorithmes.net/"><img src="img/logo_algorithmes.png"
+                    alt="Logo de Dans Les Algorithmes" style="width:50%"></a></div>
+        <div class="search-box">
+            <span class="search-text">Recherche</span>
+            <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="2" width="20" height="20" rx="4" ry="4"></rect>
+                <circle cx="11" cy="11" r="4"></circle>
+                <line x1="14" y1="14" x2="18" y2="18"></line>
+            </svg>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <p class="sub-title">Article - Dans Les Algorithmes 2026</p>
+            <h1 class="main-title">Mais qui fraude à la CAF ?</h1>
+            <p>Qu'est-ce que le score de fraude de la Caisse d'Allocations Familiales ?</p>
+
+            <div class="tags">
+                <span class="tag"><span class="tag-text">#politiques publiques</span></span>
+                <span class="tag"><span class="tag-text">#transparence</span></span>
+            </div>
+        </div>
+
+        <div class="scroll-indicator">Faites défiler ↓</div>
+    </section>
+
+    <div id="scrolly">
+
+        <section class="scene">
+            <div class="bg-container">
+                <div class="bg-media" style="background-image: url('img/fleche.png');"></div>
+            </div>
+
+            <article>
+                <div style="height: 0dvh;"></div>
+                <div class="step">
+                    <div class="step-content">
+                        <p>Depuis 2010, la Caisse d'Allocations Familiales (CAF) utilise un algorithme pour évaluer le
+                            risque de fraude des allocataires.</p>
+                    </div>
+                </div>
+                <div style="height: 0dvh;"></div>
+            </article>
+
+            <article>
+                <div style="height: 50dvh;"></div>
+                <div class="step">
+                    <div class="step-content step-compact">
+                        <p>Depuis toutes les données qu'elle a à sa disposition, la CAF calcule ce qu'elle appelle un
+                            <strong>"score de risque de fraude"</strong> selon une note allant de 0 (le risque de fraude
+                            est faible) à 1 (le risque est maximum).
+                        </p>
+                    </div>
+                </div>
+                <div style="height: 0dvh;"></div>
+            </article>
+        </section>
+
+        <section class="scene">
+            <div class="bg-container">
+                <div class="bg-solid"
+                    style="background-color: rgba(252, 250, 212, 1); opacity: 0; transition: opacity 1s ease-in-out; position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+                </div>
+            </div>
+
+            <article>
+                <div style="height: 0dvh;"></div>
+
+                <div class="step step-uni step-moyen">
+                    <div class="step-content">
+                        <div class="quiz-container" id="quiz-1">
+                            <div class="quiz-header">
+                                <div class="quiz-badge">QUIZ</div>
+                                <p class="question">Selon vous, qui fraude à la CAF ?</p>
+                            </div>
+
+                            <div class="options">
+                                <button class="option-btn" data-correct="true"
+                                    data-original-text="Marion, mère isolée 3 enfants, aux revenus aléatoires qui bénéficie d'aides sociales."
+                                    data-answer="Effectivement. Pour la CAF, ce sont des profils comme Marion qui sont les plus à risque.">
+                                    Marion, mère isolée, 3 enfants, aux revenus aléatoires et qui bénéficie d'aides
+                                    sociales.
+                                </button>
+
+                                <button class="option-btn" data-correct="false"
+                                    data-original-text="Pierre qui fait un petit trafic de cartes vitales volées."
+                                    data-answer="Et non. Ce type de fraude est très rare et mal détecté par le score de la CAF.">
+                                    Pierre qui fait un petit trafic de cartes vitales volées.
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </section>
+
+        <section class="scene">
+            <div class="bg-container"
+                style="display: flex; align-items: center; justify-content: center; background-color: rgba(252, 250, 212, 1);">
+
+                <div class="hacker-container" id="hacker-animation" style="z-index: 2;">
+                    <img src="img/mere_hack.png" alt="Mère Marion" class="img-mere_hack">
+                    <img src="img/anonymous.png" alt="Masque Anonymous" class="img-anonymous">
+                </div>
+
+                <div class="fraude-indu-container" id="fraude-indu-animation">
+                    <img src="img/FRAUDES.png" class="img-fraudes" alt="Fraudes">
+                    <img src="img/Ligne.png" class="img-ligne" alt="Ligne barrée">
+                    <img src="img/INDUS.png" class="img-indus" alt="Indus">
+                </div>
+
+            </div>
+
+            <article>
+                <div style="height: 50dvh;"></div>
+
+                <div class="step step-anon-trigger" style="height: 10dvh; visibility: hidden;"></div>
+                <div style="height: 40dvh;"></div>
+
+                <div class="step">
+                    <div class="step-content">
+                        <p>Contrairement à ce qu'on pourrait croire, la fraude à la carte vitale et l'usurpation
+                            d'identité est quasiment inexistante en France, elle concerne moins d'une dizaine de cas par
+                            an et porte sur quelques millions d'euros seulement.</p>
+                    </div>
+                </div>
+
+                <div class="step step-hacker-start step-moyen">
+                    <div class="step-content">
+                        <p>Le score de risque de fraude de la CAF a beaucoup de mal à détecter ces cas. <strong>Pour la
+                                CAF, c'est Marion et des profils similaires aux siens qui sont le plus à même de
+                                frauder.</strong></p>
+                    </div>
+                </div>
+
+                <div class="step step-hacker-end step-moyen">
+                    <div class="step-content">
+                        <p>Pour mieux comprendre, écoutons le témoignage de Marion, inspiré de celui recueilli par
+                            l'émission <a
+                                href="https://www.radiofrance.fr/franceculture/podcasts/les-pieds-sur-terre/meres-isolees-sous-surveillance-3910568">"Les
+                                Pieds sur Terre" de France Culture</a></p>
+                    </div>
+                </div>
+
+                <div style="height: 0dvh;"></div>
+
+                <div class="step step-marion-photos">
+                    <div class="step-content" data-audio="audio/DLA-1.mp3">
+                        <div class="marion-photos"
+                            style="display: flex; flex-direction: row; align-items: center; justify-content: center; gap: 5%; max-height: 80dvh; width: 100%;">
+                            <img src="img/marion_présentation.png" alt="Présentation de Marion"
+                                style="width: 70%; max-height: 100%; object-fit: contain; border-radius: 0.6rem;">
+                            <video src="video/DLA%20-%201.mp4" muted playsinline
+                                style="width: 20%; max-height: 100%; object-fit: contain; border-radius: 0.6rem;"></video>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="height: 0dvh;"></div>
+
+                <div class="step step-marion-photos">
+                    <div class="step-content" data-audio="audio/DLA-2.mp3">
+                        <div class="marion-photos"
+                            style="display: flex; flex-direction: row; align-items: center; justify-content: center; gap: 5%; max-height: 80dvh; width: 100%;">
+                            <img src="img/marion_notification_caf.png" alt="Marion reçoit une notification"
+                                style="width: 70%; max-height: 100%; object-fit: contain; border-radius: 0.6rem;">
+                            <video src="video/DLA%20-%202.mp4" muted playsinline
+                                style="width: 20%; max-height: 100%; object-fit: contain; border-radius: 0.6rem;"></video>
+                        </div>
+                        <div>
+                            <img src="img/message Marion.png" alt="Marion reçoit une notification 2">
+                        </div>
+                    </div>
+                </div>
+
+                <div style="height: 0dvh;"></div>
+
+                <div class="step step-testimony">
+                    <div class="step-content">
+                        <div class="quiz-container" id="quiz-2">
+                            <div class="quiz-header">
+                                <div class="quiz-badge">QUIZ</div>
+                                <p class="question">Selon vous, pourquoi Marion est-elle contrôlée ? <br> <br> Plusieurs
+                                    réponses possibles.</p>
+                            </div>
+                            <div class="options">
+                                <button class="option-btn" data-correct="true">Elle a fait une erreur dans sa
+                                    déclaration de revenus mensuelle.</button>
+                                <button class="option-btn" data-correct="true">Son employeur a fait une erreur dans sa
+                                    télédéclaration des revenus de Marion.</button>
+                                <button class="option-btn" data-correct="true">L'un de ses ex-conjoints a versé avec
+                                    retard la pension alimentaire qu'il devait du mois précédent.</button>
+                            </div>
+                            <div class="feedback" id="feedback-2"></div>
+                            <button class="validate-btn" id="validate-btn-2">Valider mes réponses</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step step-fraudes step-compact">
+                    <div class="step-content step-moyen">
+                        <p><strong>Le contrôle est déclenché par un score calculé automatiquement.</strong></p>
+                    </div>
+                </div>
+
+                <div class="step step-ligne step-moyen">
+                    <div class="step-content">
+                        <p><strong>Il ne détecte pas une fraude intentionnelle,</strong> comme le laisse supposer le
+                            terme de fraude, <strong>mais un risque d'indu,</strong> c'est-à-dire le fait que la CAF ait
+                            versé trop d'argent à un bénéficiaire.</p>
+                    </div>
+                </div>
+
+                <div class="step step-indus step-moyen">
+                    <div class="step-content">
+                        <p>Ce que la CAF calcule, c'est le risque d'avoir perçu « 600 euros d'allocations en trop sur
+                            les 6 derniers mois ».</p>
+                    </div>
+                </div>
 
 
-                <!-- le footer sera rempli à partir de données lues dans un fichier Json-->
-                <footer>
-                  <p></p>
-                </footer>
-            </section>
-            <section id="second-slide" class="swiper-slide">
-                <header>
-                  <h1>This was...</h1>
-                </header>
-                <img id="img-fini" alt="logo hyblab" src="hyblab_2026.png">
-                <footer id="bandeau">
-                        <!-- Logo Hyblab -->
-                          <a href="http://www.hyblab.fr/"><img id="hyblab" src="logo_hyblab.png" alt="Hyblab DataSport"></a>
-                      
-                          <!-- Les organisateurs -->
-                          <ul>
-                            <li><a href="https://lecolededesign.com/"><img src="ecoles/logo_edna.png" alt="Ecole de Design Nantes Atlantique"></a></li>
-                            <li><a href="https://www.polytech.univ-nantes.fr/"><img src="ecoles/logo_polytech.png" alt="Polytech Nantes"></a></li>
-                            <!-- Les autres logos -->
-                          </ul>
-                          <ul>
-                            <li><a href="https://www.ouestmedialab.fr/"><img src="logo_oml.png" alt="Ouest Médialab"></a></li>
-                            <!-- Logos CC et opensource -->
-                            <li>
-                            <ul>
-                              <li class="stacked"><img id="cc" src="logo_cc.png" alt="Creative commons"></li>
-                              <li class="stacked"><img id="opensource" src="logo_opensource.png" alt="Open source"></li>
-                            </ul>
-                            </li>
-                            <!-- Logo de votre porteur de projet -->
-                            <li><a href="https://www.mon-porteur-de-projet.org"><img src="no-logo.png" alt="Logo de mon porteur de projet"></a></li>
-                            <!-- Partenaires institutionnels -->
-                            <li><a href="https://www.nantesmetropole.fr/"><img class="institutionnel" src="institutionnels/logo_nantesmetropole.png" alt="Nantes Métropole"></a></li>
-                          </ul>
-                </footer>
-            </section>
-        </main>
-        <div class="swiper-pagination"></div>
+                <div class="step step-testimony">
+                    <div class="step-content">
+                        <div class="quiz-container" id="quiz-3">
+                            <div class="quiz-header">
+                                <div class="quiz-badge">QUIZ</div>
+                                <p class="question">Que devrait faire Marion selon vous ? <br> <br> Plusieurs réponses
+                                    possibles.</p>
+                            </div>
+                            <div class="options">
+                                <button class="option-btn" data-correct="false">
+                                    Déclarer ses revenus au moment où elle les reçoit sur son compte en banque.
+                                </button>
+
+                                <button class="option-btn" data-correct="false">
+                                    Déclarer ses revenus au moment où elle est notifiée par son employeur.
+                                </button>
+                            </div>
+
+                            <div class="feedback" id="feedback-3"></div>
+                            <button class="validate-btn" id="validate-btn-3">Valider mes réponses</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="height: 0dvh;"></div>
+            </article>
+        </section>
+
+        <section class="scene">
+            <div class="bg-container">
+
+                <div class="target-container" id="target-animation">
+                    <img src="img/femme_cible.png" alt="Une femme ciblée par la CAF" class="img-femme">
+                    <img src="img/flechette.png" alt="Fléchette" class="img-flechette">
+                </div>
+            </div>
+
+            <article>
+                <div style="height: 0dvh;"></div>
+
+                <section class="scene">
+                    <div class="bg-container">
+                        <div class="bg-media" style="background-image: url('img/aides%20sociales.png'); filter: none;">
+                        </div>
+                    </div>
+
+                    <article>
+                        <div style="height: 50dvh;"></div>
+
+                        <div class="step step-compact">
+                            <div class="step-content">
+                                <p>Mais alors quand doit-elle déclarer sa pension alimentaire reçue en retard ?</p>
+                            </div>
+                        </div>
+
+                        <div class="step step-compact">
+                            <div class="step-content">
+                                <p><strong>Le problème est que l'algorithme considère un indu comme une fraude.</strong>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="step step-compact">
+                            <div class="step-content">
+                                <p>Dans cette situation, <strong>nous ne sommes pas du tout dans ce que l'imaginaire
+                                        politique appelle de la fraude sociale.</strong>...</p>
+                            </div>
+                        </div>
+
+                        <div style="height: 50dvh;"></div>
+                    </article>
+                </section>
+
+                <section class="scene">
+                    <div class="bg-container"
+                        style="display: flex; align-items: center; justify-content: center; background-color: transparent; pointer-events: none;">
+                        <div class="spheres-container" id="spheres-animation">
+                            <img src="img/allocataires_caf.png" alt="Allocataires de la CAF" class="img-caf">
+                            <img src="img/meres_isolees.png" alt="Mères isolées 14%" class="img-meres">
+                            <img src="img/Bulle3.png" alt="Bulle 3" class="img-bulle3">
+                        </div>
+                    </div>
+
+                    <article>
+                        <div class="step step-caf" style="height: 70dvh;">
+                            <div class="step-content">
+                                <p>Si l'on en croit le score de risque de fraude de la CAF, les mères isolées sont
+                                    celles qui sont parmi les publics les plus à même de frauder la CAF :</p>
+                            </div>
+                        </div>
+                        <div class="step step-meres" style="height: 70dvh;">
+                            <div class="step-content">
+                                <p>si elles ne représentent que 14% des allocataires en 2024,</p>
+                            </div>
+                        </div>
+                        <div class="step step-bulle3" style="height: 70dvh;">
+                            <div class="step-content">
+                                <p>elles représentent 40% des plus hauts scores de risque de fraude selon l'algorithme
+                                    de la CAF.</p>
+                            </div>
+                        </div>
+                    </article>
+                </section>
+
+                <div class="step step-femme-show step-compact">
+                    <div class="step-content">
+                        <p>De nombreux critères influent sur le score de risque de fraude de la CAF.<br>Parmi les
+                            principaux : <br>
+                            - Le fait d'avoir des <strong>revenus faibles</strong>.<br>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="step step-femme-show step-compact">
+                    <p>- Le fait de bénéficier de <strong>certaines prestations sociales</strong> comme l'AAH.<br></p>
+                </div>
+
+                <div class="step step-femme-show step-compact">
+                    <p>- Le fait de recevoir <strong>une pension alimentaire</strong> (qu'elle ait été touchée ou
+                        non).<br></p>
+                </div>
+
+                <div class="step step-femme-show step-compact">
+                    <p>- Le fait de <strong>toucher plus de 3 prestations sociales</strong> ou de <strong>toucher plus
+                            de 200 euros d'allocations par mois</strong>.<br></p>
+                </div>
+
+                <div class="step step-flechette-hit">
+                    <div class="step-content">
+                        <p>La conséquence, c'est que ce sont les personnes les plus précaires comme Marion,
+                            <strong>celles qui accumulent des critères de précarité</strong>, qui vont être surciblées
+                            et signalées comme à <strong>risque de frauder la CAF</strong>.
+                        </p>
+                    </div>
+                </div>
+                <div style="height: 100dvh;"></div>
+            </article>
+        </section>
+        <div style="height: 100dvh;"></div>
+        <section class="scene">
+            <article>
+                <div class="step">
+                    <div class="step-content" data-audio="audio/DLA-4.mp3">
+                        <div
+                            style="display: flex; flex-direction: row; align-items: center; justify-content: center; gap: 5%; max-height: 80dvh; width: 100%;">
+                            <img src="img/femme_embetee.png" alt="Une femme entourée par deux hommes"
+                                style="width: 70%; max-height: 100%; object-fit: contain; border-radius: 0.6rem;">
+                            <video src="video/DLA%20-%204.mp4" muted playsinline
+                                style="width: 20%; max-height: 100%; object-fit: contain; border-radius: 0.6rem;"></video>
+                        </div>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-content">
+                        <p>
+                            Effectivement, les mères isolées, qui se voient couper leurs aides
+                            pour des indus aux montants très faibles et subissent des contrôles
+                            répétés et envahissants, sont aujourd'hui désignées comme les
+                            principales fraudeuses de la CAF.
+                        </p>
+                    </div>
+                </div>
+                <div class="step step-argent-trigger">
+                    <div class="step-content">
+                        <div id="animation-argent" class="is-hidden">
+                            <img src="img/marion_perte_argent.png" alt="Marion atterrée d'avoir perdu ses aides"
+                                id="marion-argent">
+                            <img src="img/argent_perdu.png" alt="Une liasse de billets qui s'envolent" id="argent">
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </section>
+
+        <section class="scene">
+
+            <article>
+                <div style="height: 70dvh;"></div>
+
+                <div class="step">
+                    <div class="step-content">
+                        <p>Reposons la question...</strong></p>
+                    </div>
+
+                    <div class="step-content">
+                        <div class="quiz-container" id="quiz-4">
+                            <div class="quiz-header">
+                                <div class="quiz-badge">QUIZ</div>
+                                <p class="question">Selon vous, qui fraude à la CAF ?</p>
+                            </div>
+
+                            <div class="options">
+                                <button class="option-btn" data-correct="false"
+                                    data-original-text="Les bénéficiaires d'aides sociales comme Marion."
+                                    data-answer=" Et non.">
+                                    Les bénéficiaires d'aides sociales comme Marion.
+                                </button>
+
+                                <button class="option-btn" data-correct="true"
+                                    data-original-text="Les employeurs qui ne font pas toutes les déclarations sociales nécessaires."
+                                    data-answer="Effectivement.">
+                                    Les employeurs qui ne font pas toutes les déclarations sociales nécessaires.
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </section>
+        <section class="scene">
+            <div class="bg-container" style="background-color: rgba(252, 250, 212, 1);">
+                <div id="box-fraude">
+                    <img src="img/batiment.png" id="batiment" alt="Un bâtiment symbolisant le monde l'entreprise">
+                    <img src="img/fraude.png" id="fraude-logo" alt="Une marque de tampon avec le mot fraude">
+                </div>
+            </div>
+            <article>
+                <div class="step ">
+                    <div class="step-content">
+                        <p>Selon le Haut Conseil du financement de la protection sociale, la part des titulaires de
+                            minima sociaux dans la fraude totale est faible. <strong>La fraude au RSA provenant des
+                                allocataires représente 1,5 milliard d'euros sur l'ensemble de la fraude
+                                évaluée.</strong></p>
+                    </div>
+                </div>
+
+                <div class="step ">
+                    <div class="step-content">
+                        <p>En fait, l'<strong>essentiel des fraudes sociales est le fait des entreprises.</strong> 6,9
+                            milliards de cotisations seraient éludées du fait du travail dissimulé par les entreprises
+                            et les travailleurs indépendants.</p>
+                    </div>
+                </div>
+            </article>
+        </section>
+        <section class="scene">
+            <div class="bg-container" style="background-color: rgba(252, 250, 212, 1);">
+                <div id="box-loupe">
+                    <img src="img/fraude%20sociale_.png" id="fraude-sociale"
+                        alt="Un groupe de personnes symbolisant l'ensemble des allcoataire de la CAF">
+                    <img src="img/loupe.png" id="loupe"
+                        alt="Une loupe grossissante qui se déplace des billets vers les personnes">
+                    <img src="img/fraude%20fiscale%20bitmap.png" id="fraude-fiscale" alt="Une liasse de billets">
+                </div>
+            </div>
+
+            <article>
+
+                <div class="step step-loupe-droite">
+                    <div class="step-content">
+                        <p>Ce que montrent ces chiffres, c'est que <strong>ce ne sont pas les plus pauvres qui fraudent
+                                le plus,</strong> contrairement à ce que cherche à montrer le score de risque de fraude
+                            de la CAF.</p>
+                    </div>
+                </div>
+
+                <div class="step step-loupe-gauche">
+                    <div class="step-content">
+                        <p>La lutte contre la fraude sociale des allocataires est moins pertinente que la lutte contre
+                            les cotisations dissimulées. De plus <strong>lutter contre la fraude sociale est bien moins
+                                efficace que lutter contre la fraude fiscale (évaluée à plus de 100 milliards
+                                d'euros).</strong></p>
+                    </div>
+                </div>
+            </article>
+        </section>
+
+        </article>
+        </section>
+
+        <section class="scene">
+            <article>
+                <div style="height: 100dvh;"></div>
+
+                <div class="step">
+                    <div class="step-content" data-audio="audio/DLA-5.mp3">
+                        <div
+                            style="display: flex; flex-direction: row; align-items: center; justify-content: center; gap: 5%; max-height: 80dvh; width: 100%;">
+                            <img src="img/marion_présentation.png" alt="Présentation de Marion"
+                                style="width: 70%; max-height: 100%; object-fit: contain; border-radius: 0.6rem;">
+                            <video src="video/DLA%20-%205.mp4" muted playsinline
+                                style="width: 20%; max-height: 100%; object-fit: contain; border-radius: 0.6rem;"></video>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="height: 80dvh;"></div>
+            </article>
+        </section>
+
+        <section class="scene">
+            <article>
+                <div class="step step-moyen">
+                    <div class="step-content">
+                        <p>25 associations, dont la Ligue des Droits de l'Homme, La Quadrature du Net ou Amnesty
+                            International, ont déposé un recours au Conseil d'État pour faire reconnaître l'illégalité
+                            de l'algorithme utilisé par la CAF.</p>
+                    </div>
+
+                    <div class="step-content">
+                        <p>Pour le Défenseur des droits, le score de risque de fraude de la CAF produit un surcontrôle
+                            des populations les plus précaires et une forme de discrimination fondée sur la
+                            vulnérabilité économique.</p>
+                    </div>
+                </div>
+
+                <div class="images-container step-compact">
+                    <div class="image-side left">
+                        <img src="img/doigts_gauche.png" alt="doigt qui pointe">
+                    </div>
+
+                    <div class="image-center">
+                        <img src="img/logo_caf.png" alt="CAF">
+                    </div>
+
+                    <div class="image-side right">
+                        <img src="img/doigts_droite.png" alt="doigt qui pointe">
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-content">
+                        <p>L'algorithme de score de risque de fraude de la CAF ne fait qu'aller chercher là où les
+                            prestations sont complexes et multiples. Il ne cherche qu'à détecter des indus plutôt que
+                            des fraudes, tout en automatisant une surveillance invasive de l'ensemble des allocataires.
+                        </p>
+                    </div>
+
+                    <div class="step-content">
+                        <p>Le Conseil de l'Europe, qui a compris que ces formes de ciblage dans les algorithmes
+                            institutionnels tendent à discriminer certains publics, invite à les abandonner pour
+                            renforcer une sélection aléatoire des bénéficiaires à contrôler.</p>
+                    </div>
+                </div>
+
+                <div style="height: 20dvh;"></div>
+            </article>
+        </section>
+
     </div>
-  </div>
+
+    <section class="credits">
+        <h2>Sources</h2>
+        <p>Hubert Guillaud, <a href="https://lafabrique.fr/les-algorithmes-contre-la-societe/">Les algorithmes contre la
+                société</a>, La Fabrique, 2025.</p>
+        <p>Hubert Guillaud, <a href="https://lafabrique.fr/les-algorithmes-contre-la-societe/">Coincés dans les indus de
+                la CAF</a>, 29/01/2026.</p>
+        <p>Changer de Cap, <a href="https://changerdecap.net/2022/02/24/dossier/">Le contrôle (social) de la CAF contre
+                les droits</a>, février 2022.</p>
+        <p><a href="https://www.laquadrature.net/caf/">Les articles de La Quadrature du Net sur la CAF</a></p>
+        <p>Le dossier du <em>Monde</em> sur les algorithmes de la CAF : <a
+                href="https://www.lemonde.fr/les-decodeurs/visuel/2023/12/04/comment-l-algorithme-de-la-caf-predit-si-vous-etes-a-risque-de-frauder_6203836_4355770.html">Comment
+                l'algorithme de la CAF prédit si vous êtes « à risque » de frauder</a></p>
+        <p>Lighthouse Reports : <a
+                href="https://www.lighthousereports.com/methodology/how-we-investigated-frances-mass-profiling-machine/">How
+                We Investigated France's Mass Profiling Machine</a></p>
+        <p>Publications du <a
+                href="https://www.caf.fr/professionnels/nous-connaitre/presentation/le-comite-d-ethique">Comité
+                d'éthique de la CAF</a> et du <a
+                href="https://caf.fr/professionnels/etudes-et-international/donnees-et-outils">code des algorithmes de
+                la CAF</a>.</p>
+        <p>Émission : <a
+                href="https://www.radiofrance.fr/franceculture/podcasts/les-pieds-sur-terre/meres-isolees-sous-surveillance-3910568">Mères
+                isolées sous surveillance</a>, Les pieds sur Terre, France Culture, septembre 2025.</p>
+    </section>
+
+    <footer id="bandeau">
+        <a href="http://www.hyblab.fr/"><img id="hyblab" src="logo_hyblab.png" alt="Hyblab DataSport"></a>
+
+        <ul>
+            <li><a href="https://lecolededesign.com/"><img src="ecoles/logo_edna.png"
+                        alt="Ecole de Design Nantes Atlantique"></a></li>
+            <li><a href="https://www.polytech.univ-nantes.fr/"><img src="ecoles/logo_polytech.png"
+                        alt="Polytech Nantes"></a></li>
+        </ul>
+        <ul>
+            <li><a href="https://www.ouestmedialab.fr/"><img src="logo_oml.png" alt="Ouest Médialab"></a></li>
+            <li><img id="cc" src="logo_cc.png" alt="Creative commons"></li>
+            <li><img id="opensource" src="logo_opensource.png" alt="Open source"></li>
+            <li><a href="https://danslesalgorithmes.net/"><img src="img/logo_dla.png"
+                        alt="Logo de Dans Les Algorithmes"></a></li>
+            <li><a href="https://www.nantesmetropole.fr/"><img class="institutionnel"
+                        src="institutionnels/logo_nantesmetropole.png" alt="Nantes Métropole"></a>
+            </li>
+        </ul>
+    </footer>
+
 </body>
+
 </html>

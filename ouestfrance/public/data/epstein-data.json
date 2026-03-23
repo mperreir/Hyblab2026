@@ -1,0 +1,202 @@
+{
+  "imagePath": "img/epstein.png",
+  "hotspots": [
+    {
+      "id": "ordinateur",
+      "article": {
+        "tag": "Partie 1 · Logistique & Archives",
+        "objectImage": "data/images/1_ordinateur.png",
+        "title": "La Epstein Library",
+        "description": "Ordinateur permettant d'accéder au portail officiel du ministère américain de la Justice qui héberge désormais plus de 3,5 millions de documents déclassifiés. Ce simple champ de recherche est la porte d'entrée d'une véritable mine d'or pour les enquêteurs, révélant des emails, des relevés bancaires et des carnets de vol autrefois secrets.",
+        "link": "https://www.ouest-france.fr/monde/etats-unis/jeffrey-epstein/affaire-epstein-comment-consulter-les-fichiers-trois-questions-pour-mieux-comprendre-les-enjeux-de-leur-publication-49899192-08bd-11f1-8d8f-93b36c1239ba",
+        "articleHeadline": "Affaire Epstein : comment consulter les fichiers ? Trois questions pour mieux comprendre les enjeux de leur publication"
+      }
+    },
+    {
+      "id": "avion",
+      "article": {
+        "tag": "Partie 1 · Logistique & Archives",
+        "objectImage": "data/images/2_lolita_express.png",
+        "title": "Le « Lolita Express » — N908JE",
+        "description": "Reproduction miniature d'un avion aujourd'hui à l'abandon en Géorgie, le tristement célèbre « Lolita Express ». Véritable pivot logistique du trafic sexuel de Jeffrey Epstein, ce Boeing 727 a sillonné le ciel pendant deux décennies, reliant les élites de New York aux rivages secrets des Îles Vierges.",
+        "iframeSrc": "https://www.ultimedia.com/deliver/generic/iframe/mdtk/01124706/zone/1/src/3lmlkfz"
+      }
+    },
+    {
+      "id": "lettre",
+      "article": {
+        "tag": "Partie 2 · Impunité",
+        "objectImage": "data/images/3_lettre_procureur.jpeg",
+        "title": "La lettre de dérogation du procureur Vincent Frazer (2012)",
+        "description": "Ce courrier, daté du 25 juillet 2012 et frappé du sceau du procureur général Vincent Frazer, est bien plus qu'une simple formalité administrative : c'est l'acte qui a définitivement brisé les chaînes du milliardaire. Par cette lettre, la justice américaine a balayé l'obligation légale du préavis de 21 jours, accordant à Jeffrey Epstein un régime d'exception lui permettant de s'envoler pour Paris ou Manhattan avec une simple notification de 24 heures.",
+        "link": "https://www.ouest-france.fr/monde/etats-unis/jeffrey-epstein/info-ouest-france-jeffrey-epstein-beneficiait-dun-passe-droit-de-la-justice-pour-ses-voyages-internationaux-8a06dbc2-1172-11f1-ac20-ad3e04eb72b3",
+        "articleHeadline": "INFO OUEST-FRANCE. Jeffrey Epstein bénéficiait d'un passe-droit de la justice américaine pour ses voyages internationaux"
+      }
+    },
+    {
+      "id": "globe",
+      "article": {
+        "tag": "Partie 1 · Logistique & Archives",
+        "objectImage": "data/images/4_globe_terrestre.png",
+        "title": "Le globe terrestre",
+        "description": "Son réseau ne connaissait aucune frontière, des rivages des Caraïbes aux centres financiers de Londres et Paris, en passant par la Norvège.",
+        "link": "https://www.ouest-france.fr/monde/etats-unis/jeffrey-epstein/infographies-jeffrey-epstein-lhomme-qui-tenait-le-monde-dans-sa-toile-e3a93fe0-13f1-11f1-8725-6cea811c3c37",
+        "articleHeadline": "INFOGRAPHIES. Jeffrey Epstein : l'homme qui tenait le monde dans sa toile"
+      }
+    },
+    {
+      "id": "statue",
+      "article": {
+        "tag": "Partie 4 · Secrets financiers",
+        "objectImage": "data/images/5_giacometti_statue.png",
+        "title": "La « Grande figure » d'Alberto Giacometti",
+        "description": "Cette sculpture de bronze élancée est le pivot d'une transaction financière qui a atteint plus de 17 millions de livres sterling en 2017. Vendue par un trust contrôlé par Jeffrey Epstein, cette œuvre a certainement servi à alimenter un montage complexe de « poupées russes » financières impliquant directement Jack Lang et sa fille Caroline.",
+        "link": "https://www.ouest-france.fr/monde/etats-unis/jeffrey-epstein/enquete-lart-les-trusts-et-les-millions-les-coulisses-du-montage-financier-qui-lie-les-lang-a-la-galaxie-epstein-5f525dae-1544-11f1-8725-6cea811c3c37",
+        "articleHeadline": "ENQUÊTE. L'art, les trusts et les millions : les coulisses du montage financier qui lie les Lang à la galaxie Epstein"
+      }
+    },
+    {
+      "id": "chapelle",
+      "article": {
+        "tag": "Partie 2 · Réseau parisien",
+        "objectImage": "data/images/6_photo_villette.png",
+        "title": "La photo de la chapelle du château de Villette",
+        "description": "Sur cette photo inédite, on aperçoit Jeffrey Epstein s'amusant avec une mystérieuse invitée au cœur de la petite chapelle du château de Villette. Ce domaine majestueux du Val-d'Oise, célèbre pour avoir servi de décor au film Da Vinci Code, a failli devenir une véritable base isolée, calquée sur le modèle de son île privée de Little Saint James.",
+        "link": "https://www.ouest-france.fr/monde/etats-unis/jeffrey-epstein/info-ouest-france-jeffrey-epstein-voulait-soffrir-le-chateau-de-da-vinci-code-a-une-heure-de-paris-c370d2e2-0e33-11f1-b929-abb85d5fd4cd",
+        "articleHeadline": "INFO OUEST-FRANCE. Jeffrey Epstein voulait s'offrir le château de Da Vinci Code, à une heure de Paris"
+      }
+    },
+    {
+      "id": "shoes",
+      "article": {
+        "tag": "Partie 2 · Réseau parisien",
+        "objectImage": "data/images/7_paire_chaussure_.png",
+        "title": "Une paire de chaussures de ville (pointure 9)",
+        "description": "Cette paire de chaussures de ville, précisément de pointure 9, cache derrière son apparente banalité l'un des rouages les plus secrets de la réintégration d'Epstein dans la haute société. Ce cadeau, destiné au diplomate norvégien Terje Rød-Larsen, était géré directement depuis les bureaux officiels des Nations unies par son collaborateur français, Fabrice Aidan.",
+        "link": "https://www.ouest-france.fr/monde/etats-unis/jeffrey-epstein/a-lonu-fabrice-aidan-ce-protecteur-diplomatique-francais-qui-a-permis-le-retour-de-jeffrey-epstein-3b9a6f84-10b5-11f1-8e97-58d10b9feb4d",
+        "articleHeadline": "À l'ONU, Fabrice Aidan, ce protecteur diplomatique français qui a permis le retour de Jeffrey Epstein"
+      }
+    },
+    {
+      "id": "valise",
+      "article": {
+        "tag": "Partie 3 · Système Brunel",
+        "objectImage": "data/images/8_valise.png",
+        "title": "La valise rigide de mannequin",
+        "description": "Une valise, une adolescente de 15 ans, et le rêve parisien qui tourne au cauchemar. En 1988, une émission dévoilait les rouages d'un système de prédation que personne ne voulait voir. Trente ans avant l'onde de choc mondiale, le piège de Jean-Luc Brunel était déjà en marche : un engrenage de dettes et de dépendance absolue imposé à de jeunes mannequins venues tenter leur chance à Paris.",
+        "link": "https://www.ouest-france.fr/monde/etats-unis/jeffrey-epstein/affaire-epstein-un-reportage-de-1988-montre-jean-luc-brunel-au-cur-du-systeme-parisien-cc45adbc-0cb1-11f1-a992-d10c268d755d",
+        "articleHeadline": "Affaire Epstein : un reportage de 1988 sur des jeunes mannequins montre Jean-Luc Brunel au cœur du système parisien"
+      }
+    },
+    {
+      "id": "livre",
+      "article": {
+        "tag": "Partie 3 · Preuves du système",
+        "objectImage": "data/images/9_close_up.jpg",
+        "title": "Le livre « Close-Up »",
+        "description": "Un ouvrage que Thysia Huisman a elle-même écrit pour mettre des mots sur son calvaire de 26 ans au sein du système de prédation sexuelle parisien. Son témoignage permet de découvrir le processus de reconstruction de cette ancienne mannequin, qui confie que l'acte d'écrire a été le véritable point de départ de sa guérison.",
+        "link": "https://www.ouest-france.fr/monde/etats-unis/jeffrey-epstein/affaire-epstein-jai-ete-droguee-et-violee-a-paris-le-temoignage-glacant-dune-ancienne-mannequin-ba510ca0-0bd5-11f1-b839-4d59eb76df60",
+        "articleHeadline": "ENTRETIEN. « J'ai été droguée et violée à Paris » : le témoignage glaçant d'une ex-mannequin dans l'affaire Epstein"
+      }
+    },
+    {
+      "id": "brunel",
+      "article": {
+        "tag": "Partie 3 · Système Brunel",
+        "objectImage": "data/images/10_photo_jean_luc.jpg",
+        "title": "La photo de Jean-Luc Brunel",
+        "description": "Assis, l'air paisible, calme, Jean-Luc Brunel a la prestance des hommes de pouvoir. Il déclare lui-même avoir vécu « une vie merveilleuse où tout semblait possible ». Derrière l'image, une ordonnance de trente pages raconte une autre histoire : des châteaux transformés en lieux de crimes, des passeports confisqués, des filles de 12 ans offertes comme cadeaux d'anniversaire.",
+        "link": "https://www.ouest-france.fr/monde/etats-unis/jeffrey-epstein/exclusif-mineures-chateaux-diners-comment-le-reseau-epstein-a-pu-operer-en-france-en-toute-impunite-grace-a-brunel-d7b3de9e-1b11-11f1-9fa1-ca7616976f61",
+        "articleHeadline": "Affaire Epstein : de Paris aux îles Vierges, l'effroyable mécanique Brunel racontée dans une pièce judiciaire inédite"
+      }
+    },
+    {
+      "id": "eiffel",
+      "article": {
+        "tag": "Partie 2 · Réseau parisien",
+        "objectImage": "data/images/11_APPART_PARIS.avif",
+        "title": "Tour Eiffel miniature — l'appartement parisien d'Epstein",
+        "description": "C'est au cœur du Paris des années 2010, qu'entre deux cours de droit à la Sorbonne, une jeune étudiante gérait l'un des réseaux de prédation les plus secrets. Ancienne athlète olympique russe, elle a transformé sa vie d'étudiante en base arrière pour Jeffrey Epstein, promettant de « trouver de belles femmes » dans la ville Lumière.",
+        "link": "https://www.ouest-france.fr/monde/etats-unis/jeffrey-epstein/info-ouest-france-comment-une-etudiante-russe-a-paris-identifiait-et-recrutait-des-jeunes-femmes-pour-epstein-3531bee0-0a6b-11f1-8d8f-93b36c1239ba",
+        "articleHeadline": "INFO OUEST-FRANCE. Comment une étudiante russe identifiait et recrutait des jeunes femmes pour Jeffrey Epstein à Paris"
+      }
+    },
+    {
+      "id": "passport",
+      "article": {
+        "tag": "Partie 4 · Secrets financiers",
+        "objectImage": "data/images/12_PASSEPORT_AUTRICHIEN.png",
+        "title": "Le passeport de « Marius Robert Fortelni »",
+        "description": "Ce document, exhumé d'un coffre-fort de Manhattan au milieu de diamants et de milliers de dollars, est un passeport autrichien au nom de Marius Robert Fortelni. Si l'identité appartient à un citoyen bien réel, la photographie, elle, affiche sans équivoque le visage de Jeffrey Epstein. Mais pourquoi ?",
+        "link": "https://www.ouest-france.fr/monde/etats-unis/jeffrey-epstein/quels-secrets-cache-le-faux-passeport-autrichien-trouve-dans-lappartement-depstein-cdbe6070-09a1-11f1-8f27-f38523081a88",
+        "articleHeadline": "Affaire Epstein : quels secrets le faux passeport autrichien trouvé dans l'appartement du criminel sexuel cache-t-il ?"
+      }
+    },
+    {
+      "id": "cheque",
+      "article": {
+        "tag": "Partie 4 · Secrets financiers",
+        "objectImage": "data/images/13_CHEQUIER.png",
+        "title": "Le carnet de chèques",
+        "description": "Il traîne là, anodin, comme dans n'importe quel foyer. Mais les chèques qu'il contient ne règlent pas des factures ordinaires : mariages arrangés, transferts opaques, influence politique achetée à prix d'or. Comment cet édifice financier a-t-il pu échapper si longtemps à la vigilance des autorités bancaires internationales ?",
+        "link": "https://www.ouest-france.fr/monde/etats-unis/jeffrey-epstein/info-ouest-france-comptes-bancaires-societes-offshore-mariages-arranges-comment-fonctionnait-lentreprise-epstein-64c1b40a-0d8e-11f1-b839-4d59eb76df60",
+        "articleHeadline": "INFO OUEST-FRANCE. Comptes bancaires, sociétés offshore, mariages arrangés : comment fonctionnait « l'entreprise Epstein »"
+      }
+    },
+    {
+      "id": "palm",
+      "article": {
+        "tag": "Partie 5 · Fin de l'empire",
+        "objectImage": "data/images/14_PALM_BEACH.png",
+        "title": "Le palmier — Palm Beach",
+        "description": "Il ne rappelle qu'un lieu : Palm Beach, qui doit son nom à ces arbres majestueux qui bordent ses avenues. C'est là que Jeffrey Epstein possédait une résidence, là qu'une police tenace a enquêté pendant trois ans, là qu'onze lycéennes du même établissement figuraient dans un document de 56 pages jamais abouti.",
+        "link": "https://www.ouest-france.fr/monde/etats-unis/jeffrey-epstein/la-premiere-plainte-contre-jeffrey-epstein-date-de-1996-pourquoi-le-predateur-sexuel-na-t-il-pas-ete-stoppe-avant-ae380504-0be9-11f1-b839-4d59eb76df60",
+        "articleHeadline": "La première plainte contre Jeffrey Epstein date de 1996 : pourquoi le prédateur sexuel n'a-t-il pas été stoppé avant ?"
+      }
+    },
+    {
+      "id": "equerre",
+      "article": {
+        "tag": "Partie 4 · Secrets financiers",
+        "objectImage": "data/images/15_EPSTEIN_JEUNE.png",
+        "title": "L'équerre — instrument du prof de maths",
+        "description": "Un instrument de mesure ordinaire, vestige du passé de professeur de mathématiques qu'était Jeffrey Epstein en 1976. Comment un jeune homme de 23 ans, sur le point d'être licencié de la Dalton School pour ses performances pédagogiques jugées insuffisantes, a-t-il pu infiltrer l'une des banques les plus prestigieuses de Wall Street ?",
+        "link": "https://www.ouest-france.fr/leditiondusoir/2026-02-20/prof-de-maths-mediocre-issu-de-la-classe-moyenne-comment-le-pedocriminel-jeffrey-epstein-a-t-il-bati-sa-fortune-28e50824-39c4-4a94-b9e3-f63299a29df2",
+        "articleHeadline": "Prof de maths médiocre issu de la classe moyenne, comment le pédocriminel Jeffrey Epstein a-t-il bâti sa fortune ?"
+      }
+    },
+    {
+      "id": "corde",
+      "article": {
+        "tag": "Partie 5 · Fin de l'empire",
+        "objectImage": "data/images/16_CORDE_SUICIDE_EPSTEIN.png",
+        "title": "La corde de ligature — pièce à conviction",
+        "description": "Cette corde de ligature, photographiée comme pièce à conviction par le ministère de la Justice américain, est au cœur de l'énigme qui entoure la fin brutale du milliardaire dans sa cellule de Manhattan. La version officielle conclut à un suicide par pendaison ; des experts pointent des marques sur son cou qui ressemblent davantage à celles laissées par une corde fine.",
+        "link": "https://www.ouest-france.fr/monde/etats-unis/jeffrey-epstein/gardiens-endormis-os-du-cou-fractures-cameras-eteintes-que-sait-on-des-circonstances-de-la-mort-de-jeffrey-epstein-23b9f5ae-0b12-11f1-8f27-f38523081a88",
+        "articleHeadline": "Gardiens endormis, os du cou fracturés, caméras éteintes… Que sait-on des circonstances de la mort de Jeffrey Epstein ?"
+      }
+    },
+    {
+      "id": "island",
+      "article": {
+        "tag": "Partie 1 · Logistique & Archives",
+        "objectImage": "data/images/17_ILE_EPSTEIN.png",
+        "title": "Little Saint James — « Little Saint Jeff »",
+        "description": "Eaux turquoise, plages immaculées, végétation luxuriante. Little Saint James ressemble à une carte postale des Caraïbes. Sauf que derrière ce décor de rêve, Jeffrey Epstein régnait en maître absolu : pas de police, pas de témoins, soixante-dix employés tenus au silence. Pendant deux décennies, cette île abritait l'un des réseaux pédocriminels les plus tentaculaires de l'histoire.",
+        "link": "https://www.ouest-france.fr/leditiondusoir/2026-02-16/little-saint-jeff-l-ile-ou-jeffrey-epstein-regnait-sans-police-ni-temoins-80fd505f-cef2-460f-b902-b745c1e22592",
+        "articleHeadline": "« Little Saint Jeff » : l'île où Jeffrey Epstein régnait sans police ni témoins"
+      }
+    },
+    {
+      "id": "tigre",
+      "article": {
+        "tag": "Épilogue · Mise en scène du pouvoir",
+        "objectImage": "data/images/18_TIGRE.png",
+        "title": "Le tigre empaillé",
+        "description": "Trônant majestueusement dans l'une des salles de réception de l'appartement de Manhattan, ce tigre empaillé grandeur nature est l'un des objets les plus théâtraux de la demeure. Ce fauve immobile participe à l'atmosphère étrange des lieux, entre cabinet de curiosités et mise en scène narcissique du pouvoir.",
+        "link": "https://www.ouest-france.fr/monde/etats-unis/jeffrey-epstein/en-images-les-10-choses-les-plus-troublantes-que-les-enqueteurs-ont-decouvert-dans-lappartement-depstein-57960758-18a2-11f1-92e2-ea7c021e42bb",
+        "articleHeadline": "EN IMAGES. Les 10 choses les plus troublantes que les enquêteurs ont découvertes dans l'appartement d'Epstein"
+      }
+    }
+  ]
+}

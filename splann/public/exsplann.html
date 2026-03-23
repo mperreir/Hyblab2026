@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+  <title>Hyblab 2025</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Albert+Sans:wght@100..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/lib/swiper-bundle.min.css">
+  <link rel="stylesheet" href="css/lib/loading.css">
+  <link rel="stylesheet" href="css/lib/splitting.css">
+  <script src="js/lib/gsap.min.js"></script>
+  <script src="js/lib/ScrollTrigger.min.js"></script>
+  <script src="js/lib/splitting.min.js"></script>
+  <script src="js/lib/anime.min.js"></script>
+  <script src="js/lib/swiper-bundle.min.js"></script>
+  <script src="js/lib/html2canvas.min.js"></script>
+  <script src="js/titleSlide.js" defer></script>
+  <script src="js/creditSlide.js" defer></script>
+  <script src="js/contentSlide.js" defer></script>
+  <script src="js/extended-sheet.js" defer></script>
+  <script src="js/index.js" defer></script>
+</head>
+<body>
+    <!-- Le conteneur sert à vérouiller les proportions (aspect ratio) du contenu de la page (ici des slides) -->
+    <div id="container">
+
+      <!-- Le nouveau header-->
+      <nav class="main-header">
+        <div class="header-left">
+            <img src="img/Splann! Logo.png" alt="Logo Splann" class="logo-splann">
+        </div>
+        
+        <div class="header-right">
+            <button class="btn-icon">
+                <img src="img/Drp_Français.jpg" alt="FR" class="icon-flag">
+            </button>
+            <button class="btn-icon">
+                <img src="img/Drp_breton.png" alt="BZH" class="icon-flag">
+            </button>
+            <button class="btn-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            </button>
+            <button class="btn-icon">
+                <svg width="30" height="24" viewBox="0 0 30 24" fill="none" stroke="white" stroke-width="2"><line y1="2" x2="30" y2="2"/><line y1="12" x2="30" y2="12"/><line y1="22" x2="30" y2="22"/></svg>
+            </button>
+        </div>
+      </nav>
+
+      <!-- Le loader-->
+      <div id="loader">
+        <div id="loader-img" class="ld ld-ring ld-cycle"></div>
+        <p id="loader-text">Veuillez patienter...</p>
+      </div>
+
+      <div id="mySwiper" class="swiper">
+        <!-- le main est aussi le conteneur des différents slides (contenus à chaque fois dans des sections-->
+        <main class = "swiper-wrapper">
+
+            <!-- Slide de titre-->
+            <section id="title-slide" class="swiper-slide">
+                <header>
+                    <img src="img/LOGO_SPLANN_ROUGE.png" class="logo-splann-slide" alt="Logo d'ExSplann">
+                    <h2 class="titre"></h2>
+                </header>
+                <img class="imgPrincipale" alt="Image principale">
+
+                <div class="swiper-button-next"></div>
+
+            </section>
+
+            <!-- Slide de titre 2 -->
+            <section id="title-slide-2" class="swiper-slide">
+
+                <div class="title-bar">
+                  <h2 class="title-bar-content"></h2>
+                  <span class="progress-badge" id="badge">2/</span>
+                </div>
+                <div id="instagram-content">
+                    <p class="chapeau"></p>
+                    <img class="illustration" alt="Illustration principale de l'enquete">
+                </div>
+                
+                <div class="swiper-button-next"></div>
+
+            </section>
+            <!-- Ici seront insérer des slides de contenu dynamiquement-->
+
+            <!-- Slide pour consulter d'autres articles -->
+            <section id="last-slide" class="swiper-slide">
+                <div class="last-page-content">
+                    <p class="author-credits">
+                        Enquête de Celia Izoard, Morgan Large, Catherine Le Gall<br>
+                        Illustrée par Aurélie Calmet
+                    </p>
+
+                    <h2 class="section-title"><b>Plus d’enquêtes :</b></h2>
+
+                    <div class="cards-container">
+                      <a href="#" class="enquete-card">
+                          <div class="card-text">
+                              <h3>Lycées agricoles bretons : le privé creuse son sillon</h3>
+                          </div>
+                          <div class="card-img" style="background-image: url('img/lycée agricole.webp');"></div>
+                      </a>
+
+                      <a href="#" class="enquete-card">
+                          <div class="card-text">
+                              <h3>Hôpital public : une destruction programmée, un marché pour le privé</h3>
+                          </div>
+                          <div class="card-img" style="background-image: url('img/hopital.jpg');"></div>
+                      </a>
+
+                      <a href="#" class="enquete-card">
+                          <div class="card-text">
+                              <h3>En Bretagne, la loi littoral impuissante à endiguer le béton</h3>
+                          </div>
+                          <div class="card-img" style="background-image: url('img/Littoral.png');"></div>
+                      </a>
+                    </div>
+
+                    <h2 class="section-title"><b>Suivez-nous sur nos réseaux :</b></h2>
+
+                    <div class="social-links">
+                      <a href="#" class="social-item">
+                        <img src="img/Calque_1.svg" alt="LinkedIn" class="social-icon">
+                        <span>Splann ! Lanceur d'enquêtes</span>
+                      </a>
+                  
+                      <a href="#" class="social-item">
+                        <img src="img/Group 33.svg" alt="Instagram" class="social-icon">
+                        <span>@splannenquetes</span>
+                      </a>
+                      <a href="#" class="social-item" id="btn-download">
+                        <img src="img/download.svg" alt="Exporter" class="social-icon">
+                        <span>Télécharger les slides (insta)</span>
+                      </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide de fin-->
+            <section id="credit-slide" class="swiper-slide">
+                <header>
+                  <h1>Project concu durant Hyblab 2026</h1>
+                  <p> Auteurs :</p>
+
+                </header>
+                <img id="img-fini" alt="logo hyblab" src="img/teamjpg">
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+                <footer id="bandeau">
+                        <!-- Logo Hyblab -->
+                          <a href="http://www.hyblab.fr/"><img id="hyblab" src="logo_hyblab.png" alt="Hyblab DataSport"></a>
+                      
+                          <!-- Les organisateurs -->
+                          <ul>
+                            <li><a href="https://lecolededesign.com/"><img src="ecoles/logo_edna.png" alt="Ecole de Design Nantes Atlantique"></a></li>
+                            <li><a href="https://www.polytech.univ-nantes.fr/"><img src="ecoles/logo_polytech.png" alt="Polytech Nantes"></a></li>
+                            <!-- Les autres logos -->
+                          </ul>
+                          <ul>
+                            <li><a href="https://www.ouestmedialab.fr/"><img src="logo_oml.png" alt="Ouest Médialab"></a></li>
+                            <!-- Logos CC et opensource -->
+                            <li>
+                            <ul>
+                              <li class="stacked"><img id="cc" src="logo_cc.png" alt="Creative commons"></li>
+                              <li class="stacked"><img id="opensource" src="logo_opensource.png" alt="Open source"></li>
+                            </ul>
+                            </li>
+                            <!-- Logo de votre porteur de projet -->
+                            <li><a href="splann.org"><img src="img/Splann! Logo.png" alt="Logo de mon porteur de projet"></a></li>
+                            <!-- Partenaires institutionnels -->
+                            <li><a href="https://www.nantesmetropole.fr/"><img class="institutionnel" src="institutionnels/logo_nantesmetropole.png" alt="Nantes Métropole"></a></li>
+                          </ul>
+                </footer>
+            </section>
+        </main>
+        <div class="nav-bar-hierarchical" id="navBar"></div> 
+    </div>
+  </div>
+</body>
+</html>
+
+<!---->

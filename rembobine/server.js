@@ -12,6 +12,11 @@ const app = express();
 const api = require('./api/api');
 app.use('/api', api);
 
+// Dedicated route for credits page: /rembobine/credits
+app.get('/credits', function (req, res) {
+	res.sendFile(path.join(__dirname, 'public', 'credits.html'));
+});
+
 // Minimum routing: serve static content from the html directory
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, '../__common-logos__')));

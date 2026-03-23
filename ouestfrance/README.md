@@ -1,29 +1,52 @@
 # Descriptif du projet
 
-Porteur de projet :
+Porteur de projet : Ouest-France
 
-Sujet :
+Sujet : Affaire Epstein — Expérience immersive 360°
 
-Nom d'équipe :
+Nom d'équipe : EpsTeam
 
-Participants : 
+Participants :
 
-- EDNA :
-- Polytech :  
+- EDNA :  SAUVE Louis ·  POLIDAT Edouard · GERMAIN Mateo
+- Polytech : REBAI Mehdi · RIDAOUI Moncef · GONDJE-DACKA Créptus Jacob · RMEILLI Hamza · *YAHYA Mouhamed Mahmoud*
 
+## Description
 
+Expérience web immersive permettant d'explorer en 360° une reconstitution de l'appartement new-yorkais de Jeffrey Epstein. L'utilisateur navigue dans la scène à la souris ou au doigt et découvre 18 objets clés, chacun lié à un article d'investigation publié par Ouest-France. Une fois tous les objets trouvés, une fiche de complétion invite à poursuivre l'enquête sur le site Ouest-France et via la boîte Jmail d'Epstein.
 
-## A supprimer
+## Stack technique
 
-Ces instructions ne sont la que pour vous guider dans le développement de vos pages web. Elles seront à supprimer pour la soumission finale de votre code.
+- Three.js (r128) — rendu WebGL de la sphère 360°
+- HTML / CSS / JavaScript vanilla — aucun framework
+- Données : `data/epstein-data.json` — contenu éditorial et coordonnées des hotspots
+- Zones interactives : polygones sphériques définis dans `js/polygone-zones.js`
 
-Le dossier de votre projet contient un squelette de code que vous devez modifier. 
-
-- La partie `serveur.js`  ne doit a priori pas être touchée, si vous avez des entrées d'API à ajouter il faudra le faire dans le dossier `api`.
-- Le dossier `public`  contient la partie statique de votre site. Par défaut le fichier index.html charge un fichier `style.css` qui est destiné au format mobile (portrait). Si votre porteur de projet demande un site desktop, vous pouvez vous baser sur l'exemple `index-desktop.html` et le CSS associé `style-desktop.css` qui propose une page au format paysage.
-
-Veuillez noter que le code fourni dans `public` n'est qu'un code d'exemple. Vous pouvez totalement le remplacer si c'est plus simple pour vous. Le code proposé fournit cependant une solution relativement simple pour gérer la variabilité des rapports hauteur:largeur en format desktop et mobile.
+## Structure du projet
+```
+public/
+├── css/
+│   ├── epstein-style.css   # styles du viewer 360°
+│   └── style.css           # styles de la page d'intro
+├── data/
+│   ├── images/             # photos des 18 objets
+│   └── epstein-data.json   # contenu éditorial
+├── img/                    # logos et assets graphiques
+├── js/
+│   ├── controller.js       # gestion caméra (drag, pinch, zoom)
+│   ├── main.js             # initialisation Three.js et hotspots
+│   ├── polygone-zones.js   # coordonnées sphériques des zones \
+│   └── popup.js            # logique du panneau de détail
+├── epstein.html            # viewer 360°
+└── index.html              # page d'introduction (2 slides)
+```
 
 ## Instructions de déploiement
 
-Si votre projet nécessite des instructions spécifiques pour son déploiement, merci d'ajouter des explications ici.
+Le projet est entièrement statique, aucune dépendance serveur n'est requise.
+
+1. Déposer le contenu du dossier `public/` sur n'importe quel serveur HTTP statique (Apache, Nginx, GitHub Pages, Netlify…)
+2. S'assurer que le fichier `img/epstein.png` (texture 360°) est bien présent — c'est l'asset le plus lourd du projet
+3. Accéder via `index.html` — la page d'intro redirige automatiquement vers `epstein.html`
+
+> Le viewer nécessite WebGL. Il fonctionne sur tous les navigateurs modernes (Chrome, Safari, Firefox) sur mobile et desktop.

@@ -1,0 +1,190 @@
+@import "tailwindcss";
+@plugin "daisyui";
+
+
+@theme {
+  /* --- Couleurs de la charte graphique --- */
+
+  /*Couleur primaire*/
+  --color-primary: #404040;
+
+  /*Couleur secondaire*/
+  --color-secondary: #feeb15;
+
+}
+
+.milestone-font {
+  font-family: 'Shantell Sans', cursive;
+  font-weight: 900
+}
+
+/* Application locale des couleurs à daisyUI via son plugin de thème */
+@plugin "daisyui/theme" {
+  name: "light";
+  default: true;
+  --color-primary: #404040;
+  --color-secondary: #feeb15;
+}
+
+
+/* Pour Chrome, Safari et Opera */
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none;
+}
+
+/* Pour Firefox, IE et Edge */
+html,
+body {
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+  scroll-behavior: auto !important;
+  overscroll-behavior-y: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color-scheme: light;
+  background-color: #ffffff;
+  color: #1a1a1a;
+}
+
+/* Masquer la scrollbar pour Chrome, Safari et Opera */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Masquer la scrollbar pour IE, Edge et Firefox */
+.no-scrollbar {
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+}
+
+.scroll-container {
+  overflow-y: scroll;
+  touch-action: pan-y;
+  /* Force le navigateur à ne gérer que l'axe vertical sans fioritures */
+  -webkit-overflow-scrolling: auto;
+  /* Désactive le momentum natif iOS qui cause souvent ce lag en inversion */
+  transform: scaleY(-1);
+}
+
+.scroll-container>* {
+  transform: scaleY(-1);
+}
+
+* {
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Override DaisyUI range thumb styles for custom images */
+/* Override DaisyUI range thumb styles for custom images */
+.slider-thumb-image {
+  -webkit-appearance: none !important;
+  /* Désactive le style natif du conteneur */
+  appearance: none !important;
+  background: transparent !important;
+  /* Enlève le style DaisyUI qui englobe la barre */
+  height: 20vw;
+  /* On augmente grandement la hauteur du bloc global pour laisser l'image dépasser */
+  min-height: 80px;
+}
+
+/* On refait la barre (track) pour qu'elle soit visible sans couper le bouton */
+.slider-thumb-image::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 1.5rem;
+  /* Ajuste l'épaisseur de la barre grise en arrière-plan */
+  background: linear-gradient(
+    to right,
+    var(--color-secondary) 0%,
+    var(--color-secondary) var(--value-percent, 0%),
+    #f3f4f6 var(--value-percent, 0%),
+    #f3f4f6 100%
+  );
+  /* Couleur de la barre dynamique : Jaune rempli, puis gris clair */
+  border-radius: 1rem;
+  margin-top: 8vw;
+  /* Repousse la ligne plus bas pour l'aligner grossièrement au milieu */
+}
+
+.slider-thumb-image::-moz-range-track {
+  width: 100%;
+  height: 1.5rem;
+  background: linear-gradient(
+    to right,
+    var(--color-secondary) 0%,
+    var(--color-secondary) var(--value-percent, 0%),
+    #f3f4f6 var(--value-percent, 0%),
+    #f3f4f6 100%
+  );
+  border-radius: 1rem;
+}
+
+.slider-thumb-image::-webkit-slider-thumb {
+  -webkit-appearance: none !important;
+  /* Crucial pour que l'image dépasse de la barre */
+  appearance: none !important;
+  margin-top: calc(-7vw + 0.75rem);
+  /* Règle la position verticale par rapport à la ligne grise centrale */
+  /* Optionnel: aide à centrer verticalement le bouton sur la barre */
+  background-image: var(--thumb-img) !important;
+  background-size: contain !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  height: 17vw !important;
+  /* Taille relative à la largeur de l'écran */
+  width: 17vw !important;
+  /* Taille relative à la largeur de l'écran */
+  min-height: 48px !important;
+  /* Pour ne pas être trop petit sur mobile */
+  min-width: 48px !important;
+  border-radius: 50% !important;
+}
+
+.slider-thumb-image::-moz-range-thumb {
+  background-image: var(--thumb-img) !important;
+  background-size: contain !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  height: 17vw !important;
+  /* Taille relative à la largeur de l'écran */
+  width: 17vw !important;
+  /* Taille relative à la largeur de l'écran */
+  min-height: 48px !important;
+  min-width: 48px !important;
+  border-radius: 50% !important;
+}
+
+/* Modificateurs pour la vue PC (xl Tailwind = 1280px) */
+@media (min-width: 1280px) {
+  .slider-thumb-image {
+    height: 10vw;
+    min-height: 60px;
+  }
+  .slider-thumb-image::-webkit-slider-runnable-track {
+    margin-top: 4vw;
+  }
+  .slider-thumb-image::-webkit-slider-thumb {
+    margin-top: calc(-3.5vw + 0.75rem);
+    height: 8vw !important;
+    width: 8vw !important;
+  }
+  .slider-thumb-image::-moz-range-thumb {
+    height: 8vw !important;
+    width: 8vw !important;
+  }
+}

@@ -20,7 +20,6 @@ var sub_apps = [];
 // create sub apps
 // and register sub-apps
 app_names.forEach(function (element, index, array) {
-	console.log("Registering: " + element);
 	sub_apps[element] = require("./" + element + "/server");
 	app.use("/" + element, sub_apps[element]);
 });
@@ -37,6 +36,4 @@ var port = "PORT" in process.env ? process.env.PORT : 8080;
 var server = app.listen(port, function () {
 	var host = server.address().address;
 	var port = server.address().port;
-
-	console.log("Hyblab routing app listening at http://%s:%s", host, port);
 });
