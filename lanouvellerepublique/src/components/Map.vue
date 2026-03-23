@@ -75,9 +75,10 @@ const route = useRoute()
 const router = useRouter()
 const restaurants = computed(() => filterStore.filteredRestaurants)
 
-const API_KEY = "b4BxT11KjV5Zzm2lo2V1"
-const STYLE = "dataviz-v4"
-const mapTilerUrl = `https://api.maptiler.com/maps/${STYLE}/{z}/{x}/{y}.png?key=${API_KEY}`
+// const API_KEY = "b4BxT11KjV5Zzm2lo2V1"
+// const STYLE = "dataviz-v4"
+// const mapTilerUrl = `https://api.maptiler.com/maps/${STYLE}/{z}/{x}/{y}.png?key=${API_KEY}`
+const mapTilerUrl = "https://tile.openstreetmap.org/{z}/{x}/{y}.png"
 const fallback_position = [47.38935859649009, 0.6860130852825314]
 
 const markerIcon = divIcon({
