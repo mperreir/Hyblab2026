@@ -143,3 +143,4 @@ package-lock.json
 vivant/database.sqlite 
 vivant/database.sqlite-wal
 vivant/database.sqlite-shm
+*.db
