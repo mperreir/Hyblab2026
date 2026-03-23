@@ -1,8 +1,6 @@
 .page {
   min-height: 100vh;
-  background:
-    #F3DFD8 url('/lequipe/fonts/paper_texture.png') repeat,
-    url('/fonts/paper_texture.png') repeat;
+  background: #F3DFD8 var(--paper-texture-url) repeat;
   background-size: 400px auto;
   font-family: 'DM Sans', sans-serif;
 }
