@@ -1,15 +1,15 @@
 # Descriptif du projet
 
-Porteur de projet :
+Porteur de projet : Grand Lyon
 
-Sujet :
+Sujet : Remixer la manière de présenter les compétences de la métropole pour les rendre plus accessibles et engageantes.
 
-Nom d'équipe :
+Nom d'équipe : Tié1Lyon
 
 Participants : 
 
-- EDNA :
-- Polytech :  
+- EDNA : BEZARD-FALGAS Mathilde, HERVÉ Lou, METZGER Laura
+- Polytech : Guéguen Loïc, Dubois Elouan, Bhödynaux Paul
 
 
 

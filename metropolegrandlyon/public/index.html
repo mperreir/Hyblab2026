@@ -1,77 +1,1167 @@
 <!DOCTYPE html>
-
-<html lang="fr">
+<html lang="fr-FR">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
-  <title>Hyblab 2025</title>
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/loadingio/loading.css@v2.0.0/dist/loading.css" >
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.2/anime.min.js"></script>
-  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-  <script src="js/slide1.js" defer></script>
-  <script src="js/slide2.js" defer></script>
-  <script src="js/index.js" defer></script>
+    <meta charset="utf-8">
+
+<!-- 
+	Site réalisé par Randstad Digital
+
+	This website is powered by TYPO3 - inspiring people to share!
+	TYPO3 is a free open source Content Management Framework initially created by Kasper Skaarhoj and licensed under GNU/GPL.
+	TYPO3 is copyright 1998-2026 of Kasper Skaarhoj. Extensions are copyright of their respective owners.
+	Information and contribution at https://typo3.org/
+-->
+
+ <link rel="stylesheet" href="css/acceuil.css">
+<title>Missions et compétences - La Métropole de Lyon</title>
+<meta name="generator" content="TYPO3 CMS">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<meta name="robots" content="index, follow, archive">
+<meta name="twitter:card" content="summary">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="abstract" content="Aménagement urbain, services aux personnes, déplacements ou encore actions en faveur de l&#039;économie : la Métropole agit dans six grands domaines de compétences de l&#039;intérêt de toutes et tous.">
+
+
+<link rel="stylesheet" href="/typo3temp/assets/css/7015c8c4ac5ff815b57530b221005fc6.css?1750262083" media="all">
+<link rel="stylesheet" href="/_assets/a181c6b9e3ca3150a672e87580994929/Css/style.min.css?1773305988" media="all">
+
+
+
+<script src="/_assets/a181c6b9e3ca3150a672e87580994929/Vendor/tarteaucitronjs/tarteaucitron.min.js?1766408931"></script>
+<script src="/_assets/a181c6b9e3ca3150a672e87580994929/JavaScript/dist/scripts-header.min.js?1767603477"></script>
+<script>
+/*TS_inlineJS*/
+    var tarteaucitronForceLanguage = 'fr';
+      tarteaucitron.user.matomotmUrl = 'https://statweb.grandlyon.com/js/container_XhC9ge5S.js';
+      (tarteaucitron.job = tarteaucitron.job || []).push('glm_matomotm');
+
+
+</script>
+
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+    <link rel="icon" href="/favicon.svg" sizes="any" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png"/>
+    <link rel="manifest" href="/site.webmanifest" />
+<link rel="canonical" href="https://www.grandlyon.com/metropole/missions-et-competences">
 </head>
-<body>
-    <!-- Le conteneur sert à vérouiller les proportions (aspect ratio) du contenu de la page (ici des slides) -->
-    <div id="container">
-      <!-- Le loader-->
-      <div id="loader">
-        <div id="loader-img" class="ld ld-ring ld-cycle"></div>
-        <p id="loader-text">Veuillez patienter...</p>
-      </div>
-      <div id="mySwiper" class="swiper">
-        <!-- le main est aussi le conteneur des différents slides (contenus à chaque fois dans des sections-->
-        <main class = "swiper-wrapper">
-            <section id="first-slide" class="swiper-slide">
-                <header>
-                    <h1 id="titre">Welcome to</h1>
-                </header>
-                
-                <img src="img/logo_hyblab.png" id="logo-hyblab" alt="logo hyblab">
+<body class="vh-100 d-flex flex-column justify-content-between">
+<div class="skiplinks visually-hidden-focusable bg-red p-16">
+  <nav aria-label="Accès rapide">
+    <ul class="skiplinks__list list-unstyled d-flex flex-column flex-lg-row align-items-center justify-content-center gap-lg-24">
+      <li><a id="skiplink__contenu" href="#main" role="button" title="Aller au contenu">Contenu</a></li>
+      <li><a id="skiplink__menu" href="#main-navbar" role="button" title="Aller au menu">Menu</a></li>
+      <li><a id="skiplink__search" href="#search" role="button" title="Aller à la recherche">Recherche</a></li>
+      <li><a id="skiplink__pied-de-page" href="#footer" role="button" title="Aller au pied de page">Pied de page</a></li>
+    </ul>
+  </nav>
+</div>
 
 
-                <!-- le footer sera rempli à partir de données lues dans un fichier Json-->
-                <footer>
-                  <p></p>
-                </footer>
-            </section>
-            <section id="second-slide" class="swiper-slide">
-                <header>
-                  <h1>This was...</h1>
-                </header>
-                <img id="img-fini" alt="logo hyblab" src="hyblab_2026.png">
-                <footer id="bandeau">
-                        <!-- Logo Hyblab -->
-                          <a href="http://www.hyblab.fr/"><img id="hyblab" src="logo_hyblab.png" alt="Hyblab DataSport"></a>
-                      
-                          <!-- Les organisateurs -->
-                          <ul>
-                            <li><a href="https://lecolededesign.com/"><img src="ecoles/logo_edna.png" alt="Ecole de Design Nantes Atlantique"></a></li>
-                            <li><a href="https://www.polytech.univ-nantes.fr/"><img src="ecoles/logo_polytech.png" alt="Polytech Nantes"></a></li>
-                            <!-- Les autres logos -->
-                          </ul>
-                          <ul>
-                            <li><a href="https://www.ouestmedialab.fr/"><img src="logo_oml.png" alt="Ouest Médialab"></a></li>
-                            <!-- Logos CC et opensource -->
-                            <li>
-                            <ul>
-                              <li class="stacked"><img id="cc" src="logo_cc.png" alt="Creative commons"></li>
-                              <li class="stacked"><img id="opensource" src="logo_opensource.png" alt="Open source"></li>
-                            </ul>
-                            </li>
-                            <!-- Logo de votre porteur de projet -->
-                            <li><a href="https://www.mon-porteur-de-projet.org"><img src="no-logo.png" alt="Logo de mon porteur de projet"></a></li>
-                            <!-- Partenaires institutionnels -->
-                            <li><a href="https://www.nantesmetropole.fr/"><img class="institutionnel" src="institutionnels/logo_nantesmetropole.png" alt="Nantes Métropole"></a></li>
-                          </ul>
-                </footer>
-            </section>
-        </main>
-        <div class="swiper-pagination"></div>
+<header id="header" class="mainHeader">
+  <div id="search-block--mobile" class="collapse d-lg-none"> <!-- visible only in mobile-->
+  
+
+	
+  
+
+  <div class="tx-solr-search-form tx-solr-search-form-header">
+      <form method="get" id="tx-solr-search-form-pi-results-436157" action="/que-recherchez-vous" data-suggest="/que-recherchez-vous?type=7384" data-suggest-header="Top Results" accept-charset="utf-8">
+
+        
+            <div class="input-group">
+              <button class="btn btn-back ps-0" type="button" data-bs-toggle="collapse" data-bs-target="#search-block--mobile" aria-controls="search-block--mobile" aria-expanded="false">
+                <span class="visually-hidden">Retour</span>
+                <svg aria-hidden="true" class="icon icon--arrow-right">
+                  <use href="/_assets/a181c6b9e3ca3150a672e87580994929/Images/sprites/sprites.svg#arrow-right"></use>
+                </svg>
+              </button>
+              <input
+                type="text"
+                class="tx-solr-q js-solr-q form-control search"
+                name="tx_solr[q]"
+                value=""
+                placeholder="Un service, un équipement, une démarche..."
+                title="Rechercher"
+                aria-describedby="btn-searchsubmit436157"
+                maxlength="64">
+              <button class="btn" type="submit" id="btn-searchsubmit436157">
+                <span class="visually-hidden">Rechercher</span>
+                <svg aria-hidden="true" class="icon icon__submit--loupe">
+                  <use href="/_assets/a181c6b9e3ca3150a672e87580994929/Images/sprites/sprites.svg#loupe"></use>
+                </svg>
+              </button>
+            </div>
+          
+
+      </form>
+  </div>
+
+
+
+  <div class="overlay d-lg-none" data-bs-toggle="collapse" data-bs-target="#search-block--mobile" aria-controls="search-block--mobile" role="none"></div>
+</div>
+<div class="top-header">
+  <div class="top-header__container d-flex justify-content-between align-items-center container-xxl px-lg-4 px-16 py-1">
+    <div class="top-header__logo">
+      <a href="/" accesskey="1" title="Retour à la page d&#039;accueil"><img src="img/Logo_lyon_metropole.png"164" height="65"   alt="Grand Lyon" title="Retour à la page d&#039;accueil" ></a>
+    </div>
+    <nav class="d-none d-lg-block">
+      <ul class="list-inline nav-top-menu d-flex gap-24 align-items-center">
+        
+  
+    <li>
+      <a href="/mes-services-au-quotidien/connaitre-ses-aides"
+        
+        
+        >
+        
+        Connaître ses aides
+      </a>
+    </li>
+  
+
+  
+    <li>
+      <a href="https://www.toodego.com/tableau-de-bord/"
+         target="_blank" class="link-external"
+        title="Suivre ses démarches (nouvelle fenêtre)"
+        >
+        
+          <svg aria-hidden="true" class="icon">
+            <use xlink:href="/_assets/a181c6b9e3ca3150a672e87580994929/Images/sprites/sprites.svg#external"></use>
+          </svg>
+        
+        Suivre ses démarches
+      </a>
+    </li>
+  
+
+  
+    <li>
+      <a href="/mes-services-au-quotidien/contacter-la-metropole/contacter-la-metropole-de-lyon"
+        
+        
+        >
+        
+        Contact
+      </a>
+    </li>
+  
+
+
+      </ul>
+    </nav>
+    <div class="d-flex d-lg-none top-header__ctabtn gap-24"> <!-- visible only in mobile-->
+      <button type="button" class="border-0 bg-transparent" data-bs-toggle="collapse" data-bs-target="#search-block--mobile" aria-controls="search-block--mobile" aria-expanded="false" aria-label="Ouverture du champ de recherche">
+        <svg aria-hidden="true" class="icon icon__cta--loupe">
+          <use href="/_assets/a181c6b9e3ca3150a672e87580994929/Images/sprites/sprites.svg#loupe"></use>
+        </svg>
+      </button>
+      <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false" aria-label="Ouvrir le menu de navigation">
+          <span class="burger-icon">
+            <span></span>
+            <span></span>
+            <span></span>
+          </span>
+      </button>
     </div>
   </div>
+</div>
+<div class="navbar navbar-expand-lg py-0">
+  <div id="main-navbar" class="collapse navbar-collapse  mainmenu__wrapper">
+  <div class="container-xxl px-lg-4 px-0 py-lg-16 d-lg-flex align-items-center justify-content-lg-between flex-wrap">
+    
+
+<nav>
+  <ul class="mainmenu navbar-nav list-inline d-lg-flex gap-lg-24">
+    
+      
+          
+              <li class="nav-item has-subnav">
+                <a href="#"
+                  class="nav-link dropdown-toggle "
+                  id="navbarDropdown-0"
+                  aria-expanded="false"
+                  data-bs-toggle="dropdown"
+                  role="button"
+                  
+                >
+                  Mes services au quotidien
+                  <svg aria-hidden="true" class="icon">
+                    <use href="/_assets/a181c6b9e3ca3150a672e87580994929/Images/sprites/sprites.svg#arrow-down"></use>
+                  </svg>
+                </a>
+                
+  
+  
+    
+      
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  <div class="dropdown-menu border-0 mt-0 pt-0" aria-labelledby="navbarDropdown-0">
+    <div class="bg-white">
+      <div class="container-xxl px-0 px-lg-4 px-lg-16 mt-24 my-lg-24">
+        <a class="close-menu rounded-circle d-none d-lg-flex align-items-center justify-content-center float-end" href="#">
+          <svg aria-hidden="true" class="icon icon__cta--loupe">
+            <use href="/_assets/a181c6b9e3ca3150a672e87580994929/Images/sprites/sprites.svg#cross"></use>
+          </svg>
+          <span class="visually-hidden">Fermer le menu</span>
+        </a>
+        
+            
+              
+  <div class="sub-nav pt-lg-1 row sub-nav--type2 g-24">
+
+    
+
+    
+      
+          
+              
+            
+        
+      <div class="col-lg-4 ">
+        <span class="mainmenu__labelcol" role="heading" aria-level="3">
+          Rechercher un service pour :
+        </span>
+        <ul class="list-unstyled">
+          
+            <li>
+              <a href="/mes-services-au-quotidien/gerer-ses-dechets"
+                
+                class=" "
+                
+                
+                >
+                
+                Gérer ses déchets
+              </a>
+            </li>
+          
+            <li>
+              <a href="/mes-services-au-quotidien/se-loger-ameliorer-ou-louer-son-logement"
+                
+                class=" "
+                
+                
+                >
+                
+                Se loger, améliorer ou louer son logement
+              </a>
+            </li>
+          
+            <li>
+              <a href="/mes-services-au-quotidien/gerer-son-eau"
+                
+                class=" "
+                
+                
+                >
+                
+                Gérer son eau
+              </a>
+            </li>
+          
+            <li>
+              <a href="/mes-services-au-quotidien/se-deplacer"
+                
+                class=" "
+                
+                
+                >
+                
+                Se déplacer
+              </a>
+            </li>
+          
+            <li>
+              <a href="/mes-services-au-quotidien/decouvrir-sortir-saerer"
+                
+                class=" "
+                
+                
+                >
+                
+                Découvrir, sortir, s&#039;aérer
+              </a>
+            </li>
+          
+            <li>
+              <a href="/mes-services-au-quotidien/consommer-durable-et-local"
+                
+                class=" "
+                
+                
+                >
+                
+                Consommer durable et local
+              </a>
+            </li>
+          
+            <li>
+              <a href="/mes-services-au-quotidien/sinvestir-dans-la-vie-citoyenne"
+                
+                class=" "
+                
+                
+                >
+                
+                S&#039;investir dans la vie citoyenne
+              </a>
+            </li>
+          
+        </ul>
+      </div>
+    
+      
+          
+              
+            
+        
+      <div class="col-lg-8 mainmenu--isLargest">
+        <span class="mainmenu__labelcol" role="heading" aria-level="3">
+          Se renseigner pour :
+        </span>
+        <ul class="list-unstyled">
+          
+            <li>
+              <a href="/mes-services-au-quotidien/contacter-la-metropole"
+                
+                class=" "
+                
+                
+                >
+                
+                Contacter la Métropole
+              </a>
+            </li>
+          
+            <li>
+              <a href="/mes-services-au-quotidien/travailler-a-la-metropole"
+                
+                class=" "
+                
+                
+                >
+                
+                Travailler à la Métropole
+              </a>
+            </li>
+          
+            <li>
+              <a href="/mes-services-au-quotidien/connaitre-ses-aides"
+                
+                class=" "
+                
+                
+                >
+                
+                Connaître ses aides
+              </a>
+            </li>
+          
+            <li>
+              <a href="/mes-services-au-quotidien/connaitre-les-aides-pour-le-handicap"
+                
+                class=" "
+                
+                
+                >
+                
+                Connaître les aides pour le handicap
+              </a>
+            </li>
+          
+            <li>
+              <a href="/mes-services-au-quotidien/connaitre-les-aides-pour-les-personnes-agees"
+                
+                class=" "
+                
+                
+                >
+                
+                Connaître les aides pour les personnes âgées
+              </a>
+            </li>
+          
+            <li>
+              <a href="/mes-services-au-quotidien/connaitre-les-services-pour-les-familles"
+                
+                class=" "
+                
+                
+                >
+                
+                Connaître les services pour les familles
+              </a>
+            </li>
+          
+            <li>
+              <a href="/mes-services-au-quotidien/etre-aide-pour-ses-etudes"
+                
+                class=" "
+                
+                
+                >
+                
+                Être aidé pour ses études
+              </a>
+            </li>
+          
+            <li>
+              <a href="/mes-services-au-quotidien/etre-accompagne-vers-lemploi"
+                
+                class=" "
+                
+                
+                >
+                
+                Être accompagné vers l&#039;emploi
+              </a>
+            </li>
+          
+            <li>
+              <a href="/mes-services-au-quotidien/etre-aide-en-tant-quassociation-ou-acteur-public"
+                
+                class=" "
+                
+                
+                >
+                
+                Être aidé en tant qu&#039;association ou acteur public
+              </a>
+            </li>
+          
+            <li>
+              <a href="/services/connaitre-les-services-pour-son-entreprise"
+                
+                class=" "
+                
+                
+                >
+                
+                Connaître les services pour son entreprise
+              </a>
+            </li>
+          
+            <li>
+              <a href="/mes-services-au-quotidien/sinformer-sur-lurbanisme"
+                
+                class=" "
+                
+                
+                >
+                
+                S&#039;informer sur l&#039;urbanisme
+              </a>
+            </li>
+          
+            <li>
+              <a href="/mes-services-au-quotidien/connaitre-les-services-numeriques"
+                
+                class=" "
+                
+                
+                >
+                
+                Connaître les services numériques
+              </a>
+            </li>
+          
+            <li>
+              <a href="/mes-services-au-quotidien/sinformer-sur-la-sante"
+                
+                class=" "
+                
+                
+                >
+                
+                S&#039;informer sur la santé
+              </a>
+            </li>
+          
+            <li>
+              <a href="/mes-services-au-quotidien/sinformer-sur-les-projets-urbains-dans-la-metropole"
+                
+                class=" "
+                
+                
+                >
+                
+                S&#039;informer sur les projets urbains dans la métropole
+              </a>
+            </li>
+          
+        </ul>
+      </div>
+    
+  </div>
+
+            
+          
+      </div>
+    </div>
+  </div>
+
+              </li>
+            
+      
+    
+      
+          
+              <li class="nav-item has-subnav">
+                <a href="#"
+                  class="nav-link dropdown-toggle active"
+                  id="navbarDropdown-1"
+                  aria-expanded="false"
+                  data-bs-toggle="dropdown"
+                  role="button"
+                   title="La Métropole de Lyon - rubrique active"
+                >
+                  La Métropole de Lyon
+                  <svg aria-hidden="true" class="icon">
+                    <use href="/_assets/a181c6b9e3ca3150a672e87580994929/Images/sprites/sprites.svg#arrow-down"></use>
+                  </svg>
+                </a>
+                
+  
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  <div class="dropdown-menu border-0 mt-0 pt-0" aria-labelledby="navbarDropdown-1">
+    <div class="bg-white">
+      <div class="container-xxl px-0 px-lg-4 px-lg-16 mt-24 my-lg-24">
+        <a class="close-menu rounded-circle d-none d-lg-flex align-items-center justify-content-center float-end" href="#">
+          <svg aria-hidden="true" class="icon icon__cta--loupe">
+            <use href="/_assets/a181c6b9e3ca3150a672e87580994929/Images/sprites/sprites.svg#cross"></use>
+          </svg>
+          <span class="visually-hidden">Fermer le menu</span>
+        </a>
+        
+            
+  <div class="sub-nav pt-lg-1 sub-nav--type1">
+    <ul class="list-unstyled row g-lg-24">
+      
+        
+          <li class="col-lg-4">
+            <a href="/metropole/administration-metropolitaine"
+              class=""
+              
+              
+              
+              
+              >
+              
+              Organisation administrative
+            </a>
+          </li>
+        
+      
+        
+          <li class="col-lg-4">
+            <a href="/metropole/les-58-communes-de-la-metropole"
+              class=""
+              
+              
+              
+              
+              >
+              
+              Les 58 communes de la Métropole de Lyon
+            </a>
+          </li>
+        
+      
+        
+          <li class="col-lg-4">
+            <a href="/metropole/organisation-politique"
+              class=""
+              
+              
+              
+              
+              >
+              
+              Organisation politique
+            </a>
+          </li>
+        
+      
+        
+          <li class="col-lg-4">
+            <a href="/metropole/missions-et-competences"
+              class="active"
+               title="Missions et compétences - page active"
+              
+              
+              
+              >
+              
+              Missions et compétences
+            </a>
+          </li>
+        
+      
+        
+          <li class="col-lg-4">
+            <a href="/actions"
+              class=""
+              
+              
+              
+              
+              >
+              
+              Plans d&#039;action et projets en cours
+            </a>
+          </li>
+        
+      
+    </ul>
+  </div>
+
+          
+      </div>
+    </div>
+  </div>
+
+              </li>
+            
+      
+    
+      
+          
+              <li class="nav-item">
+                <a href="/actus"
+                  
+                  class="nav-link "
+                  
+                  
+                >
+                  L&#039;actualité
+                </a>
+              </li>
+            
+      
+    
+  </ul>
+</nav>
+
+
+
+
+
+
+
+
+    
+        <div class="d-none d-lg-block" id="search"> <!-- visible only in desktop-->
+          
+
+	
+  
+
+  <div class="tx-solr-search-form tx-solr-search-form-header">
+      <form method="get" id="tx-solr-search-form-pi-results-755799" action="/que-recherchez-vous" data-suggest="/que-recherchez-vous?type=7384" data-suggest-header="Top Results" accept-charset="utf-8">
+
+        
+            <div class="input-group">
+              <button class="btn btn-back ps-0" type="button" data-bs-toggle="collapse" data-bs-target="#search-block--mobile" aria-controls="search-block--mobile" aria-expanded="false">
+                <span class="visually-hidden">Retour</span>
+                <svg aria-hidden="true" class="icon icon--arrow-right">
+                  <use href="/_assets/a181c6b9e3ca3150a672e87580994929/Images/sprites/sprites.svg#arrow-right"></use>
+                </svg>
+              </button>
+              <input
+                type="text"
+                class="tx-solr-q js-solr-q form-control search"
+                name="tx_solr[q]"
+                value=""
+                placeholder="Rechercher"
+                title="Rechercher"
+                aria-describedby="btn-searchsubmit755799"
+                maxlength="64">
+              <button class="btn" type="submit" id="btn-searchsubmit755799" title="Rechercher">
+                <svg aria-hidden="true" class="icon icon__submit--loupe">
+                  <use href="/_assets/a181c6b9e3ca3150a672e87580994929/Images/sprites/sprites.svg#loupe"></use>
+                </svg>
+              </button>
+            </div>
+          
+
+      </form>
+  </div>
+
+
+
+        </div>
+      
+  </div>
+</div>
+</div>
+
+</header>
+
+<main id="main" class="flex-grow-1">
+  
+  <nav aria-label="Fil d'ariane" class="breadcrumb container-xxl px-lg-4 px-16">
+  <ol class="breadcrumb__list list-unstyled d-flex flex-wrap"><li class="breadcrumb__item"><a href="/" title="Accueil">Accueil</a>&nbsp;</li><li class="breadcrumb__item"><a href="/metropole" title="La Métropole de Lyon">La Métropole de Lyon</a>&nbsp;</li><li class="breadcrumb__item breadcrumb__item--actif" aria-current="page">Missions et compétences</li></ol>
+</nav>
+
+
+  <section class="container-xxl px-lg-4 px-16 chapo">
+    <div class="chapo-content row">
+      <div class="col-md-9">
+        <h1>Missions et compétences</h1>
+      </div>
+      
+        <div class="col-md-11">
+          <p>Aménagement urbain, services aux personnes, déplacements ou encore actions en faveur de l&#039;économie : la Métropole agit dans six grands domaines de compétences de l&#039;intérêt de toutes et tous.</p>
+        </div>
+      
+    </div>
+  </section>
+
+  <li class="generic-tiles--tile" id="acces">
+            <a  href="./scroll.html"
+                class="stretched-link generic-tiles--title"
+                
+                >
+                Découvrir les actions de la métropole
+            </a>
+            <div class="generic-tiles--icon">
+              
+                  <svg aria-hidden="true" class="icon icon--arrow-right">
+                    <use href="/_assets/a181c6b9e3ca3150a672e87580994929/Images/sprites/sprites.svg#arrow-right"></use>
+                  </svg>
+                
+            </div>
+          </li>
+  <section class="bg-grey-lightest">
+    <div class="container-xxl px-lg-4 px-16 py-5 pt-lg-4 pb-lg-8">
+      <!--TYPO3SEARCH_begin-->
+      
+    
+
+            <div id="c31406" class="frame frame-default frame-type-menu_subpages frame-layout-0">
+                
+                
+                    
+
+
+
+                
+                
+                    
+
+
+
+                
+                
+
+	
+		<div class="generic-tiles--content">
+      <ul class="generic-tiles--tiles p-0">
+        
+          <li class="generic-tiles--tile">
+            <a  href="/metropole/missions-et-competences/developpement-economique"
+                class="stretched-link generic-tiles--title"
+                
+                >
+                Développement économique
+            </a>
+            <div class="generic-tiles--icon">
+              
+                  <svg aria-hidden="true" class="icon icon--arrow-right">
+                    <use href="/_assets/a181c6b9e3ca3150a672e87580994929/Images/sprites/sprites.svg#arrow-right"></use>
+                  </svg>
+                
+            </div>
+          </li>
+        
+          <li class="generic-tiles--tile">
+            <a  href="/metropole/missions-et-competences/education-culture-et-loisirs"
+                class="stretched-link generic-tiles--title"
+                
+                >
+                Éducation, culture et loisirs
+            </a>
+            <div class="generic-tiles--icon">
+              
+                  <svg aria-hidden="true" class="icon icon--arrow-right">
+                    <use href="/_assets/a181c6b9e3ca3150a672e87580994929/Images/sprites/sprites.svg#arrow-right"></use>
+                  </svg>
+                
+            </div>
+          </li>
+        
+          <li class="generic-tiles--tile">
+            <a  href="/metropole/missions-et-competences/solidarites"
+                class="stretched-link generic-tiles--title"
+                
+                >
+                Solidarités
+            </a>
+            <div class="generic-tiles--icon">
+              
+                  <svg aria-hidden="true" class="icon icon--arrow-right">
+                    <use href="/_assets/a181c6b9e3ca3150a672e87580994929/Images/sprites/sprites.svg#arrow-right"></use>
+                  </svg>
+                
+            </div>
+          </li>
+        
+          <li class="generic-tiles--tile">
+            <a  href="/metropole/missions-et-competences/cadre-de-vie"
+                class="stretched-link generic-tiles--title"
+                
+                >
+                Cadre de vie
+            </a>
+            <div class="generic-tiles--icon">
+              
+                  <svg aria-hidden="true" class="icon icon--arrow-right">
+                    <use href="/_assets/a181c6b9e3ca3150a672e87580994929/Images/sprites/sprites.svg#arrow-right"></use>
+                  </svg>
+                
+            </div>
+          </li>
+        
+          <li class="generic-tiles--tile">
+            <a  href="/metropole/missions-et-competences/gestion-au-quotidien"
+                class="stretched-link generic-tiles--title"
+                
+                >
+                Gestion au quotidien
+            </a>
+            <div class="generic-tiles--icon">
+              
+                  <svg aria-hidden="true" class="icon icon--arrow-right">
+                    <use href="/_assets/a181c6b9e3ca3150a672e87580994929/Images/sprites/sprites.svg#arrow-right"></use>
+                  </svg>
+                
+            </div>
+          </li>
+        
+          <li class="generic-tiles--tile">
+            <a  href="/metropole/missions-et-competences/relations-internationales"
+                class="stretched-link generic-tiles--title"
+                
+                >
+                Relations internationales
+            </a>
+            <div class="generic-tiles--icon">
+              
+                  <svg aria-hidden="true" class="icon icon--arrow-right">
+                    <use href="/_assets/a181c6b9e3ca3150a672e87580994929/Images/sprites/sprites.svg#arrow-right"></use>
+                  </svg>
+                
+            </div>
+          </li>
+        
+      </ul>
+    </div>
+	
+
+
+                
+                    
+
+
+
+                
+                
+                    
+
+
+
+                
+            </div>
+
+        
+
+
+      <!--TYPO3SEARCH_end-->
+    </div>
+  </section>
+
+  <div id="backTop" class="backTop d-flex justify-content-center">
+  <a href="#top" class="backTop__link btn-link">
+    <svg aria-hidden="true" class="icon icon--arrow-up">
+      <use href="/_assets/a181c6b9e3ca3150a672e87580994929/Images/sprites/sprites.svg#arrow-right"></use>
+    </svg>
+    Haut de page
+  </a>
+</div>
+
+</main>
+
+<footer id="footer" class="footer bg-red pb-lg-16 pb-4 pt-4">
+  <section class="container-xxl px-lg-4 px-16">
+  <div class="row g-3 g-md-24">
+    <div class="col-md-4">
+      <h2>Nous contacter</h2>
+      
+    
+
+            <div id="c29159" class="frame frame-default frame-type-text frame-layout-0 frame-space-before-none frame-space-after-none">
+                
+                
+                    
+
+
+
+                
+                
+                    
+
+
+
+                
+                
+
+    <div class="content">
+        <p><strong>Hôtel de la Métropole</strong><br>20 rue du Lac<br>69003 Lyon</p>
+<p><strong>Horaires d’ouverture au public&nbsp;:&nbsp;</strong><br>du lundi au vendredi de 7h30 à 18h30</p>
+<p><strong>Nous joindre par téléphone&nbsp;:&nbsp;</strong><br><a href="tel:0478634040">04 78 63 40 40</a><br>du lundi au vendredi de 7h30 à 18h30<br>&nbsp;</p>
+    </div>
+
+
+                
+                    
+
+
+
+                
+                
+                    
+
+
+
+                
+            </div>
+
+        
+
+
+      
+
+      
+    </div>
+    <div class="col-md-4">
+      <h2>Liens rapides</h2>
+      <ul class="footer__quickmenu list-unstyled">
+        
+          <li>
+            <a href="/mes-services-au-quotidien/contacter-la-metropole/faq"
+              
+              
+              >
+              
+              FAQ
+            </a>
+          </li>
+        
+          <li>
+            <a href="/metropole/administration-metropolitaine/ressources-documentaires"
+              
+              
+              >
+              
+              Ressources documentaires
+            </a>
+          </li>
+        
+          <li>
+            <a href="/mes-services-au-quotidien/travailler-a-la-metropole"
+              
+              
+              >
+              
+              Recrutement
+            </a>
+          </li>
+        
+          <li>
+            <a href="/metropole/administration-metropolitaine/les-autres-sites-web-de-la-metropole"
+              
+              
+              >
+              
+              Les sites web de la Métropole de Lyon
+            </a>
+          </li>
+        
+          <li>
+            <a href="/metropole/les-58-communes-de-la-metropole"
+              
+              
+              >
+              
+              Les 58 communes de la Métropole de Lyon
+            </a>
+          </li>
+        
+          <li>
+            <a href="/espace-presse"
+              
+              
+              >
+              
+              Espace presse
+            </a>
+          </li>
+        
+          <li>
+            <a href="/les-factures-electroniques"
+              
+              
+              >
+              
+              Les factures électroniques
+            </a>
+          </li>
+        
+          <li>
+            <a href="/les-marches-publics"
+              
+              
+              >
+              
+              Les marchés publics
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+    <div class="col-md-4">
+      <div class="d-flex flex-column gap-24 follow-us">
+        <h2>Suivez-nous</h2>
+        <a class="btn-link-red-outline" href="/actus/sinscrire-a-la-newsletter">
+          <svg aria-hidden="true" class="icon icon--email">
+            <use href="/_assets/a181c6b9e3ca3150a672e87580994929/Images/sprites/sprites.svg#email"></use>
+          </svg>
+          <span>S'inscrire à la newsletter</span>
+        </a>
+        <ul class="footer__socialnetworks list-unstyled d-flex align-items-center">
+          <li>
+            <a href="https://www.facebook.com/legrandlyon" title="Suivez la Métropole de Lyon sur Facebook (nouvelle fenêtre)" target="_blank" class="facebook">
+              <svg class="icon" aria-label="Facebook" role="img">
+                <use href="/_assets/a181c6b9e3ca3150a672e87580994929/Images/sprites/sprites.svg#facebook"></use>
+              </svg>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.linkedin.com/company/grand-lyon-la-m%C3%A9tropole/" title="Suivez la Métropole de Lyon sur LinkedIn (nouvelle fenêtre)" target="_blank" class="linkedin">
+              <svg aria-label="Linkedin" role="img" class="icon">
+                <use href="/_assets/a181c6b9e3ca3150a672e87580994929/Images/sprites/sprites.svg#linkedin"></use>
+              </svg>
+            </a>
+          </li>
+          <li>
+            <a href="https://bsky.app/profile/grandlyon.com" title="Suivez la Métropole de Lyon sur Bluesky (nouvelle fenêtre)" target="_blank" class="bluesky">
+              <svg aria-label="Bluesky" role="img" class="icon">
+                <use href="/_assets/a181c6b9e3ca3150a672e87580994929/Images/sprites/sprites.svg#bluesky"></use>
+              </svg>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.threads.net/@grandlyon" title="Suivez la Métropole de Lyon sur Threads (nouvelle fenêtre)" target="_blank" class="x-threads">
+              <svg aria-label="Thread" role="img" class="icon">
+                <use href="/_assets/a181c6b9e3ca3150a672e87580994929/Images/sprites/sprites.svg#thread"></use>
+              </svg>
+            </a>
+          </li>
+          <li>
+            <a href="https://instagram.com/grandlyon" title="Suivez la Métropole de Lyon sur Instagram (nouvelle fenêtre)" target="_blank" class="instagram">
+              <svg aria-label="Instagram" role="img" class="icon">
+                <use href="/_assets/a181c6b9e3ca3150a672e87580994929/Images/sprites/sprites.svg#instagram"></use>
+              </svg>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.youtube.com/grandlyontv" title="Suivez la chaîne YouTube de la Métropole de Lyon (nouvelle fenêtre)" target="_blank" class="youtube">
+              <svg class="icon" aria-label="Youtube" role="img">
+                <use href="/_assets/a181c6b9e3ca3150a672e87580994929/Images/sprites/sprites.svg#youtube"></use>
+              </svg>
+            </a>
+          </li>
+        </ul>
+
+        <div class="align-self-lg-end">
+          <img src="/_assets/a181c6b9e3ca3150a672e87580994929/Images/logo-metropole-lyon-white.svg?1767603477" width="189" height="74" alt="" class="footer__logo" />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="container-xxl px-lg-4 px-16">
+  <ul class="footer__menu list-unstyled d-flex flex-column flex-lg-row pt-3 pt-lg-16 mt-3"><li><a href="/plan-du-site">Plan du site</a></li><li><a href="/accessibilite">Accessibilité : partiellement conforme</a></li><li><a href="/ecoconception">Écoconception</a></li><li><a href="/mentions-legales">Mentions légales</a></li><li><a href="/donnees-personnelles">Données personnelles</a></li><li><a href="/flux-rss">Flux RSS</a></li><li><a href="javascript:tarteaucitron.userInterface.openPanel();" >Gestion des cookies</a></li></ul>
+</section>
+
+</footer>
+
+<script src="/_assets/a181c6b9e3ca3150a672e87580994929/Vendor/popper/popper.min.js?1766408929"></script>
+<script src="/_assets/a181c6b9e3ca3150a672e87580994929/Vendor/bootstrap/js/bootstrap.min.js?1766408929"></script>
+<script src="/_assets/a181c6b9e3ca3150a672e87580994929/JavaScript/dist/scripts.min.js?1773304689"></script>
+
+
 </body>
 </html>
