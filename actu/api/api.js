@@ -9,7 +9,7 @@ const linkedom = require("linkedom");
 const fs = require("fs");
 const globalagent = require('global-agent');
 const cors = require("cors");
-
+//const fetch = require('node-fetch');
 
 app.use(cors({
   origin: "https://hyblab.polytech.univ-nantes.fr"
@@ -294,7 +294,8 @@ async function recuperation_film_site(){
     let resp = null;
     try{
         resp = await fetch(link, {
-            "User-Agent": "Mozilla/5.0"
+            method: 'GET',
+            headers: { "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:129.0) Gecko/20100101 Firefox/129.0" }
         });
         
         if (!resp.ok) {
@@ -324,9 +325,9 @@ async function recuperation_film_site(){
     try{
         const link2 = "https://actu.fr/cinema/sorties-films/planetes-scarlet-et-l-eternite-le-testament-d-ann-lee-nos-critiques-des-sorties-du-11-mars_63923715.html";
         res = await fetch(link2, {
-            "User-Agent": "Mozilla/5.0",
-            "Content-Type": "text/html; charset=UTF-8"
-        
+            method: 'GET',
+            headers: { "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:129.0) Gecko/20100101 Firefox/129.0",
+            "Content-Type": "text/html; charset=UTF-8" }
         });
 
         if (!res.ok) {
@@ -545,7 +546,7 @@ app.delete("/film-like/id_film", async(res,req)=>{
 async function getDB(){
     if(!db){
         db = await open({
-            filename: './actu/api/BDD/database.db',
+            filename: './nantes2026/actu/api/BDD/database.db',
             driver: sqlite3.Database
         })
     }

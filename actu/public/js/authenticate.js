@@ -1,4 +1,4 @@
-const API = window.location.origin + "/actu/api";
+const API = "api";
 
 async function init() {
     const response = await fetch(API + "/create-user", {
