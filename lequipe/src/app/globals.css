@@ -1,35 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600&family=DM+Sans:ital,wght@0,400;0,500;0,700;0,900;1,400;1,700;1,900&display=swap');
 
-@font-face {
-  font-family: 'LEQUIPE';
-  src:
-    url('/typo/LEQUIPE.otf') format('opentype'),
-    url('/lequipe/typo/LEQUIPE.otf') format('opentype');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Anek';
-  src:
-    url('/typo/anek.ttf') format('truetype'),
-    url('/lequipe/typo/anek.ttf') format('truetype');
-  font-weight: 800;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'AnekExpanded';
-  src:
-    url('/fonts/AnekDevanagari_Expanded-ExtraBold.ttf') format('truetype'),
-    url('/lequipe/fonts/AnekDevanagari_Expanded-ExtraBold.ttf') format('truetype');
-  font-weight: 800;
-  font-style: normal;
-  font-display: swap;
-}
-
 /* ===========================================
    DESIGN TOKENS
    =========================================== */

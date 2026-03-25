@@ -7,7 +7,7 @@
 
 .screen {
     min-height: 100dvh;
-    background: #3A3635 url('/fonts/Fond_antracite.png') repeat;
+    background: #3A3635 var(--antracite-texture-url) repeat;
     background-size: 400px auto; /* Même taille que pour paper_texture pour la cohérence */
     display: flex;
     flex-direction: column;

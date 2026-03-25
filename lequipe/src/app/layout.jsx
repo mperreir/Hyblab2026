@@ -1,7 +1,6 @@
 import './globals.css'
 import SiteShell from '../components/SiteShell'
-
-const basePath = process.env.NODE_ENV === 'production' ? '/lequipe' : ''
+import { withBasePath } from '../lib/withBasePath'
 
 export const metadata = {
     title: 'Equipe',
@@ -17,14 +16,51 @@ export const viewport = {
 }
 
 export default function RootLayout({ children }) {
+    const iconHref = withBasePath('/icone/icone.png')
+    const paperTextureUrl = withBasePath('/fonts/paper_texture.png')
+    const antraciteTextureUrl = withBasePath('/fonts/Fond_antracite.png')
+    const lequipeFontUrl = withBasePath('/typo/LEQUIPE.otf')
+    const anekFontUrl = withBasePath('/typo/anek.ttf')
+    const anekExpandedFontUrl = withBasePath('/fonts/AnekDevanagari_Expanded-ExtraBold.ttf')
+
     return (
         <html lang="fr">
             <head>
-                <link rel="icon" href={`${basePath}/icone/icone.png`} />
+                <link rel="icon" href={iconHref} />
                 <link rel="preconnect" href="https://fonts.googleapis.com" />
                 <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
                 <meta name="apple-mobile-web-app-capable" content="yes" />
                 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+                <style>{`
+          @font-face {
+            font-family: 'LEQUIPE';
+            src: url('${lequipeFontUrl}') format('opentype');
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+          }
+
+          @font-face {
+            font-family: 'Anek';
+            src: url('${anekFontUrl}') format('truetype');
+            font-weight: 800;
+            font-style: normal;
+            font-display: swap;
+          }
+
+          @font-face {
+            font-family: 'AnekExpanded';
+            src: url('${anekExpandedFontUrl}') format('truetype');
+            font-weight: 800;
+            font-style: normal;
+            font-display: swap;
+          }
+
+          :root {
+            --paper-texture-url: url('${paperTextureUrl}');
+            --antracite-texture-url: url('${antraciteTextureUrl}');
+          }
+        `}</style>
             </head>
 
             <body>
